@@ -1,0 +1,11 @@
+[SURVCONFIG]
+flags=1
+periode=2
+heure=1
+minute=15
+hote=membres.lycos.fr
+dir=/teledev/
+config=survconfig.php
+storefile=storefile.php
+traitement=traitement.exe
+$
