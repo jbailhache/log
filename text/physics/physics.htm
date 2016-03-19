@@ -1,0 +1,6396 @@
+<HTML><head>
+
+<title>Gauge fields, Kaluza Klein theory, least action principle, relativity, Dirac equations, string theory</title>
+
+<meta name="keywords" content="physics,gauge field,Kaluza Klein,least action,general relativity,Dirac,equation,fermion,quantum,electrodynamics">
+
+ 
+
+</head>
+
+
+
+<body>
+
+
+
+See also 
+
+<ul>
+
+<li><a href="http://www.uwm.edu/~norbury/gr/gr.html">
+
+GENERAL RELATIVITY &
+
+                        COSMOLOGY 
+
+                  for Undergraduates</a>
+
+<li><a href="http://physik.kfunigraz.ac.at/~ank/tex/lattice/lattice.html">
+
+Lattice gauge theory</a>
+
+<li><a href="http://www-th.phys.rug.nl/~schaar/htmlreport/report.html">
+
+Stringy black holes</a>, by Jan Pieter van der Schaar 
+
+</ul>
+
+
+
+
+
+<h3>Least action principle</h3>
+
+<p>
+
+
+
+The laws of physics can be deduced from the principle of least action, which
+
+says that the action S is minimized.
+
+
+
+<!--
+
+The action S is a physical quantity which is minimized by the laws of physics.
+
+-->
+
+<br>
+
+The lagrangian L is the action per unit of time.<br>
+
+The lagrangian density <font face="symbol">L</font> is the lagrangian per unit of volume.<br>
+
+The lagrangian density multiplied by a 4-dimensional volume of time-space
+
+gives an action.<br>
+
+The fact that the action is minimized is expressed by
+
+<font face="symbol">d</font> S = 0, which is equivalent to 
+
+ d/dt (<font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq/dt)) - <font face="symbol">¶</font> L / <font face="symbol">¶</font> q = 0.
+
+<p>
+
+Proof : <br>
+
+<font face="symbol">d</font> S = <font face="symbol">d</font> <font face="symbol">ò</font><sub>t1</sub><sup>t2</sup> L dt = <font face="symbol">ò</font><sub>t1</sub><sup>t2</sup> <font face="symbol">d</font> L dt 
+
+= <font face="symbol">ò</font><sub>t1</sub><sup>t2</sup> ((<font face="symbol">¶</font> L/<font face="symbol">¶</font> q) <font face="symbol">d</font> q + (<font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq/dt))
+
+ <font face="symbol">d</font>(dq/dt)) dt <br>
+
+<font face="symbol">ò</font><sub>t1</sub><sup>t2</sup> (<font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq/dt)) <font face="symbol">d</font>(dq/dt) dt
+
+= <font face="symbol">ò</font><sub>t1</sub><sup>t2</sup> (<font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq/dt)) d(<font face="symbol">d</font> q)/dt dt <br>
+
+= <font face="symbol">ò</font><sub>t1</sub><sup>t2</sup> d/dt ((<font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq/dt)) <font face="symbol">d</font> q) dt
+
+- <font face="symbol">ò</font><sub>t1</sub><sup>t2</sup> d/dt (<font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq/dt)) <font face="symbol">d</font> q dt
+
+<br>
+
+because d/dt ((<font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq/dt)) <font face="symbol">d</font> q) dt 
+
+= d/dt (<font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq/dt)) <font face="symbol">d</font> q dt 
+
++ (<font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq/dt)) ((<font face="symbol">¶</font>(<font face="symbol">d</font> q))/dt) dt
+
+<br>
+
+From <font face="symbol">d</font> S = 
+
+<font face="symbol">ò</font><sub>t1</sub><sup>t2</sup> ((<font face="symbol">¶</font> L/<font face="symbol">¶</font> q) <font face="symbol">d</font> q + (<font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq/dt))
+
+ <font face="symbol">d</font>(dq/dt)) dt <br>
+
+and
+
+<font face="symbol">ò</font><sub>t1</sub><sup>t2</sup> (<font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq/dt)) <font face="symbol">d</font>(dq/dt)
+
+= <font face="symbol">ò</font><sub>t1</sub><sup>t2</sup> d/dt ((<font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq/dt)) <font face="symbol">d</font> q) dt
+
+- <font face="symbol">ò</font><sub>t1</sub><sup>t2</sup> d/dt (<font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq/dt)) <font face="symbol">d</font> q dt
+
+follows : <br>
+
+<font face="symbol">d</font> S = [(<font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq/dt)) <font face="symbol">d</font> q]<sub>t1</sub><sup>t2</sup> +
+
+<font face="symbol">ò</font><sub>t1</sub><sup>t2</sup> (<font face="symbol">¶</font> L/<font face="symbol">¶</font> q - d/dt (<font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq/dt))) 
+
+<font face="symbol">d</font> q dt
+
+<br>
+
+[(<font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq/dt)) <font face="symbol">d</font> q]<sub>t1</sub><sup>t2</sup> = 0 because 
+
+<font face="symbol">d</font> q(t1) = <font face="symbol">d</font> q(t2)
+
+<br>
+
+<font face="symbol">d</font> S = 0 for all variation of <font face="symbol">d</font> q
+
+<br>
+
+Then d/dt (<font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq/dt)) - <font face="symbol">¶</font> L/<font face="symbol">¶</font> q = 0.
+
+<p>
+
+
+
+Other proof : <br>
+
+<font face="symbol">d</font> L = <font face="symbol">¶</font> L/<font face="symbol">¶</font> q <font face="symbol">d</font> q + <font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq/dt)
+
+<font face="symbol">d</font> (dq/dt) + <font face="symbol">¶</font> L/<font face="symbol">¶</font> t <font face="symbol">d</font> t <br>
+
+<font face="symbol">d</font> t = 0 => <font face="symbol">d</font> L = <font face="symbol">¶</font> L/<font face="symbol">¶</font> q <font face="symbol">d</font> q + 
+
+<font face="symbol">¶</font> L/<font face="symbol">¶</font>(dq/dt) d/dt <font face="symbol">d</font> q <br>
+
+<font face="symbol">d</font> S = <font face="symbol">ò</font> <font face="symbol">¶</font> L/<font face="symbol">¶</font> q <font face="symbol">d</font> q dt 
+
++ <font face="symbol">ò</font> <font face="symbol">¶</font> L/<font face="symbol">¶</font>(dq/dt) d/dt <font face="symbol">d</font> q dt <br>
+
+<font face="symbol">ò</font><sub>t1</sub><sup>t2</sup> <font face="symbol">¶</font> L/<font face="symbol">¶</font>(dq/dt) d <font face="symbol">d</font> q 
+
+= [<font face="symbol">¶</font> L/<font face="symbol">¶</font>(dq/dt) <font face="symbol">d</font> q]<sub>t1</sub><sup>t2</sup> 
+
+- <font face="symbol">ò</font><sub>t1</sub><sup>t2</sup> d/dt <font face="symbol">¶</font> L/<font face="symbol">¶</font> q <font face="symbol">d</font> q dt <br>
+
+<font face="symbol">d</font> S = <font face="symbol">ò</font> (<font face="symbol">¶</font> L/<font face="symbol">¶</font> q - d/dt <font face="symbol">¶</font> L/<font face="symbol">¶</font>(dq/dt))
+
+<font face="symbol">d</font> q dt = 0 <br>
+
+<font face="symbol">¶</font> L / <font face="symbol">¶</font> q - d/dt <font face="symbol">¶</font> L/<font face="symbol">¶</font>(dq/dt) = 0
+
+<p>
+
+
+
+If we define the momentum p = <font face="symbol">¶</font> L / <font face="symbol">¶</font> (dq/dt), this equation
+
+can be written : dp/dt = <font face="symbol">¶</font> L / <font face="symbol">¶</font> q.
+
+<p>
+
+
+
+See <a href="http://viswiz.gmd.de/~nikitin/course/node2.html">
+
+Degenerate Lagrangians and Legendre transformations -
+
+http://viswiz.gmd.de/~nikitin/course/node2.html :</a>
+
+<P>
+
+<U>"Lagrangian mechanics</U> works in n-dimensional configuration space,
+
+
+
+which includes all parameters, defining a static state of 
+
+
+
+mechanical system (coordinates of particles, orientation of rigid body etc).
+
+
+
+A point <I>x</I> in this space draws a curve <I>x</I>(<I>t</I>) in evolution.
+
+
+
+For such curves a functional <I>A</I>[<I>x</I>(<I>t</I>)], called action, 
+
+is introduced. 
+
+
+
+Only those curves, on which the action reaches an extremum,
+
+
+
+correspond to real evolution.
+
+
+
+<P>
+
+
+
+Usually consideration is restricted to functionals of the form
+
+
+
+<P> A[x(t)] = <font face="symbol">ò</font> dt L(x,dx/dt) <P>
+
+
+
+with Lagrangian <I>L</I> dependent only on coordinates and velocities.
+
+
+
+The condition of extremum for the action leads to Lagrange-Euler equations 
+
+
+
+<P> d/dt (<font face="symbol">¶</font> L/<font face="symbol">¶</font>(dx/dt)) - <font face="symbol">¶</font> L/<font face="symbol">¶</font> x = 0 <P>
+
+
+
+This is (normally) a system second order differential equations,
+
+
+
+with solutions uniquely defined by initial coordinates and velocities
+
+
+
+x(0), dx/dt (0).
+
+
+
+<P>
+
+
+
+In <U>Hamiltonian mechanics</U> the state of the system is described 
+
+
+
+by a point (<I>x</I>,<I>p</I>) in 2n-dimensional phase space. The dynamics
+
+
+
+is defined by a function <I>H</I>(<I>x</I>,<I>p</I>), called Hamiltonian, 
+
+via equations:
+
+<P>
+
+dx/dt = <font face="symbol">¶</font> H / <font face="symbol">¶</font> p ,  dp/dt = - <font face="symbol">¶</font> H / <font face="symbol">¶</font> x 
+
+
+
+<P>
+
+
+
+Look <A HREF="http://viswiz.gmd.de/~nikitin/course/node3.html#sec11a">here</A>
+
+ for alternative formulation of the same theory.
+
+
+
+<P>
+
+
+
+Transition from Lagrangian to Hamiltonian mechanics is performed
+
+
+
+by <U>Legendre transformation</U>. It defines the momenta 
+
+
+
+and Hamiltonian as:
+
+
+
+<P> 
+
+p(x,dx/dt) = <font face="symbol">¶</font> L / <font face="symbol">¶</font> (dx/dt) ,  H(x,p) = p dx/dt - L .
+
+
+
+<P>
+
+
+
+The Hamiltonian depends on coordinates and momenta, so one should
+
+
+
+express the velocities via momenta, inverting the definitions of momenta: 
+
+
+
+dx/dt = dx/dt(x,p) and substitute the result into Hamiltonian. "
+
+<P>
+
+
+
+See also <a href="http://viswiz.gmd.de/~nikitin/course/node3.html">
+
+Poisson brackets and symplectic form -
+
+http://viswiz.gmd.de/~nikitin/course/node3.html</a>
+
+<P>
+
+"A binary operation { , } , called Poisson brackets,
+
+
+
+is introduced for functions on the phase space:
+
+
+
+<P><A NAME="defPb">&#160;</A> 
+
+{A, B} = <font face="symbol">¶</font> A/<font face="symbol">¶</font> x <font face="symbol">¶</font> B/<font face="symbol">¶</font> p 
+
+- <font face="symbol">¶</font> A/<font face="symbol">¶</font> p <font face="symbol">¶</font> B/<font face="symbol">¶</font> x
+
+<P>
+
+
+
+In terms of Poisson brackets the Hamiltonian equations can be 
+
+
+
+rewritten as
+
+
+
+<P> 
+
+dx/dt = {x, H} , dp/dt = {p, H}.
+
+ <P>
+
+
+
+<P>
+
+
+
+<U>Exercise</U>: prove, that for any function <I>A</I>(<I>t</I>,<I>x</I>,<I>p</I>)
+
+
+
+the following identity (Liouville equation) is valid:
+
+
+
+<P> 
+
+dA/dt = <font face="symbol">¶</font> A/<font face="symbol">¶</font> t + {A, H}. "
+
+
+
+
+
+
+
+<p>
+
+To determine the laws of physics for some phenomenon, one can express the
+
+action, the lagrangian or the lagrangian density 
+
+corresponding to this phenomenon and apply this equation to it.
+
+<p>
+
+Example : particle moving in a gravitational field in non-relativistic approximation (v&lt;&lt;c) :
+
+<p>
+
+<ul>
+
+<li> q = x (position) 
+
+<li> dq/dt = dx/dt = v (speed) 
+
+<li> m is the mass of the particle 
+
+<li> g is the acceleration of the gravitational field 
+
+</ul>
+
+The lagrangian is the difference between the kinetic energy 1/2 m v<sup>2</sup> and 
+
+the potential energy -mgx : <br>
+
+L = 1/2 m v<sup>2</sup> + m g x  <br>
+
+Then p = dL/dv = mv <br>
+
+and dp/dt = <font face="symbol">¶</font> L / <font face="symbol">¶</font> x gives :<br>
+
+d(mv) / dt = m g <br>
+
+m dv/dt = m g <br>
+
+dv/dt = g.
+
+<p>
+
+Remark : mimimizing the action means maximizing the potential energy.
+
+It means that the trajectory is higher that the straightforward line, it is
+
+REPELLED by the mass. Generally one consider that the particles are ATTRACTED
+
+by masses. This paradox is because generally we consider the initial position
+
+and the initial speed as fixed, and the trajectory is lower than the 
+
+straightforward line corresponding to this initial position and speed, but here 
+
+the initial and final positions  are fixed, and in this case the trajectory 
+
+is higher than the straight line between these positions.
+
+<p>
+
+Conservation on energy deduced from the least action principle :
+
+<br>
+
+dL/dt = <font face="symbol">S</font><sub>\a</sub> <font face="symbol">¶</font> L/<font face="symbol">¶</font> q<sub>a</sub> dq<sub>a</sub>/dt 
+
++ <font face="symbol">¶</font> L/<font face="symbol">¶</font>(dq<sub>a</sub>/dt) d<sup>2</sup> q<sub>a</sub>/dt<sup>2</sup> <br>
+
+<font face="symbol">¶</font> L/<font face="symbol">¶</font> q<sub>a</sub> = d/dt <font face="symbol">¶</font> L/<font face="symbol">¶</font>(dq<sub>a</sub>/dt) <br>
+
+dL/dt = <font face="symbol">S</font><sub>a</sub> d/dt <font face="symbol">¶</font> L/<font face="symbol">¶</font>(dq<sub>a</sub>/dt) dq<sub>a</sub>/dt 
+
++ <font face="symbol">¶</font><sub>L</sub>/<font face="symbol">¶</font>(dq<sub>a</sub>/dt) d<sup>2</sup> q<sub>a</sub>/dt<sup>2</sup>
+
+= <font face="symbol">S</font><sub>a</sub> d/dt (<font face="symbol">¶</font> L/<font face="symbol">¶</font>(dq<sub>a</sub>/dt) dq<sub>a</sub>/dt <br>
+
+d/dt (<font face="symbol">S</font><sub>a</sub> <font face="symbol">¶</font> L/<font face="symbol">¶</font>(dq<sub>a</sub>/dt) dq<sub>a</sub>/dt - L) = 0 <br>
+
+E = <font face="symbol">S</font><sub>a</sub> <font face="symbol">¶</font> L/<font face="symbol">¶</font>(dq<sub>a</sub>/dt) dq<sub>a</sub>/dt - L <br>
+
+dE/dt = 0
+
+<p>
+
+Path integral : <br>
+
+x(t1) -> x(t2) <br>
+
+e<sup>i/hbar S</sup>
+
+<p>
+
+Particules et lois de la physique, par Richard Feynman et Steven Weinberg<br>
+Conférence de Steven Weinberg : A la recherche des lois ultimes de la physique
+<p>
+Dans un univers mythique où les seules particules sont l'électron et le photon,
+la densité de lagrangien est :
+<br>
+L = - psi bar (gamma^mu d/dx^mu + m) psi
+- 1/4 (dA_nu/dx^mu - da_mu/dx^nu)^2
++ ieA_mu psi bar gamma^mu psi
+- mu (dA_nu/dx^mu - dA_mu / dx_nu) psi bar sigma^mu^nu psi
+- G psi bar psi psi bar psi + ...
+<p>
+avec :
+<ul>
+<li> psi = champ associé à l'électron
+<li> m = masse de l'électron
+<li> gamma et sigma sont des matrices
+<li> A = champ du photon
+</ul>
+Les 3 premiers termes donnent une précision suffisante.
+<p>
+Théorie des cordes :
+<br>
+métrique g_alpha_beta(sigma) de la surface décrivant l'évolution de la corde dans le temps
+<br>
+action I[x,g] = 1/2 intégrale (g(sigma))^1/2 g^alpha^beta(sigma) 
+dx^mu(sigma)/dsigma^alpha
+dx^nu(sigma)/dsigma^beta d^2 sigma.
+
+<p>
+
+<h3>Special relativity</h3>
+
+
+
+The coordinates of 4 dimensional space-time are (ct x y z). <br>
+
+The metric used is (+ - - -), which means g<sub>mn</sub> =
+
+<pre>
+
+(1  0  0  0)
+
+(0 -1  0  0)
+
+(0  0 -1  0)
+
+(0  0  0 -1)
+
+</pre>
+
+Other possible metrics are (- + + +), or (+ + + +) with coordinates 
+
+(ct ix iy iz) or (ict x y z).
+
+<p>
+
+The scalar product of two vectors u<sup><font face="symbol">m</font></sup> = (u<sup>0</sup> u<sup>1</sup> u<sup>2</sup> u<sup>3</sup>) = (u<sup>t</sup> u<sup>x</sup> u<sup>y</sup> u<sup>z</sup>)
+
+and v<sup><font face="symbol">n</font></sup> is g<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> u<sup><font face="symbol">m</font></sup> v<sup><font face="symbol">n</font></sup> 
+
+= <font face="symbol">S</font><sub><font face="symbol">m</font></sub><sub>=</sub><sub>0</sub><sup>3</sup> <font face="symbol">S</font><sub><font face="symbol">n</font></sub><sub>=</sub><sub>0</sub><sup>3</sup> g<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> u<sup><font face="symbol">m</font></sup> v<sup><font face="symbol">n</font></sup>.
+
+
+
+<h3>Gauge fields</h3>
+
+<h4>Example of the electromagnetic field</h4>
+
+<p>
+
+The electromagnetic field is a gauge field associated with U(1) which 
+
+is simply the circle. <br>
+
+It can also be viewed as gravitation in the fifth dimension of a 5 dimensional
+
+space obtained by multiplying the 4 dimensional space-time by the circle U(1)
+
+which is compactified to the Planck length. This is Kaluza-Klein theory. 
+
+<p>
+
+The phase is a point on the circle U(1). <br>
+
+The potential A<sub>m</sub> = (A<sub>t</sub>=V A<sub>x</sub> A<sub>y</sub> A<sub>z</sub>) is the gradient of the phase. 
+
+In the general case, the potential is A<sup>a</sup><sub>m</sub> where a
+
+is one of the compactified dimensions of the phase space, but in the case of 
+
+the electromagnetic field, the circle U(1) has only 1 dimension, so
+
+this indice a is useless.<br>
+
+The field F<sub>mn</sub> is d<sub>m</sub>A<sub>n</sub>-d<sub>n</sub>A<sub>m</sub>
+
+where d is the partial derivation. It means that F<sub>mn</sub> is the
+
+dephasage of an infinitesimal loop in the plane mn.
+
+<p>
+
+<pre>
+
+    S(t+dt,x) <--- -Ax(t+dt,x+dx/2) --- R(t+dt,x+dx)
+
+    |                                   ^
+
+    |                                   |  
+
+    -At(t+dt/2,x)                       +At(t+dt/2,x+dx)
+
+    |                                   |    
+
+ t  V                                   |
+
+ ^  P(t,x) ------- +Ax(t,x+dx/2) -----> Q(t,x+dx)
+
+ |
+
+ +--->x
+
+</pre>
+
+<ul>
+
+<li>Let us start at point P(t,x) with phase <font face="symbol">f</font><sub>0</sub>.
+
+<li>At point Q(t,x+dx) the phase is <font face="symbol">f</font><sub>1</sub> = <font face="symbol">f</font><sub>0</sub> + A<sub>x</sub>(t,x+dx/2)dx.
+
+<li>At point R(t+dt,x+dx) the phase is <font face="symbol">f</font><sub>2</sub> = <font face="symbol">f</font><sub>0</sub> + A<sub>x</sub>(t,x+dx/2)dx + 
+
+A<sub>t</sub>(t+dt/2,x+dx)dt.
+
+<li>At point S(t+dt,x) the phase is <font face="symbol">f</font><sub>3</sub> = <font face="symbol">f</font><sub>0</sub> + A<sub>x</sub>(t,x+dx/2)dx + 
+
+A<sub>t</sub>(t+dt/2,x+dx)dt - Ax(t+dt,x+dx/2)dx.
+
+<li>Back to point P(t,x), the phase is <font face="symbol">f</font><sub>4</sub> = <font face="symbol">f</font><sub>0</sub> + A<sub>x</sub>(t,x+dx/2)dx + 
+
+A<sub>t</sub>(t+dt/2,x+dx)dt - Ax(t+dt,x+dx/2)dx - A<sub>t</sub>(t+dt/2,x).
+
+</ul>
+
+<br>
+
+A<sub>x</sub>(t,x+dx/2) - A<sub>x</sub>(t+dt,x+dx/2) = -<font face="symbol">¶</font><sub>t</sub> A<sub>x</sub>(t+dt/2,x+dx/2)dt <br>
+
+Then <font face="symbol">f</font><sub>4</sub> = <font face="symbol">f</font><sub>0</sub> - <font face="symbol">¶</font><sub>t</sub> A<sub>x</sub> dt dx + <font face="symbol">¶</font><sub>x</sub> A<sub>t</sub> dx dt
+
+= <font face="symbol">f</font><sub>0</sub> + (<font face="symbol">¶</font><sub>x</sub> A<sub>t</sub> - <font face="symbol">¶</font><sub>t</sub> A<sub>x</sub>) dx dt = <font face="symbol">f</font><sub>0</sub> + F<sub>xt</sub> dx dt.
+
+<p>
+
+
+
+In the general case the field is :<br> 
+
+F<sub>mn</sub><sup>a</sup> 
+
+= d<sub>m</sub>A<sub>n</sub><sup>a</sup>
+
+- d<sub>n</sub>A<sub>m</sub><sup>a</sup>
+
++ f<sub>bc</sub><sup>a</sup>A<sub>m</sub><sup>b</sup>A<sub>n</sub><sup>c</sup>
+
+<br>
+
+where m and n are dimensions of space-time (t,x,y,z), a, b, c are 
+
+dimensions of phase space (compactified dimensions) and f<sub>bc</sub><sup>a</sup> are the structure constants.
+
+
+
+<p>
+
+The field satisfies 
+
+d<sub>m</sub>F<sub>np</sub> + d<sub>p</sub>F<sub>mn</sub> + d<sub>n</sub>F<sub>pm</sub> = 0
+
+or e<sup>mnpq </sup>d<sub>n</sub>F<sub>pq</sub> = 0.
+
+<p>
+
+The potential A<sub>m</sub> is determined by the current density of
+
+the sources J<sub>m</sub> = <font face="symbol">r</font> v<sub>m</sub> (where <font face="symbol">r</font> is the charge density
+
+and v the speed) by the relation : [] A<sub>m</sub> = <font face="symbol">m</font><sub>0</sub>J<sub>m</sub>
+
+with [] = 1/c d<sup>2</sup>/dt<sup>2</sup> 
+
+- d<sup>2</sup>/dx<sup>2</sup> 
+
+- d<sup>2</sup>/dy<sup>2</sup> 
+
+- d<sup>2</sup>/dz<sup>2</sup>.
+
+<p>
+
+The field is also directly determined from the sources by <br>
+
+d<sub>n</sub>F<sup>mn</sup> = -µ<sub>0</sub>J<sup>m</sup>
+
+<p>
+
+A particle moving in an electromagnetic field is submitted to a force.
+
+
+
+
+
+f = e F v
+
+<pre>
+
+( <font face="symbol">g</font>/c f.v )     (0    Ex/c Ey/c Ez/c) (<font face="symbol">g</font> c )
+
+( <font face="symbol">g</font> fx    ) = e (Ex/c 0    Bz   -By ) (<font face="symbol">g</font> vx) 
+
+( <font face="symbol">g</font> fy    )     (Ey/c -Bz   0    Bx ) (<font face="symbol">g</font> vy)
+
+( <font face="symbol">g</font> fz    )     (Ez/c By   -Bx  0   ) (<font face="symbol">g</font> vz)
+
+</pre>
+
+<p>
+
+
+
+With a metric (+ - - -), 
+
+F<sub>mn</sub> =
+
+<pre>
+
+(0     Ex/c Ey/c Ez/c)
+
+(-Ex/c 0    -Bz  By  )
+
+(-Ey/c Bz   0    -Bx )
+
+(-Ez/c -By  Bx   0   )
+
+</pre>
+
+<p> 
+
+F<sup>mn</sup> =
+
+<pre>
+
+(0    -Ex/c -Ey/c -Ez/c)
+
+(Ex/c 0     -Bz   By   )
+
+(Ey/c Bz    0     -Bx  )
+
+(Ez/c -By   Bx    0    )
+
+</pre>
+
+
+
+</p>
+
+The sign before E depends on the metrics (+---) or (-+++)
+
+</p>
+
+
+
+<h4>Kaluza Klein theory</h4>
+
+
+
+The 4 dimensional curved (by gravity) space-time with the electromagnetic gauge field on U(1)
+
+is equivalent to a 5 dimensional space-time (4 dimensional space time multilied by U(1))
+
+with only gravity.
+
+<p>
+
+Notations :
+
+<ul>
+
+<li> g_mn is the metric of the 4 dimensional space-time
+
+<li> <font face="symbol">F</font> is the dilaton which is the metric of U(1)
+
+<li> g'_mn is the metric of the 5 dimensional space-time
+
+</ul>
+
+ 
+
+<pre>
+
+g'_mn = ( g_mn - <font face="symbol">F</font> A_m A_n   - <font face="symbol">F</font> A_m )
+
+        ( - <font face="symbol">F</font> A_n            - <font face="symbol">F</font>     )
+
+
+
+g'^mn = ( g^mn   - A^m        )
+
+        ( - A^n  - 1/<font face="symbol">F</font> + A^2)
+
+</pre>
+
+
+
+<h4>Generalization to any gauge field</h4>
+
+
+
+Gauge fields corresponding to known physical forces :
+
+<ul>
+
+<li>Gravity : no gauge field, it is the curvation of 4 dimensional space-time
+
+<li>Electromagnetism : U(1)
+
+<li>Weak interaction : SU(2)
+
+<li>Strong interaction : SU(3)
+
+<li>Unification EM-weak-strong : SU(5) 
+
+</ul>
+
+The phase is a point of an internal space with n compactified dimensions.
+
+<br>
+
+The potential A<sub>m</sub><sup>a</sup> is the gradient of the phase,
+
+ where m is a dimension of space-time (t,x,y,z) and a is a compactified dimension.
+
+<p>
+
+Conventions : mu' = { <font face="symbol">m</font>, m } where 
+
+<ul>
+
+<li> <font face="symbol">m</font> are the 4 dimensions of space-time t, x, y, z
+
+<li> m are the internal coordinates of compactified dimensions
+
+<li> mu' are all the coordinates of the generalized space-time
+
+</ul>
+
+ 
+
+The vielbeins (matrices of base changing between curved and locally flat coordinates) are :
+
+<pre>
+
+E'^a'_mu' = ( e^a_<font face="symbol">m</font>          0     )
+
+            ( A_<font face="symbol">m</font>^k E^n_k    E^n_m )
+
+
+
+e'_a'^mu' = ( e_a^<font face="symbol">m</font>    -e_a^<font face="symbol">r</font> A_<font face="symbol">r</font>^m )
+
+            ( 0         E^n_m            )
+
+</pre>
+
+The metric is :
+
+<pre>
+
+g'_mu'nu' = ( g_m_n + G_m_n A_<font face="symbol">m</font>^m A_<font face="symbol">n</font>^n   A_<font face="symbol">m</font>^m G_m_n )
+
+            ( A_<font face="symbol">n</font>^n G_m_n                  G_mn         )
+
+
+
+g'^mu'nu' = ( g^<font face="symbol">m</font>^<font face="symbol">n</font>   -A^<font face="symbol">m</font>^n               )
+
+            ( -A^<font face="symbol">n</font>^m   G^mn + A^<font face="symbol">r</font>^m A_<font face="symbol">r</font>_n)
+
+
+
+or more symetrically :
+
+
+
+g'^mu'nu' = ( g^<font face="symbol">m</font>^<font face="symbol">n</font>            -A_<font face="symbol">n</font>^n g^<font face="symbol">m</font>^<font face="symbol">n</font>              )
+
+            ( -A_<font face="symbol">m</font>^m g^<font face="symbol">m</font>^<font face="symbol">n</font>    G^mn + g^<font face="symbol">m</font>^<font face="symbol">n</font> A_<font face="symbol">m</font>^m A_<font face="symbol">n</font>^n ) 
+
+
+
+</pre>
+
+
+
+<p>
+
+A charged particle moves in the fifth dimension with a speed proportional to
+
+its charge divided by its mass.
+
+<br>
+
+Two particles which have the same charge move in the same direction in the 
+
+fifth dimension. According to special relativity, their mass increase 
+
+because of this speed, so the attractive force should be greater, but 
+
+from the point of view of these particles, they do not move.
+
+The increasement of the attractive force is compensed by a repulsive force : 
+
+the electrostatic force.  
+
+
+
+<p>
+
+According to the gauge field theory, the force f<sup>i</sup> = m a<sup>i</sup> which acts on a 
+
+particle of mass m, charge q and speed v<sup>j</sup> in an electromagnetic field F<sup>i</sup><sup>j</sup> is : f<sup>i</sup> = q v<sup>j</sup> F<sup>i</sup><sub>j</sub>.
+
+<br>
+
+According to Kaluza Klein theory, the particle follows geodesics of 
+
+5-dimensional space-time, which means that the acceleration a<sup>i</sup> = d<sup>2</sup> x / dt<sup>2</sup>
+
+= - <font face="symbol">G</font><sup>i</sup><sub>j</sub><sub>k</sub> v<sup>j</sup> v<sup>k</sup>, then f<sup>i</sup> = m a<sup>i</sup> = - m <font face="symbol">G</font><sup>i</sup><sub>j</sub><sub>k</sub> v<sup>j</sup> v<sup>k</sup>.
+
+<br>
+
+The affine connection <font face="symbol">G</font> is : <br>
+
+<font face="symbol">G</font><sup>i</sup><sub>j</sub><sub>k</sub> = 1/2 g<sup>i</sup><sup>l</sup> (<font face="symbol">¶</font><sub>j</sub> g<sub>l</sub><sub>k</sub> + <font face="symbol">¶</font><sub>k</sub> g<sub>l</sub><sub>j</sub>
+
+ - <font face="symbol">¶</font><sub>l</sub> g<sub>j</sub><sub>k</sub>)
+
+<br>
+
+F<sub>i</sub><sub>j</sub> appears in <font face="symbol">G</font><sup>i</sup><sub>j</sub><sub>u</sub> and <font face="symbol">G</font><sup>i</sup><sub>u</sub><sub>j</sub> where u is the compactified 
+
+Kaluza Klein dimension.
+
+
+
+<p>
+
+<h4>
+
+Lagrangian of a particle in an electromagnetic field
+
+</h4>
+
+
+
+Equation of Lagrange : dL/dq = d/dt (dL/d(dq/dt) 
+
+<p>
+
+Action S = -mc <font face="symbol">ò</font> ds
+
+<p>
+
+ds<sup>2</sup> = c<sup>2</sup>dt<sup>2</sup> - (dx<sup>2</sup>+dy<sup>2</sup>+dz<sup>2</sup>)
+
+<p>
+
+ds = c 2<font face="symbol">Ö</font>(1-v<sup>2</sup>/c<sup>2</sup>)dt
+
+
+
+<p>
+
+
+
+L = 1/2 mv<sup>2</sup> + e A.v - eV<br>
+
+where 
+
+<ul>
+
+<li> L is the lagrangian
+
+<li> m is the mass of the particle
+
+<li> v is its speed
+
+<li> e is its charge
+
+<li> A is the vector potential
+
+<li> V is the scalar potential
+
+</ul>
+
+<p>
+
+S = - <font face="symbol">S</font> mc <font face="symbol">ò</font> ds - <font face="symbol">S</font> e <font face="symbol">ò</font> A<sub>m</sub>dx<sup>m</sup>
+
++ 1/2<font face="symbol">m</font><sub>0</sub> <font face="symbol">ò</font><sub>t<sub>1</sub></sub><sup>t<sub>2</sub></sup>dt
+
+<font face="symbol">ò</font>(E<sup>2</sup>/c<sup>2</sup>-B<sup>2</sup>)d <font face="symbol">t</font>
+
+<br>
+
+= - <font face="symbol">S</font> mc <font face="symbol">ò</font> ds - <font face="symbol">S</font> e <font face="symbol">ò</font> A<sub>m</sub>dx<sup>m</sup>
+
++ 1/2<font face="symbol">m</font><sub>0</sub> <font face="symbol">ò</font><sub>t<sub>1</sub></sub><sup>t<sub>2</sub></sup>dt
+
+<font face="symbol">ò</font>(-1/2 F<sub>mn</sub>F<sup>mn</sup>)d <font face="symbol">t</font>
+
+<p>
+
+L = -1/4 F<sub>mn</sub>F<sup>mn</sup> + A<sub>m</sub>J<sup>m</sup>
+
+ 
+
+<p>
+
+
+
+L = <font face="symbol">Ö</font>(-g) (1/4 R - 1/2 g<sub>i</sub><sub>j</sub>(<font face="symbol">f</font>) <font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">f</font><sup>i</sup> <font face="symbol">¶</font><sup><font face="symbol">m</font></sup><font face="symbol">f</font><sup>j</sup>
+
+-1/4 m<sub>I</sub><sub>J</sub>(<font face="symbol">f</font>) F<sup><font face="symbol">m</font></sup><sup><font face="symbol">n</font></sup><sup>I</sup> F<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub><sup>J</sup> - 1/8 <font face="symbol">e</font><sup><font face="symbol">m</font></sup><sup><font face="symbol">n</font></sup><sup><font face="symbol">r</font></sup><sup><font face="symbol">s</font></sup>
+
+a<sub>I</sub><sub>J</sub>(phi) F<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub><sup>I</sup> F<sub><font face="symbol">r</font></sub><sub><font face="symbol">s</font></sub><sup>J</sup>)
+
+
+
+<p>
+
+With metrics (- + + +) :<br>
+
+<i><b> L</b></i> = -1/4 F<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> F<sup><font face="symbol">m</font></sup><sup><font face="symbol">n</font></sup> + J<sub><font face="symbol">m</font></sub> A<sup><font face="symbol">m</font></sup> + <i><b> L</b></i><sub>matter</sub> <br>
+
+<i><b> L</b></i> = -1/4 F<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> F<sup><font face="symbol">m</font></sup><sup><font face="symbol">n</font></sup> + <font face="symbol">y</font> bar (<font face="symbol">g</font><sup><font face="symbol">m</font></sup> (<font face="symbol">¶</font><sub><font face="symbol">m</font></sub>
+
++ i e A<sub><font face="symbol">m</font></sub>) + m) <font face="symbol">y</font> <br>
+
+J<sup><font face="symbol">m</font></sup> = <font face="symbol">¶</font> <i><b> L</b></i> / <font face="symbol">¶</font> A<sub><font face="symbol">m</font></sub> = - i e <font face="symbol">y</font> bar <font face="symbol">g</font><sup><font face="symbol">m</font></sup> <font face="symbol">y</font> <br>
+
+V(t) = + i e <font face="symbol">ò</font> d<sup>3</sup> x (<font face="symbol">y</font> bar(x,t) <font face="symbol">g</font><sup><font face="symbol">m</font></sup> <font face="symbol">y</font>(x,t)) a<sub><font face="symbol">m</font></sub>(x,t)
+
++ V<sub>coul</sub>(t) 
+
+
+
+<p>
+
+See also <a href="http://www.rzg.mpg.de/~bds/lectures/field-particle.html">
+
+Lagrangian Theory of Fields and
+
+Particles</a>
+
+
+
+<h1> Lagrangian Theory of Fields and Particles </h1>
+
+
+
+<p> -->  
+
+    <a HREF="http://www.rzg.mpg.de/~bds/lectures/lagr.ps"> 
+
+    postscript </a> only (10 pages)
+
+</p>
+
+
+
+<hr>
+
+
+
+<h2> Abstract </h2>
+
+
+
+<p> 
+
+This is a discussion of how to do particle and field Lagrangians.  The
+
+particle's action principle seeks to maximise the proper time in a
+
+trajectory between two events in spacetime.  The field's action
+
+principle seeks to minimise the integral over whatever Lorentz scalar
+
+can be constructed from the field, given its symmetry, and with the
+
+proviso that the resulting Hamiltonian be positive definite.  The
+
+interaction 
+
+arises from simple coupling, to the particle itself in the case of a
+
+scalar field, and through the particle's four velocity in the case of a
+
+vector field.  We will see that the vector field coupled to the
+
+particle's motion in this way must give rise to an antisymmetric force
+
+field, which by symmetry of interaction forms the basis for the
+
+construction of Lorentz scalars.  A very fundamental result is that like
+
+charges attract for scalar field interactions, while they repel for the
+
+vector field.  The vector field, of course, is the basis for
+
+electromagnetism.  An often repeated error concerning the particle's
+
+equation of motion in a scalar field is cleared up -- since the four
+
+velocity is a unit vector, the force must be projected orthogonal to the
+
+world line in order to have consistent dynamics.  It is interesting to
+
+note that most of the properties of electrodynamics, including the
+
+repulsion or attratction of charges, are necessary consequences of
+
+linearity, masslessness, and the fact that it is a vector field.
+
+</p>
+
+
+
+<p>
+
+Tips and tricks that you learn from this include how to decide what the
+
+signs should be for the free particle and field parts of the Lagrangian,
+
+how to manipulate the variation of the proper time, why the sign of the
+
+interaction part is arbitrary, how to convert back and forth between a
+
+Lagrangian and a Lagrangian field density and likewise between particles
+
+and ensemble densities, how to make to correspondence to the more common
+
+nonrelativistic model, and how to get all the factors of the speed of
+
+light, c, properly when you don't assume natural units with c equal to
+
+unity.  These are all things I had trouble with and so I wanted to write
+
+them up together in a coherent whole.  The result should be useful to
+
+any physicist or physics watcher interested in the basis for modern
+
+theory.
+
+</p>
+
+
+
+<hr>
+
+
+
+<p>
+
+
+
+--> Back to the...
+
+
+
+<ul>
+
+<li> <a HREF="http://www.rzg.mpg.de/~bds/fusion.html">
+
+     <b> Physics and Fusion Home Page </b></a> 
+
+
+
+<li> <a HREF="http://www.rzg.mpg.de/~bds/lectures/">
+
+     <b> Lectures Page </b></a> 
+
+
+
+</ul></p>
+
+<p>
+
+See <a href="http://www.uwm.edu/~norbury/gr/node37.html">
+
+http://www.uwm.edu/~norbury/gr/node37.html
+
+</a>
+
+<p>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<!--Converted with LaTeX2HTML 97.1 (release) (July 13th, 1997)
+
+ by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+
+* with significant contributions from:
+
+  Jens Lippman, Marek Rouchal, Martin Wilck and others -->
+
+
+
+<H1><A NAME="SECTION00620000000000000000">
+
+Classical Field Theory</A>
+
+</H1>
+
+Scalar fields are important in cosmology as they are thought to drive inflation. Such a field is called an 
+
+inflaton, an example of which may be the Higgs boson. Thus the field 
+
+<font face="symbol">f</font> 
+
+considered below can be thoguht of as an
+
+inflaton, a Higgs boson or any other scalar boson.
+
+<P>
+
+In both special and general relativity we always seek covariant equations in which space and time are given 
+
+equal status. The Euler-Lagrange equations (<A HREF="node36.html#41-6">4.6</A>) are clearly not covariant because special emphasis is placed on time
+
+via the 
+
+dq<sub>i</sub>/dt 
+
+and 
+
+ d/dt(<font face="symbol">¶</font> L/<font face="symbol">¶</font> (dq<sub>i</sub>/dt))
+
+terms.
+
+<P>
+
+Let us replace the <I>q</I><SUB><I>i</I></SUB> by a field 
+
+ <font face="symbol">f</font> <font face="symbol">º</font> <font face="symbol">f</font> (x)
+
+ where 
+
+ x <font face="symbol">º</font> (t,  x)
+
+. The 
+
+generalized coordinate <I>q</I> has been replaced by the field variable 
+
+<font face="symbol">f</font> 
+
+ and the discrete index <I>i</I> has been replaced by a
+
+continuously varying index <I>x</I>. In the next section we shall show how to derive the  Euler-Lagrange equations from the action
+
+defined as 
+
+<A NAME="42-1">&#160;</A>
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD></TD><TD ALIGN="CENTER" NOWRAP><A NAME="42-1">&#160;</A>
+
+S <font face="symbol">º</font> <font face="symbol">ò</font> L dt
+
+</TD>
+
+<TD ALIGN="CENTER">(148)</TD></TR>
+
+</TABLE>
+
+which again is clearly not covariant. A covariant form of the action would involve a Lagrangian density 
+
+<i><b> L</b></i>
+
+ via
+
+<A NAME="42-2">&#160;</A>
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD></TD><TD ALIGN="CENTER" NOWRAP><A NAME="42-2">&#160;</A>
+
+S <font face="symbol">º</font> <font face="symbol">ò</font> <i><b> L</b></i> d<sup>4</sup> x = <font face="symbol">ò</font> <i><b> L</b></i> d<sup>3</sup> x dt
+
+</TD>
+
+<TD ALIGN="CENTER">(149)</TD></TR>
+
+</TABLE>
+
+with 
+
+L <font face="symbol">º</font> <font face="symbol">ò</font> <i><b> L</b></i> d<sup>3</sup> x
+
+. The term 
+
+- <font face="symbol">¶</font> L/<font face="symbol">¶</font> q<sub>i</sub>
+
+ in equation (<A HREF="node36.html#41-6">4.6</A>) 
+
+gets replaced by the covariant term 
+
+- <font face="symbol">¶</font> <i><b> L</b></i>/<font face="symbol">¶</font> <font face="symbol">f</font> (x)
+
+. Any time derivative 
+
+d/dt
+
+should be replaced with 
+
+<font face="symbol">¶</font><sub><font face="symbol">m</font></sub> <font face="symbol">º</font> <font face="symbol">¶</font> / <font face="symbol">¶</font> x<sup><font face="symbol">m</font></sup>
+
+ which contains space as well as time
+
+derivatives. Thus one can guess that the covariant generalization of the point particle Euler-Lagrange equations (<A HREF="node36.html#41-6">4.6</A>)
+
+is
+
+<A NAME="42-3">&#160;</A>
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD></TD><TD ALIGN="CENTER" NOWRAP><A NAME="42-3">&#160;</A>
+
+
+
+<font face="symbol">¶</font><sub><font face="symbol">m</font></sub> <font face="symbol">¶</font> <i><b> L</b></i> / <font face="symbol">¶</font> (<font face="symbol">¶</font>
+
+<sub><font face="symbol">m</font></sub> <font face="symbol">f</font> ) - <font face="symbol">¶</font> <i><b> L</b></i>/<font face="symbol">¶</font> <font face="symbol">f</font>  
+
+= 0
+
+</TD>
+
+<TD ALIGN="CENTER">(150)</TD></TR>
+
+</TABLE>
+
+which is the covariant Euler-Lagrange equation for scalar fields. This will be derived rigorously in the next section.
+
+<P>
+
+In analogy with the canonical momentum in equation  (<A HREF="node36.html#41-5">4.5</A>) we define the <I>covariant momentum density </I>
+
+<A NAME="42-4">&#160;</A>
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD></TD><TD ALIGN="CENTER" NOWRAP><A NAME="42-4">&#160;</A>
+
+<font face="symbol">P</font> <sup><font face="symbol">m</font></sup> <font face="symbol">º</font> <font face="symbol">¶</font> <i><b> L</b></i>/<font face="symbol">¶</font> (<font face="symbol">¶</font><sub><font face="symbol">m</font></sub> <font face="symbol">f</font> )
+
+</TD>
+
+<TD ALIGN="CENTER">(151)</TD></TR>
+
+</TABLE>
+
+so that the  Euler-Lagrange equations become 
+
+<A NAME="42-5">&#160;</A>
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD></TD><TD ALIGN="CENTER" NOWRAP><A NAME="42-5">&#160;</A>
+
+<font face="symbol">¶</font><sub><font face="symbol">m</font></sub> <font face="symbol">P</font><sup><font face="symbol">m</font></sup>  
+
+ = <font face="symbol">¶</font> <i><b> L</b></i>/<font face="symbol">¶</font> <font face="symbol">f</font> 
+
+</TD>
+
+<TD ALIGN="CENTER">(152)</TD></TR>
+
+</TABLE>
+
+<I>The</I> canonical momentum is defined as 
+
+<A NAME="42-6">&#160;</A>
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD></TD><TD ALIGN="CENTER" NOWRAP><A NAME="42-6">&#160;</A>
+
+<font face="symbol">P</font> <font face="symbol">º</font> <font face="symbol">P</font><sup>0</sup> = <font face="symbol">¶</font> <i><b> L</b></i>/<font face="symbol">¶</font> d<font face="symbol">f</font>/dt 
+
+</TD>
+
+<TD ALIGN="CENTER">(153)</TD></TR>
+
+</TABLE>
+
+The energy momentum tensor is (analagous to (<A HREF="node36.html#41-8">4.8</A>))
+
+<A NAME="42-7">&#160;</A>
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD></TD><TD ALIGN="CENTER" NOWRAP><A NAME="42-7">&#160;</A>
+
+T<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> <font face="symbol">º</font> <font face="symbol">P</font><sub><font face="symbol">m</font></sub> <font face="symbol">¶</font><sub><font face="symbol">n</font></sub> <font face="symbol">f</font> - g<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> <i><b> L</b></i>
+
+</TD>
+
+<TD ALIGN="CENTER">(154)</TD></TR>
+
+</TABLE>
+
+with the Hamiltonian density 
+
+<BR>
+
+<BR><HR>
+
+<!--Table of Child-Links-->
+
+<A NAME="CHILD<sub>L</sub>INKS">&#160;</A>
+
+<UL>
+
+<LI><A NAME="tex2html676"
+
+ HREF="node38.html#SECTION00621000000000000000">
+
+Classical Klein-Gordon Field</A>
+
+</UL>
+
+<!--End of Table of Child-Links-->
+
+<HR>
+
+ 
+
+<ADDRESS>
+
+<I>John Norbury</I>
+
+<BR><I>12/9/1997</I>
+
+</ADDRESS>
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+
+<!--Converted with LaTeX2HTML 97.1 (release) (July 13th, 1997)
+
+ by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+
+* with significant contributions from:
+
+  Jens Lippman, Marek Rouchal, Martin Wilck and others -->
+
+  
+
+<H3><A NAME="SECTION00621000000000000000">
+
+Classical Klein-Gordon Field</A>
+
+</H3>
+
+In order to illustrate the foregoing theory we shall use the example of the classical, massive Klein-Gordon 
+
+field defined with the Lagrangian density <B>(HL units ??)</B>
+
+<BR>
+
+The covariant momentum density is more easily evaluated by re-writing  
+
+<i><b> L</b></i><sub>KG</sub> = 1/2g<sup><font face="symbol">m</font></sup><sup><font face="symbol">n</font></sup> 
+
+( <font face="symbol">¶</font><sub><font face="symbol">m</font></sub> <font face="symbol">f</font> <font face="symbol">¶</font><sub><font face="symbol">n</font></sub> <font face="symbol">f</font> - m<sup>2</sup> <font face="symbol">f</font><sup>2</sup>)
+
+. Thus  
+
+ <font face="symbol">P</font><sup><font face="symbol">m</font></sup> = <font face="symbol">¶</font> <i><b>
+
+</b></i>L/<font face="symbol">¶</font> (<font face="symbol">¶</font><sub><font face="symbol">m</font></sub> <font face="symbol">f</font> ) }  
+
+= 1/2g<sup><font face="symbol">m</font></sup><sup><font face="symbol">n</font></sup> ( <font face="symbol">d</font><sup><font face="symbol">a</font></sup> <sub><font face="symbol">m</font></sub> <font face="symbol">¶</font><sub><font face="symbol">n</font></sub> <font face="symbol">f</font> + <font face="symbol">¶</font><sub><font face="symbol">m</font></sub> <font face="symbol">f</font> 
+
+<font face="symbol">d</font><sup><font face="symbol">a</font></sup><sub><font face="symbol">n</font></sub> )  
+
+= 1/2( <font face="symbol">d</font><sup><font face="symbol">a</font></sup><sub><font face="symbol">m</font></sub> <font face="symbol">¶</font><sup><font face="symbol">m</font></sup> <font face="symbol">f</font> + <font face="symbol">¶</font><sup><font face="symbol">n</font></sup> <font face="symbol">f</font> <font face="symbol">d</font><sup><font face="symbol">a</font></sup><sub><font face="symbol">n</font></sub> )  
+
+= 1/2( <font face="symbol">¶</font><sup><font face="symbol">a</font></sup> <font face="symbol">f</font> + <font face="symbol">¶</font><sup><font face="symbol">a</font></sup> <font face="symbol">f</font> )   
+
+= <font face="symbol">¶</font><sup><font face="symbol">a</font></sup> <font face="symbol">f</font> 
+
+. Thus for the  Klein-Gordon field we have
+
+<A NAME="421-2">&#160;</A>
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD></TD><TD ALIGN="CENTER" NOWRAP><A NAME="421-2">&#160;</A> 
+
+<font face="symbol">P</font><sup><font face="symbol">a</font></sup> = <font face="symbol">¶</font><sup><font face="symbol">a</font></sup> <font face="symbol">f</font>
+
+</TD>
+
+<TD ALIGN="CENTER">(155)</TD></TR>
+
+</TABLE>
+
+giving the canonical momentum 
+
+<font face="symbol">P</font> = <font face="symbol">P</font><sup>0</sup> 
+
+= <font face="symbol">¶</font><sup>0</sup> <font face="symbol">f</font> 
+
+= <font face="symbol">¶</font><sub>0</sub> <font face="symbol">f</font> = d<font face="symbol">f</font>/dt 
+
+,<A NAME="421-3">&#160;</A>
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD></TD><TD ALIGN="CENTER" NOWRAP><A NAME="421-3">&#160;</A>
+
+<font face="symbol">P</font> = d<font face="symbol">f</font>/dt 
+
+</TD>
+
+<TD ALIGN="CENTER">(156)</TD></TR>
+
+</TABLE>
+
+Evaluating 
+
+<font face="symbol">¶</font> <i><b> L</b></i>/<font face="symbol">¶</font> <font face="symbol">f</font> = - m<sup>2</sup> <font face="symbol">f</font> 
+
+, the Euler-Lagrange equations give the field
+
+ equation as 
+
+<font face="symbol">¶</font><sub><font face="symbol">m</font></sub> <font face="symbol">¶</font><sup><font face="symbol">m</font></sup> <font face="symbol">f</font> + m<sup>2</sup> <font face="symbol">f</font>
+
+ or
+
+<BR>
+
+which is the  Klein-Gordon  equation for a free, massive scalar field. In momentum space 
+
+p<sup>2</sup> = - []<sup>2</sup> 
+
+, thus 
+
+<A NAME="421-5">&#160;</A>
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD></TD><TD ALIGN="CENTER" NOWRAP><A NAME="421-5">&#160;</A>
+
+(p<sup>2</sup> - m<sup>2</sup> )<font face="symbol">f</font> = 0
+
+</TD>
+
+<TD ALIGN="CENTER">(157)</TD></TR>
+
+</TABLE>
+
+(Note that some authors [<A
+
+ HREF="node74.html#Mui65">30</A>] define 
+
+[]<sup>2</sup> <font face="symbol">º</font> 
+
+<font face="symbol">Ñ</font><sup>2</sup> - <font face="symbol">¶</font><sup>2</sup>/<font face="symbol">¶</font> t<sup>2</sup> 
+
+ different from (<A HREF="#341-7">3.42</A>), so that they write the Klein-Gordon equation as 
+
+([]<sup>2</sup> - m<sup>2</sup> )<font face="symbol">f</font> = 0
+
+or 
+
+(p<sup>2</sup>+m<sup>2</sup> )<font face="symbol">f</font> = 0
+
+.)
+
+<P>
+
+The energy momentum tensor is 
+
+<BR>
+
+Therefore the Hamiltonian density is 
+
+<i><b> H</b></i><font face="symbol">º</font> T<sub>00</sub>=(d<font face="symbol">f</font>/dt)<sup>2</sup>-1/2(<font face="symbol">¶</font><sub><font face="symbol">a</font></sub>
+
+<font face="symbol">f</font> <font face="symbol">¶</font><sup><font face="symbol">a</font></sup> <font face="symbol">f</font> -m<sup>2</sup> <font face="symbol">f</font> <sup>2</sup>)
+
+ which becomes [<A
+
+ HREF="node74.html#Leo73">31</A>] 
+
+<BR>
+
+where we have relied upon the results of Section 3.4.1. 
+
+<HR>
+
+ 
+
+<ADDRESS>
+
+<I>John Norbury</I>
+
+<BR><I>12/9/1997</I>
+
+</ADDRESS>
+
+</BODY>
+
+</HTML>
+
+
+
+
+
+
+
+<p>
+
+See <a href="http://www-th.phys.rug.nl/~halbers/science/verslag/node5.html">
+
+http://www-th.phys.rug.nl/~halbers/science/verslag/node5.html</a>
+
+<p>
+
+
+
+<!--Navigation Panel-->
+
+<A NAME="tex2html257"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node6.html">
+
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next<sub>m</sub>otif.gif"></A> 
+
+<A NAME="tex2html254"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node4.html">
+
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up<sub>m</sub>otif.gif"></A> 
+
+<A NAME="tex2html248"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node4.html">
+
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="previous<sub>m</sub>otif.gif"></A> 
+
+<A NAME="tex2html256"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node1.html">
+
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents<sub>m</sub>otif.gif"></A>  
+
+<BR>
+
+<B> Next:</B> <A NAME="tex2html258"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node6.html">The Hamiltonian formalism</A>
+
+<B> Up:</B> <A NAME="tex2html255"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node4.html">Symmetries in field theory</A>
+
+<B> Previous:</B> <A NAME="tex2html249"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node4.html">Symmetries in field theory</A>
+
+<BR>
+
+<BR>
+
+<!--End of Navigation Panel-->
+
+
+
+<H2><A NAME="SECTION00311000000000000000">
+
+The Lagrangian formalism</A>
+
+</H2>
+
+
+
+<P>
+
+The dynamics of a set of classical fields 
+
+<font face="symbol">f</font><sup>i</sup>(x<sup><font face="symbol">m</font></sup>)
+
+on some <I>d</I>-dimensional manifold M
+
+can be obtained from a Lagrangian density 
+
+L(<font face="symbol">f</font><sup>i</sup>,<font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">f</font><sup>i</sup>)
+
+through the principle of stationary action
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP> 
+
+<font face="symbol">d</font> S = 0,
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.1)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+where S is the action
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP> 
+
+S=<font face="symbol">ò</font><sub>M</sub> d<sup>d</sup>xL(<font face="symbol">f</font><sup>i</sup>,<font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">f</font><sup>i</sup>).
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.2)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+Taking the variation of the fields to be zero on the boundary of the manifold 
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP> 
+
+<font face="symbol">d</font><font face="symbol">f</font><sup>i</sup> = 0  on  <font face="symbol">¶</font>M,
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.3)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+we obtain from the extremization of the action the equations of motion called the Euler-Lagrange equations
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq:ofmotion"> </A> 
+
+<font face="symbol">¶</font><sub><font face="symbol">m</font></sub>(<font face="symbol">d</font>L/<font face="symbol">d</font>(<font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">f</font><sup>i</sup>)) =
+
+<font face="symbol">d</font>L/<font face="symbol">d</font><font face="symbol">f</font><sup>i</sup>.
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.4)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+<P>
+
+<BR><HR>
+
+<ADDRESS>
+
+<I>Rein Halbersma</I>
+
+<BR><I>1999-01-04</I>
+
+</ADDRESS>
+
+
+
+<!--Navigation Panel-->
+
+<A NAME="tex2html268"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node7.html">
+
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next<sub>m</sub>otif.gif"></A> 
+
+<A NAME="tex2html265"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node4.html">
+
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up<sub>m</sub>otif.gif"></A> 
+
+<A NAME="tex2html259"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node5.html">
+
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="previous<sub>m</sub>otif.gif"></A> 
+
+<A NAME="tex2html267"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node1.html">
+
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents<sub>m</sub>otif.gif"></A>  
+
+<BR>
+
+<B> Next:</B> <A NAME="tex2html269"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node7.html">Noether's theorem</A>
+
+<B> Up:</B> <A NAME="tex2html266"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node4.html">Symmetries in field theory</A>
+
+<B> Previous:</B> <A NAME="tex2html260"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node5.html">The Lagrangian formalism</A>
+
+<BR>
+
+<BR>
+
+<!--End of Navigation Panel-->
+
+
+
+<H2><A NAME="SECTION00312000000000000000">
+
+The Hamiltonian formalism</A>
+
+</H2>
+
+
+
+<P>
+
+There is an alternative approach to classical field theory in which one considers a Hamiltonian 
+
+H 
+
+which can be obtained from the Lagrangian by
+
+<BR>
+
+<DIV ALIGN="CENTER">
+
+
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">
+
+H
+
+</TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP> 
+
+<font face="symbol">d</font>L/<font face="symbol">d</font>(<font face="symbol">¶</font><sub>0</sub><font face="symbol">f</font><sup>i</sup>) <font face="symbol">¶</font><sub>0</sub><font face="symbol">f</font><sup>i</sup> -L </TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+</TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"> </TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP> 
+
+<font face="symbol">p</font><sub>i</sub><font face="symbol">¶</font><sub>0</sub><font face="symbol">f</font><sup>i</sup> - L,
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.5)</TD></TR>
+
+</TABLE></DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+where the canonical momenta  
+
+<font face="symbol">p</font><sub>i</sub>
+
+are defined by
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+ 
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP> 
+
+<font face="symbol">p</font><sub>i</sub> <font face="symbol">º</font> <font face="symbol">d</font>L/<font face="symbol">d</font>(<font face="symbol">¶</font><sub>0</sub><font face="symbol">f</font><sup>i</sup>).
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.6)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+The equations of motion are called Hamilton's equations
+
+<BR>
+
+<DIV ALIGN="CENTER">
+
+
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">  
+
+<font face="symbol">¶</font><sub>0</sub><font face="symbol">p</font><sub>i</sub>
+
+</TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP>
+
+{<font face="symbol">p</font><sub>i</sub>, H<font face="symbol">}</font><sub>PB</sub>,
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+ </TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">
+
+<font face="symbol">¶</font><sub>0</sub><font face="symbol">f</font><sup>i</sup>
+
+</TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP>
+
+{<font face="symbol">f</font><sup>i</sup>, H<font face="symbol">}</font><sub>PB</sub>,
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.7)</TD></TR>
+
+</TABLE></DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+where the Poisson bracket 
+
+{f,g<font face="symbol">}</font><sub>PB</sub> 
+
+is defined by
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP>
+
+
+
+{f,g<font face="symbol">}</font><sub>PB</sub> <font face="symbol">º</font>
+
+<font face="symbol">¶</font> f/<font face="symbol">¶</font><font face="symbol">f</font><sup>i</sup> <font face="symbol">¶</font> g/<font face="symbol">¶</font><font face="symbol">p</font><sub>i</sub> -
+
+<font face="symbol">¶</font> g/<font face="symbol">¶</font><font face="symbol">f</font><sup>i</sup> <font face="symbol">¶</font> f/<font face="symbol">¶</font><font face="symbol">p</font><sub>i</sub>.
+
+
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.8)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+<P>
+
+<BR><HR>
+
+<ADDRESS>
+
+<I>Rein Halbersma</I>
+
+<BR><I>1999-01-04</I>
+
+</ADDRESS>
+
+
+
+
+
+<!--Navigation Panel-->
+
+<A NAME="tex2html279"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node8.html">
+
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next<sub>m</sub>otif.gif"></A> 
+
+<A NAME="tex2html276"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node4.html">
+
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up<sub>m</sub>otif.gif"></A> 
+
+<A NAME="tex2html270"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node6.html">
+
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="previous<sub>m</sub>otif.gif"></A> 
+
+<A NAME="tex2html278"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node1.html">
+
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents<sub>m</sub>otif.gif"></A>  
+
+<BR>
+
+<B> Next:</B> <A NAME="tex2html280"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node8.html">The charge algebra</A>
+
+<B> Up:</B> <A NAME="tex2html277"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node4.html">Symmetries in field theory</A>
+
+<B> Previous:</B> <A NAME="tex2html271"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node6.html">The Hamiltonian formalism</A>
+
+<BR>
+
+<BR>
+
+<!--End of Navigation Panel-->
+
+
+
+<H2><A NAME="SECTION00313000000000000000"> </A> <A NAME="sec:Noether"> </A>
+
+<BR>
+
+Noether's theorem
+
+</H2>
+
+
+
+<P>
+
+Suppose now that the action is invariant under some internal global symmetry group 
+
+G
+
+which we shall assume to be a Lie group. Then there exists a set of generators <I>T</I><SUB><I>a</I></SUB> satisfying the Lie algebra of 
+
+G
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP>
+
+[<I>T</I><SUB><I>a</I></SUB>,<I>T</I><SUB><I>b</I></SUB>] = <I>i f</I><SUB><I>ab</I></SUB><SUP> <I>c</I></SUP> <I>T</I><SUB><I>c</I></SUB>,
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.9)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+where 
+
+<I>f</I><SUB><I>ab</I></SUB><SUP> <I>c</I></SUP> are the structure constants.
+
+Under infinitesimal transformations 
+
+U = e<sup>-i<font face="symbol">e</font><sup>a</sup>T<sub>a</sub></sup>
+
+the fields 
+
+<font face="symbol">f</font><sup>i</sup>
+
+and their derivatives 
+
+<font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">f</font><sup>i</sup>
+
+transform according to
+
+<BR>
+
+<DIV ALIGN="CENTER"><A NAME="eq:fields<sub>t</sub>ransform"> </A><A NAME="eq:derivatives<sub>t</sub>ransform"> </A>
+
+
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">
+
+ <font face="symbol">d</font><font face="symbol">f</font><sup>i</sup>
+
+</TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP>
+
+-i<font face="symbol">e</font><sup>a</sup>(T<sub>a</sub>)<sup>i</sup><sub>j</sub><font face="symbol">f</font><sup>j</sup>,
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+ </TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">
+
+<font face="symbol">d</font>(<font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">f</font><sup>i</sup>)
+
+</TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP>
+
+<font face="symbol">¶</font><sub><font face="symbol">m</font></sub>(<font face="symbol">d</font><font face="symbol">f</font><sup>i</sup>).
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.10)</TD></TR>
+
+</TABLE></DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+By using the above transformation rules, the equations of motion and requiring the variation of the action to vanish for all transformations in 
+
+G
+
+one finds
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP>
+
+<font face="symbol">"</font> a:<font face="symbol">¶</font><sub><font face="symbol">m</font></sub>j<sup><font face="symbol">m</font></sup><sub>a</sub> = 0,
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.11)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+where the divergence-less currents 
+
+j<sup><font face="symbol">m</font></sup><sub>a</sub> 
+
+are defined by
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq:divergence<sub>l</sub>ess<sub>c</sub>urrents"> </A>
+
+j<sup><font face="symbol">m</font></sup><sub>a</sub> <font face="symbol">º</font> -i (<font face="symbol">d</font>L/<font face="symbol">d</font>(<font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">f</font><sup>i</sup>))(T<sub>a</sub>)<sup>i</sup><sub>j</sub><font face="symbol">f</font><sup>j</sup>
+
+.
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.12)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+Requiring that the space-like parts of the currents are zero at the boundary of a space-like volume 
+
+V
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP>
+
+j<sup>i</sup><sub>a</sub> = 0  on  <font face="symbol">¶</font>V,
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.13)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+and integrating (<A HREF="node7.html#eq:divergence<sub>l</sub>ess<sub>c</sub>urrents">1.12</A>) over such a volume one finds
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="eq:conserved<sub>c</sub>harges"> </A>
+
+<font face="symbol">"</font> a: <font face="symbol">¶</font><sub>0</sub>Q<sub>a</sub> = 0,
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.14)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+where the conserved charges <I>Q</I><SUB><I>a</I></SUB> are defined by
+
+<BR>
+
+<DIV ALIGN="CENTER">
+
+
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><I>Q</I><SUB><I>a</I></SUB></TD>
+
+<TD ALIGN="CENTER" NOWRAP>
+
+ <font face="symbol">º</font> </TD>
+
+<TD ALIGN="LEFT" NOWRAP>
+
+ <font face="symbol">ò</font><sub>V</sub> d<sup>d-1</sup>x j<sup>0</sup><sub>a</sub> </TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+ </TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"> </TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP>
+
+ - i <font face="symbol">ò</font><sub>V</sub> d<sup>d-1</sup>x (<font face="symbol">d</font>L/<font face="symbol">d</font>(<font face="symbol">¶</font><sub>0</sub><font face="symbol">f</font><sup>i</sup>))T<sub>a</sub>)<sup>i</sup><sub>j</sub><font face="symbol">f</font><sup>j</sup>
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+ </TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"> </TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP>
+
+-i <font face="symbol">ò</font><sub>V</sub> d<sup>d-1</sup>x <font face="symbol">p</font><sub>i</sub>(T<sub>a</sub>)<sup>i</sup><sub>j</sub><font face="symbol">f</font><sup>j</sup>.
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.15)</TD></TR>
+
+</TABLE></DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+This is an example of Noether's theorem: for every generator <I>T</I><SUB><I>a</I></SUB> of a continuous symmetry group of the action there exists a conserved charge <I>Q</I><SUB><I>a</I></SUB>.
+
+
+
+<P>
+
+In the above we considered <EM>internal</EM> symmetries but Noether's theorem applies equally well to <EM>spacetime</EM> symmetries such as translations and rotations. The conserved charges are then the energy-momentum and the angular momentum of the system under consideration.
+
+
+
+<P>
+
+<HR>
+
+<!--Navigation Panel-->
+
+<A NAME="tex2html279"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node8.html">
+
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next<sub>m</sub>otif.gif"></A> 
+
+<A NAME="tex2html276"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node4.html">
+
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up<sub>m</sub>otif.gif"></A> 
+
+<A NAME="tex2html270"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node6.html">
+
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="previous<sub>m</sub>otif.gif"></A> 
+
+<A NAME="tex2html278"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node1.html">
+
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents<sub>m</sub>otif.gif"></A>  
+
+<BR>
+
+<B> Next:</B> <A NAME="tex2html280"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node8.html">The charge algebra</A>
+
+<B> Up:</B> <A NAME="tex2html277"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node4.html">Symmetries in field theory</A>
+
+<B> Previous:</B> <A NAME="tex2html271"
+
+ HREF="http://www-th.phys.rug.nl/~halbers/science/verslag/node6.html">The Hamiltonian formalism</A>
+
+<!--End of Navigation Panel-->
+
+<ADDRESS>
+
+<I>Rein Halbersma</I>
+
+<BR><I>1999-01-04</I>
+
+</ADDRESS>
+
+
+
+
+
+<H2><A NAME="SECTION00314000000000000000">
+
+The charge algebra</A>
+
+</H2>
+
+
+
+<P>
+
+So far we have been discussing <EM>classical</EM> field theory. In making the transition to <EM>quantum</EM> field theory it is convenient to use the Hamiltonian rather than the Lagrangian formalism. One can then postulate the fields and the momenta to be operators on a suitable Hilbert space and define canonical equal-time commutation relations between them
+
+<BR>
+
+<DIV ALIGN="CENTER"><A NAME="eq:comm<sub>f</sub>ields">&#160;</A>
+
+ 
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">
+
+ [<font face="symbol">f</font><sup>i</sup>(t,x),<font face="symbol">p</font><sub>j</sub>(t,y)] </TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP>
+
+ i <font face="symbol">d</font><sup>d-1</sup>(x-y) <font face="symbol">d</font><sup>i</sup><sub>j</sub>,
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+ </TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">
+
+ [<font face="symbol">p</font><sub>i</sub>(t,x),<font face="symbol">p</font><sub>j</sub>(t,y)]
+
+</TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP>
+
+ [<font face="symbol">f</font><sup>i</sup>(t,x),<font face="symbol">f</font><sup>j</sup>(t,y)] = 0.
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.16)</TD></TR>
+
+</TABLE></DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+The equations of motion are then obtained by replacing the Poisson brackets with commutators
+
+<BR>
+
+<DIV ALIGN="CENTER">
+
+
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">
+
+ i <font face="symbol">¶</font><sub>0</sub><font face="symbol">p</font><sub>i</sub>
+
+</TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP>
+
+ [<font face="symbol">p</font><sub>i</sub>, H],
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+ </TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">
+
+ i <font face="symbol">¶</font><sub>0</sub><font face="symbol">f</font><sup>i</sup>
+
+</TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP>
+
+ [<font face="symbol">f</font><sup>i</sup>, H].
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.17)</TD></TR>
+
+</TABLE></DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+<P>
+
+In quantum field theory Noether's theorem remains valid but in addition the charges <I>Q</I><SUB><I>a</I></SUB> satisfy the same Lie algebra as the generators <I>T</I><SUB><I>a</I></SUB>
+
+<BR>
+
+<DIV ALIGN="CENTER">
+
+
+
+<!-- MATH: eqnarray
+
+[Q<sub>a</sub>,Q<sub>b</sub>]
+
+& = & - <font face="symbol">ò</font><sub>V</sub> d<sup>d-1</sup>x<font face="symbol">ò</font><sub>~V</sub> d<sup>d-1</sup>y[<font face="symbol">p</font><sub>i</sub>(x)(T<sub>a</sub>)<sup>i</sup><sub>j</sub><font face="symbol">f</font><sup>j</sup>(x),<font face="symbol">p</font><sub>k</sub>(y)(T<sub>a</sub>)<sup>k</sup><sub>l</sub><font face="symbol">f</font><sup>l</sup>(y)]  <br>
+
+& = & <font face="symbol">ò</font><sub>V</sub> d<sup>d-1</sup>x<font face="symbol">p</font><sub>i</sub>(x)f<sub>ab</sub><sup>c</sup>(T<sub>c</sub>)<sup>i</sup><sub>j</sub><font face="symbol">f</font><sup>j</sup>(x)  <br>
+
+& = & i f<sub>ab</sub><sup>c</sup>Q<sub>c</sub>.
+
+
+
+eqnarray -->
+
+
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">[<I>Q</I><SUB><I>a</I></SUB>,<I>Q</I><SUB><I>b</I></SUB>]</TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP>
+
+- <font face="symbol">ò</font><sub>V</sub> d<sup>d-1</sup>x<font face="symbol">ò</font><sub>~V</sub> d<sup>d-1</sup>y[<font face="symbol">p</font><sub>i</sub>(x)(T<sub>a</sub>)<sup>i</sup><sub>j</sub><font face="symbol">f</font><sup>j</sup>(x),<font face="symbol">p</font><sub>k</sub>(y)(T<sub>a</sub>)<sup>k</sup><sub>l</sub><font face="symbol">f</font><sup>l</sup>(y)] 
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+ </TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"> </TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP> 
+
+ <font face="symbol">ò</font><sub>V</sub> d<sup>d-1</sup>x<font face="symbol">p</font><sub>i</sub>(x)f<sub>ab</sub><sup>c</sup>(T<sub>c</sub>)<sup>i</sup><sub>j</sub><font face="symbol">f</font><sup>j</sup>(x)
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+&nbsp;</TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">&nbsp;</TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP><I>i f</I><SUB><I>ab</I></SUB><SUP>&nbsp;&nbsp;<I>c</I></SUP><I>Q</I><SUB><I>c</I></SUB>.</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.18)</TD></TR>
+
+</TABLE></DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+This representation of the Lie algebra is called the <EM>charge algebra</EM> and the action of the charges on the fields is given by
+
+<BR>
+
+<DIV ALIGN="CENTER">
+
+
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">
+
+ <font face="symbol">d</font><font face="symbol">f</font><sup>i</sup>
+
+</TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP>
+
+ i <font face="symbol">e</font><sup>a</sup>[Q<sub>a</sub>,<font face="symbol">f</font><sup>i</sup>]
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+&nbsp;</TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">&nbsp;</TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP>
+
+ -i<font face="symbol">e</font><sup>a</sup>(T<sub>a</sub>)<sup>i</sup><sub>j</sub><font face="symbol">f</font><sup>j</sup>.
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.19)</TD></TR>
+
+</TABLE></DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+It is important to note that although we used the equations of motion to derive the conservation of the charges <I>Q</I><SUB><I>a</I></SUB>, the charge algebra is satisfied independently of the equations of motion.
+
+
+
+<P>
+
+<HR>
+
+
+
+
+
+<H2><A NAME="SECTION00315000000000000000">&#160;</A> <A NAME="sec:local<sub>s</sub>ymm">&#160;</A>
+
+<BR>
+
+Local symmetries
+
+</H2>
+
+
+
+<P>
+
+Up to now we have only discussed <EM>global</EM> symmetries where the infinitesimal parameters did not depend on the spacetime co-ordinates. In making the transition to <EM>local</EM> symmetries one makes the parameters co-ordinate dependent. In doing so, the group-algebra remains the same as do the transformation rules for the fields. However, the derivatives 
+
+<font face="symbol">¶</font><sub><font face="symbol">m</font></sub> 
+
+no longer commute with the group transformations
+
+<BR>
+
+<DIV ALIGN="CENTER"><A NAME="eq:local<sub>e</sub>xtra<sub>t</sub>erm">&#160;</A>
+
+ 
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">
+
+ <font face="symbol">¶</font><sub><font face="symbol">m</font></sub>(<font face="symbol">d</font><font face="symbol">f</font><sup>i</sup>)
+
+</TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP>
+
+ - i <font face="symbol">e</font><sub>a</sub>(T<sub>a</sub>)<sup>i</sup><sub>j</sub>(<font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">f</font><sup>j</sup>) - i(<font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">e</font><sup>a</sup>)(T<sub>a</sub>)<sup>i</sup><sub>j</sub><font face="symbol">f</font><sup>j</sup>
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+&nbsp;</TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">&nbsp;</TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP>
+
+ <font face="symbol">d</font>(<font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">f</font><sup>i</sup>) - i(<font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">e</font><sup>a</sup>)(T<sub>a</sub>)<sup>i</sup><sub>j</sub><font face="symbol">f</font><sup>j</sup>.
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.20)</TD></TR>
+
+</TABLE></DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+Requiring the derivatives of the fields to transform in the same way as the fields themselves, one can define a <EM>covariant</EM> derivative 
+
+D<sub><font face="symbol">m</font></sub>
+
+by
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP>
+
+D<sub><font face="symbol">m</font></sub> = <font face="symbol">¶</font><sub><font face="symbol">m</font></sub> - i g A<sup>a</sup><sub><font face="symbol">m</font></sub> T<sub>a</sub>,
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.21)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+where the <EM>gauge</EM>-fields 
+
+A<sup>a</sup><sub><font face="symbol">m</font></sub> 
+
+transform in such a way that the second term in (<A HREF="node9.html#eq:local<sub>e</sub>xtra<sub>t</sub>erm">1.20</A>) disappears
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP>
+
+<font face="symbol">d</font> A<sup>c</sup><sub><font face="symbol">m</font></sub> = <font face="symbol">e</font><sup>a</sup>A<sup>b</sup><sub><font face="symbol">m</font></sub>f<sub>ab</sub><sup>c</sup> - \frac1g<font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">e</font><sup>c</sup>.
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.22)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+This covariant derivative then commutes with the group transformations
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP>
+
+D<sub><font face="symbol">m</font></sub>(<font face="symbol">d</font><font face="symbol">f</font><sup>i</sup>) = <font face="symbol">d</font>(D<sub><font face="symbol">m</font></sub><font face="symbol">f</font><sup>i</sup>),
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.23)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+but it no longer commutes with itself
+
+<BR>
+
+<DIV ALIGN="CENTER">
+
+
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">
+
+ [D<sub><font face="symbol">m</font></sub>,D<sub><font face="symbol">n</font></sub>]
+
+</TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP>
+
+ - i g (<font face="symbol">¶</font><sub>[<font face="symbol">m</font></sub> A<sup>a</sup><sub><font face="symbol">n</font>]</sub> + g f<sub>bc</sub><sup>a</sup>A<sup>b</sup><sub><font face="symbol">m</font></sub>A<sup>c</sup><sub><font face="symbol">n</font></sub>)T<sub>a</sub>
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+&nbsp;</TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">&nbsp;</TD>
+
+<TD ALIGN="CENTER" NOWRAP>
+
+ <font face="symbol">º</font>
+
+</TD>
+
+<TD ALIGN="LEFT" NOWRAP>
+
+ -i g F<sup>a</sup><sub><font face="symbol">m</font><font face="symbol">n</font></sub>T<sub>a</sub>,
+
+</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(1.24)</TD></TR>
+
+</TABLE></DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+where 
+
+F<sup>a</sup><sub><font face="symbol">m</font><font face="symbol">n</font></sub> 
+
+is called the field-tensor. 
+
+
+
+<P>
+
+In making a Lagrangian with a global symmetry group invariant under the local version of these symmetries, one replaces all ordinary derivatives 
+
+<font face="symbol">¶</font><sub><font face="symbol">m</font></sub> 
+
+by covariant derivatives 
+
+D<sub><font face="symbol">m</font></sub> 
+
+and then adds the invariant quantitiy 
+
+F<sup>a</sup><sub><font face="symbol">m</font><font face="symbol">n</font></sub>F<sub>a</sub><sup><font face="symbol">m</font><font face="symbol">n</font></sup> 
+
+to this new Lagrangian.
+
+
+
+<P>
+
+Local symmetries are for historical reasons usually called <EM>gauge</EM>-symmetries and physical models exhibiting such symmetries are called gauge-theories. In particular, if the gauge-group is a non-Abelian internal symmetry group, then such models go under the name of Yang-Mills theories. 
+
+
+
+<P>
+
+<HR>
+
+
+
+
+
+
+
+<p>
+
+<h3> Quantum theory of fields </h3>
+
+<p>
+
+
+
+<font face="symbol">P</font><sub>l</sub>(x,t) = <font face="symbol">d</font> L[<font face="symbol">Y</font>(t),.<font face="symbol">Y</font>(t)]/<font face="symbol">d</font>.<font face="symbol">Y</font><sup>l</sup>(x,t) 
+
+<p>
+
+equations of motion : <br>
+
+.<font face="symbol">P</font><sub>l</sub>(x,t) = <font face="symbol">d</font> L[<font face="symbol">Y</font>(t),.<font face="symbol">Y</font>(t)]/<font face="symbol">d</font> <font face="symbol">Y</font><sup>l</sup>(x,t) <br>
+
+<p>
+
+Action I[<font face="symbol">Y</font>] = <font face="symbol">ò</font><sub>-</sub><font face="symbol">¥</font><sup><font face="symbol">¥</font></sup> dt L[<font face="symbol">Y</font>(t),.<font face="symbol">Y</font>(t)]
+
+= <font face="symbol">ò</font> d<sup>4</sup>x L(<font face="symbol">Y</font>(x),<font face="symbol">¶</font><font face="symbol">Y</font>(x)/<font face="symbol">¶</font> x<sup><font face="symbol">m</font></sup>) 
+
+<p>
+
+<font face="symbol">¶</font>/<font face="symbol">¶</font> x<sup><font face="symbol">m</font></sup> <font face="symbol">¶</font> L/<font face="symbol">¶</font> (<font face="symbol">¶</font> <font face="symbol">Y</font><sup>l</sup>/<font face="symbol">¶</font> x<sup><font face="symbol">m</font></sup>)
+
+= <font face="symbol">¶</font> L/<font face="symbol">¶</font><font face="symbol">Y</font><sup>l</sup>
+
+<p>
+
+H = <font face="symbol">S</font><sub>l</sub> <font face="symbol">ò</font> d<sup>3</sup>x <font face="symbol">P</font><sub>l</sub>(x,t) .<font face="symbol">Y</font><sup>l</sup>(x,t) - L(<font face="symbol">Y</font>(t),.<font face="symbol">Y</font>(t)) 
+
+<p>
+
+L = -1/2 <font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">f</font> <font face="symbol">¶</font><sup><font face="symbol">m</font></sup><font face="symbol">f</font> - m<sup>2</sup>/2 <font face="symbol">f</font><sup>2</sup> - H(<font face="symbol">f</font>)
+
+<p>
+
+With a metrics (- + + +) : (<font face="symbol"> </font> - m<sup>2</sup>) <font face="symbol">f</font> = H <font face="symbol">f</font>
+
+<p>
+
+<font face="symbol">P</font> = <font face="symbol">¶</font> L / <font face="symbol">¶</font> .<font face="symbol">y</font> = <font face="symbol">f</font>
+
+<p>
+
+H = <font face="symbol">ò</font> d<sup>3</sup>x (<font face="symbol">P</font> .<font face="symbol">f</font> - L) 
+
+= <font face="symbol">ò</font> d<sup>3</sup>x[1/2 <font face="symbol">P</font><sup>2</sup> + 1/2 (<font face="symbol">Ñ</font><font face="symbol">y</font>)<sup>2</sup> + 1/2 m<sup>2</sup> <font face="symbol">f</font><sup>2</sup> + H(<font face="symbol">f</font>)]
+
+<p>
+
+L = -1/4 F<sup><font face="symbol">m</font></sup><sup><font face="symbol">n</font></sup> F<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> - <font face="symbol">Y</font> bar 
+
+(<font face="symbol">g</font><sup><font face="symbol">m</font></sup> (<font face="symbol">¶</font><sub><font face="symbol">m</font></sub> + i e A<sub><font face="symbol">m</font></sub>) <font face="symbol">Y</font> 
+
+<p>
+
+J<sup><font face="symbol">m</font></sup> = <font face="symbol">¶</font> L / <font face="symbol">¶</font> A<sub><font face="symbol">m</font></sub> = - i e <font face="symbol">Y</font> bar <font face="symbol">g</font><sup><font face="symbol">m</font></sup> <font face="symbol">Y</font>
+
+
+
+<p>
+
+
+
+<h3>Non abelian gauge fields</h3>
+
+
+
+<p>
+
+Gauge transformation :<br>
+
+<font face="symbol">y</font><sub>n</sub>(x) -> e<sup>ie<sub>n</sub><font face="symbol">L</font>(x)</sup><font face="symbol">y</font><sub>n</sub>(x) for arbitrary <font face="symbol">L</font>.<br>
+
+A<sub><font face="symbol">m</font></sub>(x) -> A<sub><font face="symbol">m</font></sub>(x) + <font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">L</font>(x) <br>
+
+Gauge covariant derivative : 
+
+<font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">y</font><sub><font face="symbol">m</font></sub>(x) - i e<sub>n</sub> A<sub><font face="symbol">m</font></sub>(x) <font face="symbol">y</font>(x)
+
+<p>
+
+<font face="symbol">d</font><font face="symbol">y</font><sub>l</sub>(x) = i <font face="symbol">e</font><sup><font face="symbol">a</font></sup>(x)(t<sub><font face="symbol">a</font></sub>)<sub>l</sub><sup>m</sup><font face="symbol">y</font><sub>m</sub>(x) 
+
+where t<sub><font face="symbol">a</font></sub> are matrices. <br>
+
+[t<sub><font face="symbol">a</font></sub>,t<sub><font face="symbol">b</font></sub>] = i C<sup><font face="symbol">g</font></sup><sub><font face="symbol">a</font></sub><sub><font face="symbol">b</font></sub> t<sub><font face="symbol">g</font></sub><br>
+
+C<sup><font face="symbol">g</font></sup><sub><font face="symbol">a</font></sub><sub><font face="symbol">b</font></sub> = - C<sup><font face="symbol">g</font></sup><sub><font face="symbol">b</font></sub><sub><font face="symbol">a</font></sub><br>
+
+0 = [[t<sub><font face="symbol">a</font></sub>,t<sub><font face="symbol">b</font></sub>],t<sub><font face="symbol">g</font></sub>] + [[t<sub><font face="symbol">g</font></sub>,t<sub><font face="symbol">a</font></sub>],t<sub><font face="symbol">b</font></sub>] + 
+
+[[t<sub><font face="symbol">b</font></sub>,t<sub><font face="symbol">g</font></sub>],t<sub><font face="symbol">a</font></sub>] <br>
+
+0 = C<sup><font face="symbol">d</font></sup><sub><font face="symbol">a</font></sub><sub><font face="symbol">b</font></sub> C<sup><font face="symbol">e</font></sup><sub><font face="symbol">d</font></sub><sub><font face="symbol">g</font></sub> 
+
++ C<sup><font face="symbol">d</font></sup><sub><font face="symbol">g</font></sub><sub><font face="symbol">a</font></sub> C<sup><font face="symbol">e</font></sup><sub><font face="symbol">d</font></sub><sub><font face="symbol">b</font></sub> 
+
++ C<sup><font face="symbol">d</font></sup><sub><font face="symbol">b</font></sub><sub><font face="symbol">g</font></sub> C<sup><font face="symbol">e</font></sup><sub><font face="symbol">d</font></sub><sub><font face="symbol">a</font></sub> <br>
+
+(t<sup>A</sup><sub><font face="symbol">a</font></sub>)<sup><font face="symbol">b</font></sup><sub><font face="symbol">g</font></sub> = -i C<sup><font face="symbol">b</font></sup><sub><font face="symbol">g</font></sub><sub><font face="symbol">a</font></sub> <br>
+
+[t<sup>A</sup><sub><font face="symbol">a</font></sub>,t<sup>A</sup><sub><font face="symbol">b</font></sub>] = i C<sup><font face="symbol">g</font></sup><sub><font face="symbol">a</font></sub><sub><font face="symbol">b</font></sub> t<sup>A</sup><sub><font face="symbol">g</font></sub> 
+
+<p>
+
+Example : Yang-Mills :
+
+<font face="symbol">y</font> = (<font face="symbol">y</font><sub>p</sub>, <font face="symbol">y</font><sub>n</sub>) wave functions of proton and neutron <br>
+
+<pre>
+
+t<sub>1</sub> = 1/2 (0 1)   t<sub>2</sub> = 1/2 (0 -i)   t<sub>3</sub> = 1/2 (1 0)
+
+         (1 0)            (i  0)            (0 1)
+
+</pre>
+
+C<sup><font face="symbol">g</font></sup><sub><font face="symbol">a</font></sub><sub><font face="symbol">b</font></sub> = <font face="symbol">e</font><sub><font face="symbol">g</font></sub><sub><font face="symbol">a</font></sub><sub><font face="symbol">b</font></sub> 
+
+<p>
+
+<pre>
+
+t<sub>1</sub><sup>A</sup> = (0  0  0)   t<sub>2</sub><sup>A</sup> = (0  0  i)   t<sub>3</sub><sup>A</sup> = (0 -i  0)
+
+      (0  0 -i)        (0  0  0)        (i  0  0)
+
+      (0  i  0)        (-i 0  0)        (0  0  0)
+
+</pre>
+
+<p>
+
+<font face="symbol">d</font>(<font face="symbol">¶</font><sub>M</sub><font face="symbol">y</font><sub>l</sub>(x)) = 
+
+i<font face="symbol">e</font><sup><font face="symbol">a</font></sup>(x)(t<sub><font face="symbol">a</font></sub>)<sub>l</sub><sup>m</sup>(<font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">y</font><sub>m</sub>(x)) 
+
++ i(<font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">e</font><sup><font face="symbol">a</font></sup>(x))(t<sub><font face="symbol">a</font></sub>)<sub>l</sub><sup>m</sup><font face="symbol">y</font><sub>m</sub>(x) 
+
+<p>
+
+<font face="symbol">d</font> A<sup><font face="symbol">b</font></sup><sub><font face="symbol">m</font></sub> = <font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">e</font><sup><font face="symbol">b</font></sup> 
+
++ i <font face="symbol">e</font><sup><font face="symbol">a</font></sup>(t<sup>A</sup><sub><font face="symbol">a</font></sub>)<sup><font face="symbol">b</font></sup><sub><font face="symbol">g</font></sub> A<sup><font face="symbol">g</font></sup><sub><font face="symbol">m</font></sub> <br>
+
+<font face="symbol">d</font> A<sup><font face="symbol">b</font></sup><sub><font face="symbol">m</font></sub> = <font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">e</font><sup><font face="symbol">b</font></sup> 
+
++ C<sup><font face="symbol">b</font></sup><sub><font face="symbol">g</font></sub><sub><font face="symbol">a</font></sub> <font face="symbol">e</font><sup><font face="symbol">a</font></sup> A<sup><font face="symbol">g</font></sup><sub><font face="symbol">m</font></sub> 
+
+<p>
+
+D<sub><font face="symbol">m</font></sub><font face="symbol">y</font>(x)<sub>l</sub> = <font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">y</font><sub>l</sub>(x) - i A<sup><font face="symbol">b</font></sup><sub><font face="symbol">m</font></sub>(x)(t<sub><font face="symbol">b</font></sub>)<sub>l</sub><sup>m</sup><font face="symbol">y</font><sub>m</sub>(x)
+
+<br>
+
+= i<font face="symbol">e</font><sup><font face="symbol">a</font></sup>(t<sub><font face="symbol">a</font></sub>)<sub>l</sub><sup>m</sup><font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">y</font><sub>m</sub> - i C<sup><font face="symbol">b</font></sup><sub><font face="symbol">g</font></sub><sub><font face="symbol">a</font></sub>
+
+<font face="symbol">e</font><sup><font face="symbol">a</font></sup> A<sup><font face="symbol">g</font></sup><sub><font face="symbol">m</font></sub>(t<sub><font face="symbol">b</font></sub>)<sub>l</sub><sup>m</sup><font face="symbol">y</font><sub>m</sub>
+
++ A<sup><font face="symbol">g</font></sup><sub><font face="symbol">m</font></sub>(t<sub><font face="symbol">g</font></sub>)<sub>l</sub><sup>m</sup>(t<sub><font face="symbol">a</font></sub>)<sub>m</sub><sup>n</sup><font face="symbol">y</font><sub>n</sub> 
+
+<p>
+
+<font face="symbol">d</font>(D<sub><font face="symbol">m</font></sub><font face="symbol">y</font>)<sub>l</sub> = i <font face="symbol">e</font><sup><font face="symbol">a</font></sup>(t<sub><font face="symbol">a</font></sub>)<sub>l</sub><sup>m</sup> (D<sub><font face="symbol">m</font></sub><font face="symbol">y</font>)<sub>m</sub>
+
+<p>
+
+F<sup><font face="symbol">g</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">m</font></sub> = <font face="symbol">¶</font><sub><font face="symbol">n</font></sub> A<sup><font face="symbol">g</font></sup><sub><font face="symbol">m</font></sub> - <font face="symbol">¶</font><sub><font face="symbol">m</font></sub> A<sup><font face="symbol">g</font></sup><sub><font face="symbol">n</font></sub> 
+
++ C<sup><font face="symbol">g</font></sup><sub><font face="symbol">a</font></sub><sub><font face="symbol">b</font></sub> A<sup><font face="symbol">a</font></sup><sub><font face="symbol">n</font></sub> A<sup><font face="symbol">b</font></sup><sub><font face="symbol">m</font></sub> <br>
+
+<font face="symbol">d</font> F<sup><font face="symbol">b</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">m</font></sub> = i<font face="symbol">e</font><sup><font face="symbol">a</font></sup>(t<sup>A</sup><sub><font face="symbol">a</font></sub>)<sup><font face="symbol">b</font></sup><sub><font face="symbol">g</font></sub> 
+
+F<sup><font face="symbol">g</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">m</font></sub> = <font face="symbol">e</font><sup><font face="symbol">a</font></sup> C<sup><font face="symbol">b</font></sup><sub><font face="symbol">g</font></sub><sub><font face="symbol">a</font></sub> F<sup><font face="symbol">g</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">m</font></sub>
+
+<p>
+
+L(<font face="symbol">y</font>,D<sub><font face="symbol">m</font></sub><font face="symbol">y</font>,D<sub><font face="symbol">n</font></sub><sub><font face="symbol">m</font></sub><font face="symbol">y</font>,...F<sup><font face="symbol">a</font></sup><sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub>,D<sub><font face="symbol">r</font></sub> F<sup><font face="symbol">a</font></sup><sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub>,...) <br>
+
+<font face="symbol">¶</font> L/<font face="symbol">¶</font><font face="symbol">y</font><sub>l</sub> i(t<sub><font face="symbol">a</font></sub>)<sub>l</sub><sup>m</sup><font face="symbol">y</font><sub>m</sub> 
+
++ <font face="symbol">¶</font> L/<font face="symbol">¶</font>(D<sub><font face="symbol">m</font></sub><font face="symbol">y</font><sub>l</sub>) i(t<sub><font face="symbol">a</font></sub>)<sub>l</sub><sup>m</sup>)(D<sub><font face="symbol">m</font></sub><font face="symbol">y</font><sub>m</sub>)
+
++ <font face="symbol">¶</font> L/<font face="symbol">¶</font>(D<sub>n</sub>u D<sub><font face="symbol">m</font></sub><font face="symbol">y</font><sub>l</sub>) i(t<sub><font face="symbol">a</font></sub>)<sub>l</sub><sup>m</sup> (D<sub><font face="symbol">n</font></sub> D<sub><font face="symbol">m</font></sub><font face="symbol">y</font><sub>m</sub>) 
+
++ ... + <font face="symbol">¶</font> L/<font face="symbol">¶</font> F<sup><font face="symbol">b</font></sup><sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> C<sup><font face="symbol">b</font></sup><sub><font face="symbol">g</font></sub><sub><font face="symbol">a</font></sub> 
+
+F<sup><font face="symbol">g</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">m</font></sub>
+
++ <font face="symbol">¶</font> L/<font face="symbol">¶</font> D<sub><font face="symbol">r</font></sub> F<sup><font face="symbol">b</font></sup><sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> C<sup><font face="symbol">b</font></sup><sub><font face="symbol">g</font></sub><sub><font face="symbol">a</font></sub> D<sub><font face="symbol">r</font></sub> 
+
+F<sup><font face="symbol">g</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">m</font></sub> + ... = 0
+
+<p>
+
+L<sub>A</sub> = -1/2 g<sub><font face="symbol">a</font></sub><sub><font face="symbol">b</font></sub> F<sup><font face="symbol">a</font></sup><sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> F<sup><font face="symbol">b</font></sup><sup><font face="symbol">m</font></sup><sup><font face="symbol">n</font></sup> <br>
+
+g<sub>1</sub><sub>1</sub> = g<sub>2</sub><sub>2</sub> = -g<sub>3</sub><sub>3</sub> = -2
+
+<p>
+
+L = -1/4 <sub><font face="symbol">a</font></sub><sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> F<sub><font face="symbol">a</font></sub><sup><font face="symbol">m</font></sup><sup><font face="symbol">n</font></sup> + L<sub>m</sub>(<font face="symbol">y</font>,D<sub>m</sub>u<font face="symbol">y</font>) <br>
+
+Equations of motion :
+
+<font face="symbol">¶</font><sub><font face="symbol">m</font></sub>(<font face="symbol">¶</font> L/<font face="symbol">¶</font>(<font face="symbol">¶</font><sub><font face="symbol">m</font></sub> A<sub><font face="symbol">a</font></sub><sub><font face="symbol">n</font></sub>)) 
+
+
+
+= - <font face="symbol">¶</font><sub><font face="symbol">m</font></sub> F<sub><font face="symbol">a</font></sub><sup><font face="symbol">m</font></sup><sup><font face="symbol">n</font></sup> 
+
+= <font face="symbol">¶</font> L/<font face="symbol">¶</font> A<sub>a</sub>lpha<sub><font face="symbol">n</font></sub>
+
+= - F<sub><font face="symbol">g</font></sub><sup><font face="symbol">n</font></sup><sup><font face="symbol">m</font></sup> C<sub><font face="symbol">g</font></sub><sub><font face="symbol">a</font></sub><sub><font face="symbol">b</font></sub> A<sub><font face="symbol">b</font></sub><sub><font face="symbol">m</font></sub> 
+
+- i <font face="symbol">¶</font> L<sub><font face="symbol">m</font></sub>/<font face="symbol">¶</font>(D<sub><font face="symbol">n</font></sub><font face="symbol">y</font>) t<sub><font face="symbol">a</font></sub><font face="symbol">y</font>
+
+<p>
+
+Complete current j : <br>
+
+<font face="symbol">¶</font><sub><font face="symbol">m</font></sub> F<sub><font face="symbol">a</font></sub><sup><font face="symbol">m</font></sup><sup><font face="symbol">n</font></sup> = -j<sub><font face="symbol">a</font></sub><sup><font face="symbol">n</font></sup> <br>
+
+j<sub><font face="symbol">a</font></sub><sup><font face="symbol">n</font></sup> = -F<sub><font face="symbol">g</font></sub><sup><font face="symbol">n</font></sup><sup><font face="symbol">m</font></sup> C<sub><font face="symbol">g</font></sub><sub><font face="symbol">a</font></sub><sub><font face="symbol">b</font></sub> 
+
+- i <font face="symbol">¶</font> L<sub><font face="symbol">m</font></sub> / <font face="symbol">¶</font> (D<sub><font face="symbol">n</font></sub><font face="symbol">y</font>) t<sub><font face="symbol">a</font></sub> <font face="symbol">y</font> <br>
+
+<font face="symbol">¶</font><sub><font face="symbol">n</font></sub> j<sub><font face="symbol">a</font></sub><sup><font face="symbol">n</font></sup> = 0 <br>
+
+D<sub><font face="symbol">l</font></sub> F<sub><font face="symbol">a</font></sub><sup><font face="symbol">m</font></sup><sup><font face="symbol">n</font></sup> = <font face="symbol">¶</font><sub><font face="symbol">l</font></sub> F<sub><font face="symbol">a</font></sub><sup><font face="symbol">m</font></sup><sup><font face="symbol">n</font></sup> 
+
+- i (t<sub><font face="symbol">b</font></sub><sup>A</sup>)<sub><font face="symbol">a</font></sub><sub><font face="symbol">g</font></sub> A<sub><font face="symbol">b</font></sub><sub><font face="symbol">l</font></sub> F<sub><font face="symbol">g</font></sub><sup><font face="symbol">m</font></sup><sup><font face="symbol">n</font></sup> <br>
+
+= <font face="symbol">¶</font><sub><font face="symbol">l</font></sub> - C<sub><font face="symbol">a</font></sub><sub><font face="symbol">g</font></sub><sub><font face="symbol">b</font></sub> A<sub><font face="symbol">b</font></sub><sub><font face="symbol">l</font></sub> F<sub><font face="symbol">g</font></sub><sup><font face="symbol">m</font></sup><sup><font face="symbol">n</font></sup> <br>
+
+=> D<sub><font face="symbol">m</font></sub> F<sub><font face="symbol">a</font></sub><sup><font face="symbol">m</font></sup><sup><font face="symbol">n</font></sup> = -J<sub><font face="symbol">a</font></sub><sup><font face="symbol">n</font></sup> <br>
+
+J<sub><font face="symbol">a</font></sub><sup><font face="symbol">n</font></sup> = -i <font face="symbol">¶</font> L<sub><font face="symbol">m</font></sub> / <font face="symbol">¶</font> (D<sub><font face="symbol">n</font></sub><font face="symbol">y</font>) t<sub><font face="symbol">a</font></sub><font face="symbol">y</font> <br>
+
+[D<sub><font face="symbol">n</font></sub>,D<sub><font face="symbol">m</font></sub>] F<sub><font face="symbol">a</font></sub><sup><font face="symbol">r</font></sup><sup><font face="symbol">s</font></sup> = - i (t<sup>A</sup><sub><font face="symbol">g</font></sub>)<sub><font face="symbol">a</font></sub><sub><font face="symbol">b</font></sub>
+
+F<sub><font face="symbol">g</font></sub><sub><font face="symbol">n</font></sub><sub><font face="symbol">m</font></sub> F<sub><font face="symbol">b</font></sub><sup><font face="symbol">r</font></sup><sup><font face="symbol">s</font></sup>
+
+= - C<sub><font face="symbol">g</font></sub><sub><font face="symbol">a</font></sub><sub><font face="symbol">b</font></sub> F<sub><font face="symbol">g</font></sub><sub><font face="symbol">n</font></sub><sub><font face="symbol">m</font></sub> F<sub><font face="symbol">b</font></sub><sup><font face="symbol">r</font></sup><sup><font face="symbol">s</font></sup> <br>
+
+D<sub><font face="symbol">n</font></sub> J<sub><font face="symbol">a</font></sub><sub><font face="symbol">n</font></sub> = 0 <br>
+
+D<sub><font face="symbol">m</font></sub> F<sub><font face="symbol">a</font></sub><sub><font face="symbol">n</font></sub><sub><font face="symbol">l</font></sub> +
+
+D<sub><font face="symbol">n</font></sub> F<sub><font face="symbol">a</font></sub><sub><font face="symbol">l</font></sub><sub><font face="symbol">n</font></sub> +
+
+D<sub><font face="symbol">l</font></sub> F<sub><font face="symbol">a</font></sub><sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> = 0
+
+<p>
+
+D<sub><font face="symbol">m</font></sub><font face="symbol">y</font> = <font face="symbol">¶</font><sub><font face="symbol">m</font></sub><font face="symbol">y</font> - i t<sub><font face="symbol">a</font></sub> A<sub><font face="symbol">a</font></sub><sub><font face="symbol">m</font></sub> <font face="symbol">y</font> <br>
+
+Constraints :
+
+<font face="symbol">P</font><sub><font face="symbol">a</font></sub><sub>0</sub> = <font face="symbol">¶</font> L / <font face="symbol">¶</font> (<font face="symbol">¶</font><sub>0</sub> A<sup>0</sup><sub><font face="symbol">a</font></sub>) = 0
+
+and
+
+-<font face="symbol">¶</font><sub><font face="symbol">m</font></sub> <font face="symbol">¶</font> L / <font face="symbol">¶</font> (<font face="symbol">¶</font><sub><font face="symbol">m</font></sub> A<sub><font face="symbol">a</font></sub><sub>0</sub>) +
+
+<font face="symbol">¶</font> L/<font face="symbol">¶</font> A<sub><font face="symbol">a</font></sub><sub>0</sub> = <font face="symbol">¶</font><sub><font face="symbol">m</font></sub> F<sub><font face="symbol">a</font></sub><sup><font face="symbol">m</font></sup><sup>0</sup> 
+
++ F<sub><font face="symbol">g</font></sub><sup><font face="symbol">m</font></sup><sup>0</sup> C<sub><font face="symbol">g</font></sub><sub><font face="symbol">a</font></sub><sub><font face="symbol">b</font></sub> A<sub><font face="symbol">b</font></sub><sub><font face="symbol">m</font></sub> + J<sub><font face="symbol">a</font></sub><sup>0</sup> <br>
+
+= <font face="symbol">¶</font><sub>k</sub> <font face="symbol">P</font><sub><font face="symbol">a</font></sub><sup>k</sup> + <font face="symbol">P</font><sub><font face="symbol">g</font></sub><sup>k</sup> C<sub><font face="symbol">g</font></sub><sub><font face="symbol">a</font></sub><sub><font face="symbol">b</font></sub> A<sub><font face="symbol">b</font></sub><sub>k</sub> 
+
++ J<sub><font face="symbol">a</font></sub><sup>0</sup> = 0 <br>
+
+<font face="symbol">P</font><sub><font face="symbol">a</font></sub><sup>k</sup> = <font face="symbol">¶</font> L / <font face="symbol">¶</font> (<font face="symbol">¶</font><sub>0</sub> A<sub><font face="symbol">a</font></sub><sub>k</sub>) 
+
+= F<sub><font face="symbol">a</font></sub><sup>k</sup><sup>0</sup>
+
+
+
+<p>
+
+
+
+<h4>General relativity</h4>
+
+
+
+<p>
+
+
+
+When a vector v<sup><font face="symbol">m</font></sup> is transported from x + dx to x, it's coordinates are 
+
+augmented by <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> v<sup><font face="symbol">n</font></sup> dx<sup><font face="symbol">r</font></sup>
+
+where <font face="symbol">G</font> is the connection or the Christoffel symbol.
+
+
+
+<p>
+
+Covariant derivative : <br> 
+
+D<sub>m</sub>A<sup>l</sup> = d<sub>m</sub>A<sup>l</sup> + <font face="symbol">G</font><sup>l</sup><sub>mn</sub>A<sup>n</sup><br>
+
+D<sub>m</sub>A<sub>l</sub> = d<sub>m</sub>A<sup>l</sup> - <font face="symbol">G</font><sup>n</sup><sub>ml</sub>A<sub>n</sub>
+
+<p>
+
+D<sub><font face="symbol">m</font></sub> g<sub><font face="symbol">nr</font></sub> = 0 =>
+
+<font face="symbol">G</font><sup>l</sup><sub>mn</sub> = 1/2 g<sup>ls</sup> ( d<sub>m</sub>g<sub>sn</sub> + d<sub>n</sub>g<sub>sm</sub> - d<sub>s</sub>g<sub>mn</sub>)
+
+<p> 
+
+Curvature R<sup>b</sup><sub>amn</sub> =
+
+d<sub>m</sub><font face="symbol">G</font><sup>b</sup><sub>an</sub> -
+
+d<sub>n</sub><font face="symbol">G</font><sup>b</sup><sub>am</sub> +
+
+<font face="symbol">G</font><sup>l</sup><sub>an</sub> <font face="symbol">G</font><sup>b</sup><sub>lm</sub> -
+
+<font face="symbol">G</font><sup>l</sup><sub>am</sub> <font face="symbol">G</font><sup>b</sup><sub>ln</sub> 
+
+<br>
+
+R<sub>am</sub> = R<sup>l</sup><sub>alm</sub>
+
+<br>
+
+R = g<sup>am</sup>R<sub>am</sub>
+
+<p>
+
+Action : S<sub>g</sub> for gravitation, S<sub>e</sub> for matter and
+
+electromagnetism. <br>
+
+<font face="symbol">d</font> S<sub>g</sub> = -1/(2<font face="symbol">c</font> c) <font face="symbol">ò</font> (R<sub>i</sub><sub>j</sub> - 1/2 g<sub>i</sub><sub>j</sub> R)
+
+ <font face="symbol">Ö</font>(-g) <font face="symbol">d</font> g<sup>i</sup><sup>j</sup> d<font face="symbol">W</font> <br>
+
+
+
+S<sub>g</sub> = -1/(2 <font face="symbol">c</font> c) <font face="symbol">ò</font> 2<font face="symbol">Ö</font>(-g) R d Omega with <font face="symbol">c</font> = 2 <font face="symbol">p</font> G / c<sup>4</sup>
+
+<p>
+
+ 
+
+
+
+With matter and electromagnetic field (<font face="symbol">L</font><sub>e</sub>) : <br>
+
+action S<sub>e</sub> = 1/c <font face="symbol">ò</font> <font face="symbol">Ö</font>(-g) <font face="symbol">L</font><sub>e</sub> d<font face="symbol">W</font> <br> 
+
+T<sub>i</sub><sub>j</sub> is defined by : 1/2 T<sub>i</sub><sub>j</sub> <font face="symbol">Ö</font>(-g) = <font face="symbol">¶</font>(<font face="symbol">Ö</font>(-g) <font face="symbol">L</font><sub>e</sub>)
+
+/ <font face="symbol">¶</font> g<sup>i</sup><sup>k</sup> - <font face="symbol">¶</font><sub>l</sub> ( <font face="symbol">¶</font> (<font face="symbol">Ö</font>(-g) <font face="symbol">L</font><sub>e</sub>) 
+
+/ <font face="symbol">¶</font> (<font face="symbol">¶</font><sub>l</sub> g<sup>i</sup><sup>k</sup>) ) <br>
+
+Then <font face="symbol">d</font> S<sub>e</sub> = 1/c <font face="symbol">ò</font> 1/2 T<sub>i</sub><sub>k</sub> <font face="symbol">Ö</font>(-g) <font face="symbol">d</font> g<sup>i</sup><sup>k</sup> d<font face="symbol">W</font>.
+
+<br>
+
+Then <font face="symbol">d</font> (S<sub>g</sub> + S<sub>e</sub>) = 0 becomes : <br> 
+
+-1/(2<font face="symbol">c</font> c) <font face="symbol">ò</font> (R<sub>i</sub><sub>j</sub> - 1/2 g<sub>i</sub><sub>j</sub> R - <font face="symbol">c</font> T<sub>i</sub><sub>j</sub>)
+
+ <font face="symbol">Ö</font>(-g) <font face="symbol">d</font> g<sup>i</sup><sup>j</sup> d<font face="symbol">W</font> = 0 <br>
+
+
+
+R<sub>mn</sub> - 1/2 g<sub>mn</sub>R = <font face="symbol">c</font> T<sub>mn</sub>
+
+<br>
+
+R<sub>i</sub><sub>j</sub> = <font face="symbol">c</font> (T<sub>i</sub><sub>j</sub> - 1/2 g<sub>i</sub><sub>j</sub> T) <br>
+
+<font face="symbol">L</font><sub>(em)</sub> = -1/(4<font face="symbol">m</font><sub>0</sub>) F<sub>i</sub><sub>k</sub> F<sup>i</sup><sup>k</sup> <br>
+
+T<sub>(em)</sub> = 1/<font face="symbol">m</font><sub>0</sub> (- F<sub>r</sub><sub>i</sub> F<sub>s</sub><sup>i</sup> + 1/4 g<sub>r</sub><sub>s</sub> F<sub>i</sub><sub>k</sub> F<sup>i</sup><sup>k</sup>)
+
+
+
+<p>
+
+See also : <br>
+
+<a href="http://www.daec.obspm.fr/users/nottale/frliwo12.htm"> 
+
+<P><B><FONT SIZE=+1>ESPACE-TEMPS FRACTAL ET MICROPHYSIQUE</FONT></B></P>
+
+<P><B><FONT SIZE=+1>Vers une th&eacute;orie de la relativit&eacute; d'&eacute;chelle</FONT></B></P>
+
+<P>Laurent Nottale</P>
+
+<P><B><FONT SIZE=+1>Version fran&ccedil;aise des deux premiers chapitres
+
+du livre:</FONT></B></P>
+
+<B><FONT SIZE=+1></FONT></B>
+
+<P><B><FONT SIZE=+1>FRACTAL SPACE-TIME AND MICROPHYSICS</FONT></B></P>
+
+<P><B><FONT SIZE=+1>Towards a Theory of Scale Relativity</FONT></B></P>
+
+<P>Laurent Nottale</P>
+
+<P><B>&copy; World Scientific </B>(Singapore, New Jersey, London, 1993)</P>
+
+</a>  
+
+<p>
+
+<P>Ainsi la relativit&eacute; restreinte m&egrave;ne &agrave; la contrainte
+
+
+
+qu'aucune vitese ne peut exc&eacute;der une certaine vitesse universelle<I>c</I>,
+
+
+
+qu'on peut ensuite identifier &agrave; la vitesse de n'importe quelle particule
+
+
+
+de masse nulle dans le vide, en particuler la lumi&egrave;re.<SUP>19 </SUP>On
+
+
+
+rappelle que l'espace-temps minkowskien est caract&eacute;ris&eacute; par
+
+
+
+l'invariant:</P>
+
+
+
+
+
+
+
+<P><I>ds</I><SUP>2</SUP> = <I>c</I><SUP>2</SUP><I>dt</I><SUP>2</SUP> <FONT FACE="symbol">-</FONT>
+
+
+
+(<I>dx</I><SUP>2</SUP> + <I>dy</I><SUP>2</SUP> + <I>dz</I><SUP>2</SUP>)
+
+
+
+,</P>
+
+
+
+
+
+
+
+<P>dans n'importe quelle transformation de coordonn&eacute;es inertielles.
+
+
+
+</P>
+
+
+
+
+
+
+
+<P>Poursuivons avec l'&eacute;volution des id&eacute;es en relativit&eacute;.
+
+
+
+Ce fut l'une des contributions les plus importantes de Mach que d'insister
+
+
+
+sur la relativit&eacute; de <I>tous les mouvements</I>, par seulement des
+
+
+
+mouvements inertiels. En se fondant sur les principes de <I>covariance
+
+
+
+g&eacute;n&eacute;rale</I> et d'<I>&eacute;quivalence</I>, Einstein construisit
+
+
+
+la th&eacute;orie de la relativit&eacute; g&eacute;n&eacute;rale, dont
+
+
+
+les &eacute;quations peuvent &ecirc;tre vues comme des contraintes sur
+
+
+
+les courbures de l'espace-temps qui sont physiquement possibles. Les &eacute;quations
+
+
+
+d'Einstein </P>
+
+
+
+
+
+
+
+<P><I>R<SUB><FONT FACE="symbol">mn</FONT></SUB></I> <FONT FACE="symbol">-
+
+
+
+</FONT>(1/2) <I>R g<SUB><FONT FACE="symbol">mn</FONT></SUB></I> <FONT FACE="symbol">-</FONT>
+
+
+
+<FONT FACE="symbol">L</FONT> <I>g<SUB><FONT FACE="symbol">mn</FONT></SUB></I>
+
+
+
+= <FONT FACE="symbol">c</FONT> <I>T<SUB><FONT FACE="symbol">mn </FONT></SUB></I>(2.1)</P>
+
+
+
+
+
+
+
+<P>sont les plus g&eacute;n&eacute;rales des &eacute;quations les plus
+
+
+
+simples qui soient covariantes sous toutes les transformations de syst&egrave;me
+
+
+
+de coordonn&eacute;es continues et (au moins deux fois) diff&eacute;rentiables.
+
+
+
+</P>
+
+
+
+
+
+
+
+<P>Les lecteurs qui souhaiteraient un expos&eacute; complet de cette th&eacute;orie
+
+
+
+sont invit&eacute;s &agrave; consulter des livres tels ceux de Misner,
+
+
+
+Thorne et Wheeler<SUP>22 </SUP>ou Weinberg.<SUP>55</SUP> Rappelons simplement
+
+
+
+ici bri&egrave;vement que, dans ces &eacute;quations, les <I>g<SUB><FONT FACE="symbol">mn</FONT></SUB></I>
+
+
+
+sont des potentiels de m&eacute;trique tensoriels qui g&eacute;n&eacute;ralisent
+
+
+
+le potentiel gravitationnel newtonien scalaire. L'invariant de la relativit&eacute;
+
+
+
+g&eacute;n&eacute;rale s'&eacute;crit, avec la convention d'Einstein de
+
+
+
+sommation des indices identiques pr&eacute;sents en haut et en bas</P>
+
+
+
+
+
+
+
+<P><I>ds</I><SUP>2</SUP> = <I>g<SUB><FONT FACE="symbol">mn</FONT></SUB></I>
+
+
+
+<I>dx<SUP><FONT FACE="symbol">m </FONT></SUP>dx<SUP><FONT FACE="symbol">n
+
+
+
+</FONT></SUP></I>, (<I><FONT FACE="symbol">m</FONT>,<FONT FACE="symbol">n
+
+
+
+</FONT></I>= 0 &agrave; 3).</P>
+
+
+
+
+
+
+
+<P>En relativit&eacute; g&eacute;n&eacute;rale, l'existence de la courbure
+
+
+
+de l'espace-temps implique que les variations des quantit&eacute;s physiques
+
+
+
+telles que les vecteurs ou les tenseurs dans des transformations infinit&eacute;simales
+
+
+
+de coordonn&eacute;es d&eacute;pendent de l'espace-temps lui-m&ecirc;me.
+
+
+
+Ce fait s'exprime par la d&eacute;rivation covariante</P>
+
+
+
+
+
+
+
+<P><I>D<SUB><FONT FACE="symbol">m</FONT></SUB>A<SUP><FONT FACE="symbol">n
+
+
+
+</FONT></SUP></I>= <font face="symbol">¶</font><I><SUB><FONT FACE="symbol">m</FONT></SUB>A<SUP><FONT FACE="symbol">n
+
+
+
+</FONT></SUP></I>+ <I><FONT FACE="symbol">G<SUP>n</SUP><SUB>rm </SUB></FONT>A<SUP><FONT FACE="symbol">r</FONT></SUP></I></P>
+
+
+
+
+
+
+
+<P>qui g&eacute;n&eacute;ralise la d&eacute;rivation partielle usuelle.
+
+
+
+Dans cette expression, les effets de l'espace-temps (c'est-&agrave;-dire
+
+
+
+de la gravitation) sont d&eacute;crits par les symboles de Christoffel
+
+
+
+</P>
+
+
+
+
+
+
+
+<P><I><FONT FACE="symbol">G<SUP>r</SUP><SUB>mn</SUB></FONT></I> = (1/2)
+
+
+
+<I>g<SUP><FONT FACE="symbol">rl</FONT></SUP></I> ( <font face="symbol">¶</font><I><SUB><FONT FACE="symbol">n</FONT></SUB></I>
+
+
+
+<I>g<SUB><FONT FACE="symbol">lm </FONT></SUB></I>+ <font face="symbol">¶</font> <I><SUB><FONT FACE="symbol">m</FONT></SUB></I>
+
+
+
+<I>g<SUB><FONT FACE="symbol">ln</FONT></SUB></I> <FONT FACE="symbol">-
+
+
+
+<font face="symbol">¶</font><I><SUB>l</SUB></I></FONT> <I>g<SUB><FONT FACE="symbol">mn</FONT></SUB></I>
+
+
+
+) , </P>
+
+
+
+
+
+
+
+<P>qui jouent le r&ocirc;le du champ gravitationnel. Les d&eacute;riv&eacute;es
+
+
+
+covariantes ne commutent pas, si bien que leur commutateur conduit &agrave;
+
+
+
+l'apparition d'un tenseur &agrave; quatre indices, le tenseur de Riemann
+
+
+
+<I>R<FONT FACE="symbol"><SUP>l</SUP><SUB>mnr </SUB></FONT></I>:</P>
+
+
+
+
+
+
+
+<P><I>(D<SUB><FONT FACE="symbol">m </FONT></SUB>D<FONT FACE="symbol"><SUB>n
+
+
+
+</SUB></FONT></I><FONT FACE="symbol">-</FONT> <I>D<SUB><FONT FACE="symbol">n
+
+
+
+</FONT></SUB>D<SUB><FONT FACE="symbol">m</FONT></SUB></I> ) <I>A<FONT FACE="symbol"><SUB>r</SUB><SUP>
+
+
+
+</SUP></FONT></I>= <I>R<FONT FACE="symbol"><SUP>l</SUP><SUB>rnm</SUB></FONT></I>
+
+
+
+<I>A<SUB><FONT FACE="symbol">l</FONT></SUB></I> .<I><SUB><FONT FACE="symbol">
+
+
+
+</FONT></SUB></I></P>
+
+
+
+
+
+
+
+<P>La contraction du tenseur de Riemann donne le tenseur de Ricci <I>R<SUB><FONT FACE="symbol">mn</FONT></SUB></I>
+
+
+
+= <I>g<SUP><FONT FACE="symbol">lr</FONT></SUP>R<SUB><FONT FACE="symbol">lmrn</FONT></SUB></I>:</P>
+
+
+
+
+
+
+
+<P><I>R<SUB><FONT FACE="symbol">mn</FONT></SUB></I> = <font face="symbol">¶</font><I><FONT FACE="symbol"><SUB>r</SUB>G<SUP>r</SUP><SUB>mn</SUB></FONT></I><FONT FACE="symbol">
+
+
+
+- <font face="symbol">¶</font><I><SUB>n</SUB>G<SUP>r</SUP><SUB>mr</SUB></I></FONT>
+
+
+
++ <I><FONT FACE="symbol">G<SUP>r</SUP><SUB>mn</SUB></FONT></I><FONT FACE="symbol">
+
+
+
+<I>G<SUP>l</SUP><SUB>rl</SUB></I> - <I>G<SUP>r</SUP><SUB>ml</SUB></I> <I>G<SUP>l</SUP><SUB>nr</SUB></I></FONT>
+
+
+
+,</P>
+
+
+
+
+
+
+
+<P>tandis que la quantit&eacute; <I>R </I>= <I>g<SUP><FONT FACE="symbol">mn
+
+
+
+</FONT></SUP>R<SUB><FONT FACE="symbol">mn</FONT></SUB></I> est la courbure
+
+
+
+scalaire. Les &eacute;quations d'Einstein &eacute;noncent que le tenseur
+
+
+
+&eacute;nergie-impulsion <I>T<SUB><FONT FACE="symbol">mn</FONT></SUB></I>
+
+
+
+est &eacute;gal, &agrave; la constante <FONT FACE="symbol">c</FONT> = 8<I><FONT FACE="symbol">p</FONT>G</I>/<I>c</I><SUP>4</SUP>
+
+
+
+pr&egrave;s, au tenseur g&eacute;om&eacute;trique d'Einstein donn&eacute;
+
+
+
+par le premier membre de l'&eacute;quation (2.1), dans laquelle <FONT FACE="symbol">L</FONT>
+
+
+
+est la <I>constante cosmologique</I>. Le tenseur d'Einstein et le tenseur
+
+
+
+&eacute;nergie-impulsion se conservent au sens covariant. Le principe d'Einstein
+
+
+
+de l'<I>&eacute;quivalence de la gravitation et de l'inertie</I> s'exprime
+
+
+
+par le fait qu'on peut toujours trouver un syst&egrave;me de coordonn&eacute;es
+
+
+
+dans lequel la m&eacute;trique est localement minkowskienne, et que dans
+
+
+
+un tel syst&egrave;me les &eacute;quations du mouvement d'une particule
+
+
+
+libre sont celles du mouvement inertiel, <I>Du<SUB><FONT FACE="symbol">m</FONT></SUB></I>
+
+
+
+= 0, o&ugrave; <I>u<SUB><FONT FACE="symbol">m</FONT></SUB></I> est la quadri-vitesse
+
+
+
+de la particule. Ecrite dans un syst&egrave;me de coordonn&eacute;es quelconque,
+
+
+
+cette &eacute;quation devient l'&eacute;quation des g&eacute;od&eacute;siques</P>
+
+
+
+
+
+
+
+<P>(<I>d</I><SUP>2</SUP><I>x<SUP><FONT FACE="symbol">m</FONT></SUP></I>/<I>ds</I><SUP>2</SUP>)
+
+
+
++ <I><FONT FACE="symbol">G<SUP>m</SUP><SUB>nr</SUB></FONT></I> (<I>dx<SUP><FONT FACE="symbol">n</FONT></SUP></I>/<I>ds</I>)
+
+
+
+(<I>dx<SUP><FONT FACE="symbol">r</FONT></SUP></I>/<I>ds</I>) = 0 .</P>
+
+
+
+<p>
+
+<h3>Dirac equation</h3>
+
+<p>
+
+
+
+(i d/ - m) <font face="symbol">Y</font>(x) = 0 <br>
+
+L<sub>QED</sub> = <font face="symbol">Y</font> bar (i D/ - m) <font face="symbol">Y</font> 
+
+= - <font face="symbol">Y</font> bar (i <-D/ + m) <font face="symbol">Y</font> <br>
+
+with D<sub>m</sub> = d<sub>m</sub> + i e A<sub>m</sub> <br>
+
+and (for any Z) Z/ = <font face="symbol">g</font><sup>m</sup>Z<sub>m</sub> <br>
+
+and <font face="symbol">g</font> are the matrices :
+
+<pre>
+
+<font face="symbol">g</font> 0 = (1   0)
+
+      (0  -1)
+
+
+
+<font face="symbol">g</font> k = (0       <font face="symbol">s</font> k)
+
+      (-<font face="symbol">s</font> k    0  )
+
+
+
+<font face="symbol">s</font> 1 = (0 1)
+
+      (1 0)
+
+
+
+<font face="symbol">s</font> 2 = (0 -i)
+
+      (i  0)
+
+
+
+<font face="symbol">s</font> 3 = (1  0)
+
+      (0 -1)
+
+</pre>
+
+L = -1/4 F<sub>mn</sub> F<sup>mn</sup> - <font face="symbol">Y</font> bar (<font face="symbol">g</font><sup>m</sup>(d<sub>m</sub>+ieA<sub>m</sub>) + M) <font face="symbol">Y</font>
+
+<p>
+
+L<sub>QCD</sub> = i <font face="symbol">S</font><sub>i=1</sub><sup>N</sup><sub>F</sub></sup> q bar<sub>i</sub>(x)
+
+(d<sub>m</sub> - ig<sub>s</sub> <font face="symbol">S</font><sub>a=1</sub><sup>8</sup>1/2l<sup>a</sup>A<sub>m</sub><sup>a</sup>(x))
+
+<font face="symbol">g</font><sup>m</sup>q<sub>i</sub>(x) - 
+
+1/4 <font face="symbol">S</font><sub>a=1</sub><sup>8</sup>F<sub>mn</sub><sup>a</sup>(x) F<sup>mna</sup>(x)
+
+- <font face="symbol">S</font><sub>i=1</sub><sup>N<sub>F</sub></sup> q bar<sub>i</sub>(x) M<sub>i</sub>q<sub>i</sub>(x) <br>
+
+where
+
+<ul>
+
+<li> q<sub>i</sub> is the quark field
+
+<li> A<sub>m</sub><sup>a</sup> is the gluon field
+
+<li> i is the flavor of the quark
+
+<li> a is the flavor of the gluon
+
+<li> N<sub>F</sub> is the number of flavors
+
+<li> M<sub>i</sub> are the quark masses
+
+<li> l<sup>a</sup> are the Gell-Mann color matrices
+
+<li> <font face="symbol">g</font><sup>m</sup> are the Dirac matrices
+
+
+
+</ul>
+
+
+
+<p>
+
+
+
+
+
+See also : 
+
+<ul>
+
+<li><a href="http://tjd-online.simplenet.com/Dirac/Dirac.html">
+
+The Dirac Equation - 
+
+http://tjd-online.simplenet.com/Dirac/Dirac.html</a>
+
+<li><a href="http://gopher.ccs.ornl.gov/staff/wells/index.html/sc98/sc98.html">
+
+Scalable implementation of spectral
+
+       methods for the Dirac equation,
+
+by J. C. Wells - 
+
+http://gopher.ccs.ornl.gov/staff/wells/index.html/sc98/sc98.html</a>
+
+<li><a href="http://physik.kfunigraz.ac.at/~jom/bag/node4.html">
+
+Dirac equation and Potential - 
+
+http://physik.kfunigraz.ac.at/~jom/bag/node4.html</a>
+
+<li><a href="http://lonestar.texas.net/~cbloom/physics/dirac.html">
+
+Charles Bloom's page : The Dirac Equation : Intro to RQM - 
+
+http://lonestar.texas.net/~cbloom/physics/dirac.html</a>
+
+<li><a href="http://kaluza.physik.uni-konstanz.de/2MS/laemmerz/la/node2.html">
+
+The Generalized Dirac Equation - 
+
+http://kaluza.physik.uni-konstanz.de/2MS/laemmerz/la/node2.html</a>
+
+
+
+</ul>
+
+<p>
+
+
+
+<pre>
+
+With a metrics (+ - - -)
+
+the Klein-Gordon equation is : ([] + m^2) <font face="symbol">Y</font>(x) = 0
+
+with [] = d/dt^2 - d/dx^2 - d/dy^2 - d/dz^2
+
+
+
+Let <font face="symbol">g</font>^<font face="symbol">m</font> (i=0..3) be 4 matrices :
+
+
+
+<font face="symbol">g</font>^0 = ONE 0
+
+      0 -ONE 
+
+
+
+<font face="symbol">g</font>^k = 0       <font face="symbol">s</font>^k
+
+      -<font face="symbol">s</font>^k 0
+
+
+
+ONE = 1 0 
+
+      0 1
+
+
+
+<font face="symbol">s</font>^1 = 0 1
+
+      1 0
+
+
+
+<font face="symbol">s</font>^2 = 0 -i
+
+      i  0
+
+
+
+<font face="symbol">s</font>^3 = 1 0
+
+      0 -1
+
+
+
+Let A/ be (sum over <font face="symbol">m</font> = 0,1,2,3 of ) <font face="symbol">g</font>^<font face="symbol">m</font> A_<font face="symbol">m</font>
+
+
+
+The Dirac equations are :
+
+	(i d/ - m) <font face="symbol">Y</font>(x) = 0
+
+and :
+
+	i (d_<font face="symbol">m</font> <font face="symbol">Y</font>bar) <font face="symbol">g</font>^<font face="symbol">m</font> + m <font face="symbol">Y</font>bar = <font face="symbol">Y</font>bar (i <-d/ + m) = 0
+
+With an electromagnetic field :
+
+	i d <font face="symbol">Y</font>/dt = (<font face="symbol">a</font> (p - e A) + e PHI + <font face="symbol">b</font> m) <font face="symbol">Y</font>
+
+	i d/dt <font face="symbol">Y</font>(r,t) = (-i <font face="symbol">a</font> <font face="symbol">Ñ</font> + <font face="symbol">b</font> + e <font face="symbol">a</font>ha . A(r,t) - e A^0(r,t)) <font face="symbol">Y</font>(r,t)
+
+	(<font face="symbol">a</font> p + <font face="symbol">b</font> (m + U(x)) <font face="symbol">Y</font>(x,t) = i d/dt <font face="symbol">Y</font>(x,t)
+
+
+
+The lagrangian is :
+
+	L = <font face="symbol">Y</font>bar (i d/ - m) <font face="symbol">Y</font>
+
+	= - <font face="symbol">Y</font>bar (i <-d/ + m) <font face="symbol">Y</font>
+
+        = 1/2 (i <font face="symbol">Y</font>bar <-d/ <font face="symbol">Y</font> - i <font face="symbol">Y</font>bar d/ <font face="symbol">Y</font>) - m <font face="symbol">Y</font>bar <font face="symbol">Y</font>
+
+	= 1/2 (i <font face="symbol">Y</font>bar <font face="symbol">g</font>^<font face="symbol">m</font> d_<font face="symbol">m</font> <font face="symbol">Y</font> - i d_<font face="symbol">m</font> <font face="symbol">Y</font>bar <font face="symbol">g</font>^<font face="symbol">m</font> <font face="symbol">Y</font>) - m <font face="symbol">Y</font>bar <font face="symbol">Y</font>
+
+
+
+	L_DEM = <font face="symbol">Y</font>bar (i D/ - m) <font face="symbol">Y</font> = <font face="symbol">Y</font>bar (i d/ - e A/ - m) <font face="symbol">Y</font>
+
+	with D_<font face="symbol">m</font> = d_<font face="symbol">m</font> + i e A_<font face="symbol">m</font>
+
+
+
+	L_QED = -1/4 F_<font face="symbol">m</font>_<font face="symbol">n</font> F^<font face="symbol">m</font>^<font face="symbol">n</font> + <font face="symbol">Y</font>bar (i D/ - m) <font face="symbol">Y</font> 
+
+</pre> 
+
+<p>
+
+
+
+i hbar d psi/dt = H psi <br>
+
+H = -i hbar c alpha . nabla + a_4 mc^2 <br>
+
+-hbar^2 d^2psi/dt^2 = H^2 psi    
+
+<p>
+
+
+
+i hbar <font face="symbol">¶</font><font face="symbol">y</font>/<font face="symbol">¶</font> t = H<font face="symbol">y</font><br>
+
+H = -i hbar c<font face="symbol">a</font><font face="symbol">Ñ</font> + a<sub>4</sub> m c<sup>2</sup><br>
+
+-hbar<sup>2</sup> <font face="symbol">¶</font><sup>2</sup><font face="symbol">y</font>/<font face="symbol">¶</font> t<sup>2</sup> = H<sup>2</sup><font face="symbol">y</font> 
+
+= - hbar<sup>2</sup> c<sup>2</sup> <font face="symbol">a</font><sub>i</sub> <font face="symbol">a</font><sub>j</sub> <font face="symbol">¶</font><sup>2</sup><font face="symbol">y</font>/(<font face="symbol">¶</font> x<sub>i</sub> <font face="symbol">¶</font> x<sub>j</sub>)
+
+- i hbar m c<sup>3</sup> (<font face="symbol">a</font><sub>i</sub> <font face="symbol">a</font><sub>4</sub> + <font face="symbol">a</font><sub>4</sub> <font face="symbol">a</font><sub>i</sub>) <font face="symbol">¶</font><font face="symbol">y</font>/<font face="symbol">¶</font> x<sub>i</sub> 
+
++ m<sup>2</sup> c<sup>4</sup> <font face="symbol">a</font><sub>4</sub><sup>2</sup><font face="symbol">y</font><br>
+
+<font face="symbol">a</font><sub>i</sub> <font face="symbol">a</font><sub>j</sub> + <font face="symbol">a</font><sub>j</sub> <font face="symbol">a</font><sub>i</sub> = 2 <font face="symbol">d</font><sub>i</sub><sub>j</sub> 1 <br>
+
+<font face="symbol">a</font><sub>i</sub> <font face="symbol">a</font><sub>4</sub> + <font face="symbol">a</font><sub>4</sub> <font face="symbol">a</font><sub>i</sub> = 0 <br>
+
+<font face="symbol">a</font><sub>4</sub><sup>2</sup> = 1 <br>
+
+<pre>
+
+
+
+<font face="symbol">a</font><sub>1</sub> = 0 0 0 1
+
+     0 0 1 0
+
+     0 1 0 0
+
+     1 0 0 0 
+
+
+
+<font face="symbol">a</font><sub>2</sub> = 0  0  0 -i   
+
+     0  0  i  0
+
+     0 -i  0  0
+
+     i  0  0  0
+
+
+
+<font face="symbol">a</font><sub>3</sub> = 0  0  1  0
+
+     0  0  0 -1
+
+     1  0  0  0
+
+     0 -1  0  0
+
+
+
+<font face="symbol">a</font><sub>4</sub> = 1  0  0  0
+
+     0  1  0  0
+
+     0  0 -1  0
+
+     0  0  0 -1
+
+
+
+</pre>
+
+(hbar - <font face="symbol">g</font><sup><font face="symbol">m</font></sup> <font face="symbol">¶</font>/<font face="symbol">¶</font> x<sup><font face="symbol">m</font></sup> + m c<sup>2</sup>) <font face="symbol">y</font> = 0 <br>
+
+<font face="symbol">g</font> = -i <font face="symbol">a</font><sub>4</sub> <font face="symbol">a</font>, <font face="symbol">g</font><sup>0</sup> = -i <font face="symbol">a</font><sub>4</sub> <br>
+
+1/2 (<font face="symbol">g</font><sup><font face="symbol">m</font></sup> <font face="symbol">g</font><sup><font face="symbol">n</font></sup> + <font face="symbol">g</font><sup><font face="symbol">n</font></sup> <font face="symbol">g</font><sup><font face="symbol">m</font></sup>) = <font face="symbol">h</font><sup><font face="symbol">m</font></sup><sup><font face="symbol">n</font></sup> <br>
+
+i hbar <font face="symbol">¶</font>/<font face="symbol">¶</font> t -> i hbar <font face="symbol">¶</font>/<font face="symbol">¶</font> t + e <font face="symbol">f</font> <br>
+
+-i hbar <font face="symbol">Ñ</font> -> -i hbar <font face="symbol">Ñ</font> + e/c A <br>
+
+(i hbar <font face="symbol">¶</font>/<font face="symbol">¶</font> t + e <font face="symbol">f</font>) <font face="symbol">y</font> = (-i hbar c <font face="symbol">Ñ</font> + e A) 
+
+<font face="symbol">a</font> <font face="symbol">y</font> + m c<sup>2</sup> <font face="symbol">a</font><sub>4</sub> <font face="symbol">y</font> <br>
+
+<pre>
+
+<font face="symbol">s</font> = 0 0 1 0 <font face="symbol">a</font>
+
+    0 0 0 1
+
+    1 0 0 0
+
+    0 1 0 0
+
+</pre>
+
+
+
+<p>
+
+<h3>String theory</h3>
+
+<p>
+
+A string is described by a parametrized surface X<sup>m</sup>(<font face="symbol">t</font>,<font face="symbol">s</font>)
+
+<br>
+
+The action of a free bosonic string moving in curved space is : <br>
+
+S = 1/2<font face="symbol">a</font>' <font face="symbol">ò</font> d <font face="symbol">t</font> d <font face="symbol">s</font> 2<font face="symbol">Ö</font>(-h) h<sup>ab</sup>
+
+d<sub>a</sub>X<sup>m</sup> d<sub>b</sub>X<sup>n</sup> g<sub>mn</sub>(X)
+
+<br>
+
+where h<sup>ab</sup> is the metric of the wordsheet (<font face="symbol">t</font>,<font face="symbol">s</font>).
+
+<p>
+
+See also <a href="http://viswiz.gmd.de/~nikitin/course/course.html">
+
+Introduction to String Theory</a> 
+
+<p>
+
+<h3>Rishons</h3>
+
+<p>
+
+See <a href="http://alf.zfn.uni-bremen.de/~mkoch/rishon/rishon.html">
+
+Mathias Home - Explaining the surplus of matter with the Rishon-model
+
+</a>
+
+
+
+<p>
+
+                <H2>The Rishon-Model</H2>
+
+
+
+                <U>Name origin</U><BR>
+
+
+
+                <I>Rischon</I> - hebraeic adjective: ancient<P>
+
+
+
+                The Rishon model was developed by Haim Harari, Professor for high energy physics at the Weizmann Institute in Rehovot/ Israel and Nathan Seiberg.<BR>
+
+
+
+                The main idea is that quarks and leptons of the first generation {u (up-quark), d (down-quark) and e<SUP>-</SUP> (electron), <FONT SIZE=2 FACE="Symbol">n</FONT><SUB>e</SUB> (electron-neutrino) } each consist of three particles - the rishons or their anti-particles.<BR>
+
+
+
+                The model assumes two new particles (rishons) and their anti-matter counterparts (anti-rishons). They were named after the state of the earth in the beginning of the creation (1. Mose), Tohu and Vavohu (desert and empty). The symbols are T and V.<P>
+
+
+
+
+
+
+
+                <TABLE CELLPADDING=1 CELLSPACING=1 BORDER=2 ALIGN=CENTER>
+
+
+
+                  <TR>
+
+
+
+                    <TH WIDTH=100>Rishon</TH>
+
+
+
+                    <TH WIDTH=100>Charge</TH>
+
+
+
+                  </TR>
+
+
+
+                  <TR>
+
+
+
+                    <TD ALIGN=CENTER> T </TD>
+
+
+
+                    <TD ALIGN=CENTER>+1/3</TD>
+
+
+
+                  </TR>
+
+
+
+                  <TR>
+
+
+
+                    <TD ALIGN=CENTER>-T </TD>
+
+
+
+                    <TD ALIGN=CENTER>-1/3</TD>
+
+
+
+                  </TR>
+
+
+
+                  <TR>
+
+
+
+                    <TD ALIGN=CENTER> V </TD>
+
+
+
+                    <TD ALIGN=CENTER>0</TD>
+
+
+
+                  </TR>
+
+
+
+                  <TR>
+
+
+
+                    <TD ALIGN=CENTER>-V </TD>
+
+
+
+                    <TD ALIGN=CENTER>0</TD>
+
+
+
+                  </TR>
+
+
+
+                </TABLE><P>
+
+
+
+                Rishons and anti-rishons can be combined in triples. There is only one restriction: Rishons and anti-rishons may not be combined together in one particle (quark or lepton).<P>
+
+
+
+                <TABLE CELLPADDING=1 CELLSPACING=1 BORDER=2 ALIGN=CENTER>
+
+
+
+                  <TR>
+
+
+
+                    <TH WIDTH=140>Rishon-combination</TH>
+
+
+
+                    <TH WIDTH=100>Particle</TH>
+
+
+
+                    <TH WIDTH=140>Name</TH>
+
+
+
+                    <TH WIDTH=100>Charge</TH>
+
+
+
+                  </TR>
+
+
+
+                  <TR>
+
+
+
+                    <TD ALIGN=CENTER> T  T  T </TD>
+
+
+
+                    <TD ALIGN=CENTER>e<SUP>+</SUP></TD>
+
+
+
+                    <TD ALIGN=CENTER>positron</TD>
+
+
+
+                    <TD ALIGN=CENTER>+1</TD>
+
+
+
+                  </TR>
+
+
+
+                  <TR>
+
+
+
+                    <TD ALIGN=CENTER> T  T  V </TD>
+
+
+
+                    <TD ALIGN=CENTER>u</TD>
+
+
+
+                    <TD ALIGN=CENTER>up-quark</TD>
+
+
+
+                    <TD ALIGN=CENTER>+2/3</TD>
+
+
+
+                  </TR>
+
+
+
+                  <TR>
+
+
+
+                    <TD ALIGN=CENTER> T  V  V </TD>
+
+
+
+                    <TD ALIGN=CENTER>-d</TD>
+
+
+
+                    <TD ALIGN=CENTER>anti-down-quark</TD>
+
+
+
+                    <TD ALIGN=CENTER>+1/3</TD>
+
+
+
+                  </TR>
+
+
+
+                  <TR>
+
+
+
+                    <TD ALIGN=CENTER> V  V  V </TD>
+
+
+
+                    <TD ALIGN=CENTER><FONT SIZE=2 FACE="Symbol">n</FONT><SUB>e</SUB></TD>
+
+
+
+                    <TD ALIGN=CENTER>electron-neutrino</TD>
+
+
+
+                    <TD ALIGN=CENTER>0</TD>
+
+
+
+                  </TR>
+
+
+
+                  <TR>
+
+
+
+                    <TD ALIGN=CENTER>-V -V -V </TD>
+
+
+
+                    <TD ALIGN=CENTER><!--IMG SRC="images/ne_.gif" WIDTH=26 HEIGHT=23 BORDER=0-->-<font face="symbol">n</font><sub>e</sub></TD>
+
+
+
+                    <TD ALIGN=CENTER>anti-electron-neutrino</TD>
+
+
+
+                    <TD ALIGN=CENTER>0</TD>
+
+
+
+                  </TR>
+
+
+
+                  <TR>
+
+
+
+                    <TD ALIGN=CENTER>-V -V -T </TD>
+
+
+
+                    <TD ALIGN=CENTER>d</TD>
+
+
+
+                    <TD ALIGN=CENTER>down-quark</TD>
+
+
+
+                    <TD ALIGN=CENTER>-1/3</TD>
+
+
+
+                  </TR>
+
+
+
+                  <TR>
+
+
+
+                    <TD ALIGN=CENTER>-V -T -T </TD>
+
+
+
+                    <TD ALIGN=CENTER>-u</TD>
+
+
+
+                    <TD ALIGN=CENTER>anti-up-quark</TD>
+
+
+
+                    <TD ALIGN=CENTER>-2/3</TD>
+
+
+
+                  </TR>
+
+
+
+                  <TR>
+
+
+
+                    <TD ALIGN=CENTER>-T -T -T </TD>
+
+
+
+                    <TD ALIGN=CENTER>e<SUP>-</SUP></TD>
+
+
+
+                    <TD ALIGN=CENTER>electron</TD>
+
+
+
+                    <TD ALIGN=CENTER>-1</TD>
+
+
+
+                  </TR>
+
+
+
+                </TABLE><P>
+
+
+
+                There are eight possible combinations, corresponding to the quarks and leptons of the first generation and their anti-particles.<BR>
+
+
+
+                The model considers the color of the particles. There are three color states for each rishon:<P>
+
+
+
+                <CENTER><!--IMG SRC="images/t.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"--> T , <!--IMG SRC="images/t_.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"-->-T : red, yellow or blue<BR>
+
+
+
+                <!--IMG SRC="images/v.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"-->, V  <!--IMG SRC="images/v_.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"-->-V : the corresponding anti-colors</CENTER><P>
+
+
+
+                For example <B>TTT</B> (e<SUP>+</SUP>) is a colorless lepton, containing rishons of one color each resulting in white.<BR>
+
+
+
+                Quarks are colored combinations, the colors cannot compensate to white.<P>
+
+
+
+                Particles with charges -2/3, -1/3, 1/3 and 2/3 are colored.<BR>
+
+
+
+                Particles with the charges -1, 0, +1 are colorless.<P>
+
+
+
+                The colors describe a very strong force that does not allow any colored particle to stay alone. Stable particles must be white, the particles they consist of have to compensate each other to white.<P>
+
+
+
+	The rishon-theory offers a very interesting answer to the question why proton and electron have exactly the same absolute charge (1.60217733*10<SUP><FONT SIZE=-1>-19</FONT></SUP>C). There is only ane particle that carries charge in the rishon-theory: the T rishon. Electron and proton consist of this rishon and its anti-rishon.<P>
+
+
+
+                <H2>Further conclusions from the Rishon-Model</H2>
+
+
+
+                <B>1. The hydrogen atom - matter, anti-matter or energy?</B> -  <I>A question of the 'distribution' of the rishons.</I><P>
+
+
+
+                What are the particles, a hydrogen atom consists of?<P>
+
+
+
+                <TABLE CELLPADDING=1 CELLSPACING=1 BORDER=2 ALIGN=CENTER>
+
+
+
+                  <TR>
+
+
+
+                    <TH WIDTH=250 ALIGN=CENTER>particles</TH>
+
+
+
+                    <TH WIDTH=250 ALIGN=CENTER>description</TH>
+
+
+
+                  </TR>
+
+
+
+                  <TR>
+
+
+
+	    <TD ALIGN=CENTER>e<SUP><FONT SIZE=-1>-</FONT></SUP> + p</TD>
+
+
+
+	    <TD ALIGN=CENTER>electron + proton</TD>
+
+
+
+	  </TR>
+
+
+
+                  <TR>
+
+
+
+	    <TD ALIGN=CENTER>e<SUP><FONT SIZE=-1>-</FONT></SUP> + u u d</TD>
+
+
+
+	    <TD ALIGN=CENTER>electron + quarks (proton)</TD>
+
+
+
+	  </TR>
+
+
+
+                  <TR>
+
+
+
+	    <TD ALIGN=CENTER HEIGHT=50>-T -T -T    T  T  V   T  T  V  -V -V -T </TD>
+
+
+
+	    <TD ALIGN=CENTER>rishons (electron) + rishons (proton)</TD>
+
+
+
+	  </TR>
+
+
+
+                </TABLE><P>     
+
+
+
+                There are 4 <!--IMG SRC="images/t.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"--> T  rishons and 4 <!--IMG SRC="images/t_.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"-->-T , 2 <!--IMG SRC="images/v.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"--> V  rishons and 2 <!--IMG SRC="images/v_.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"-->-V .<BR>
+
+
+
+                These rishons can be combined to one electron, one positron and one d/-d<!--IMG SRC="images/d_.gif" WIDTH=9 HEIGHT=20 BORDER=0 ALIGN="TEXTTOP"-->-pair as well. And that would be pure energy!<P>
+
+
+
+                <CENTER>-T <!--IMG SRC="images/t_.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"-->-T <!--IMG SRC="images/t_.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"-->-T <!--IMG SRC="images/t_.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"-->,  T <!--IMG SRC="images/t.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"--> T <!--IMG SRC="images/t.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"--> T <!--IMG SRC="images/t.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP">, -V <!--IMG SRC="images/v_.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"--> -V <!--IMG SRC="images/v_.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"-->-T <!--IMG SRC="images/t_.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"-->,  V <!--IMG SRC="images/v.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"--> V <!--IMG SRC="images/v.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"--> T <!--IMG SRC="images/t.gif" WIDTH=14 HEIGHT=23 BORDER=0 ALIGN="TEXTTOP"--></CENTER><P>
+
+
+
+                 the same can be done with the anti-hydrogen atom:<P>
+
+
+
+                <TABLE CELLPADDING=1 CELLSPACING=1 BORDER=2 ALIGN=CENTER>
+
+
+
+                  <TR>
+
+
+
+                    <TH WIDTH=250 ALIGN=CENTER>particles</TH>
+
+
+
+                    <TH WIDTH=250 ALIGN=CENTER>description</TH>
+
+
+
+                  </TR>
+
+
+
+                  <TR>
+
+
+
+	    <TD ALIGN=CENTER>e<SUP><FONT SIZE=-1>+</FONT></SUP> + -p<!--IMG ALIGN=TOP SRC="images/p_.gif" WIDTH=9 HEIGHT=20 BORDER=0 ALIGN="TEXTTOP"--></TD>
+
+
+
+	    <TD ALIGN=CENTER>positron + anti-proton</TD>
+
+
+
+	  </TR>
+
+
+
+                  <TR>
+
+
+
+	    <TD ALIGN=CENTER>e<SUP><FONT SIZE=-1>+</FONT></SUP> + -u<!--IMG SRC="images/u_.gif" WIDTH=8 HEIGHT=20 BORDER=0 ALIGN="TEXTTOP"--> -u<!--IMG SRC="images/u_.gif" WIDTH=8 HEIGHT=20 BORDER=0 ALIGN="TEXTTOP"--> -d<!--IMG SRC="images/d_.gif" WIDTH=9 HEIGHT=20 BORDER=0 ALIGN="TEXTTOP"--></TD>
+
+
+
+	    <TD ALIGN=CENTER>positron + quarks (anti-proton)</TD>
+
+
+
+	  </TR>
+
+
+
+                  <TR>
+
+
+
+	    <TD ALIGN=CENTER HEIGHT=50> T  T  T   -T -T -V  -T -T -V   V  V  T </TD>
+
+
+
+	    <TD ALIGN=CENTER>rishons (positron) + rishons (anti-proton)</TD>
+
+
+
+	  </TR>
+
+
+
+                </TABLE><P>
+
+
+
+	From the level of the rishons, matter and anti-matter consist of the same particels. They can <I>theoretically</I> be converted into each other or into energy.<BR>
+
+
+
+	This is a very important aspect of the following description of how there can be more matter than anti-matter in the universe.<P>
+
+
+
+    
+
+<p>
+
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+
+* with significant contributions from:
+
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+
+ 
+
+<!--Navigation Panel-->
+
+<A NAME="tex2html262"
+
+ HREF="node14.html">
+
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next_motif.gif"></A> 
+
+<A NAME="tex2html259"
+
+ HREF="node9.html">
+
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_motif.gif"></A> 
+
+<A NAME="tex2html255"
+
+ HREF="node12.html">
+
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="previous_motif.gif"></A> 
+
+<A NAME="tex2html261"
+
+ HREF="node1.html">
+
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents_motif.gif"></A>  
+
+<BR>
+
+<B> Next:</B> <A NAME="tex2html263"
+
+ HREF="node14.html">Four-dimensional Actions and Dual</A>
+
+<B> Up:</B> <A NAME="tex2html260"
+
+ HREF="node9.html">String Effective Actions</A>
+
+<B> Previous:</B> <A NAME="tex2html256"
+
+ HREF="node12.html">Kaluza Klein Theory</A>
+
+<BR>
+
+<BR>
+
+<!--End of Navigation Panel-->
+
+
+
+<H1><A NAME="SECTION00540000000000000000">&#160;</A>
+
+<A NAME="red">&#160;</A>
+
+<BR>
+
+Reduction of the Low Energy String Effective Action
+
+</H1>
+
+
+
+<P>
+
+The method discussed in the previous section can be generalised to include more dimensions and more complicated fields. We can use it to reduce our ten-dimensional string effective action sea10 to four dimensions. 
+
+But let's consider the general case of an effective action in <I>D</I>-dimensions that we want to reduce to (<I>D</I>-<I>d</I>) dimensions. So in the simplest case we assume that space-time is of the form <IMG
+
+ WIDTH="65" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img149.gif"
+
+ ALT="$M\times K$">,
+
+where <I>M</I> has <I>D</I>-<I>d</I> dimensions and <I>K</I> has <I>d</I> dimensions and all fields are independent of the coordinates <I>y</I><SUP><I>m</I></SUP> of <I>K</I>. 
+
+
+
+<P>
+
+This the simplest way to compactify the extra dimensions and of course there are more interesting ways to do this compactification which have more realistic features, but they are also far more difficult. For the moment we will stick to the case in which the fields are taken to  be independent of the extra <I>K</I> coordinates.
+
+
+
+<P>
+
+We will use the following notation: Local coordinates of <I>M</I> are <IMG
+
+ WIDTH="24" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+
+ SRC="img91.gif"
+
+ ALT="$x^{\mu}$">
+
+(
+
+<!-- MATH: $\mu=0,1,\ldots,D-d-1$ -->
+
+<IMG
+
+ WIDTH="192" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img150.gif"
+
+ ALT="$\mu=0,1,\ldots,D-d-1$">), internal coordinates of <I>K</I> are <I>y</I><SUP><I>m</I></SUP>, (
+
+<!-- MATH: $m=1,\ldots,d$ -->
+
+<IMG
+
+ WIDTH="107" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img151.gif"
+
+ ALT="$m=1,\ldots,d$">). The total space <IMG
+
+ WIDTH="65" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img149.gif"
+
+ ALT="$M\times K$">
+
+has signature (
+
+<!-- MATH: $+-\ldots -$ -->
+
+<IMG
+
+ WIDTH="83" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img152.gif"
+
+ ALT="$+-\ldots -$">)
+
+and fields in this <I>D</I>-dimensional space are denoted with a hat, as well as their coordinates (<IMG
+
+ WIDTH="18" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+
+ SRC="img153.gif"
+
+ ALT="$\hat\Phi$">,
+
+
+
+<!-- MATH: $\hat g_{\hat\mu\hat\nu}$ -->
+
+<IMG
+
+ WIDTH="30" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img154.gif"
+
+ ALT="$\hat g_{\hat\mu\hat\nu}$">,
+
+etc.), (
+
+<!-- MATH: $\hat\mu=0,1,\ldots ,D-1$ -->
+
+<IMG
+
+ WIDTH="159" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img155.gif"
+
+ ALT="$\hat\mu=0,1,\ldots ,D-1$">). Quantities without a hat are then the (<I>D</I>-<I>d</I>)-dimensional ones.
+
+
+
+<P>
+
+We begin with the first terms of the low energy string effective action seff, the Einstein term coupled to the Dilaton:
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<!-- MATH: \begin{equation}
+
+S_E = \int_M d^{D-d}x \int_K d^dy \sqrt{\hat g} e^{-\hat\Phi} \left\{ -\hat R - \partial_{\hat\mu} \hat\Phi \partial^{\hat\mu}\hat\Phi \right\}.
+
+\end{equation} -->
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="r1">&#160;</A><IMG
+
+ WIDTH="385" HEIGHT="42"
+
+ SRC="img156.gif"
+
+ ALT="\begin{displaymath}
+
+S_E = \int_M d^{D-d}x \int_K d^dy \sqrt{\hat g} e^{-\hat\Phi...
+
+...artial_{\hat\mu} \hat\Phi \partial^{\hat\mu}\hat\Phi \right\}.
+
+\end{displaymath}"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(3.18)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+If we assume that the internal space <I>K</I> is compact, we can perform the integration over the internal coordinates: 
+
+<!-- MATH: $\int_K d^dy =1$ -->
+
+<IMG
+
+ WIDTH="90" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img157.gif"
+
+ ALT="$\int_K d^dy =1$">.
+
+<BR>
+
+
+
+<P>
+
+It is very useful to do this reduction with the aid of so called vielbeins (vierbeins or tetrads in four dimensions, vielbeins in any other dimension). With the use of these vielbeins we make the connection between curved coordinate systems and local Lorentz (flat) coordinates. See appendix <A HREF="node51.html#appa"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="cross_ref_motif.gif"></A> for a short introduction of these vielbeins.
+
+
+
+<P>
+
+On the same transformation grounds that we saw in the previous section we can determine the reduction of these vielbeins. 
+
+Let again the greek indices denote the curved indices, (
+
+<!-- MATH: $\hat\mu=\{\mu,m\}$ -->
+
+<IMG
+
+ WIDTH="96" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img158.gif"
+
+ ALT="$\hat\mu=\{\mu,m\}$">)
+
+where <I>m</I> labels the internal coordinates. 
+
+And the hatted roman indices will denote the Lorentz indices in <I>D</I>-dimensions, (
+
+<!-- MATH: $\hat a=\{a,n\}$ -->
+
+<IMG
+
+ WIDTH="88" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img159.gif"
+
+ ALT="$\hat a=\{a,n\}$">). We assume that the internal space is flat, so there is no difference between the internal 'curved' indices and the internal Lorentz indices. The vielbeins reduce in the following way [<A
+
+ HREF="node57.html#maharana">5</A>]:
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<!-- MATH: \begin{equation}
+
+\hat e^{\hat a}{}_{\hat\mu} = \left( \begin{array}{cc} e^a{}_\mu & 0 \\& \\A_\mu{}^k E^{n}{}_k & E^n{}_m \end{array} \right) \quad\mbox{and}\quad e_{\hat a}{}^{\hat\mu} = \left( \begin{array}{cc} e_a{}^\mu & -e_a{}^\rho A_\rho{}^m \\&\\0 & E^n{}_m \end{array} \right).
+
+\end{equation} -->
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+
+ WIDTH="498" HEIGHT="76"
+
+ SRC="img160.gif"
+
+ ALT="\begin{displaymath}\hat e^{\hat a}{}_{\hat\mu} = \left( \begin{array}{cc} e^a{}_...
+
+...-e_a{}^\rho A_\rho{}^m \\ &\\ 0 & E^n{}_m \end{array} \right).
+
+\end{displaymath}"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(3.19)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+The internal metric is 
+
+<!-- MATH: $G_{mn} = E^k{}_m \delta_{kl} E^l{}_n$ -->
+
+<IMG
+
+ WIDTH="151" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img161.gif"
+
+ ALT="$G_{mn} = E^k{}_m \delta_{kl} E^l{}_n$">
+
+and the space-time metric is 
+
+<!-- MATH: $g_{\mu\nu} = e^a{}_\mu \eta_{ab} e^b{}_\nu$ -->
+
+<IMG
+
+ WIDTH="127" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img162.gif"
+
+ ALT="$g_{\mu\nu} = e^a{}_\mu \eta_{ab} e^b{}_\nu$">.
+
+We can express the <I>D</I>-dimensional metric in these quantities as we did in previous section [<A
+
+ HREF="node57.html#cvetic">8</A>]:
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<!-- MATH: \begin{equation}
+
+\hat g_{\hat\mu\hat\nu} = \left( \begin{array}{cc} g_{\mu\nu} + G_{mn} A_\mu{}^m A_\nu{}^n & A_\mu{}^m G_{mn} \\&\\A_nu{}^n G_{mn} & G_mn \end{array} \right)
+
+\end{equation} -->
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+
+ WIDTH="329" HEIGHT="76"
+
+ SRC="img163.gif"
+
+ ALT="\begin{displaymath}\hat g_{\hat\mu\hat\nu} = \left( \begin{array}{cc} g_{\mu\nu}...
+
+...u{}^m G_{mn} \\ &\\ A_nu{}^n G_{mn} & G_mn \end{array} \right)
+
+\end{displaymath}"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(3.20)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+and its inverse
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<!-- MATH: \begin{equation}
+
+\hat g_{\hat\mu\hat\nu} = \left( \begin{array}{cc} g^{\mu\nu} & - A^{\mu n} \\&\\-A^{\nu m} & G^{mn} + A^{\rho m} A_\rho{}^n \end{array} \right).
+
+\end{equation} -->
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+
+ WIDTH="290" HEIGHT="76"
+
+ SRC="img164.gif"
+
+ ALT="\begin{displaymath}\hat g_{\hat\mu\hat\nu} = \left( \begin{array}{cc} g^{\mu\nu}...
+
+...{\nu m} & G^{mn} + A^{\rho m} A_\rho{}^n \end{array} \right).
+
+\end{displaymath}"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(3.21)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+So when we reduce <I>d</I> dimensions, the <I>D</I>-dimensional metric will reduce to a (<I>D</I>-<I>d</I>)-dimensional metric, <I>d</I> abelian vector fields <IMG
+
+ WIDTH="40" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img165.gif"
+
+ ALT="$A_\mu{}^m$">,
+
+(
+
+<!-- MATH: $m=1,\ldots,d$ -->
+
+<IMG
+
+ WIDTH="107" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img151.gif"
+
+ ALT="$m=1,\ldots,d$">)
+
+and a scalar matrix <I>G</I><SUB><I>mn</I></SUB>. Because a metric is a symmetric tensor, this scalar matrix <I>G</I><SUB><I>mn</I></SUB> will consist of 
+
+<!-- MATH: ${\textstyle{1\over 2}}d (d+1)$ -->
+
+<IMG
+
+ WIDTH="82" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img166.gif"
+
+ ALT="${\textstyle{1\over 2}}d (d+1) $">
+
+independent scalar fields.
+
+
+
+<P>
+
+We can put these expressions into the Einstein part of our effective action r1 and after a tedious calculation one finds
+
+<BR>
+
+<DIV ALIGN="CENTER">
+
+
+
+<!-- MATH: \begin{eqnarray}
+
+S =& \int_M d^{D-d}x \sqrt{|g|} e^{-\phi} \left\{ -R + g^{\mu\nu} \partial_\mu \phi \partial_nu \phi + \right. \nonumber\\
+
+& \left. + {\textstyle{1\over 4}}g^{\mu\nu} \partial_\mu G_{mn} \partial_\nu G^{mn} + {\textstyle{1\over 4}}G_{mn} F_{\mu\nu}{}^m(A) F^{\mu\nu n}(A) \right\},
+
+\end{eqnarray} -->
+
+
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><I>S</I> =</TD>
+
+<TD ALIGN="CENTER" NOWRAP><IMG
+
+ WIDTH="323" HEIGHT="49" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img167.gif"
+
+ ALT="$\textstyle \int_M d^{D-d}x \sqrt{\vert g\vert} e^{-\phi} \left\{ -R + g^{\mu\nu} \partial_\mu \phi \partial_nu \phi + \right.$"></TD>
+
+<TD>&nbsp;</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+&nbsp;</TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">&nbsp;</TD>
+
+<TD ALIGN="CENTER" NOWRAP><IMG
+
+ WIDTH="392" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img168.gif"
+
+ ALT="$\textstyle \left. + {\textstyle{1\over 4}}g^{\mu\nu} \partial_\mu G_{mn} \parti...
+
+...{mn} + {\textstyle{1\over 4}}G_{mn} F_{\mu\nu}{}^m(A) F^{\mu\nu n}(A) \right\},$"></TD>
+
+<TD>&nbsp;</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(3.22)</TD></TR>
+
+</TABLE></DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+where we have made a shift in the Dilaton field
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{displaymath}
+
+\phi = \hat\Phi - {\textstyle{1\over 2}}\log \det G_{mn}
+
+\end{displaymath} -->
+
+
+
+
+
+<IMG
+
+ WIDTH="177" HEIGHT="35"
+
+ SRC="img169.gif"
+
+ ALT="\begin{displaymath}\phi = \hat\Phi - {\textstyle{1\over 2}}\log \det G_{mn} \end{displaymath}">
+
+</DIV>
+
+<BR CLEAR="ALL">
+
+<P></P>
+
+and of course 
+
+<!-- MATH: $F_{\mu\nu}{}^m = \partial_\mu A_\nu{}^m - \partial_\nu A_\nu{}^m$ -->
+
+<IMG
+
+ WIDTH="202" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img170.gif"
+
+ ALT="$F_{\mu\nu}{}^m = \partial_\mu A_\nu{}^m - \partial_\nu A_\nu{}^m$">.
+
+<BR>
+
+
+
+<P>
+
+We also have to reduce the other part of our string effective action involving the anti-symmetric field tensor 
+
+<!-- MATH: $B_{\mu\nu}$ -->
+
+<IMG
+
+ WIDTH="35" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img102.gif"
+
+ ALT="$B_{\mu\nu}$">
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<!-- MATH: \begin{equation}
+
+S_{\hat B} = -{\textstyle{1\over 12}} \int_M d^{D-d}x \int_K d^dy \sqrt{|g|} e^{-\Phi} \hat H_{\hat\mu\hat\nu\hat\rho} \hat H^{\hat\mu\hat\nu\hat\rho} ,
+
+\end{equation} -->
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="sb">&#160;</A><IMG
+
+ WIDTH="365" HEIGHT="42"
+
+ SRC="img171.gif"
+
+ ALT="\begin{displaymath}
+
+S_{\hat B} = -{\textstyle{1\over 12}} \int_M d^{D-d}x \int_K...
+
+...t H_{\hat\mu\hat\nu\hat\rho} \hat H^{\hat\mu\hat\nu\hat\rho} ,
+
+\end{displaymath}"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(3.23)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+where 
+
+<!-- MATH: $\hat H_{\hat\mu\hat\nu\hat\rho} = \partial{[\hat\mu} \hat B_{\hat\nu\hat\rho]}$ -->
+
+<IMG
+
+ WIDTH="129" HEIGHT="44" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img172.gif"
+
+ ALT="$\hat H_{\hat\mu\hat\nu\hat\rho} = \partial{[\hat\mu} \hat B_{\hat\nu\hat\rho]}$">.
+
+
+
+<P>
+
+We can derive that the following reduction of the <I>D</I>-dimensional anti-symmetric field tensor gives us the correct transformation properties in (<I>D</I>-<I>d</I>) dimensions 
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<!-- MATH: \begin{equation}
+
+\hat B_{\hat\mu\hat\nu} = \left(
+
+\begin{array}{cc} B_{\mu\nu} - {\textstyle{1\over 2}}A_{[\mu}{}^m B_{\nu ] m}+B_{mn}A_\mu{}^mA_\nu{}^n & B_{\mu n}-B_{nm} A_{\mu}{}^m \\
+
+&\\
+
+-B_{\nu m} + B_{mn} A_{\nu}{}^n & B_{mn}
+
+\end{array} \right).
+
+
+
+\end{equation} -->
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+
+ WIDTH="516" HEIGHT="76"
+
+ SRC="img173.gif"
+
+ ALT="\begin{displaymath}\hat B_{\hat\mu\hat\nu} = \left(
+
+\begin{array}{cc} B_{\mu\nu...
+
+...
+
+-B_{\nu m} + B_{mn} A_{\nu}{}^n & B_{mn}
+
+\end{array} \right).
+
+\end{displaymath}"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(3.24)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+So the <I>D</I>-dimensional anti-symmetric field tensor gives us in <I>D</I>-<I>d</I> dimensions again a anti-symmetric field tensor, <I>d</I> abelian vector fields <IMG
+
+ WIDTH="40" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img174.gif"
+
+ ALT="$B_{\mu m}$">
+
+and a <IMG
+
+ WIDTH="48" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img175.gif"
+
+ ALT="$d\times d$">
+
+scalar matrix <I>B</I><SUB><I>mn</I></SUB>, which because of anti-symmetry has 
+
+<!-- MATH: ${\textstyle{1\over 2}}d(d-1)$ -->
+
+<IMG
+
+ WIDTH="82" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img176.gif"
+
+ ALT="${\textstyle{1\over 2}}d(d-1)$">
+
+independent components. 
+
+
+
+<P>
+
+Note that 
+
+<!-- MATH: $\hat B_{\hat\mu\hat\nu}$ -->
+
+<IMG
+
+ WIDTH="35" HEIGHT="44" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img177.gif"
+
+ ALT="$\hat B_{\hat\mu\hat\nu}$">
+
+is a gauge tensor field: 
+
+<!-- MATH: $\delta\hat B_{\hat\mu\hat\nu} = \partial_{[\mu} \Lambda_{\nu]}$ -->
+
+<IMG
+
+ WIDTH="117" HEIGHT="44" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img178.gif"
+
+ ALT="$\delta\hat B_{\hat\mu\hat\nu} = \partial_{[\mu} \Lambda_{\nu]}$">.
+
+This means that the (<I>D</I>-<I>d</I>)-dimensional fields will have the following transformation properties:
+
+<BR>
+
+<DIV ALIGN="CENTER">
+
+
+
+<!-- MATH: \begin{eqnarray}
+
+\delta B_{\mu\nu} &=& \partial_{[\mu} \Lambda_{\nu]} \nonumber\\
+
+\delta B_{\mu m} &=& \partial_{\mu} \Lambda_m \nonumber
+
+\end{eqnarray} -->
+
+
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+
+ WIDTH="44" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img179.gif"
+
+ ALT="$\displaystyle \delta B_{\mu\nu}$"></TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP><IMG
+
+ WIDTH="52" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img180.gif"
+
+ ALT="$\displaystyle \partial_{[\mu} \Lambda_{\nu]}$"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+&nbsp;</TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+
+ WIDTH="49" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img181.gif"
+
+ ALT="$\displaystyle \delta B_{\mu m}$"></TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP><IMG
+
+ WIDTH="49" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img182.gif"
+
+ ALT="$\displaystyle \partial_{\mu} \Lambda_m$"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+&nbsp;</TD></TR>
+
+</TABLE></DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+<P>
+
+We can use the vielbeins to convert the curved indices of <IMG
+
+ WIDTH="22" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+
+ SRC="img183.gif"
+
+ ALT="$\hat H$">
+
+to Lorentz indices 
+
+<!-- MATH: $\hat H_{\hat a \hat b \hat c}$ -->
+
+<IMG
+
+ WIDTH="40" HEIGHT="44" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img184.gif"
+
+ ALT="$\hat H_{\hat a \hat b \hat c}$">
+
+and then use the reduced vielbeins (<IMG
+
+ WIDTH="30" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img185.gif"
+
+ ALT="$e^a{}_\mu$">
+
+and <I>E</I><SUP><I>n</I></SUP><SUB><I>m</I></SUB>) to convert them back to (<I>D</I>-<I>d</I>)-dimensional curved indices:
+
+<BR>
+
+<DIV ALIGN="CENTER">
+
+
+
+<!-- MATH: \begin{eqnarray}
+
+\hat {\textstyle{1\over 12}} H^2 &=& {\textstyle{1\over 12}}\hat H_{\hat a \hat b\hat c} \hat H^{\hat a \hat b\hat c} = \nonumber\\
+
+&=& {\textstyle{1\over 12}} H_{mnk} H^{mnk} + {\textstyle{1\over 4}}H_{\mu mn} H^{\mu mn} + {\textstyle{1\over 4}}H_{\mu\nu m} H^{\mu\nu m} + {\textstyle{1\over 12}} H_{\mu\nu\rho} H^{\mu\nu\rho} .
+
+\end{eqnarray} -->
+
+
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+
+ WIDTH="47" HEIGHT="49" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img186.gif"
+
+ ALT="$\displaystyle \hat {\textstyle{1\over 12}} H^2$"></TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP><IMG
+
+ WIDTH="114" HEIGHT="48" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img187.gif"
+
+ ALT="$\displaystyle {\textstyle{1\over 12}}\hat H_{\hat a \hat b\hat c} \hat H^{\hat a \hat b\hat c} =$"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+&nbsp;</TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">&nbsp;</TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP><IMG
+
+ WIDTH="483" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img188.gif"
+
+ ALT="$\displaystyle {\textstyle{1\over 12}} H_{mnk} H^{mnk} + {\textstyle{1\over 4}}H...
+
+...mu\nu m} H^{\mu\nu m} + {\textstyle{1\over 12}} H_{\mu\nu\rho} H^{\mu\nu\rho} .$"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(3.25)</TD></TR>
+
+</TABLE></DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+Here 
+
+<!-- MATH: $H_{mnk} =0$ -->
+
+<I>H</I><SUB><I>mnk</I></SUB> =0 since <I>B</I><SUB><I>mn</I></SUB> is independent of the <I>K</I> coordinates. We can also calculate the other terms:
+
+<BR>
+
+<DIV ALIGN="CENTER">
+
+
+
+<!-- MATH: \begin{eqnarray}
+
+H_{\mu mn} &=& e^r{}_\mu \hat e_r{}^{\hat \mu} \hat H_{\mu mn} = \partial_\mu B_{mn}, \\
+
+\nonumber\\
+
+H_{\mu\nu m} &=& e^r{}_\mu e^s{}_\nu \hat e_r{}^{\hat\mu} \hat e_s{}^{\hat\nu} \hat H_{\hat\mu\hat\nu m} \nonumber\\
+
+&=& F_{\mu\nu m}(B) - B_{mn} F_{\mu\nu}{}^n(A),\\
+
+\nonumber\\
+
+H_{\mu\nu\rho} &=& e^r{}_\mu e^s{}_\nu e^t{}_\rho \hat e_r{}^{\hat\mu} \hat e_s{}^{\hat\nu} \hat e_{t}{}^{\hat \rho} \hat H_{\hat\mu\hat\nu\hat\rho} \nonumber\\
+
+	     &=& \partial_\mu B_{\nu\rho} - {\textstyle{1\over 2}}( A_\mu{}^r F_{\nu\rho r}(B) + B_{\mu r} F_{\nu\rho}{}^r(A) ) + \mbox{cycl.},
+
+\end{eqnarray} -->
+
+
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+
+ WIDTH="49" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img189.gif"
+
+ ALT="$\displaystyle H_{\mu mn}$"></TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP><IMG
+
+ WIDTH="183" HEIGHT="44" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img190.gif"
+
+ ALT="$\displaystyle e^r{}_\mu \hat e_r{}^{\hat \mu} \hat H_{\mu mn} = \partial_\mu B_{mn},$"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(3.26)</TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">&nbsp;</TD>
+
+<TD>&nbsp;</TD>
+
+<TD>&nbsp;</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+&nbsp;</TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+
+ WIDTH="49" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img191.gif"
+
+ ALT="$\displaystyle H_{\mu\nu m}$"></TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP><IMG
+
+ WIDTH="146" HEIGHT="44" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img192.gif"
+
+ ALT="$\displaystyle e^r{}_\mu e^s{}_\nu \hat e_r{}^{\hat\mu} \hat e_s{}^{\hat\nu} \hat H_{\hat\mu\hat\nu m}$"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+&nbsp;</TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">&nbsp;</TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP><IMG
+
+ WIDTH="205" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img193.gif"
+
+ ALT="$\displaystyle F_{\mu\nu m}(B) - B_{mn} F_{\mu\nu}{}^n(A),$"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(3.27)</TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">&nbsp;</TD>
+
+<TD>&nbsp;</TD>
+
+<TD>&nbsp;</TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+&nbsp;</TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+
+ WIDTH="44" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img194.gif"
+
+ ALT="$\displaystyle H_{\mu\nu\rho}$"></TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP><IMG
+
+ WIDTH="185" HEIGHT="44" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img195.gif"
+
+ ALT="$\displaystyle e^r{}_\mu e^s{}_\nu e^t{}_\rho \hat e_r{}^{\hat\mu} \hat e_s{}^{\hat\nu} \hat e_{t}{}^{\hat \rho} \hat H_{\hat\mu\hat\nu\hat\rho}$"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+&nbsp;</TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">&nbsp;</TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP><IMG
+
+ WIDTH="376" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img196.gif"
+
+ ALT="$\displaystyle \partial_\mu B_{\nu\rho} - {\textstyle{1\over 2}}( A_\mu{}^r F_{\nu\rho r}(B) + B_{\mu r} F_{\nu\rho}{}^r(A) ) + \mbox{cycl.},$"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(3.28)</TD></TR>
+
+</TABLE></DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+where 
+
+<!-- MATH: $F_{\mu\nu m}(B) = \partial_\mu B_{\nu m} - \partial_{\nu} B_{\mu m}$ -->
+
+<IMG
+
+ WIDTH="230" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img197.gif"
+
+ ALT="$F_{\mu\nu m}(B) = \partial_\mu B_{\nu m} - \partial_{\nu} B_{\mu m}$">.
+
+
+
+<P>
+
+Due to the dimensional reduction there arise extra terms in the definition in the field strength tensor 
+
+<!-- MATH: $H_{\mu\nu\rho}$ -->
+
+<IMG
+
+ WIDTH="44" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img107.gif"
+
+ ALT="$H_{\mu\nu\rho}$">.
+
+These are the so called Abelian Chern-Simons terms.
+
+<BR>
+
+
+
+<P>
+
+We can put all these terms back into the action. The total reduced effective action, consisting of the Einstein part as well as the part with the anti-symmetric field tensor, can be written in a very symmetric form [<A
+
+ HREF="node57.html#maharana">5</A>]. The claim is that there is a <I>O</I>(<I>d</I>,<I>d</I>) global symmetry that keeps this action invariant. (see Appendix <A HREF="node54.html#appodd"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="cross_ref_motif.gif"></A> on the symmetry group <I>O</I>(<I>d</I>,<I>d</I>).)
+
+
+
+<P>
+
+First we have to introduce the 
+
+<!-- MATH: $2d\times 2d$ -->
+
+<IMG
+
+ WIDTH="66" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img198.gif"
+
+ ALT="$2d\times 2d$">
+
+scalar matrix <I>M</I>, 
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<!-- MATH: \begin{equation}
+
+M=\left( \begin{array}{cc} G^{-1} & -G^{-1}B \\BG^{-1}&G-BG^{-1}B \end{array} \right),
+
+\end{equation} -->
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+
+ WIDTH="258" HEIGHT="54"
+
+ SRC="img199.gif"
+
+ ALT="\begin{displaymath}M=\left( \begin{array}{cc} G^{-1} & -G^{-1}B \\ BG^{-1}&G-BG^{-1}B \end{array} \right),
+
+\end{displaymath}"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(3.29)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+where <I>G</I> is the <IMG
+
+ WIDTH="48" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img175.gif"
+
+ ALT="$d\times d$">
+
+metric scalar matrix <I>G</I><SUB><I>mn</I></SUB> and <I>B</I> is the scalar matrix <I>B</I><SUB><I>mn</I></SUB>. Furthermore we have to introduce the matrix <I>L</I>:
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<!-- MATH: \begin{equation}
+
+L = \left( \begin{array}{cc} 0&I_d\\I_d&0 \end{array} \right),
+
+\end{equation} -->
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+
+ WIDTH="134" HEIGHT="54"
+
+ SRC="img200.gif"
+
+ ALT="\begin{displaymath}L = \left( \begin{array}{cc} 0&I_d\\ I_d&0 \end{array} \right),
+
+\end{displaymath}"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(3.30)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+which is the identity matrix of the group <I>O</I>(<I>d</I>,<I>d</I>) in a basis rotated from the one with a diagonal identity &#229;ppodd. If we also put the field strength tensors of the vector fields in a <I>d</I>+<I>d</I> doublet, 
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<!-- MATH: \begin{equation}
+
+{\cal F}^i_{\mu\nu} = \left( \begin{array}{c} F_{\mu\nu}{}^m(A) \\F_{\mu\nu m}(B) \end{array} \right) = \partial_\mu {\cal A}_\nu{}^i - \partial_\nu {\cal A}_mu{}^i,
+
+\end{equation} -->
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+
+ WIDTH="329" HEIGHT="54"
+
+ SRC="img201.gif"
+
+ ALT="\begin{displaymath}{\cal F}^i_{\mu\nu} = \left( \begin{array}{c} F_{\mu\nu}{}^m(...
+
+... \partial_\mu {\cal A}_\nu{}^i - \partial_\nu {\cal A}_mu{}^i,
+
+\end{displaymath}"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(3.31)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+where 
+
+<!-- MATH: $i=1,\ldots,2d$ -->
+
+<IMG
+
+ WIDTH="107" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img202.gif"
+
+ ALT="$i=1,\ldots,2d$">,
+
+the total action can be written as [<A
+
+ HREF="node57.html#sen1">7</A>][<A
+
+ HREF="node57.html#maharana">5</A>]
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<!-- MATH: \begin{equation}
+
+S = \int_M d^{D-d}x \sqrt{|g|} e^{-\phi} {\cal L},
+
+\end{equation} -->
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="redsea">&#160;</A><IMG
+
+ WIDTH="195" HEIGHT="42"
+
+ SRC="img203.gif"
+
+ ALT="\begin{displaymath}
+
+S = \int_M d^{D-d}x \sqrt{\vert g\vert} e^{-\phi} {\cal L},
+
+\end{displaymath}"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(3.32)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+with 
+
+<!-- MATH: ${\cal L}={\cal L}_1+{\cal L}_2+{\cal L}_3+{\cal L}_4$ -->
+
+<IMG
+
+ WIDTH="195" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img204.gif"
+
+ ALT="${\cal L}={\cal L}_1+{\cal L}_2+{\cal L}_3+{\cal L}_4$">,
+
+where
+
+<BR>
+
+<DIV ALIGN="CENTER">
+
+
+
+<!-- MATH: \begin{eqnarray}
+
+{\cal L}_1 &=& -R + (\partial\phi)^2, \nonumber\\
+
+{\cal L}_2 &=& -{\textstyle{1\over 8}} g^{\mu\nu} \mbox{tr} (\partial_\mu ML \partial_\nu ML) , \nonumber\\
+
+{\cal L}_3 &=& {\textstyle{1\over 4}}g^{\mu\mu'}g^{\nu\nu'} {\cal F}_{\mu\nu}^i (LML)_{ij} {\cal F}_{\mu'\nu'}^j,\nonumber\\
+
+{\cal L}_4 &=& -{\textstyle{1\over 12}} g^{\mu\mu'}g^{\nu\nu'}g^{\rho\rho'} H_{\mu\nu\rho} H_{\mu'\nu'\rho'}, \nonumber\\
+
+\end{eqnarray} -->
+
+
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+
+ WIDTH="26" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img205.gif"
+
+ ALT="$\displaystyle {\cal L}_1$"></TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP><IMG
+
+ WIDTH="106" HEIGHT="40" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img206.gif"
+
+ ALT="$\displaystyle -R + (\partial\phi)^2,$"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+&nbsp;</TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+
+ WIDTH="26" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img207.gif"
+
+ ALT="$\displaystyle {\cal L}_2$"></TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP><IMG
+
+ WIDTH="193" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img208.gif"
+
+ ALT="$\displaystyle -{\textstyle{1\over 8}} g^{\mu\nu} \mbox{tr} (\partial_\mu ML \partial_\nu ML) ,$"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+&nbsp;</TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+
+ WIDTH="26" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img209.gif"
+
+ ALT="$\displaystyle {\cal L}_3$"></TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP><IMG
+
+ WIDTH="222" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img210.gif"
+
+ ALT="$\displaystyle {\textstyle{1\over 4}}g^{\mu\mu'}g^{\nu\nu'} {\cal F}_{\mu\nu}^i (LML)_{ij} {\cal F}_{\mu'\nu'}^j,$"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+&nbsp;</TD></TR>
+
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+
+ WIDTH="26" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img211.gif"
+
+ ALT="$\displaystyle {\cal L}_4$"></TD>
+
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+
+<TD ALIGN="LEFT" NOWRAP><IMG
+
+ WIDTH="222" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img212.gif"
+
+ ALT="$\displaystyle -{\textstyle{1\over 12}} g^{\mu\mu'}g^{\nu\nu'}g^{\rho\rho'} H_{\mu\nu\rho} H_{\mu'\nu'\rho'},$"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+&nbsp;</TD></TR>
+
+</TABLE></DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+where 
+
+<!-- MATH: $H_{\mu\nu\rho} = \partial_{[\mu} B_{\nu\rho]} + 2{\cal A}_{[\mu}{}^i L_{ij} {\cal F}_{\nu\rho]}^j$ -->
+
+<IMG
+
+ WIDTH="247" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img213.gif"
+
+ ALT="$H_{\mu\nu\rho} = \partial_{[\mu} B_{\nu\rho]} + 2{\cal A}_{[\mu}{}^i L_{ij} {\cal F}_{\nu\rho]}^j$">.
+
+This action is obviously invariant under the <I>O</I>(<I>d</I>,<I>d</I>) transformation:
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+
+
+<!-- MATH: \begin{equation}
+
+M \to \Omega M \Omega^T, \quad {\cal A}_\mu{}^i \to \Omega_{ij} {\cal A}_{\mu}{}^j,
+
+\end{equation} -->
+
+
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+
+ WIDTH="253" HEIGHT="34"
+
+ SRC="img214.gif"
+
+ ALT="\begin{displaymath}M \to \Omega M \Omega^T, \quad {\cal A}_\mu{}^i \to \Omega_{ij} {\cal A}_{\mu}{}^j,
+
+\end{displaymath}"></TD>
+
+<TD WIDTH=10 ALIGN="RIGHT">
+
+(3.33)</TD></TR>
+
+</TABLE>
+
+</DIV>
+
+<BR CLEAR="ALL"><P></P>
+
+keeping the other fields invariant and where 
+
+<!-- MATH: $\Omega \in O(d,d)$ -->
+
+<IMG
+
+ WIDTH="99" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img215.gif"
+
+ ALT="$\Omega \in O(d,d)$">
+
+satisfying
+
+<BR><P></P>
+
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{displaymath}
+
+\Omega^T L \Omega = L
+
+\end{displaymath} -->
+
+
+
+
+
+<IMG
+
+ WIDTH="87" HEIGHT="28"
+
+ SRC="img216.gif"
+
+ ALT="\begin{displaymath}\Omega^T L \Omega = L \end{displaymath}">
+
+</DIV>
+
+<BR CLEAR="ALL">
+
+<P></P>
+
+<BR>
+
+
+
+<P>
+
+So the reduction of a Low energy String Effective Action in <I>D</I> dimensions to <I>D</I>-<I>d</I> dimensions results allways in a action redsea which has an <I>O</I>(<I>d</I>,<I>d</I>) symmetry. This dual symmetry is called T-Duality, where the 'T' stands for Target-space. In the case of the string effective action of the bosonic sector of the Heterotic string sea10 we have to reduce from <I>D</I>=10 to four dimensions. This means <I>d</I>=6 and the reduced action will be invariant under <I>O</I>(6,6) transformations. This also means there will be 12 vector fields and <I>M</I> will be a 
+
+<!-- MATH: $12\times 12$ -->
+
+<IMG
+
+ WIDTH="66" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+
+ SRC="img217.gif"
+
+ ALT="$12\times 12$">
+
+matrix with 36 independent scalars.
+
+
+
+<P>
+
+As we mentioned before, we expect that compactification on more complicated manifolds <I>K</I> will give more realistic features in four dimensions. 
+
+In fact there are very many ways to perform this compactification and it is not clear yet which of them should be the correct way.
+
+
+
+<P>
+
+<HR>
+
+<!--Navigation Panel-->
+
+<A NAME="tex2html262"
+
+ HREF="node14.html">
+
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next_motif.gif"></A> 
+
+<A NAME="tex2html259"
+
+ HREF="node9.html">
+
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_motif.gif"></A> 
+
+<A NAME="tex2html255"
+
+ HREF="node12.html">
+
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="previous_motif.gif"></A> 
+
+<A NAME="tex2html261"
+
+ HREF="node1.html">
+
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents_motif.gif"></A>  
+
+<BR>
+
+<B> Next:</B> <A NAME="tex2html263"
+
+ HREF="node14.html">Four-dimensional Actions and Dual</A>
+
+<B> Up:</B> <A NAME="tex2html260"
+
+ HREF="node9.html">String Effective Actions</A>
+
+<B> Previous:</B> <A NAME="tex2html256"
+
+ HREF="node12.html">Kaluza Klein Theory</A>
+
+<!--End of Navigation Panel-->
+
+<ADDRESS>
+
+<I>Jan Pieter van der Schaar</I>
+
+<BR><I>1998-08-26</I>
+
+</ADDRESS>
+
+
+
+
+
+</body>
+
+</HTML>
+
+
+
+<script language="javascript">
+<!--
+function st(_serial,_theme) { document.write(
+		"<img src=\"http://estat.chez.com/cgi-bin/ft/"+_serial+
+		"?n="+ Math.round(Math.random()*10000000)+
+		"&page="+escape(document.title)+
+		"&theme="+escape(_theme)+
+		"&scw="+escape(screen.availWidth)+
+		"&sch="+escape(screen.availHeight)+
+		"&scp="+escape(screen.pixelDepth)+
+		"&referer="+escape(document.referrer)+
+		"\" border=0>") }
+st("4170176446", "popup") ;
+//-->
+</script>

@@ -1,0 +1,98 @@
+
+[] A
+        A = B /\ C : [] (B /\ C) = [] B /\ [] C
+        
+        A = ~B : [] ~B
+                B = b : [] ~b
+                B = C /\ D : [] ~(C /\ D) = [] (~C \/ ~D) = [] (E \/ F)
+                        E et F sans [] : [] (E \/ F)
+                        [] dans F : [] (E \/ F)
+                                F = G /\ H : [] (E \/ (G /\ H))
+                                           = [] ((E \/ G) /\ (E \/ H))
+                                           = [] (E \/ G) /\ [] (E \/ H)
+
+                                F = ~G : [] (E \/ ~G)
+                                        G = ~H : [] (E \/ ~~H) = [] (E \/ H)
+                                        G = [] H : [] (E /\ ~[] H) 
+                                                 = [] (E /\ ~H)
+                                F = [] G : [] (E \/ []G) = [] E \/ [] G
+                        [] dans E ...
+                B = ~C : [] ~~C = [] C
+                B = [] C : [] ~ [] C = ~ [] C
+
+        A = [] B : [] [] B = [] B
+
+
+~p : p n'est pas demontrable
+=/= faux -> p (aff)
+    hyp [aj(p) faux] (test)
+
+(1)     PW=NP   W
+
+(2)     NW      TP      P       T
+                                A
+(3)     PN      TN      N       ~T
+
+(4)     (5)     L
+
+A       t       T
+A       ~t      ~T
+T       N       ~T
+~T      N       T
+T       p       P
+P       l       T
+~T      p       N
+N       l       ~T
+T       n       N
+~T      n       P
+P       ~t      W
+P       t       TP
+W       N       TP
+TP      N       W
+W       p       PW
+PW      l       W
+PW      t       (1)
+TP      p       NW
+NW      l       TP
+NW      t       (2)
+N       t       TN
+N       ~t      L
+TN      N       L
+L       N       TN
+A       n       TN
+A       p       L
+TN      p       PN
+L       p       (5)
+TN      n       (5)
+L       n       PN
+PN      t       (3)
+(5)             (4)
+
+l = ~tnt = p(-1)
+lp = 1 = ~tntp =~tn~tp
+pl = 1 = p~tnt  p~tp
+ntnt = tntn = 1
+
+                        a->;
+                tA      a
+[]              p       faux->~a
+[]      N               faux->a
+        L               h[aj(a->)]
+        W               h[suppr ~faux]
+        TN              h[aj(a)f]
+        TP              h[suppr...]     
+        ~TN
+        ~TP
+        ~L
+        ~W
+        LP
+
+
+
+
+
+
+
+
+
+

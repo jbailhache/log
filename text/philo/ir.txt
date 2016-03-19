@@ -1,0 +1,62 @@
+Quelle différence y a-t-il entre l'intelligence et la raison ?
+par Jacques Bailhache
+
+Cette question était le thème du café philo du mardi 6 mars 2001 au Bar des Oiseaux à Nice. Une des principales idées apparues dans ce débat est que la raison enferme dans un cadre alors que l'intelligence permet d'en sortir.
+
+Gödel a démontré qu'on ne peut pas enfermer toute la vérité mathématique dans un cadre axiomatique fini. En effet, tout système formel, ensemble fini de règles de raisonnement, suffisemment puissant pour avoir un intérêt, c'est-à-dire incluant la notion de nombre, est soit inconsistant, permettant de déduire n'importe quoi, soit incomplet, ne permettant pas de démontrer certaines propositions vraies, notamment des propositions construites de façon à exprimer leur propre indémontrabilité. On peut remédier à ce problème en ajoutant ces propositions comme axiomes (c'est le principe de réflexion, qui consiste à donner au système une connaissance de lui-même), mais on obtient alors un nouveau système auquel le même raisonnement est applicable. En ajoutant à ce nouveau système sa proposition gödelienne, on obtient un troisième système, et ainsi de suite à l'infini, et même "au transfini" car on peut regrouper les systèmes numéros 0, 1, 2, etc... dans un système "numéro infini" (ou omega comme disent les mathématiciens) auquel on peut ajouter sa proposition gödélienne en axiome pour obtenir un système numéro omega+1. Et ça continue avec omege+2, omega+3, etc..., omega x 2, ... omega puissance 2, omega puissance omega, etc... Cette suite des ordinaux transfinis ne peut pas être produite mécaniquement car tout programme produisant une suite d'ordinaux pourrait être considéré comme la définition d'un ordinal plus grand que tous ceux produits par ce programme. Le problème consiste à s'apercevoir quand on est dans une progression régulière pour la dépasser, et c'est la fonction de l'intelligence de percevoir les régularités.
+
+La raison ne serait-elle pas de l'intelligence en conserve ?
+Les créateurs de systèmes rationnels utilisent leur intelligence pour créer ces systèmes qui sont utilisables avec une intelligence limitée et qui restituent une partie de l'intelligence du créateur lors de leur utilisation.
+
+intelligence		raison
+
+souple			rigide
+mouvante		figée
+ouverte			fermée
+créative		mécanique
+liberté			déterminisme
+transgression		obéissance
+création de règles	respect de règles établies
+fumée			cristal
+réel			théorie
+
+
+
+
+
+On doit percevoir qu'on est dans une progression régulière pour pouvoir faire un saut, sinon on croit progresser alors qu'on tourne en rond. C'est ce qui fait que les mathématiques ne peuvent pas se réduire à quelque chose de purement mécanique. Il y a une part d'intelligence intuitive, comme un esprit qu'on doit insuffler dans la machine du formalisme, de la raison. 
+
+La production d'ordinaux transfinis de plus en plus grand n'est pas automatisable : à tout programme produisant une suite d'ordinaux x0, x1, x2, ... on peut associer un ordinal limite xw et continuer avec xw+1, ... Le problème consiste à s'apercevoir quand on est dans un processus régulier pour passer à la limite et continuer. Par exemple, quand on passe de 0 à suc 0, puis suc (suc 0), ... on voit que c'est un processus régulier qui a pour limite w. Mais plus on monte dans les grands ordinaux, plus les régularités deviennent subtiles et difficiles à déceler et plus on risque de tourner en rond en croyant avancer. 
+
+On peut ainsi emmagasiner de l'intelligence dans un grand ordinal transfini et la restituer dans un système formel en effectuant l'itération transfinie jusqu'à cet ordinal du principe de réflexion. La quintessence de l'intelligence créative, non automatisable, consiste à déceler des régularités. On peut la formaliser par la capacité à représenter une expression par une description la plus compacte possible. Par exemple, "rep 10 suc 0" (où rep désigne la répétition d'une opération un certain nombre de fois) est plus compacte que "suc (suc (suc (suc (suc (suc (suc (suc (suc (suc 0)))))))))". On pourrait produire une suite d'ordinaux transfinis de plus en plus grands de la façon suivante : on part de 0 puis on répète indéfiniment un processus consistant à prendre le successeur, décrire de façon compacte, et quand un nombre n apparait dans une expression e[n], passer à la limite de la fonction qui à x associe e[x]. Ainsi, on obtient 0, suc 0, suc (suc 0), ... et il arrive un moment (qui dépend de la façon exacte de mesurer la taille d'une expression) où on pourra compacter l'expression en une expression de la forme rep n suc 0, par exemple rep 5 suc 0. On passe alors à la limite de (lambda x. rep x suc 0) que l'on peut noter rep w suc 0, et qui vaut w, puis on continue avec suc (rep w suc 0) = w + 1,... rep 5 suc (rep w suc 0), 
+rep w suc (rep w suc 0) = w * 2, ... 
+rep w (rep w suc) 0 = w ^ 2, ... 
+rep w (rep w (rep w suc)) 0 = w ^ 3, ... 
+rep 5 (rep w) suc 0 = w ^ 5, 
+rep w (rep w) suc 0 = w ^ w, ... 
+rep w (rep w) (rep w) suc 0 = w ^ w ^ w, ... 
+et ainsi de suite. 
+
+
+
+théorème de Gödel
+transfini
+intelligence créative
+raison = intelligence en conserve
+
+
+
+simple			compliqué
+esprit			structure
+liberté (transgression)	déterminisme (règles)
+transgression		obéissance
+création de règles	obéissance aux règles
+ouverte			fermée
+souple			rigide
+créative		mécanique
+intuition
+mouvante		figée
+fumée			cristal
+réel			théorie
+
+

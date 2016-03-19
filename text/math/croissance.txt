@@ -1,0 +1,232 @@
+Modèles économiques de la croissance
+
+Modèle de Ramsey
+
+Il s'agit de maximiser une fonction d'utilité :
+intégrale de 0 à l'infini de u(c) e^(-T*t) dt 
+avec u(c) = (c^(1-sigma)-1)/(1-sigma)
+
+Le capital k augmente selon la loi :
+
+dk/dt = f(k) - c - n*k
+avec f(k) = k^a
+k = capital
+c = consommation
+n = taux d'accroissement de la population
+
+Le hamiltonien est :
+H = u(c)*e^(-Tt) + p (f(k) - c - n*k)
+
+Généralisation
+
+dk/dt = s * k^a - c + (r-D-n)*k
+avec r = taux d'intérêt
+     D = dépréciation
+
+Modèle AK de Rebelo :
+
+Q=AK
+
+- Taux d'épargne constant :
+Solow: 
+dk/dt = s*F(K,N)/N - (n+D)k
+dk/dt/k = s*A - (n+D)
+
+Le taux de croissance du capital par tête est contant.
+
+- Taux d'épargne endogène :
+
+Optimum social - le problème du planificateur
+Un planificateur central doit maximiser le bien-être social sous la contrainte d'accumulation de l'économie.
+Le problème du planificateur est identique à celui de Ramsey :
+
+max V = intégrale de t=0 à infini de e^(-T*t)u(c)dt
+dk/dt = f(k) - c - (n+D)k
+k0 = K0/N0 donné
+
+conditions d'optimalité :
+dc/dt = S(c) * c * (f'(k)-n-D-T)
+avec S(c) = -u'(c)/(c*u''(c)
+dk/dt = f(k) - c - (n+D)*k
+
+condition de transversalité :
+lim t->infini e^(-T*t)*z(t)*k(t) = 0
+z(t) = prix implicite courant du capital
+
+avec u(c) = (c^(1-1/S))/(1-1/S) :
+dc/dt/c = S(A-n-D-T)
+dk/dt/k = A - c/k - (n+D)
+
+Equilibre concurrentiel - le problème décentralisé :
+Ménages et entreprises résolvent séparément leurs programmes d'optimisation puis advient l'équilibre qui rend compatible les décisions décentralisées.
+
+a = richesse par tête
+
+Le programme des ménages est :
+max V = intégrale de t=0 à infini de e^(-T*t) * u(c) dt
+da/dt = (r-n)*a - c
+a0 donné
+
+Hamiltonien:
+H = u(c) + z * ((r-n)*a-c)
+
+conditions d'optimalité :
+@H/@c = u'(c)-z = 0
+-@H/@a = -z*(r-n) = dz/dt - T*z
+
+condition de transversalité :
+lim t->infini e^(-T*t) * z * a = 0
+
+Les conditions d'optimalité peuvent se réécrire :
+u'(c) = z
+dz/dt/z = -(r-n-T)
+En éliminant z on obtient :
+dc/dt = S(c) * c * (r-n-T)
+dc/dt/c = S(c) * (r-n-T)
+
+En ce qui concerne l'entreprise, la concurrence parfaite entraîne :
+f'(k) = A = r+D
+donc r=A-D
+
+Donc à l'équilibre général :
+dc/dt/c = S(c) * (A-n-D-T)
+
+Amélioration du modèle AK de Rebelo :
+
+Q = A*K*N^b
+
+taux d'épargne constant :
+dk/dt/k = s*A*N^b - (n+D)
+d(dk/dt/k)/dt = s*A*b*N^b*n
+
+croissance équilibrée dans 2 cas : 
+- b = 0 : modèle AK de Rebelo
+- n = 0 : dk/dt/k = s*A*N^b - D
+
+taux d'épargne endogène :
+le problème du planificateur est le même que pour le modèle AK.
+Solution :
+dc/dt/c = S(A*N^b-D-T)
+dk§dt/k = A*N^b - c/k - D
+
+Equilibre concurrentiel :
+revenus salariaux w
+max V = intégrale de t=0 à infini de e^(-T*t)*u(c) dt
+da/dt = w - c - r*a
+a0 donné
+solution :
+dc/dt/c = S(r-T)
+
+programme des entreprises :
+max Q_i(t) - w(t) N_i(t) - (r(t)+D) * K_i(t)
+Q_i(t) = K_i(t)^(1-b)*(A(t)*N_i(t))^b
+A(t) = avancement technologique donné (externalité)
+
+Conditions du premier ordre :
+b*K_i(t)^(1-b)*A(t)^b*N_i(t)^(b-1)=w(t)
+(1-b)*K_i(t)^-b*(A(t)*N_i(t))^b=r(t)+D
+
+On déduit :
+w(t) = b*(K(t)/M)^(1-b)*A*K(t)^b*(N/M)^(b-1) = b*A*N^b*k(t)
+r(t)+D=(1-b)*A*N^b
+r=(1-b)*A*N^b-D
+
+équilibre : 
+taux de croissance de l'économie décentralisée :
+g_eq=dc/dt/c = S((1-b)*A*N^b-D-T) 
+
+optimum social :
+g_opt = S(A*N^b-D-T) > g_eq
+
+taux d'intérêt :     r_eq = (1-b)*A*N^b-D      r_opt = A*N^b-D
+taux de croissance : g_eq = S(r_eq-T)          g_opt = S(r_opt-T)
+taux d'épargne :     s_eq = (g_eq+D)/(A*N^b)   s_opt = (g_opt+D)/(A*N^b)
+
+
+
+Modèle de Lucas : 
+
+h = capital humain
+u = proportion de capital humain consacrée à la production
+Q,K,u,H,C,I dépendent du temps
+
+Optimum social:
+
+commandes
+ c = consommation
+ u = proportion de capital humain consacrée à la production
+
+Q = A * K^a * (u*h)^(1-a)
+I=dK/dt-D*K
+Q=C+I=C+dK/dt-D*K
+
+dK/dt = AK^a(uh)^(1-a) - c - DK
+dh/dt = B(1-u)h
+
+Hamiltonien : 
+H = e^(-T*t) * U(c) + p1 * (A*K^a*(u*h)^(1-a)-c-D*K) + p2 * B * (1-u) * h
+
+Autre version du modèle de Lucas :
+Q = A * K^a * (u*h'*N)^(1-a) * ha^g
+h=h'*N
+h'=niveau de compétence du capital humain
+ha=niveau social moyen du capital humain
+u=part de temps consacré à la production
+
+Fusion du modèle de Ramsey généralisé et du modèle de Lucas
+
+dk/dt = s * k^a * (u*h)^(1-a) - c + (r-D-n) * k
+dh/dt = b * (1-u) * h
+
+commandes : 
+ c = consommation
+ u = temps de travail
+
+Modèle de Romer (1990)
+
+ A = connaissance
+
+commandes :
+ c = consommation
+ nombre de chercheurs = ha
+ 
+ dK/dt = Q - C 
+ Q = E^(a-1) * (A*hq)^a * K^(1-a) = E^(a-1) * A^a * (h-ha)^a * K^(1-a)
+ dA/dt = R * ha * A
+
+Hamiltonien :
+H = e^(-T*t)*u(C) + p1 * (E^(a-1)*A^a*(h-ha)^a*K^(1-a)) + p2 * R*ha*A
+
+Autres versions du modèle de Romer
+ Q = E^-a * A^(1-a) * (N-NA)^(1-a) * K^a
+  (a->1-a, h->N, ha->NA)
+ Q = E^(a+b-1) * A^(a+b) * Hy^a * L^b * K^(1-a-b)
+  (a->a+b, h-ha->Hy, facteur ajouté L^b)
+  Hy=production de bien final
+  Ha=production de biens de production
+
+Fusion des modèles de Ramsey (croissance), Lucas (formation) et Romer (recherche)
+
+maximiser l'intégrale de 0 à l'infini de U(c) * e^(-T*t) dt
+avec U(c) = (c^(1-sigma))/(1-sigma)
+
+commandes :
+ c = consommation
+ u = temps de travail
+ ha = nombre de chercheurs
+
+équations d'évolution :
+ capital : dk/dt = s * k^a * (A * u * (h - ha))^(1-a) * E^-a - c + (r-D-n) * k
+ potentiel humain : dh/dt = b * (1-u) * h
+ savoir : dA/dt = R * ha * A
+
+Modèle de Harrod : progrès technique
+ dk/dt = f(k) - e^(-Lt) c - (n+D+L) * k
+
+fusion:
+ dk/dt = s * k^a * (a*u*(h-ha))^(1-a) * E^(-a) - e^(-Lt)*c + (r-D-n-L) * k
+
+
+
+ 
+     

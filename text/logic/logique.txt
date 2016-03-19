@@ -1,0 +1,173 @@
+
+        0       : faux
+        p =!> q : q -> p
+        p =?> q : hyp [aj(aff(p) q]
+
+        aff (A /\ B) : aff A; aff B
+        test (A /\ B) : test A; test B
+
+        aff (A \/ B) : faux -> hyp [aj(aff A) faux] hyp [aj(aff B) faux]
+                        ((A =?> 0) /\ (B =?> 0)) =!> 0
+        test (A \/ B) : hyp [aj (faux->test A aj (faux->test B) faux]
+                        ((A =!> 0) /\ (B =!> 0)) =?> 0
+
+        p \?/ q : (p =!> 0) =?> (q =!> 0) =?> 0
+        Pour tout r (p =!> r) =?> (q =!> r) =?> r
+
+        aff (~A) : faux -> test A
+                   A =!> 0
+        test (~A) : hyp [aj(aff A) faux]
+                    A =?> 0
+
+        A => B = ~A \/ B = ~(A /\ ~B)
+        
+        aff (A => B) : faux -> test A; hyp [aj (aff B) faux]
+                        (A /\ (B =?> 0)) =!> 0
+                        ~! (A /\ ~?B)
+
+        test (A => B) : hyp [aj (aff A); aj (faux->test B); faux]
+                        A =?> (B=!>0) =?> 0
+                        (A /\ (B =!> 0)) =?> 0
+                        ~? (A /\ ~!B)
+
+        notation : [x] = pour tout x
+                   <x> = il existe x
+
+        aff ([x] Ax) : faux -> soit(x) hyp [aj (aff (Ax)) faux]
+
+        test ([x] Ax) : hyp [objet(x) Ax]
+
+        aff (<x> px) : creer(x) aff(px)
+
+        test (<x> px) : hyp [aj (faux->soit(x) test(px) faux]
+
+
+        ext
+        reg fond
+        infini
+        
+        <w> [y] (~y:w /\ <x> (w:x
+                [z] (z:x => <v> v:x /\ v = z U {z} ou v > z U {z}
+
+        v > z U {z} z:v /\ [u] u:z =>
+
+        <w> [y] (~y:w & [x] (x:w
+        <z> (z:x /\ [v] ...
+
+        <w> [y] (~y:N  (w:x) 1
+        [z] (z:x => <v> (v:x 1
+
+        <w> [y] (y:w /\ [x] (w
+        <z> (z:x [v]
+        <w>
+
+                y =/= x
+        ext     y ([z] (z:x <=> z:y) => x=y)
+
+        regfond <y> y:x
+
+        paire   [xy] <z> [t] (t:z <=> t=x \/ t=y)
+
+        union   [x] <y> [z] (z:y <=> <t> (t:x /\ z:t))
+
+        parties [x] <y> [z] (z:y <=> [t] (t:z => t:x))
+                                             z=x
+
+        infini  <x> (0:x /\ [y] (y:x => y U {y} : x))
+
+                [x1...xk] [x] <y> [z] (z:y => z:x /\ A(z,x1,...,xk))
+                
+                [x1...xk] [x] <yz> (z:y => <u> (u:x /\ A(u,z,x1,...,xk))
+
+
+                        <-> z:y) -> x=y
+
+                        <y> y:x
+                <y> y:x & ~<z> (z:x & z:y)
+
+                [z] <y> [x] (x:y <=> x:z & PHI(x))
+
+        power set
+                <x> [y] (x:y <-> [z] (z:x -> z:w)
+
+        infinity        w [y] (~y:z & [x] (x:w -> 
+                                <z> (z:w & [u] (u:z <-> v=z \/ v:z))
+                                        u=x \/ u:x
+
+        regl    [xyz] PHI(x,y) & PHI(x,z) ->
+                <w> [y] (y:w => <x> x:z & PHI(x,y)
+
+        sum     <y> [x] (x
+
+        empty   <y> [x] ~x:y
+
+        pair    <y> [x] (x:y <-> x:z \/ x:t)
+
+        infini  <x> (0:x /\ [y] (y:x
+                        y U {y} : x)
+
+
+        dem (dA, dB)
+        prop (pA, pB)
+
+        subst (p, x, q)
+        ~<d> dem (d, p) subst (u, u, p)  u variable libre
+        -> nombre f
+        subst (f, f, g)  g -> G
+        x : ~<d> dem (d, g) /\ subst (f, f, p)
+
+        consis : ~ <d>
+        phi rep "0 = 1"
+
+        |- (~G) => (~consis
+
+        |- ~G
+        |- <d> dem (d, g)
+     -> |- <d'> dem (d', "<d> dem
+                avec "n" = proposition representee par n
+     -> |- <d'> dem (d',~g)
+     -> |- <d''> dem (d'', g/\~g)
+           <d'''> dem (d''', phi)
+     avec ~p = {~
+          p/\q = "{p} /\ {q}"
+
+                => ~consis)
+                consis => G
+          |- consis A => consis B
+          theories A et B
+          demonstrations
+          transdem
+          transprop
+
+          A U |- consis A
+          A U consis A U consis (A U consis A)
+          ...
+          ordinaux
+
+                n (<d> dem
+          => [n] p(n)
+          cas particulier P = Kq
+          <d> dem (d, "q") => q
+          cas particulier q = (0 = 1)
+          -> |- consis
+
+          [r] r rep comb =>
+          <d> (rep dem) dem (d, "
+          .=>, a=b
+
+          A
+          -> A U |- ([n] 
+                     <d> dem (d, <p
+                     => ([n] p(n))
+
+          cas particulier "v bidon"
+
+          ord
+          etape 1 -> regle omega
+
+
+
+
+
+
+

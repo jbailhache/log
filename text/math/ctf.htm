@@ -1,0 +1,11 @@
+
+A B = C
+dim A, dim B -> dim C
+A[i] * b[j] = C[k] i,j,k vecteurs de coordonnées k -> i, j
+
+B[j1,j2,j3] = si j2 <> j3 alors 0 sinon somme i1 somme i2 A[i1,i2,i2,j1,j1,j2]
+[j1,j2,j3] -> si j2 <> j3 alors {} sinon pour i1, i2, [i1,i2,i2,j1,j1,j2]
+B[j1,j2,j2] = A[i1,i2,i2,j1,j1,j2]
+B = op prod[j1,j2,j2] A[i1,i2,i2,j1,J1,J2]
+C = op prod[i,k] A[i,j] B[j,k]
+C = op sum[i,j] A[i,j] B[i,j]

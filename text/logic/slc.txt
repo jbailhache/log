@@ -1,0 +1,212 @@
+SLC : Symbolic Lambda Calculus - New unified formalism
+
+MAIN IDEAS
+
+SLC is a formal system for proving equality of terms called symbolic lambda-terms, in a theory represented by a set of axioms. Each axiom is an equality between two symbolic lambda-terms. A symbolic lambda-term is a lambda-term possibly including some symbols.
+De Bruijn index notation is used to represent lambda-terms.
+
+A lambda-term may be :
+- a symbol
+- an indexed variable (DBV n) where n is a natural number
+- a function (DBL x) where x is a lambda-term
+- an application (AP x y) where x and y are lambda-terms
+
+Examples :
+(DBL (DBV 0)) represents the identity function.
+(AP (DBL (DBV 0)) a) represents the application of the identity function to the symbol a, which equals the symbol a.
+
+More generally, (AP (DBL x) y) equals the result of substituting in x the variables whose index equals their level of nesting in DBL terms by y.
+
+For an easier reading, classical lambda-calculus will be used sometimes, but it may be easily translated into De Bruijn index notation.
+For example:
+(AP f x) = x
+is equivalent to :
+f = (lambda x x)
+or :
+f = (DBL (DBV 0))
+
+SLC-terms extends symbolic lambda-terms to represent both symbolic lambda-terms and proofs. To each SLC-term are associated two SLC-terms called left and right. A SLC-term is a proof of the equality of its left and its right : x proves left(x) = right(x). Symbolic lambda-terms are particular SLC-terms which represent both a symbolic lambda-term and the proof that this symbolic lambda-term equals itself. Left and right of a lambda-term is itself.
+
+So, a SLC-term (or term) may be the same as a lambda-term, with the possibility of subterms being any SLC-term :
+- a symbol : a proves a = a
+- an indexed variable (DBV n) where n is a natural number which is the proof of (DBV n) = (DBV n)
+- a function (DBL x) where x is a DBL-term
+- an application (AP x y) where x and y are DBL-term : if x proves xl = xl and y proves yl = yr, then (AP x y) proves (AP xl yl) = (ap xr yr)
+to which we add those extensions to represent proofs :
+- (LTRANSYM x y) which expresses transitivity and symmetry of equality : if x proves l = xr and y proves l = yr then (LTRANSYM x y) proves (xr = yr)
+- (SUBST x y) proves (AP (DBL x) y) = z where z is the result of substituting in x the variables whose index equals the nesting level in DBL terms by y.
+- an axiom of the represented theory (EQUAL x y) which asserts the equality of symbolic lambda-terms x and y
+
+This is a minimal set necessary to represent terms and proofs.
+Other constructs may be added to simplify notations, for example :
+- (RTRANSYM x y) which expresses transitivity and symmetry of equality : if x proves xl = r and y proves yl = r then (RTRANSYM x y) proves (xl = yl)
+- (TRANS x y) which expresses transitivity of equality : if x proves xl = z and y proves z = yr then (TRANS x y) proves xl = yr
+- (SYM x) which expresses symmetry of equality : if x proves (xl = xr) then (SYM x) proves xr = xl
+- (REDR x) : reduce right : if x proves xl = xr and xr reduces to yr then (REDR x) proves xl = yr
+- (REDLR x) : reduce left and right : if x proves xl = xr, xl reduces to yl and xr reduces to yr then (REDLR x) proves yl = yr
+
+Reduction of a term is defined by iterating a reduction step which consists of substituting (AP (DBL x) y) by the result of the substitution in x of variables whose index equals to the nesting level in DBL terms by y.
+
+For more theoretical simplicity, we may use only one symbol Z, and represent different symbols by (AP Z n) where n represents a natural number.
+
+Nested application (AP (AP x y) z) may be represented by (APN x y z) or x y z when there is no ambiguity.
+
+Any theory may be formalized by only one axiom A : AL = AR. A theory formalized by several axioms (l1=r1, l2=r2, ... ln-1=rn-1, ln=rn) may be formalized for example by <l1, <l2, ... <ln-1, ln> ... >> = <r1, <r2, ... <rn-1, rn> ... >> where <x,y> represents the pair of x and y, for example <x,y> = (APN P x y) with P defined by (APN P x y f) = (APN f x y) or P = (lambda x (lambda y (lambda f (APN f x y))))
+
+
+REPRESENTATION OF TERMS
+
+Terms are represented by functions defined by :
+
+RZ z v l a t s e = z
+RDBV n z v l a t s e = v n
+RDBL x z v l a t s e = l x
+RAP x y z v l a t s e = a x y
+RLTRANSYM x y z v l a t s e = t x y
+RSUBST x y z v l a t s e = s x y
+RA z v l a t s e = e
+
+
+REPRESENTATION OF NATURAL NUMBERS
+
+0 z s = z
+SUC n z s = s n
+
+
+LEFT AND RIGHT OF TERM REPRESENTATIONS
+
+left RZ = RZ
+right RZ = RZ
+
+left (RDBV n) = RDBV n
+right (RDBV n) = RDBV n
+
+left (RDBL x) = RDBL (left x)
+right (RDBL x) = RDBL (right x)
+
+left (RAP x y) = RAP (left x) (left y)
+right (RAP x y) = RAP (right x) (right y)
+
+left (RLTRANSYM x y) = if left x = left y then right x else RLTRANSYM x y
+right (RLTRANSYM x y) = if left x = left y then right y else RLTRANSYM x y
+
+left (RSUBST x y) = RAP (RDBL x) y 
+right (RSUBST x y) = result of substituting in x all variables whose index equals the level of nesting in DBL terms by y
+
+left RA = RAL (representation of the term AL)
+right RA = RAR (representation of the term AR)
+
+Concretely, left is defined by : 
+
+left = lambda w (w 
+ RZ
+ RDBV
+ (lambda x (RDBL (left x))
+ (lambda x (lambda y (RAP (left x) (left y))))
+ (lambda x (lambda y (equal (left x) (left y) (right x) (RLTRANSYM x y)))
+ (lambda x (lambda y (RAP (RDBL x) y)))
+ RAL )
+
+and right by :
+
+right = lambda w (w
+ RZ
+ RDBV
+ (lambda x (RDBL (right x))
+ (lambda x (lambda y (RAP (right x) (right y))))
+ (lambda x (lambda y (equal (left x) (left y) (right y) (RLTRANSYM x y)))
+ (lambda x (lambda y (subst x y)))
+ RAR )
+
+where equal is a function testing the equality of term representations :
+ equal x x a b = a
+ equal x y a b = b if x is different from y
+and subst x y is the result of substituting in the term representation x all variables whose index equals the level of nesting in DBL terms by y.
+
+
+EVALUATION OF TERM REPRESENTATIONS
+
+eval RZ = Z
+eval (RDBV n) = DBV n
+eval (RDBL x) = DBL (eval x)
+eval (RAP x y) = eval x (eval y)
+eval (RLTRANSYM x y) = LTRANSYM (eval x) (eval y)
+eval (RSUBST x y) = SUBST (eval x) (eval y)
+eval RA = (EQUAL AL AR)
+
+
+REFLECTION (first version)
+
+Reflection is formalized by a reflection principle :
+For each proof p, left p = right p
+or
+for each proof representation rp, eval (left rp) = eval (right rp)
+where (eval r) is the term represented by r.
+or
+map fl = map fr
+with
+fl x = eval (left x)
+fr x = eval (right x)
+map f is an infinite data structure representing f applied to all SLC-terms representations, for example :
+map f = < f RZ, 
+         < <f (RDBV 0), <f (RDBV 1), ...>>, 
+          < map (lambda x (f (RDBL x))) ,
+           < map (lambda x (map (lambda y (f (RAP x y))))) ,
+            < map (lambda x (map (lambda y (f (RLTRANSYM x y))))) ,
+             < map (lambda x (map (lambda y (f (RSUBST x y))))), f RA >>>>>>
+where < x , y > is a representation of the pair of x and y.
+
+
+REFLECTION (second version)
+
+Reflection is formalized by a reflection principle :
+For each proof p, left p = right p
+or
+for each proof representation rp, eval (left rp) = eval (right rp)
+where (eval r) is the term represented by r.
+or
+eval (map fl) = eval (map fr)
+with
+fl x = left x
+fr x = right x
+map f is an infinite data structure representing f applied to all SLC-terms representations, for example :
+map f = < f RZ, 
+         < <f (RDBV 0), <f (RDBV 1), ...>>, 
+          < map (lambda x (f (RDBL x))) ,
+           < map (lambda x (map (lambda y (f (RAP x y))))) ,
+            < map (lambda x (map (lambda y (f (RLTRANSYM x y))))) ,
+             < map (lambda x (map (lambda y (f (RSUBST x y))))), f RA >>>>>>
+where < x , y > is a notation for APN RP x y 
+where RP is a representation of the pair function P = (lambda x (lambda y (lambda f (f x y)))) :
+P = DBL (DBL (DBL (AP (AP (DBV 0) (DBV 2)) (DBV 1))))
+RP = AP RDBL (AP RDBL (AP RDBL 
+      (AP RAP (AP RAP (AP RDBV 0) (AP RDBV 2))) (AP RDBV 1) ))
+
+
+PARAMETRIZATION WITH AXIOMS OF THEORY
+
+This stands for a given theory defined by its axiom AL = AR.
+To define generic left, right and eval functions, we have to parametrize them with RAL and RAR, for example by replacing left by left RAL RAR, right by right RAL RAR and eval by eval RAL RAR.
+
+
+REPETITION OF REFLECTION 
+
+We start from a theory represented by axiom AL0 = AR0 with AL0 represented by RAL0 and AR0 by RAR0.
+We add to this theory a reflection principle represented by the axiom :
+map (fl RAL0 RAR0) = map (fr RAL0 RAR0)
+with :
+fl RAL RAR x = eval RAL RAR (left RAL RAR x)
+fr RAL RAR x = eval RAL RAR (right RAL RAR x)
+This extended theory may be formalized by the axiom :
+< AL0 , map (fl RAL0 RAR0) > = < AR0 , map (fr RAL0 RAR0) >
+or AL1 = AR1
+with
+AL1 = < AL0, map (fl RAL0 RAR0) >
+AR1 = < AR0, map (fr RAL0 RAR0) >
+AL1 and AR1 being represented by RAL1 and RAR1
+and so on.
+
+
+
+
+

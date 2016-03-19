@@ -1,0 +1,162 @@
+DETERMINATION DU MONTANT OPTIMAL D'UN EMPRUNT
+
+CHOIX ENTRE DIFFERENTS PLANS DE DEPENSES
+
+valeur associée à chaque plan -> meilleur plan
+à chaque plan associer montant optimal emprunt
+-> montant optimal du meilleur plan
+
+utilité = intégrale de exp(-T*t) dt
+
+determiner valeur associée à 
+ . plan déterminé
+ . montant emprunté déterminé
+termes de la valeur :
+ - risque saisie
+ - mensualités
+ - apport
+ + cagnotte
+
+plans continus r0=(r01...r0n) remboursements immédiats
+cagnotte=emprunt-remboursement immédiat
+valeur v(r,m) maxi : @v/@ri=0, @v/@m=0
+plan défini par r(0)=r0 et r(t)
+M=montant emprunté
+m(M)=mensualités
+v(r(0),r(t),M) 
+
+t=0 : K0 + M - somme sur j de rj(0) - C0 - I0 = 0
+t=1 : I0 - m - somme sur j de rj(t) - C1 - I1 = 0
+
+déterminer r et M maximisant l'utilité somme de exp(-T*t) u(Ct)
+
+valeur d'un plan de revenus
+
+COMMANDE CONTINUE
+
+répartir disponible total en c + somme de ri + I + m
+c = consommation
+ri = remboursement dette
+I = somme conservée pour la période (mois) suivante
+m = mensualité remboursement emprunt
+
+budget de chaque mois :
+ + somme conservée du mois précédent
+ + salaire
+ + emprunt
+ - consommation
+ - somme des remboursements
+ - mensualités
+ - somme conservée pour le mois prochain
+ - saisie
+----------
+ 0
+c + somme ri <= s + M + I(t-1) - I - m
+M - c - somme ri >= I - I(t-1) + m - s
+
+MODELE CONTINU
+
+dk/dt = salaire + emprunt - consommation - somme remb. - mens. - saisie
+dk/dt = w + e - c - somme ri - m - s
+max intégrale de 0 à T de exp(-theta*t) u(c(t)) dt
+m(t) dépend de e(0 à t)
+s(t) dépend de r(0 à t)
+e max(t) dépend de e(0 à t),m(t),k(t)
+
+DETERMINATION DES MENSUALITES EN FONCTION DES EMPRUNTS
+
+m(t) = intégrale de t-D à t de e(t)(1+r)/D dt 
+     = (1+r)/D * intégrale de t-D à t de e(t) dt
+q(t) = intégrale de 0 à t de e(t) dt
+m(t) = (1+r)/D * (q(t)-q(t-D))
+
+THEOREME DE PONTRYAGIN SUR LA COMMANDE OPTIMALE DES PROCESSUS AVEC RETARD
+
+Soit u(t), t0<=t<=t1, une commande admissible telle que la trajectoire correspondante x(t), t0-T <= t <= t1 du système :
+ dxi(t)/dt = fi(x(t),x(t-T)u(t)), i=0..n
+avec la fonction initiale phi(t), t0-T <= t <= t0
+passe à un instant t1 > t0 par un point de la variété L pour que la commande u(t) et la trajectoire correspondante x(t) soient optimales, il est nécessaire qu'existe un vecteur fonction psi(t) = 'psi0(t), ... psin(t))
+ non nul correspondant aux fontions u(t) et x(t) et tel que
+1) pour tous les t, t0 <= t <= t1
+    H(psi(t),x(t),x(t-T),u(t)) = M(psi(t),x(t),x(t-T))
+     avec M(psi,x) = sup (u commande admissible) de H(psi,x,u)
+2) psi0(t1)<=0, M(psi(t1),x(t1),x(t1-T))=0
+3) (psi1(t1) ... psin(t1)) orthogonal au plan tangent au point x(t1) = (x1(t1) ... xn(t1)) à la variété S.
+
+APPLICATION
+
+dk/dt = w(t) + e(t) - c(t) - somme ri(t) - m(t) - s(t)
+commandes e, c, r
+objectif : max intégrale de 0 à T de exp(-theta*t) u(c(t)) dt
+
+w(t) exogène
+e(t) compris entre 0 et eM(t)
+c(t) >) = 
+ri(t) >= 0
+m(t) = (1+r)/D intégrale de t-D à t de e(t) dt
+q(t) = intégrale de 0 à t de e(t) dt
+m(t) = (1+r)/D * (q(t)-q(t-D)
+cf Pontryagin :
+t0 à t1-D : dpi/dt = -@H(p(t),x(t),x(t-D),u(t))/@xi - @H(p(x+D),x(t+D),x(t),u(t+D))/@yi
+t1-D = t1 : dpi/dt = -@H(p(t),x(t),x(t-D),u(t))/@xi
+
+MODELE DISCONTINU
+
+k(t+1) = k(t) + w(t) + e(t) + c(t) - somme ri(t) - m(t) - s(t)
+
+m(t) = (1+r)/D somme pour t'=t-D à t de e(t')
+q(t) = somme pour t'=0 à t de e(t')
+q(t+1) = q(t)+e(t+1)
+m(t) = (1+r)/D * (q(t)-q(t-D))
+
+objectif : max U = somme exp(-theta*t) * u(c(t))
+u(c) = (c^(1-sigma))/(1-sigma)
+@u/@c(t) = exp(-theta*t)*c^-sigma
+
+contraintes :
+ k(0) = k0
+
+L = U + somme sur t de p(t) (k(t)-k(t-1)+w(t)+e(t)-c(t)-somme ri(t)-m(t)-s(t))
+
+@L/@p(t) = 0
+@L/@c(t) = 0 = @u/@c(t) - p(t) => p(t) = @u/@c(t) = exp(-theta*t)* c(t)^-sigma
+@L/@e(t) = 0 = p(t) + (1+r)/D somme de t'=t+1 à t+D de p(t)
+@L/@ri(t) = 0 = p(t) - somme de t'=t à infini de p(t) * @s(t)/@ri(t)
+
+formulation matricielle :
+
+p = Ac ou p - Ac = 0
+Bp = 0
+s'(r) p = 0
+(I;B;s'(r)) p = (A;0;0) c
+
+MODELE A 2 PERIODES
+
+déterminer c0, e0, r0, c1, r1 maximisant u(c0,c1)
+ c = consommation
+ e = emprunt
+ r = remboursement dettes
+avec
+ k1 = w0 + e0 - c0 - r0 >= 0
+ k2 = k1 + w1 - c1 - r1 - m1 - s1 
+    = w0 + w1 + e0 - c0 - c1 - r0 - r1 - m1 - s1 = 0
+
+m1 = (1+rho)e0
+
+L(c0,e0,r0,c1,r1,mu,lambda)
+= -u(c0,c1) - mu * (w0+e0-c0-r0) + lambda * (w0+w1-rho*e0-c0-c1-r0-r1-s)
+
+w0+e0-c0-r0 >= 0
+p>=0
+p(w0+e0-c0-r0)=0
+w0+w1-rho*e0-c0-c1-r0-r1-s(r0,r1) = 0
+
+@L/@c0 = 0 = -@u/@c0 + mu - lambda => @u/@c0 = mu - lambda = -q*(1+rho)
+@L/@c1 = 0 = -@u/@c1 - lambda => (@u/@c0)/(@u/@c1) = 1+rho
+@L/@e0 = 0 = -mu - lambda*rho => mu = -lambda*rho
+@L/@r0 = 0 = mu - lambda * (1+@s/@r0) => -lambda*(1+rho)*(1+@s/@r0)=0
+@L/@r1 = 0 = -lambda * (1 + @s/@r1) 
+ => @s/@r0 = -1 et @s/@r1 = -1
+
+
+

@@ -1,0 +1,144 @@
+<HTML>
+<head>
+<title>Fondements de la th&eacute;orie du traitement de l'information</title>
+<meta name="keywords" content="logique,combinatoire,lambda-calcul,fonction,combinateur">
+</head>
+<body>
+<h3>Fondements de la th&eacute;orie du traitement de l'information</h3>
+<p>
+Pour formaliser la notion de traitement de l'information, il convient de formaliser
+<ul>
+<li> la notion d'information
+<li> la notion de traitement.
+</ul>
+L'objectif est de trouver une formalisation la plus simple possible, bas&eacute;e sur
+un nombre le plus petit possible de concepts de base. 
+<p>
+Nous allons d'abord montrer que l'information peut &ecirc;tre repr&eacute;sent&eacute;e par un
+traitement d'information, ce qui permet de faire reposer toute la th&eacute;orie
+sur le concept de traitement ou d'op&eacute;ration.
+<p>
+L'information la plus &eacute;l&eacute;mentaire concevable est binaire : vrai ou faux, 0 ou 1...
+On peut repr&eacute;senter cette information par une op&eacute;ration de choix entre
+deux possibilit&eacute;s, une fonction qui &agrave; deux arguments associe par exemple
+le premier pour la valeur vraie, et le second pour la valeur faux.
+<p>
+Des informations plus complexes peuvent &ecirc;tre repr&eacute;sent&eacute;es par des structures,
+la plus &eacute;l&eacute;mentaires &eacute;tant le couple de deux valeurs, qui peut &ecirc;tre repr&eacute;sent&eacute;
+par une fonction qui &agrave; la valeur vraie associe la premi&egrave;re valeur du couple, et
+&agrave; la valeur faux la seconde.
+<p>
+Voyons maintenant comment on peut repr&eacute;senter le concept d'op&eacute;ration ou de fonction.
+Il s'agit de produire un certain nombre de r&eacute;sultats &agrave; partir d'un certain
+nombre de donn&eacute;es. On peut en fait se limiter au cas o&ugrave; on produit un r&eacute;sultat
+&agrave; partir d'une donn&eacute;e car plusieurs donn&eacute;es ou r&eacute;sultats peuvent &ecirc;tre repr&eacute;sent&eacute;s
+par une seule donn&eacute;e ou un seule r&eacute;sultat, une structure regroupant ces &eacute;l&eacute;ments.
+D'autre part, la production d'un r&eacute;sultat par application d'une fonction &agrave; plusieurs
+arguments donn&eacute;s peut &ecirc;tre d&eacute;compos&eacute;e : l'application de la fonction au premier
+argument donne une nouvelle fonction qu'on applique au deuxi&egrave;me argument, et ainsi
+de suite.
+<p>
+On est donc ramen&eacute; au probl&egrave;me de la repr&eacute;sentation d'une fonction (ou combinateur) f qui produit
+un r&eacute;sultat y &agrave; partir d'un argument x. Les diff&eacute;rents cas sont les suivants :
+<ul>
+<li> Ce r&eacute;sultat ne r&eacute;sulte pas de l'application d'une fonction &agrave; un argument,
+il est &eacute;l&eacute;mentaire.
+        <ul>
+        <li> C'est l'argument lui-m&ecirc;me : la fonction n'effectue aucune transformation
+        sur son argument, on l'appelle l'identit&eacute; et on la note I. 
+        On note I x = x pour exprimer le fait que cette fonction rend son argument en r&eacute;sultat.
+        <li> Ce n'est pas l'argument mais une autre valeur y qui ne d&eacute;pend pas de l'argument.
+        La fonction est une fonction constante qui rend toujours y quel que soit
+        la valeur de son argument. On la note K y, qu'on peut voir comme le
+        r&eacute;sultat de l'application d'une fonction K constructrice de fonctions 
+        constantes &agrave; la valeur y du r&eacute;sultat. On a donc K y x = y.
+        </ul>
+<li> Ce r&eacute;sultat est le r&eacute;sultat de l'application d'une fonction a &agrave; un argument b (y = a b),
+        pouvant tous deux d&eacute;pendre de l'argument x de f. On peut formaliser
+        cette d&eacute;pendance par des fonctions g qui &agrave; x associe a et h qui &agrave; x
+        associe b. La fonction f d&eacute;pend donc des fonctions f et g. 
+        On formalise cette d&eacute;pendance par une fonction not&eacute;e S.
+        On &eacute;crit "f = S g h" ce qui signifie que la fonction S appliqu&eacute;e &agrave;
+        g donne une fonction qui est elle-m&ecirc;me appliqu&eacute;e &agrave; h pour donner f.
+        (On peut &eacute;crire f = (S g) h mais les parenth&egrave;ses en d&eacute;but d'expression 
+        sont facultatives par convention de notation).
+        On a donc :
+        <ul>
+        <li> f x = y
+        <li> donc S g h x = y
+        <li> mais :
+                <ul> 
+                <li> y = a b
+                <li> a = g x
+                <li> b = h x
+                <li> donc y = (g x) (a x)
+                </ul>
+        <li> donc S g h x = (g x) (h x)
+        </ul>                
+</ul>        
+<p>
+Cette d&eacute;composition s'arr&ecirc;te-t-elle ou continue-t-elle &agrave; l'infini ?
+Si elle s'arr&ecirc;te, on peut alors repr&eacute;senter f par une combinaison finie de I, K et S
+(ou m&ecirc;me de K et S seulement car on peut remarquer que I = S K K).
+Si elle est infinie, peut-on n&eacute;anmoins la d&eacute;crire de fa&ccedil;on finie ?
+Si on ne peut pas, elle n'est pas repr&eacute;sentable par un expression finie.
+Si on peut, quelle forme peut prendre cette repr&eacute;sentation ?
+On peut la repr&eacute;senter de fa&ccedil;on r&eacute;cursive. Par exemple :
+<br>
+factorielle n = si n = 0 alors 1 sinon n * factorielle (n-1)
+<br>
+Une fonction r&eacute;cursive peut &ecirc;tre d&eacute;finie comme le point fixe d'une fonctionnelle,
+par exemple dans le cas de la factorielle, celle qui &agrave; f associe
+la fonction qui &agrave; n associe (si n = 0 alors 1 sinon n * f (n-1)).
+Un point fixe f d'une fonction F est un &eacute;l&eacute;ment inchang&eacute; par F, c'est-&agrave;-dire 
+un f tel que F f = f.
+<br>
+On peut repr&eacute;senter le point fixe avec I, K et S de la fa&ccedil;on suivante : 
+<b>Le point fixe d'une fonction F est l'auto-application de la compos&eacute;e 
+de F et de l'auto-application.</b>
+<br>
+On d&eacute;finit l'auto-application A par A x = x x, c'est-&agrave;-dire A = S I I,
+et la compos&eacute;e : B f g x = f (g x).
+Un point fixe de F not&eacute; Y F est donc A (B F A).
+On a en effet : 
+<ul>
+<li> Y F = A (B F A)
+<li> = B F A (B F A)
+<li> = F (A (B F A))
+<li> = F (Y F).
+</ul>
+<p>
+En r&eacute;sum&eacute;, on peut repr&eacute;senter n'importe quelle op&eacute;ration et n'importe 
+quelle structure de donn&eacute;es par une combinaison
+par application des combinateurs de base I, K et S.
+Ces combinateurs sont d&eacute;finis par les r&egrave;gles :
+<ul>
+<li> I a = a
+<li> K a b = a
+<li> S a b c = a c (b c)
+</ul>
+Si on note \x.y la fonction qui &agrave; x associe y, on a :
+<ul> 
+<li> \x.x = I
+<li> \x.y = K y si y ne d&eacute;pend pas de x
+<li> \x.(a b) = S (\x.a) (\x.b)
+</ul>
+<p>
+Une autre approche de la logique combinatoire est d&eacute;crite dans la Grande Encyclop&eacute;die Larousse.
+Elle consiste &agrave; voir une expression f k a1 a2 a3... comme une op&eacute;ration f
+agissant sur une pile a1 a2 a3... avec une continuation k. Les op&eacute;rations de base
+sont :
+<ul>
+<li> I k = k : l'op&eacute;ration vide
+<li> K k a = k : d&eacute;piler
+<li> W k a = k a a : r&eacute;p&eacute;ter
+<li> C k a b = k b a : permuter
+<li> B f g k = f (g k) : s&eacute;quencer
+</ul>
+<p>
+(...)
+
+</body>
+</HTML>
+
+

@@ -1,0 +1,271 @@
+<HTML>
+<head>
+<title>Ordinaux transfinis</title>
+<meta name="keywords" content="ordinal,ordinaux,transfini,transfinis,transfinite">
+</head>
+<body>
+<h3>Ordinaux transfinis</h3>
+
+<h4>Intérêt des ordinaux transfinis</h4>
+
+Pour déterminer si une proposition est vraie ou fausse, les mathématiciens
+construisent des systèmes formels constitués de vérités élémentaires 
+considérées comme évidentes et de règles qui permettent de produire de
+nouvelles propositions vraies à partir de proposition déja établies
+(Par exemple, à partir des propositions "p implique q" et "p" on
+infère "q" grâce à la règle du modus ponens).
+<p>
+Mais Gödel a démontré que dans tout système formel suffisemment puissant pour
+contenir la théorie des nombres entiers, on peut construite une proposition
+qui exprime sa propre indémontrabilité dans ce système (voir
+<a href="intel.htm">Intelligence créative, régularités et compression</a>)
+Le système est donc incomplet ou inconsistant.
+Pour y remédier, on peut ajouter cette proposition comme axiome.
+On obtient alors un nouveau système qui a lui aussi sa proposition gödelienne,
+que l'on peut ajouter à son tour comme axiome, et ainsi de suite.
+On obtient ainsi, à partir d'un système initial S0, une suite de
+systèmes S1, S2, S3... que l'on peut englober dans un système Sw, qui 
+a sa propre proposition gödelienne, que l'on peut ajouter à Sw pour
+obtenir Sw+1, et ainsi de suite.
+<p>
+On n'a donc pas là une simple suite infinie comparable à la suite des nombres 
+entiers 0, 1, 2, 3, ... mais une suite transfinie générée à partir 
+d'un élément initial par deux opérations : le fait de prendre l'élément
+suivant, et le passage à la limite, élément englobant tous les éléments
+d'une suite. Ce passage à la limite peut être effectué à partir
+du moment où on a décelé une régularité dans une suite.
+<p>
+Feferman a démontré que l'intération transfinie de l'ajout du principe de réflexion
+uniforme permet de démontrer toute proposition vraie de la théorie des nombres
+(voir <a href="logrefl6.htm">Logical reflection</a>).
+Ce principe exprime que pour tout prédicat phi[n] on a l'axiome :
+"Pour tout n, s'il existe un nombre qui code une démonstration de la proposition
+codée par le code de phi[n], alors phi[n]".
+<p>
+
+<h4>Définition mathématique</h4>
+<p>
+Mathématiquement, les ordinaux transfinis peuvent être définis comme
+les classes d'équivalences d'ensembles infinis munis d'une relation d'ordre
+dans laquelle tout sous-ensemble a un plus petit élément, deux ensembles
+étant équivalents s'il existe une bijection respectant la relation d'ordre.
+<p>
+On peut aussi les définir de la façon suivante :
+<ul>
+<li> 0 est l'ensemble vide {}
+<li> Le successeur de x est x auquel on ajoute x : suc x = x U {x}.
+On a donc 1 = {0} = {{}}, 2 = {0, 1} = {{}, {{}}}, 3 = {0, 1, 2} ...
+<li> Un ordinal limite d'une suite est l'union de tous les ordinaux de cette suite :
+lim f = f 0 U f 1 U f 2 U ...
+</ul>
+<p>
+A partir de la représentation d'un ordinal, on peut produire les ordinaux qui lui sont
+inférieurs de la façon suivante : 
+<ul>
+<li> suc x -> x
+<li> lim f -> f n
+</ul>
+<p>
+ 
+<h4>Représentation et construction</h4>
+<p>
+Pour représenter des ordinaux, on peut définir une fonction H en définissant H f x 
+comme la limite de x, f x, f (f x), ...
+On a donc H f x = lim (lambda n. f^n x) = lim [f^* x], avec [f*] = f.
+<p>
+Avec cette notation on peut représenter les ordinaux suivants :
+<ul>
+<li> 0
+<li> 1 = suc 0
+<li> 2 = suc (suc 0) ...
+<li> w = H suc 0
+<li> w+1 = suc (H suc 0)
+<li> w*2 = H suc (H suc 0)
+	<ul>
+	<li> On remarque ici une similitude avec 2 = suc (suc 0), où suc est remplacé
+		par H suc. On peut alors obtenir un ordinal plus grand en remplaçant
+		suc par H suc dans un ordinal déja obtenu, par exemple : 
+		[suc -> H suc] (H suc 0) = H (H suc) 0
+	</ul>
+<li> w^2 = H (H suc) 0
+<li> w^w = H H suc 0 = [suc->H, 0->suc] (H suc 0) 0 
+<li> w^w^w^... = ... H H H suc 0 = R1 H suc 0 = H (@ H) I suc 0 avec @ x f = f x
+<li> R1 H R1 H suc 0
+<li> R2 R1 H suc 0 = ... R1 H R1 H R1 H suc 0 = H (B (@ H) (@ R1)) I suc 0
+<li> R3 R2 R1 H suc 0 = R(3->1) H suc 0
+<li> H [R(*->1) H suc 0] 0
+<li> [[[H [R(*->1) **** *** **] 0]]] H suc 0 = R(1;1) H suc 0
+<li> [[[[H [R(*->2 ***** **** *** **] 0]]]] R(1;1) H suc 0 = R(1;2) R(1;1) H suc 0 ...
+<li> R(2;1) H suc 0 ...
+</ul>
+
+<!--
+        suc p
+        n) 0 = A n (suc 0)
+        suc n) (suc p) =
+        suc : A n : A (suc n) p
+
+\0 (n) = n
+\(x+1) (n) = \x (n+1)
+\Ux (n) = xn (n)
+
+
+        > x
+        > Hf(fx)
+H' phi f x = phi x U phi (f x) U phi (f (f x)) U ...
+        > phi x
+        > H' phi f (f x)
+
+-->
+
+<pre>
+
+0
+suc x = x U {x}
+x U y -> x
+      -> y
+H f x = x U fx U f(fx) U ...
+	-> x
+	-> Hf(fx)
+H'Ffx=Fx U F(fx) U F(f(fx)) U ...
+	-> Fx
+	-> H'Ff(fx)
+x *> y <=> x >= y
+x *> y et y *> x : x ~= y
+x *> suc y <=> x > y
+
+ordinal x app Omega
+	0 app Omega
+	x app Omega => suc x app Omega
+	x1, x2, ... app Omega => U xi app Omega
+
+	x *> 0
+	x *> y => u app Omega
+	~(x *> suc x)
+
+0, 1=suc 0, 2=suc(suc 0)...
+omega = H suc 0
+omega + 1 = suc(H suc 0)
+omega * 2 = H suc(H suc 0)
+omega ^ 2 = H (H suc) 0
+omega ^ omega = H H suc 0
+epsilon 0 = R1 H suc 0 = suc 0 U H suc 0 U H H suc 0 U ...
+... H R1 H suc 0
+... R1 H R1 H suc 0
+... R2 R1 H suc 0
+... R3 R2 R1 H suc 0 = R(3->1) H suc 0
+... R(x->1) H suc 0
+
+notation : [f(|)] = \.f0 = f
+
+x = H [R(|->1 H suc 0] 0
+x = R(x->1) H suc 0
+x = [[[H [R(|->1) |... |.. |.] 0]]] H suc 0
+  = R(1;1) H suc 0
+
+    [[[[H [R(|->2 |.... |... |.. |.] 0]]]] R(1;1) H suc 0
+  = R(1;2) R(1;1) H suc 0 ...
+  R(2;1) H suc 0 ...
+
+représentation :
+
+f x :    f ---+
+              |
+              x
+
+R1 H suc 0 = ... H H H suc 0 = ... @ H (@ H (@ H I))... suc 0 = H (@ H) I suc 0
+avec @ x f = f x
+suc (H (@ H) I suc 0) ...
+H (@ H) I suc (H (@ H) I suc 0)		suc -> H (@ H) I suc
+H (@ H) I (H (@ H) I suc) 0		suc -> H (@ H) I, 0->suc
+H (@ H) I (H (@ H) I) suc 0		H -> H (@ H) I
+H (@ (H (@ H) I)) I suc 0
+
+H suc 0  ->  H (@ H) suc 0  ->  H (@ (H (@ H) I)) I suc 0
+f -> H (@ f) I
+Notation : f = [f*]
+H [H (@ *) I] H suc 0  ou  H [* (@ *) I] H suc 0
+H [H (@ *) I] H [H (@ *) I] H suc 0
+
+a b = @ b (@ a I) = B (@ b) (@ a) I
+... a b a b a b = H (B (@ b) (@ a)) I
+
+H (B (@ H) (@ [H (@ *) I])) I suc 0
+
+H -> H (B (@ H) (@ [H (@ *) I]))
+H [H (B (@ *) (@ [H (@ *) I]))] H suc 0
+H (B (@ H) (@ [H (B (@ *) (@ [H (@ *) I]))] H suc 0
+
+ou suc -> B (@ H) (@ [H (@ *) I], 0 -> I
+H (B (@H) (@[H(@*)I])) (H (B (@H) (@[H(@*)I]))) suc 0
+H (@ (H (B (@H) (@[H(@*)])))) I suc 0
+
+R1 H suc 0 = ... H H H suc 0 = H (@H) I suc 0
+R1 f = H (@ f) I
+R1 (R1 H) suc 0 = H (@ (H (@H) I)) I suc 0
+H R1 H suc 0 = H [H(@*)I] H suc 0
+R1 H R1 H suc 0 = H(@H)I [H(@*)I] H suc 0 = [H(@*)I] H [H(@*)I] H suc 0
+R1 = [H(@*)I]
+R2 R1 H suc 0 = H (B (@H) (@[H(@*)I])) I suc 0
+
+R2 a b = ... a b a b a b = H (B (@b) (@a)) I = [[H (B (@ *) (@ **)) I]] a b
+R2 = [[H (B (@ *) (@ **)) I]]
+
+notation : (a b c : d e f) = (a b c (d e f))
+R3 = [[[H (B (@ *) : B (@ **) : B (@ ***) I) I]]] 
+...
+
+H (B (@H) (@[H(@*)I])) suc 0
+
+H suc 0  ->  H (@H) I suc 0  ->  H (@ (H(@H)I)) I suc 0 ...
+-> H(@H)I (@(H(@H)I)) I suc 0
+f -> f(@f)I
+H(@H)I [*(@*)I] H suc 0 = [*(@*)I] H [*(@*)I] H suc 0
+= (@H : @[*(@*)I] : @H : @[*(@*)I] I) suc 0
+= (B (@H) (@[*(@*)I])) ((B (@H) [@[*(@*)I])) I) suc 0
+-> H(@H)I (B (@H) (@[*(@*)I])) I suc 0 = [*(@*)I] H (B(@H)(@[*(@*)I])) I suc 0
+
+H suc 0 -> H (@H) I suc 0
+-> H (@H) I (B(@H)(@[*(@*)I])) I suc 0
+
+R2 R1 H suc 0 = H(B(@H)(@[H(@*)I])) I suc 0
+
+H(@H)I(B(@H)(@[*(@*)I])) I (H(@H) I (B(@H)(@[*(@*)I])) I suc) 0
+f (f suc) 0, f = H(@H)I(B(@H)(@[*(@*)I])) [suc->f, 0->suc]
+
+H(@H)I(B(@H)(@[*(@*)I]))I (H(@H) I (B(@H)(@[*(@*)I]))I) suc 0
+f f suc 0 [H->f]
+
+@ (H(@H)I(B(@H)(@[*(@*)I]))I) (@ (...) I) suc 0
+
+H(@H)I(B(@H)(@[*(@*)I]))I (@ (H(@H)I(B(@H)(@[*(@*)I]))I)) I suc 0
+
+f (@ f) I suc 0 = (@ f) I (@ f) I suc 0
+
+(@f) I (@f) I suc 0 -> (B(@I)(@(@f))) (B(@I)(@(@f))) I) suc 0
+H(@H)I(B(@H)(@[*(@*)I]))I (B(@I)(@:@:H(@H)I (B(@H)(@[*(@*)I])) I)) I suc 0
+f (B (@I) : @ : @ f) I suc 0
+
+
+Système formel S -> ord(S)
+
+ S
+ | itération transfinie réflexion uniforme ordinal x
+ v
+ Sx -> ord(Sx)
+
+notation : [suc->f] x = x avec suc remplacé par f
+
+[suc->[ord(S|)]] x
+[suc->[suc->[ord(S|)]]] x
+[suc->[suc->|],0->[ord(S|)]] x
+
+
+
+</pre>
+
+</body>
+</HTML>
+
+<!-- -->
+ 

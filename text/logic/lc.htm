@@ -1,0 +1,308 @@
+<HTML>
+<head>
+<title>Fondements de la th&eacute;orie du traitement de l'information</title>
+<meta name="keywords" content="logique,combinatoire,lambda-calcul,fonction,combinateur">
+</head>
+<body> 
+<h3>Fondements de la th&eacute;orie du traitement de l'information</h3>
+<p>
+Pour formaliser la notion de traitement de l'information, il convient de formaliser
+<ul>
+<li> la notion d'information
+<li> la notion de traitement.
+</ul>
+L'objectif est de trouver une formalisation la plus simple possible, bas&eacute;e sur
+un nombre le plus petit possible de concepts de base. 
+<p>
+Nous allons d'abord montrer que l'information peut &ecirc;tre repr&eacute;sent&eacute;e par un
+traitement d'information, ce qui permet de faire reposer toute la th&eacute;orie
+sur le concept de traitement ou d'op&eacute;ration.
+<p>
+L'information la plus &eacute;l&eacute;mentaire concevable est binaire : vrai ou faux, 0 ou 1...
+On peut repr&eacute;senter cette information par une op&eacute;ration de choix entre
+deux possibilit&eacute;s, une fonction qui &agrave; deux arguments associe par exemple
+le premier pour la valeur vraie, et le second pour la valeur faux.
+<p>
+Des informations plus complexes peuvent &ecirc;tre repr&eacute;sent&eacute;es par des structures,
+la plus &eacute;l&eacute;mentaires &eacute;tant le couple de deux valeurs, qui peut &ecirc;tre repr&eacute;sent&eacute;
+par une fonction qui &agrave; la valeur vraie associe la premi&egrave;re valeur du couple, et
+&agrave; la valeur faux la seconde.
+<p>
+Voyons maintenant comment on peut repr&eacute;senter le concept d'op&eacute;ration ou de fonction.
+Il s'agit de produire un certain nombre de r&eacute;sultats &agrave; partir d'un certain
+nombre de donn&eacute;es. On peut en fait se limiter au cas o&ugrave; on produit un r&eacute;sultat
+&agrave; partir d'une donn&eacute;e car plusieurs donn&eacute;es ou r&eacute;sultats peuvent &ecirc;tre repr&eacute;sent&eacute;s
+par une seule donn&eacute;e ou un seule r&eacute;sultat, une structure regroupant ces &eacute;l&eacute;ments.
+D'autre part, la production d'un r&eacute;sultat par application d'une fonction &agrave; plusieurs
+arguments donn&eacute;s peut &ecirc;tre d&eacute;compos&eacute;e : l'application de la fonction au premier
+argument donne une nouvelle fonction qu'on applique au deuxi&egrave;me argument, et ainsi
+de suite.
+<p>
+On est donc ramen&eacute; au probl&egrave;me de la repr&eacute;sentation d'une fonction (ou combinateur) f qui produit
+un r&eacute;sultat y &agrave; partir d'un argument x. Les diff&eacute;rents cas sont les suivants :
+<ul>
+<li> Ce r&eacute;sultat ne r&eacute;sulte pas de l'application d'une fonction &agrave; un argument,
+il est &eacute;l&eacute;mentaire.
+        <ul>
+        <li> C'est l'argument lui-m&ecirc;me : la fonction n'effectue aucune transformation
+        sur son argument, on l'appelle l'identit&eacute; et on la note I. 
+        On note I x = x pour exprimer le fait que cette fonction rend son argument en r&eacute;sultat.
+        <li> Ce n'est pas l'argument mais une autre valeur y qui ne d&eacute;pend pas de l'argument.
+        La fonction est une fonction constante qui rend toujours y quel que soit
+        la valeur de son argument. On la note K y, qu'on peut voir comme le
+        r&eacute;sultat de l'application d'une fonction K constructrice de fonctions 
+        constantes &agrave; la valeur y du r&eacute;sultat. On a donc K y x = y.
+        </ul>
+<li> Ce r&eacute;sultat est le r&eacute;sultat de l'application d'une fonction a &agrave; un argument b (y = a b),
+        pouvant tous deux d&eacute;pendre de l'argument x de f. On peut formaliser
+        cette d&eacute;pendance par des fonctions g qui &agrave; x associe a et h qui &agrave; x
+        associe b. La fonction f d&eacute;pend donc des fonctions f et g. 
+        On formalise cette d&eacute;pendance par une fonction not&eacute;e S.
+        On &eacute;crit "f = S g h" ce qui signifie que la fonction S appliqu&eacute;e &agrave;
+        g donne une fonction qui est elle-m&ecirc;me appliqu&eacute;e &agrave; h pour donner f.
+        (On peut &eacute;crire f = (S g) h mais les parenth&egrave;ses en d&eacute;but d'expression 
+        sont facultatives par convention de notation).
+        On a donc :
+        <ul>
+        <li> f x = y
+        <li> donc S g h x = y
+        <li> mais :
+                <ul> 
+                <li> y = a b
+                <li> a = g x
+                <li> b = h x
+                <li> donc y = (g x) (a x)
+                </ul>
+        <li> donc S g h x = (g x) (h x)
+        </ul>                
+</ul>        
+<p>
+Cette d&eacute;composition s'arr&ecirc;te-t-elle ou continue-t-elle &agrave; l'infini ?
+Si elle s'arr&ecirc;te, on peut alors repr&eacute;senter f par une combinaison finie de I, K et S
+(ou m&ecirc;me de K et S seulement car on peut remarquer que I = S K K).
+Si elle est infinie, peut-on n&eacute;anmoins la d&eacute;crire de fa&ccedil;on finie ?
+Si on ne peut pas, elle n'est pas repr&eacute;sentable par un expression finie.
+Si on peut, quelle forme peut prendre cette repr&eacute;sentation ?
+On peut la repr&eacute;senter de fa&ccedil;on r&eacute;cursive. Par exemple :
+<br>
+factorielle n = si n = 0 alors 1 sinon n * factorielle (n-1)
+<br>
+Une fonction r&eacute;cursive peut &ecirc;tre d&eacute;finie comme le point fixe d'une fonctionnelle,
+par exemple dans le cas de la factorielle, celle qui &agrave; f associe
+la fonction qui &agrave; n associe (si n = 0 alors 1 sinon n * f (n-1)).
+Un point fixe f d'une fonction F est un &eacute;l&eacute;ment inchang&eacute; par F, c'est-&agrave;-dire 
+un f tel que F f = f.
+<br>
+On peut repr&eacute;senter le point fixe avec I, K et S de la fa&ccedil;on suivante : 
+<b>Le point fixe d'une fonction F est l'auto-application de la compos&eacute;e 
+de F et de l'auto-application.</b>
+<br>
+On d&eacute;finit l'auto-application A par A x = x x, c'est-&agrave;-dire A = S I I,
+et la compos&eacute;e : B f g x = f (g x).
+Un point fixe de F not&eacute; Y F est donc A (B F A).
+On a en effet : 
+<ul>
+<li> Y F = A (B F A)
+<li> = B F A (B F A)
+<li> = F (A (B F A))
+<li> = F (Y F).
+</ul>
+<p>
+En r&eacute;sum&eacute;, on peut repr&eacute;senter n'importe quelle op&eacute;ration et n'importe 
+quelle structure de donn&eacute;es par une combinaison
+par application des combinateurs de base I, K et S.
+Ces combinateurs sont d&eacute;finis par les r&egrave;gles :
+<ul>
+<li> I a = a
+<li> K a b = a
+<li> S a b c = a c (b c)
+</ul>
+Si on note \x.y la fonction qui &agrave; x associe y, on a :
+<ul> 
+<li> \x.x = I
+<li> \x.y = K y si y ne d&eacute;pend pas de x
+<li> \x.(a b) = S (\x.a) (\x.b)
+</ul>
+Pour compl&eacute;ter la th&eacute;orie, on doit ajouter aux r&egrave;gles d&eacute;finissant les 
+combinateurs de base celles d&eacute;finissant l'&eacute;galit&eacute;. 
+On a d'abord la r&egrave;gle d'&eacute;galit&eacute; des applications : 
+si f = g et a = b, alors f a = g b.
+L'&eacute;galit&eacute; est une relation 
+d'&eacute;quivalence, r&eacute;fl&eacute;xive, sym&eacute;trique et transitive.
+La r&eacute;flexivit&eacute; (x = x) peut &ecirc;tre construite pour tout x &agrave; partir des axiomes
+I = I, K = K et S = S et de la r&egrave;gle d'&eacute;galit&eacute; des applications.
+La sym&eacute;trie (si x = y alors y = x) et la transitivit&eacute; (si x = y et y = z
+alors x = z) peuvent &ecirc;tre remplac&eacute;es par une r&egrave;gle unique, la transym&eacute;trie
+droite (si x = z et y = z alors x = y) ou la transym&eacute;trie gauche
+(si x = y et x = z alors y = z).
+<p>
+Les r&egrave;gles d&eacute;finissant les combinateurs de base pourraient &ecirc;tre formalis&eacute;es
+par des r&egrave;gles telles que : "Si a est un terme, alors I a = a" mais cela
+aboutirait &agrave; deux types de propositions &eacute;l&eacute;mentaires : 
+<ul>
+<li> x est un terme
+<li> x = y
+</ul>
+On peut &eacute;viter cette dualit&eacute; en repr&eacute;sentant la proposition "x est un terme"
+par la proposition "x = x". Ainsi l'axiome "I est un terme" est identifi&eacute; &agrave; 
+l'axiome "I = I" et la r&egrave;gle "Si f est un terme et a est un terme alors
+f a est un terme" &agrave; la r&egrave;gle d'&eacute;galit&eacute; des applications.
+La r&egrave;gle "Si a est un terme alors I a = a" devient donc 
+"Si a = a alors I a = a". Mais on peut encore simplifier en r&eacute;alisant
+qu'en fait la condition "Si a = a" n'est qu'une abr&eacute;viation pour 
+"Si a = b et si a est syntaxiquement &eacute;gal &agrave; b" (on s'en aper&ccedil;oit en
+programmant) et que la condition "a est syntaxiquement &eacute;gal &agrave; b" est inutile.
+On obtient finalement "Si a = b alors I a = b". De m&ecirc;me pour les
+r&egrave;gles d&eacute;finissant K et S.
+<p>
+En r&eacute;sum&eacute;, la logique combinatoire peut &ecirc;tre formalis&eacute;e axiomatiquement 
+de la fa&ccedil;on suivante : 
+<ul>
+<li> Si x = z et y = z alors x = y
+<li> Si f = g et a = b alors f a = g b
+<li> I = I
+<li> K = K
+<li> S = S
+<li> Si a = a' alors I a = a'
+<li> Si a = a' et b = b' alors K a b = a'
+<li> Si a = a' et b = b' et c = c' alors S a b c = a' c' (b' c')
+</ul>
+<p>
+Une autre approche de la logique combinatoire est d&eacute;crite dans la Grande Encyclop&eacute;die Larousse.
+Elle consiste &agrave; voir une expression f k a1 a2 a3... comme une op&eacute;ration f
+agissant sur une pile a1 a2 a3... avec une continuation k. Les op&eacute;rations de base
+sont :
+<ul>
+<li> I k = k : l'op&eacute;ration vide
+<li> K k a = k : d&eacute;piler
+<li> W k a = k a a : r&eacute;p&eacute;ter
+<li> C k a b = k b a : permuter
+<li> B f g k = f (g k) : s&eacute;quencer
+</ul>
+<p>
+La logique combinatoire peut &ecirc;tre &eacute;tendue par l'ajout de nouveaux &eacute;l&eacute;ments de base
+appel&eacute;s symboles, dont la s&eacute;mantique est d&eacute;finie par des axiomes d'&eacute;galit&eacute;s entre
+des termes contenant ces symboles. On obtient ainsi la logique combinatoire symbolique.
+Par exemple, pour repr&eacute;senter une op&eacute;ration commutative on introduit un symbole
+F avec bien s&ucirc;r l'axiome d'existence et de r&eacute;flexivit&eacute; de F, F = F, mais
+aussi l'axiome de commutativit&eacute; qui doit exprimer F x y = F y x, 
+c'est-&agrave;-dire \x. \y. F x y = \x. \y. F y x, ou F = C F = S (K (S F)).
+<br>
+On peut repr&eacute;senter une th&eacute;orie avec un nombre quelconque de symboles 
+Z1, ... Zn
+et d'axiomes d&eacute;finissant ces symboles f1 Z1 ... Zn = g1 Z1 ... Zn, ... ,
+fp Z1 ... Zn = gp Z1 ... Zn, par une th&eacute;orie avec un seul symbole Z
+et un seul axiome f Z = g Z, &agrave; savoir : <br>
+< f1 (Z s1) ... (Z sn), ... , fp (Z s1) ... (Z sn) > = 
+< g1 (Z s1) ... (Z sn), ... , gp (Z s1) ... (Z sn) >,
+<br>
+avec <a1, ..., an > f = f a1 ... an<br>
+et si a1 ... an = ai.
+<p>
+La logique propositionnelle classique est habituellement formalis&eacute;e par 
+les r&egrave;gles suivantes :
+<ul>
+<li> la r&egrave;gle de modus ponens : si (p => q) et p, alors q 
+<li> (AI : p => p)
+<li> l'axiome AK : p => (q => p)
+<li> l'axiome AS : (p => (q => r)) => ((p => q) => (p => r))
+<li> l'axiome de raisonnement par l'absurde : ((p => faux) => faux) => p.
+</ul>
+On peut remarquer une correspondence avec les combinateurs : si on associe
+des types aux arguments et r&eacute;sultats des fonctions, I est du type a -> a
+(fonction qui &agrave; un argument de type a associe un r&eacute;sultat du type a), K
+est du type a -> (b -> a), et S du type (a -> (b -> c)) -> ((a -> c) -> (b -> c)).
+La r&egrave;gle de modus ponens correspond &agrave; l'application, et la notion d'hypoth&egrave;se
+&agrave; l'abstraction \x.y.
+De m&ecirc;me que le combinateur I peut &ecirc;tre d&eacute;fini par I = S K K, AI n'est pas n&eacute;cessaire
+comme axiome car il peut &ecirc;tre d&eacute;duit de AK et AS.
+<p>
+La difficult&eacute; pour formaliser la logique &agrave; partir de la logique combinatoire 
+vient de l'existence du point fixe, qui entraine la possibilit&eacute; de construire
+une proposition p telle que p = ~p, ou p = p => faux, ce qui, en logique classique ou 
+m&ecirc;me en logique intuitionniste, entraine une inconsistance :
+<ul>
+<li> Supposons p :
+        <ul>
+        <li> alors (par d&eacute;finition de p) p => faux
+        <li> alors (par modus ponens) faux
+        </ul>
+<li> donc p => faux
+<li> donc p, par d&eacute;finition de p
+<li> donc faux, par modus ponens.
+</ul>
+On ne peut &eacute;viter cette inconsistance qu'au prix d'un affaiblissement tr&egrave;s 
+important qui consiste &agrave; distinguer deux types d'implication :
+<ul>
+<li> l'implication affirmative p =!> q : 
+si j'ai pu d&eacute;montrer p, alors je peux affirmer q.
+Cette implication est formalis&eacute;e par le modus ponens : si (p =!> q) et p, alors q. 
+<li> l'implication interrogative p =?> q :
+si je suppose p, je peux en d&eacute;duire q.
+Cette implication est formalis&eacute;e par les r&egrave;gles suivantes :
+<ul>
+<li> p =?> p : sous l'hypoth&egrave;se p, p est vrai.
+<li> p =!> (q =?> p) : une proposition vraie hors hypoth&egrave;se reste vraie sous
+hypoth&egrave;se.
+<li> (p =?> (q =!> r)) =!> ((p =?> q) =!> (p =?> r) :
+on peut appliquer le modus ponens sous l'hypoth&egrave;se p.
+</ul>
+</ul>
+<p>
+Avec la logique combinatoire, la notion de proposition p est remplac&eacute;e par
+celle d'&eacute;galit&eacute; a = b. L'implication p =!> q devient (a = b) =!> (c = d)
+que l'on peut repr&eacute;senter par E! a b c = E! a b d, o&ugrave; E! est un symbole.
+De m&ecirc;me pour =!> et E?.
+<p>
+Le modus ponens devient : 
+<ul>
+<li> si (E! a b c = E! a b d) et (a = b), alors (c = d)
+<li> c'est-&agrave;-dire : si E! a a c = E! a a d, alors c = d, 
+<li> qui est v&eacute;rifi&eacute; si E! a a = I
+<li> ou S E! I = K I
+</ul>
+<p>
+La r&egrave;gle p =?> p devient E? a b a = E? a b b
+<p>
+La r&egrave;gle p =!> (q =?> p) devient :
+si a = b alors E? c d a = E? c d b, que l'on peut obtenir par la r&egrave;gle 
+d'&eacute;galit&eacute; d'applications. Cette r&egrave;gle est donc inutile.
+<p>
+L'axiome d'application du modus ponens sous hypoth&egrave;se 
+<br>
+(p =?> (q =!> r)) =!> (p =?> q) =!> (p =?> r)
+<br>
+peut &ecirc;tre obtenue par l'axiome <br>
+E? a b (f x) = E? a b f (E? a b x) 
+<br>
+En effet, si on a
+E? a b (E! c d e) = E? a b (E! c d f) <br>
+et E? a b c = E? a b d, <br>
+on peut inf&eacute;rer E? a b e = E? a b f.<br>
+En effet, on a : 
+<ul>
+<li> E? a b (E! c d e) = (E? a b E!) (E? a b c) (E? a b d) (E? a b e)
+<li> = (E? a b E!) (E? a b c) (E? a b c) (E? a b e)
+<li> = E? a b (E! c c e)
+<li> = E? a b e
+</ul>
+De m&ecirc;me, E? a b (E! c d f) = E? a b f <br>
+Donc E? a b e = E? a b f.
+
+<p>
+En r&eacute;sum&eacute;, cette logique affaiblie permettant de manipuler des propositions
+&eacute;gales &agrave; leur propre n&eacute;gation sans &ecirc;tre inconsistante, peut &ecirc;tre formalis&eacute;e
+en logique combinatoire symbolique en ajoutant les symboles E! et E? 
+d&eacute;finis par les axiomes :
+<ul>
+<li> E! = E!
+<li> E? = E?
+<li> S E! I = K I
+<li> \a. \b. E? a b a = \a. \b. E? a b b
+<li> \a. \b. \f. \x. E? a b (f x) = \a. \b. \f. \x. E? a b f (E? a b x)
+</ul>
+
+</body>
+</HTML>
+
+

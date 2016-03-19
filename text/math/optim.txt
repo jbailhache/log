@@ -1,0 +1,822 @@
+Optimisation
+ 
+Optimisation avec contraintes d'égalité : multiplicateurs de Lagrange
+  Il s'agit de chercher un vecteur x de Rn tel que f(x) soit minimal et le 
+  vecteur h(x) = 0, (avec h : Rn -> Rm différentiable) ce que l'on écrit :
+    min xÎRn f(x) 
+    h(x) = 0 
+  Intuitivement, au point de la région de Rn où h(x) = 0 correspondant au 
+  maximum de f(x), la courbe ou surface de niveau de f est tangente à la région 
+  où h(x) = 0. Le gradient de f et de h étant perpendiculaire à la courbe ou 
+  surface de niveau de f et h respectivement, les gradients de f et de h sont 
+  alignés.
+  On dit que x est un point régulier pour la contrainte h(x) = 0 si 
+    h(x) = 0 
+    les vecteurs Ñhi(x) sont linéairement indépendants 
+  Ña désigne le gradient de a c'est-à dire le vecteur (¶a/¶x1, ... , ¶a/¶xn) 
+  Théorème de Lagrange ou règle des multiplicateurs de Lagrange ou conditions 
+  nécessaires d'optimalité du premier ordre :
+  Si x est un point régulier solution du problème d'optimisation avec 
+  contraintes d'égalité, alors il existe un unique vecteur l X Rp vérifiant :
+  Ñf(x) + Sj=1m ljÑhj(x) = 0
+  Les composantes lj du vecteur l nsont appelées multiplicateurs de Lagrange.
+  On définit le lagrangien associé au problème par :
+  L(x,l) = f(x) + Sj=1m ljhj(x) 
+  (ou L(x,l) = f(x) - Sj=1m ljhj(x)
+  On passe facilement d'une forme à l'autre en remplaçant ljpar -lj )
+   
+  Les conditions d'optimalité du premier ordre peuvent alors s'écrire :
+    ÑL(x,l) = 0 
+    h(x) = 0 
+  ou
+    ¶L(x,l)/¶xi = 0 
+    ¶L(x,l)/¶lj = 0 
+   
+   
+  Optimisation avec contraintes d'inégalité : conditions de Kuhn et Tucker
+   
+  Il s'agit de résoudre
+    min xÎRn f(x) 
+    g(x) <= 0 
+     
+  Pour un minimum x où les gradients de gi sont linéairement indépendants, il 
+  existe des multiplicateurs uniques mi >= 0 tels que
+  Ñf(x) + Si=1p miÑgi(x) = 0
+  En définissant le lagrangien
+  L(x,m) = f(x) + Si=1p migi(x) 
+  on a les conditions de Kuhn et Tucker :
+   
+  ÑL(x,m) = 0 
+  mi g(x) = 0 
+  mi >= 0 
+  gi(x) <= 0 
+   
+     Cas général avec conditions d'égalité et d'inégalité
+Il s'agit de résoudre le problème suivant :
+    min xÎRn f(x) 
+    h(x) = 0
+    g(x) <= 0 
+    On définit le lagrangien :
+    L(x,m,l) = f(x) + Sj=1m ljhj(x) + Si=1p mjgj(x) 
+  Les conditions de Lagrange - Kuhn - Tucker sont :
+  ÑL(x,m,l) = 0 
+  hi(x) = 0 
+  mi g(x) = 0 
+  mi >= 0 
+  gi(x) <= 0 
+ 
+Principe du maximum de Pontryagin
+ 
+Il s'agit de déterminer une fonction u qui commande pendant un intervalle de 
+temps [0,T] un système dont l'état est représenté par le vecteur X de Rn, de 
+façon optimale par rapport à un critère défini à chaque instant par 
+f(X(t-1),u(t)) et un critère final m(X(T)).
+Modèle discret
+Le problème s'écrit ainsi :
+  Max J = St=1Tf(X(t-1),u(t)) + m(X(T))
+  X(t) - X(t-1) = a(t,X(t-1),u(t)) t = 1...T
+  u(t) Î U ensemble des commandes possibles
+  X(0) = X0
+On définit le lagrangien de ce programme d'optimisation de la façon suivante :
+  L (X,u,l)= St=1T(f(t,X(t-1),u(t) - l(t).(X(t)-X(t-1) - a(t,X(t-1),u(t)) + 
+  m(X(t)) + l(0).(X0-X(0))
+  (le . désigne le produit scalaire de vecteurs)
+Il s'agit d'un problème d'optimisation avec contraintes d'égalité. Les 
+conditions d'optimalité sont obtenues en dérivant le lagrangien :
+    ¶L(x,l)/¶xi = 0 
+    ¶L(x,l)/¶lj = 0
+Dans le cas présent, les inconnues sont les X(t) et les u(t). On peut considérer 
+que le vecteur des inconnues est la "concaténation" des vecteurs X(t) et u(t).
+Les conditions d'optimalité sont donc :
+  ¶L(X,u,l)/¶x(t) = 0 
+  ¶L(X,u,l)/¶u(t) = 0 
+  ¶L(X,u,l)/¶l(t) = 0 
+c'est-à-dire :
+  en dérivant par rapport à X(t) (t=0...T-1) : 
+  ¶f(t,X(t-1),u(t))/¶X(t-1) + l(t)(1+¶a(t,X(t-1),u(t))/¶X(t-1)-l(t-1)=0
+  (le terme -l(t-1) provient de la dérivation du (t-1)ème terme du lagrangien) 
+  en dérivant par rapport à X(T) : 
+  -l(t)+m'(X(T)) = 0
+  en dérivant par rapport à u(t) : 
+  ¶f(t,X(t-1),u(t))/¶u(t) + l(t) ¶f(t,X(t-1),u(t))/¶u(t) = 0
+  en dérivant par rapport à l(t) on retrouve une des conditions du problème : 
+  X(t) - X(t-1) = a(t,X(t-1),u(t))
+Après simplification, on obtient :
+  X(t) - X(t-1) = a(t,X(t-1),u(t)) 
+  X(0) = X0 
+  l(t)-l(t-1) = -(¶f(t,X(t-1),u(t))/¶X(t-1) + l(t) ¶a(t,X(t-1),u(t))/¶X(t-1)), 
+  t=1...T 
+  l(T)=m'(X(t)) 
+  ¶f(t,X(t-1),u(t))/¶u(t) + l(t) ¶a(t,X(t-1),u(t))/¶u(t) = 0 
+ 
+Formulation lagrangienne et formulation hamiltonienne
+On peut condenser ces relations de deux façons différentes en définissant une 
+certaine fonction qui regroupe suffisemment d'informations pour qu'on puisse 
+écrire ces relations à partir de cette fonction. Cette fonction est appelée 
+lagrangien instantané (pour ne pas confondre avec le lagrangien "global" intégré 
+sur le temps défini précédemment) dans le premier cas, et hamiltonien dans le 
+deuxième cas.
+ 
+Formulation lagrangienne 
+On appelle lagrangien instantané du système dynamique la fonction définie par :
+  L(t,X(t-1),dX(t-1),u(t),l(t))=f(t,X(t-1),u(t))-l(t).(dX(t-1)-a(t,X(t-1),u(t))
+  avec dX(t-1) = X(t)-X(t-1)
+Les relations précédentes s'écrivent alors (en écrivant L(t) au lieu de 
+L(t,X(t-1),dX(t-1),u(t),l(t)):
+  ¶L(t)/¶l = 0 
+  X(0) = X0 
+  ¶L(t)/¶X(t-1) = ¶L(t)/¶dX(t) - ¶L(t-1)/¶dX(t) 
+  l(T) = m'(X(T)) 
+  ¶L(t)/¶u(t) = 0 
+ 
+Formulation hamiltonienne
+On appelle hamiltonien du système dynamique la fonction définie par :
+  H(t,X(t-1),u(t),l(t)) = f(t,X(t-1),u(t)) + l(t) . a(t,X(t-1),u(t))
+Les relations précédentes s'écrivent alors (en écrivant H(t) au lieu de 
+H(t,X(t-1),u(t),l(t)):
+  X(t)-X(t-1) = ¶H(t)/¶l 
+  X(0) = X0 
+  l(t)-l(t-1) = -¶H(t)/¶X(t-1) 
+  l(T) = m'(X(T)) 
+  ¶H(t)/¶u(t) = 0 
+ 
+Le modèle continu
+Il s'agit de résoudre le programme d'optimisation suivant :
+max J = ó T f(t,X(t),u(t))dt + m(X(T))
+___________õ 0 
+dX(t)/dt = a(t,X(t),u(t))
+u(t) Î U ensemble des commandes possibles
+X(0) = X0
+Les résultats obtenus pour le modèle discret se généralisent au modèle continu.
+ 
+Formulation lagrangienne 
+On appelle lagrangien instantané du système dynamique la fonction définie par :
+  L(t,X(t),V(t),u(t),l(t))=f(t,X(t),u(t))-l(t).(V(t)-a(t,X(t),u(t))
+  avec V(t) = dX(t)/dt
+Les relations précédentes s'écrivent alors (en écrivant L(t) au lieu de 
+L(t,X(t),dX(t)/dt,u(t),l(t)):
+  ¶L(t)/¶l = 0 
+  X(0) = X0 
+  ¶L(t)/¶X(t) = d/dt (¶L(t)/¶V(t)) 
+  l(T) = m'(X(T)) 
+  ¶L(t)/¶u(t) = 0 
+ 
+Formulation hamiltonienne
+On appelle hamiltonien du système dynamique la fonction définie par :
+  H(t,X(t),u(t),l(t)) = f(t,X(t),u(t)) + l(t) . a(t,X(t),u(t))
+Cette définition rappelle celle du hamiltonien en mécanique (H = p dq/dt - L) : 
+-f correspond au lagrangien L, l correspond à l'impulsion p.
+Les conditions d'optimalité s'écrivent alors (en écrivant H(t) au lieu de 
+H(t,X(t),u(t),l(t)):
+  dX(t)/dt = ¶H(t)/¶l 
+  X(0) = X0 
+  dl(t)/dt = -¶H(t)/¶X(t) 
+  l(T) = m'(X(T)) 
+  ¶H(t)/¶u(t) = 0 
+ Le problème initial, difficile, consistant à trouver la fonction u optimale, 
+est ainsi ramené à un problème plus simple consistant à déterminer les valeurs 
+initiales (ou finales si on inverse le sens du temps) du vecteur adjoint l.
+Système augmenté
+On peut associer au système défini par
+dX(t)/dt = a(t,X(t),u(t))
+un système augmenté défini par
+  dX(t)/dt = a(t,X(t),u(t)) 
+  dX0(t)/dt = f(t,X(t),u(t)) 
+La coordonnée supplémentaire X0 représente le gain cumulé dans le cas d'un 
+problème de maximisation, ou le coût cumulé dans le cas d'un problème de 
+minimisation.
+Notons X'=(X,X0) et a'=(a,f).
+L'objectif :
+max J = ó T f(t,X(t),u(t))dt + m(X(T))
+___________õ 0
+devient max J = m'(X'(T)) = X0(T) + m(X(T)).
+Le hamiltonien devient H'(t,X(t),u(t),l(t)) = l'(t) . a'(t,X(t),u(t)) avec l' = 
+(l,1)
+ 
+Théorème du principe du maximum de Pontryagin
+Soit un système régi par les équations : dxi/dt = fi(x,u). Soit u(t), t0 <= t <= 
+t1, une commande admissible telle que la trajectoire correspondante x(t), issue 
+du point x0 à l'instant t0 passe à l'instant t1 par un point de la droite D. 
+Pour que la commande u(t) et la trajectoire x(t) soient optimales il est 
+nécessaire qu'existe un vecteur fonction l(t) = l0(t), l1(t), ... , ln(t)) 
+continu et non nul, correspondant aux fonctions u(t) et x(t), tel que : 
+  1° quel que soit t, t0 <= t <= t1, la fonction H(l(t),x(t),u) de la variable u 
+  appartenant à U atteigne au point u = u(t) son maximum : 
+  H(l(t),x(t),u(t)) = M(l(t),x(t)) 
+  avec H(l,x,u) = l . f(x,u) et M(l,x) = supuÎU H(l,x,u) 
+  2° à l'instant final t1 soient vérifiées les relations 
+  l0(t1<=0, M(l(t1),x(t1)) = 0. 
+Si par ailleurs les grandeurs l(t), x(t) et u(t) satisfont aux systèmes : 
+  dxi/dt = ¶H/¶li, i=0...n 
+  dli/dt = - ¶H/¶xi et à la condition 1°, les fonctions l0(t) et M(l(t),x(t)) de 
+  la variable t sont constantes, de sorte qu'on peut vérifier la relation 2° non 
+  nécessairement à l'instant t1, mais à un instant quelconque t compris entre t0 
+  et t1. 
+Généralisations
+On considère un système défini par 
+  dX(t)/dt = a(t,X(t),u(t)) 
+On veut déterminer une fonction u appartenant à un ensemble de commandes 
+admissibles U qui conduit le système depuis un état X0 appartenant à un 
+sous-ensemble M0 de Rn jusqu'à un état X1 appartenant à un sous-ensemble M1 de 
+Rn, et qui minimise un coût (ou maximise un gain) défini par :
+        C(T,u) = ó T f(t,x(t),u(t))dt + m(x(T)) 
+         õ 0  
+
+On définit le hamiltonien de ce système :
+H(t,X,l,l0,u) = l0 f(t,X,u) + l.a(t,X,u)
+Si la commande u est optimale, alors il existe une application l de [0,T] dans 
+Rn et un réel l 0 tels que (l , l 0) est non trivial et tels que pour presque 
+tout t compris entre 0 et T on a :
+  dX(t)/dt = ¶H/¶l (t,X(t),l(t),l0,u(t)) 
+  dl(t)/dt = -¶H/¶X(t,X(t),l(t),l0,u(t)) 
+  H(t,X(t),l(t),l0,u(t)) = max vÎU H(t,X(t),l(t),l0,v) presque partout entre 0 
+  et T si l0 < 0 (remplacer max par min si l0 > 0) 
+  Si u est continue au temps T, cette condition peut s'écrire 
+  H(t,X(t),l(t),l0,u(t)) = -l0 ¶m/¶t(T,X(T). Dans le cas où u ÎRn (c'est-à-dire 
+  qu'il n'y a pas de condition sur la commande) cette condition devient ¶H/¶u = 
+0
+  Si T n'est pas fixé, on a la condition de transversalité sur le hamiltonien : 
+  maxvÎU H(t,X(t),l(t),l0,u(t)) = -l0 ¶m/¶t(T,X(T)) 
+  Si M0 ou M1 a des espaces tangents T(X(0),M0) en X(0) et T(X(T),M1) en X(T) 
+  alors l peut être construit de façon à vérifier les conditions de 
+  transversalité sur le vecteur adjoint l:
+    l(0) perpendiculaire à T(X(0),M0) 
+    l(T)-l0 ¶m/¶X(T,X(T)) perpendiculaire à T(X(T),M1) 
+  d/dt H(t,X(t),l(t),l0,u(t)) = ¶H/¶t pour presque tout t entre 0 et T 
+ 
+Processus optimaux paramétrés
+On considère un système gouverné par les équations : 
+dxi/dt = fi(x,u,w) i=1...n 
+On demande de choisir un vecteur w0 valeur du paramètre w qui reste constante 
+pendant toute la durée de l'évolution du système. On veut minimiser l'intégrale 
+de t0 à t1 de f0(x(t),u(t),w0) dt. 
+Etant donnés une commande admissible u et un vecteur w0 tels que la trajectoire 
+associée x(t) vérifie les conditions x(t0) = x0, x0(t0) = 0, x(t1) = x1. Pour 
+que les grandeurs u(t), x(t) et w0 soient solution du problème optimal posé, il 
+est nécessaire qu'existe un vecteur fonction l(t) continu et non nul tel que : 
+  1° les fonctions x, l et u et le vecteur w0 vérifient : 
+    dxi/dt = ¶H(l(t),x(t),u(t),w0)/¶li 
+    dli/dt = - ¶H¶/¶xi 
+  2° La fonction H atteigne au point u=u(t) son maximum :
+  H(l(t),x(t),u(t),w0) = M(l(t),x(t),w0 
+  3° au point initial t0 soient vérifiées les relations 
+
+    l0(t0 <= 0 
+    M(l(t0),x(t0),w0) = 0 
+  4° aient lieu les égalités 
+  somme de a=0 à n de intégrale de t0 à t1 de la(t) ¶fa(x(t),u(t),w0)/¶wr dt = 
+  0, r=1...m 
+Si par ailleurs les grandeurs ¶(t), x(t), w0 et u(t) satisfont aux conditions 1° 
+et 2°, alors les fonctions ¶0(t) et M(¶(t),x(t),w0) de la variable t sont 
+constantes, de sorte qu'on peut vérifier la condition 3° non nécessairement à 
+l'instant t0 mais à tout instant compris entre t0 et t1. 
+Processus optimaux à retard
+L'évolution du système est décrit par le système d'équations :
+dx(t)/dt = f(x(t),x(t-T),u(t)). 
+Soit u(t) une commande admissible telle que la trajectoire x(t) correspondante 
+passe à un instant t1 > t0 par un point de la variété L. Pour que la commande 
+u(t) soit optimale, il est nécessaire qu'existe un vecteur fonction l(t) non nul 
+tel que : 
+  1° pour tout t compris entre t0 et t1, H(l(t),x(t),x(t-T),u-t)) = 
+  M(l(t),x(t),x(t-T)) 
+  2° à l'instant final t1 soient satisfaites les relations 
+    l0(t1) <= 0 
+    M(l(t1),x(t1),x(t1-T)) = 0 
+  3° le vecteur l(t1) soit orthogonal au plan tangent au point x(t1) à la 
+  variété S1. 
+  Exemple : commande optimale d'un ressort non linéaire
+  L'objectif est d'amener une masse fixée à un ressort d'une position initiale 
+  quelconque le plus près possible de sa position d'équilibre et de faire en 
+  sorte qu'elle se déplace le moins possible. L'état du système est décrit par 
+  (x,y) où x est la position de la masse et y sa vitesse. (x,y) est appelée 
+  position dans l'espace des phases. Le système est commandé par une force u 
+  exercée sur la masse, dont le coût est 1/2 u2.
+  Les équations qui déterminent l'évolution du système sont :
+    dx/dt = y 
+    dy/dt = -x-2x3+u 
+  Formulation lagrangienne
+  Le lagrangien instantané est L = cx x2 + cy y2 + cu u2 + lx (y-vx) + 
+  ly(-x-2x3+u-vy) avec vx=dx/dt et vy=dy/dt
+  Les conditions d'optimalité sont :
+    ¶L/¶x = d/dt(¶L/¶vx) => 2 cx x - ly(1+6x2) = -dlx/dt => dlx/dt = -2 cx x + 
+    ly(1+6x2) 
+    ¶L/¶y = d/dt(¶L/¶vy) => 2 cy y + lx = -dly/dt => dlx/dt = -2 cy y - lx 
+    dly/dt = -¶H/¶y = -lx=> lx=-dly/dt => dly/dt=-lx 
+    ¶L/¶u = 0 = 2 cu u + ly => u = -ly/2cu 
+   
+  Formulation hamiltonienne
+  Le hamiltonien est H = cx x2 + cy y2 + cu u2 + lx y + ly(-x-2x3+u)
+  Les conditions d'optimalité sont
+    dlx/dt = -¶H/¶x = -2 cx x + ly(1+6x2) 
+    dly/dt = -¶H/¶y = -2 cy y -lx 
+    ¶H/¶u = 0 = 2 cu u + ly => u = -ly/2cu 
+   
+  Exemple économique : modèle de Ramsey
+  Il s'agit de trouver la fonction c(t) optimale qui maximise l'utilité :
+        max U = ó oo u(c(t)) exp(-at) dt 
+         õ 0  
+
+  La commande c(t) est la consommation au temps t. Le facteur exp(-at) permet de 
+  prendre en compte la préférence pour le présent.
+  Les équations qui régissent le système sont :
+    dk(t)/dt = f(k(t)) - c(t) - n k(t) 
+    k(0) = k0 
+    k(t)>=0, c(t)>=0 
+  où k représente le capital et n le taux d'accroissement de la population.
+  Le hamiltonien est :
+  H(t) = u(c(t)) exp(-at) + m(t) (f(k(t)) - c(t) - n k(t))
+  On pose l(t) = m(t) exp(at), donc m(t) = l(t) exp(-at)
+  On a donc H(t) = exp(-at)(u(c(t)) + l(t)(f(k(t)) - c(t) - n k(t))
+  Les conditions d'optimalité sont :
+    ¶H/¶c = 0 = u'(c(t)) - l(t) => l(t) = u'(c(t)) 
+    dm/dt = -¶H/¶k ou dl/dt = -¶H/¶k exp(at) + al = l (n-f'(k)+a) 
+    lim(t->oo) k(t)(l(t) exp(-at)) = lim(t->oo)k(t)(u'(c(t)) exp(-at)) = 0 
+  On élimine le multiplicateur l :
+  dl/dt = du'(c(t))/dt = u'(c(t)) (n - f'(k) + a)
+  => (du'(c(t))/dt) / u'(c(t)) = n - f'(k) + a
+  <=> u''(c(t)) (dc(t)/dt) / u'(c(t)) = n - f'(k) + a
+  <=> (c(t) u''(c(t))/u'(c(t))) (dc(t)/dt)/c(t) = n - f'(k) + a
+  => dc(t)/dt = u'(c(t))/u''(c(t)) (n - f'(k) + a)
+  Le sentier optimal est donc caractérisé par les conditions :
+    dk/dt = f(k) - c - n k 
+    dc/dt = u'(c(t))/u''(c(t)) (n - f'(k) + a) 
+    lim k(t)(u'(c(t)) exp(-at)) = 0 
+  Equation de Hamilton - Jacobi - Bellman
+  Cette équation concerne des problèmes d'optimisation du même type que le 
+  principe de Pontryagin.
+  On considère un ensemble de problèmes paramétrés par l'état initial y et 
+  l'instant de départ s :
+        min J(y,s,u) = ó T f(t,x(t),u(t))dt + m(x(T)) 
+         õ s  
+
+  dx(t)/dt = a(t,x(t),u(t))
+  u(t) Î U ensemble des commandes possibles
+  x(s) = y
+  On définit :
+  V(y,s) = minuÎU J(y,s,u) 
+  c'est-à-dire la valeur minimale de J(y,s,u) quand u parcourt U. 
+  Si V est différentiable en (y,s) alors l'équation de Hamilton - Jacobi - 
+  Bellman est satisfaite :
+  ¶V(x,t)/¶t + min (f(t,x,u) + ¶V(x,t)/¶x . a(t,x,u)) = 0
+  où ¶V(x,t)/dx désigne le gradient de V et . désigne le produit scalaire, 
+  c'est-à-dire : 
+  ¶V(x,t)/¶t + min (f(t,x,u) + Si=1n¶V(x,t)/¶xi ai(t,x,u)) = 0
+  avec la condition finale :
+  V(T,x) = m(x)
+  En définissant le hamiltonien suivant :
+  H(x,t,l) = minuÎU (f(t,x,u) + l . a(t,x,u)
+  l'équation de Hamilton - Jacobi - Bellman devient :
+  ¶V(x,t)/¶t + H(x,t,¶V(x,t)/¶x) = 0
+  Cette équation rappelle l'équation de Hamilton - Jacobi en physique : 
+  ¶S/¶t + H(q,t,¶S/¶q) = 0
+  V correspond à l'action S.
+  Equation de Hamilton - Jacobi - Bellman : cas discret
+  On considère un système d'état x commandé par u, le nouvel état étant 
+  déterminé par :
+    x' = ad(x,u)
+  On appelle V(x) le meilleur résultat qu'on peut obtenir à partir de l'état x. 
+  On a alors la forme discrète de l'équation d'Hamilton - Jacobi - Bellman :
+    V(x) = min uÎU(x)(fd(x,u) + V(x')) = min uÎU(x)(fd(x,u) + V(ad(x,u)))
+  où fd(x,u) désigne la valeur à minimiser (ou le coût) associée à l'état x et 
+  l'action u.
+  Si u* est l'action optimale, on a :
+    V(x) = fd(x,u*) + V(ad(x,u*))
+  Cette égalité est la forme discrète du principe de Pontryagin. On peut 
+  l'écrire sous la forme :
+    V(ad(x,u*)) - V(x) = -fd(x,u*) 
+   
+  Equation de Hamilton - Jacobi - Bellman : cas continu
+  L'équation d'évolution du système est :
+    dx/dt = a(x,u)
+  V(x') peut être approché par :
+    V(x) + Si=1n¶V/¶x ai(x,u)dt
+  Etant donné que fd(x,u) = f(x,u) dt, on a donc :
+    V(x) = min uÎU(x)(f(x,u)dt + V(x) + Si=1n¶V/¶xi ai(x,u)dt)
+  ce qui se simplifie en soustrayant V(x) et en divisant par dt pour obtenir 
+  l'équation de Hamilton - Jacobi - Bellman (forme continue) :
+    min uÎU(x)(f(x,u) + Si=1n¶V/¶xi ai(x,u)) = 0
+  Si on applique cette équation à la commande optimale u* on obtient :
+    f(x,u*) + Si=1n¶V/¶xi ai(x,u*) = 0
+    ou
+    Si=1n¶V/¶xi ai(x,u) = -f(x,u)
+  Dans le cas où f et a dépendent de t, cette équation se généralise en :
+  minuÎU(x) (f(t,x,u) + ¶V(x,t)/¶t + Si=1n¶V(x,t)/¶xi ai(t,x,u)) = 0
+  que l'on peut aussi écrire :
+  ¶V(x,t)/¶t + minuÎU(x) (f(t,x,u) + Si=1n¶V(x,t)/¶xi ai(t,x,u)) = 0
+   
+   
+  Equation de Hamilton - Jacobi - Bellman et principe de Pontryagin
+  On peut retrouver le principe de Pontryagin à partir de l'équation de Hamilton 
+  - Jacobi - Bellman. Ce principe peut être considéré comme une spécialisation 
+  de l'équation d'Hamilton - Jacobi - Bellman appliquée à la commande optimale 
+  u*. Il est donné par l'équation précédemment obtenue :
+    f(x,u*) + Si=1n¶V/¶xi ai(x,u*) = 0
+  On définit :
+    li = ¶V/¶xi
+    H(x,u,l) = f(x,u) + Si=1nliai(x,u)
+  L'équation d'Hamilton - Jacobi - Bellman donne :
+    H(x(t),u*(t),l(t)) = 0
+  La commande optimale u* est celle qui minimise H(x(t),u*(t),l(t)).
+  Si u* est déterminé par x, c'est-à-dire u*=p*(x), alors le hamiltonien est une 
+  fonction de x et l uniquement : H(x,l) = f(x,p*(x)) + Si=1nliai(x,p*(x))
+  On a alors en différentiant par rapport à x :
+    ¶f(x,p*(x))/¶xi + Sj=1n ¶lj/¶xi aj(x,p*(x)) + Si=1n li ¶ai(x,p*(x))/¶xi = 0
+  car le hamiltonien est égal à 0 le long de la trajectoire optimale.
+  Etant donné la définition de li = ¶V/¶xi on a ¶li/¶xj = ¶/¶xj ¶/¶xi V = ¶/¶xi 
+  ¶/¶xj V = ¶lj/¶xi
+  Donc dli/dt = Sj=1n ¶li/¶xj dxj/dt 
+    = Sj=1n ¶lj/¶xi dxj/dt 
+    = Sj=1n ¶lj/¶xi aj(x,p*(x))
+  On a donc
+  ¶f(x,p*(x))/¶xi + dli/dt + Si=1n li ¶ai(x,p*(x))/¶xi = 0
+    donc
+  dli/dt = - ¶f(x,p*(x))/¶xi - Si=1n li ¶ai(x,p*(x))/¶xi = - ¶H/¶xi 
+    avec
+  H(x,u,l) = f(x,u) + Si=1nliai(x,u)
+     
+  Commandabilité
+  Un système est commandable ou contrôlable si pour tous x0 et x1 il existe un 
+  temps T et une fonction de commande u amenant le système de x0 à x1 pendant le 
+  temps T.
+  Si le système est linéaire c'est-à-dire défini par dx/dt = f(x,u) = Ax + Bu 
+  alors le système est commandable si la matrice de commandabilité M = (B, AB, 
+  A2B, ... , An-1B) a le rang maximum. Si le système n'est pas linéaire, la 
+  matrice de commandabilité peut être calculée à partir d'une version linéarisée 
+  du système.
+   
+  Jeux différentiels 
+  Un jeu différentiel est un système commandé par plusieurs joueurs. 
+  Généralisation des multiplicateurs de Lagrange
+  Le joueur i veut minimiser fi(x,u1,...,un) avec h(x,u1,...,un) = 0. Le joueur 
+  i peut faire varier x et ui. 
+  Les composantes de grad fi dans les directions de x et ui sont colinéaires aux 
+  composantes de grad h selon ces mêmes directions : 
+    dfi/dx + li . dhi/dx = 0 
+    dfi/dui + li . dhi/dui = 0 
+  On définit le lagrangien de façon similaire: 
+  Li = fi + li . h 
+  et on a alors : 
+    dLi/dx = 0 
+    dLi/dui = 0 
+    dLi/dli = 0 
+  On a également une généralisation du principe de Pontryagin et de l'équation 
+  de Hamilton - Jacobi - Bellman avec des formules similaires où on ajoute un 
+  indice correspondant au numéro du joueur aux variables f, l, m, L, H, V, et u 
+  lorsqu'on dérive par rapport à u, sinon u désigne le vecteur de fonctions (u1, 
+  ... , un). 
+  Jeu différentiel
+  Un jeu différentiel est un système dont l'état X évolue en fonctions des 
+  commandes de n joueurs selon la loi :
+  X(0) = X0
+  dX(t)/dt = a(t,X(t),u1(t), ... ,un(t)) 
+  avec ui(t) Î U ensemble des commandes possibles
+  ou dX(t)/dt = a(t,X(t),U(t)) avec U(t) = (u1(t), ... ,un(t)) 
+  Chaque joueur a pour objectif de minimiser (ou maximiser) sa fonction de coût 
+  (ou de gain) :
+        min Ji(y,s,u) = ó T fi(t,x(t),U(t))dt + mi(x(T)) 
+         õ s  
+
+  On définit un hamiltonien Hi et un vecteur adjoint li pour chaque joueur :
+    Hi(t,X(t),U(t),li(t)) = fi(t,X(t),u(t)) + li(t) . a(t,X(t),U(t))
+  Les conditions d'optimalité sont :
+    dX(t)/dt = ¶Hi(t)/¶li 
+    X(0) = X0 
+    dli(t)/dt = -¶Hi(t)/¶X(t) 
+    li(T) = mi'(X(T)) 
+    ¶Hi(t)/¶ui(t) = 0 
+  L'équilibre de Nash consiste à déterminer les valeurs initiales ou finales des 
+  vecteurs li de sorte que si on remplace un des li par une autre valeur, le 
+  résultat sera moins bon pour le joueur i.
+
+
+
+  Exemple : jeu de poursuite
+  Un chauffeur poursuit un piéton en voiture. Son but est de s'approcher le plus 
+  possible du piéton. Le but du piéton est de s'éloigner le plus possible de la 
+  voiture. La voiture est limité dans ses possiblilités de virage : le coût d'un 
+  changement de direction est proportionnel au carré de l'angle. Le piéton 
+  change de direction comme il veut. Tous deux ont une vitesse constante.
+  L'état peut être décrit par les coordonnées (x1,y1) de la voiture et sa 
+  direction a, et les coordonnées (x2,y2) du piéton. On peut le décrire de façon 
+  plus compacte par le vecteur voiture -> piéton de composantes (x,y) avec 
+  x=x2-x1 et y=y2-y1.
+  Les équations du mouvement sont alors :
+    dx/dt = - v1 cos a + v2 cos u2 
+    dy/dt = - v1 sin a + v2 sin u2 
+    da/dt = v1/L u1 
+  Le hamiltonien du chauffeur est :
+  H1 = u12 + x2 + y2 + px1 (- v1 cos a + v2 cos u2) + py1 (- v1 sin a + v2 sin 
+  u2) + pa1 v1/L u1
+  (avec l1=( px1 py1 pa1 )' et l2=( px2 py2 pa2 )' )
+  et celui du piéton :
+  H2 = - x2 - y2 + px2 (- v1 cos a + v2 cos u2) + py2 (- v1 sin a + v2 sin u2) + 
+  pa2 v1/L u1
+  Les conditions d'optimalité sont :
+    d px1/dt = -¶H1/¶x = -2x 
+    d py1/dt = -¶H1/¶y = -2y 
+    d pa1/dt = -¶H1/¶a = v1 (- px1 sin a + py1 cos a) 
+    d px2/dt = -¶H2/¶x = 2x 
+    d py2/dt = -¶H2/¶y = 2y 
+    d pa2/dt = -¶H2/¶a = v1 (- px2 sin a + py2 cos a) 
+    ¶H1/¶u1 = 0 = 2 u1 + pa1 v1/L => u1 = -1/2 pa1 v1/L 
+    ¶H1/¶u2 = 0 = v2 (- px2 sin u2 + py2 cos u2) 
+    => px2 sin u2 = py2 cos u2
+    => sin u2 / cos u2 = py2 / px2
+    => tg u2 = py2 / px2
+    => u2 = arctg (py2/px2)
+  Programme SCILAB
+  Taper par exemple : [px1,py1,pa1,px2,py2,pa2]=solve(1,0.01,10) 
+
+
+pi = 3.1415926
+
+dt=0.01
+
+v1=5
+v2=3
+L=2
+
+xmin=-10
+xmax=10
+ymin=10
+ymax=-10
+
+function [r]=plotpoint(x,y)
+ xrect(x,y,0,0)
+ r=0
+endfunction
+
+function [sl1,sl2]=traj(fp,T,px1,py1,pa1,px2,py2,pa2)
+
+sl1=0
+sl2=0
+x1=0
+y1=0
+x2=-3
+y2=1
+x=x2-x1
+y=y2-y1
+a=0
+// px1=0
+// py1=0
+// pa1=0
+// px2= 1
+// py2=1
+// pa2=1
+
+plot2d([xmin,xmax,xmax,xmin],[ymin,ymin,ymax,ymax])
+
+for t=0:dt:T
+
+ u1=-0.5*pa1*v1/L
+ // u2=atan(py2/px2)
+ u2 = imag(log(px2+sqrt(-1)*py2))
+
+ x1=x1 +dt*v1*cos(a)
+ y1=y1 +dt*v1*sin(a)
+
+ x2=x2 +dt*v2*cos(u2)
+ y2=y2+dt*v2*sin(u2)
+
+ x=x2-x1
+ y=y2-y1
+
+ if fp then
+  plotpoint(x1,y1)
+  plotpoint(x2,y2)
+ end
+
+ a=a+dt *v1/L*u1
+
+ px1 =px1+dt* (-2*x)
+ py1=py1+dt*(-2*y)
+ pa1=pa1+dt*(v1*(-px1*sin(a/pi *180)+py1*cos(a)))
+
+ px2 =px2+dt*(2*x)
+ py2=py2+dt*(2*y)
+ pa2=pa2+dt*(v1*(-px2*sin(a/pi *180)+py2*cos(a)))
+
+ sl1=sl1+dt*(u1^2+x^2+y^2)
+ sl2=sl2+dt*(-x^2-y^2)
+
+end
+
+endfunction
+
+
+function [px1,py1,pa1,px2,py2,pa2]=solve(T,eps,m)
+
+px1=0
+py1=0
+pa1=0
+px2=1.01
+py2=1.01
+pa2=1
+
+dp=1
+
+s=0
+
+while 1 do
+
+ s=s+1
+ if s>m then break; end
+
+ plotpoint(px1/10,px2/10)
+ plotpoint(py1/10,py2/10)
+ plotpoint(pa1/10,pa2/10)
+ 
+ [sl1,sl2] = traj(0,T,px1,py1,pa1,px2,py2,pa2)
+
+ sl1p = sl1
+ sl2p = sl2
+
+ [sl1t,sl2t] = traj(0,T,px1+dp,py1,pa1,px2,py2,pa2)
+ if sl1t < sl1 then 
+  px1=px1+dp
+  sl1=sl1t
+  sl2=sl2t
+ else
+  [sl1t,sl2t] = traj(0,T,px1-dp,py1,pa1,px2,py2,pa2)
+  if sl1t < sl1 then 
+   px1=px1-dp
+   sl1=sl1t
+   sl2=sl2t
+  end
+ end
+
+ [sl1t,sl2t] = traj(0,T,px1,py1+dp,pa1,px2,py2,pa2)
+ if sl1t < sl1 then 
+  py1=py1+dp
+  sl1=sl1t
+  sl2=sl2t
+ else
+  [sl1t,sl2t] = traj(0,T,px1,py1-dp,pa1,px2,py2,pa2)
+  if sl1t < sl1 then 
+   py1=py1-dp
+   sl1=sl1t
+   sl2=sl2t
+  end
+ end
+
+ [sl1t,sl2t] = traj(0,T,px1,py1,pa1+dp,px2,py2,pa2)
+ if sl1t < sl1 then 
+  pa1=pa1+dp
+  sl1=sl1t
+  sl2=sl2t
+ else
+  [sl1t,sl2t] = traj(0,T,px1,py1,pa1-dp,px2,py2,pa2)
+  if sl1t < sl1 then 
+   pa1=pa1-dp
+   sl1=sl1t
+   sl2=sl2t
+  end
+ end
+
+ [sl1t,sl2t] = traj(0,T,px1,py1,pa1,px2+dp,py2,pa2)
+ if sl2t < sl2 then 
+  px2=px2+dp
+  sl1=sl1t
+  sl2=sl2t
+ else
+  [sl1t,sl2t] = traj(0,T,px1,py1,pa1,px2-dp,py2,pa2)
+  if sl2t < sl2 then 
+   px2=px2-dp
+   sl1=sl1t
+   sl2=sl2t
+  end
+ end
+
+ [sl1t,sl2t] = traj(0,T,px1,py1,pa1,px2,py2+dp,pa2)
+ if sl2t < sl2 then 
+  py2=py2+dp
+  sl1=sl1t
+  sl2=sl2t
+ else
+  [sl1t,sl2t] = traj(0,T,px1,py1-dp,pa1,px2,py2-dp,pa2)
+  if sl2t < sl2 then 
+   py2=py2-dp
+   sl1=sl1t
+   sl2=sl2t
+  end
+ end
+
+ [sl1t,sl2t] = traj(0,T,px1,py1,pa1,px2,py2,pa2+dp)
+ if sl2t < sl2 then 
+  pa2=pa2+dp
+  sl1=sl1t
+  sl2=sl2t
+ else
+  [sl1t,sl2t] = traj(0,T,px1,py1,pa1,px2,py2,pa2-dp)
+  if sl2t < sl2 then 
+   pa2=pa2-dp
+   sl1=sl1t
+   sl2=sl2t
+  end
+ end
+
+ if ((sl1==sl1p) & (sl2==sl2p)) then 
+  dp=dp/2
+ else
+  dp=dp*2
+ end
+
+ if dp<eps then break end
+
+end
+
+traj(1,T,px1,py1,pa1,px2,py2,pa2)
+
+r=0
+endfunction
+
+
+     
+     
+  Equation de Hamilton - Jacobi - Bellman - Isaacs
+  Cette équation est une généralisation de l'équation de Hamilton - Jacobi - 
+  Bellman qui s'applique aux jeux différentiels à somme nulle avec 2 joueurs. 
+  L'équation est :
+  minuÎU maxvÎU'(f(t,x,u,v)+¶V(x,t)/¶t+¶V(x,t)/¶x.a(t,x,u,v)) = 0
+  ou minuÎU maxvÎU' H = 0
+  avec H = f(t,x,u,v)+¶V(x,t)/¶t+¶V(x,t)/¶x.a(t,x,u,v)
+  La différentiation donne l'équation :
+  dpi/dt = - ¶H/¶xi
+  avec pi=¶V(x,t)/¶x
+  ou en notation matricielle :
+  dp/dt = -(¶f/¶x)' p
+   
+  Exemple : le jeu du chauffeur homicide
+  Un chauffeur conduisant un véhicule circulaire de rayon b, de vitesse 
+  constante v1 = 1 avec un rayon de braquage limité, veut écraser un piéton qui 
+  vourt à la vitesse v2.
+  La commande du chauffeur est la déviation de sa trajectoire u1 avec la 
+  contrainte abs(u1)<=1. Celle du piéton est sa direction u2.
+  Dans le repère orthonormé centré sur le centre du véhicule avec l'axe x2 
+  dirigé vers le piéton, les équations sont :
+    dx1/dt = -u1 x2 + v2 sin u2 
+    dx2/dt = -1 + u1 x1 + v2 cos u2 
+  Le chauffeur gagne si x12 + x22 <= b2
+  Le hamiltonien est :
+  H = p1 (-u1 x2 + v2 sin u2) + p2 (-1 + u1 x1 + v2 cos u2)
+  L'équation d'Isaacs min u1 max u2 H = 0 donne les valeurs optimales suivantes 
+  des commandes :
+  u1 = signe(p1 x2 - p2 x1)
+  sin u2 = p1/(p12+p22), cos u2 = p2/(p12+p22)
+  et l'évolution des variables adjointes :
+    avec le hamiltonien : 
+      dp1/dt = - ¶H/¶x1 = - p2 u1 
+      dp2/dt = - ¶H/¶x2 = p1 u1 
+    avec le calcul matriciel : 
+    ¶f/¶x = 
+          (¶f1/¶x1 ¶f1/¶x2)
+          (¶f2/¶x1¶f2/¶x1)
+
+    =
+          (0 -u1)
+          (u1 0)
+
+    dp/dt = -(¶f/¶x)' p = 
+          (-p2 u1)
+          (p1 u1)
+
+         
+
+   
+   
+  Références
+    Fritz Reinhardt et Heinrich Soeder, Atlas des mathématiques, Le Livre de 
+    Poche 
+    L. Pontryaguine, V. Boltianski, R. Gamkrélidzé, E. Michtchenko, Théorie 
+    mathématique des processus optimaux, Editions de Moscou 
+    Jacques Gauvin, Leçons de programmation mathématiques, Editions de l'Ecole 
+    Polytechnique de Montréal 
+    Stéphane Mottelet, Optimisation non-linéaire, Université de Technologie de 
+    Compiègne - http://www.iro.umontreal.ca/~marcotte/Ift3512/Compiegne.pdf 
+    Jacques Thépot, Optimisation pour l'économie d'entreprise, Dalloz 
+     Numerical Solution of Hamilton-Jacobi-Bellman Equations by an Exponentially 
+    Fitted Finite Volume Method - http://www.cert.fr/colloques/bail2004/ 
+    fichiers/Authors/Richardson-Wang.pdf 
+    Steven M. LaValle, Planning Algorithms, University of Illinois - 
+    http://msl.cs.uiuc.edu/planning/ 
+    Jean-Christophe Culioli, Introduction à l'optimisation 
+    Emmanuel Trélat, Contrôle optimal, théorie et applications, Université 
+    Paris-Sud - http://www.math.u-psud.fr/~trelat/publications.html 
+    Maïtine Bergounioux, Optimisation et contrôle des systèmes linéaires, Dunod 
+    S. S. Sastry, Lectures in Optimal Control and Dynamical Games - 
+    http://www.vuse.vanderbilt.edu/ ~kootj/Class/2001/Spring/optimal.ps 
+    Game Theory 1999 - http://www.control.lth.se/education/game99/ 
+    Ekkehard Ernst, Mémoire majeur DEA économie des institutions : Jeux 
+    différentiels et analyse dynamique des institutions - 
+    http://pythie.cepremap.cnrs.fr/~ernst/pdfdoc/majeur_97.pdf 
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   

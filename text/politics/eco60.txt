@@ -1,0 +1,756 @@
+Modèle économique général
+
+économie de Robinson Crusoé
+
+choix
+- temps consacré à travailler pour produire
+ - des biens de consommation -> consommer ou stocker, détérioration, usure
+ - des outils de production
+
+ production
+  quantité produite dépend du temps de travail et de la quantité d'outils
+  détérioration des outils
+
+ utilité dépend de quantité de biens consommés ou utilisés et temps de loisir
+  généralisation de u=(c^(1-s)-1)/(1-s)
+  exemple : u(c,l)=(1-l)(c^(1-s))/(1-s)
+
+ micro-économie à 2 personnes
+  2 biens de consommation
+  troc
+  chacun met à disposition une certaine quantité de chaque bien en échange d'une certaine quantité de l'autre bien
+
+ fonction de production
+  production totale yk+yc = f(k,l) = (y0+k^a)l
+  l = temps de travail
+
+ simplification : consommation immédiate, pas de stockage
+  dk/dt = yk - D*k = f(k,l)-yc-D*k=f(k,l)-c-D*k
+  max intégrale de 0 à infini de u(c,l)*e^(-T*t)dt
+  H=u(c,l)*e^(-T*t)+M(f(k,l)-c-(n+D)*k)
+  
+
+Les acteurs de l'économie
+
+ salariés
+  part du temps consacrée à travailler = L
+  loisir = 1-L
+  salaire nominal w, réel wr=w/P, P=prix
+  utilité de cet argent : wL + E + R = C + S + X
+  salaire + emprunt + redistribution = consommation + épargne + impôt
+  fonction d'utilité à maximiser : U(1-L,w/P) ou U(1-L,c/P)
+   - dans le présent
+   - à l'avenir
+
+ fonctionnaire 
+  idem mais reçoit son salaire de l'Etat
+
+ chômeur
+  salaire = 0
+
+ entreprise
+  fonction de production Q=f(K,L), exemple K^a*L^(1-a)
+  fonction d'utilité
+
+ Etat
+  impôt
+  redistribution aux citoyens
+  paiement fonctionnaires
+
+ 
+Circuit économique
+ travail L de salarié à entreprise
+ salaire w de entreprise à salarié
+ épargne de salarié à banque
+ emprunt de banque à salarié
+ paiement de salarié à commerçant
+ bien de commerçant à salarié
+ paiement de commerçant à entreprise
+ bien de entreprise à commerçant
+ impôt de salarié à Etat
+ redistribution de Etat à salarié
+ redistribution de Etat à chômeur
+ salaire de Etat à fonctionnaire
+ impôt de fonctionnaire à Etat
+ redistribution de Etat à fonctionnaire
+
+ redistribution = impôt négatif
+ emprunt = épargne négative
+
+ déterminations
+  ménage : revenu -> consommation, épargne
+           taux -> consommation, épargne
+  entreprise : f -> K,L
+               offre d'emploi
+  achat : quantité achetée en fontion du prix (ménage)
+          quantité produite en fonction du prix (entreprise)
+
+ I-S=X-M
+
+
+Fonction de production f(K,L)=K^a*L^(1-a)
+fonction d'utilité de l'entreprise
+ max F(K,L)-r*K-w*L
+Ramsey Yt=Ct+(Kt+1-(1-d)Kt)
+fonction d'utilité Ut(L,C) ou Ut(L,w)
+prix : loi de l'offre et de la demande
+ consommation : demande fonction du prix
+ entreprise : offre fonction du prix
+acteurs, échanges, variables exogènes et endogènes, équations, solution
+IS-LM : Y=C+I+G, I-S=X-M ?
+décision d'épargner ou d'emprunter en fonction du taux d'intérêt
+possibilité : de pas différentier ménages et entreprises, acteurs qui produisent et consomment
+ou
+distinction : en tant que consommateur ou producteur
+p 77 Granier Barthélémy
+ OL(w,P), y(L), y'=dy/dL-w/P, DL(w,P)
+ S(i)=I(i), M0=kPy
+IS-LM
+ Y=C+I+G+X-M
+  C=c(Y-Tx+Tr)+C0
+  I=-br+aY+I0
+ L1+L2=M
+  L1=l1Y+l0
+  L2=-l2r
+ (X-M)+K=0
+  X=X0
+  M=mY+M0
+  X=xY'-x'T+X0 (T=taux de change)
+  M=mY+m'T+M0
+  K=U(r-r')-K0
+
+
+entreprise
+fonction de production F(K,L)
+propose emplois-salaires
+produit
+ - choix biens à produire
+ - choix prix de vente
+
+Etat
+ prélève impôts
+ redistribue
+ paie les fonctionnaires
+
+ ménage (employé, fonctionnaire, chômeur)
+  possibilités de travail-salaire
+  choisit en fonction du salaire et temps de travail
+   -> salaire
+    choisit
+     dépenser une partie
+     épargner une partie
+     emprunter
+    argent disponible
+     pour consommer
+    répartition entre différents biens
+    max utilité U = intégrale de u(t)*e^(-T*t)dt
+
+
+Eléments fixes
+ fonctions de production Fi(K,L) pour différents types de biens ou services
+ fonction d'utilité instantanée ut(L,C) (ou ut(L,w))
+ décision du gouvernement : taux impôt, redistribution, budget de l'Etat
+ fixé ou endogène : prix, taux d'intérêt
+ endogène : Y
+ 
+ théorie dynamique
+  choix à chaque instant :
+   chaque entreprise
+    - propose un certain nombre d'emplois avec un certain salaire
+       (en tenant compte de la règlementation)
+    - produit des biens
+    - fixe le prix de vente
+    - met en vente
+    - répartit l'argent
+     - impôts (fixés par la loi)
+     - salaires
+     - distribution aux actionnaires
+     - investissement
+    critère : maximiser le profit
+   chaque consommateur
+    - en fonction des offres d'emploi, garde son emploi ou change
+    - travaille et gagne son salaire
+    - le répartit en consommation + épargne + impôt
+    - éventuellement emprunte
+    critère : max utilité
+   l'Etat
+    - fixe le budget
+    - fixe les taux d'imposition
+     - sociétés 
+     - revenu
+     - fortune
+     - TVA
+    - décide la redistribution
+    - éventuellement fixe ou encadre taux d'intérêt, prix, salaire
+    critère : max somme utilités ou utilité min ou autre combinaison
+
+    
+Equations
+ à l'instant t
+  l'Etat fixe les limites de
+   taux d'intérêt
+   prix
+   salaire
+  son budget
+  le taux d'imposition et redistribution
+ chaque entreprise calcule le choix qui maximise son profit
+  intégrale de 0 à infini de p(t)*e^(-T*t)dt
+  profit = somme sur biens de prix * quantité vendue - somme sur matières premières de prix - somme impôts - somme sur employés de salaire - somme sur actionnaires de dividende
+ consommateur
+  max U = intégrale de 0 à infini de ut(L,C)*e^(-T*t)dt
+
+
+Jeu différentiel
+ - état
+ - commandes
+ - objectifs
+ - règles
+
+simulation
+
+équilibre salaire - temps de travail
+
+théorie à l'image du monde : simple dans ses fondements, complexe dans ses développements comme les théories physiques, l'ensemble de Mandelbrot
+
+La structure de la société et de l'économie n'est pas figée dans les règles du jeu, elle émerge de celles-ci et des différences entre les individus (compétences, répartition, préférences...) 
+
+ensemble d'individus
+ - possédant des biens
+ - produisant des biens et fournissant des services
+ - consommant biens et services
+ - échangeant biens et services
+avec productivité dépendant de ce qui est produit, du niveau de compétence (cf Lucas) et des biens utilisés (fonction de production)
+
+Les biens ont une utilité de consommation et une utilité de production (augmentation de la productivité)
+
+violence : "service" à utilité négative
+
+contrats :
+ - emprunts
+ - trusts
+ - contrat social (Etat) : "si tu fais ce que je te dis je n'exercerai pas de violence contre toi"
+
+émergence :
+ - du capitalisme (propriété biens de production, travail contre salaire)
+ - de la croissance (cf Ramsey)
+ - de l'Etat : groupe de personnes revendiquant le monopole de la violence
+   contrat social 
+ - des Etats
+ - de la criminalité
+ - des guerres
+
+dépréciation des biens
+
+commandes : achat biens ou services
+
+lois restreignant les possibilités d'échange
+
+élections
+
+arbitrage consommation - investissement
+
+
+processus de transformation :
+ - dégradation
+ - production
+ - utilisation
+ - consommation
+
+panier de biens
+
+- discontinu : nombre fini n de types de biens
+   panier = vecteur q de R^n
+   processus représenté par matrice A
+   q -> A q en 1 unité de temps
+   q -> A^t q ou exp(t * log(A)) q en t unités de temps
+
+   état = matrice q_ij = quantité de bien j détenue par individu i
+   évolution
+    - dépréciation : dq_ij/dt += r_j < 0
+    - échanges : d_ijk = quantité de k que i donne à j
+      dq_ik/dt += -d_ijk
+      dq_jk/dt += d_ijk
+   production
+    i décide de produire du bien j
+    avec vecteur d'utilisation u = (u1, ... , up)
+    = quantité de biens nécessairement <= quantité détenue utilisée pour la production
+    fonction de production du bien j : f_j(u) 
+     dépend aussi des compétences de ceux qui produisent
+   consommation c_ij = quantité de bien j consommée par i
+    dq_ij/dt += -c_ij
+    utilité
+
+
+- continu : n caractéristiques
+   panier = distribution de R^n
+
+procédé ou technique de production
+ - vecteur de production : pour chaque bien, quantité produite - quantité consommée
+ - vecteur des quantités requises de chaque bien (-)
+exemple :
+ - consommation de 3 unités de bien 1
+ - production de 5 unités de bien 2
+ - consommation d'1 unité de bien 3
+ - possession de 8 unités de bien 3
+vecteur de production : (-3, 5, -1)
+vecteur de quantités requises : (-3, 0, -8)
+composition de procédés
+cas continu
+
+Modèle discret à 1 catégorie d'individus (économie de Robinson Crusoe ou d'une société de clones)
+biens B1 ... Bn en quantités K1 ... Kn
+vecteur K=(K1,... Kn) panier de biens
+bien privilégié K1 = intégrale de l'utilité à maximiser
+particularité : K1 peut devenir <0
+à t=0 panier de bien K(0) donné
+ensemble de techniques de production T1...Tp
+une technique caractérisée par (Pi ou) Yi = (Yi1 ... Yin)
+avec Yij = dKj/dt avec technique i
+ Yij > 0 : production
+ Yij < 0 : consommation
+biens requis Ri = (Ri1...Rin)
+avec Rij = quantité de bien j requis par la technique i
+combinaison linéaire de techniques
+loisir = technique produisant de l'utilité (B1)
+L(t) = temps disponible * nombre de personnes
+
+Le problème de Robinson Crusoe ou d'une société de clones à économie planifiée
+répartir L en L = a1 + ... + an 
+temps consacrés aux différentes techniques de production
+objectif : max intégrale de 0 à infini de u * e^(-T*t)dt
+ou max lim t->oo K1(t)
+avec K1(t) = U*e^(-T*t)
+ou modèle avec incertitude et probabilité de survie
+condition : Kj(t) >= somme sur i de ai(t) * Rij
+évolution du panier de biens :
+ dKj/dt = somme sur i de ai(t) * Yij - Dj * Kj
+ avec Dj = taux de dépréciation du bien j
+
+modèle avec plusieurs catégories ou classes d'individus C1...Cq 
+Kmj = quantité de Bj détenue par Cm
+Ymij = flux de Bj produit par travailleur de Cm utilisant la technique Ti
+Rmij = quantité de Bj requise pour la technique Ti utilisée par travailleur de catégorie Cm
+modèle avec planificateur central :
+problème du planificateur :
+ max intégrale de 0 à infini de somme sur m de Um * e^(-Tm*t)dt
+ou
+ max lim t->oo somme sur m de Km1
+évolution des paniers de biens
+ dKmj/dt = somme sur i de ami(t) * Ymij - Dj * Kmj
+
+production et dépréciation
+cas discontinu : 
+K(t+1) = Y(t) + E(t) * K(t) (* = produit matriciel)
+ = Y(t) + K(t) + D(t) * K(t) avec D = E - I
+cas continu :
+dK/dt = Y + D * K en notation matricielle
+ou dKj/dt = Yj + somme sur h de Djh * Kh
+
+échange : Xij = quantité de bien j reçue par classe i 
+avec somme sur i de Xij = 0
+cas continu : Xij = flux
+
+Loi d'évolution des paniers de biens :
+dKmj(t)/dt = somme sur i de ( ami(t) * ( Ymij(t) + somme sur h de Dmh(t) * Ymh(t))) + Xmh(t)
+
+contraintes :
+pour tout j, somme sur m de Xmj(t) = 0
+pour tout m, somme sur i de ami(t) = Lm(t)
+pour tout m, j, Kmj(t) + somme sur i de ami(t)*Rmij(t) >= 0
+
+commandes :
+ami(t)
+Xmj(t)
+
+technique paramétrée par vecteur V
+pseudo-biens compétence, commaissance
+
+jeu différentiel
+1 joueur par classe
+ou jeu océanique
+1 classe par individu ?
+problème Li
+augmentation du nombre de classes ?
+
+possibilité de travailler avec machine d'autrui, matière première d'autrui
+location du temps de travail, de machines
+
+temps considéré comme un bien créé continuellement
+avantage : location de temps de travail traitée comme échange de bien temps contre bien monnaie
+problème : différence travail agréable ou pénible
+compétences, connaissances : biens particuliers liés au temps pour les échanges
+
+location de temps de travail, de machines
+ou
+société sans propriété
+émergence de la propriété (Etat, violence...)
+
+jeux avec contrats
+
+violence : action qui diminue le stock (l'intégrale) d'utilité d'autrui
+échange : action de transfert d'une quantité de bien
+Ymij = flux de bien Bj de m produit par classe m avec action i
+généralisation :
+Ymm'ij = flux de bien Bj de m' produit par classe m avec action i
+exemples :
+don : m donne à m' quantité q de bien j par action i:
+Ymm'ij = q et Ymmij = -q
+vol = dobn négatif
+Ymm'ij = -q et Ymmij = q
+violence :
+Ymm'i1 = -q
+
+loi d'évolution
+dKmj(t)/dt = somme sur m' de somme sur i de (am'i(t) * (Ym'mij(t) + somme sur h de Dmih(t) * Kmh(t))
+
+services :
+- production par autrui (objet concret ou bien immatériel)
+- augmentation de connaissances, compétences
+
+à chaque individu associer un vecteur de caractéristiques : connaissances et compétences pour différentes activités, goûts (=compétence à produire de l'utilité)
+
+biens : plusieurs possibilités
+- nombre fini de biens, quantité continue, paniers de biens (collectif et/ou privé) = vecteur de quantités
+- nombre fini d'objets, à chaque objet associer un vecteur de caractéristiques, panier = nuage de points
+- panier = distribution sur R^n
+
+appartenance
+- biens collectifs, propriété privée
+
+etat:
+pour chacun des n individus
+- vecteur de p caractéristiques 
+- panier de q biens, bien 1 = intégrale utilité dt
+action (technique de production) m -> Ymk(C,B) = dKk/dt
+actiobn dirigée sur autre individu -> Y'
+dKik(t)/dt = somme sur m de (aim(t)*Ymk(t,Ci,Bi) + somme sur j qui agissent sur i de ajm(t)*Y'mk(t,Cj,Bj)) + somme sur h de (Dkh * Kih)
+ou
+dKik(t)/dt = somme sur m de (aim(t)*Fmk(t,Ci,Ki) + somme sur j qui agissent sur i de ajm(t)*F'mk(t,Cj,Kj)) + somme sur h de (Dkh * Kih)
+avec Ki = [Ki1;...;Kin] panier de biens de l'individu i
+
+version vectorielle du modèle de Ramsey
+dk/dt = f(k) - c - (nI+D) k
+max intégrale de u(c) e^(-T*t)dt
+avec k,f,c vecteurs et D matrice
+
+considérer la consommation comme productiobn de bien utilité
+fonction de production g(k) = -c+u(c)*[1;0;...0]
+dk/dt = f(k) + g(k) - (nI+D) k
+
+problème avec le modèle de Ramsey : ne tient pas compte du fait qu'on doit partager son temps entre travail et loisir-consommation
+
+dk/dt = a*f(k) + b*g(k) - (nI+D) k
+similaire à dKik/dt = somme sur m de aim(t) * Fmk(t,Ci,Ki)
+
+généralisation Ramsey-Lucas-Romer
+commandes :
+ c = consommation
+ u = temps de travail, 1-u = temps de formation (loisir ???)
+ ha = nombre de chercheurs
+max intégrale de U(c)*e^(-T*t)dt
+évolution:
+ capital: dk/dt = f(k) * (a*u*(h-ha))^(1-A) * E^-A -e^(-L*t)*c + (r-n-D-L)*k
+ potentiel humain (Lucas): dh/dt = b * (1-u) * h
+ savoir (Romer): da/dt = R * ha * a
+
+généralisation vectorielle du modèle "Ramsey-Lucas-Romer"
+
+tableau d'entrées-sorties
+n branches d'activité
+
+x11 x1j x1n  F1 X1
+xi1 xij xin  Fi Xi
+xn1 xnj xnn  Fn Xn
+
+Z1  Zj  Zn
+X1  Xj  Xn
+
+xij = consommation intermédiaire de la branche j en produits i
+Zj = valeur ajoutée de la branche j
+Xj = somme des ressources de la branche j (production)
+Fi = demande finale en produits i
+
+somme sur j de xij + Fi = Xi
+somme sur i de xij + Zj = Xj
+
+coefficients techniques de production
+quantité de produit i nécessaire pour produire 1 unité de produit j
+aij = xij / Xj
+X = AX + F
+X = (I-A)^-1 F
+
+pour produire un panier X on a besoin d'un panier AX
+
+modèle dynamique :
+X(t) = AX(t+T) + F(t+T)
+pour produire X(t+T) et consommer F(t+T) on a besoin de AX(t+T) + F(t+T)
+
+I-A = matrice des ensembles de productions en vecteurs colonnes
+normaliser par rapport au temps de travail
+quantité nécessaire ?
+partage
+
+(I-A)V = dK avec V = vecteur de répartition du temps de travail entre techniques de production
+cf (I-A)X = F
+
+biens requis : substituabilité
+exemple : technique nécessitant par unité de travail :
+ - 3 unités de bien 1, chaque unité de bien 1 pouvant être remplacée par 2 unités de bien 2
+ - et 4 unités de bien 3
+[2,1,0;0,0,1] * [K1;K2;K3] >= [6;4]
+ou
+[1/3,1/6,0;0,0,1/4] * [K1;K2;K3] >= [1;1]
+
+ou combinaison linéaire de techniques
+A [1/3,0,0; 0,0,1/4] -> requis [3,0,4] 
+B [0,1/6,0; 0,0,1/4] -> requis [0,6,4]
+produit -> [1;1]
+
+continuité de techniques
+ techniques paramétrées par vecteur a
+distribution de techniques
+ fi(a) -> vecteur de biens requis et vecteur de production
+lien avec y=fi(k)
+a=k
+y=f(a) -> requis a(=k), prod y=f(k)=f(a)
+tech param generalisation de f(k)
+reciproque ? def de f(k) en fonction de f(a)
+plusieurs fonction -> meilleure (courbe la plus en bas à gauche)
+
+distribution
+g(x,y)=integrale de -oo à x de intégrale de -oo à y de f(x,y) dy dx
+f(x,y) = d/dx d/dy g(x,y)
+
+Modèle simplifié :
+simplifications
+- 1 acteur
+- caractéristiques de l'acteur ignorées
+- pas de paramétrage des techniques
+cadre :
+- n biens, panier = vecteur de R^n
+évolution spontanée et production
+évolution spontanée : 
+chaque unité de bien i produit spontanément Dij unités de bien j
+D = matrice de dépréciation ou d'évolution spontanée
+production : plusieurs techniques
+technique i : dKj/dt = Yij = production de bien j par la technique i
+quantités de biens requises Rij = quantité de bien j requise par la technique i
+lien avec TES : branche=technique mais TES plus restrictif: chaque technique ne produit qu'1 bien
+équation d'évolution :
+dKi(t)/dt = somme sur j de aj(t) Yji + somme sur j de Kj(t) Dji
+condition : Ki >= somme sur j de aj Rji
+Kj(0), Yji, Dji donnés (exogènes)
+commande : aj = part du temps consacré à la technique j
+objectif : maximiser le stock d'utilité final U.K(T) (produit scalaire = somme sur i de Ui Ki)
+ou lim t->oo U.K(t)
+forme matricielle :
+dK/dt = Y'A + D'K
+K >= R'A
+
+extensions :
+- caractéristiques des individus : 
+ on peut les considérer comme des biens
+ fonction de production F(K,L)
+  F = vecteur (panier de biens produits par unité de temps)
+  K = vecteur (panier de biens)
+  L = temps de travail, scalaire ou vecteur si on distingue plusieurs catégories de travailleurs
+données exogènes : F, K(0), LT = temps de travail total disponible, D
+commande : L
+dynamique : (pour bien i) 
+ dKi/dt = somme sur j de Fji(K,Lj) + somme sur j de ( Kj(t) Dji )
+ Fji(K,L) = quantité de bien i produit par technique j avec quantité de biens K et temps de travail L
+contrainte : somme sur j de Lj = LT
+ou avec L vectoriel : somme sur j de Lij = LTi
+avec Lij = temps de travail de la catégorie de travailleurs i consacré à la technique j
+
+ 
+Modèle de Ramsey avec plusieurs biens
+
+dki/dt = fi(k) - ci - n*ki
+max U = intégrale de 0 à infini de u(c)*e^(-T*t)dt
+H = U(c)*e^(-T*t) + somme sur i de pi * (fi(k) - ci - n*ki)
+@H/@ci = 0 = u'i(c)*e^(-T*t) - pi 
+avec u'i(c) = @u(c)/@ci
+pi = u'i(c)*e^(-T*t)
+dpi/dt = -@H/@ki = -@/@ki somme sur j de (pj*(fj(k)-cj-n*kj))
+dpi/dt = - somme sur j de pj * f'ji(k) + pi*n
+avec f'ji(k) = @fj(k)/@ki
+dpi/dt = d/dt(u'i(c)*e^(-T*t)) 
+ = - somme sur j de (u'j(c) * f'ji(k)) + u'i(c)*n
+dui(c)/dt = somme sur j de u''ij(c) * dcj/dt
+d/dt(u'i(c)*e^(-T*t)) = du'(c)/dt * e^(-T*t) - u'i(c)*T*e^(-T*t)
+somme sur j de (u''ij(c)*dcj/dt*e^(-T*t)) - u'i(c)*T*e^(-T*t) 
+ = - somme sur j de (u'j(c) * f'ij(k)) + u'i(c)*n
+dcj/dt = (- somme sur j de (u'j(c) * f'ji(k) + u'i(c) * (n+T*e^(-T*t)))
+ / somme sur j de (u''ij(c)*e^(-T*t)
+conditions de traversée :
+ pour tout i, lim t->infini ki(t)*pi(t) = 0
+
+avec plusieurs techniques de production :
+dki/dt = somme sur j de aj*fij(k) - ci - somme sur j de Dij*kj
+max U = intégrale de 0 à infini de u(c) * e^(-T*t) dt
+commandes : c et a
+H = u(c)*e^(-T*t) + somme sur i de pi * (somme sur j de aj*fji(k)-ci-somme sur j de Dij*kj)
+@H/@ci = 0 = u'i(c)*e^(-T*t) + somme sur i de pi * (somme sur j de aj*fji(k) - ci - somme sur j de Dij*kj)
+@H/@aj = 0 = somme sur i de (pi * fji(k))
+dpi/dt = - @H/@ki
+pour tout i, lim t->infini ki(t)*pi(t) = 0
+
+
+Modèle simplifié à 2 acteurs
+
+Le capitaliste possède l'outil de production qui permet de produire du bien de consommation et de l'outil de production (ou un seul bien utilisable à la fois comme outil de production et comme bien de consommation).
+Il emploie un travailleur qui travaille pendant une certaine proportion de son temps (l) en étant rémunéré par une certaine quantité de bien de consommation (ou de bien unique).
+Le capitaliste répartit la production restant (r) pour lui-même entre sa consommation (c) (bien de consommation ou part du bien unique consommée) et son investissement (i) (bien de production ou part du bien unique investie).
+Le temps de travail et le salaire résultent d'un équilibre, point d'intersection entre la courbe du capitaliste lc(w) = temps de travail acheté en fonction du salaire w et celle du travailleur lw(w) = temps de travail offert en fonction du salaire w :
+ l* = lc(w*) = lw(w*)
+
+Modèle avec bien unique :
+
+L'état est le capital k du capitaliste.
+
+L'objectif du capitaliste est de maximiser l'intégrale de 0 à l'infini de e^(-T*t)Uc(c)dt.
+L'objectif du travailleur est de maximiser l'intégrale de 0 à l'infini de e^(-T*t)Uw(w,l)dt.
+
+Les commandes du capitalistes sont la fonction lc et sa consommation c.
+La commande du travailleur est la fonction lw.
+
+L'évolution de l'état (le capital) est déterminée à partir des commandes :
+ - détermination du salaire et du temps de travail d'équilibre :
+	w = we(lc,lw)
+ 	l = le(lc,lw)
+ - détermination de la production :
+	q = f(k,l) = A * k^a * l^(1-a) par exemple
+ - évolution du capital : 	
+	dk/dt = q - n*k - c - w
+
+Hamiltoniens :
+- capitaliste : Hc = e^(-T*t)*Uc(c) + pc * (f(k,l) - n*k - c - w)
+	= e^(-T*t)*Uc(c) + pc * (f(k,le(lc,lw)) - n*k - c - we(lc,lw)))
+	= e^(-T*t)*Uc(c) + pc * (A*k^a*le(lc,lw)^(1-a) - n*k - c - we(lc,lw)))
+- travailleur : Hw = e^(-T*t)*Uw(w) + pw * (f(k,l) - n*k - c - w)
+	= e^(-T*t)*Uw(w) + pw * (f(k,le(lc,lw)) - n*k - c - we(lc,lw)))
+	= e^(-T*t)*Uw(w) + pw * (A*k^a*le(lc,lw)^(1-a) - n*k - c - we(lc,lw)))
+
+
+Conditions d'optimalité :
+
+ dpc/dt = -@Hc/@k = pc * (A*a*k^(a-1) - n)
+ dpw/dt = -@Hw/@k = pw * (A*a*k^(a-1) - n)
+
+ @Hc/@c = 0 = -pc => pc = 0 
+ @Hc/@lc(w) = 0
+ @Hc/@lw(w) = 0
+
+ 	
+cas particulier : modèle de Shimomura (cf mémoire majeur d'Ekkehard Ernst) :
+ commande des capitalistes : c
+ commande des salariés : w
+ les salariés consacrent tout leur temps au travail
+
+
+Jeu différentiel
+
+paramètres: A, a, s, T
+
+généralisations :
+ - plusieurs techniques de production
+ - plusieurs acteurs
+ - échanges
+
+version simplifiée:
+ acteurs : 1 capitaliste et 1 travailleur
+ état : k = capital = quantité d'outil de production détenue par le capitaliste
+ commandes :
+  - du capitaliste : 
+     - lc0 et lc1 ou lc0 et wc0 (forme symétrique) = paramètres de la fonction déterminant le temps de travail acheté en fonction du salaire : l = lc(w) = lc0 + lc1 * w ou lc0 - lc0/wc0 * w
+     - c = consommation
+  - du travailleur :
+   - lw0 et lw1 ou lw0 et ww0 = paramètres de la fonction d'offre de travail en fonction du salaire : l = lw(w) = lw0 + lw1 * w ou l = lw0 - lw0/ww0 * w
+
+Détermination de l et w d'équilibre
+ lc0 + lc1 * w = lw0 + lw1 * w
+ (lc0-lw0) + (lc1-lw1)*w = 0
+ w = (lw0-lc0)/(lc1-lw1)
+ l = lc0 + lc1 * w = lw0 + lw1 * w
+ou
+ forme symétrique :
+ l/lw0 + w/ww0 = 1 et l/lc0 + w/wc0 = 1
+ w = (lc0-lw0)/(lc0/wc0 - lw0/ww0)
+ écriture matricielle :
+ ( 1/lw0 1/ww0 ) ( l ) = ( 1 )
+ ( 1/lc0 1/wc0 ) ( w )   ( 1 )
+
+ ( l ) = ( 1/lw0 1/ww0 ) -1 ( 1 )
+ ( w )   ( 1/lc0 1/wc0 )    ( 1 )
+
+Production : loi de Cobb - Douglas :
+ q = f(k,l) = A * k^a * l^(1-a)
+ Le capitaliste répartit q en dk/dt, c et w
+
+Loi d'évolution de l'état :
+ dk/dt ) f(k,l) - w - c = A * k^a * l^(1-a) - w - c
+ avec w = (lw0-lc0)/(lc1-lw1)
+ et l = lc0 + lc1 * w = lw0 + lw1 * w
+
+Objectif
+ - du capitaliste : max intégrale de 0 à infini de e^(-T*t) * u(c) dt
+ - du travailleur : max intégrale de 0 à infini de e^(-T*t) * u(w) dt
+avec u(c) = (c^(1-s)-1)/(1-s)
+
+Résolution : hamiltoniens
+
+Hc = e^(-T*t)*u(c) + pc * (A*k^a*l(lc0,lc1,lw0,lw1)^(1-a) - w(lc0,lc1,lw0,lw1) - c)
+Hw = e^(-T*t)*u(w) + pw * (A*k^a*l(lc0,lc1,lw0,lw1)^(1-a) - w(lc0,lc1,lw0,lw1) - c)
+
+évolution des variables adjointes :
+dpc/dt = -@Hc/@k = - pc * @f/@k = -pc*A*a*k^(a-1)*l(lc0,lc1,lw0,lw1)
+dpw/dt = -@Hw/@k = - pw * @f/@k = -pw*A*a*k^(a-1)*l(lc0,lc1,lw0,lw1)
+
+Les valeurs des commandes correspondent à un extrémum de Hc et Hw :
+ capitaliste :
+  @Hc/@c = 0
+  @Hc/@lc0 = 0
+  @Hc/@lc1 = 0
+ travailleur :
+  @Hw/@lw0 = 0
+  @Hw/@lw1 = 0
+
+ 
+THEORIE DES ECHANGES
+
+théorie économique :
+ - théorie de la production, de la consommation et de l'épargne : Ramsey
+ - théorie des échanges : microéconomie, équilibre général
+
+Chaque individu possède une certaine dotation représentée par un vecteur x = (x1 ... xn) des quantités des différents biens possédés.
+Représentation graphique : point dans R^n = espace des dotations
+Fonction d'utilité de l'individu i : u = Ui(x) (champ scalaire sur l'espace des dotations)
+Pour l'individu i l'ensemble des dotations x' préférables est la région de l'espace des dotations où Ui(x') > Ui(x)
+Les échanges acceptables pour l'individu i sont représentés par la région préférable translatée de l'opposé de la dotation initiale (les vecteurs dotation initiale -> nouvelle dotation).
+Règle : si un échange est acceptable, tout échange plus avantageux est acceptable. Si un point est dans la région acceptable, tout point plus à droite ou plus haut y est également.
+
+Confrontation des échanges acceptables :
+Cas de 2 individus :
+En superposant les régions acceptables de façon inversée l'intersection (en forme de fuseau) donne les échanges possibles.
+Boîte d'Edgeworth :
+échange optimal tel que les courbes de même utilité des 2 individus ont la même tangente et cette tangente passe par la dotation initiale.
+
+Rapport avec le diagramme offre-demande :
+Le diagramme offre-demande associe x1/x2 en abcisse à x2 en ordonnée.
+Le triangle situé au-dessous des courbes (ou droites) ne contient que des échanges acceptables.
+La pointe supérieure est l'échange optimal.
+Si on représente cette figure sur un diagramme avec x1 (= x1/x2 * x2) en abcisse et x2 en ordonnée, et en inversant le signe de x1, on obtient un fuseau d'échanges acceptables.
+A partir des courbes d'utilité, la quantité optimale échangée pour un prix donné est obtenue en traçant la droite de pente associée au prix et passant par la dotation initiale, et de déterminer le point de tangence de cette droite avec une courbe d'utilité constante tangente à cette droite.
+En faisant varier le prix, l'échange optimal décrit une courbe. Les courbes des 2 individus forment le même fuseau que celui obtenu à partir du diagramme offre-demande. Ce fuseau est inclus dans le fuseau intersection des régions d'échanges acceptables.
+
+Echange avec le plus offrant (cf vente aux enchères) :
+Un des individus (le vendeur) propose sa fonction d'utilité qui détermine les échanges acceptables et l'ordre de préférence.
+Les autres individus (acheteurs) proposent des échanges (par exemple avec leur propre fonction d'utilité).
+(remarque : inversion vendeur-acheteur dans le cas d'un acheteur qui achète au meilleur prix)
+On détermine l'échange optimal avec 1 individu par le point de tangence entre la courbe d'utilité constante de l'acheteur correspondant à l'utilité actuelle et la courbe d'utilité la plus élevée possible du vendeur.
+On détermine ainsi les échanges optimaux pour tous les acheteurs.
+L'échange réalisé est le plus avantageux pour le vendeur.
+Jeu différentiel : x -> dx/dt
+achat et vente simultanés : chaque individu à la fois acheteur et vendeur.
+

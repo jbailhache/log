@@ -1,0 +1,1083 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Raspberry Pi</title>
+</head>
+<body>
+<h2>Raspberry Pi</h2>
+<p>
+</p><h3>Configuration réseau</h3>
+<p>
+/etc/network/interfaces
+</p><div style="color: navy; background-color: aqua;"><pre>auto lo
+iface lo inet loopback
+
+### port ethernet de la carte
+### adresse fixe pour réseau local
+# iface eth0 inet static
+# address 192.168.1.20
+# netmask 255.255.255.0
+
+### ou adresse dhcp pour connexion a box internet
+auto eth0
+allow-hotplug eth0
+iface eth0 inet dhcp
+
+### port ethernet USB
+iface eth1 inet dhcp
+
+### wifi
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+wpa-ssid "myssid"
+wpa-psk "mypass"
+
+allow-hotplug ppp0
+iface ppp0 inet dhcp
+
+</pre></div>
+
+Ajouter les DNS Google :
+
+<div style="color: lime; background-color: black;"><pre>$ sudo sh -c "(echo nameserver 8.8.8.8 ; echo nameserver 8.8.4.4) &gt;&gt; /etc/resolv.conf"
+</pre></div>
+
+Pour se connecter par Wifi :
+
+<div style="color: lime; background-color: black;"><pre>$ sudo ip route replace default via 192?168.43.1 dev wlan0
+$ sudo ifdown wlan0
+$ sudo ifup wlan0
+</pre></div>
+
+Il peut arriver que la connexion Wifi ne fonctionne pas, la connexion est établie mais aucune information (ping, internet...) ne passe. Dans ce cas débranchez le dongle Wifi, redémarrez le Raspberry Pi et rebranchez le dongle wifi après le redémarrage terminé.
+
+<p>
+</p><h3>Serveur VNC</h3>
+<p>
+</p><div style="color: lime; background-color: black;"><pre>$ sudo apt-get install tightvncserver
+</pre></div>
+
+Démarrage automatique : /etc/init.d/vncboot
+
+<div style="color: navy; background-color: aqua;"><pre>#!/bin/sh
+### BEGIN INIT INFO
+# Provides: vncboot
+# Required-Start: $remote_fs $syslog
+# Required-Stop: $remote_fs $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Start VNC server at boot time
+# Description: Start VNC server at boot time.
+### END INIT INFO
+
+USER=root
+HOME=/root
+export USER HOME
+
+VNCUSER='pi'
+eval cd ~$VNCUSER
+
+case "$1" in
+
+ start)
+  echo "Starting VNC Server for $VNCUSER"
+  su $VNCUSER -c '/usr/bin/tightvncserver :1'
+  ;;
+
+ stop)
+  echo "Stopping VNC Server"
+  # /usr/bin/tightvncserver -kill :1
+  pkill Xtightvnc
+  ;;
+
+ *)
+  echo "Usage: /etc/init.d/vncboot {start|stop}"
+  exit 1
+  ;;
+
+esac
+
+exit 0
+</pre></div>
+
+<div style="color: lime; background-color: black;"><pre>$ sudo chmod 755 /etc/init.d/vncboot
+$ sudo update-rc.d vncboot defaults
+</pre></div>
+<br>
+<p>
+</p><h3>Ouverture automatique d'une session LXDE au démarrage</h3>
+<p>
+
+</p><div style="color: lime; background-color: black;"><pre>$ sudo nano /etc/inittab
+</pre></div>
+Remplacer
+<div style="color: navy; background-color: aqua;"><pre>1:2345:respawn:/sbin/getty --noclear 38400 tty1
+</pre></div>
+par
+<div style="color: navy; background-color: aqua;"><pre># 1:2345:respawn:/sbin/getty --noclear 38400 tty1
+1:2345:respawn:/bin/login -f pi tty1 /dev/tty1 2&gt;&amp;1
+</pre></div>
+
+<div style="color: lime; background-color: black;"><pre>$ sudo raspi-config
+</pre></div>
+Sélectionner "Enable Boot to Desktop/Scratch" puis "Desktop Login at user pi at the Graphical Desktop".
+
+<br>
+<p>
+</p><h3>Prendre une photo avec la caméra</h3>
+<p>
+Raspberry Pi camera board :
+</p><div style="color: lime; background-color: black;"><pre>$ raspistill -o cam.jpg
+</pre></div>
+Caméra USB
+<div style="color: lime; background-color: black;"><pre>$ fswebcam cam.jpg
+</pre></div>
+<br>
+
+<p>
+</p><h3>Modem SIM900</h3>
+<p>
+<a href="http://www.cooking-hacks.com/documentation/tutorials/raspberry-pi-gprs-gsm-quadband-sim900">http://www.cooking-hacks.com/documentation/tutorials/raspberry-pi-gprs-gsm-quadband-sim900</a>
+</p><p>
+Connexion au modem :
+</p><div style="color: lime; background-color: black;"><pre>$ minicom -b 115200 -D /dev/ttyAMA0
+</pre></div>
+/dev/ttyAMA0 correspond à l'UART, le port série du Raspberry Pi, pins GPIO14 (TXD) et GPIO15 (RXD).
+
+<h4>Commandes</h4>
+<pre>Command			Response	Description
+------- 		--------        -----------
+
+ATD*********;	 			********* is the number to call.
+ATA			OK		Answer an incoming call.
+ATH			OK		Cancel voice calls.
+
+AT+CMGF=		OK		Specifies the input and output format of the short messages. 0 for PDU mode and 1 for text mode.
+AT+CMGS	 				Sends a message.
+AT+CMGR=*	 			Reads a message. * is the number of the message.
+
+AT+SAPBR		OK		Configures GPRS profile.
+AT+FTPCID=1		OK		Selects profile 1 for FTP.
+AT+FTPSERV=”****” 	OK		Sets FTP server domain name or IP address. **** is the domain name or the IP.
+AT+FTPPORT=***		OK		Sets FTP server port. *** is the port.
+AT+FTPUN=”***”		OK		Sets user name for FTP server access. *** is the user name.
+AT+FTPPW=”***”		OK		Sets password for FTP server access. *** is the password.
+AT+FTPPUTNAME="****"	OK		Sets destiny name for the file.*** is the name of the file.
+AT+FTPPUTPATH="****"	OK		Sets destiny file path. *** is the path of the file.
+AT+FTPPUT		OK		Use to put a file into the FTP server.
+AT+FTPGETNAME="****"	OK		Sets origin name for the file.*** is the name of the file.
+AT+FTPGETPATH="****"	OK		Sets origin file path. *** is the path of the file.
+AT+FTPGET	 			Use to get a file into the FTP server.
+
+AT+CIPMUX=		OK		Selects single connection (0) or multiple connection (1)
+AT+CSTT="myAPN"		OK		Sets APN
+AT+CIICR	 			Brings up wireless connection
+AT+CIFSR	 			Get local IP address
+AT+CIPSTART	 			Establishes a connection with a server.
+AT+CIPSEND	 			Sends data when the a connection is established.
+AT+CIPCLOSE	 			Closes the connection
+
+AT+SAPBR		OK		Configures GPRS profile
+AT+HTTPINIT		OK		Initializes HTTP service
+AT+HTTPPARA		OK		Configures HTTP parameters
+AT+HTTPACTION=0		OK		Sets HTTP Method Action , GET in this chase.
+AT+HTTPREAD	 			Reads HTTP data
+AT+HTTPTERM		OK		Closes the opened HTTP session.
+</pre>
+
+<h4>Exemple de programme : envoi de SMS - Source send_sms.cpp</h4>
+<div style="color: navy; background-color: aqua;"><pre>/*
+*  Copyright (C) 2012 Libelium Comunicaciones Distribuidas S.L.
+*  http://www.libelium.com
+*
+*  This program is free software: you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation, either version 3 of the License, or
+*  (at your option) any later version.
+*
+*  This program is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  You should have received a copy of the GNU General Public License
+*  along with this program.  If not, see .
+*
+*  Version 0.1
+*  Author: Alejandro Gállego
+*/
+
+//Include ArduPi library
+#include "arduPi.h"
+
+
+void switchModule();
+
+int led = 9;
+int onModulePin = 2;        // the pin to switch on the module (without press on button)
+
+int timesToSend = 1;        // Numbers of SMS to send
+int count = 0;
+
+char phone_number[]="0637127796";     // ********* is the number to call
+
+void out (const char *s)
+{
+    printf ("%s", s);
+    Serial.print (s);
+}
+
+void switchModule(){
+    digitalWrite(onModulePin,HIGH);
+    delay(2000);
+    digitalWrite(onModulePin,LOW);
+}
+
+void setup(){
+
+    // Serial.begin(115200);                // UART baud rate
+    Serial.begin(19200);
+    delay(2000);
+    pinMode(led, OUTPUT);
+    pinMode(onModulePin, OUTPUT);
+    switchModule();                    // switches the module ON
+
+    for (int i=0;i &lt; 5;i++){
+        delay(5000);
+    } 
+    
+    // delay(5000);
+
+    out("AT+CMGF=1\r\n");         // sets the SMS mode to text
+    delay(100);
+}
+
+void loop(){
+
+    while (count &lt; timesToSend){
+        delay(1500);
+        out("AT+CMGS=\"");     // send the SMS number
+        out(phone_number);
+        out("\"\r\n");
+        while(Serial.read()!='&gt;');      
+        out("Hola caracola...");     // the SMS body
+        delay(500);
+        Serial.write(0x1A);       //sends ++
+        Serial.write(0x0D);
+        Serial.write(0x0A);
+	printf("Sent.\n");
+        delay(5000);
+
+        count++;
+    }
+}
+
+int main (){
+	printf ("Setup...\n");
+	setup();
+	printf ("Loop...\n");
+	// while(1){
+		loop();
+	// }
+	return (0);
+}
+</pre></div>
+
+<div style="color: lime; background-color: black;"><pre>$ g++ -o send_sms send_sms.cpp arduPi.cpp -lrt
+$ sudo ./send_sms
+</pre></div>
+
+<h4>Connexion internet PPP avec carte modem SIM900</h4>
+
+Le Raspberry Pi doit être overclocké en mode modest avec sudo raspi-config pour que ça fonctionne.
+
+<p>
+
+<!--
+Créer le fichier /etc/ppp/options-mobile :
+<div style="color: navy; background-color: aqua;"><pre>
+ttyAMA0
+115200
+lock
+crtscts
+modem
+passive
+novj
+defaultroute
+replacedefaultroute
+noipdefault
+usepeerdns
+noauth
+hide-password
+persist
+holdoff 10
+maxfail 0
+debug
+</pre></div>
+Créer le répertoire /etc/ppp/peers :
+<div style="color: lime; background-color: black;"><pre>
+$ mkdir /etc/ppp/peers
+$ cd /etc/ppp/peers
+</pre></div>
+-->
+
+Tutoriel : <a href="http://stackoverflow.com/questions/25301229/raspberry-pi-sim900-default-internet-access">http://stackoverflow.com/questions/25301229/raspberry-pi-sim900-default-internet-access</a>
+
+</p><p>Some notes before start:</p>
+
+<ol>
+<li><p>Make sure the power supply you used for raspberrypi is exact 5V 
+and it can provide at-least 2A current without voltage drop-out.The 
+SIM900 power-source must be 3.3V 2A</p></li>
+<li><p>Set the SIM900 baud rate to 115200 via: <code>AT+IPR=115200</code></p></li>
+<li>Check the modem serial peripheral via: <code>$ screen /dev/ttyAMA0 115200</code> type <code>AT&lt;enter&gt;</code> it will echo: <code>OK</code>. Hit <code>ctrl+a k y</code> to exit.</li>
+</ol>
+
+<p><strong>/etc/ppp/options-mobile</strong></p>
+
+<pre><code>ttyAMA0
+115200
+lock
+crtscts
+modem
+passive
+novj
+defaultroute
+replacedefaultroute
+noipdefault
+usepeerdns
+noauth
+hide-password
+persist
+holdoff 10
+maxfail 0
+debug
+</code></pre>
+
+<p><strong>Create the <code>/etc/ppp/peers</code> directory:</strong></p>
+
+<pre><code>$ mkdir /etc/ppp/peers
+$ cd /etc/ppp/peers
+</code></pre>
+
+<p><strong>/etc/ppp/peers/mobile-auth</strong></p>
+
+<pre><code>file /etc/ppp/options-mobile
+user "your_usr"
+password "your_pass"
+connect "/usr/sbin/chat -v -t15 -f /etc/ppp/chatscripts/mobile-modem.chat"
+</code></pre>
+
+<p><strong>/etc/ppp/peers/mobile-noauth</strong></p>
+
+<pre><code>file /etc/ppp/options-mobile
+connect "/usr/sbin/chat -v -t15 -f /etc/ppp/chatscripts/mobile-modem.chat"
+</code></pre>
+
+<p><strong>Create the <code>/etc/ppp/chatscripts</code> directory:</strong></p>
+
+<pre><code>$ mkdir /etc/ppp/chatscripts
+</code></pre>
+
+<p><strong>/etc/ppp/chatscripts/mobile-modem.chat</strong></p>
+
+<pre><code>ABORT 'BUSY'
+ABORT 'NO CARRIER'
+ABORT 'VOICE'
+ABORT 'NO DIALTONE'
+ABORT 'NO DIAL TONE'
+ABORT 'NO ANSWER'
+ABORT 'DELAYED'
+REPORT CONNECT
+TIMEOUT 6
+'' 'ATQ0'
+'OK-AT-OK' 'ATZ'
+TIMEOUT 3
+'OK' @/etc/ppp/chatscripts/pin
+'OK\d-AT-OK' 'ATI'
+'OK' 'ATZ'
+'OK' 'ATQ0 V1 E1 S0=0 &amp;C1 &amp;D2 +FCLASS=0'
+'OK' @/etc/ppp/chatscripts/mode
+'OK-AT-OK' @/etc/ppp/chatscripts/apn
+'OK' 'ATDT*99***1#'
+TIMEOUT 30
+CONNECT ''
+</code></pre>
+
+<p><strong>/etc/ppp/chatscripts/my-operator-apn</strong></p>
+
+<pre><code>AT+CGDCONT=1,"IP","&lt;apn-name&gt;"
+</code></pre>
+
+<p><strong>/etc/ppp/chatscripts/pin.CODE</strong></p>
+
+<pre><code>AT+CPIN=1234
+</code></pre>
+
+<p><strong>/etc/ppp/chatscripts/pin.NONE</strong></p>
+
+<pre><code>AT
+</code></pre>
+
+<p><strong>/etc/ppp/chatscripts/mode.3G-only</strong></p>
+
+<pre><code>AT\^SYSCFG=14,2,3fffffff,0,1
+</code></pre>
+
+<p><strong>/etc/ppp/chatscripts/mode.3G-pref</strong></p>
+
+<pre><code>AT\^SYSCFG=2,2,3fffffff,0,1
+</code></pre>
+
+<p><strong>/etc/ppp/chatscripts/mode.GPRS-only</strong></p>
+
+<pre><code>AT\^SYSCFG=13,1,3fffffff,0,0
+</code></pre>
+
+<p><strong>/etc/ppp/chatscripts/mode.GPRS-pref</strong></p>
+
+<pre><code>AT\^SYSCFG=2,1,3fffffff,0,0
+</code></pre>
+
+<blockquote>
+  <ul>
+  <li>The SYSCFG line in the mode.* files is device-dependent, and likely Huawei-specific, So You may use the <code>mode.NONE</code> file if your modem is
+  SIM900.
+  *</li>
+  </ul>
+</blockquote>
+
+<p><strong>/etc/ppp/chatscripts/mode.NONE</strong></p>
+
+<pre><code>AT
+</code></pre>
+
+<p><strong>Make some symbolic links:</strong></p>
+
+<pre><code>$ ln -s /etc/ppp/chatscripts/my-operator-apn /etc/ppp/chatscripts/apn
+$ ln -s /etc/ppp/chatscripts/mode.NONE /etc/ppp/chatscripts/mode
+$ ln -s /etc/ppp/chatscripts/pin.NONE /etc/ppp/chatscripts/pin
+</code></pre>
+
+<p><strong>If you have to enter credentials use <code>mobile-auth</code></strong></p>
+
+<pre><code>$ mv provider provider.example
+$ ln -s /etc/ppp/peers/mobile-noauth /etc/ppp/peers/provider
+</code></pre>
+
+<p><strong>Check syslog in another console:</strong></p>
+
+<pre><code>$ tail -f /var/log/syslog | grep -Ei 'pppd|chat'
+</code></pre>
+
+<p><strong>Finally issue the <code>pon</code> command to see the result:</strong></p>
+
+<pre><code>$ pon
+</code></pre>
+ 
+<p>The base instruction : <a href="https://wiki.archlinux.org/index.php/3G_and_GPRS_modems_with_pppd" rel="nofollow">https://wiki.archlinux.org/index.php/3G_and_GPRS_modems_with_pppd</a></p>
+
+<p>
+Attention ! Les fichiers de configuration contenant des commandes AT ne doivent pas contenir de ligne vide même à la fin.
+
+</p><p>
+</p><h4>Configuration Bouygues</h4>
+<div style="color: lime; background-color: black;"><pre>$ ln -s /etc/ppp/peers/mobile-noauth /etc/ppp/peers/provider
+</pre></div>
+/etc/ppp/chatscripts/bouygues-apn :
+<div style="color: navy; background-color: aqua;"><pre>AT+CGDCONT=1,"IP","ebouygtel.com"
+</pre></div>
+<div style="color: lime; background-color: black;"><pre>$ ln -s /etc/ppp/chatscripts/bouygues-apn /etc/ppp/chatscripts/apn
+</pre></div>
+
+<p>
+</p><h4>Configuration Orange</h4>
+/etc/ppp/peers/mobile-auth :
+<div style="color: navy; background-color: aqua;"><pre>file /etc/ppp/options-mobile
+user "orange"
+password "orange"
+connect "/usr/sbin/chat -v -t15 -f /etc/ppp/chatscripts/mobile-modem.chat"
+</pre></div>
+<div style="color: lime; background-color: black;"><pre>$ ln -s /etc/ppp/peers/mobile-auth /etc/ppp/peers/provider
+</pre></div>
+/etc/ppp/chatscripts/orange-apn :
+<div style="color: navy; background-color: aqua;"><pre>AT+CGDCONT=1,"IP","orange"
+</pre></div>
+<div style="color: lime; background-color: black;"><pre>$ ln -s /etc/ppp/chatscripts/orange-apn /etc/ppp/chatscripts/apn
+</pre></div>
+
+Pour établir la connexion :
+<div style="color: lime; background-color: black;"><pre>$ sudo pon
+$ plog
+</pre></div>
+Pour couper la connexion :
+<div style="color: lime; background-color: black;"><pre>$ sudo poff
+</pre></div>
+
+<p>
+</p><h4>Configuration du modem USB Tp-Link MA260</h4>
+
+Voir <a href="http://blog.erwan.me/post/2014/12/08/Clef-3G-TP-LINK-MA260-sur-Rasbian">http://blog.erwan.me/post/2014/12/08/Clef-3G-TP-LINK-MA260-sur-Rasbian</a>
+<p>
+Pour les autres modèles de modems, vous pouvez trouver des informations ici : <a href="http://www.draisberghof.de/usb_modeswitch/device_reference.txt">http://www.draisberghof.de/usb_modeswitch/device_reference.txt</a>
+</p><p>
+Initialement le dongle est reconnu comme un CD-ROM contenant les 
+fichiers de configuration pour Windows. Il faut donc le configurer pour 
+qu'il soit reconnu comme un modem USB.
+
+</p><div style="color: lime; background-color: black;"><pre>pi@raspberrypi ~ $ lsusb
+Bus 001 Device 007: ID 2357:f000  
+pi@raspberrypi ~ $ 
+</pre></div>
+
+L'identifiant de produit f000 indique que le dongle est reconnu comme un CD-ROM.
+
+Pour qu'il soit reconnu comme un modem, installez ces paquets :
+
+<div style="color: lime; background-color: black;"><pre>pi@raspberrypi ~ $ sudo apt-get install ppp usb-modeswitch wvdial
+</pre></div>
+
+Modifiez le fichier /etc/usb_modeswitch.conf :
+
+<div style="color: navy; background-color: aqua;"><pre># Configuration for the usb_modeswitch package, a mode switching tool for
+# USB devices providing multiple states or modes
+#
+# Evaluated by the wrapper script /usr/sbin/usb_modeswitch_dispatcher
+#
+# To enable an option, set it to "1", "yes" or "true" (case doesn't matter)
+# Everything else counts as "disable"
+
+
+# Disable automatic mode switching globally (e.g. to access the original
+# install storage)
+
+DisableSwitching=0
+
+
+# Enable logging (results in a extensive report file in /var/log, named
+# "usb_modeswitch_<interface-name>" and probably others
+
+EnableLogging=0
+
+#######################################################
+# TP-Link MA260
+#
+# Contributor: BjÃ¸rn Mork
+
+DefaultVendor= 0x2357
+DefaultProduct=0xf000
+
+TargetVendor=  0x2357
+TargetProduct= 0x9000
+
+MessageContent="5553424312345678000000000000061b000000020000000000000000000000"
+
+
+#######################################################
+</interface-name></pre></div>
+
+<div style="color: lime; background-color: black;"><pre>pi@raspberrypi ~ $ sudo usb_modeswitch -W -c /etc/usb_modeswitch.conf
+pi@raspberrypi ~ $
+</pre></div>
+
+Ajouter les lignes en rouge à la fin du fichier /lib/udev/rules.d/40-usb_modeswitch.rules :
+
+<div style="color: navy; background-color: aqua;"><pre><div style="color: red;">
+# TP-Link MA260
+ATTRS{idVendor}=="2357", ATTRS{idProduct}=="f000", RUN+="usb_modeswitch '%b/%k' -V 2357 -p 0xf000 -P 0x9000 -M "5553424312345678000000000000061b00000002000000000 0000000000000"
+</div>       
+LABEL="modeswitch_rules_end"
+<div style="color: red;">
+# TP-Link MA260
+ATTRS{idVendor}=="2357", ATTRS{idProduct}=="f000", RUN+="/usr/bin/eject -s %N"
+</div>
+</pre></div>
+
+Tapez ensuite la commande :
+
+<div style="color: lime; background-color: black;"><pre>pi@raspberrypi ~ $ sudo udevadm control --reload-rules
+pi@raspberrypi ~ $ 
+</pre></div>
+
+Redémarrez le Raspberry Pi et attendez quelques minutes après le redémarrage. Vous devez alors avoir :
+
+<div style="color: lime; background-color: black;"><pre>pi@raspberrypi ~ $ lsusb
+(...)
+Bus 001 Device 007: ID 2357:9000  
+pi@raspberrypi ~ $ ls /dev/ttyUSB*
+/dev/ttyUSB0  /dev/ttyUSB1  /dev/ttyUSB2
+pi@raspberrypi ~ $ 
+</pre></div>
+
+Si vous obtenez un identifiant produit 900e au lieu de 9000 il y a eu un problème, il faut débrancher et rebrancher le modem.
+<p>
+Si l'identifiant produit reste à f000, tapez la commande :
+</p><div style="color: lime; background-color: black;"><pre>pi@raspberrypi ~ $ sudo usb_modeswitch -v 2357 -p f000 -V 2357 -P 9000 -W -I -n -M '5553424312345678000000000000061e000000000000000000000000000000' -2 '5553424312345678000000000000061b000000020000000000000000000000' 
+</pre></div>
+
+Si les périphériques /dev/ttyUSB* n'apparaissent pas :
+
+<div style="color: lime; background-color: black;"><pre>pi@raspberrypi ~ $ su
+Mot de passe : 
+root@raspberrypi:/home/pi# sudo modprobe -a option
+root@raspberrypi:/home/pi# echo "0x2357 0x9000" &gt; /sys/bus/usb-serial/dirvers/option1/new_id
+root@raspberrypi:/home/pi# exit
+pi@raspberrypi ~ $ 
+</pre></div>
+
+Testez la connexion au modem :
+
+<div style="color: lime; background-color: black;"><pre>pi@raspberrypi ~ $ minicom -b 115200 -D /dev/ttyUSB2
+Bienvenue avec minicom 2.6.1
+
+OPTIONS: I18n 
+Compilé le Apr 28 2012, 19:24:31.
+Port /dev/ttyUSB2
+
+Tapez CTRL-A Z pour voir l'aide concernant les touches+------------------------------------+
+                                                      |   Quitter sans remettre à zéro ?   |
+AT                                                    |            Oui       Non           |
+OK                                                    +------------------------------------+
+^AQ
+pi@raspberrypi ~ $ 
+</pre></div>
+
+<h4>Connexion internet PPP avec un modem USB TP-Link MA260</h4>
+Même procédure que celle indiquée précédemment pour la carte modem 
+SIM900, à part que dans le fichier /etc/ppp/options-mobile, ttyAMA0 doit
+ être remplacé par ttyUSB2.
+<p>
+Autre possibilité : connexion avec wvdial. Créer le fichier 
+/etc/wvdial.conf avec le contenu suivant (exemple pour Orange, remplacez
+ éventuellement l'username, le password et l'APN ebouygtel. par les 
+paramètres correspondant à votre opérateur).
+
+</p><div style="color: navy; background-color: aqua;"><pre>[Dialer Defaults]
+Modem Type = Analog Modem
+Stupid Mode = 1
+ISDN = 0
+New PPPD = yes
+Phone = *99#
+Modem = /dev/ttyUSB2
+Username = 'orange';
+Password = 'orange';
+Baud = 460800
+
+Init1 = ATZ
+Init2 = ATQ0 V1 E1 S0=0 &amp;C1 &amp;D2 +FCLASS=0
+# Orange :
+Init3 = AT+CGDCONT=1,"IP","orange"
+#Init4 = AT$QCPDPP=1,1,"orange","orange"
+
+
+[Dialer pin]
+Modem Type = Analog Modem
+Stupid Mode = 1
+ISDN = 0
+New PPPD = yes
+Phone = *99#
+Modem = /dev/ttyUSB2
+Baud = 460800
+Init1 = AT+CPIN=0000
+</pre></div>
+
+Lancez ensuite wvdial :
+
+<div style="color: lime; background-color: black;"><pre>pi@raspberrypi /etc $ sudo wvdial
+--&gt; WvDial: Internet dialer version 1.61
+--&gt; Initializing modem.
+--&gt; Sending: ATZ
+ATZ
+OK
+--&gt; Sending: ATQ0 V1 E1 S0=0 &amp;C1 &amp;D2 +FCLASS=0
+ATQ0 V1 E1 S0=0 &amp;C1 &amp;D2 +FCLASS=0
+OK
+--&gt; Sending: AT+CGDCONT=1,"IP","orange"
+AT+CGDCONT=1,"IP","orange"
+OK
+--&gt; Modem initialized.
+--&gt; Sending: ATDT*99#
+--&gt; Waiting for carrier.
+ATDT*99#
+CONNECT
+--&gt; Carrier detected.  Starting PPP immediately.
+--&gt; Starting pppd at Thu Feb  5 13:44:01 2015
+--&gt; Pid of pppd: 5003
+--&gt; Using interface ppp0
+--&gt; pppd: 0y*[01]
+--&gt; pppd: 0y*[01]
+--&gt; pppd: 0y*[01]
+--&gt; pppd: 0y*[01]
+--&gt; pppd: 0y*[01]
+--&gt; pppd: 0y*[01]
+--&gt; local  IP address 10.126.196.188
+--&gt; pppd: 0y*[01]
+--&gt; remote IP address 10.64.64.64
+--&gt; pppd: 0y*[01]
+--&gt; primary   DNS address 192.168.10.110
+--&gt; pppd: 0y*[01]
+</pre></div>
+
+Ouvrez une autre fenêtre terminal, définissez le routage et vérifiez la connexion internet :
+
+<div style="color: lime; background-color: black;"><pre>pi@raspberrypi ~ $ ifconfig
+(...)
+ppp0      Link encap:Protocole Point-à-Point  
+          inet adr:10.126.196.188  P-t-P:10.64.64.64  Masque:255.255.255.255
+          UP POINTOPOINT RUNNING NOARP MULTICAST  MTU:1500  Metric:1
+          RX packets:8 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:9 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 lg file transmission:3 
+          RX bytes:152 (152.0 B)  TX bytes:209 (209.0 B)
+(...)
+pi@raspberrypi ~ $ sudo ip route replace default via 10.64.64.64 dev ppp0
+pi@raspberrypi ~ $ ping www.google.fr
+PING www.google.fr (173.194.66.94) 56(84) bytes of data.
+64 bytes from we-in-f94.1e100.net (173.194.66.94): icmp_req=1 ttl=44 time=539 ms
+64 bytes from we-in-f94.1e100.net (173.194.66.94): icmp_req=2 ttl=44 time=309 ms
+64 bytes from we-in-f94.1e100.net (173.194.66.94): icmp_req=3 ttl=44 time=558 ms
+^C
+--- www.google.fr ping statistics ---
+4 packets transmitted, 3 received, 25% packet loss, time 2999ms
+rtt min/avg/max/mdev = 309.232/469.074/558.955/113.317 ms
+pi@raspberrypi ~ $ 
+</pre></div>
+
+Vous êtes maintenant connecté à Internet par votre modem USB.
+
+<h4>Connexion internet avec un modem USB Huawei E220</h4>
+
+Ce modem est plus simple d'utilisation que le TP-Link MA260. Il suffit 
+de le brancher au Raspberry Pi, il est immédiatement reconnu en tant que
+ modem et les ports USB sont automatiquement créés :
+
+<div style="color: lime; background-color: black;"><pre>pi@raspberrypi ~ $ lsusb
+(...)
+Bus 001 Device 006: ID 12d1:1003 Huawei Technologies Co., Ltd. E220 HSDPA Modem / E230/E270/E870 HSDPA/HSUPA Modem
+pi@raspberrypi ~ $ ls /dev/ttyUSB*
+/dev/ttyUSB0  /dev/ttyUSB1
+pi@raspberrypi ~ $ 
+</pre></div>
+
+La procédure de connexion internet est similaire à celle du TP-Link 
+MA260. Il suffit de remplacer ttyUSB2 par ttyUSB0 dans 
+/etc/ppp/options-mobile et dans /etc/wvdial.conf.
+<p>
+Exemple de fichier /etc/wvdial.conf pour Huawei E220 avec Bouygues :
+
+</p><div style="color: navy; background-color: aqua;"><pre>[Dialer Defaults]
+Modem Type = Analog Modem
+Stupid Mode = 1
+ISDN = 0
+New PPPD = yes
+Phone = *99#
+Modem = /dev/ttyUSB0
+Username = 'guest';
+Password = 'guest';
+Baud = 460800
+
+Init1 = ATZ
+Init2 = ATQ0 V1 E1 S0=0 &amp;C1 &amp;D2 +FCLASS=0
+# Bouygues :
+Init3 = AT+CGDCONT=1,"IP","ebouygtel.com"
+#Init4 = AT$QCPDPP=1,1,"orange","orange"
+
+
+[Dialer pin]
+Modem Type = Analog Modem
+Stupid Mode = 1
+ISDN = 0
+New PPPD = yes
+Phone = *99#
+Modem = /dev/ttyUSB2
+Baud = 460800
+Init1 = AT+CPIN=0000
+</pre></div>
+
+<h3>Point d'accès Wifi avec dongle Wifi RTL8188CUS et modem 3G Huawei E220</h3>
+<p>
+Voir :
+<ul>
+<li><a href="http://www.maketecheasier.com/set-up-raspberry-pi-as-wireless-access-point/">http://www.maketecheasier.com/set-up-raspberry-pi-as-wireless-access-point/</a>
+<li><a href="http://blog.sip2serve.com/post/48420162196/howto-setup-rtl8188cus-on-rpi-as-an-access-point">http://blog.sip2serve.com/post/48420162196/howto-setup-rtl8188cus-on-rpi-as-an-access-point</a>
+<li><a href="http://willhaley.com/blog/raspberry-pi-hotspot-ew7811un-rtl8188cus/">http://willhaley.com/blog/raspberry-pi-hotspot-ew7811un-rtl8188cus/</a>
+</ul>
+</p>
+Paquets à installer :
+<div style="color: lime; background-color: black;"><pre>
+$ sudo apt-get update && sudo apt-get install ca-certificates
+$ sudo apt-get install isc-dhcp-server
+$ sudo apt-get install hostapd bridge-utils iw
+$ sudo apt-get install dnsmasq
+</pre></div>
+Configuration internet dans /etc/network/interfaces :
+<div style="color: navy; background-color: aqua;"><pre>
+(...)
+allow-hotplug wlan0
+iface wlan0 inet static
+address 192.168.42.1
+netmask 255.255.255.0
+
+#auto br0
+#iface br0 inet dhcp
+#        bridge_fd 1
+#        bridge_hello 3
+#        bridge_maxage 10
+#        bridge_stp off
+#        bridge_ports ppp0 wlan0
+
+pre-up iptables-restore < /etc/iptables.ipv4.nat
+</pre></div>
+Remarque : j'avais commencé par définir une interface bridge br0 comme indiqué dans certains tutoriels mais j'ai eu des problèmes
+avec cette configuration, je l'ai supprimée et ça a résolu ces problèmes.
+<br><br>	
+Configuration du serveur DHCP dans /etc/default/isc-dhcp-server :
+<div style="color: navy; background-color: aqua;"><pre>
+INTERFACES="wlan0"
+</pre></div>
+... et dans /etc/dhcp/dhcpd.conf :
+<div style="color: navy; background-color: aqua;"><pre>
+(...)
+# option domain-name "example.org";
+# option domain-name-servers ns1.example.org, ns2.example.org;
+(...)
+authoritative;
+(...)
+subnet 192.168.42.0 netmask 255.255.255.0 {
+range 192.168.42.10 192.168.42.50;
+option broadcast-address 192.168.42.255;
+option routers 192.168.42.1;
+default-lease-time 600;
+max-lease-time 7200;
+option domain-name "local";
+option domain-name-servers 8.8.8.8, 8.8.4.4;
+interface wlan0;
+}
+</pre></div>
+Installation du point d'accès 
+<div style="color: lime; background-color: black;"><pre>
+$ cd /usr/sbin
+$ sudo mv hostapd hostapd_std
+$ sudo wget http://dl.dropbox.com/u/1663660/hostapd/hostapd
+(...)
+$ sudo chown root:root hostapd
+$ sudo chmod 755 hostapd 
+</pre></div>
+
+Configuration du point d'accès dans /etc/default/hostapd :
+<div style="color: navy; background-color: aqua;"><pre>
+DAEMON_CONF="/etc/hostapd/hostapd.conf"
+</pre></div>
+
+... et dans /etc/hostapd/hostapd.conf :
+<div style="color: navy; background-color: aqua;"><pre>
+interface=wlan0
+bridge=br0
+driver=rtl871xdrv
+country_code=FR
+ctrl_interface=wlan0
+ctrl_interface_group=0
+ssid=RPiAP
+hw_mode=g
+channel=1
+#wpa=3
+#wpa_passphrase=PASSWORD
+#wpa_key_mgmt=WPA-PSK
+#wpa_pairwise=TKIP
+#rsn_pairwise=CCMP
+beacon_int=100
+#auth_algs=3
+auth_algs=1
+macaddr_acl=0
+wmm_enabled=1
+eap_reauth_period=360000000
+</pre></div>
+Enlevez les # pour un accès sécurisé par mot de passe. Remplacez éventuellement FR par le code de votre pays, RPiAP par le nom de votre réseau Wifi et PASSWORD par votre mot de passe.
+<p>
+Tapez ensuite les commandes suivantes pour créer les tables de routage :
+<div style="color: lime; background-color: black;"><pre>
+$ sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
+$ sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+$ sudo iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+$ sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
+$ sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
+</pre></div>
+Redémarrer le Raspberry Pi.
+<p>
+Tapez "ifconfig" et si l'adresse ip n'apparait pas pour wlan0, redémarrez wlan0 avec "sudo ifdown wlan0 && sudo ifup wlan0".
+<br>
+Connectez le modem Wifi (voir "Connexion internet avec un modem USB Huawei E220").
+Démarrez les services :
+<div style="color: lime; background-color: black;"><pre>
+$ sudo service isc-dhcp-server restart
+$ sudo sysctl -w net.ipv4.ip_forward=1
+$ sudo iptables -t nat -A POSTROUTING -j MASQUERADE
+$ sudo hostapd -d /etc/hostapd/hostapd.conf
+</pre></div>
+Normalement vous pouvez maintenant vous connecter à votre point d'accès Wifi à partir d'un smartphone ou d'une tablette par exemple.
+<p>
+Vous pouvez créer un script de démarrage /ur/local/bin/hotspot :
+<div style="color: navy; background-color: aqua;"><pre>
+#!/bin/sh
+echo "Restarting wlan0..."
+ifdown wlan0
+ifup wlan0
+echo "Restarting DHCP server..."
+service isc-dhcp-server restart
+echo "Forwarding..."
+sysctl -w net.ipv4.ip_forward=1
+iptables -t nat -A POSTROUTING -j MASQUERADE
+echo "Starting access point..."
+hostapd -d /etc/hostapd/hostapd.conf >/dev/null 2>/dev/null &
+echo "Done."
+</pre></div>
+Mettez les droits nécessaires sur ce script :
+<div style="color: lime; background-color: black;"><pre>
+$ sudo chmod a+rx /usr/local/bin/hotspot
+</pre></div>
+Après le démarrage du Raspberry Pi, il suffit alors de connecter le modem 3G et de taper "sudo hotspot" pour démarrer le point d'accès Wifi.
+
+<h3>Point d'accès Wifi avec dongle Ralink RA5370</h3>
+
+Voir <a href=http://elinux.org/RPI-Wireless-Hotspot>http://elinux.org/RPI-Wireless-Hotspot</a>
+<br>
+<pre>
+1. Install the necessary software.
+sudo apt-get install hostapd udhcpd
+2. Configure DHCP. Edit the file /etc/udhcpd.conf and configure it like this:
+start 192.168.42.2 # This is the range of IPs that the hostspot will give to client devices.
+end 192.168.42.20
+interface wlan0 # The device uDHCP listens on.
+remaining yes
+opt dns 8.8.8.8 4.2.2.2 # The DNS servers client devices will use.
+opt subnet 255.255.255.0
+opt router 192.168.42.1 # The Pi's IP address on wlan0 which we will set up shortly.
+opt lease 864000 # 10 day DHCP lease time in seconds
+Edit the file /etc/default/udhcpd and change the line:
+DHCPD_ENABLED="no"
+to
+#DHCPD_ENABLED="no"
+You will need to give the Pi a static IP address with the following command:
+sudo ifconfig wlan0 192.168.42.1
+To set this up automatically on boot, edit the file /etc/network/interfaces and replace the line "iface wlan0 inet dhcp" to:
+iface wlan0 inet static
+  address 192.168.42.1
+  netmask 255.255.255.0
+If the line "iface wlan0 inet dhcp" is not present, add the above lines to the bottom of the file.
+Change the lines (they probably won't all be next to each other):
+allow-hotplug wlan0
+wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+iface default inet manual
+to:
+#allow-hotplug wlan0
+#wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+#iface default inet dhcp
+3. Configure HostAPD. You can create an open network, or a WPA-secured network. A secure network is recommended to prevent unauthorized use and tampering, but you can also create an open network. To create a WPA-secured network, edit the file /etc/hostapd/hostapd.conf (create it if it doesn't exist) and add the following lines:
+interface=wlan0
+driver=nl80211
+ssid=My_AP
+hw_mode=g
+channel=6
+macaddr_acl=0
+auth_algs=1
+ignore_broadcast_ssid=0
+wpa=2
+wpa_passphrase=My_Passphrase
+wpa_key_mgmt=WPA-PSK
+wpa_pairwise=TKIP
+rsn_pairwise=CCMP
+Change ssid=, channel=, and wpa_passphrase= to values of your choice. SSID is the hotspot's name which is broadcast to other devices, channel is what frequency the hotspot will run on, wpa_passphrase is the password for the wireless network. For many, many more options see the file /usr/share/doc/hostapd/examples/hostapd.conf.gz
+If you would like to create an open network, put the following text into /etc/hostapd/hostapd.conf:
+interface=wlan0
+ssid=My_AP
+hw_mode=g
+channel=6
+auth_algs=1
+wmm_enabled=0
+Change ssid= and channel= to values of your choice. Note that anyone will be able to connect to your network, which is generally not a good idea. Also, some regions will hold an access point's owner responsible for any traffic that passes though an open wireless network, regardless of who actually caused that traffic.
+Edit the file /etc/default/hostapd and change the line:
+#DAEMON_CONF=""
+to:
+DAEMON_CONF="/etc/hostapd/hostapd.conf"
+4. Configure NAT (Network Address Translation). NAT is a technique that allows several devices to use a single connection to the internet. Linux supports NAT using Netfilter (also known as iptables) and is fairly easy to set up. First, enable IP forwarding in the kernel:
+sudo sh -c "echo 1 > /proc/sys/net/ipv4/ip_forward"
+To set this up automatically on boot, edit the file /etc/sysctl.conf and add the following line to the bottom of the file:
+net.ipv4.ip_forward=1
+Second, to enable NAT in the kernel, run the following commands:
+sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+sudo iptables -A FORWARD -i eth0 -o wlan0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+sudo iptables -A FORWARD -i wlan0 -o eth0 -j ACCEPT
+These instructions don't give a good solution for rerouting https and for URLs referring to a page inside a domain, like www.nu.nl/38274.htm. The user will see a 404 error. Your Pi is now NAT-ing. To make this permanent so you don't have to run the commands after each reboot, run the following command:
+sudo sh -c "iptables-save > /etc/iptables.ipv4.nat"
+Now edit the file /etc/network/interfaces and add the following line to the bottom of the file:
+up iptables-restore < /etc/iptables.ipv4.nat
+5. Fire it up! Run the following commands to start the access point:
+sudo service hostapd start
+sudo service udhcpd start
+Your Pi should now be hosting a wireless hotspot. To get the hotspot to start on boot, run these additional commands:
+sudo update-rc.d hostapd enable
+sudo update-rc.d udhcpd enable
+At the completion of these instructions, your Pi should be providing a wireless network and allowing other devices to connect to the Internet. From my experience, the Pi makes a decent access point, although with cheaper WiFi dongles range will be fairly limited. I haven't stress tested this setup, but it seems to work fairly well and is handy when a "real" access point isn't available. I wrote most of the instructions from memory, if you find any errors/typos I'll correct them.
+</pre>
+
+<h3>Portail captif</h3>
+
+Il suffit de définir le script portail-captif suivant et de le lancer en root pour que toutes les connexions entrantes soient dirigées 
+vers le serveur web local :
+
+<!--
+<div style="color: lime; background-color: black;"><pre>
+#!/bin/sh
+iptables -A FORWARD -i wlan0 -o ppp0 -j DROP
+iptables -t nat -I PREROUTING -i wlan0  -p tcp --dport 80 -j DNAT --to-destination 192.168.42.1:80
+iptables -t nat -I PREROUTING -i wlan0  -p tcp --dport 443 -j DNAT --to-destination 192.168.42.1:443
+iptables -t nat -I PREROUTING -i wlan0  -p udp --dport 53 -j DNAT --to-destination 192.168.42.1:53
+</pre></div>
+-->
+
+<div style="color: navy; background-color: aqua;"><pre>
+#!/bin/sh
+
+iptables -F
+iptables -t nat -F
+iptables -t mangle -F
+
+iptables -A FORWARD -i wlan0 -o ppp0 -j DROP
+iptables -t nat -I PREROUTING -i wlan0  -p tcp --dport 80 -j DNAT --to-destination 192.168.42.1:80
+iptables -t nat -I PREROUTING -i wlan0  -p tcp --dport 443 -j DNAT --to-destination 192.168.42.1:443
+iptables -t nat -I PREROUTING -i wlan0  -p udp --dport 53 -j DNAT --to-destination 192.168.42.1:53
+
+iptables -t mangle -N internet
+iptables -t mangle -A PREROUTING -i wlan0 -p tcp -m tcp --dport 80 -j internet
+iptables -t mangle -A internet -j MARK --set-mark 99
+iptables -t nat -A PREROUTING -i wlan0 -p tcp -m mark --mark 99 -m tcp --dport 80 -j DNAT --to-destination 192.168.42.1
+
+service hostapd restart
+service dnsmasq restart
+
+</pre></div>
+<br>
+
+<h3>Exemple de montage pour internet mobile, SMS et téléphone</h3>
+
+<table>
+<tr><td><img src=IMG321.jpg width=600></td></tr>
+<tr><td><img src=IMG298.jpg width=600></td></tr>
+<tr><td><img src=IMG300.jpg width=600></td><td>Raspberry Pi B avec module caméra</td></tr>
+<tr><td><img src=IMG301.jpg width=600></td><td>Carte modem GSM SIM900<br><a href="http://imall.iteadstudio.com/raspberry-pi-gsm-add-on.html">http://imall.iteadstudio.com/raspberry-pi-gsm-add-on.html</a></td></tr>
+<tr><td>
+<tr><td><img src=IMG303.jpg width=600></td><td>Carte micro SD avec système Raspbian et  adaptateur SD</td></tr>
+<tr><td><img src=IMG325.jpg width=600></td><td>Ecran tactile 5''<br><a href="http://www.adafruit.com/products/2260">http://www.adafruit.com/products/2260</a></td></tr>
+<tr><td><img src=IMG307.jpg width=600></td><td>Cable USB pour raccorder l'écran au Raspberry Pi</td></tr>
+<tr><td><img src=IMG310.jpg width=600></td><td>Batterie<br><a href="http://kubii.fr/modules-adafruit/379-pack-batterie-rpi-10000-mah-3272496001121.html">http://kubii.fr/modules-adafruit/379-pack-batterie-rpi-10000-mah-3272496001121.html</a></td></tr>
+<tr><td><img src=IMG311.jpg width=600></td><td>Cable USB alimentation</td></tr>
+<tr><td><img src=IMG308.jpg width=600></td><td>Hub USB</td></tr>
+<tr><td><img src=IMG328.jpg width=600></td><td>Clavier sans fil avec dongle et cable recharge</td></tr>
+<tr><td><img src=IMG313.jpg width=600></td><td>Souris</td></tr>
+<tr><td><img src=IMG314.jpg width=600></td><td>Dongle Wifi RTL8188CUS</td></tr>
+<tr><td><img src=IMG316.jpg width=600></td><td>Modem 3G Huawei E220</td></tr>
+<tr><td><img src=IMG324.jpg width=600></td><td>Adaptateur audio USB et casque</td></tr>
+<tr><td><img src=IMG330.jpg width=600></td><td>Boite en carton et ruban adhésif</td></tr>
+</table>
+
+</body></html>
+

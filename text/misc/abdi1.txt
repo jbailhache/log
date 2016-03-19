@@ -1,0 +1,316 @@
+<HTML> 
+<head>
+<title>Les r‚seaux de neurones</title>
+</head>
+<body>
+<h2>Les r‚seaux de neurones</h2>
+d'aprŠs le livre de Herv‚ Abdi
+<p>
+
+<h3>Valeurs singuliŠres d'une matrice rectangulaire quelconque</h3>
+<p>
+Soit A une matrice rectangulaire. On peut exprimer cette matrice comme :
+<p>
+A = P <font face="symbol">D</font> Q<sup>T</sup>
+<p>avec :
+<ul>
+<li> P : les vecteurs propres de la matrice A A<sup>T</sup> (P<sup>T</sup> P = I)
+<li> Q : les vecteurs propres de la matrice A<sup>T</sup> A (Q<sup>T</sup> Q = I)
+<li> <font face="symbol">D</font> : la matrice des valeurs singuliŠres,
+ <font face="symbol">D</font> = <font face="symbol">L</font><sup>1/2</sup>
+  avec <font face = "symbol">L</font> ‚tant la matrice diagonale des valeurs 
+  propres de la matrice A A<sup>T</sup> et de la matrice A<sup>T</sup> A.
+</ul>
+<p>On a :
+<ul>
+<li> A A<sup>T</sup> = P <font face="symbol">L</font> P<sup>T</sup>
+<li> A<sup>T</sup> A = Q <font face="symbol">L</font> Q<sup>T</sup>
+</ul>
+<p>
+Exemple : 
+<pre>
+    (  1.1547 -1.1547 )
+A = ( -1.0774  0.0774 )  
+    ( -0.0774  1.0774 )
+
+    ( 0.8165  0      )
+P = (-0.4082 -0.7071 )
+    (-0.4082  0.7071 )
+
+Q = ( 0.7071 -0.7071 )
+    ( 0.7071  0.7071 )
+
+<font face="symbol">D</font> = ( 2 0 )
+    ( 0 1 )
+
+</pre>
+
+<p>
+<h3>Pseudo-inverse</h3>
+<p>
+A<sup>+</sup> = Q <font face="symbol">D</font><sup>-1</sup> P<sup>T</sup>
+<br>
+<pre>
+= (  0.2887 -0.6443  0.3557 )
+  ( -0.2887 -0.3557  0.6443 )
+  </pre>
+
+<p>
+<h3>M‚moires h‚t‚ro-associatives lin‚aires</h3>
+<p>
+Sortie o<sub>j</sub> = <font face="symbol">c</font> ( <font face="symbol">S</font><sub>i</sub><sup>I</sup> x<sub>i</sub> z<sub>i,j</sub>) (III.1)
+<p>
+RŠgle de Widrow-Hoff : <br>
+w<sub>i,j</sub><sup>(t+1)</sup> = w<sub>i,j</sub><sup>t</sup> + n (t<sub>j</sub> - o<sub>j</sub>) x<sub>i</sub>
+<br> avec t = r‚ponse th‚orique d‚sir‚e, n = constante positive.
+<p>
+<h4>Valeurs et vecteurs propres</h4>
+<br>
+La rŠgle de Widrow-Hoff n'agit que sur les valeurs propres de la matrice de connexions W.
+<br>
+X = P <font face="symbol">D</font> Q<sup>T</sup>
+<p>
+En r‚‚crivant (III.1) en notation matricielle, le problŠme est de trouver W 
+telle que O = W<sup>T</sup> X avec la contrainte : <br>
+min = trace ((T-O)<sup>T</sup> (T-O))
+<p>
+On peut exprimer la m‚thode de Widrow-Hoff par :<br>
+W<sup>(t+1)T</sup> = W<sup>(t)T</sup> + n (T - W<sup>(t)T</sup> X) X<sup>T</sup>
+<p>
+Lorsque n est convenablement choisi, l'apprentissage converge vers 
+W<sup>(oo)</sup> = W~ = T X<sup>+</sup>
+<p>
+On a : 
+W<sup>(t)</sup> = T Q (<font face="symbol">D</font><sup>-1</sup> (I - (I - n <font face="symbol">L</font>)<sup>t</sup>)) P<sup>T</sup>
+<p>
+W<sup>(t+1)T</sup> = W<sup>(t)T</sup> + n (T - W<sup>(t)T</sup> X) X<sup>T</sup>
+= ... <br>
+= T Q ( <font face="symbol">F</font><sup>(t)</sup> + n <font face="symbol">L</font> (<font face="symbol">D</font><sup>-1</sup> - <font face="symbol">F</font><sup>(t)</sup>)) P<sup>T</sup>
+<br>
+On montre
+<font face="symbol">F</font><sup>(t)</sup> = <font face="symbol">D</font><sup>-1</sup> ( n <font face="symbol">L</font> <font face="symbol">S</font><sub>i=0</sub><sup>t-1</sup> (I - n <font face="symbol">L</font>)<sup>i</sup>)
+<p>
+
+<h3>Les m‚moires auto-associatives lin‚aires</h3>
+<p>
+<h4>Vecteurs et valeurs propres</h4>
+<p>
+X = P <font face="symbol">D</font> Q<sup>T</sup>
+<p>
+W = X X<sup>T</sup> = P n <font face="symbol">L</font> P<sup>T</sup>
+<p>
+Apprentissage de Widrow-Hoff : <br>
+W<sup>(t)</sup) = P (I - (I - n <font face="symbol">L</font>)<sup>t</sup>) P<sup>T</sup>
+<br>
+La proc‚dure converge si lim<sub>t->oo</sub> (I - n <font face="symbol">L</font>)<sup>t</sup> = 0
+<p>
+<h4>Composantes principales</h4>
+<p>
+Le rappel d'un stimulus aprŠs apprentissage avec la loi de Widrow-Hoff par la m‚moire
+est ‚quivalent … l'ACP.
+On cherche une matrice P (IxL) telle que F = P<sup>T</sup> X avec F F<sup>T</sup>
+diagonale avec 1er ‚l‚ment maximal et P<sup>T</sup> P = I.
+P doit ˆtre la matrice des vecteurs propres de X X<sup>T</sup> = W, et donc
+F = <font face="symbol">D</font> Q<sup>T</sup> et F F<sup>T</sup> = <font face="symbol">L</font>.
+<p>
+Le rappel de la m‚moire s'‚crit : 
+O = W<sup>(t)</sup> X = P <font face="symbol">F</font><sup>(t)</sup> P<sup>T</sup> X
+<br> On a P<sup>T</sup> X = F, donc  O = P <font face="symbol">F</font><sup>(t)</sup> F.
+<p>
+L'ACP revient … d‚finir la d‚composition en valeurs et vecteurs propres de W.
+On veut trouver P tel que F = P<sup>T</sup> X avec F F<sup>T</sup> diagonale et P<sup>T</sup> P = I.
+<p>
+On d‚finit le lagrangien
+L = F F<sup>T</sup> - <font face="symbol">L</font> (P<sup>T</sup> P - I)
+<br> que l'on d‚rive : dL/dP = 2 X X<sup>T</sup> P - 2 <font face="symbol">L</font> P = 0
+<br> donc X X<sup>T</sup> P = <font face="symbol">L</font> P 
+avec <font face="symbol">L</font> ‚tant diagonale.
+<br>
+P est la matrice des vecteurs propres de X X<sup>T</sup> = W et 
+<font face="symbol">L</font> est la matrice des valeurs propres.
+<p>
+<h4>Extraction de vecteurs propres</h4>
+<p>
+Construire un r‚seau qui trouve les vecteurs propres de W : variante de la 
+puissance it‚r‚e et de la d‚flation. La puissance it‚r‚e revient … impl‚menter
+la loi de Hebb de maniŠre r‚p‚titive :
+<p>
+W<sup>(t+1)</sup> = W<sup>t</sup> + <font face="symbol">D</font> W 
+= W<sup>(t)</sup> + n X O<sup>(t)T</sup> 
+avec O<sup>(t)</sup> = W<sup>(t)</sup> X
+<p>
+On commence par initialiser la matrice
+W<sup>(0)</sup> = n X X<sup>T</sup> = P (n <font face="symbol">L) P<sup>T</sup>
+<<HTML> 
+<head>
+<title>Les r&eacute;seaux de neurones</title>
+</head>
+<body>
+<h2>Les r&eacute;seaux de neurones</h2>
+d'apr&egrave;s le livre de Herv&eacute; Abdi
+<p>
+
+<h3>Valeurs singuli&egrave;res d'une matrice rectangulaire quelconque</h3>
+<p>
+Soit A une matrice rectangulaire. On peut exprimer cette matrice comme :
+<p>
+A = P <font face="symbol">D</font> Q<sup>T</sup>
+<p>avec :
+<ul>
+<li> P : les vecteurs propres de la matrice A A<sup>T</sup> (P<sup>T</sup> P = I)
+<li> Q : les vecteurs propres de la matrice A<sup>T</sup> A (Q<sup>T</sup> Q = I)
+<li> <font face="symbol">D</font> : la matrice des valeurs singuli&egrave;res,
+ <font face="symbol">D</font> = <font face="symbol">L</font><sup>1/2</sup>
+  avec <font face = "symbol">L</font> &eacute;tant la matrice diagonale des valeurs 
+  propres de la matrice A A<sup>T</sup> et de la matrice A<sup>T</sup> A.
+</ul>
+<p>On a :
+<ul>
+<li> A A<sup>T</sup> = P <font face="symbol">L</font> P<sup>T</sup>
+<li> A<sup>T</sup> A = Q <font face="symbol">L</font> Q<sup>T</sup>
+</ul>
+<p>
+Exemple : 
+<pre>
+    (  1.1547 -1.1547 )
+A = ( -1.0774  0.0774 )  
+    ( -0.0774  1.0774 )
+
+    ( 0.8165  0      )
+P = (-0.4082 -0.7071 )
+    (-0.4082  0.7071 )
+
+Q = ( 0.7071 -0.7071 )
+    ( 0.7071  0.7071 )
+
+<font face="symbol">D</font> = ( 2 0 )
+    ( 0 1 )
+
+</pre>
+
+<p>
+<h3>Pseudo-inverse</h3>
+<p>
+A<sup>+</sup> = Q <font face="symbol">D</font><sup>-1</sup> P<sup>T</sup>
+<br>
+<pre>
+= (  0.2887 -0.6443  0.3557 )
+  ( -0.2887 -0.3557  0.6443 )
+  </pre>
+
+<p>
+<h3>M&eacute;moires h&eacute;t&eacute;ro-associatives lin&eacute;aires</h3>
+<p>
+Sortie o<sub>j</sub> = <font face="symbol">c</font> ( <font face="symbol">S</font><sub>i</sub><sup>I</sup> x<sub>i</sub> z<sub>i,j</sub>) (III.1)
+<p>
+R&egrave;gle de Widrow-Hoff : <br>
+w<sub>i,j</sub><sup>(t+1)</sup> = w<sub>i,j</sub><sup>t</sup> + n (t<sub>j</sub> - o<sub>j</sub>) x<sub>i</sub>
+<br> avec t = r&eacute;ponse th&eacute;orique d&eacute;sir&eacute;e, n = constante positive.
+<p>
+<h4>Valeurs et vecteurs propres</h4>
+<br>
+La r&egrave;gle de Widrow-Hoff n'agit que sur les valeurs propres de la matrice de connexions W.
+<br>
+X = P <font face="symbol">D</font> Q<sup>T</sup>
+<p>
+En r&eacute;&eacute;crivant (III.1) en notation matricielle, le probl&egrave;me est de trouver W 
+telle que O = W<sup>T</sup> X avec la contrainte : <br>
+min = trace ((T-O)<sup>T</sup> (T-O))
+<p>
+On peut exprimer la m&eacute;thode de Widrow-Hoff par :<br>
+W<sup>(t+1)T</sup> = W<sup>(t)T</sup> + n (T - W<sup>(t)T</sup> X) X<sup>T</sup>
+<p>
+Lorsque n est convenablement choisi, l'apprentissage converge vers 
+W<sup>(oo)</sup> = W~ = T X<sup>+</sup>
+<p>
+On a : 
+W<sup>(t)</sup> = T Q (<font face="symbol">D</font><sup>-1</sup> (I - (I - n <font face="symbol">L</font>)<sup>t</sup>)) P<sup>T</sup>
+<p>
+W<sup>(t+1)T</sup> = W<sup>(t)T</sup> + n (T - W<sup>(t)T</sup> X) X<sup>T</sup>
+= ... <br>
+= T Q ( <font face="symbol">F</font><sup>(t)</sup> + n <font face="symbol">L</font> (<font face="symbol">D</font><sup>-1</sup> - <font face="symbol">F</font><sup>(t)</sup>)) P<sup>T</sup>
+<br>
+On montre
+<font face="symbol">F</font><sup>(t)</sup> = <font face="symbol">D</font><sup>-1</sup> ( n <font face="symbol">L</font> <font face="symbol">S</font><sub>i=0</sub><sup>t-1</sup> (I - n <font face="symbol">L</font>)<sup>i</sup>)
+<p>
+
+<h3>Les m&eacute;moires auto-associatives lin&eacute;aires</h3>
+<p>
+<h4>Vecteurs et valeurs propres</h4>
+<p>
+X = P <font face="symbol">D</font> Q<sup>T</sup>
+<p>
+W = X X<sup>T</sup> = P n <font face="symbol">L</font> P<sup>T</sup>
+<p>
+Apprentissage de Widrow-Hoff : <br>
+W<sup>(t)</sup) = P (I - (I - n <font face="symbol">L</font>)<sup>t</sup>) P<sup>T</sup>
+<br>
+La proc&eacute;dure converge si lim<sub>t->oo</sub> (I - n <font face="symbol">L</font>)<sup>t</sup> = 0
+<p>
+<h4>Composantes principales</h4>
+<p>
+Le rappel d'un stimulus apr&egrave;s apprentissage avec la loi de Widrow-Hoff par la m&eacute;moire
+est &eacute;quivalent &agrave; l'ACP.
+On cherche une matrice P (IxL) telle que F = P<sup>T</sup> X avec F F<sup>T</sup>
+diagonale avec 1er &eacute;l&eacute;ment maximal et P<sup>T</sup> P = I.
+P doit &ecirc;tre la matrice des vecteurs propres de X X<sup>T</sup> = W, et donc
+F = <font face="symbol">D</font> Q<sup>T</sup> et F F<sup>T</sup> = <font face="symbol">L</font>.
+<p>
+Le rappel de la m&eacute;moire s'&eacute;crit : 
+O = W<sup>(t)</sup> X = P <font face="symbol">F</font><sup>(t)</sup> P<sup>T</sup> X
+<br> On a P<sup>T</sup> X = F, donc  O = P <font face="symbol">F</font><sup>(t)</sup> F.
+<p>
+L'ACP revient &agrave; d&eacute;finir la d&eacute;composition en valeurs et vecteurs propres de W.
+On veut trouver P tel que F = P<sup>T</sup> X avec F F<sup>T</sup> diagonale et P<sup>T</sup> P = I.
+<p>
+On d&eacute;finit le lagrangien
+L = F F<sup>T</sup> - <font face="symbol">L</font> (P<sup>T</sup> P - I)
+<br> que l'on d&eacute;rive : dL/dP = 2 X X<sup>T</sup> P - 2 <font face="symbol">L</font> P = 0
+<br> donc X X<sup>T</sup> P = <font face="symbol">L</font> P 
+avec <font face="symbol">L</font> &eacute;tant diagonale.
+<br>
+P est la matrice des vecteurs propres de X X<sup>T</sup> = W et 
+<font face="symbol">L</font> est la matrice des valeurs propres.
+<p>
+<h4>Extraction de vecteurs propres</h4>
+<p>
+Construire un r&eacute;seau qui trouve les vecteurs propres de W : variante de la 
+puissance it&eacute;r&eacute;e et de la d&eacute;flation. La puissance it&eacute;r&eacute;e revient &agrave; impl&eacute;menter
+la loi de Hebb de mani&egrave;re r&eacute;p&eacute;titive :
+<p>
+W<sup>(t+1)</sup> = W<sup>t</sup> + <font face="symbol">D</font> W 
+= W<sup>(t)</sup> + n X O<sup>(t)T</sup> 
+avec O<sup>(t)</sup> = W<sup>(t)</sup> X
+<p>
+On commence par initialiser la matrice
+W<sup>(0)</sup> = n X X<sup>T</sup> = P (n <font face="symbol">L) P<sup>T</sup>
+<br> puis W<sup>(t+1) = W<sup>(t)</sup> + n X O<sup>T</sup>
+= P (n <font face="symbol">L</font> (I + n <font face="symbol">L</font>)<sup>t</sup>) P<sup>T</sup>
+<p>
+Normaliser la r&eacute;ponse pour &eacute;viter l'explosion : r&egrave;gle de Oja :
+W<sup>(t+1)</sup> = 1/<font face="symbol">b</font> W^<sup>(t)</sup>.
+<p>
+D&eacute;flation : W<sup>-</sup> = W - p<sub>1</sub> p<sub>1</sub><sup>T</sup>
+<p>
+
+<h3>Les m&eacute;moires auto-associatives non lin&eacute;aires : les r&eacute;seaux de Hopfield</h3>
+<p>
+
+<h3>R&eacute;tro-propagation de l'erreur et r&eacute;seaux &agrave; couches cach&eacute;es</h3>
+<p>
+
+</body>
+</HTML>
+ 
+
+
+
+ 
+
+
+
+
+
+
+
+

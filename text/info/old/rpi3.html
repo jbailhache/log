@@ -1,0 +1,152 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Raspberry Pi</title>
+</head>
+<body>
+<h2>Raspberry Pi</h2>
+<p>
+<h3>Configuration réseau</h3>
+<p>
+/etc/network/interfaces
+<div style="color: navy; background-color: aqua;"><pre>
+auto lo
+iface lo inet loopback
+
+### port ethernet de la carte
+### adresse fixe pour réseau local
+# iface eth0 inet static
+# address 192.168.1.20
+# netmask 255.255.255.0
+
+### ou adresse dhcp pour connexion a box internet
+auto eth0
+allow-hotplug eth0
+iface eth0 inet dhcp
+
+### port ethernet USB
+iface eth1 inet dhcp
+
+### wifi
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+wpa-ssid "myssid"
+wpa-psk "mypass"
+
+allow-hotplug ppp0
+iface ppp0 inet dhcp
+
+</pre></div>
+
+Ajouter les DNS Google :
+
+<div style="color: lime; background-color: black;"><pre>
+$ sudo sh -c "(echo nameserver 8.8.8.8 ; echo nameserver 8.8.4.4) >> /etc/resolv.conf"
+</pre></div>
+
+Pour se connecter par wifi :
+
+<div style="color: lime; background-color: black;"><pre>
+$ sudo ip route replace default via 192?168.43.1 dev wlan0
+$ sudo ifdown wlan0
+$ sudo ifup wlan0
+</pre></div>
+
+<p>
+<h3>Serveur VNC</h3>
+<p>
+<div style="color: lime; background-color: black;"><pre>
+$ sudo apt-get install tightvncserver
+</pre></div>
+
+Démarrage automatique : /etc/init.d/vncboot
+
+<div style="color: navy; background-color: aqua;"><pre>
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides: vncboot
+# Required-Start: $remote_fs $syslog
+# Required-Stop: $remote_fs $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Start VNC server at boot time
+# Description: Start VNC server at boot time.
+### END INIT INFO
+
+USER=root
+HOME=/root
+export USER HOME
+
+VNCUSER='pi'
+eval cd ~$VNCUSER
+
+case "$1" in
+
+ start)
+  echo "Starting VNC Server for $VNCUSER"
+  su $VNCUSER -c '/usr/bin/tightvncserver :1'
+  ;;
+
+ stop)
+  echo "Stopping VNC Server"
+  # /usr/bin/tightvncserver -kill :1
+  pkill Xtightvnc
+  ;;
+
+ *)
+  echo "Usage: /etc/init.d/vncboot {start|stop}"
+  exit 1
+  ;;
+
+esac
+
+exit 0
+</pre></div>
+
+<div style="color: lime; background-color: black;"><pre>
+$ sudo chmod 755 /etc/init.d/vncboot
+$ sudo update-rc.d vncboot defaults
+</pre></div>
+<br>
+<p>
+<h3>Ouverture automatique d'une session LXDE au démarrage</h3>
+<p>
+
+<div style="color: lime; background-color: black;"><pre>
+$ sudo nano /etc/inittab
+</pre></div>
+Remplacer
+<div style="color: navy; background-color: aqua;"><pre>
+1:2345:respawn:/sbin/getty --noclear 38400 tty1
+</pre></div>
+par
+<div style="color: navy; background-color: aqua;"><pre>
+# 1:2345:respawn:/sbin/getty --noclear 38400 tty1
+1:2345:respawn:/bin/login -f pi tty1 </dev/tty1 >/dev/tty1 2>&1
+</pre></div>
+
+<div style="color: lime; background-color: black;"><pre>
+$ sudo raspi-config
+</pre></div>
+Sélectionner "Enable Boot to Desktop/Scratch" puis "Desktop Login at user pi at the Graphical Desktop".
+
+<br>
+<p>
+<h3>Prendre une photo avec la caméra</h3>
+<p>
+Raspberry Pi camera board :
+<div style="color: lime; background-color: black;"><pre>
+$ raspistill -o cam.jpg
+</pre></div>
+Caméra USB
+<div style="color: lime; background-color: black;"><pre>
+$ fswebcam cam.jpg
+</pre></div>
+
+
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,131 @@
+
+<!--Connexion établie--><!--Base de données sélectionnée--><HTML><head><title>Théorème de Gödel et réflexion en LCS</title><meta name=keywords content=""></head><body>
+
+<textarea rows=20 cols=60>
+
+Principe de réflexion :
+
+Pour toute démonstration d, eval (left d) = eval (right d)
+<eval (left d1), ...> = <eval (right d1), ...>
+mapdem (B eval left) = mapdem (B eval right)
+
+fRefl0 = \th \rLR \t \ev \lr \lsd
+ ---- rLR t ev lr
+  -- rap -- lr 'MapDemL 'MapDemR - RepTheory th
+
+Refl t0 (Ord 0 = I) = Refl0 t0
+Refl t0 (Ord x = I) = Refl tx (Ord 0 = I) = Refl0 tx
+(x>0) tx = t0 U Refl t0 U { Ord X = I }
+ExtractOrd d = if concl d = (Ord x = I) then x else 0
+
+fReflr = \reprecfRefl \th
+ \rLR \t \ev \lr \lsd
+ :x --ExtractOrd th -- Index Zero lsd
+ - \tx
+  ----- fRefl0 tx rLR ev lr Nil
+   --- Ord Zero x th
+    -- Adl
+     -- Adl th
+      -- MkRule - Suc Zero -- rap reprecfRefl th
+     -- MkRule Zero -- rep rfOrdx x
+
+dem S (refl d) -> dem (refl S) d
+
+d -> <n, d> = refl^n d
+f_refl f = \n (f n U a_refl f)
+a_refl f  : pour tout <n,d> true(concl(<n,d>)
+f_refl^w f = f U f_refl f U f_refl (f_refl f) U ...
+<n1, n2, d> ou <b, x> = <V, S> ou <F, <b,x>> ...
+refl (S0 U S1 U ...) = refl S0 U refl S1 U ...
+n -> p -> refl^n (Sp)
+oneof nodes = n -> n (Sn1 ... Snp)
+
+1 axiome de réflexivité : S (a_TR = b_TR)
+dans S0 : I=I
+dans S1 = refl S0 : <a_RS0, I> = <b_RS0, I>
+dans S2 = refl S1 : <a_RS1, <a_RS0, I>> = <b_RS1, <b_RS0, I>>
+...
+dans Sw : <I, <<a_RS0, I>, <<a_RS1, <a_RS0, I>>, ... >>>
+        = <I, <<b_RS0, I>, <<b_RS1, <b_RS0, I>>, ... >>>
+
+Principe de réflexion
+
+Pour toute dem d : eval (left d) = eval (right d)
+<eval (left d0), ...> = <eval (right d0), ...>
+mapdem (B eval left) = mapdem (B eval right)
+
+Proposition gödelienne :
+G : pour toute dem d, ~ (concl(d) = <G>)
+(pour toute dem d, ~ (plr(d) = <<Gl>,<Gr>>)) = (Gl = Gr)
+avec plr d = <left d,right d>
+
+x = f <x> = f <f <x>>
+<x> = <f <x>> = Y \r <f r> = Y \r (rap <f> r)
+x = eval (Y \r (rap <f> r)
+
+exemple : x = f <x> = ~eval <x> = ~x
+
+(l=r) = (f <l> <r> = g <l> <r>)
+l = f <l> <r> et r = g <l> <r>
+<l,r> = <f <l> <r>, g <l> <r>>
+<l,r>=p, l=fst p, r = snd p
+<l> = rfst <p> = rap <fst> p
+<r> = rsnd <p> = rap <snd> p
+p = <f (rfst <p>) (rsnd <p>), g (rfst <p>) (rsnd <p>)>
+cas particulier de p = F <p> (ou x = f <x>)
+avec F <p> = <f (rfst <p>) (rsnd <p>), g (rfst <p>) (rsnd <p>)>
+
+application à G : l=Gl, r=Gr
+
+(Pour toute dem d, ~(<<Gl>,<Gr>> = plr d)) = (Gl = Gr)
+(f <l> <r> = g <l> <r>) = (l = r)
+Pour toute dem d (plr d = <<Gl>,<Gr>> => faux)
+f[Gl,Gr] d (ou f d) = K si plr d = <<Gl>,<Gr>>, KI sinon
+<f[Gl,Gr] d1, ... > = <KI, ...>
+mapdem f[Gl,Gr] = mapdem (K(KI))
+f dg = KI => ~(plr(dg) = <<Gl>,<Gr>>)
+
+Ajout en axiome du principe de réflexion :
+Pour toute dem d, eval (fst (plr d)) = eval (snd (plr d))
+<eval (fst (plr d1)), ...> = <eval (snd (plr d1)), ...>
+mapdem (eval o fst o plr) = mapdem (eval o snd o plr)
+
+G : Pour toute dem d, ~(concl(d) = <G>)
+Axiome de réflexion : Pour toute dem d, True(concl(d))
+(True = eval)
+Supposons ~G
+alors :
+ Il existe dem d telle que concl d = <G>
+ Il existe dem d telle que True <G>
+ Il existe dem d telle que G
+ G
+Donc G (raisonnement par l'absurde)
+
+G : Pour toute dem d, ~(plr d = <<Gl>,<Gr>>
+G : Gl = Gr
+<f d1, ...> = <KI, ...>
+<plr d1 = <<Gl>,<Gr>>, ... > = <KI, ...>
+
+Axiome de réflexion : Pour toute dem d, 
+ eval (fst (plr d)) = eval (snd (plr d))
+
+~G : Gl ~= Gr
+~G : <f d1, ...> ~= <KI, ...>
+=> il existe dem dg telle que f dg ~= KI ?
+=> il existe dem dg telle que plr dg = <<Gl>,<Gr>>
+ démontrer que pour toute dem d, f d = K ou KI
+il existe dem dg telle que eval <Gl> = eval <Gr>
+il existe dem dg telle que Gl = Gr
+Gl ~= Gr => Gl = Gr
+Donc Gl = Gr ?
+
+<plr d1 = <<Gl>,<Gr>>, ... = <KI, ...>
+eval (fst (plr d1)) = eval (snd (plr d1))
+
+
+
+
+
+
+</textarea>
+</body></HTML>

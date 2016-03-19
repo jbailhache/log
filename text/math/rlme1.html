@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>RLME - Régression linéaire mobile exponentielle</title>
+</head>
+<body>
+<h2>RLME - Régression linéaire mobile exponentielle</h2>
+
+<h3>Moyenne arithmétique</h3>
+Rappelons que la moyenne arithmétique d'une série de nombres Y(1),
+..., Y(n) est définie par :
+<br>
+M = (Y(1) + ... + Y(n)) / n
+
+<h3>Moyenne mobile exponontielle (MME)</h2>
+La MME permet de lisser une série temporelle, par exemple le cours
+d'un instrument financier. C'est une moyenne pondérée de la valeur
+actuelle et de la MME précédente. La MME de Y est définie par :
+<br>
+MMEY(t) = a * Y(t) + (1-a) * MMEY(t-1)
+<br>
+Le MME présente l'inconvénient d'être décalée vers le futur par
+rapport à la série étudiée.
+
+<h3>Régression linéaire</h3>
+La régression linéaire consiste à déterminer, à partir d'un ensemble
+de points (X(i), Y(i)) une fonction linéaire f(X) = a * X + b qui
+minimise les écarts entre f(X(i)) et Y(i).
+<br>
+Les formules de calcul de a et b sont les suivantes :
+<br>
+( voir <a href="http://informatique.coursgratuits.net/methodes-numeriques/regressions-et-interpolations.php">http://informatique.coursgratuits.net/methodes-numeriques/regressions-et-interpolations.php</a>
+)
+<br>
+a = (n * somme(X(i)*Y(i)) - somme(X(i)) * somme(Y(i))) / (n *
+somme(X(i)^2) - (somme(X(i)))^2)
+<br>
+b = (somme(X(i)^2) * somme(Y(i)) - somme(X(i)) * somme(X(i)*Y(i))) /
+(n * somme(X(i)^2) - (somme(X(i)))^2)
+<br>
+avec somme = somme pour i=1 à n
+<br>
+On peut réécrire ces formules en utilisant des moyennes au lieu de
+sommes, en remplaçant somme(...) par n * moyenne(...) où moyenne(...)
+désigne la moyenne arithmétique des (...) En effectuant cette
+substitution et en simplifiant, on obtient :
+<br>
+a = (moyenne(X(i)*Y(i)) - moyenne(X(i)) * moyenne(Y(i))) /
+(moyenne(X(i)^2) - moyenne(X(i))^2)
+<br>
+b = (moyenne(X(i)^2) * moyenne(Y(i)) - moyenne(X(i)) *
+moyenne(X(i)*Y(i))) / (moyenne(X(i)^2) - moyenne(X(i))^2)
+<br>
+Dans le cas particulier d'une série temporelle avec t = 1, 2, 3, ...
+on a i = t et X(i) = i = t.
+
+<h3>Régression linéaire mobile exponentielle (RLME)</h3>
+
+La RLME est à la régression linéaire ce que la MME est à la moyenne
+arithmétique. Elle est obtenue en remplaçant dans la formule de la
+régression linéaire les moyennes arithmétiques par des MME.
+<br>
+On peut calculer la RLME d'une série temporelle Y(T) par les formules
+suivantes :
+<ul>
+<li> MMEY(0) = Y(0)
+<li> MMET(0) = 0
+<li> MMET2(0) = 0
+<li> MMETY(0) = 0
+<li> A(0) = 0
+<li> B(0) = Y(0)
+<li> MMEY(T) = a * Y(T) + (1-a) * MMEY(T-1)
+<li> MMET(T) = a * T + (1-a) * MMET(T-1)
+<li> MMET2(T) = a * T^2 + (1-a) * MMET2(T-1)
+<li> MMETY(T) = a * T * Y(T) + (1-a) * MMETY(T-1)
+<li> D(T) = MMET2(T) - MMET(T)^2
+<li> si D(T) = 0 alors A(T) = A(T-1) sinon A(T) = (MMETY(T) - MMET(T)
+* MMEY(T)) / D(T)
+<li> si D(T) = 0 alors B(T) = B(T-1) sinon B(T) = (MMET2(T) * MMEY(T)
+- MMET(T) * MMETY(T)) / D(T)
+<li> RLME(T) = A(T) * T + B(T)
+</ul>
+<br>
+On obtient ainsi un lissage de la série temporelle X(t) qui "colle"
+mieux à celle-ci que sa MME.
+</body>
+</html>
+

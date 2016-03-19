@@ -1,0 +1,108 @@
+Analyse en composantes principales
+D'après G. Saporta : Porbabilités, analyse de données et statistiques, ed. Technip
+
+données X = [x_i^j] 
+lignes=individus e'_i
+colonnes=variables x^j
+
+matrice des poids des individus D = diag (p1, ..., pn)
+avec somme(pi) = 1
+
+barycentre g = X'D1 avec 1 = vecteur colonne de R^n de composantes (1, 1, ... 1)
+Y = tableau centré associé à X : Y = X-1g' = (I-11'D)X
+
+Matrice de variance : V = X'DX-gg' = Y'DY
+X'DX = somme(p_i e_i e'_i)
+
+D_1/s matrice des inverses des écarts types 
+D_1/s = diag (1/s_1, ... 1/s_p)
+D_1/s^2 matrice diagonale des inverses des variances
+tableau des données centrées et réduites Z tel que 
+z_i^j = (x_i^j - xbar^j) / s_j
+Z = Y D_1/s
+
+matrice de corrélation
+R = [r_i_j] = D_1/s V D_1/s = Z' D Z
+
+métrique des individus M
+exemple : M = D_1/s^2
+rétablit l'équilibre entre lesvariables
+revient à diviser chaque caractère par son écart type.
+M = T' T
+Produit scalaire entre 2 individus
+<e_1;e_2> = e'_1 M e_2 = e'_1 T' T e_2 = (T e_2)' T e_1
+Tout se passe comme si on utilisait la métrique I sur XT'
+
+Inertie : moyenne pondérée des carrés des distances des points au centre de gravité
+I_g = somme (p_i (e_i - g') M (e_i - g) = somme (p_i || e_i - g||^2
+L'inertie I_a en un point a vaut somme (p_i (e_i - a)' M (e_i - a)
+Relation de Huygens : I_a = I_g + (g-a)' M (g-a) = I_g + ||g-a||^2
+Si g=0 : I_g = somme(p_i e'_ i M e_i)
+On démontre aisément que 2I_g = somme(i,j=1..n)(p_i p_j (e_i-e_j)' M (e_i-e_j) = somme (p_i_j ||e_i-e_j||^2
+I_g = trace MV = trace VM = trace MX'DX
+Si M=I, I_g=somme desvariances
+Si M = D_1/s^2, I_g = trace R = p
+
+Produit scalaire de 2 variables x^j et x^k = x'^j D x^k = somme (p_i x_i^k x_i^j) = covariance si variable centrées
+
+Projection des individus sur un axe engendré par un vecteur unitaire a
+La liste des coordonnées c_i des individus forme une nouvelle variable c
+c = XMa = Xu avec u = Ma
+La variance de c = V(c) = s_c^2 = u' V u
+c' D c = (X u') D (X u) = u' X' D X u
+
+ACP
+Moyenne des carrés des distances entre projections la plus grande possible
+inertie du nuage projeté sur le sous-espace F_k maximale
+projection P telle que P^2 = P et P'M = MP
+nuage projeté : XP'
+matrice de variance pour variables centrées : (XP')'D (XP') = P V P'
+inertie : Trace (PVP'M) = Trace (PVMP) = Trace (VMP^2) = trace (VMP) à maximiser
+
+Théorème : 
+Soit F_k un sous-espace portant l'inertie maximale, alors le sous-espace de dimension 
+k+1 portant l'inertie maximale est la somme directe de F_k et du sous-espace de 
+dimension 1 M-orthogonal à F_k portant l'inertie maximale : Les solutionssont "emboitées"
+
+Axes principaux : droite de R^p passant par g maximisant l'inertie du nuage projeté sur cette droite
+P = a (a' M a)^-1 a' M
+Trace VMP = 1/(a"Ma) Trace(VMaa'M) = Trace(a'MVMa)/(a'Ma) = a'MVMa/a'Ma
+MVM = matrice d'inertie du nuage
+maximum de a'MVMa/a'Ma : 
+d/da (a'MVMa/a'Ma) = (a'Ma)2MVMa - (a'MVMa)2Ma/(a'Ma)^2
+MVMa = (a'MVMa/a'Ma)Ma
+VMa = lambda a
+a est vecteur propre de VM
+axes principaux d'inertie = vecteurs de VM
+
+Facteurs principaux
+MVu = lambda u
+Les facteurs principaux sont les vecteurs propres M^-1-normés de MV
+
+Composantes principales : Variables définies par les facteurs principaux : 
+c_i = X u_i
+XMX'Dc = lambda c
+
+En résumé :
+Facteurs principaux u	MVu = lambda u		M^-1-orthonormés
+Axes principaux a		MVa = lambda a		M-orthonormés
+Composantes principales c	XMX'Dc  = lambda c	D-orthogonales
+c=Xu			u=Ma
+
+On calcule les u par diagonalisation de MV puis c=Xu
+
+Reconstitution : X = somme(j=1;..p) (c_j u'_j M^-1)
+MV = somme (lambda_j u_j u'_j M^-1)
+VM = somme (lambda_j a_j a'_j M)
+
+Métrique D_1/s^2 ou ACP sur données centrées réduites
+c=Zu
+ZZ'DZu = lambda Zu
+Z'DZ = R
+ZRu = lambda Zu
+si Z est de rang p, Ru = lambda u
+l'ACP revient à remplacer les variables x^1...x^p par les composantes principales c^1...
+combinaisons linéaires non corrélées des x^j, de variance maximale et les plus liées aux x^j.
+
+
+

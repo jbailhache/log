@@ -1,0 +1,190 @@
+<html>
+<head>
+<title>Comparison of proof assistants</title>
+<style>
+table {
+  empty-cells: show;
+}
+
+</style>
+</head>
+<body>
+
+<table border=3>
+<th>
+<td>Coq</td>
+<td>Agda</td>
+<td>Twelf</td>
+</th>
+<tr>
+<td>Usage</td>
+<td><pre>
+$ nano myprog.v
+$ coqtop
+Coq &lt; Load myprog.
+Coq &lt; Quit.
+</pre></td>
+<td><pre>
+$ nano myprog.agda
+$ agda myprog.agda
+</pre></td>
+<td><pre>
+$ nano myprog.elf
+$ twelf/bin/twelf-server
+loadFile myprog.elf
+quit
+</pre></td>
+</tr>
+<tr>
+<td>Comments</td>
+<td><pre>
+(* This is a comment *)
+</pre></td>
+<td><pre>
+{- This is a comment -}
+-- This is a comment
+</pre></td>
+<td><pre>
+% This is a comment
+</pre></td>
+</tr>
+<td>Conventions</td>
+<td> </td>
+<td> </td>
+<td>constant, Variable</td>
+</tr>
+<tr>
+<td>Types</td>
+<td>Type</td>
+<td>Set</td>
+<td>kind, type, term</td>
+</tr>
+<tr>
+<td>Natural numbers</td>
+<td>nat, O, S</td>
+<td>Nat, zero, suc</td>
+<td>nat, zero, suc</td>
+</tr>
+<tr>
+<td>Function types</td>
+<td><pre>
+A -> B
+(x:A) : B
+(x:A) (y:B) : C
+</pre></td>
+<td><pre>
+A -> B
+(x:A) -> B
+(x:A) -> (y:B) -> C
+</pre></td>
+<td><pre>
+A -> B
+{x:A} B
+</pre></td>
+</tr>
+<tr>
+<td>Anonymous function</td>
+<td><pre>fun x:T => y</pre></td>
+<td><pre>\(x:T) => y</pre></td>
+<td><pre>[x:T] y</pre></td>
+</tr>
+<tr>
+<td>Recursive type</td>
+<td><pre>
+Inductive ord : Type :=
+ | zero : ord
+ | suc : ord -> ord
+ | lim : (nat -> ord) -> ord.
+</pre></td>
+<td><pre>
+ data Ord : Set where
+  zo : Ord
+  so : Ord -> Ord
+  lo : (Nat -> Ord) -> Ord
+</pre></td>
+<td><pre>
+ord : type.
+zero : ord.
+suc : ord -> ord.
+lim : (nat -> ord) -> ord.
+</pre></td>
+</tr>
+<tr>
+<td>Simple definitions</td>
+<td><pre>
+Definition a := b.
+Definition a (x:T) : U := b.
+</pre></td>
+<td><pre>
+a : b
+</pre></td>
+<td><pre>
+a = b.
+</pre></td>
+</tr>
+<tr>
+<td>Recursive definition</td>
+<td><pre>
+Fixpoint plus (n:nat) (m:nat) : nat :=
+ match n with
+  | O => m
+  | S p => S (plus p m)
+ end.
+</pre></td>
+<td><pre>
+plus : (n:nat) -> (m:nat) -> Nat
+plus 0 m = m
+plus (suc p) m = suc (plus p m)
+</pre></td>
+<td><pre>
+plus : nat -> nat -> nat -> type.
+pz : plus zero Y Y.
+ps : plus (suc X) Y (suc Z)
+  &lt;- plus X Y Z.
+</pre></td>
+</tr>
+<tr>
+<td>Theorem</td>
+<td><pre>
+Theorem plus_O_n :
+forall n:nat, O + n = n.
+proof.
+intros n. reflexivity.
+Qed.
+</pre></td>
+<td><pre>
+forall {n:Nat} -> zero + n = n
+</pre></td>
+<td><pre>
+%theorem
+plus0n : forall {N:nat} 
+plus 0 N N.
+</pre></td>
+</tr>
+<tr>
+<td>Polymorphism</td>
+<td><pre>
+Definition id : (a:Type) : a -> a :=
+ fun (x:a) => x.
+</pre></td>
+<td><pre>
+id : (A: Set) -> A -> A
+id A x = x
+</pre>
+or
+<pre>
+id = \(A:Set) -> \(x:A) x
+</pre>
+or
+<pre>
+id : {A:Set} -> A -> A
+id x = x
+</pre></td>
+<td>No polymorphism</td>
+</tr>
+
+</table>
+
+</body>
+</html>
+

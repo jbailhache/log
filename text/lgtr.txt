@@ -1,0 +1,161 @@
+LES LOUPS-GAROUS DE THIERCELIEUX
+
+PRESENTATION
+
+Le jeu des loups-garous de Thiercelieux est un jeu de rôles qui fait intervenir à la fois la perspicacité, l'esprit logique, l'intuition, la psychologie et le pouvoir de conviction. Dans sa version de base, il oppose deux équipes dissymétriques car seuls les joueurs d'une des équipes connaissent leurs coéquipiers. Dans certaines extensions, il existe aussi des personnages solitaires qui jouent pour leur propre compte.
+
+L'histoire de base est la suivante : Dans le village de Thiercelieux, chaque nuit, certains habitants se transforment en loups-garous. Ils se réunissent pour choisir une victime parmi les autres villageois et la dévorer. Le matin, les villageois constatant la disparition d'un des leurs mènent l'enquête afin de découvrir les coupables. Après avoir discuté, chacun désigne celui qui lui semble le plus coupable. Celui qui est désigné par le plus grand nombre est accusé d'être un loup-garou et lynché par le village. Le but de chaque camp est d'éliminer tous ceux du camp adverse.
+
+Certains villageois ont des pouvoirs particuliers, par exemple :
+- Le don de la voyante lui permet de percevoir la vraie nature d'une personne de son choix chaque nuit.
+- La sorcière possède 2 potions : une potion de vie qui lui permet de ressusciter la victime des loups-garous, et une potion de mort qui lui permet de tuer une personne de son choix. Chacune des potion n'est utilisable qu'une fois dans toute la partie.
+- Le chasseur a sur lui un fusil chargé avec lequel il tire immédiatement sur la personne de son choix dès qu'il meurt.
+- Cupidon, pendant la première nuit, désigne deux personnes qui seront amoureuses. Si l'un des deux est tué, l'autre meurt de chagrin. D'autre part, si un innocent villageois est amoureux d'un loup-garou, ils constituent un troisième camp et doivent tuer tous les autres pour gagner.
+- Le voleur a le choix entre deux rôles au début de la partie.
+- Le salvateur a le pouvoir de protéger chaque nuit la personne de son choix contre l'attaque des loups-garous. Il ne peut pas protéger la même personne deux nuits de suite.
+
+Il est également possible de jouer avec des rôles solitaires qui doivent éliminer tous les autres pour gagner, par exemple :
+- Le joueur de flûte, qui enchante jusqu'à 2 personnes chaque nuit. Il gagne s'il réussit à enchanter tous ceux qui sont encore vivants
+- Le loup blanc ou maître loup, qui est un des loups-garous, mais qui peut aussi tuer un loup-garou chaque nuit, et doit également être le dernier survivant pour gagner
+- L'assassin, qui choisit un signe discret qu'il fait en regardant quelqu'un pour le tuer. Il doit tuer tous les autres.
+
+
+REGLES
+
+- Les règles officielles
+
+Le maître du jeu (MDJ) ou meneur distribue à chaque joueur une carte représentant son rôle.
+Les joueurs élisent un maire ou capitaine. Il a 2 votes, et de plus en cas d'ex-aequo c'est lui qui tranche. S'il meurs, il désigne son successeur.
+Ensuite le déroulement du jeu est constitué d'une alternance de nuits et de jours.
+Pendant la nuit, les joueurs ont les yeux fermés, sauf les rôles appelés par le MDJ.
+A la fin de la nuit le MDJ dit "Le village se réveille". Tous les joueurs ouvrent les yeux. Le MDJ indique qui est mort durant la nuit et indique son rôle ou leurs rôles.
+Puis les joueurs discutent pour chercher qui sont les loups-garous.
+Ensuite chacun désigne le joueur qu'il soupçonne le plus. 
+Celui qui recueille le plus de votes est lynché par le village. Son rôle est dévoilé.
+Une nouvelle nuit commence alors.
+Les morts ne participent plus au jeu mais peuvent le regarder en spectateurs.
+Les loups-garous gagnent s'ils tuent tous les villageois.
+Les villageois gagnent s'ils tuent tous les loups-garous.
+
+Selon la règle officielle, l'ordre des rôles de nuit est :
+- pour la première nuit uniquement : 
+   - le voleur, qui choisit entre 2 rôles
+   - cupidon, qui désigne 2 amoureux. Ensuite le MDJ touche les amoureux qui se reconnaissent mais ne se communiquent pas leurs rôles
+   - l'ancien, qui survit à la première attaque des loups-garous. S'il est tué par le village (au vote, par la sorcière ou par un chasseur) les villageois perdent leurs pouvoirs : voyante, sorcière et salvateur deviennent simples villageois.
+- pour toutes les nuits :
+   - le salvateur protège un joueur contre les loups-garous, mas pas 2 fois de suite le même
+   - la voyante désigne un joueur, le MDJ lui montre sa carte
+   - les loups-garous désignent leur victime d'un commun accord. S'ils ne se mettent pas d'accord, il n'y a pas de victime
+   - la sorcière
+   - le joueur de flûte enchante, selon le nombre de joueurs, jusqu'à 1 ou 2 personnes. Il gagne s'il est le seul vivant non enchanté.
+Certains rôles peuvent ne pas figurer dans le village, en fonction du nombre de joueurs
+
+
+
+- Variantes
+
+   - permettre aux amoureux de se communiquer leurs rôles par signe ou de se montrer leurs cartes
+
+   - modifier l'ordre des rôles :
+	On peut appeler la voyante après la sorcière et uniquement si elle n'est pas morte. On évite ainsi qu'elle communique une information qu'elle n'a pas le droit de communiquer, étant morte.
+
+   - Pour le vote du village, généralement le MDJ compte "1, 2, 3" et à 3 tout le monde désigne en même temps la personne qu'il suspecte. Certains MDJ considère que quelqu'un qui hésite ou change son vote vote contre lui-même. D'autres autorisent à ne pas voter. Plus rarement, dans certains groupes les votes ne sont pas simultanés mais chacun désigne son suspect dès qu'il a un soupçon, on peut changer son vote, et dès que quelqu'un recueille une majorité de votes ou que tout le monde a voté, celui qui recueille le plus de votes est lynché. 
+
+   - Une autre variante pour le vote consiste à désigner un suspect comme précédemment dans un premier temps, puis à lui donner droit à une plaidoierie à l'issue de laquelle les joueurs votent coupable ou non coupable. S'il y a une majorité de votes coupable, le suspect est lynché, sinon il n'y a pas de mort.
+
+   - Variante "C'est sûrement pas lui" de l'extension "Nouvelle lune", aussi appelée "vote debout" : les joueurs se lèvent, le voisin de gauche du dernier mort innocente un autre joueur qui s'assied puis innocente un autre joueur et ainsi de suite. Le dernier non innocenté est lynché. Lorsqu'il ne reste que 2 joueurs non innocentés on peut faire un petit débat entre ces 2 joueurs.
+
+   - Autre variante pour le vote : en cas d'ex-aequo on fait un 2e tour
+
+   - Variante pour le maire : il n'est pas élu par le village, mais c'est le premier mort qui le désigne. Il n'a qu'une voix mais tranche en cas d'ex-aequo.
+
+   - Variantes pour Cupidon et les amoureux :
+      Dans la règle officielle, Cupidon est du côté du village, mais certains considèrent qu'il est dans le camp de ses amoureux. Certains MDJ lui interdisent de désigner, voter contre et/ou inciter au vote contre ses amoureux. Une autre possibilité est d'obliger Cupidon à se désigner lui-même comme un des amoureux, ou bien ne pas mettre de rôle de Cupidon, et c'est le MDJ qui désigne les amoureux.
+
+   - Variante pour la voyante : le MDJ dit à voix haute le rôle (mais pas le nom du joueur) vu par la voyante (par exemple : "la voyante a vu un chasseur")
+
+   - Variante pour l'ancien : le village ne perd ses pouvoirs que s'il est tué par le vote du village.
+
+   - Le MDJ peut décider soit d'autoriser à dire son rôle explicitement (et évedemment aussi à mentir sur son rôle), ou inderdire de le dire explicitement mais autoriser des sous-entendus, ou interdire tout sous-entendu.
+
+   - Le rôle du voleur permet d'éviter que la partie soit trop facile pour le village si chacun dit son rôle, mais le MDJ peut également appeler des rôles qui n'existe pas, et éventuellement les montrer aux loups-garous la permière nuit pour qu'ils puissent se faire passer pour ces rôles.
+
+   - Variantes pour les morts : 
+      - donner au premier mort dans le camp du village le rôle d'"idiot du village". C'est un villageois qui a perdu son droit de vote mais peut continuer à participer aux débats. Ca permet d'éviter que les loups-garous tuent le meilleur joueur en premier.
+      - tous les morts peuvent décider de devenir "fantômes", auquel cas ils peuvent continuer à participer aux débats, mais ne votent plus et n'ont plus de pouvoirs. Dans ce cas ils doivent bien sûr fermer les yeux la nuit.
+
+   - Variante pour la condition de victoire : les loups-garous gagnent s'il reste un ou plusieurs loups-garous vivants et un seul ou aucun villageois vivant.
+
+   - Lycanthropie : les loups ont la possibilité de transformer une personne en loup-garouau lieu de la dévorer. On peut soit commencer avec peu de loups et permettre la lycanthropie dès le début, soit avoir recours à la lycanthropie pour rééquilibrer une partie qui tourne trop vite à l'avantage du village.
+
+
+   - Variantes à plusieurs cartes :
+	- La petite complication de l'extension Nouvelle Lune : chaque joueur a une carte cachée qui indique son camp (villageois ou loup-garou) et une carte visible indiquant son pouvoir (voyante, sorcière, chasseyr, salvateur, ancien...) ou simple villageois s'il n'a pas de pouvoir.
+	- La grande complication de l'extension Nouvelle Lune : chaque joueur a 2 cartes cachées. Il peut donc cumuler 2 pouvoirs. Il est dans le camp des loups-garous s'il a au moins une carte de loup-garou, sinon il est dans le camp du village.
+	- variante de l'extension "Le Village" : chaque joueur a une rôle de nuit caché et un rôle de jour visible. La voyante de jour ou confesseur peut à tout moment durant le jour demander à un autre joueur de lui montrer sa carte (un seul joueur par jour), la sorcière de jour ou châtelain peut, une seule fois dans la partie, grâcier la personne lynchée, et tuer la personne de son choix (pas nécessairement le même jour), et le salvateur de jour ou protecteur désigne avant le vote du village quelqu'un qui ne pourra pas être lynché (pas deux fois de suite le même)
+	- chaque joueur joue les rôles de 2 personnages différents et a 2 cartes cachées. Les joueurs désignent une carte, votent contre une carte, etc... 
+
+
+   - Nouveaux rôles :
+
+	- Les francs-maçons sont des villageois qui sont réveillés par le MDJ la première nuit, se reconnaissent et savent qu'ils sont innocents. Parfois le MDJ appelle les chasseurs à se réveiller et ils cumulent ainsi leur rôle avec celui de franc-maçon.
+
+	- L'apprenti est réveillé par le MDJ la première nuit et désigne un maître dont il récupérera le rôle quand celui-ci mourra.
+
+	- L'assassin est appelé par le MDJ la première nuit, lui montre un signe discret qu'il fera le jour en regardant un joueur pour le tuer. Son but est d'être le dernier survivant.
+
+	- Le tueur est comme l'assassin un solitaire qui doit finir seul mais il tue la nuit au lieu de tuer le jour
+
+	- Le marchand de sable endort quelqu'un chaque nuit. Le MDJ l'appelle, il désigne sa victime, le MDJ touche cette victime en disant "La personne que j'ai touché ne se réveillera pas cette nuit"
+
+	- Le somnambule va se promener chez quelqu'un chaque nuit (pas 2 fois de suite la même personne). Si les loups le désignent, il ne meurt pas, mais si les loups désignent la personne chez qui il se promène, c'est le somnambule qui meurt à la place de la victime désignée par les loups.
+
+	- Casanova : comme le somnambule sauf qu'il meurt avec la personne à qui il rend visite si les loups désignent cette personne comme victime
+
+	- Le maître loup ou loup blanc est un loup-garou qui se réveille avec les autres mais qui se réveille ensuite seul après les loups-garous (selon le MDJ toutes les nuits ou une nuit sur 2) et peut s'il veut tuer un loup-garou. Il doit être le seul survivant pour gagner.
+
+	- Le berger a un mouton qu'il envoie chez quelqu'un chaque nuit. Si c'est un loup-garou (ou loup blanc) son mouton meurt (le MDJ l'indique par le pouce vers le bas) sinon il revient (le MDJ l'indique par le pouce vers le haut)
+
+	- Le magicien peut transformer chaque nuit une personne (ou parfois 2 personnes) en grenouille. La grenouille ne participe pas au jeu pendant un jour et une nuit. Selon le MDJ elle ne peut dire que "croa croa" ou elle peut parler normalement.
+
+	- Le louveteau va rendre visite à quelqu'un chaque nuit. Si c'est un loup, il devient loup.
+
+	- Le traître est un villageois qui devient loup si tous les loups sont morts
+
+	- Les vampire désignent chaque nuit un joueur d'un commun accord. Si ce n'est pas un loup-garou ce joueur devient vampire. Si c'est un loup-garou, il reste loup-garou et les vampires perdent leur pouvoir de transformer les autres joueurs en vampires. Les vampires gagnent si tous les vivants sont des vampires.
+
+	- Les hamsters-garous sont comme un autre camp de loups-garous
+
+	
+
+Ordre des rôles conseillé :
+Première nuit :
+ voleur
+ cupidon
+ francs-maçons
+ apprenti
+ assassin
+ ancien
+Toutes les nuits :
+ marchand de sable
+ salvateur
+ somnambule
+ loups-garous et loup blanc
+ hamsters-garous
+ loup blanc
+ sorcière
+ voyante 
+ berger
+ joueur de flûte
+ magicien
+ 
+
+
+
+
+
+
+
+
+
+

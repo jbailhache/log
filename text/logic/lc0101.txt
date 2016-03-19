@@ -1,0 +1,30 @@
+Principe de reflexion
+
+reflexion uniforme :
+A n ((E d. Pr (d, <p(n)>)) => p(n))
+A n (A d (Pr (d, <p(n)>) => p(n)))
+A n (A d (concl(d)=<p(n)> => p(n)))
+
+A d (IsPr d => eval (concl d))
+               true (concl d)
+               left_S d = right_s d
+               mapdem_S left = mapdem_S right
+               <left d0, ...> = <right d0, ...>
+
+IsPr_S 'd :
+	IsPr_S 'axm, IsPr_S 'tr (trou reflexif)
+	ISPr_S 'd1, ... -> IsPr_S (regle 'd1 ...)
+
+IsPr_S 'v0 : IsPr_S v0 = I
+
+a=b & c=d -> <a,c> = <b,d>
+a=/=b : <Daba,Dabb> = <K,KI>
+
+x = f(<x>) = f(<f(...)>)
+<f y> = rap <f> <y>
+<f <f ... >> = rap <f> <<f ...>> = rap rf (reprep (rap rf ...))
+= Y (B (rap rf) reprep)
+x = eval rf (Y (B (rap rf) reprep))
+ou eval (Y (B (rap rf) reprep))
+
+ 

@@ -1,0 +1,199 @@
+<html><head><title>
+Logical reflection
+</title></head>
+<body>
+<h1>Logical reflection</h1>
+<p>
+
+Abstract from 
+<a href="http://www.cam.sri.com/tr/crc053/abstract.html">
+"Metatheory and Reflection in Theorem Proving: 
+A Survey and Critique" </a> 
+by <a href="mailto:jrh@cl.cam.ac.uk">John Harrison</a>, 
+University of Cambridge. <p>
+
+see also: <p>
+<a href="http://psyche.cs.monash.edu.au/volume2-1/psyche-95-2-07-shadows-5-feferman.html"> 
+"Penrose's Goedelian Argument"</a><p>
+
+<p>
+
+Goedel number of phi = "phi"    <br>
+Prov(p,"phi") : p is the Goedel number of an encoded proof of phi       <br> 
+Pr("phi") = Exist p. Prov(p,"phi")      <p>
+
+1. If |-phi then |-Pr("phi")    <br>                   
+2. |-Pr("phi") & Pr("phi=>psi") => Pr("psi")    <br>
+3. |-Pr("phi") => Pr("Pr("phi")")       <p>
+
+4. Goedel's statement: phi == ~Pr("phi")        <p>
+
+If |-phi by (1) |-Pr("phi"), by (4) |-~phi, inconsistent. <br>
+If the system is consistent, then phi is unprovable, then it is true 
+(Goedel's first incompleteness theorem)         <p>
+
+Consistency is not sufficient to rule out |-~phi. However 1-consistency 
+certainly is, since now if |-~phi then |-Pr("phi"), and since all provable
+existencial statements are true, |-phi, again contradicting consistency.
+Goedel's argument itself shows that if S is consistent, so is S U {~phi},
+and therefore consistency does not imply 1-consistency. Rosser (1936) 
+modified Goedel's proof by defining <p>
+
+        /Prov(p,"phi") == Prov(p,"phi") & All q<=p. ~Prov(q,"~phi") <p>
+
+(Strictly, "~phi" should be read ad Neg("phi") <p>
+
+If /phi is the analog of Goedel's sentence phi for this new notion of 
+provability, it turns out that just assuming consistency, neither /phi 
+nor ~/phi is provable. What's more, assuming the system is consistent,
+Pr and /Pr are evidently coextensive. <p>
+
+        Goedel's argument above may itself be formalized using the 
+provability predicate. This essentially means that instead of (1), we use (3)
+which can be seen as (1) 'at one remove'. Note also that by combining (1)
+and (2) we see that if |-psi=>phi then |-Pr("psi")=>Pr("phi"). Applying this,
+and (2) again, to |-Pr("phi") => (phi=>false), which is true by construction 
+of phi, we find that |-Pr("Pr("phi")") => (Pr("phi") => Pr("false")).
+But by (3) we also have |-Pr("phi") => Pr("Pr("phi")"), and so 
+|- Pr("phi") => Pr("false"). On the other hand, false => phi is trivial, and
+so again |= Pr("false") => Pr("phi"). This shows that |- phi <=> ~Pr("false").
+<p>
+
+        ~Pr("false") is an assertionthat the system is consistent, and so is
+usually abbreviated Con. We have thus, assuming all 3 derivability conditions,
+deduced Goedel's Second Incompleteness Theorem, that a system of the kind
+we are considering is unable to prove its own consistency. We have shown,
+moreover, that the statement of consistency is logically equivalent
+to the unprovable sentence produced in the proof of Goedel's first theorem.<p>
+
+        As noted by Feferman (1960), there is an intensionality involved in
+an assertion of consistency. In fact using Rosser's notion of provability /Pr, 
+we get a notion of consistency /Con which is (assuming the system is 
+consistent) coextensive with Con yet such that |-Con. Indeed manifestly 
+|-~false, so we can assume Prov(p,"~false") for some p. Now if q >= p then
+/Prov(q,"false") by definition, and since the system is assumed consistent,
+All q<p. ~/Prov(q,"false"). The former is trivially provable in the logic,
+and the second must be too because it's dcidable (only bounded quantification)
+Putting these together we find |- All p. ~/Prov(p,"false").     <p>
+
+        Of course this coextensiveness cannot, on pain ofcontradicting
+Goedel's secont theorem, be proved inside the logic, and /Pr must fail to
+satisft one of the derivability conditions, but it nevertheless has some 
+signifianceas regards the transfinite progressions of theories discussed
+below. Even using the standard notion of provability, Feferman showed that
+for theories like ZF and PA which can prove consistency of finitely 
+axiomatized subsystems, one can produce alternative predicates representing
+the same set of axioms (using a trick reminiscent of the Rosser construction)
+such as Con becomes provable. This means one needs to distinguish
+carefully between "natural" and "pathological" representations of the same
+axiom set. Resnik (1974) discusses the philosophical signifiance of this
+fact. <p>
+
+<h3>Reflection principles and transfinite progressions</h3>
+<p>
+        While Goedel's theorems show the limitations of formal systems, 
+they also point to a systematic way of making a given system stronger.<p>
+
+        S0 = PA
+        S1 = S0 U { Con(S0) } <p>
+        S2...   <br>
+        S3...   <br>
+        ...     <br>
+        Sl = U(a<l) Sa <p>
+
+        The limiting system (unioning over all constructive ordinals) can 
+can prove all sentences All x.P[x] with P[x] quantifier free. <p>
+
+Global reflection schema : |- Pr("phi") => True("phi")  <br>
+cannot be expressed in the logic, since it was shown by Tarski (1936) that
+there is no definable predicate True. <p>
+
+Local reflection schema : |- Pr("phi") => phi   <br>
+Feferman proved that the limiting system has equal power as with 
+Si+1 = Si U { Con(Si) }. <br>
+(personal note: this seems to contradict with what Feferman said in
+<a href="http://psyche.cs.monash.edu.au/volume2-1/psyche-95-2-07-shadows-5-feferman.html"> 
+ "Penrose's Goedelian Argument"</a><p>) <p>
+
+Uniform reflection principle : |- All n. Pr("phi[n]") => phi[n]         <br>
+(phi[n] = subst(n,"phi")<br>
+was shown by Kreisel and Levy (1968) to be, with respect to first order
+number theory among others, equivalent to transfinite induction up to 
+epsilon 0, which was precisely the additional property used by Gentzen in 
+his consistency proof for number theory, and Feferman showed that a 
+transfinite iteration based on it proves all true sentences of number theory.
+<p>
+
+        It is possible for a consistent theory to become inconsistent on the 
+addition of the LRS, or even a simple statement of consistency. For example,
+Goedel's theorem shows that if S is consistent, so is T = S U {~Con(S)},
+but Con(T) implies Con(S), so the further addition of Con(T) to T yields an
+inconsistent system. However it follows from Feferman's work that a 
+1-consistent remains so even on transfinitely many additions of the URS.<p>
+
+        A more recent exposition of such matters is given by Feferman (1991).<p>
+
+        Rather than stressing its role in making a logical system stronger,
+Kreisel and Levy exploit the fact that the reflection schema for S is unprovable
+in S to yield a way of comparing the strengths of logical systems. If a system
+T can prove the reflection principle of S, then T is properly stronger than S.
+<p>
+
+
+  
+
+
+
+
+
+<p>
+<h3>References</h3>
+<p>
+
+Feferman, S. (1960) Arithmetization of metamathematics in a general setting.
+Fundamenta Mathematicae, 49, 35-92. <p>
+
+Feferman, S. (1962) Transfinite recursive progressions of axiomatic theories.
+Journal of Symbolic Logic, 27, 259-316. <p>
+
+Feferman, S. (1989) Finitary inductively presented logics. In Ferro, R. et al.
+(eds.), Logic Colloquium 88, Studies in Logic and the Foundations of 
+Mathematics, Padova, Italy, pp. 191-220, North-Holland. <p>
+
+Feferman, S. (1991) Reflecting on incompleteness. Journal of Symbolic Logic,
+56, 1-49. <p>
+
+Kreisel, G. and Levy, A. (1968) Reflection principles and their use for 
+establishing the complexity of axiomatic systems. Zeitschrift fur 
+Mathematische Logik und Grundlagen der Mathematik, 14, 97-142. <p>
+
+
+Resnik, M.D. (1974) On the philosophical signifiance of consistency proofs.
+Journal of philosophical logic, 3, 133-147. Reprinted in Shanker (1988), 
+pp. 115-130. <p>
+
+Tarski, A. (1936) Der Wahrheitsbegriff in den formalisierten Sprachen.
+Studia Philosophica, 1, 261-405. English translation, "The concept of Truth 
+in Formalized Languages", in Tarski (1956), pp 152-278.
+
+Tarski, A. (ed.) (1956) Logic, Semantics and Metamathematics. Clarendon Press.
+
+
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+</body></html>
+
+
+
+

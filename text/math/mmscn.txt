@@ -1,0 +1,129 @@
+Modèle multisectoriel de croissance
+
+Modèle de Ramsey
+
+max intégrale de 0 à infini de u(c)*e^(-theta*t)dt
+avec dk/dt = f(k) - n*k - c
+
+H = u(c)*e^(-theta*t) + p * (f(k)-n*k-c)
+
+@H/@c = 0 = u'(c) * e^(-theta*t) - p => p = e^(-theta*t) * u'(c)
+dp/dt = -@H/@k = p * (n - f'(k))
+
+dp/dt = d/dt(e^(-theta*t *  u'(c)) = e^(-theta*t)*u'(c)*(n-f'(k))
+ = e^(-theta*t) d/dt u'(c) - theta e^(-theta*t) u'(c)
+d/dt u'(c) = u'(c) * (n - f'(k) + theta)
+d/dt u'(c) = u''(c) dc/dt
+u''(c) dc/dt = u'(c) * (n - f'(k) + theta)
+dc/dt = u'(c)/u''(c) * (n - f'(k) + theta)
+
+Généralisation multisectorielle :
+
+max intégrale de 0 à infini de u(x[a;]) * e^(-theta*t) dt
+avec dk[a;]/dt = F[a;b](k) x[b;] = F[a;b](k) (z[b;] + A[b;c] y[b;])
+et l[;c] x[c;] = 1
+H = u(y)*e^(-theta*t) + p[;a] F[a;b](z[b;]+A[b;c]y[c;])
+@H/@y = 0 = @u/@y*e^(-theta*t) + p[;a]F[a;b]A[b;c]
+p[;a]F[a;b]A[b;c] = -e^(-theta*t)@u/@y
+p[;a] = -e^(-theta*t)@u/@y(F[a;b]A[b;c])^-1
+dp/dt = -@H/@k = -p*@F/@k(z+A*y)
+ = d/dt(-e^(-theta*t) * @u/@y * (FA)^-1) 
+ = e^(-theta*t) @u/@x (FA)^-1 @F/@k (z+A*y)
+
+x/lx = l+y = l + A*y
+(x/lx)[b;] = z[b;] + A[b;c] y[c;]
+
+( x = z+Ay ou y = Ax+b )
+
+d/dt(-e^(-theta*t) * @u/@y * (FA)^-1) = e^(-theta*t) * @u/@x * (FA)^-1 * @F/@k * (z+A*y)
+theta e^(-theta*t) @u/@y (FA)^-1 - e^(-theta*t) d/dt @u/@y (FA)^-1 = e^(-theta*t) @u/@y (FA)^-1 @F/@k (z+Ay)
+theta @u/@y(FA)^-1-d/dt @u/@y(FA)^-1 = @u/@y(FA)^-1 @F/@k(z+Ay)
+d/dt @u/@y(FA)^-1 = theta @u/@y(FA)^-1 - @u/@y(FA)^-1 @F/@k(z+Ay)
+d/dt @u/@y(FA)^-1 = @u/@y(FA)^-1(theta I - @F/@k(z+Ay))
+@^2u/@y^2 dy/dt (FA)^-1 = @u/@y (FA)^-1 (theta I - @F/@k (z+Ay))
+dy/dt = @u/@y (FA)^-1 (theta I - @F/@k (z+Ay)) FA (@^2u/@u^2)^-1
+
+
+max intégrale de 0 à infini de u(x)*e^(-theta*t)dt
+avec dk/dt = F[a;b](k) y[b;] = F[a;b](k) (A[b;c]x[c;] + B[b;]) 
+H = u(x,k,t)*e^(-theta*t) + p[;a] F[a;b] (A[b;c]x[c;]+B[b;])
+
+@H/@x[c;] = 0 = @u/@x[c;] e^(-theta*t) + p[;a] F[a;b]A[b;c]
+ p[;a] F[a;b] A[b;c] = -e^(-theta*t)@u/@x[c;]
+ p[;a] = -e^(-theta*t) @u/@x[c;] (F[a;b] A[b;c])^-1[c;a]
+
+dp[;d]/dt = -@H/@k[d;] = -@u/@k[d;] e^(-theta*t) - p[;a]@F[a;b]/@k[d;](A[b;c]x[c;]+[b;])
+ = d/dt(-e^(-theta*t) @u/@x[c;] (FA)^-1[c;d])
+ = -@u/@k[d;] e^(-theta*t) + e^(-theta*t) @u/@x[c;] (FA)^-1[c;a] @F[a;b]/@k[d;] (A[b;c]x[c;]+B[b;])
+theta e^(-theta*t) @u/@x[c;] (FA)^-1[c;d] - e^(-theta*t) d/dt @u/@x[c;] (FA)^-1[c;d] - e^(-theta*t) @u/@x[c;] A^-1[c;b] d/dt F^-1[b;d]
+ = - @u/@k[d;] e^-theta*t + e^-theta*t @u/@x[c;] (FA)^-1[c;a] @F[a;b]/@k[d;](A[b;c]x[c;]+B[b;])
+d/dt @u/@x[c;] (FA)^-1[c;d] = theta @u/@x[c;] (FA)^-1[c;d] - @u/@x[c;] d/dt (FA)^-1[c;d] + @u/@k[d;] - @u/@x[c;] (FA)^-1[c;a] @F[a;b]/@k[d;] (A[b;c]x[c;]+B[b;])
+
+***
+
+dx[g;]/dt = ( @u/@x[c;] ((FA)^-1)[c;a] (theta I[a;d] - @F[a;b]/@k[d;] (Ax+B)[b;]) - d/dt((FA)^-1)[c;d]) + @u/@k[d;]) (FA)[d;f] (@^2u/@x^2)[;fg]
+
+
+Généralisation : dk/dt = F(k,x,t)
+
+max intégrale de u(k,x,t)*e^(-theta*t)dt
+avec dk[a;]/dt = F[a;](k,x,t)
+H = u(k,x,t)*e^(-theta*t) + p[;a] F(a;](k,x,t)
+
+@H/@x[c;] = 0 = @u/@x[c;] * e^(-theta*t) + p[;a] @F[a;]/@x[c;]
+ => p[;a] = - e^(-theta*t) @u/@x[c;] (@F[a;]/@x[c;])^-1[c;a]
+dp/dt = -@H/@k = -@u/@k e^(-theta*t) - p @F/@k
+
+dx[g;]/dt = @u/@x[c;] (@F[a;]/@x[c;])^-1[c;a] (theta I[a;d] - (@/@k[d;]F[a;])[a;d] ) d/dt @F/@x) + @u/@k) @F/@x (@^2u/@x^2)^-1
+
+
+Jeu avec plusieurs individus et un planificateur central
+
+ Se ramener au cas d'un individu en considérant un même bien possédé par différentes personnes comme différents biens et le don comme une activité transformant une quantité d'un bien en la même quantité d'un autre bien.
+
+u(k,x,t) = somme sur i de u[i;](k[i,*;],x[i,*;],t)
+dk[i,a;]/dt = F[i,a;](k,x,t) = somme sur j de F[j,i,a;](k[j,*;],x[j,*;],t)
+ F[j,i,a;](k[j,*;],x[j,*;],t) = production de bien a revenant à i quand j effectue x[j,*;] possédant k[j,*;]
+
+max intégrale de somme sur i de u[i;](k[i,*;],x[i,*;]t)e^(-theta*t)dt
+dk[i,a;]/dt = F[i,a;](k{i,*;],x[i,*;],t) - somme sur j de g[i,j,a;] + somme de g[j,i,a;]
+H = somme sur i de u[i;](k[i,*;],x[i,*;],t)e^(-theta*t) + p[;i,a] (F[i,a;](k[i,*;],x[i,*;],t) - somme sur j de g[i,j,a;] + somme sur j de g[j,i,a;])
+
+@H/@x[i,c;] = 0 = @u[i;]/@x[i,c;] e^(-theta*t) + p[;i,a] @F[i,a;]/@x[i,c;]
+@H/@g[i,j,a;] = 0
+p[;i,a] = -e^(-theta*t) @u[i;]/@x[i,c;] (@F[i,a;]/@x[i,c;])^-1[c;a] = p[;j,a]
+dp[;i,a]/dt = -@H/@k[i,a;] = -@u[i;]/@k[i,a;] e^(-theta*t) - p[;i,a] @F[i,a;]/@k[i,a;]
+...
+d/dt @u[i;]/@x[i,c;](@F[i,a;]/@x[i,c;])^-1 = theta @u[i;]/@x[i,c;] (@F[i,a;]/@x[i,c;])^-1 - @u[i;]/@x[i,c;] d/dt (@F[i,a;]/@x[i,c;])^-1 + @u[i;]/@k[i,d;] - @u/@x[i,c;] (@F[i,a;]/x[i,c;] @F[i,a;]/@k[i,d;]
+
+@H/@g[i,j,a;] = 0 = -p[;i,a] + p[;j,a] => p[;i,a] = p[;j,a]
+
+@u[i;]/@x[i,c;] (@F[i,a;]/@x[i,c;])^-1 = @u[j;]/@x[j,c;] (@F[j,a;]/@x[j,c])^-1
+
+
+max intégrale de somme sur i de u[i;](k[i,*;],x[i,*;],t)e^(-theta*t) dt
+avec dk[i,a;]/dt = somme sur j de F[j,i,a;](k[j,*;],x[j,*;],t)
+F[j,i,a;](k[j,*;],x[j,*;],t) = production de bien a revenant à i quand j effectue x[j,*;] possédant k[j,*;] à t
+(considérer biens différents quand possédés par différentes personnes)
+
+H = somme sur i de u[i;](k[i,*;],x[i,*;],t)e^(-theta*t) + somme sur i et a de p[;i,a] somme sur j de F[j,i,a;](k[j,*;],x[j,*;],t)
+@H/@x[i,c;] = 0 = @u[i;]/@x[i,c;] e^(-theta*t) + somme sur j et a de p[;j,a] F[i,j,a;](k[i,*;],x[i,*;],t)
+
+variante :
+dk/dt = G(k,t) x + H(k,t)
+ G = FA et H = FB
+
+
+plusieurs acteurs -> jeu différentiel
+vecteur d'activité x partagé entre acteurs : x[i,c;]
+fonction d'utilité u[i;](k,x,t)
+
+acteur i max intégrale de u[i;](k,x,t) e^(-theta*t) dt
+avec dk[a;]/dt = Y[a;](k,x,t)
+H[i;] = u[i;](k,x,t) + p[;i,a] Y[a;](k,x,t)
+
+@H[i;]/@x[i;] = 0 = @u[i;]/@x[i;] + p[i,a;] @Y[a;]/@x[i;]
+ => p[i,a;] = @u[i;]/@x[i;](@Y[a;]/@x[i;])^-1
+dp[i,a;]/dt = -@H[i;]/@k[i,a;] = - @u[i;]/@k[i,a;] - p[;i,a] @Y[a;]/@x[i,a;]
+
+

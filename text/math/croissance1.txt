@@ -1,0 +1,95 @@
+Modèles économiques de la croissance
+
+Modèle de Ramsey
+
+Il s'agit de maximiser une fonction d'utilité :
+intégrale de 0 à l'infini de u(c) e^(-T*t) dt 
+avec u(c) = (c^(1-sigma)-1)/(1-sigma)
+
+Le capital k augmente selon la loi :
+
+dk/dt = f(k) - c - n*k
+avec f(k) = k^a
+k = capital
+c = consommation
+n = taux d'accroissement de la population
+
+Le hamiltonien est :
+H = u(c)*e^(-Tt) + p (f(k) - c - n*k)
+
+Généralisation
+
+dk/dt = s * k^a - c + (r-D-n)*k
+avec r = taux d'intérêt
+     D = dépréciation
+
+Modèle de Lucas : 
+
+h = capital humain
+u = proportion de capital humain consacrée à la production
+Q,K,u,H,C,I dépendent du temps
+
+commandes
+ c = consommation
+ u = proportion de capital humain consacrée à la production
+
+Q = A * K^a * (u*h)^(1-a)
+I=dK/dt-D*K
+Q=C+I=C+dK/dt-D*K
+
+dK/dt = AK^a(uh)^(1-a) - c - DK
+dh/dt = B(1-u)h
+
+Hamiltonien : 
+H = e^(-T*t) * U(c) + p1 * (A*K^a*(u*h)^(1-a)-c-D*K) + p2 * B * (1-u) * h
+
+
+Fusion du modèle de Ramsey généralisé et du modèle de Lucas
+
+dk/dt = s * k^a * (u*h)^(1-a) - c + (r-D-n) * k
+dh/dt = b * (1-u) * h
+
+commandes : 
+ c = consommation
+ u = temps de travail
+
+Modèle de Romer
+
+ A = connaissance
+
+commandes :
+ c = consommation
+ nombre de chercheurs = ha
+ 
+ dK/dt = Q - C 
+ Q = E^(a-1)*(A*hq)^a * K^(1-a) = E^(a-1) * A^a * (h - ha)^a * K^(1-a)
+ dA/dt = R * ha * A
+
+Hamiltonien :
+H = e^(-T*t)*u(C) + p1 * (E^(a-1)*A^a*(h-ha)^a*K^(1-a)) + p2 * R*ha*A
+
+Fusion des modèles de Ramsey (croissance), Lucas (formation) et Romer (recherche)
+
+maximiser l'intégrale de 0 à l'infini de U(c) * e^(-T*t) dt
+avec U(c) = (c^(1-sigma))/(1-sigma)
+
+commandes :
+ c = consommation
+ u = temps de travail
+ ha = nombre de chercheurs
+
+équations d'évolution :
+ capital : dk/dt = s * k^a * (A * u * (h - ha))^(1-a) * E^-a - c + (r-D-n) * k
+ potentiel humain : dh/dt = b * (1-u) * h
+ savoir : dA/dt = R * ha * A
+
+Modèle de Harrod : progrès technique
+ dk/dt = f(k) - e^(-Lt) c - (n+D+L) * k
+
+fusion:
+ dk/dt = s * k^a * (a*u*(h-ha))^(1-a) * E^(-a) - e^(-Lt)*c + (r-D-n-L) * k
+
+
+
+ 
+     

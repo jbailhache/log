@@ -1,0 +1,59 @@
+<HTML><HEAD><TITLE>Logique combinatoire symbolique</TITLE></HEAD>
+<BODY>
+<h3>Logique combinatoire symbolique</h3>
+<p>
+et application à une logique résistante aux propositions p=~p
+<ul>
+<li> Notations :
+	<ul>
+	<li>abc=(ab)c
+	<li>(pt x.a=b) = (lambda x. a = lambda x. b)
+	<li>lambda x. x = I
+	<li>lambda x. y = K y si y ne contient pas x
+	<li>lambda x. (a b) = S (lambda x.a) (lambda x. b)
+	<li>lambda x. (f x) = f
+	</ul>
+<p>
+<li>Axiomes :
+	<ul>
+	<li>a=b -> b=a 
+	<li>a=b, b=c -> a=c
+	<li>f=g, a=b -> fa=gb
+
+	<li>I=I
+	<li>K=K
+	<li>S=S
+	<li>Z=Z
+
+	<li>a=a' -> Ia=a'
+	<li>a=a', b=b' -> Kab=a'
+	<li>a=a', b=b', c=c' -> Sabc=a'c'(b'c')
+	</ul>
+<p>
+<li>Une logique permettant de manipuler des propositions p=~p :
+	<ul>
+	<li>Idée : distinguer l'affirmation d'une implication p=!>q (si on a pu démontrer p, alors on peut affirmer q) et l'interrogation p=?>q (en faisant l'hypothèse p, on peut démontrer q)
+	<li> axiomes :
+		<ul>
+		<li> Modus ponens : p=!>q, p -> q
+		<li> p =?> p
+		<li> p =!> (q =?> p)
+		<li> (p =?> (q =!> r) ) =!> ((p =?> q) =!> (p =?> r)) - on peut appliquer le modus ponens sous l'hypothèse p
+		</ul>
+	</ul>
+<p>
+<li> Représentation en logique combinatoire :
+	<ul>
+	<li> Les propositions sont des égalités a=b
+	<li> a=b =*> c=d est représenté par E* a b c = E* a b d
+	<li> ~(a=b) est représenté par E! a b K = E! a b (K I) ou E? a b K = E? a b (K I) 
+	<li> les axiomes deviennent : 
+		<ul>
+		<li>Modus ponens : S E! I = K I ou E! a a b = b
+		<li>pt a. pt b. (E? a b a = E? a b b)
+		<li>le troisième axiome devient inutile
+		<li>pt a. pt b. pt f. pt x. (E? a b (f x) = E? a b f (E? a b x))
+
+</ul
+
+</BODY></HTML>

@@ -1,0 +1,2002 @@
+<HTML> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>log</title>
+<style type="text/css">
+.popperlink { POSITION: absolute; VISIBILITY: hidden }
+</style>
+</head>
+<BODY background="space.gif" link=#ffff00 vlink=#ffcc33><CENTER>
+
+Langue : fr
+
+<img src="planet.gif" align=left hspace=5 WIDTH=200 HEIGHT=147>    
+<p>        <p>        <p>        
+<font face=Impact, arial color=White size=6>log</font><p>     
+<font color=lightgreen> Ne passons pas à coté des choses compliquées !     </td></tr><tr><td></td></tr></table>
+<P>
+
+<br><br><br><br><br>
+ 
+<font face=arial color=white><P>         
+</center>
+<p>
+<a href=indexo.htm>Ancienne page d'accueil</a>
+<p>
+<a href=indexen.htm>This page in English</a><p>
+<ul>
+<li><a href=text/reflmph/francais/reflres.htm>Réflexions métaphysiques</a>
+<li><a href=text/textidx.htm>Textes (en français et en anglais)</a>
+<!-- <li><a href="http://philosophie.olympe-network.com/reflexions/">Blog</a> -->
+<li><a href=scan-blog>Ancien blog scann&eacute;</a>
+<li><a href=src/srcidx.htm>Programmes sources à télécharger</a>
+<li><a href=http://membres.lycos.fr/teledev/sites/gestion.php>Création de sites web</a> Créez facilement votre site arborescent
+<li><a href=music/musidx.htm>Musique</a>
+<li><a href=mirror/miridx.htm>Sites miroirs</a>
+<li><a href=links/links1.htm>Liens</a>
+<li><a href=cafephil/cphidx.htm>Cafés philo et groupes de discussion</a>
+<li><a href=chroniq/chridx.htm>Chroniques du troisième millénaire</a>
+ 
+</ul>
+
+<p>
+<a href=eternite.htm>Projet mémétique pour un site web traversant les millénaires</a>
+
+<p><font color=red>Attention : Ce site contient des pointeurs vers 
+des pages dynamiques hébergées sur lycos qui semble connaître actuellement 
+quelques problèmes de fonctionnement, notamment avec les site d'annonces
+de missions, de rencontres et de toplists. Un site miroir a été créé pour
+ces pages : <a href="http://teledev.free.fr/sitesdyn.htm">
+http://teledev.free.fr/sitesdyn.htm</a>.  
+Ce site offre les mêmes services mais les données d'origine n'ont pas encore été 
+totalement recopiées.
+</font>
+
+
+<p>Si vous avez des commentaires ou des suggestions, <a href="mailto:log31@lycos.com">écrivez-moi</a>
+<!--
+<p>Site miroir de log :
+<a href=http://www.chez.com/log/>chez</a>
+<h4>Remarques, questions et suggestions sur ce site</h4>
+-->
+ou tapez-les ci-dessous puis cliquez sur Envoyer :<br>
+<form method=post action="http://membres.lycos.fr/teledev/Php/enrem.php">
+<textarea name=texte rows=10 cols=60>
+</textarea>
+<br>
+<input type=submit value=Envoyer>
+<input type=hidden name=site value=log>
+<input type=hidden name=retour value="http://www.chez.com/log/">
+</form>
+ 
+<p>
+<h3><font color=blue><i>Explorez l'espace des connaissances</i></font></h3>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<br><br><br><br><br><br><br><br><br><br><br>
+
+<br><br><br><br><br><br><br><br><br><br><br>
+
+<font color=orange>
+En lisant ces pages, non seulement vous n'êtes pas sûr de trouver les 
+réponses à vos questions, mais vous n'êtes même pas sûr de toujours les 
+comprendre. Mais si vous arrivez à ne plus les comprendre, vous avez déja 
+fait un grand pas : c'est peut-être parce que vous posiez mal les questions
+que vous n'y trouviez pas de réponses.
+</font>
+
+
+
+<DIV class=popperlink id=topdecklink1></DIV><DIV class=popperlink id=topdecklink2></DIV><DIV class=popperlink id=topdecklink3></DIV><DIV class=popperlink id=topdecklink4></DIV><DIV class=popperlink id=topdecklink5></DIV><DIV class=popperlink id=topdecklink6></DIV><DIV class=popperlink id=topdecklink7></DIV><DIV class=popperlink id=topdecklink8></DIV><DIV class=popperlink id=topdecklink9></DIV><DIV class=popperlink id=topdecklink10></DIV><DIV class=popperlink id=topdecklink11></DIV><DIV class=popperlink id=topdecklink12></DIV><DIV class=popperlink id=topdecklink13></DIV><DIV class=popperlink id=topdecklink14></DIV><DIV class=popperlink id=topdecklink15></DIV><DIV class=popperlink id=topdecklink16></DIV><DIV class=popperlink id=topdecklink17></DIV><DIV class=popperlink id=topdecklink18></DIV><DIV class=popperlink id=topdecklink19></DIV><DIV class=popperlink id=topdecklink20></DIV><DIV class=popperlink id=topdecklink21></DIV><DIV class=popperlink id=topdecklink22></DIV><DIV class=popperlink id=topdecklink23></DIV><DIV class=popperlink id=topdecklink24></DIV><DIV class=popperlink id=topdecklink25></DIV><DIV class=popperlink id=topdecklink26></DIV><DIV class=popperlink id=topdecklink27></DIV><DIV class=popperlink id=topdecklink28></DIV><DIV class=popperlink id=topdecklink29></DIV><DIV class=popperlink id=topdecklink30></DIV><DIV class=popperlink id=topdecklink31></DIV><DIV class=popperlink id=topdecklink32></DIV><DIV class=popperlink id=topdecklink33></DIV><DIV class=popperlink id=topdecklink34></DIV><DIV class=popperlink id=topdecklink35></DIV>
+
+<script language="javascript">
+/* info bulle */
+
+mouse_is_down = 0;
+moving = 1;
+
+cur = 0;
+/*
+a = 100;
+b = 200;
+p = 1.5; 
+q = 1/3; 
+*/
+a = 80;
+b = 250;
+/*b = 600;*/
+p = 2;
+q = 1/5;
+l = 0.1;
+v = 1;
+m = 0.3;
+f = 0.7;
+
+c = 4;
+u = 80;
+
+/*y0 = 1050;*/
+y0 = 1500;
+
+pag1 = "text/logic/lc.htm";
+nom1 = "Fondements de la théorie du traitement de l'information";
+com1 = "Logique combinatoire symbolique";
+imp1 = 7;
+niv1 = 1;
+pre1 = 8;
+
+pag2 = "text/poesie/poemes.txt";
+nom2 = "Poèmes";
+com2 = "Petite sirène; Les seigneurs de la nuit";
+imp2 = 6;
+niv2 = 9;
+pre2 = 1;
+
+pag3 = "text/reflmph/francais/reflres.htm";
+
+nom3 = "Réflexions métaphysiques";
+com3 = "Théorie des univers mathématiques, <br>bifurcation des faisceaux d'univers, <br>esprit et matière";
+
+imp3 = 7;
+niv3 = 1.8 /*2.1*/;
+pre3 = 3;
+ 
+pag4 = "";
+nom4 = "<b><font color=purple>Métaphysique</font></b>";
+/*<table><tr><td><b>Métaphysique</b></td></tr></table>*/
+/* com4 = "Qui suis-je ?<br>D'où viens-je ?<br>Où cours-je ?<br>Dans quel état j'erre ?"; */
+com4 = "";
+imp4 = 8;
+niv4 = 3.5;
+pre4 = 2.5;
+
+pag5 = "";
+nom5 = "<b><font color=navy>Métamathématique</font></b>";
+com5 = "";
+imp5 = 8;
+niv5 = 2;
+pre5 = 8;
+
+pag6 = "";
+nom6 = "<b><font color=aqua>Mathématiques</font></b>";
+com6 = "";
+imp6 = 8;
+niv6 = 4.9 /*4*/;
+pre6 = 8.4 /*7*/;
+
+pag7 = "src/srcidx.htm";
+nom7 = "<b><font color=teal>Informatique</font></b>";
+com7 = "Sources à télécharger";
+imp7 = 8;
+niv7 = 6;
+pre7 = 9;
+
+pag8 = "cafephil/cphidx.htm";
+nom8 = "<b><font color=green>Philosophie</font></b>";
+com8 = "Cafés philo";
+imp8 = 8;
+niv8 = 6;
+pre8 = 3;
+
+pag9 = "text/logic/intel.htm";
+nom9 = "Intelligence créative, régularités et compression";
+com9 = "Théorème de Gödel, principe de réflexion";
+imp9 = 6;
+niv9 = 3;
+pre9 = 6;
+
+pag10 = "text/logic/regular.htm";
+nom10 = "Régularités";
+com10 = "Existent-elles réellement<br>ou sont-elles le produit de notre esprit ?<br>Intelligence, théorème de Gödel, réflexion, transfini";
+imp10 = 5;
+niv10 = 4;
+pre10 = 3;
+
+pag11 = "chroniq/chridx.htm";
+nom11 = "Chroniques du troisième millénaire";
+com11 = "";
+imp11 = 6;
+niv11 = 8;
+pre11 = 2;
+
+pag12 = "http://membres.lycos.fr/teledev/log/cafephil/debat/debat.php?table=discussions&discussion=Esprit+et+matiere";
+nom12 = "Café philo virtuel : l'esprit et la matière";
+com12 = "";
+imp12 = 6;
+niv12 = 3.4 /*3.7*/;
+pre12 = 4;
+
+pag13 = "text/astral/horcor1.htm";
+nom13 = "Voyage astral";
+com13 = "Expériences de sorties hors du corps";
+imp13 = 6;
+niv13 = /*7.5*/ 4.2;
+pre13 = /*1.5*/ 0.9;
+ 
+pag14 = "cafephil/cp000514.htm";
+nom14 = "Un café philo mémorable";
+com14 = "L'être humain sublime intersection entre la lumière de l'esprit et la profondeur de la matière";
+imp14 = 4;
+niv14 = 5;
+pre14 = 2.5;
+
+pag15 = "http://membres.lycos.fr/teledev/sites/gestion.php";
+nom15 = "Créez votre site arborescent";
+com15 = "";
+imp15 = 4;
+niv15 = 7;
+pre15 = 8.5;
+
+/* pag16 = "cgi-bin/cmjsad.cgi"; */
+pag16 = "src/math/cmjsad.htm";
+nom16 = "Calcul matriciel et analyse de données en JavaScript";
+com16 = "";
+imp16 = 4;
+niv16 = 5.3 /*6.5*/;
+pre16 = 8.65 /*9.5*/;
+
+pag17 = "text/misc/abdi.htm";
+nom17 = "Réseaux de neurones";
+com17 = "D'après le livre de Hervé Abdi";
+imp17 = 2;
+niv17 = 8.5;
+pre17 = 8;
+
+pag18 = "http://membres.lycos.fr/teledev/sites/afsite.php?site=log"; 
+nom18 = "Nouveau";
+com18 = "Cafés philos<br>Calcul matriciel, analyse de données<br>Programmation internet";
+imp18 = 4;
+niv18 = 6;
+pre18 = 5.5;
+
+pag19 = "text/philo/philoaz.htm";
+nom19 = "Idées philosophiques";
+com19 = "";
+imp19 = 2.5;
+niv19 = 5.6;
+pre19 = 2.5;
+
+pag20 = "eternite.htm";
+nom20 = "Projet pour un site traversant les millénaires";
+com20 = "";
+imp20 = 4;
+niv20 = 4.3;
+pre20 = 6;
+
+pag21 = "music/musidx.htm";
+
+nom21 = "Musique";
+
+com21 = "";
+imp21 = 6;
+niv21 = 7.8;
+pre21 = 1;
+
+pag22 = "cafephil/person.htm";
+nom22 = "Où se situe la limite entre intérieur et extérieur de la personnalité ?";
+com22 = "Café philo";
+imp22 = 1;
+niv22 = 7;
+pre22 = 2.5 /*2*/;
+
+pag23 = "cafephil/peurvie.htm";
+nom23 = "Pourquoi l'être humain se refuse-t-il à vivre pleinement ?";
+com23 = "Avons-nous peur de la vie ?<br>Café philo";
+imp23 = 1;
+niv23 = 7.3;
+pre23 = 2.5 /*1.5*/;
+
+pag24 = "cafephil/conscien.htm";
+nom24 = "De quelle science la conscience est-elle faite ?";
+com24 = "Café philo";
+imp24 = 1;
+niv24 = 6.5;
+pre24 = 2.5;
+
+pag25 = "cafephil/voyons.htm";
+nom25 = "Que voyons-nous réellement du monde ?";
+com25 = "Café philo";
+imp25 = 1;
+niv25 = 6.8;
+pre25 = 2.5;
+
+pag26 = "http://membres.lycos.fr/teledev/affinite/";
+nom26 = "Rencontres";
+com26 = "Recherche multicritères de partenaires";
+imp26 = 6;
+niv26 = 7.9;
+pre26 = 7.8;
+
+pag27 = "http://membres.lycos.fr/teledev/log/cafephil/debat/debats.php";
+nom27 = "Forums de discussion";
+com27 = "";
+imp27 = 6;
+niv27 = 5.1;
+pre27 = 4.8;
+
+pag28 = "http://membres.lycos.fr/teledev/";
+nom28 = "Annonces de missions pour consultant";
+com28 = "";
+imp28 = 6;
+niv28 = 7.6;
+pre28 = 8.4;
+
+pag29 = "http://iridia0.ulb.ac.be/~marchal/these/index.html";
+nom29 = "Calculabilité, physique et cognition";
+com29 = "\"Le mécanisme nécessite donc de faire de la physique une branche de la psychologie, elle-même branche de l'informatique théorique, elle-même branche de la théorie des nombres.\"<br>Thèse de Bruno Marchal";
+imp29 = 4;
+niv29 = 2.9;
+pre29 = 4.1;
+
+pag30 = "mirror/g-m-c.html";
+nom30 = "Mind versus Gödel";
+com30 = "by Damjan Bojadziev";
+
+imp30 = 3;
+
+niv30 = 2.1;
+pre30 = 6.1;
+
+pag31 = "text/metaphys/qm6.std";
+nom31 = "Reflections about quantum mechanics";
+com31 = "";
+
+imp31 = 1.5;
+
+niv31 = 2.6;
+pre31 = 2.9;
+
+pag32 = "text/metaphys/mw3.std";
+nom32 = "Reflections about the Many Worlds theory";
+com32 = "";
+
+imp32 = 1.5;
+
+niv32 = 2.29;
+pre32 = 2.8;
+
+pag33 = "cafephil/espmat.htm";
+nom33 = "Les rapports entre l'esprit et la matière";
+com33 = "Café philo";
+imp33 = 1.8;
+niv33 = 3.9;
+pre33 = 3.8;
+
+pag34 = "cafephil/intrais.htm";
+nom34 = "Quelle différence y a-t-il entre l'intelligence et la raison ?";
+com34 = "Café philo";
+imp34 = 1.5;
+niv34 = 3.6;
+pre34 = 5.3;
+
+pag35 = "cafephil/pense.htm";
+nom35 = "Qu'est-ce qu'une chose qui pense ?";
+com35 = "Café philo";
+imp35 = 1.5;
+niv35 = 3.2;
+pre35 = 4.9;
+
+
+
+
+
+
+if (pag1 == "")
+ court1 = nom1;
+else if (pag1.substring(0,7) == "http://")
+ court1 = "<a href=" + pag1 + ">" + nom1 + "</a>";
+else
+ court1 = "<a href=http://www.chez.com/log/" + pag1 + ">" + nom1 + "</a>";
+long1 = court1 + "<br>" + com1;
+poids1 = 40 * imp1;
+x1 = 20 + 45 * pre1;
+y1 = y0 - 35 * niv1;
+
+if (pag2 == "")
+ court2 = nom2;
+else if (pag2.substring(0,7) == "http://")
+ court2 = "<a href=" + pag2 + ">" + nom2 + "</a>";
+else
+ court2 = "<a href=http://www.chez.com/log/" + pag2 + ">" + nom2 + "</a>";
+long2 = court2 + "<br>" + com2;
+poids2 = 40 * imp2;
+x2 = 20 + 45 * pre2;
+y2 = y0 - 35 * niv2;
+
+if (pag3 == "")
+ court3 = nom3;
+else if (pag3.substring(0,7) == "http://")
+ court3 = "<a href=" + pag3 + ">" + nom3 + "</a>";
+else
+ court3 = "<a href=http://www.chez.com/log/" + pag3 + ">" + nom3 + "</a>";
+long3 = court3 + "<br>" + com3;
+poids3 = 40 * imp3;
+x3 = 20 + 45 * pre3;
+y3 = y0 - 35 * niv3;
+
+if (pag4 == "")
+ court4 = nom4;
+else if (pag4.substring(0,7) == "http://")
+ court4 = "<a href=" + pag4 + ">" + nom4 + "</a>";
+else
+ court4 = "<a href=http://www.chez.com/log/" + pag4 + ">" + nom4 + "</a>";
+long4 = court4 + "<br>" + com4;
+poids4 = 40 * imp4;
+x4 = 20 + 45 * pre4;
+y4 = y0 - 35 * niv4;
+
+if (pag5 == "")
+ court5 = nom5;
+else if (pag5.substring(0,7) == "http://")
+ court5 = "<a href=" + pag5 + ">" + nom5 + "</a>";
+else
+ court5 = "<a href=http://www.chez.com/log/" + pag5 + ">" + nom5 + "</a>";
+long5 = court5 + "<br>" + com5;
+poids5 = 40 * imp5;
+x5 = 20 + 45 * pre5;
+y5 = y0 - 35 * niv5;
+
+if (pag6 == "")
+ court6 = nom6;
+else if (pag6.substring(0,7) == "http://")
+ court6 = "<a href=" + pag6 + ">" + nom6 + "</a>";
+else
+ court6 = "<a href=http://www.chez.com/log/" + pag6 + ">" + nom6 + "</a>";
+long6 = court6 + "<br>" + com6;
+poids6 = 40 * imp6;
+x6 = 20 + 45 * pre6;
+y6 = y0 - 35 * niv6;
+
+if (pag7 == "")
+ court7 = nom7;
+else if (pag7.substring(0,7) == "http://")
+ court7 = "<a href=" + pag7 + ">" + nom7 + "</a>";
+else
+ court7 = "<a href=http://www.chez.com/log/" + pag7 + ">" + nom7 + "</a>";
+long7 = court7 + "<br>" + com7;
+poids7 = 40 * imp7;
+x7 = 20 + 45 * pre7;
+y7 = y0 - 35 * niv7;
+
+if (pag8 == "")
+ court8 = nom8;
+else if (pag8.substring(0,7) == "http://")
+ court8 = "<a href=" + pag8 + ">" + nom8 + "</a>";
+else
+ court8 = "<a href=http://www.chez.com/log/" + pag8 + ">" + nom8 + "</a>";
+long8 = court8 + "<br>" + com8;
+poids8 = 40 * imp8;
+x8 = 20 + 45 * pre8;
+y8 = y0 - 35 * niv8;
+
+if (pag9 == "")
+ court9 = nom9;
+else if (pag9.substring(0,7) == "http://")
+ court9 = "<a href=" + pag9 + ">" + nom9 + "</a>";
+else
+ court9 = "<a href=http://www.chez.com/log/" + pag9 + ">" + nom9 + "</a>";
+long9 = court9 + "<br>" + com9;
+poids9 = 40 * imp9;
+x9 = 20 + 45 * pre9;
+y9 = y0 - 35 * niv9;
+
+if (pag10 == "")
+ court10 = nom10;
+else if (pag10.substring(0,7) == "http://")
+ court10 = "<a href=" + pag10 + ">" + nom10 + "</a>";
+else
+ court10 = "<a href=http://www.chez.com/log/" + pag10 + ">" + nom10 + "</a>";
+long10 = court10 + "<br>" + com10;
+poids10 = 40 * imp10;
+x10 = 20 + 45 * pre10;
+y10 = y0 - 35 * niv10;
+
+if (pag11 == "")
+ court11 = nom11;
+else if (pag11.substring(0,7) == "http://")
+ court11 = "<a href=" + pag11 + ">" + nom11 + "</a>";
+else
+ court11 = "<a href=http://www.chez.com/log/" + pag11 + ">" + nom11 + "</a>";
+long11 = court11 + "<br>" + com11;
+poids11 = 40 * imp11;
+x11 = 20 + 45 * pre11;
+y11 = y0 - 35 * niv11;
+
+if (pag12 == "")
+ court12 = nom12;
+else if (pag12.substring(0,7) == "http://")
+ court12 = "<a href=" + pag12 + ">" + nom12 + "</a>";
+else
+ court12 = "<a href=http://www.chez.com/log/" + pag12 + ">" + nom12 + "</a>";
+long12 = court12 + "<br>" + com12;
+poids12 = 40 * imp12;
+x12 = 20 + 45 * pre12;
+y12 = y0 - 35 * niv12;
+
+if (pag13 == "")
+ court13 = nom13;
+else if (pag13.substring(0,7) == "http://")
+ court13 = "<a href=" + pag13 + ">" + nom13 + "</a>";
+else
+ court13 = "<a href=http://www.chez.com/log/" + pag13 + ">" + nom13 + "</a>";
+long13 = court13 + "<br>" + com13;
+poids13 = 40 * imp13;
+x13 = 20 + 45 * pre13;
+y13 = y0 - 35 * niv13;
+
+if (pag14 == "")
+ court14 = nom14;
+else if (pag14.substring(0,7) == "http://")
+ court14 = "<a href=" + pag14 + ">" + nom14 + "</a>";
+else
+ court14 = "<a href=http://www.chez.com/log/" + pag14 + ">" + nom14 + "</a>";
+long14 = court14 + "<br>" + com14;
+poids14 = 40 * imp14;
+x14 = 20 + 45 * pre14;
+y14 = y0 - 35 * niv14;
+
+if (pag15 == "")
+ court15 = nom15;
+else if (pag15.substring(0,7) == "http://")
+ court15 = "<a href=" + pag15 + ">" + nom15 + "</a>";
+else
+ court15 = "<a href=http://www.chez.com/log/" + pag15 + ">" + nom15 + "</a>";
+long15 = court15 + "<br>" + com15;
+poids15 = 40 * imp15;
+x15 = 20 + 45 * pre15;
+y15 = y0 - 35 * niv15;
+
+if (pag16 == "")
+ court16 = nom16;
+else if (pag16.substring(0,7) == "http://")
+ court16 = "<a href=" + pag16 + ">" + nom16 + "</a>";
+else
+ court16 = "<a href=http://www.chez.com/log/" + pag16 + ">" + nom16 + "</a>";
+long16 = court16 + "<br>" + com16;
+poids16 = 40 * imp16;
+x16 = 20 + 45 * pre16;
+y16 = y0 - 35 * niv16;
+
+if (pag17 == "")
+ court17 = nom17;
+else if (pag17.substring(0,7) == "http://")
+ court17 = "<a href=" + pag17 + ">" + nom17 + "</a>";
+else
+ court17 = "<a href=http://www.chez.com/log/" + pag17 + ">" + nom17 + "</a>";
+long17 = court17 + "<br>" + com17;
+poids17 = 40 * imp17;
+x17 = 20 + 45 * pre17;
+y17 = y0 - 35 * niv17;
+
+if (pag18 == "")
+ court18 = nom18;
+else if (pag18.substring(0,7) == "http://")
+ court18 = "<a href=" + pag18 + ">" + nom18 + "</a>";
+else
+ court18 = "<a href=http://www.chez.com/log/" + pag18 + ">" + nom18 + "</a>";
+long18 = court18 + "<br>" + com18;
+poids18 = 40 * imp18;
+x18 = 20 + 45 * pre18;
+y18 = y0 - 35 * niv18;
+
+if (pag19 == "")
+ court19 = nom19;
+else if (pag19.substring(0,7) == "http://")
+ court19 = "<a href=" + pag19 + ">" + nom19 + "</a>";
+else
+ court19 = "<a href=http://www.chez.com/log/" + pag19 + ">" + nom19 + "</a>";
+long19 = court19 + "<br>" + com19;
+poids19 = 40 * imp19;
+x19 = 20 + 45 * pre19;
+y19 = y0 - 35 * niv19;
+
+if (pag20 == "")
+ court20 = nom20;
+else if (pag20.substring(0,7) == "http://")
+ court20 = "<a href=" + pag20 + ">" + nom20 + "</a>";
+else
+ court20 = "<a href=http://www.chez.com/log/" + pag20 + ">" + nom20 + "</a>";
+long20 = court20 + "<br>" + com20;
+poids20 = 40 * imp20;
+x20 = 20 + 45 * pre20;
+y20 = y0 - 35 * niv20;
+
+if (pag21 == "")
+ court21 = nom21;
+else if (pag21.substring(0,7) == "http://")
+ court21 = "<a href=" + pag21 + ">" + nom21 + "</a>";
+else
+ court21 = "<a href=http://www.chez.com/log/" + pag21 + ">" + nom21 + "</a>";
+long21 = court21 + "<br>" + com21;
+poids21 = 40 * imp21;
+x21 = 20 + 45 * pre21;
+y21 = y0 - 35 * niv21;
+
+if (pag22 == "")
+ court22 = nom22;
+else if (pag22.substring(0,7) == "http://")
+ court22 = "<a href=" + pag22 + ">" + nom22 + "</a>";
+else
+ court22 = "<a href=http://www.chez.com/log/" + pag22 + ">" + nom22 + "</a>";
+long22 = court22 + "<br>" + com22;
+poids22 = 40 * imp22;
+x22 = 20 + 45 * pre22;
+y22 = y0 - 35 * niv22;
+
+if (pag23 == "")
+ court23 = nom23;
+else if (pag23.substring(0,7) == "http://")
+ court23 = "<a href=" + pag23 + ">" + nom23 + "</a>";
+else
+ court23 = "<a href=http://www.chez.com/log/" + pag23 + ">" + nom23 + "</a>";
+long23 = court23 + "<br>" + com23;
+poids23 = 40 * imp23;
+x23 = 20 + 45 * pre23;
+y23 = y0 - 35 * niv23;
+
+if (pag24 == "")
+ court24 = nom24;
+else if (pag24.substring(0,7) == "http://")
+ court24 = "<a href=" + pag24 + ">" + nom24 + "</a>";
+else
+ court24 = "<a href=http://www.chez.com/log/" + pag24 + ">" + nom24 + "</a>";
+long24 = court24 + "<br>" + com24;
+poids24 = 40 * imp24;
+x24 = 20 + 45 * pre24;
+y24 = y0 - 35 * niv24;
+
+if (pag25 == "")
+ court25 = nom25;
+else if (pag25.substring(0,7) == "http://")
+ court25 = "<a href=" + pag25 + ">" + nom25 + "</a>";
+else
+ court25 = "<a href=http://www.chez.com/log/" + pag25 + ">" + nom25 + "</a>";
+long25 = court25 + "<br>" + com25;
+poids25 = 40 * imp25;
+x25 = 20 + 45 * pre25;
+y25 = y0 - 35 * niv25;
+
+if (pag26 == "")
+ court26 = nom26;
+else if (pag26.substring(0,7) == "http://")
+ court26 = "<a href=" + pag26 + ">" + nom26 + "</a>";
+else
+ court26 = "<a href=http://www.chez.com/log/" + pag26 + ">" + nom26 + "</a>";
+long26 = court26 + "<br>" + com26;
+poids26 = 40 * imp26;
+x26 = 20 + 45 * pre26;
+y26 = y0 - 35 * niv26;
+
+if (pag27 == "")
+ court27 = nom27;
+else if (pag27.substring(0,7) == "http://")
+ court27 = "<a href=" + pag27 + ">" + nom27 + "</a>";
+else
+ court27 = "<a href=http://www.chez.com/log/" + pag27 + ">" + nom27 + "</a>";
+long27 = court27 + "<br>" + com27;
+poids27 = 40 * imp27;
+x27 = 20 + 45 * pre27;
+y27 = y0 - 35 * niv27;
+
+if (pag28 == "")
+ court28 = nom28;
+else if (pag28.substring(0,7) == "http://")
+ court28 = "<a href=" + pag28 + ">" + nom28 + "</a>";
+else
+ court28 = "<a href=http://www.chez.com/log/" + pag28 + ">" + nom28 + "</a>";
+long28 = court28 + "<br>" + com28;
+poids28 = 40 * imp28;
+x28 = 20 + 45 * pre28;
+y28 = y0 - 35 * niv28;
+
+if (pag29 == "")
+ court29 = nom29;
+else if (pag29.substring(0,7) == "http://")
+ court29 = "<a href=" + pag29 + ">" + nom29 + "</a>";
+else
+ court29 = "<a href=http://www.chez.com/log/" + pag29 + ">" + nom29 + "</a>";
+long29 = court29 + "<br>" + com29;
+poids29 = 40 * imp29;
+x29 = 20 + 45 * pre29;
+y29 = y0 - 35 * niv29;
+
+if (pag30 == "")
+ court30 = nom30;
+else if (pag30.substring(0,7) == "http://")
+ court30 = "<a href=" + pag30 + ">" + nom30 + "</a>";
+else
+ court30 = "<a href=http://www.chez.com/log/" + pag30 + ">" + nom30 + "</a>";
+long30 = court30 + "<br>" + com30;
+poids30 = 40 * imp30;
+x30 = 20 + 45 * pre30;
+y30 = y0 - 35 * niv30;
+
+if (pag31 == "")
+ court31 = nom31;
+else if (pag31.substring(0,7) == "http://")
+ court31 = "<a href=" + pag31 + ">" + nom31 + "</a>";
+else
+ court31 = "<a href=http://www.chez.com/log/" + pag31 + ">" + nom31 + "</a>";
+long31 = court31 + "<br>" + com31;
+poids31 = 40 * imp31;
+x31 = 20 + 45 * pre31;
+y31 = y0 - 35 * niv31;
+
+if (pag32 == "")
+ court32 = nom32;
+else if (pag32.substring(0,7) == "http://")
+ court32 = "<a href=" + pag32 + ">" + nom32 + "</a>";
+else
+ court32 = "<a href=http://www.chez.com/log/" + pag32 + ">" + nom32 + "</a>";
+long32 = court32 + "<br>" + com32;
+poids32 = 40 * imp32;
+x32 = 20 + 45 * pre32;
+y32 = y0 - 35 * niv32;
+
+if (pag33 == "")
+ court33 = nom33;
+else if (pag33.substring(0,7) == "http://")
+ court33 = "<a href=" + pag33 + ">" + nom33 + "</a>";
+else
+ court33 = "<a href=http://www.chez.com/log/" + pag33 + ">" + nom33 + "</a>";
+long33 = court33 + "<br>" + com33;
+poids33 = 40 * imp33;
+x33 = 20 + 45 * pre33;
+y33 = y0 - 35 * niv33;
+
+if (pag34 == "")
+ court34 = nom34;
+else if (pag34.substring(0,7) == "http://")
+ court34 = "<a href=" + pag34 + ">" + nom34 + "</a>";
+else
+ court34 = "<a href=http://www.chez.com/log/" + pag34 + ">" + nom34 + "</a>";
+long34 = court34 + "<br>" + com34;
+poids34 = 40 * imp34;
+x34 = 20 + 45 * pre34;
+y34 = y0 - 35 * niv34;
+
+if (pag35 == "")
+ court35 = nom35;
+else if (pag35.substring(0,7) == "http://")
+ court35 = "<a href=" + pag35 + ">" + nom35 + "</a>";
+else
+ court35 = "<a href=http://www.chez.com/log/" + pag35 + ">" + nom35 + "</a>";
+long35 = court35 + "<br>" + com35;
+poids35 = 40 * imp35;
+x35 = 20 + 45 * pre35;
+y35 = y0 - 35 * niv35;
+
+
+/* 
+x1=120; y1=90; poids1=100;
+court1 = "<a href=page1.htm>Page 1</a>";
+long1 = court1 + " Première page";
+
+x2=80;  y2=130; poids2=40;
+court2 = "<a href=page2.htm>Page 2</a>";
+long2 = court2 + " Deuxième page";
+
+x3=140; y3=110; poids3=300;
+court3 = "<a href=page3.htm>Page 3</a>";
+long3 = court3 + "<br>Troisième page";
+*/
+
+domok = document.getElementById;
+if (domok)
+	{
+tdl1= document.getElementById("topdecklink1");tdl2= document.getElementById("topdecklink2");tdl3= document.getElementById("topdecklink3");tdl4= document.getElementById("topdecklink4");tdl5= document.getElementById("topdecklink5");tdl6= document.getElementById("topdecklink6");tdl7= document.getElementById("topdecklink7");tdl8= document.getElementById("topdecklink8");tdl9= document.getElementById("topdecklink9");tdl10= document.getElementById("topdecklink10");tdl11= document.getElementById("topdecklink11");tdl12= document.getElementById("topdecklink12");tdl13= document.getElementById("topdecklink13");tdl14= document.getElementById("topdecklink14");tdl15= document.getElementById("topdecklink15");tdl16= document.getElementById("topdecklink16");tdl17= document.getElementById("topdecklink17");tdl18= document.getElementById("topdecklink18");tdl19= document.getElementById("topdecklink19");tdl20= document.getElementById("topdecklink20");tdl21= document.getElementById("topdecklink21");tdl22= document.getElementById("topdecklink22");tdl23= document.getElementById("topdecklink23");tdl24= document.getElementById("topdecklink24");tdl25= document.getElementById("topdecklink25");tdl26= document.getElementById("topdecklink26");tdl27= document.getElementById("topdecklink27");tdl28= document.getElementById("topdecklink28");tdl29= document.getElementById("topdecklink29");tdl30= document.getElementById("topdecklink30");tdl31= document.getElementById("topdecklink31");tdl32= document.getElementById("topdecklink32");tdl33= document.getElementById("topdecklink33");tdl34= document.getElementById("topdecklink34");tdl35= document.getElementById("topdecklink35");
+	if(navigator.appName.substring(0,3) == "Net")
+		document.captureEvents(Event.MOUSEMOVE);
+	document./*onclick*/ onmousemove = get_mouse;
+	document.onmousedown = mouse_down;
+	document.onmouseup = mouse_up;
+	document.onclick = mouse_click;
+	
+	}
+ 
+/*
+function poplink(msg,msg2)
+{
+*/
+/*var content=msg;*/
+
+/* } */
+
+function mouse_down (e)
+{
+ mouse_is_down = 1;
+}
+
+function mouse_up (e)
+{
+ mouse_is_down = 0;
+}
+
+function mouse_click (e)
+{
+ moving = 1 - moving;
+}
+function get_mouse(e)
+	{
+	if (!moving)
+		return;
+	var x = (navigator.appName.substring(0,3) == "Net") 
+         ? e.pageX : event.x+document.body.scrollLeft;
+	var y = (navigator.appName.substring(0,3) == "Net") 
+         ? e.pageY : event.y+document.body.scrollTop;
+
+/*
+	skn.left = x - 60;
+	skn.top = y+20;
+*/
+
+  if (cur == 35)
+   cur = 0;
+  cur++;  
+
+  /*if (cur == 1) */
+  {
+
+/*
+        tdl1.style.left = x + (x1-x)/Math.abs(x1-x) * a * Math.pow ((Math.abs(x1-x))/a, 1/3);
+        tdl1.style.top  = y + (y1-y)/Math.abs(y1-y) * a * Math.pow ((Math.abs(y1-y))/a, 1/3);
+*/
+/*
+        tdl1.style.left = x + (x1-x)/Math.abs(x1-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x1-x)/b,p)))/a, q);
+        tdl1.style.top  = y + (y1-y)/Math.abs(y1-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y1-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl1.style.left = m*x + f*x1 + (x1-x)/Math.abs(x1-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x1-x)/b,p)))/a, q);
+        tdl1.style.top  = m*y + f*y1 + (y1-y)/Math.abs(y1-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y1-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x1-x) * (x1-x) + (y1-y) * (y1-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl1.style.left = x + h * (x1-x);
+	tdl1.style.top  = y + h * (y1-y);
+	
+/*
+        tdl1.style.left = x + a * Math.atan ((x1-x)/a);
+        tdl1.style.top  = y + a * Math.atan ((y1-y)/a);
+*/         
+	tdl1.style.visibility = ((x1-x) * (x1-x) + (y1-y) * (y1-y) > poids1*poids1*v*v) ? "hidden" : "visible";
+	}
+        tdl1.innerHTML  = ((x1-x) * (x1-x) + (y1-y) * (y1-y) > poids1*poids1*l*l) ? court1 : long1;
+ }
+ 
+  /*if (cur == 2) */
+  {
+
+/*
+        tdl2.style.left = x + (x2-x)/Math.abs(x2-x) * a * Math.pow ((Math.abs(x2-x))/a, 1/3);
+        tdl2.style.top  = y + (y2-y)/Math.abs(y2-y) * a * Math.pow ((Math.abs(y2-y))/a, 1/3);
+*/
+/*
+        tdl2.style.left = x + (x2-x)/Math.abs(x2-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x2-x)/b,p)))/a, q);
+        tdl2.style.top  = y + (y2-y)/Math.abs(y2-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y2-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl2.style.left = m*x + f*x2 + (x2-x)/Math.abs(x2-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x2-x)/b,p)))/a, q);
+        tdl2.style.top  = m*y + f*y2 + (y2-y)/Math.abs(y2-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y2-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x2-x) * (x2-x) + (y2-y) * (y2-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl2.style.left = x + h * (x2-x);
+	tdl2.style.top  = y + h * (y2-y);
+	
+/*
+        tdl2.style.left = x + a * Math.atan ((x2-x)/a);
+        tdl2.style.top  = y + a * Math.atan ((y2-y)/a);
+*/         
+	tdl2.style.visibility = ((x2-x) * (x2-x) + (y2-y) * (y2-y) > poids2*poids2*v*v) ? "hidden" : "visible";
+	}
+        tdl2.innerHTML  = ((x2-x) * (x2-x) + (y2-y) * (y2-y) > poids2*poids2*l*l) ? court2 : long2;
+ }
+ 
+  /*if (cur == 3) */
+  {
+
+/*
+        tdl3.style.left = x + (x3-x)/Math.abs(x3-x) * a * Math.pow ((Math.abs(x3-x))/a, 1/3);
+        tdl3.style.top  = y + (y3-y)/Math.abs(y3-y) * a * Math.pow ((Math.abs(y3-y))/a, 1/3);
+*/
+/*
+        tdl3.style.left = x + (x3-x)/Math.abs(x3-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x3-x)/b,p)))/a, q);
+        tdl3.style.top  = y + (y3-y)/Math.abs(y3-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y3-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl3.style.left = m*x + f*x3 + (x3-x)/Math.abs(x3-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x3-x)/b,p)))/a, q);
+        tdl3.style.top  = m*y + f*y3 + (y3-y)/Math.abs(y3-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y3-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x3-x) * (x3-x) + (y3-y) * (y3-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl3.style.left = x + h * (x3-x);
+	tdl3.style.top  = y + h * (y3-y);
+	
+/*
+        tdl3.style.left = x + a * Math.atan ((x3-x)/a);
+        tdl3.style.top  = y + a * Math.atan ((y3-y)/a);
+*/         
+	tdl3.style.visibility = ((x3-x) * (x3-x) + (y3-y) * (y3-y) > poids3*poids3*v*v) ? "hidden" : "visible";
+	}
+        tdl3.innerHTML  = ((x3-x) * (x3-x) + (y3-y) * (y3-y) > poids3*poids3*l*l) ? court3 : long3;
+ }
+ 
+  /*if (cur == 4) */
+  {
+
+/*
+        tdl4.style.left = x + (x4-x)/Math.abs(x4-x) * a * Math.pow ((Math.abs(x4-x))/a, 1/3);
+        tdl4.style.top  = y + (y4-y)/Math.abs(y4-y) * a * Math.pow ((Math.abs(y4-y))/a, 1/3);
+*/
+/*
+        tdl4.style.left = x + (x4-x)/Math.abs(x4-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x4-x)/b,p)))/a, q);
+        tdl4.style.top  = y + (y4-y)/Math.abs(y4-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y4-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl4.style.left = m*x + f*x4 + (x4-x)/Math.abs(x4-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x4-x)/b,p)))/a, q);
+        tdl4.style.top  = m*y + f*y4 + (y4-y)/Math.abs(y4-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y4-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x4-x) * (x4-x) + (y4-y) * (y4-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl4.style.left = x + h * (x4-x);
+	tdl4.style.top  = y + h * (y4-y);
+	
+/*
+        tdl4.style.left = x + a * Math.atan ((x4-x)/a);
+        tdl4.style.top  = y + a * Math.atan ((y4-y)/a);
+*/         
+	tdl4.style.visibility = ((x4-x) * (x4-x) + (y4-y) * (y4-y) > poids4*poids4*v*v) ? "hidden" : "visible";
+	}
+        tdl4.innerHTML  = ((x4-x) * (x4-x) + (y4-y) * (y4-y) > poids4*poids4*l*l) ? court4 : long4;
+ }
+ 
+  /*if (cur == 5) */
+  {
+
+/*
+        tdl5.style.left = x + (x5-x)/Math.abs(x5-x) * a * Math.pow ((Math.abs(x5-x))/a, 1/3);
+        tdl5.style.top  = y + (y5-y)/Math.abs(y5-y) * a * Math.pow ((Math.abs(y5-y))/a, 1/3);
+*/
+/*
+        tdl5.style.left = x + (x5-x)/Math.abs(x5-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x5-x)/b,p)))/a, q);
+        tdl5.style.top  = y + (y5-y)/Math.abs(y5-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y5-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl5.style.left = m*x + f*x5 + (x5-x)/Math.abs(x5-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x5-x)/b,p)))/a, q);
+        tdl5.style.top  = m*y + f*y5 + (y5-y)/Math.abs(y5-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y5-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x5-x) * (x5-x) + (y5-y) * (y5-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl5.style.left = x + h * (x5-x);
+	tdl5.style.top  = y + h * (y5-y);
+	
+/*
+        tdl5.style.left = x + a * Math.atan ((x5-x)/a);
+        tdl5.style.top  = y + a * Math.atan ((y5-y)/a);
+*/         
+	tdl5.style.visibility = ((x5-x) * (x5-x) + (y5-y) * (y5-y) > poids5*poids5*v*v) ? "hidden" : "visible";
+	}
+        tdl5.innerHTML  = ((x5-x) * (x5-x) + (y5-y) * (y5-y) > poids5*poids5*l*l) ? court5 : long5;
+ }
+ 
+  /*if (cur == 6) */
+  {
+
+/*
+        tdl6.style.left = x + (x6-x)/Math.abs(x6-x) * a * Math.pow ((Math.abs(x6-x))/a, 1/3);
+        tdl6.style.top  = y + (y6-y)/Math.abs(y6-y) * a * Math.pow ((Math.abs(y6-y))/a, 1/3);
+*/
+/*
+        tdl6.style.left = x + (x6-x)/Math.abs(x6-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x6-x)/b,p)))/a, q);
+        tdl6.style.top  = y + (y6-y)/Math.abs(y6-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y6-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl6.style.left = m*x + f*x6 + (x6-x)/Math.abs(x6-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x6-x)/b,p)))/a, q);
+        tdl6.style.top  = m*y + f*y6 + (y6-y)/Math.abs(y6-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y6-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x6-x) * (x6-x) + (y6-y) * (y6-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl6.style.left = x + h * (x6-x);
+	tdl6.style.top  = y + h * (y6-y);
+	
+/*
+        tdl6.style.left = x + a * Math.atan ((x6-x)/a);
+        tdl6.style.top  = y + a * Math.atan ((y6-y)/a);
+*/         
+	tdl6.style.visibility = ((x6-x) * (x6-x) + (y6-y) * (y6-y) > poids6*poids6*v*v) ? "hidden" : "visible";
+	}
+        tdl6.innerHTML  = ((x6-x) * (x6-x) + (y6-y) * (y6-y) > poids6*poids6*l*l) ? court6 : long6;
+ }
+ 
+  /*if (cur == 7) */
+  {
+
+/*
+        tdl7.style.left = x + (x7-x)/Math.abs(x7-x) * a * Math.pow ((Math.abs(x7-x))/a, 1/3);
+        tdl7.style.top  = y + (y7-y)/Math.abs(y7-y) * a * Math.pow ((Math.abs(y7-y))/a, 1/3);
+*/
+/*
+        tdl7.style.left = x + (x7-x)/Math.abs(x7-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x7-x)/b,p)))/a, q);
+        tdl7.style.top  = y + (y7-y)/Math.abs(y7-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y7-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl7.style.left = m*x + f*x7 + (x7-x)/Math.abs(x7-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x7-x)/b,p)))/a, q);
+        tdl7.style.top  = m*y + f*y7 + (y7-y)/Math.abs(y7-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y7-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x7-x) * (x7-x) + (y7-y) * (y7-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl7.style.left = x + h * (x7-x);
+	tdl7.style.top  = y + h * (y7-y);
+	
+/*
+        tdl7.style.left = x + a * Math.atan ((x7-x)/a);
+        tdl7.style.top  = y + a * Math.atan ((y7-y)/a);
+*/         
+	tdl7.style.visibility = ((x7-x) * (x7-x) + (y7-y) * (y7-y) > poids7*poids7*v*v) ? "hidden" : "visible";
+	}
+        tdl7.innerHTML  = ((x7-x) * (x7-x) + (y7-y) * (y7-y) > poids7*poids7*l*l) ? court7 : long7;
+ }
+ 
+  /*if (cur == 8) */
+  {
+
+/*
+        tdl8.style.left = x + (x8-x)/Math.abs(x8-x) * a * Math.pow ((Math.abs(x8-x))/a, 1/3);
+        tdl8.style.top  = y + (y8-y)/Math.abs(y8-y) * a * Math.pow ((Math.abs(y8-y))/a, 1/3);
+*/
+/*
+        tdl8.style.left = x + (x8-x)/Math.abs(x8-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x8-x)/b,p)))/a, q);
+        tdl8.style.top  = y + (y8-y)/Math.abs(y8-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y8-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl8.style.left = m*x + f*x8 + (x8-x)/Math.abs(x8-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x8-x)/b,p)))/a, q);
+        tdl8.style.top  = m*y + f*y8 + (y8-y)/Math.abs(y8-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y8-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x8-x) * (x8-x) + (y8-y) * (y8-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl8.style.left = x + h * (x8-x);
+	tdl8.style.top  = y + h * (y8-y);
+	
+/*
+        tdl8.style.left = x + a * Math.atan ((x8-x)/a);
+        tdl8.style.top  = y + a * Math.atan ((y8-y)/a);
+*/         
+	tdl8.style.visibility = ((x8-x) * (x8-x) + (y8-y) * (y8-y) > poids8*poids8*v*v) ? "hidden" : "visible";
+	}
+        tdl8.innerHTML  = ((x8-x) * (x8-x) + (y8-y) * (y8-y) > poids8*poids8*l*l) ? court8 : long8;
+ }
+ 
+  /*if (cur == 9) */
+  {
+
+/*
+        tdl9.style.left = x + (x9-x)/Math.abs(x9-x) * a * Math.pow ((Math.abs(x9-x))/a, 1/3);
+        tdl9.style.top  = y + (y9-y)/Math.abs(y9-y) * a * Math.pow ((Math.abs(y9-y))/a, 1/3);
+*/
+/*
+        tdl9.style.left = x + (x9-x)/Math.abs(x9-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x9-x)/b,p)))/a, q);
+        tdl9.style.top  = y + (y9-y)/Math.abs(y9-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y9-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl9.style.left = m*x + f*x9 + (x9-x)/Math.abs(x9-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x9-x)/b,p)))/a, q);
+        tdl9.style.top  = m*y + f*y9 + (y9-y)/Math.abs(y9-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y9-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x9-x) * (x9-x) + (y9-y) * (y9-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl9.style.left = x + h * (x9-x);
+	tdl9.style.top  = y + h * (y9-y);
+	
+/*
+        tdl9.style.left = x + a * Math.atan ((x9-x)/a);
+        tdl9.style.top  = y + a * Math.atan ((y9-y)/a);
+*/         
+	tdl9.style.visibility = ((x9-x) * (x9-x) + (y9-y) * (y9-y) > poids9*poids9*v*v) ? "hidden" : "visible";
+	}
+        tdl9.innerHTML  = ((x9-x) * (x9-x) + (y9-y) * (y9-y) > poids9*poids9*l*l) ? court9 : long9;
+ }
+ 
+  /*if (cur == 10) */
+  {
+
+/*
+        tdl10.style.left = x + (x10-x)/Math.abs(x10-x) * a * Math.pow ((Math.abs(x10-x))/a, 1/3);
+        tdl10.style.top  = y + (y10-y)/Math.abs(y10-y) * a * Math.pow ((Math.abs(y10-y))/a, 1/3);
+*/
+/*
+        tdl10.style.left = x + (x10-x)/Math.abs(x10-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x10-x)/b,p)))/a, q);
+        tdl10.style.top  = y + (y10-y)/Math.abs(y10-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y10-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl10.style.left = m*x + f*x10 + (x10-x)/Math.abs(x10-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x10-x)/b,p)))/a, q);
+        tdl10.style.top  = m*y + f*y10 + (y10-y)/Math.abs(y10-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y10-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x10-x) * (x10-x) + (y10-y) * (y10-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl10.style.left = x + h * (x10-x);
+	tdl10.style.top  = y + h * (y10-y);
+	
+/*
+        tdl10.style.left = x + a * Math.atan ((x10-x)/a);
+        tdl10.style.top  = y + a * Math.atan ((y10-y)/a);
+*/         
+	tdl10.style.visibility = ((x10-x) * (x10-x) + (y10-y) * (y10-y) > poids10*poids10*v*v) ? "hidden" : "visible";
+	}
+        tdl10.innerHTML  = ((x10-x) * (x10-x) + (y10-y) * (y10-y) > poids10*poids10*l*l) ? court10 : long10;
+ }
+ 
+  /*if (cur == 11) */
+  {
+
+/*
+        tdl11.style.left = x + (x11-x)/Math.abs(x11-x) * a * Math.pow ((Math.abs(x11-x))/a, 1/3);
+        tdl11.style.top  = y + (y11-y)/Math.abs(y11-y) * a * Math.pow ((Math.abs(y11-y))/a, 1/3);
+*/
+/*
+        tdl11.style.left = x + (x11-x)/Math.abs(x11-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x11-x)/b,p)))/a, q);
+        tdl11.style.top  = y + (y11-y)/Math.abs(y11-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y11-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl11.style.left = m*x + f*x11 + (x11-x)/Math.abs(x11-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x11-x)/b,p)))/a, q);
+        tdl11.style.top  = m*y + f*y11 + (y11-y)/Math.abs(y11-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y11-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x11-x) * (x11-x) + (y11-y) * (y11-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl11.style.left = x + h * (x11-x);
+	tdl11.style.top  = y + h * (y11-y);
+	
+/*
+        tdl11.style.left = x + a * Math.atan ((x11-x)/a);
+        tdl11.style.top  = y + a * Math.atan ((y11-y)/a);
+*/         
+	tdl11.style.visibility = ((x11-x) * (x11-x) + (y11-y) * (y11-y) > poids11*poids11*v*v) ? "hidden" : "visible";
+	}
+        tdl11.innerHTML  = ((x11-x) * (x11-x) + (y11-y) * (y11-y) > poids11*poids11*l*l) ? court11 : long11;
+ }
+ 
+  /*if (cur == 12) */
+  {
+
+/*
+        tdl12.style.left = x + (x12-x)/Math.abs(x12-x) * a * Math.pow ((Math.abs(x12-x))/a, 1/3);
+        tdl12.style.top  = y + (y12-y)/Math.abs(y12-y) * a * Math.pow ((Math.abs(y12-y))/a, 1/3);
+*/
+/*
+        tdl12.style.left = x + (x12-x)/Math.abs(x12-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x12-x)/b,p)))/a, q);
+        tdl12.style.top  = y + (y12-y)/Math.abs(y12-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y12-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl12.style.left = m*x + f*x12 + (x12-x)/Math.abs(x12-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x12-x)/b,p)))/a, q);
+        tdl12.style.top  = m*y + f*y12 + (y12-y)/Math.abs(y12-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y12-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x12-x) * (x12-x) + (y12-y) * (y12-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl12.style.left = x + h * (x12-x);
+	tdl12.style.top  = y + h * (y12-y);
+	
+/*
+        tdl12.style.left = x + a * Math.atan ((x12-x)/a);
+        tdl12.style.top  = y + a * Math.atan ((y12-y)/a);
+*/         
+	tdl12.style.visibility = ((x12-x) * (x12-x) + (y12-y) * (y12-y) > poids12*poids12*v*v) ? "hidden" : "visible";
+	}
+        tdl12.innerHTML  = ((x12-x) * (x12-x) + (y12-y) * (y12-y) > poids12*poids12*l*l) ? court12 : long12;
+ }
+ 
+  /*if (cur == 13) */
+  {
+
+/*
+        tdl13.style.left = x + (x13-x)/Math.abs(x13-x) * a * Math.pow ((Math.abs(x13-x))/a, 1/3);
+        tdl13.style.top  = y + (y13-y)/Math.abs(y13-y) * a * Math.pow ((Math.abs(y13-y))/a, 1/3);
+*/
+/*
+        tdl13.style.left = x + (x13-x)/Math.abs(x13-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x13-x)/b,p)))/a, q);
+        tdl13.style.top  = y + (y13-y)/Math.abs(y13-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y13-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl13.style.left = m*x + f*x13 + (x13-x)/Math.abs(x13-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x13-x)/b,p)))/a, q);
+        tdl13.style.top  = m*y + f*y13 + (y13-y)/Math.abs(y13-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y13-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x13-x) * (x13-x) + (y13-y) * (y13-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl13.style.left = x + h * (x13-x);
+	tdl13.style.top  = y + h * (y13-y);
+	
+/*
+        tdl13.style.left = x + a * Math.atan ((x13-x)/a);
+        tdl13.style.top  = y + a * Math.atan ((y13-y)/a);
+*/         
+	tdl13.style.visibility = ((x13-x) * (x13-x) + (y13-y) * (y13-y) > poids13*poids13*v*v) ? "hidden" : "visible";
+	}
+        tdl13.innerHTML  = ((x13-x) * (x13-x) + (y13-y) * (y13-y) > poids13*poids13*l*l) ? court13 : long13;
+ }
+ 
+  /*if (cur == 14) */
+  {
+
+/*
+        tdl14.style.left = x + (x14-x)/Math.abs(x14-x) * a * Math.pow ((Math.abs(x14-x))/a, 1/3);
+        tdl14.style.top  = y + (y14-y)/Math.abs(y14-y) * a * Math.pow ((Math.abs(y14-y))/a, 1/3);
+*/
+/*
+        tdl14.style.left = x + (x14-x)/Math.abs(x14-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x14-x)/b,p)))/a, q);
+        tdl14.style.top  = y + (y14-y)/Math.abs(y14-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y14-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl14.style.left = m*x + f*x14 + (x14-x)/Math.abs(x14-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x14-x)/b,p)))/a, q);
+        tdl14.style.top  = m*y + f*y14 + (y14-y)/Math.abs(y14-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y14-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x14-x) * (x14-x) + (y14-y) * (y14-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl14.style.left = x + h * (x14-x);
+	tdl14.style.top  = y + h * (y14-y);
+	
+/*
+        tdl14.style.left = x + a * Math.atan ((x14-x)/a);
+        tdl14.style.top  = y + a * Math.atan ((y14-y)/a);
+*/         
+	tdl14.style.visibility = ((x14-x) * (x14-x) + (y14-y) * (y14-y) > poids14*poids14*v*v) ? "hidden" : "visible";
+	}
+        tdl14.innerHTML  = ((x14-x) * (x14-x) + (y14-y) * (y14-y) > poids14*poids14*l*l) ? court14 : long14;
+ }
+ 
+  /*if (cur == 15) */
+  {
+
+/*
+        tdl15.style.left = x + (x15-x)/Math.abs(x15-x) * a * Math.pow ((Math.abs(x15-x))/a, 1/3);
+        tdl15.style.top  = y + (y15-y)/Math.abs(y15-y) * a * Math.pow ((Math.abs(y15-y))/a, 1/3);
+*/
+/*
+        tdl15.style.left = x + (x15-x)/Math.abs(x15-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x15-x)/b,p)))/a, q);
+        tdl15.style.top  = y + (y15-y)/Math.abs(y15-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y15-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl15.style.left = m*x + f*x15 + (x15-x)/Math.abs(x15-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x15-x)/b,p)))/a, q);
+        tdl15.style.top  = m*y + f*y15 + (y15-y)/Math.abs(y15-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y15-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x15-x) * (x15-x) + (y15-y) * (y15-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl15.style.left = x + h * (x15-x);
+	tdl15.style.top  = y + h * (y15-y);
+	
+/*
+        tdl15.style.left = x + a * Math.atan ((x15-x)/a);
+        tdl15.style.top  = y + a * Math.atan ((y15-y)/a);
+*/         
+	tdl15.style.visibility = ((x15-x) * (x15-x) + (y15-y) * (y15-y) > poids15*poids15*v*v) ? "hidden" : "visible";
+	}
+        tdl15.innerHTML  = ((x15-x) * (x15-x) + (y15-y) * (y15-y) > poids15*poids15*l*l) ? court15 : long15;
+ }
+ 
+  /*if (cur == 16) */
+  {
+
+/*
+        tdl16.style.left = x + (x16-x)/Math.abs(x16-x) * a * Math.pow ((Math.abs(x16-x))/a, 1/3);
+        tdl16.style.top  = y + (y16-y)/Math.abs(y16-y) * a * Math.pow ((Math.abs(y16-y))/a, 1/3);
+*/
+/*
+        tdl16.style.left = x + (x16-x)/Math.abs(x16-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x16-x)/b,p)))/a, q);
+        tdl16.style.top  = y + (y16-y)/Math.abs(y16-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y16-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl16.style.left = m*x + f*x16 + (x16-x)/Math.abs(x16-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x16-x)/b,p)))/a, q);
+        tdl16.style.top  = m*y + f*y16 + (y16-y)/Math.abs(y16-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y16-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x16-x) * (x16-x) + (y16-y) * (y16-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl16.style.left = x + h * (x16-x);
+	tdl16.style.top  = y + h * (y16-y);
+	
+/*
+        tdl16.style.left = x + a * Math.atan ((x16-x)/a);
+        tdl16.style.top  = y + a * Math.atan ((y16-y)/a);
+*/         
+	tdl16.style.visibility = ((x16-x) * (x16-x) + (y16-y) * (y16-y) > poids16*poids16*v*v) ? "hidden" : "visible";
+	}
+        tdl16.innerHTML  = ((x16-x) * (x16-x) + (y16-y) * (y16-y) > poids16*poids16*l*l) ? court16 : long16;
+ }
+ 
+  /*if (cur == 17) */
+  {
+
+/*
+        tdl17.style.left = x + (x17-x)/Math.abs(x17-x) * a * Math.pow ((Math.abs(x17-x))/a, 1/3);
+        tdl17.style.top  = y + (y17-y)/Math.abs(y17-y) * a * Math.pow ((Math.abs(y17-y))/a, 1/3);
+*/
+/*
+        tdl17.style.left = x + (x17-x)/Math.abs(x17-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x17-x)/b,p)))/a, q);
+        tdl17.style.top  = y + (y17-y)/Math.abs(y17-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y17-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl17.style.left = m*x + f*x17 + (x17-x)/Math.abs(x17-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x17-x)/b,p)))/a, q);
+        tdl17.style.top  = m*y + f*y17 + (y17-y)/Math.abs(y17-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y17-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x17-x) * (x17-x) + (y17-y) * (y17-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl17.style.left = x + h * (x17-x);
+	tdl17.style.top  = y + h * (y17-y);
+	
+/*
+        tdl17.style.left = x + a * Math.atan ((x17-x)/a);
+        tdl17.style.top  = y + a * Math.atan ((y17-y)/a);
+*/         
+	tdl17.style.visibility = ((x17-x) * (x17-x) + (y17-y) * (y17-y) > poids17*poids17*v*v) ? "hidden" : "visible";
+	}
+        tdl17.innerHTML  = ((x17-x) * (x17-x) + (y17-y) * (y17-y) > poids17*poids17*l*l) ? court17 : long17;
+ }
+ 
+  /*if (cur == 18) */
+  {
+
+/*
+        tdl18.style.left = x + (x18-x)/Math.abs(x18-x) * a * Math.pow ((Math.abs(x18-x))/a, 1/3);
+        tdl18.style.top  = y + (y18-y)/Math.abs(y18-y) * a * Math.pow ((Math.abs(y18-y))/a, 1/3);
+*/
+/*
+        tdl18.style.left = x + (x18-x)/Math.abs(x18-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x18-x)/b,p)))/a, q);
+        tdl18.style.top  = y + (y18-y)/Math.abs(y18-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y18-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl18.style.left = m*x + f*x18 + (x18-x)/Math.abs(x18-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x18-x)/b,p)))/a, q);
+        tdl18.style.top  = m*y + f*y18 + (y18-y)/Math.abs(y18-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y18-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x18-x) * (x18-x) + (y18-y) * (y18-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl18.style.left = x + h * (x18-x);
+	tdl18.style.top  = y + h * (y18-y);
+	
+/*
+        tdl18.style.left = x + a * Math.atan ((x18-x)/a);
+        tdl18.style.top  = y + a * Math.atan ((y18-y)/a);
+*/         
+	tdl18.style.visibility = ((x18-x) * (x18-x) + (y18-y) * (y18-y) > poids18*poids18*v*v) ? "hidden" : "visible";
+	}
+        tdl18.innerHTML  = ((x18-x) * (x18-x) + (y18-y) * (y18-y) > poids18*poids18*l*l) ? court18 : long18;
+ }
+ 
+  /*if (cur == 19) */
+  {
+
+/*
+        tdl19.style.left = x + (x19-x)/Math.abs(x19-x) * a * Math.pow ((Math.abs(x19-x))/a, 1/3);
+        tdl19.style.top  = y + (y19-y)/Math.abs(y19-y) * a * Math.pow ((Math.abs(y19-y))/a, 1/3);
+*/
+/*
+        tdl19.style.left = x + (x19-x)/Math.abs(x19-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x19-x)/b,p)))/a, q);
+        tdl19.style.top  = y + (y19-y)/Math.abs(y19-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y19-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl19.style.left = m*x + f*x19 + (x19-x)/Math.abs(x19-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x19-x)/b,p)))/a, q);
+        tdl19.style.top  = m*y + f*y19 + (y19-y)/Math.abs(y19-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y19-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x19-x) * (x19-x) + (y19-y) * (y19-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl19.style.left = x + h * (x19-x);
+	tdl19.style.top  = y + h * (y19-y);
+	
+/*
+        tdl19.style.left = x + a * Math.atan ((x19-x)/a);
+        tdl19.style.top  = y + a * Math.atan ((y19-y)/a);
+*/         
+	tdl19.style.visibility = ((x19-x) * (x19-x) + (y19-y) * (y19-y) > poids19*poids19*v*v) ? "hidden" : "visible";
+	}
+        tdl19.innerHTML  = ((x19-x) * (x19-x) + (y19-y) * (y19-y) > poids19*poids19*l*l) ? court19 : long19;
+ }
+ 
+  /*if (cur == 20) */
+  {
+
+/*
+        tdl20.style.left = x + (x20-x)/Math.abs(x20-x) * a * Math.pow ((Math.abs(x20-x))/a, 1/3);
+        tdl20.style.top  = y + (y20-y)/Math.abs(y20-y) * a * Math.pow ((Math.abs(y20-y))/a, 1/3);
+*/
+/*
+        tdl20.style.left = x + (x20-x)/Math.abs(x20-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x20-x)/b,p)))/a, q);
+        tdl20.style.top  = y + (y20-y)/Math.abs(y20-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y20-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl20.style.left = m*x + f*x20 + (x20-x)/Math.abs(x20-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x20-x)/b,p)))/a, q);
+        tdl20.style.top  = m*y + f*y20 + (y20-y)/Math.abs(y20-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y20-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x20-x) * (x20-x) + (y20-y) * (y20-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl20.style.left = x + h * (x20-x);
+	tdl20.style.top  = y + h * (y20-y);
+	
+/*
+        tdl20.style.left = x + a * Math.atan ((x20-x)/a);
+        tdl20.style.top  = y + a * Math.atan ((y20-y)/a);
+*/         
+	tdl20.style.visibility = ((x20-x) * (x20-x) + (y20-y) * (y20-y) > poids20*poids20*v*v) ? "hidden" : "visible";
+	}
+        tdl20.innerHTML  = ((x20-x) * (x20-x) + (y20-y) * (y20-y) > poids20*poids20*l*l) ? court20 : long20;
+ }
+ 
+  /*if (cur == 21) */
+  {
+
+/*
+        tdl21.style.left = x + (x21-x)/Math.abs(x21-x) * a * Math.pow ((Math.abs(x21-x))/a, 1/3);
+        tdl21.style.top  = y + (y21-y)/Math.abs(y21-y) * a * Math.pow ((Math.abs(y21-y))/a, 1/3);
+*/
+/*
+        tdl21.style.left = x + (x21-x)/Math.abs(x21-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x21-x)/b,p)))/a, q);
+        tdl21.style.top  = y + (y21-y)/Math.abs(y21-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y21-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl21.style.left = m*x + f*x21 + (x21-x)/Math.abs(x21-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x21-x)/b,p)))/a, q);
+        tdl21.style.top  = m*y + f*y21 + (y21-y)/Math.abs(y21-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y21-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x21-x) * (x21-x) + (y21-y) * (y21-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl21.style.left = x + h * (x21-x);
+	tdl21.style.top  = y + h * (y21-y);
+	
+/*
+        tdl21.style.left = x + a * Math.atan ((x21-x)/a);
+        tdl21.style.top  = y + a * Math.atan ((y21-y)/a);
+*/         
+	tdl21.style.visibility = ((x21-x) * (x21-x) + (y21-y) * (y21-y) > poids21*poids21*v*v) ? "hidden" : "visible";
+	}
+        tdl21.innerHTML  = ((x21-x) * (x21-x) + (y21-y) * (y21-y) > poids21*poids21*l*l) ? court21 : long21;
+ }
+ 
+  /*if (cur == 22) */
+  {
+
+/*
+        tdl22.style.left = x + (x22-x)/Math.abs(x22-x) * a * Math.pow ((Math.abs(x22-x))/a, 1/3);
+        tdl22.style.top  = y + (y22-y)/Math.abs(y22-y) * a * Math.pow ((Math.abs(y22-y))/a, 1/3);
+*/
+/*
+        tdl22.style.left = x + (x22-x)/Math.abs(x22-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x22-x)/b,p)))/a, q);
+        tdl22.style.top  = y + (y22-y)/Math.abs(y22-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y22-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl22.style.left = m*x + f*x22 + (x22-x)/Math.abs(x22-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x22-x)/b,p)))/a, q);
+        tdl22.style.top  = m*y + f*y22 + (y22-y)/Math.abs(y22-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y22-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x22-x) * (x22-x) + (y22-y) * (y22-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl22.style.left = x + h * (x22-x);
+	tdl22.style.top  = y + h * (y22-y);
+	
+/*
+        tdl22.style.left = x + a * Math.atan ((x22-x)/a);
+        tdl22.style.top  = y + a * Math.atan ((y22-y)/a);
+*/         
+	tdl22.style.visibility = ((x22-x) * (x22-x) + (y22-y) * (y22-y) > poids22*poids22*v*v) ? "hidden" : "visible";
+	}
+        tdl22.innerHTML  = ((x22-x) * (x22-x) + (y22-y) * (y22-y) > poids22*poids22*l*l) ? court22 : long22;
+ }
+ 
+  /*if (cur == 23) */
+  {
+
+/*
+        tdl23.style.left = x + (x23-x)/Math.abs(x23-x) * a * Math.pow ((Math.abs(x23-x))/a, 1/3);
+        tdl23.style.top  = y + (y23-y)/Math.abs(y23-y) * a * Math.pow ((Math.abs(y23-y))/a, 1/3);
+*/
+/*
+        tdl23.style.left = x + (x23-x)/Math.abs(x23-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x23-x)/b,p)))/a, q);
+        tdl23.style.top  = y + (y23-y)/Math.abs(y23-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y23-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl23.style.left = m*x + f*x23 + (x23-x)/Math.abs(x23-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x23-x)/b,p)))/a, q);
+        tdl23.style.top  = m*y + f*y23 + (y23-y)/Math.abs(y23-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y23-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x23-x) * (x23-x) + (y23-y) * (y23-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl23.style.left = x + h * (x23-x);
+	tdl23.style.top  = y + h * (y23-y);
+	
+/*
+        tdl23.style.left = x + a * Math.atan ((x23-x)/a);
+        tdl23.style.top  = y + a * Math.atan ((y23-y)/a);
+*/         
+	tdl23.style.visibility = ((x23-x) * (x23-x) + (y23-y) * (y23-y) > poids23*poids23*v*v) ? "hidden" : "visible";
+	}
+        tdl23.innerHTML  = ((x23-x) * (x23-x) + (y23-y) * (y23-y) > poids23*poids23*l*l) ? court23 : long23;
+ }
+ 
+  /*if (cur == 24) */
+  {
+
+/*
+        tdl24.style.left = x + (x24-x)/Math.abs(x24-x) * a * Math.pow ((Math.abs(x24-x))/a, 1/3);
+        tdl24.style.top  = y + (y24-y)/Math.abs(y24-y) * a * Math.pow ((Math.abs(y24-y))/a, 1/3);
+*/
+/*
+        tdl24.style.left = x + (x24-x)/Math.abs(x24-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x24-x)/b,p)))/a, q);
+        tdl24.style.top  = y + (y24-y)/Math.abs(y24-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y24-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl24.style.left = m*x + f*x24 + (x24-x)/Math.abs(x24-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x24-x)/b,p)))/a, q);
+        tdl24.style.top  = m*y + f*y24 + (y24-y)/Math.abs(y24-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y24-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x24-x) * (x24-x) + (y24-y) * (y24-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl24.style.left = x + h * (x24-x);
+	tdl24.style.top  = y + h * (y24-y);
+	
+/*
+        tdl24.style.left = x + a * Math.atan ((x24-x)/a);
+        tdl24.style.top  = y + a * Math.atan ((y24-y)/a);
+*/         
+	tdl24.style.visibility = ((x24-x) * (x24-x) + (y24-y) * (y24-y) > poids24*poids24*v*v) ? "hidden" : "visible";
+	}
+        tdl24.innerHTML  = ((x24-x) * (x24-x) + (y24-y) * (y24-y) > poids24*poids24*l*l) ? court24 : long24;
+ }
+ 
+  /*if (cur == 25) */
+  {
+
+/*
+        tdl25.style.left = x + (x25-x)/Math.abs(x25-x) * a * Math.pow ((Math.abs(x25-x))/a, 1/3);
+        tdl25.style.top  = y + (y25-y)/Math.abs(y25-y) * a * Math.pow ((Math.abs(y25-y))/a, 1/3);
+*/
+/*
+        tdl25.style.left = x + (x25-x)/Math.abs(x25-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x25-x)/b,p)))/a, q);
+        tdl25.style.top  = y + (y25-y)/Math.abs(y25-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y25-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl25.style.left = m*x + f*x25 + (x25-x)/Math.abs(x25-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x25-x)/b,p)))/a, q);
+        tdl25.style.top  = m*y + f*y25 + (y25-y)/Math.abs(y25-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y25-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x25-x) * (x25-x) + (y25-y) * (y25-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl25.style.left = x + h * (x25-x);
+	tdl25.style.top  = y + h * (y25-y);
+	
+/*
+        tdl25.style.left = x + a * Math.atan ((x25-x)/a);
+        tdl25.style.top  = y + a * Math.atan ((y25-y)/a);
+*/         
+	tdl25.style.visibility = ((x25-x) * (x25-x) + (y25-y) * (y25-y) > poids25*poids25*v*v) ? "hidden" : "visible";
+	}
+        tdl25.innerHTML  = ((x25-x) * (x25-x) + (y25-y) * (y25-y) > poids25*poids25*l*l) ? court25 : long25;
+ }
+ 
+  /*if (cur == 26) */
+  {
+
+/*
+        tdl26.style.left = x + (x26-x)/Math.abs(x26-x) * a * Math.pow ((Math.abs(x26-x))/a, 1/3);
+        tdl26.style.top  = y + (y26-y)/Math.abs(y26-y) * a * Math.pow ((Math.abs(y26-y))/a, 1/3);
+*/
+/*
+        tdl26.style.left = x + (x26-x)/Math.abs(x26-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x26-x)/b,p)))/a, q);
+        tdl26.style.top  = y + (y26-y)/Math.abs(y26-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y26-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl26.style.left = m*x + f*x26 + (x26-x)/Math.abs(x26-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x26-x)/b,p)))/a, q);
+        tdl26.style.top  = m*y + f*y26 + (y26-y)/Math.abs(y26-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y26-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x26-x) * (x26-x) + (y26-y) * (y26-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl26.style.left = x + h * (x26-x);
+	tdl26.style.top  = y + h * (y26-y);
+	
+/*
+        tdl26.style.left = x + a * Math.atan ((x26-x)/a);
+        tdl26.style.top  = y + a * Math.atan ((y26-y)/a);
+*/         
+	tdl26.style.visibility = ((x26-x) * (x26-x) + (y26-y) * (y26-y) > poids26*poids26*v*v) ? "hidden" : "visible";
+	}
+        tdl26.innerHTML  = ((x26-x) * (x26-x) + (y26-y) * (y26-y) > poids26*poids26*l*l) ? court26 : long26;
+ }
+ 
+  /*if (cur == 27) */
+  {
+
+/*
+        tdl27.style.left = x + (x27-x)/Math.abs(x27-x) * a * Math.pow ((Math.abs(x27-x))/a, 1/3);
+        tdl27.style.top  = y + (y27-y)/Math.abs(y27-y) * a * Math.pow ((Math.abs(y27-y))/a, 1/3);
+*/
+/*
+        tdl27.style.left = x + (x27-x)/Math.abs(x27-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x27-x)/b,p)))/a, q);
+        tdl27.style.top  = y + (y27-y)/Math.abs(y27-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y27-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl27.style.left = m*x + f*x27 + (x27-x)/Math.abs(x27-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x27-x)/b,p)))/a, q);
+        tdl27.style.top  = m*y + f*y27 + (y27-y)/Math.abs(y27-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y27-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x27-x) * (x27-x) + (y27-y) * (y27-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl27.style.left = x + h * (x27-x);
+	tdl27.style.top  = y + h * (y27-y);
+	
+/*
+        tdl27.style.left = x + a * Math.atan ((x27-x)/a);
+        tdl27.style.top  = y + a * Math.atan ((y27-y)/a);
+*/         
+	tdl27.style.visibility = ((x27-x) * (x27-x) + (y27-y) * (y27-y) > poids27*poids27*v*v) ? "hidden" : "visible";
+	}
+        tdl27.innerHTML  = ((x27-x) * (x27-x) + (y27-y) * (y27-y) > poids27*poids27*l*l) ? court27 : long27;
+ }
+ 
+  /*if (cur == 28) */
+  {
+
+/*
+        tdl28.style.left = x + (x28-x)/Math.abs(x28-x) * a * Math.pow ((Math.abs(x28-x))/a, 1/3);
+        tdl28.style.top  = y + (y28-y)/Math.abs(y28-y) * a * Math.pow ((Math.abs(y28-y))/a, 1/3);
+*/
+/*
+        tdl28.style.left = x + (x28-x)/Math.abs(x28-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x28-x)/b,p)))/a, q);
+        tdl28.style.top  = y + (y28-y)/Math.abs(y28-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y28-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl28.style.left = m*x + f*x28 + (x28-x)/Math.abs(x28-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x28-x)/b,p)))/a, q);
+        tdl28.style.top  = m*y + f*y28 + (y28-y)/Math.abs(y28-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y28-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x28-x) * (x28-x) + (y28-y) * (y28-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl28.style.left = x + h * (x28-x);
+	tdl28.style.top  = y + h * (y28-y);
+	
+/*
+        tdl28.style.left = x + a * Math.atan ((x28-x)/a);
+        tdl28.style.top  = y + a * Math.atan ((y28-y)/a);
+*/         
+	tdl28.style.visibility = ((x28-x) * (x28-x) + (y28-y) * (y28-y) > poids28*poids28*v*v) ? "hidden" : "visible";
+	}
+        tdl28.innerHTML  = ((x28-x) * (x28-x) + (y28-y) * (y28-y) > poids28*poids28*l*l) ? court28 : long28;
+ }
+ 
+  /*if (cur == 29) */
+  {
+
+/*
+        tdl29.style.left = x + (x29-x)/Math.abs(x29-x) * a * Math.pow ((Math.abs(x29-x))/a, 1/3);
+        tdl29.style.top  = y + (y29-y)/Math.abs(y29-y) * a * Math.pow ((Math.abs(y29-y))/a, 1/3);
+*/
+/*
+        tdl29.style.left = x + (x29-x)/Math.abs(x29-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x29-x)/b,p)))/a, q);
+        tdl29.style.top  = y + (y29-y)/Math.abs(y29-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y29-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl29.style.left = m*x + f*x29 + (x29-x)/Math.abs(x29-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x29-x)/b,p)))/a, q);
+        tdl29.style.top  = m*y + f*y29 + (y29-y)/Math.abs(y29-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y29-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x29-x) * (x29-x) + (y29-y) * (y29-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl29.style.left = x + h * (x29-x);
+	tdl29.style.top  = y + h * (y29-y);
+	
+/*
+        tdl29.style.left = x + a * Math.atan ((x29-x)/a);
+        tdl29.style.top  = y + a * Math.atan ((y29-y)/a);
+*/         
+	tdl29.style.visibility = ((x29-x) * (x29-x) + (y29-y) * (y29-y) > poids29*poids29*v*v) ? "hidden" : "visible";
+	}
+        tdl29.innerHTML  = ((x29-x) * (x29-x) + (y29-y) * (y29-y) > poids29*poids29*l*l) ? court29 : long29;
+ }
+ 
+  /*if (cur == 30) */
+  {
+
+/*
+        tdl30.style.left = x + (x30-x)/Math.abs(x30-x) * a * Math.pow ((Math.abs(x30-x))/a, 1/3);
+        tdl30.style.top  = y + (y30-y)/Math.abs(y30-y) * a * Math.pow ((Math.abs(y30-y))/a, 1/3);
+*/
+/*
+        tdl30.style.left = x + (x30-x)/Math.abs(x30-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x30-x)/b,p)))/a, q);
+        tdl30.style.top  = y + (y30-y)/Math.abs(y30-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y30-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl30.style.left = m*x + f*x30 + (x30-x)/Math.abs(x30-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x30-x)/b,p)))/a, q);
+        tdl30.style.top  = m*y + f*y30 + (y30-y)/Math.abs(y30-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y30-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x30-x) * (x30-x) + (y30-y) * (y30-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl30.style.left = x + h * (x30-x);
+	tdl30.style.top  = y + h * (y30-y);
+	
+/*
+        tdl30.style.left = x + a * Math.atan ((x30-x)/a);
+        tdl30.style.top  = y + a * Math.atan ((y30-y)/a);
+*/         
+	tdl30.style.visibility = ((x30-x) * (x30-x) + (y30-y) * (y30-y) > poids30*poids30*v*v) ? "hidden" : "visible";
+	}
+        tdl30.innerHTML  = ((x30-x) * (x30-x) + (y30-y) * (y30-y) > poids30*poids30*l*l) ? court30 : long30;
+ }
+ 
+  /*if (cur == 31) */
+  {
+
+/*
+        tdl31.style.left = x + (x31-x)/Math.abs(x31-x) * a * Math.pow ((Math.abs(x31-x))/a, 1/3);
+        tdl31.style.top  = y + (y31-y)/Math.abs(y31-y) * a * Math.pow ((Math.abs(y31-y))/a, 1/3);
+*/
+/*
+        tdl31.style.left = x + (x31-x)/Math.abs(x31-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x31-x)/b,p)))/a, q);
+        tdl31.style.top  = y + (y31-y)/Math.abs(y31-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y31-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl31.style.left = m*x + f*x31 + (x31-x)/Math.abs(x31-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x31-x)/b,p)))/a, q);
+        tdl31.style.top  = m*y + f*y31 + (y31-y)/Math.abs(y31-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y31-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x31-x) * (x31-x) + (y31-y) * (y31-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl31.style.left = x + h * (x31-x);
+	tdl31.style.top  = y + h * (y31-y);
+	
+/*
+        tdl31.style.left = x + a * Math.atan ((x31-x)/a);
+        tdl31.style.top  = y + a * Math.atan ((y31-y)/a);
+*/         
+	tdl31.style.visibility = ((x31-x) * (x31-x) + (y31-y) * (y31-y) > poids31*poids31*v*v) ? "hidden" : "visible";
+	}
+        tdl31.innerHTML  = ((x31-x) * (x31-x) + (y31-y) * (y31-y) > poids31*poids31*l*l) ? court31 : long31;
+ }
+ 
+  /*if (cur == 32) */
+  {
+
+/*
+        tdl32.style.left = x + (x32-x)/Math.abs(x32-x) * a * Math.pow ((Math.abs(x32-x))/a, 1/3);
+        tdl32.style.top  = y + (y32-y)/Math.abs(y32-y) * a * Math.pow ((Math.abs(y32-y))/a, 1/3);
+*/
+/*
+        tdl32.style.left = x + (x32-x)/Math.abs(x32-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x32-x)/b,p)))/a, q);
+        tdl32.style.top  = y + (y32-y)/Math.abs(y32-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y32-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl32.style.left = m*x + f*x32 + (x32-x)/Math.abs(x32-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x32-x)/b,p)))/a, q);
+        tdl32.style.top  = m*y + f*y32 + (y32-y)/Math.abs(y32-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y32-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x32-x) * (x32-x) + (y32-y) * (y32-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl32.style.left = x + h * (x32-x);
+	tdl32.style.top  = y + h * (y32-y);
+	
+/*
+        tdl32.style.left = x + a * Math.atan ((x32-x)/a);
+        tdl32.style.top  = y + a * Math.atan ((y32-y)/a);
+*/         
+	tdl32.style.visibility = ((x32-x) * (x32-x) + (y32-y) * (y32-y) > poids32*poids32*v*v) ? "hidden" : "visible";
+	}
+        tdl32.innerHTML  = ((x32-x) * (x32-x) + (y32-y) * (y32-y) > poids32*poids32*l*l) ? court32 : long32;
+ }
+ 
+  /*if (cur == 33) */
+  {
+
+/*
+        tdl33.style.left = x + (x33-x)/Math.abs(x33-x) * a * Math.pow ((Math.abs(x33-x))/a, 1/3);
+        tdl33.style.top  = y + (y33-y)/Math.abs(y33-y) * a * Math.pow ((Math.abs(y33-y))/a, 1/3);
+*/
+/*
+        tdl33.style.left = x + (x33-x)/Math.abs(x33-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x33-x)/b,p)))/a, q);
+        tdl33.style.top  = y + (y33-y)/Math.abs(y33-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y33-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl33.style.left = m*x + f*x33 + (x33-x)/Math.abs(x33-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x33-x)/b,p)))/a, q);
+        tdl33.style.top  = m*y + f*y33 + (y33-y)/Math.abs(y33-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y33-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x33-x) * (x33-x) + (y33-y) * (y33-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl33.style.left = x + h * (x33-x);
+	tdl33.style.top  = y + h * (y33-y);
+	
+/*
+        tdl33.style.left = x + a * Math.atan ((x33-x)/a);
+        tdl33.style.top  = y + a * Math.atan ((y33-y)/a);
+*/         
+	tdl33.style.visibility = ((x33-x) * (x33-x) + (y33-y) * (y33-y) > poids33*poids33*v*v) ? "hidden" : "visible";
+	}
+        tdl33.innerHTML  = ((x33-x) * (x33-x) + (y33-y) * (y33-y) > poids33*poids33*l*l) ? court33 : long33;
+ }
+ 
+  /*if (cur == 34) */
+  {
+
+/*
+        tdl34.style.left = x + (x34-x)/Math.abs(x34-x) * a * Math.pow ((Math.abs(x34-x))/a, 1/3);
+        tdl34.style.top  = y + (y34-y)/Math.abs(y34-y) * a * Math.pow ((Math.abs(y34-y))/a, 1/3);
+*/
+/*
+        tdl34.style.left = x + (x34-x)/Math.abs(x34-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x34-x)/b,p)))/a, q);
+        tdl34.style.top  = y + (y34-y)/Math.abs(y34-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y34-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl34.style.left = m*x + f*x34 + (x34-x)/Math.abs(x34-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x34-x)/b,p)))/a, q);
+        tdl34.style.top  = m*y + f*y34 + (y34-y)/Math.abs(y34-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y34-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x34-x) * (x34-x) + (y34-y) * (y34-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl34.style.left = x + h * (x34-x);
+	tdl34.style.top  = y + h * (y34-y);
+	
+/*
+        tdl34.style.left = x + a * Math.atan ((x34-x)/a);
+        tdl34.style.top  = y + a * Math.atan ((y34-y)/a);
+*/         
+	tdl34.style.visibility = ((x34-x) * (x34-x) + (y34-y) * (y34-y) > poids34*poids34*v*v) ? "hidden" : "visible";
+	}
+        tdl34.innerHTML  = ((x34-x) * (x34-x) + (y34-y) * (y34-y) > poids34*poids34*l*l) ? court34 : long34;
+ }
+ 
+  /*if (cur == 35) */
+  {
+
+/*
+        tdl35.style.left = x + (x35-x)/Math.abs(x35-x) * a * Math.pow ((Math.abs(x35-x))/a, 1/3);
+        tdl35.style.top  = y + (y35-y)/Math.abs(y35-y) * a * Math.pow ((Math.abs(y35-y))/a, 1/3);
+*/
+/*
+        tdl35.style.left = x + (x35-x)/Math.abs(x35-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x35-x)/b,p)))/a, q);
+        tdl35.style.top  = y + (y35-y)/Math.abs(y35-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y35-y)/b,p)))/a, q);
+*/
+/* 36
+        tdl35.style.left = m*x + f*x35 + (x35-x)/Math.abs(x35-x) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(x35-x)/b,p)))/a, q);
+        tdl35.style.top  = m*y + f*y35 + (y35-y)/Math.abs(y35-y) * a * Math.pow ((Math.abs(b * Math.pow (Math.abs(y35-y)/b,p)))/a, q);
+*/
+	if (moving)
+	{
+	d2 = (x35-x) * (x35-x) + (y35-y) * (y35-y);
+	h = 1 + 1 / (d2/(u*u) + 1/(c-1));
+	tdl35.style.left = x + h * (x35-x);
+	tdl35.style.top  = y + h * (y35-y);
+	
+/*
+        tdl35.style.left = x + a * Math.atan ((x35-x)/a);
+        tdl35.style.top  = y + a * Math.atan ((y35-y)/a);
+*/         
+	tdl35.style.visibility = ((x35-x) * (x35-x) + (y35-y) * (y35-y) > poids35*poids35*v*v) ? "hidden" : "visible";
+	}
+        tdl35.innerHTML  = ((x35-x) * (x35-x) + (y35-y) * (y35-y) > poids35*poids35*l*l) ? court35 : long35;
+ }
+ 
+	}
+
+function killlink()
+	{
+ 	}
+
+
+/* fin info bulle */
+</script> 
+ 
+</body>
+</HTML> <!-- -->
+</noscript>
+<SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript">
+<!--
+ 
+// -->
+
+</SCRIPT>
+<script language="javascript">
+<!--
+function st(_serial,_theme) { document.write(
+		"<img src=\"http://estat.chez.com/cgi-bin/ft/"+_serial+
+		"?n="+ Math.round(Math.random()*10000000)+
+		"&page="+escape(document.title)+
+		"&theme="+escape(_theme)+
+		"&scw="+escape(screen.availWidth)+
+		"&sch="+escape(screen.availHeight)+
+		"&scp="+escape(screen.pixelDepth)+
+		"&referer="+escape(document.referrer)+
+		"\" border=0>") }
+st("4170176446","popup") ;
+//-->
+</script>
+<script language="javascript">
+WEBO_ZONE=124;
+WEBO_PAGE=1;
+weboplus_ok=0;
+</script>
+<script language="javascript" src="http://js.libertysurf.fr/chez/weborama/weboscopeplus.js"></SCRIPT>
+<SCRIPT>if(weboplus_ok==1){weboplus_zp(WEBO_ZONE,WEBO_PAGE);}
+</script><!-- -->
+</noscript>
+<SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript">
+<!--
+var rnd = Math.floor(Math.random() * 9) + 1 ; 
+if (rnd <= 4) { 
+window.open('http://pub.chez.com/cgi-bin/perl/popup.pl/popup/default','pub','location=no,toolbar=no,status=no,directories=no,scrollbars=no,width=470,height=120');
+} else if(rnd == 5) {
+window.open('http://pub.chez.com/cgi-bin/perl/popup.pl/popup/autre4','pub2','location=no,toolbar=no,status=no,directories=no,scrollbars=no,width=200,height=200');
+} else if(rnd == 6) {
+window.open('http://pub.chez.com/cgi-bin/perl/popup.pl/popup/autre2','pub2','location=no,toolbar=no,status=no,directories=no,scrollbars=no,width=200,height=200');
+} else if(rnd >= 7) {
+window.open('http://pub.chez.com/cgi-bin/perl/popup.pl/popup/autre','pub2','location=no,toolbar=no,status=no,directories=no,scrollbars=no,width=200,height=200');
+}
+// -->
+</SCRIPT>
+<script language="javascript">
+<!--
+function st(_serial,_theme) { document.write(
+		"<img src=\"http://estat.chez.com/cgi-bin/ft/"+_serial+
+		"?n="+ Math.round(Math.random()*10000000)+
+		"&page="+escape(document.title)+
+		"&theme="+escape(_theme)+
+		"&scw="+escape(screen.availWidth)+
+		"&sch="+escape(screen.availHeight)+
+		"&scp="+escape(screen.pixelDepth)+
+		"&referer="+escape(document.referrer)+
+		"\" border=0>") }
+st("4170176446","popup") ;
+//-->
+</script>
+<script language="javascript">
+WEBO_ZONE=122;
+WEBO_PAGE=1;
+weboplus_ok=0;
+</script>
+<script language="javascript" src="http://js.libertysurf.fr/chez/weborama/weboscopeplus.js"></SCRIPT>
+<SCRIPT>if(weboplus_ok==1){weboplus_zp(WEBO_ZONE,WEBO_PAGE);}
+</script>

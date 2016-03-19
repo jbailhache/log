@@ -1,0 +1,63 @@
+Jacques Bailhache
+From:	Jacques Bailhache
+Sent:	Monday 25 janvier 1999 11:38
+To:	everything-list@eskimo.com
+Cc:	fantome@skynet.be; lucrece.chartry@skynet.be; mathieu.maes@euronet.be; mdh@linkline.be; picaputo@infonie.be; rita.vancamp@sdt.cec.be; sky80245@skynet.be; tsidhall@hotmail.com
+Subject:	Spirit, consciousness, free will and infinite nesting
+
+I would like to explain further my idea according to which the spirit and its properties, consciousness and free will, may emerge from an infinite nesting of levels of material organizations and of approximative theories more and more precize (see http://www.website2u.com/log/text/reflmph/english/naturesp.htm).
+
+At the first level, Descartes said : "I think, therefore I am". The mind-spirit is seen as a transcendental unity independent from matter. 
+At first sight, I could consider my life as an interaction between what I am (my spirit) and what I am not (the matter, and other's spirit) : the spirit sends actions to the matter and the matter sends perceptions to the spirit. 
+
+We could represent it like this :
+                
+          perception
+ spirit1 <----------  matter1
+          ---------->
+          action 
+                    
+But is it a determinated delimitation between the spirit and the matter ? 
+Looking deeper, we discover that the brain (or more precisely a part of it) is a sort of computer at our disposal, and we perceive its thoughts, we are conscious of them. We can then say : "It thinks, and I perceive it thinking". 
+
+This could be represented by 
+
+ +------------------------------+
+ |          perception          | perception
+ | spirit2 <----------  matter2 |<---------- matter1
+ |          ---------->         | ---------->
+ |          action              | action
+ +------------------------------+
+            spirit1
+                      
+Concerning free will, we could also say that it (matter2) decides, but this decision may be influed by me (spirit2).
+
+Perhaps we could go further and locate in the brain an area responsible of this introspective perception, but the consciousness still remains. We should perhaps say : "It thinks, it perceives it thinking and I perceive it perceiving it thinking". 
+
+ +-----------------------------------------------------+
+ | +------------------------------+                    | 
+ | |          perception          | perception         | perception
+ | | spirit3 <----------  matter3 |<---------- matter2 |<---------- matter1
+ | |          ---------->         | ---------->        | ---------->
+ | |          action              | action             | action
+ | +------------------------------+                    |
+ |             spirit2                                 |
+ +-----------------------------------------------------+
+                        spirit1
+ 
+These successive "I" (spirit1, spirit2, spirit3...) are not the same but nested kernels of our spirit, getting smaller and smaller but never empty, and my idea is that consciousness and free will may emerge from this infinite nesting.
+
+==========================
+Jacques Bailhache
+Y2K Centre of Expertise (BRO)
+DTN: 856 ext. 7662
+Tel: +32-2 729.7662, Fax: +32-2 729.7985
+Email: mailto:Jacques.Bailhache@Digital.com
+Visit my home page : 
+	http://www.website2u.com/log/index.htm
+	http://www.byoc.com/homepage/134885/
+ 	http://www.chez.com/log/
+	http://members.rotfl.com/log/
+
+
+

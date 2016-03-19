@@ -1,0 +1,126 @@
+Problématiques scientifiques de notre temps et philosophie
+http://philosciences.esy.es
+
+L'ORIGINE DES LANGUES
+ 
+Cognats ou mots apparentés
+« Frère »
+    Indo-européen : *bʰréh₂ter 
+
+    sanskrit : « भ्रातृ » (bhrātr̩)
+    breton : « breur »
+    arménien : « եղբայր » (eghbair̩)
+    grec ancien : « φράτηρ » (frátêr)
+    latin : « frater », d'où, par exemple, pour les langues romanes :
+        français : « frère »
+        occitan : « fraire »
+        roumain : « frate »
+    lituanien : « brolis »
+    persan : « برادر » (barādar)
+    proto-germanique : « brōþēr », par exemple, d'où, par exemple, pour les langues germaniques :
+        allemand : « Bruder »
+        anglais : « brother »
+        néerlandais : « broeder »
+        norvégien : « bror »
+    proto-slave : « bratъ », d'où, par exemple, pour les langues slaves :
+        biélorusse : « брат » (brat)
+        polonais : « brat »
+        tchèque : « bratr »
+
+déclinaisons
+           Latin archaïque    Grec Sanskrit Indo-européen
+Féminin
+Singulier
+ Nominatif a                  a    a        a
+ Vocatif   a                  a    ar       a
+ Accusatif am      		      an   aram     am
+ Génitif   as / ai / ais      as   us       as
+ Datif     ai                 a    re       ai
+
+Pluriel
+ Nominatif ai                 ai   aras     as
+ Vocatif   ai                 ai   aras     as
+ Accusatif as                 as   rs       ans
+ Génitif   om / asom          on   rnam     am
+ Datif     eis / abos         ais  rbhyas   abhos
+
+
+fable de Schleicher
+
+Owis eḱwōskʷe
+Gʷərēi owis, kʷesjo wl̥hnā ne ēst, eḱwōns espeḱet, oinom ghe gʷr̥um woǵhom weǵhontm̥, oinomkʷe meǵam bhorom, oinomkʷe ǵhm̥enm̥ ōḱu bherontm̥. Owis nu eḱwobh(j)os (eḱwomos) ewewkʷet: "Ḱēr aghnutoi moi eḱwōns aǵontm̥ nerm̥ widn̥tei". Eḱwōs tu ewewkʷont: "Ḱludhi, owei, ḱēr ghe aghnutoi n̥smei widn̥tbh(j)os (widn̥tmos): nēr, potis, owiōm r̥ wl̥hnām sebhi gʷhermom westrom kʷrn̥euti. Neǵhi owiōm wl̥hnā esti". Tod ḱeḱluwōs owis aǵrom ebhuget.
+
+Le mouton et les chevaux
+Sur une colline un mouton, qui n'avait pas de laine, regardait des chevaux, l'un  tirant un lourd chariot, un autre une grosse charge, un autre portant rapidement un homme. Le mouton dit aux chevaux : "Cela me fait mal au coeur de voir un homme mener des chevaux". Les chevaux dirent : "Ecoute, mouton, ça nous fait mal au coeur de voir l'homme, le maître, se fabriquer un vêtement chaud avec la laine des moutons. Et le mouton n'a plus de laine". Ayant entendu ceci, le mouton s'enfuit dans le champ.
+
+
+Les 27 racines mondiales selon Merritt Ruhlen
+
+aja	mère, parent féminin plus âgé
+aq'wa	eau
+bu(n)ka	genou, courber
+bur	cendres, poussière
+cun(g)a	nez, sentir
+kama	tenir
+kano	bras
+kati	os
+k'olo	trou
+kuan	chien
+ku(n)	qui
+kuna	femme
+mako	enfant
+maliq'a	sucer, têter, allaiter, poitrine
+mana	rester
+mano	homme
+mena	penser
+mi(n)	quoi
+pal	deux
+par	voler (dans les airs)
+poko	bras
+puti	vulve
+teku	jambe, pied
+tik	doigt, un
+tika	terre
+tsaku	jambe, pied
+tsuma	poil, cheveu
+
+
+arbre généalogique de Starostin :
+(! = largement reconnu, ? = spéculatif, ?? = largement rejeté)
+https://en.wikipedia.org/wiki/Borean_languages
+
+? Boréen
+    ? Nostratique
+        ! Afro-asiatique ou chamito-sémitique : langues d'Afrique du Nord et
+de la péninsule
+
+arabique
+        ? Eurasiatique
+            ! Indo-européen : indo-iranien, grec, italique, celtique, germanique, balto-slave, arménien, albanais, anatolien, tokharien
+            ! Ouralien : finnois, estonien, hongrois...
+            ?? Macro-altaïque 
+			    ! turc
+                ! mongol
+                ! toungouse
+                ! coréen
+                ! japonais
+            ?? Paleosiberien
+        ! Kartvélien (Caucase)
+        ! Dravidien (Inde)
+    ?? Amérinde
+    ? Dené-Daic
+        ? Dené-caucasien
+            ! Na-Dené (Ouest du Canada, Alaska)
+            ! Basque
+            ? Sino-caucasien
+                ! Sino-tibétain
+                ? Nord-caucasien
+                ! Ienisseïen (Sibérie)
+                ! Bourouchaski (Pakistan)
+        ? Austrique
+            ! Austro-asiatique
+            ! Miao-Yao ou hmong-mien (Chine du sud et indochine)
+            ? Austro-Tai
+                ! Austronésien (Océans indien et pacifique)
+                ! Tai-kadai (Indochine)
+

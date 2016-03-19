@@ -1,0 +1,2783 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="CREATED" content="20051207;13144038">
+<meta name="CHANGED" content="20051220;9393327">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title></title>
+<!-- TEXT="#f3b65a" VLINK="#ff00ff" BGCOLOR="#000080"-->
+<STYLE>
+<!--
+		P.retrait-du-corps-de-texte- { margin-left: 0.5cm }
+	-->
+</STYLE>
+</head>
+
+<body lang="fr-FR">
+
+<p align="center"><font size="6" face="Vineta BT">Optimisation</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="5" face="Swis721 BlkCn BT">Optimisation avec
+contraintes d'égalité : multiplicateurs de Lagrange</font></p>
+
+<blockquote style="margin-left: 0cm; margin-right: 0cm">
+    <p><font size="4" face="Comic Sans MS">Il s'agit de chercher
+    un vecteur x de R<sup>n</sup> tel que f(x) soit minimal et le
+    vecteur h(x) = 0, (avec h : R<sup>n</sup> -&gt; R<sup>m</sup>
+    différentiable) ce que l'on écrit :</font></p>
+</blockquote>
+
+<ul>
+    <li><blockquote
+        style="margin-right: 10cm; margin-bottom: 0cm">
+            <p><font size="4" face="Courier New">min <sub>x</sub></font><font
+            size="4" face="Symbol"><sub>Î</sub></font><font
+            size="4" face="Courier New"><sub>R</sub>n f(x)</font>
+            </p>
+        </blockquote>
+    </li>
+    <li><blockquote style="margin-right: 10cm">
+            <p><font size="4" face="Courier New">h(x) = 0</font> </p>
+        </blockquote>
+    </li>
+</ul>
+
+<blockquote style="margin-right: 10cm">
+    <p><font size="4" face="Comic Sans MS">Intuitivement, au
+    point de la région de R<sup>n</sup> où h(x) = 0
+    correspondant au maximum de f(x), la courbe ou surface de
+    niveau de f est tangente à la région où h(x) = 0. Le
+    gradient de f et de h étant perpendiculaire à la courbe ou
+    surface de niveau de f et h respectivement, les gradients de
+    f et de h sont alignés.</font></p>
+</blockquote>
+
+<blockquote style="margin-right: 10cm">
+    <p><font size="4" face="Comic Sans MS">On dit que x est un
+    point régulier pour la contrainte h(x) = 0 si </font></p>
+</blockquote>
+
+<ul>
+    <li><blockquote style="margin-bottom: 0cm">
+            <p><font size="4" face="Courier New">h(x) = 0</font> </p>
+        </blockquote>
+    </li>
+    <li><blockquote>
+            <p><font size="4" face="Comic Sans MS, cursive">les
+            vecteurs</font><font size="4"> </font><font size="4"
+            face="Symbol">Ñ</font><font size="4"
+            face="Courier New">h<sub>i</sub>(x) </font><font
+            size="4" face="Comic Sans MS">sont linéairement
+            indépendants</font> </p>
+        </blockquote>
+    </li>
+</ul>
+
+<blockquote style="margin-left: 0cm; margin-right: 0cm">
+    <p><font size="4" face="Symbol">Ñ</font><font size="4"
+    face="Courier New">a<sub> </sub></font><font size="4"
+    face="Comic Sans MS">désigne le gradient de a c'est-à dire
+    le vecteur (</font><font size="4" face="Symbol">¶</font><font
+    size="4" face="Comic Sans MS">a/</font><font size="4"
+    face="Symbol">¶</font><font size="4" face="Comic Sans MS">x<sub>1</sub>,
+    ... , </font><font size="4" face="Symbol">¶</font><font
+    size="4" face="Comic Sans MS">a/</font><font size="4"
+    face="Symbol">¶</font><font size="4" face="Comic Sans MS">x<sub>n</sub>)
+    </font></p>
+</blockquote>
+
+<blockquote>
+    <p><font size="5" face="Impact">Théorème de Lagrange ou
+    règle des multiplicateurs de Lagrange ou conditions
+    nécessaires d'optimalité du premier ordre :</font></p>
+</blockquote>
+
+<blockquote>
+    <p><font size="4" face="Comic Sans MS">Si x est un point
+    régulier solution du problème d'optimisation avec
+    contraintes d'égalité, alors il existe un unique vecteur </font><font
+    size="4" face="Symbol">l</font><font size="4"> </font><font
+    size="4" face="Symath">X</font><font size="4"> </font><font
+    size="5" face="Courier New">R<sup>p </sup></font><font
+    size="4" face="Comic Sans MS">vérifiant :</font></p>
+</blockquote>
+
+<blockquote style="margin-left: 4cm; margin-right: 10cm">
+    <p><font size="4" face="Symbol">Ñ</font><font size="4"
+    face="Courier New">f(x) + </font><font size="4" face="Symbol">S</font><font
+    size="4" face="Courier New"><sub>j=1</sub><sup>m</sup></font><font
+    size="4"> </font><font size="4" face="Symbol">l</font><font
+    size="4" face="Courier New"><sub>j</sub></font><font size="4"
+    face="Symbol">Ñ</font><font size="4" face="Courier New">h<sub>j</sub>(x)
+    = 0</font></p>
+</blockquote>
+
+<blockquote>
+    <p><font size="4" face="Comic Sans MS">Les composantes </font><font
+    size="4" face="GreekC">l</font><font size="4"
+    face="Courier New"><sub>j</sub></font><font size="4"> </font><font
+    size="4" face="Comic Sans MS">du vecteur </font><font
+    size="4" face="GreekC">l</font><font size="4"><sub> </sub></font><font
+    size="4" face="Comic Sans MS">nsont appelées multiplicateurs
+    de Lagrange.</font></p>
+</blockquote>
+
+<blockquote>
+    <p><font size="4" face="Comic Sans MS">On définit le
+    lagrangien associé au problème par :</font></p>
+</blockquote>
+
+<blockquote style="margin-left: 2cm; margin-right: 11cm">
+    <p><font size="5" face="Courier New">L(x,</font><font
+    size="4" face="Symbol">l</font><font size="5"
+    face="Courier New">) = f(x) + </font><font size="4"
+    face="Symbol">S</font><font size="4" face="Courier New"><sub>j=1</sub><sup>m</sup></font><font
+    size="4"> </font><font size="4" face="Symbol">l</font><font
+    size="4" face="Courier New"><sub>j</sub>h<sub>j</sub>(x) </font></p>
+</blockquote>
+
+<blockquote>
+    <p><font size="4" face="Comic Sans MS">(ou</font> <font
+    size="5" face="Courier New">L(x,</font><font size="4"
+    face="Symbol">l</font><font size="5" face="Courier New">) =
+    f(x) - </font><font size="4" face="Symbol">S</font><font
+    size="4" face="Courier New"><sub>j=1</sub><sup>m</sup></font><font
+    size="4"> </font><font size="4" face="Symbol">l</font><font
+    size="4" face="Courier New"><sub>j</sub>h<sub>j</sub>(x)</font></p>
+</blockquote>
+
+<blockquote>
+    <p><font size="4" face="Comic Sans MS">On passe facilement
+    d'une forme à l'autre en remplaçant </font><font size="4"
+    face="Symbol">l</font><font size="4" face="Courier New"><sub>j</sub></font><font
+    size="4" face="Comic Sans MS">par -</font><font size="4"
+    face="Symbol">l</font><font size="4" face="Courier New"><sub>j
+    </sub></font><font size="4" face="Comic Sans MS">)</font></p>
+</blockquote>
+
+<blockquote>
+    <p>&nbsp;</p>
+</blockquote>
+
+<blockquote>
+    <p><font size="4" face="Comic Sans MS">Les conditions
+    d'optimalité du premier ordre peuvent alors s'écrire :</font></p>
+</blockquote>
+
+<ul>
+    <li><blockquote
+        style="margin-right: 10cm; margin-bottom: 0cm">
+            <p><font size="4" face="Symbol">Ñ</font><font
+            size="5" face="Courier New">L(x,</font><font size="4"
+            face="Symbol">l</font><font size="5"
+            face="Courier New">) = 0</font> </p>
+        </blockquote>
+    </li>
+    <li><blockquote style="margin-right: 10cm">
+            <p><font size="5" face="Courier New">h(x) = 0</font> </p>
+        </blockquote>
+    </li>
+</ul>
+
+<blockquote style="margin-left: 10cm; margin-right: 10cm">
+    <p><font size="4" face="Comic Sans MS">ou</font></p>
+</blockquote>
+
+<ul>
+    <li><blockquote
+        style="margin-right: 10cm; margin-bottom: 0cm">
+            <p><font size="4" face="Symbol">¶</font><font
+            size="5" face="Courier New">L(x,</font><font size="4"
+            face="Symbol">l</font><font size="5"
+            face="Courier New">)/</font><font size="4"
+            face="Symbol">¶</font><font size="4"
+            face="Courier New">x<sub>i</sub></font> <font
+            size="5" face="Courier New">= 0</font> </p>
+        </blockquote>
+    </li>
+    <li><blockquote style="margin-right: 10cm">
+            <p><font size="4" face="Symbol">¶</font><font
+            size="5" face="Courier New">L(x,</font><font size="4"
+            face="Symbol">l</font><font size="5"
+            face="Courier New">)/</font><font size="4"
+            face="Symbol">¶l</font><font size="4"
+            face="Courier New"><sub>j</sub></font> <font size="5"
+            face="Courier New">= 0</font> </p>
+        </blockquote>
+    </li>
+</ul>
+
+<blockquote style="margin-left: 10cm; margin-right: 10cm">
+    <p>&nbsp;</p>
+</blockquote>
+
+<blockquote style="margin-left: 10cm; margin-right: 10cm">
+    <p>&nbsp;</p>
+</blockquote>
+
+<blockquote style="margin-right: 10cm">
+    <p><font size="5" face="Swis721 BlkCn BT">Optimisation avec
+    contraintes d'inégalité : conditions de Kuhn et Tucker</font></p>
+</blockquote>
+
+<blockquote style="margin-left: 10cm; margin-right: 10cm">
+    <p>&nbsp;</p>
+</blockquote>
+
+<blockquote style="margin-right: 10cm">
+    <p><font size="4" face="Comic Sans MS">Il s'agit de résoudre</font></p>
+</blockquote>
+
+<ul>
+    <li><blockquote
+        style="margin-right: 12cm; margin-bottom: 0cm">
+            <p><font size="4" face="Courier New">min <sub>x</sub></font><font
+            size="4" face="Symbol"><sub>Î</sub></font><font
+            size="4" face="Courier New"><sub>R</sub>n f(x)</font>
+            </p>
+        </blockquote>
+    </li>
+    <li><blockquote style="margin-right: 12cm">
+            <p><font size="4" face="Courier New">g(x) &lt;= 0</font>
+            </p>
+        </blockquote>
+        <blockquote style="margin-right: 12cm">
+            <p>&nbsp;</p>
+        </blockquote>
+    </li>
+</ul>
+
+<blockquote style="margin-right: 10cm">
+    <p><font size="4" face="Comic Sans MS">Pour un minimum x où
+    les gradients de g<sub>i </sub>sont linéairement
+    indépendants, il existe des multiplicateurs uniques </font><font
+    size="4" face="Symbol">m</font><font size="4"
+    face="Courier New"><sub>i</sub></font><font size="4"> </font><font
+    size="4" face="Comic Sans MS">&gt;= 0 tels que</font></p>
+</blockquote>
+
+<!--blockquote style="margin-left: 7cm; margin-right: 10cm"-->
+    <p><font size="4" face="Symbol">Ñ</font><font size="4"
+    face="Courier New">f(x) + </font><font size="4" face="Symbol">S</font><font
+    size="4" face="Courier New"><sub>i=1</sub><sup>p</sup></font><font
+    size="4"> </font><font size="4" face="Symbol">m</font><font
+    size="4" face="Courier New"><sub>i</sub></font><font size="4"
+    face="Symbol">Ñ</font><font size="4" face="Courier New">g<sub>i</sub>(x)
+    = 0</font></p>
+<!--/blockquote-->
+
+<blockquote style="margin-right: 10cm">
+    <p><font size="4" face="Comic Sans MS">En définissant le
+    lagrangien</font></p>
+</blockquote>
+
+<blockquote style="margin-left: 2cm; margin-right: 10cm">
+    <p><font size="5" face="Courier New">L(x,</font><font
+    size="4" face="Symbol">m</font><font size="5"
+    face="Courier New">) = f(x) + </font><font size="4"
+    face="Symbol">S</font><font size="4" face="Courier New"><sub>i=1</sub><sup>p</sup></font><font
+    size="4"> </font><font size="4" face="Symbol">m</font><font
+    size="4" face="Courier New"><sub>i</sub>g<sub>i</sub>(x) </font></p>
+</blockquote>
+
+<blockquote style="margin-right: 10cm">
+    <p><font size="4" face="Comic Sans MS">on a les conditions de
+    Kuhn et Tucker :</font></p>
+</blockquote>
+
+<blockquote style="margin-left: 10cm; margin-right: 10cm">
+    <p>&nbsp;</p>
+</blockquote>
+
+<ul>
+    <li><font size="4" face="Symbol">Ñ</font><font size="5"
+        face="Courier New">L(x,</font><font size="4"
+        face="Symbol">m</font><font size="5" face="Courier New">)
+        = 0</font> </li>
+    <li><font size="5" face="Symbol">m</font><font size="5"
+        face="Courier New"><sub>i</sub> g(x) = 0</font> </li>
+</ul>
+
+<ul>
+    <li><font size="5" face="Symbol">m</font><font size="5"
+        face="Courier New"><sub>i &gt;= 0</sub></font> </li>
+</ul>
+
+<ul>
+    <li><font size="5" face="Courier New">g<sub>i</sub>(x) &lt;=
+        0</font> </li>
+</ul>
+
+<blockquote style="margin-right: 12cm">
+    <p>&nbsp;</p>
+</blockquote>
+
+<ul>
+    <li><!--blockquote style="margin-right: 12cm"-->
+            <p>&nbsp;<font size="5" face="Swis721 BlkCn BT">Cas
+            général avec conditions d'égalité et
+            d'inégalité</font></p>
+        <!--/blockquote-->
+    </li>
+</ul>
+
+<p class="retrait-du-corps-de-texte-"><font size="4"
+face="Comic Sans MS, cursive">Il s'agit de résoudre le problème
+suivant :</font></p>
+
+<ul>
+    <li><blockquote
+        style="margin-right: 10cm; margin-bottom: 0cm">
+            <p><font size="4" face="Courier New">min <sub>x</sub></font><font
+            size="4" face="Symbol"><sub>Î</sub></font><font
+            size="4" face="Courier New"><sub>R</sub>n f(x)</font>
+            </p>
+        </blockquote>
+    </li>
+    <li><blockquote style="margin-right: 10cm">
+            <p><font size="4" face="Courier New">h(x) = 0</font></p>
+        </blockquote>
+    </li>
+    <li><blockquote style="margin-right: 10cm">
+            <p><font size="4" face="Courier New">g(x) &lt;= 0</font><font
+            size="4"> </font></p>
+        </blockquote>
+        <blockquote style="margin-right: 10cm">
+            <p><font size="4" face="Comic Sans MS, cursive">On
+            définit le lagrangien :</font></p>
+        </blockquote>
+        <!--blockquote style="margin-right: 11cm"-->
+            <p><font size="5" face="Courier New">L(x,</font><font
+            size="5" face="Symbol">m,l</font><font size="5"
+            face="Courier New">) = f(x) + </font><font size="4"
+            face="Symbol">S</font><font size="4"
+            face="Courier New"><sub>j=1</sub><sup>m</sup></font><font
+            size="4"> </font><font size="4" face="Symbol">l</font><font
+            size="4" face="Courier New"><sub>j</sub>h<sub>j</sub>(x)
+            </font><font size="5" face="Courier New">+ </font><font
+            size="4" face="Symbol">S</font><font size="4"
+            face="Courier New"><sub>i=1</sub><sup>p</sup></font><font
+            size="4"> </font><font size="4" face="Symbol">m</font><font
+            size="4" face="Courier New"><sub>j</sub>g<sub>j</sub>(x)
+            </font></p>
+        <!--/blockquote-->
+    </li>
+</ul>
+
+<blockquote style="margin-right: 11cm">
+    <p><font size="4" face="Comic Sans MS">Les conditions de
+    Lagrange - Kuhn - Tucker sont :</font></p>
+</blockquote>
+
+<ul>
+    <li><font size="4" face="Symbol">Ñ</font><font size="5"
+        face="Courier New">L(x,</font><font size="4"
+        face="Symbol">m,l</font><font size="5" face="Courier New">)
+        = 0</font> </li>
+</ul>
+
+<ul>
+    <li><font size="5" face="Courier New">h<sub>i</sub>(x) = 0</font>
+    </li>
+</ul>
+
+<ul>
+    <li><font size="5" face="Symbol">m</font><font size="5"
+        face="Courier New"><sub>i</sub> g(x) = 0</font> </li>
+</ul>
+
+<ul>
+    <li><font size="5" face="Symbol">m</font><font size="5"
+        face="Courier New"><sub>i &gt;= 0</sub></font> </li>
+</ul>
+
+<ul>
+    <li><font size="5" face="Courier New">g<sub>i</sub>(x) &lt;=
+        0</font> </li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><font size="5" face="Swis721 BlkCn BT">Principe du maximum de
+Pontryagin</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4" face="Comic Sans MS">Il s'agit de déterminer
+une fonction u qui commande pendant un intervalle de temps [0,T]
+un système dont l'état est représenté par le vecteur X de R<sup>n</sup>,
+de façon optimale par rapport à un critère défini à chaque
+instant par f(X(t-1),u(t)) et un critère final m(X(T)).</font></p>
+
+<p><font size="4" face="Swis721 BlkCn BT">Modèle discret</font></p>
+
+<p><font size="4" face="Comic Sans MS">Le problème s'écrit
+ainsi :</font></p>
+
+<blockquote>
+    <p><font size="4">Max J = </font><font size="4" face="Symbol">S</font><font
+    size="4" face="Courier New"><sub>t=1</sub><sup>T</sup>f(X(t-1),u(t))
+    + m(X(T))</font></p>
+</blockquote>
+
+<blockquote>
+    <p><font size="4" face="Courier New">X(t) - X(t-1) =
+    a(t,X(t-1),u(t)) t = 1...T</font></p>
+</blockquote>
+
+<blockquote>
+    <p><font size="4" face="Courier New">u(t) </font><font
+    size="4" face="Symbol">Î </font><font size="4"
+    face="Courier New">U ensemble des commandes possibles</font></p>
+</blockquote>
+
+<blockquote>
+    <p><font size="4" face="Courier New">X(0) = X<sub>0</sub></font></p>
+</blockquote>
+
+<p><font size="4" face="Comic Sans MS">On définit le lagrangien
+de ce programme d'optimisation de la façon suivante :</font></p>
+
+<blockquote>
+    <p>L (X,u,<font size="4" face="Symbol">l</font>)= <font
+    size="4" face="Symbol">S</font><font size="4"
+    face="Courier New"><sub>t=1</sub><sup>T</sup>(f(t,X(t-1),u(t)
+    - </font><font size="4" face="Symbol">l</font><font size="4"
+    face="Courier New">(t).(X(t)-X(t-1) - a(t,X(t-1),u(t)) +
+    m(X(t)) + </font><font size="4" face="Symbol">l</font><font
+    size="4" face="Courier New">(0).(X0-X(0))</font></p>
+</blockquote>
+
+<blockquote>
+    <p><font size="4" face="Courier New">(le . désigne le
+    produit scalaire de vecteurs)</font></p>
+</blockquote>
+
+<p><font size="4" face="Comic Sans MS">Il s'agit d'un problème
+d'optimisation avec contraintes d'égalité. Les conditions
+d'optimalité sont obtenues en dérivant le lagrangien</font> <font
+size="5" face="Swis721 BlkCn BT">:</font></p>
+
+<ul>
+    <li><blockquote
+        style="margin-right: 10cm; margin-bottom: 0cm">
+            <p><font size="4" face="Symbol">¶</font><font
+            size="5" face="Courier New">L(x,</font><font size="4"
+            face="Symbol">l</font><font size="5"
+            face="Courier New">)/</font><font size="4"
+            face="Symbol">¶</font><font size="4"
+            face="Courier New">x<sub>i</sub></font> <font
+            size="5" face="Courier New">= 0</font> </p>
+        </blockquote>
+    </li>
+    <li><blockquote style="margin-right: 10cm">
+            <p><font size="4" face="Symbol">¶</font><font
+            size="5" face="Courier New">L(x,</font><font size="4"
+            face="Symbol">l</font><font size="5"
+            face="Courier New">)/</font><font size="4"
+            face="Symbol">¶l</font><font size="4"
+            face="Courier New"><sub>j</sub></font> <font size="5"
+            face="Courier New">= 0</font></p>
+        </blockquote>
+    </li>
+</ul>
+
+<p><font size="4" face="Comic Sans MS">Dans le cas présent, les
+inconnues sont les X(t) et les u(t). On peut considérer que le
+vecteur des inconnues est la &quot;concaténation&quot; des
+vecteurs X(t) et u(t).</font></p>
+
+<p><font size="4" face="Comic Sans MS">Les conditions
+d'optimalité sont donc :</font></p>
+
+<ul>
+    <li><font size="4" face="Symbol">¶</font><font size="5"
+        face="Courier New">L(X,u,</font><font size="4"
+        face="Symbol">l</font><font size="5" face="Courier New">)/</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">x(t)</font> <font size="5"
+        face="Courier New">= 0</font> </li>
+</ul>
+
+<ul>
+    <li><font size="4" face="Symbol">¶</font><font size="5"
+        face="Courier New">L(X,u,</font><font size="4"
+        face="Symbol">l</font><font size="5" face="Courier New">)/</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">u(t)</font> <font size="5"
+        face="Courier New">= 0</font> </li>
+</ul>
+
+<ul>
+    <li><font size="4" face="Symbol">¶</font><font size="5"
+        face="Courier New">L(X,u,</font><font size="4"
+        face="Symbol">l</font><font size="5" face="Courier New">)/</font><font
+        size="4" face="Symbol">¶l</font><font size="4"
+        face="Courier New">(t)</font> <font size="5"
+        face="Courier New">= 0</font> </li>
+</ul>
+
+<p><font size="4" face="Comic Sans MS">c'est-à-dire :</font></p>
+
+<ul>
+    <li><font size="4" face="Courier New">en dérivant par
+        rapport à X(t) (t=0...T-1) : </font></li>
+</ul>
+
+<blockquote>
+    <p><font size="4" face="Symbol">¶</font><font size="4"
+    face="Courier New">f(t,X(t-1),u(t))/</font><font size="4"
+    face="Symbol">¶</font><font size="4" face="Courier New">X(t-1)
+    + </font><font size="4" face="Symbol">l</font><font size="4"
+    face="Courier New">(t)(1+</font><font size="4" face="Symbol">¶</font><font
+    size="4" face="Courier New">a(t,X(t-1),u(t))/</font><font
+    size="4" face="Symbol">¶</font><font size="4"
+    face="Courier New">X(t-1)-</font><font size="4" face="Symbol">l</font><font
+    size="4" face="Courier New">(t-1)=0</font></p>
+</blockquote>
+
+<blockquote>
+    <p><font size="4" face="Courier New">(le terme -</font><font
+    size="4" face="Symbol">l</font><font size="4"
+    face="Courier New">(t-1) provient de la dérivation du
+    (t-1)ème terme du lagrangien) </font></p>
+</blockquote>
+
+<ul>
+    <li><font size="4" face="Courier New">en dérivant par
+        rapport à X(T) :</font> </li>
+</ul>
+
+<blockquote>
+    <p><font size="4" face="Courier New">-</font><font size="4"
+    face="Symbol">l</font><font size="4" face="Courier New">(t)+m'(X(T))
+    = 0</font></p>
+</blockquote>
+
+<ul>
+    <li><font size="4" face="Courier New">en dérivant par
+        rapport à u(t) :</font> </li>
+</ul>
+
+<blockquote>
+    <p><font size="4" face="Symbol">¶</font><font size="4"
+    face="Courier New">f(t,X(t-1),u(t))/</font><font size="4"
+    face="Symbol">¶</font><font size="4" face="Courier New">u(t)
+    + </font><font size="4" face="Symbol">l</font><font size="4"
+    face="Courier New">(t) </font><font size="4" face="Symbol">¶</font><font
+    size="4" face="Courier New">f(t,X(t-1),u(t))/</font><font
+    size="4" face="Symbol">¶</font><font size="4"
+    face="Courier New">u(t) = 0</font></p>
+</blockquote>
+
+<ul>
+    <li><font size="4" face="Courier New">en dérivant par
+        rapport à </font><font size="4" face="Symbol">l</font><font
+        size="4" face="Courier New">(t) on retrouve une des
+        conditions du problème :</font> </li>
+</ul>
+
+<blockquote>
+    <p><font size="4" face="Courier New">X(t) - X(t-1) =
+    a(t,X(t-1),u(t))</font></p>
+</blockquote>
+
+<p><font size="4" face="Comic Sans MS">Après simplification, on
+obtient :</font></p>
+
+<ul>
+    <li><font size="4" face="Courier New">X(t) - X(t-1) =
+        a(t,X(t-1),u(t))</font> </li>
+    <li><font size="4" face="Courier New">X(0) = X<sub>0</sub></font>
+    </li>
+    <li><font size="4" face="Symbol">l</font><font size="4"
+        face="Courier New">(t)-</font><font size="4"
+        face="Symbol">l</font><font size="4" face="Courier New">(t-1)
+        = -(</font><font size="4" face="Symbol">¶</font><font
+        size="4" face="Courier New">f(t,X(t-1),u(t))/</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">X(t-1) + </font><font size="4"
+        face="Symbol">l</font><font size="4" face="Courier New">(t)
+        </font><font size="4" face="Symbol">¶</font><font
+        size="4" face="Courier New">a(t,X(t-1),u(t))/</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">X(t-1)), t=1...T</font> </li>
+    <li><font size="4" face="Symbol">l</font><font size="4"
+        face="Courier New">(T)=m'(X(t))</font> </li>
+    <li><font size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">f(t,X(t-1),u(t))/</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">u(t)
+        + </font><font size="4" face="Symbol">l</font><font
+        size="4" face="Courier New">(t) </font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">a(t,X(t-1),u(t))/</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">u(t) = 0</font> </li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><font size="4" face="Swis721 BlkCn BT">Formulation
+lagrangienne et formulation hamiltonienne</font></p>
+
+<p><font size="4" face="Comic Sans MS">On peut condenser ces
+relations de deux façons différentes en définissant une
+certaine fonction qui regroupe suffisemment d'informations pour
+qu'on puisse écrire ces relations à partir de cette fonction.
+Cette fonction est appelée lagrangien instantané (pour ne pas
+confondre avec le lagrangien &quot;global&quot; intégré sur le
+temps défini précédemment) dans le premier cas, et hamiltonien
+dans le deuxième cas.</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4" face="Swis721 BlkCn BT">Formulation
+lagrangienne </font></p>
+
+<p><font size="4" face="Comic Sans MS">On appelle lagrangien
+instantané du système dynamique la fonction définie par :</font></p>
+
+<blockquote>
+    <p><font size="4" face="Courier New">L(t,X(t-1),dX(t-1),u(t),</font><font
+    size="4" face="Symbol">l</font><font size="4"
+    face="Courier New">(t))=f(t,X(t-1),u(t))-</font><font
+    size="4" face="Symbol">l</font><font size="4"
+    face="Courier New">(t).(dX(t-1)-a(t,X(t-1),u(t))</font></p>
+</blockquote>
+
+<blockquote>
+    <p>avec dX(t-1) = X(t)-X(t-1)</p>
+</blockquote>
+
+<p><font size="4" face="Comic Sans MS">Les relations
+précédentes s'écrivent alors (en écrivant L(t) au lieu de
+L(t,X(t-1),dX(t-1),u(t),</font><font size="4" face="Symbol">l</font><font
+size="4" face="Comic Sans MS">(t)):</font></p>
+
+<ul>
+    <li><font size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">L(t)/</font><font size="4"
+        face="Symbol">¶l = 0</font> </li>
+    <li><font size="4" face="Courier New">X(0) = X<sub>0</sub></font>
+    </li>
+    <li><font size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">L(t)/</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">X(t-1)
+        = </font><font size="4" face="Symbol">¶</font><font
+        size="4" face="Courier New">L(t)/</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">dX(t)
+        - </font><font size="4" face="Symbol">¶</font><font
+        size="4" face="Courier New">L(t-1)/</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">dX(t)</font>
+    </li>
+</ul>
+
+<ul>
+    <li><font size="4" face="Symbol">l</font><font size="4"
+        face="Courier New">(T) = m'(X(T))</font> </li>
+    <li><font size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">L(t)/</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">u(t)
+        = 0</font> </li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><font size="4" face="Swis721 BlkCn BT">Formulation
+hamiltonienne</font></p>
+
+<p><font size="4" face="Comic Sans MS">On appelle hamiltonien du
+système dynamique la fonction définie par :</font></p>
+
+<blockquote>
+    <p><font size="4" face="Courier New">H(t,X(t-1),u(t),</font><font
+    size="4" face="Symbol">l</font><font size="4"
+    face="Courier New">(t)) = f(t,X(t-1),u(t)) + </font><font
+    size="4" face="Symbol">l</font><font size="4"
+    face="Courier New">(t) . a(t,X(t-1),u(t))</font></p>
+</blockquote>
+
+<p><font size="4" face="Comic Sans MS">Les relations
+précédentes s'écrivent alors (en écrivant H(t) au lieu de
+H(t,X(t-1),u(t),</font><font size="4" face="Symbol">l</font><font
+size="4" face="Comic Sans MS">(t)):</font></p>
+
+<ul>
+    <li><font size="4" face="Courier New">X(t)-X(t-1) = </font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">H(t)/</font><font size="4"
+        face="Symbol">¶l</font> </li>
+    <li><font size="4" face="Courier New">X(0) = X<sub>0</sub></font>
+    </li>
+    <li><font size="4" face="Symbol">l</font><font size="4"
+        face="Courier New">(t)-</font><font size="4"
+        face="Symbol">l</font><font size="4" face="Courier New">(t-1)
+        = -</font><font size="4" face="Symbol">¶</font><font
+        size="4" face="Courier New">H(t)/</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">X(t-1)</font>
+    </li>
+    <li><font size="4" face="Symbol">l</font><font size="4"
+        face="Courier New">(T) = m'(X(T))</font> </li>
+    <li><font size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">H(t)/</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">u(t)
+        = 0</font> </li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><font size="4" face="Swis721 BlkCn BT">Le modèle continu</font></p>
+
+<p><font size="4" face="Comic Sans MS">Il s'agit de résoudre le
+programme d'optimisation suivant :</font></p>
+
+<p><font size="4" face="Courier New">max J = </font><font
+face="Symbol">ó</font> <sup>T</sup> <font size="4"
+face="Courier New">f(t,X(t),u(t))dt + m(X(T))</font><br>
+<font face="Symbol">___________õ</font> 0 </p>
+
+<p><font size="4" face="Courier New">dX(t)/dt = a(t,X(t),u(t))</font></p>
+
+<p><font size="4" face="Courier New">u(t) </font><font size="4"
+face="Symbol">Î </font><font size="4" face="Courier New">U
+ensemble des commandes possibles</font></p>
+
+<p><font size="4" face="Courier New">X(0) = X<sub>0</sub></font></p>
+
+<p><font size="4" face="Comic Sans MS">Les résultats obtenus
+pour le modèle discret se généralisent au modèle continu.</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4" face="Swis721 BlkCn BT">Formulation
+lagrangienne </font></p>
+
+<p><font size="4" face="Comic Sans MS">On appelle lagrangien
+instantané du système dynamique la fonction définie par :</font></p>
+
+<blockquote>
+    <p><font size="4" face="Courier New">L(t,X(t),V(t),u(t),</font><font
+    size="4" face="Symbol">l</font><font size="4"
+    face="Courier New">(t))=f(t,X(t),u(t))-</font><font size="4"
+    face="Symbol">l</font><font size="4" face="Courier New">(t).(V(t)-a(t,X(t),u(t))</font></p>
+</blockquote>
+
+<blockquote>
+    <p>avec V(t) = dX(t)/dt</p>
+</blockquote>
+
+<p><font size="4" face="Comic Sans MS">Les relations
+précédentes s'écrivent alors (en écrivant L(t) au lieu de
+L(t,X(t),dX(t)/dt,u(t),</font><font size="4" face="Symbol">l</font><font
+size="4" face="Comic Sans MS">(t)):</font></p>
+
+<ul>
+    <li><font size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">L(t)/</font><font size="4"
+        face="Symbol">¶l = 0</font> </li>
+    <li><font size="4" face="Courier New">X(0) = X<sub>0</sub></font>
+    </li>
+    <li><font size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">L(t)/</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">X(t)
+        = d/dt</font><font size="4"> </font><font size="4"
+        face="Symbol">(¶</font><font size="4" face="Courier New">L(t)/</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">V(t))</font> </li>
+</ul>
+
+<ul>
+    <li><font size="4" face="Symbol">l</font><font size="4"
+        face="Courier New">(T) = m'(X(T))</font> </li>
+    <li><font size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">L(t)/</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">u(t)
+        = 0</font> </li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><font size="4" face="Swis721 BlkCn BT">Formulation
+hamiltonienne</font></p>
+
+<p><font size="4" face="Comic Sans MS">On appelle hamiltonien du
+système dynamique la fonction définie par :</font></p>
+
+<blockquote>
+    <p><font size="4" face="Courier New">H(t,X(t),u(t),</font><font
+    size="4" face="Symbol">l</font><font size="4"
+    face="Courier New">(t)) = f(t,X(t),u(t)) + </font><font
+    size="4" face="Symbol">l</font><font size="4"
+    face="Courier New">(t) . a(t,X(t),u(t))</font></p>
+</blockquote>
+
+<p><font size="4" face="Comic Sans MS">Cette définition rappelle
+celle du hamiltonien en mécanique (H = p dq/dt - L) : -f
+correspond au lagrangien L, </font><font size="4" face="Symbol">l
+</font><font size="4" face="Comic Sans MS">correspond à
+l'impulsion p.</font></p>
+
+<p><font size="4" face="Comic Sans MS">Les conditions
+d'optimalité s'écrivent alors (en écrivant H(t) au lieu de
+H(t,X(t),u(t),</font><font size="4" face="Symbol">l</font><font
+size="4" face="Comic Sans MS">(t)):</font></p>
+
+<ul>
+    <li><font size="4" face="Courier New">dX(t)/dt = </font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">H(t)/</font><font size="4"
+        face="Symbol">¶l</font> </li>
+    <li><font size="4" face="Courier New">X(0) = X<sub>0</sub></font>
+    </li>
+    <li><font size="4" face="Courier New">d</font><font size="4"
+        face="Symbol">l</font><font size="4" face="Courier New">(t)/dt
+        = -</font><font size="4" face="Symbol">¶</font><font
+        size="4" face="Courier New">H(t)/</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">X(t)</font>
+    </li>
+    <li><font size="4" face="Symbol">l</font><font size="4"
+        face="Courier New">(T) = m'(X(T))</font> </li>
+    <li><font size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">H(t)/</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">u(t)
+        = 0</font> </li>
+</ul>
+
+<p>&nbsp;<font size="4" face="Comic Sans MS">Le problème
+initial, difficile, consistant à trouver la fonction u optimale,
+est ainsi ramené à un problème plus simple consistant à
+déterminer les valeurs initiales (ou finales si on inverse le
+sens du temps) du vecteur adjoint </font><font size="4"
+face="Symbol">l</font><font size="4" face="Comic Sans MS">.</font></p>
+
+<p><font size="4" face="Swis721 BlkCn BT">Système augmenté</font></p>
+
+<p><font size="4" face="Comic Sans MS">On peut associer au
+système défini par</font></p>
+
+<p><font size="4" face="Courier New">dX(t)/dt = a(t,X(t),u(t))</font></p>
+
+<p><font size="4" face="Comic Sans MS">un système augmenté
+défini par</font></p>
+
+<ul>
+    <li><font size="4" face="Courier New">dX(t)/dt =
+        a(t,X(t),u(t))</font> </li>
+    <li><font size="4" face="Courier New">dX<sub>0</sub>(t)/dt =
+        f(t,X(t),u(t))</font> </li>
+</ul>
+
+<p><font size="4" face="Comic Sans MS">La coordonnée
+supplémentaire </font><font size="4" face="Courier New">X<sub>0</sub></font><font
+size="4" face="Comic Sans MS"> représente le gain cumulé dans
+le cas d'un problème de maximisation, ou le coût cumulé dans
+le cas d'un problème de minimisation.</font></p>
+
+<p><font size="4" face="Comic Sans MS">Notons X'=(X,X</font><font
+size="4" face="Courier New"><sub>0</sub></font><font size="4"
+face="Comic Sans MS">) et a'=(a,f).</font></p>
+
+<p><font size="4" face="Comic Sans MS">L'objectif :</font></p>
+
+<p><font size="4" face="Courier New">max J = </font><font
+face="Symbol">ó</font> <sup>T</sup> <font size="4"
+face="Courier New">f(t,X(t),u(t))dt + m(X(T))</font><br>
+<font face="Symbol">___________õ</font> 0</p>
+
+<p><font size="4" face="Comic Sans MS">devient max J = m'(X'(T))
+= X</font><font size="4" face="Courier New"><sub>0</sub></font><font
+size="4" face="Comic Sans MS">(T) + m(X(T)).</font></p>
+
+<p><font size="4" face="Comic Sans MS">Le hamiltonien devient </font><font
+size="4" face="Courier New">H'(t,X(t),u(t),</font><font size="4"
+face="Symbol">l</font><font size="4" face="Courier New">(t)) = </font><font
+size="4" face="Symbol">l</font><font size="4" face="Courier New">'(t)
+. a'(t,X(t),u(t)) avec </font><font size="4" face="Symbol">l</font><font
+size="4" face="Courier New">' = (</font><font size="4"
+face="Symbol">l</font><font size="4" face="Courier New">,1)</font></p>
+
+<p>&nbsp;</p>
+
+<p><h3>Théorème du principe du maximum de Pontryagin</h3>
+<p>
+Soit un système régi par les équations :
+dx<sub>i</sub>/dt = f<sub>i</sub>(x,u).
+Soit u(t), t<sub>0</sub> <= t <= t<sub>1</sub>, une commande admissible 
+telle que la trajectoire correspondante x(t), issue du point x<sub>0</sub> à l'instant t<sub>0</sub> passe à l'instant t<sub>1</sub> par un point de la droite D. Pour que la commande u(t) et la trajectoire x(t) soient optimales il est nécessaire qu'existe un vecteur fonction <font face=symbol>l</font>(t) 
+= <font face=symbol>l</font><sub>0</sub>(t), <font face=symbol>l</font><sub>1</sub>(t), ... , <font face=symbol>l</font><sub>n</sub>(t)) continu et non nul, correspondant aux fonctions u(t) et x(t), tel que :
+<ul>
+<li> 1° quel que soit t, t<sub>0</sub> <= t <= t1, la fonction H(<font face=symbol>l</font>(t),x(t),u) de la variable u appartenant à U atteigne au point u = u(t) son maximum : <br>
+H(<font face=symbol>l</font>(t),x(t),u(t)) = M(<font face=symbol>l</font>(t),x(t)) 
+<br>
+avec H(<font face="Symbol">l</font>,x,u) = <font face="Symbol">l</font> . f(x,u)
+et M(<font face="Symbol">l</font>,x) = sup<sub>u<font face="Symbol">Î</font>U</sub> H(<font face="Symbol">l</font>,x,u)
+<li> 2° à l'instant final t<sub>1</sub> soient vérifiées les relations <br>
+<font face=symbol>l</font><sub>0</sub>(t<sub>1</sub><=0, M(<font face=symbol>l</font>(t<sub>1</sub>),x(t<sub>1</sub>)) = 0.
+</ul>
+<p>Si par ailleurs les grandeurs <font face=symbol>l</font>(t), x(t) et u(t) satisfont
+aux systèmes :
+<ul>
+<li> dx<sub>i</sub>/dt = <font face="Symbol">¶</font>H/<font face="Symbol">¶l</font><sub>i</sub>, i=0...n
+<li> d<font face="Symbol">l</font><sub>i</sub>/dt = - <font face="Symbol">¶</font>H/<font face="Symbol">¶</font>x<sub>i</sub> 
+<p>
+et à la condition 1°, les fonctions <font face="Symbol">l</font><sub>0</sub>(t) et M(<font face="Symbol">l</font>(t),x(t)) de la variable t sont constantes, de sorte qu'on peut vérifier la relation 2° non nécessairement à l'instant t<sub>1</sub>, mais à un instant quelconque t compris entre t<sub>0</sub> et t<sub>1</sub>.
+
+</ul>
+
+
+
+<p><font size="4" face="Swis721 BlkCn BT">Généralisations</font></p>
+
+<p><font size="4" face="Comic Sans MS">On considère un système
+défini par </font></p>
+
+<blockquote>
+    <p><font size="4" face="Comic Sans MS">dX(t)/dt =
+    a(t,X(t),u(t)) </font></p>
+</blockquote>
+
+<p><font size="4" face="Comic Sans MS">On veut déterminer une
+fonction u appartenant à un ensemble de commandes admissibles U
+qui conduit le système depuis un état X<sub>0</sub> appartenant
+à un sous-ensemble M<sub>0</sub> de R<sup>n</sup> jusqu'à un
+état X1 appartenant à un sous-ensemble M<sub>1</sub> de R<sup>n</sup>,
+et qui minimise un coût (ou maximise un gain) défini par :</font></p>
+
+<dl>
+    <dd><table border="0" cellpadding="2">
+            <tr>
+                <td><font size="4" face="Courier New">C(T,u) = </font>
+                </td>
+                <td><font face="Symbol">ó</font> <sup>T</sup> </td>
+                <td><font size="4" face="Courier New">f(t,x(t),u(t))dt
+                + m(x(T))</font></td>
+                <td valign="top">&nbsp;</td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td><font face="Symbol">õ</font> 0 </td>
+                <td valign="top" colspan="2">&nbsp;</td>
+            </tr>
+        </table>
+    </dd>
+</dl>
+
+<p><font size="4" face="Comic Sans MS">On définit le hamiltonien
+de ce système :</font></p>
+
+<p><font size="4" face="Courier New">H(t,X,</font><font size="4"
+face="Symbol">l</font><font size="4" face="Courier New">,</font><font
+size="4" face="Symbol">l</font><font size="4" face="Courier New">0,u)
+= </font><font size="4" face="Symbol">l</font><font size="4"
+face="Courier New"><sub>0</sub> f(t,X,u) + </font><font size="4"
+face="Symbol">l</font><font size="4" face="Courier New">.a(t,X,u)</font></p>
+
+<p><font size="4" face="Comic Sans MS">Si la commande u est
+optimale, alors il existe une application </font><font size="4"
+face="Symbol">l</font> <font size="4" face="Comic Sans MS">de
+[0,T] dans R<sup>n</sup> et un réel </font><font size="4"
+face="Symbol">l</font> <font size="4" face="Comic Sans MS"><sub>0</sub>
+tels que (</font><font size="4" face="Symbol">l</font> <font
+size="4" face="Comic Sans MS">, </font><font size="4"
+face="Symbol">l</font> <font size="4" face="Comic Sans MS"><sub>0</sub>)
+est non trivial et tels que pour presque tout t compris entre 0
+et T on a :</font></p>
+
+<ul>
+    <li><font size="4" face="Courier New">dX(t)/dt = </font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">H/</font><font size="4" face="Symbol">¶l</font>
+        <font size="4" face="Courier New">(t,X(t),</font><font
+        size="4" face="Symbol">l</font><font size="4"
+        face="Courier New">(t),</font><font size="4"
+        face="Symbol">l</font><font size="4" face="Courier New">0,u(t))</font>
+    </li>
+    <li><font size="4" face="Courier New">d</font><font size="4"
+        face="Symbol">l</font><font size="4" face="Courier New">(t)/dt
+        = -</font><font size="4" face="Symbol">¶</font><font
+        size="4" face="Courier New">H/</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">X(t,X(t),</font><font
+        size="4" face="Symbol">l</font><font size="4"
+        face="Courier New">(t),</font><font size="4"
+        face="Symbol">l</font><font size="4" face="Courier New">0,u(t))</font>
+    </li>
+</ul>
+
+<ul>
+    <li><font size="4" face="Courier New">H(t,X(t),</font><font
+        size="4" face="Symbol">l</font><font size="4"
+        face="Courier New">(t),</font><font size="4"
+        face="Symbol">l</font><font size="4" face="Courier New">0,u(t))
+        = max <sub>v</sub></font><font size="4" face="Symbol"><sub>Î</sub></font><font
+        size="4" face="Courier New"><sub>U</sub> H(t,X(t),</font><font
+        size="4" face="Symbol">l</font><font size="4"
+        face="Courier New">(t),</font><font size="4"
+        face="Symbol">l</font><font size="4" face="Courier New">0,v)
+        presque partout entre 0 et T si </font><font size="4"
+        face="Symbol">l</font><font size="4" face="Courier New">0
+        &lt; 0 (remplacer max par min si </font><font size="4"
+        face="Symbol">l</font><font size="4" face="Courier New">0
+        &gt; 0)</font> </li>
+</ul>
+
+<blockquote>
+    <p>Si u est continue au temps T, cette condition peut
+    s'écrire <font size="4" face="Courier New">H(t,X(t),</font><font
+    size="4" face="Symbol">l</font><font size="4"
+    face="Courier New">(t),</font><font size="4" face="Symbol">l</font><font
+    size="4" face="Courier New">0,u(t)) = -</font><font size="4"
+    face="Symbol">l</font><font size="4" face="Courier New">0 </font><font
+    size="4" face="Symbol">¶</font><font size="4"
+    face="Courier New">m/</font><font size="4" face="Symbol">¶</font><font
+    size="4" face="Courier New">t(T,X(T). </font>Dans le cas où
+    u <font size="4" face="Symbol">Î</font><font size="4"
+    face="Courier New">Rn (c'est-à-dire qu'il n'y a pas de
+    condition sur la commande) cette condition devient </font><font
+    size="4" face="Symbol">¶</font><font size="4"
+    face="Courier New">H/</font><font size="4" face="Symbol">¶</font><font
+    size="4" face="Courier New">u = 0</font></p>
+</blockquote>
+
+<ul>
+    <li><font size="4" face="Courier New">Si T n'est pas fixé,
+        on a la condition de transversalité sur le hamiltonien :
+        max<sub>v</sub></font><font size="4" face="Symbol, serif"><sub>Î</sub></font><font
+        size="4" face="Courier New"><sub>U</sub> H(t,X(t),</font><font
+        size="4" face="Symbol">l</font><font size="4"
+        face="Courier New">(t),</font><font size="4"
+        face="Symbol">l</font><font size="4" face="Courier New">0,u(t))
+        = -</font><font size="4" face="Symbol">l</font><font
+        size="4" face="Courier New">0 </font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">m/</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">t(T,X(T))</font> </li>
+    <li><font size="4" face="Courier New">Si M0 ou M1 a des
+        espaces tangents T(X(0),M0) en X(0) et T(X(T),M1) en X(T) alors </font><font
+        size="4" face="Symbol">l</font><font size="4"
+        face="Courier New"> peut être construit de façon à
+        vérifier les conditions de transversalité sur le
+        vecteur adjoint </font><font size="4" face="Symbol">l</font><font
+        size="4" face="Courier New">:</font><ul>
+            <li><font size="4" face="Symbol">l</font><font
+                size="4" face="Courier New">(0) perpendiculaire
+                à T(X(0),M0)</font> </li>
+            <li><font size="4" face="Symbol">l</font><font
+                size="4" face="Courier New">(T)-</font><font
+                size="4" face="Symbol">l</font><font size="4"
+                face="Courier New">0 </font><font size="4"
+                face="Symbol">¶</font><font size="4"
+                face="Courier New">m/</font><font size="4"
+                face="Symbol">¶</font><font size="4"
+                face="Courier New">X(T,X(T)) perpendiculaire à T(X(T),M1)</font> </li>
+        </ul>
+    </li>
+    <li><font size="4" face="Courier New">d/dt H(t,X(t),</font><font
+        size="4" face="Symbol">l</font><font size="4"
+        face="Courier New">(t),</font><font size="4"
+        face="Symbol">l</font><font size="4" face="Courier New">0,u(t))
+        = </font><font size="4" face="Symbol">¶</font><font
+        size="4" face="Courier New">H/</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">t
+        pour presque tout t entre 0 et T</font> </li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><h3>Processus optimaux paramétrés</h3>
+
+<p>
+On considère un système gouverné par les équations : <br>
+dx<sub>i</sub>/dt = f<sub>i</sub>(x,u,w) i=1...n
+<p>
+On demande de choisir un vecteur w<sub>0</sub> valeur du paramètre w qui reste constante pendant toute la durée de l'évolution du système.
+On veut minimiser l'intégrale  de t<sub>0</sub> à t<sub>1</sub> de f<sub>0</sub>(x(t),u(t),w<sub>0</sub>) dt.
+<p>
+Etant donnés une commande admissible u et un vecteur w<sub>0</sub> tels que la trajectoire associée x(t) vérifie les conditions x(t<sub>0</sub>) = x<sub>0</sub>, x<sub>0</sub>(t<sub>0</sub>) = 0, x(t<sub>1</sub>) = x<sub>1</sub>. Pour que les grandeurs u(t), x(t) et w<sub>0</sub> soient solution du problème optimal posé, il est nécessaire qu'existe un vecteur fonction <font face="Symbol">l</font>(t) continu et non nul tel que :
+<ul>
+<li> 1° les fonctions x, <font face="Symbol">l</font> et u et le vecteur w<sub>0</sub> vérifient :
+<ul>
+<li> dx<sub>i</sub>/dt = <font face="Symbol">¶</font>H(<font face="Symbol">l</font>(t),x(t),u(t),w<sub>0</sub>)/<font face="Symbol">¶l</font><sub>i</sub>
+<li>d<font face="Symbol">l</font><sub>i</sub>/dt = - <font face="Symbol">¶</font>H/<font face="Symbol">¶</font>x<sub>i</sub>
+</ul>
+<li> 2° La fonction H atteigne au point u=u(t) son maximum :<br>
+H(<font face="Symbol">l</font>(t),x(t),u(t),w<sub>0</sub>) = M(<font face="Symbol">l</font>(t),x(t),w<sub>0</sub>
+<li> 3° au point initial t<sub>0</sub> soient vérifiées les relations <br>
+<ul>
+<li><font face="Symbol">l</font><sub>0</sub>(t<sub>0</sub> <= 0
+<li> M(<font face="Symbol">l</font>(t<sub>0</sub>),x(t<sub>0</sub>),w<sub>0</sub>) = 0
+</ul>
+<li> 4° aient lieu les égalités
+<br>
+somme de a=0 à n de intégrale de t<sub>0</sub> à t<sub>1</sub> de <font face="Symbol">l</font><sub>a</sub>(t) <font face="Symbol">¶</font>f<sub>a</sub>(x(t),u(t),w<sub>0</sub>)/<font face="Symbol">¶</font>w<sub>r</sub> dt = 0, r=1...m
+</ul>
+Si par ailleurs les grandeurs <font face="Symbol">¶</font>(t), x(t), w<sub>0</sub> et u(t)  satisfont aux conditions 1° et 2°, alors les fonctions <font face="Symbol">¶</font><sub>0</sub>(t) et M(<font face="Symbol">¶</font>(t),x(t),w<sub>0</sub>) de la variable t sont constantes, de sorte qu'on peut vérifier la condition 3° non nécessairement à l'instant t<sub>0</sub> mais à tout instant compris entre t<sub>0</sub> et t<sub>1</sub>.
+
+<h3>Processus optimaux à retard</h3>
+<p>
+L'évolution du système est décrit par le système d'équations :<br>
+dx(t)/dt = f(x(t),x(t-T),u(t)).
+<p>
+Soit u(t) une commande admissible telle que la trajectoire x(t) correspondante passe à un instant t<sub>1</sub> > t<sub>0</sub> par un point de la variété L. Pour que la commande u(t) soit optimale, il est nécessaire qu'existe un vecteur fonction <font face="Symbol">l</font>(t) non nul tel que :
+<ul>
+<li> 1° pour tout t compris entre t<sub>0</sub> et t<sub>1</sub>, 
+H(<font face="Symbol">l</font>(t),x(t),x(t-T),u-t)) = M(<font face="Symbol">l</font>(t),x(t),x(t-T))
+<li> 2° à l'instant final t<sub>1</sub> soient satisfaites les relations
+<ul>
+<li> <font face="Symbol">l</font><sub>0</sub>(t<sub>1</sub>) <= 0
+<li> M(<font face="Symbol">l</font>(t<sub>1</sub>),x(t<sub>1</sub>),x(t<sub>1</sub>-T)) = 0
+</ul>
+<li> 3° le vecteur <font face="Symbol">l</font>(t<sub>1</sub>) soit orthogonal au plan tangent au point x(t<sub>1</sub>) à la variété S<sub>1</sub>.
+
+</ul>
+
+<p><font size="4" face="Swis721 BlkCn BT">Exemple : commande
+optimale d'un ressort non linéaire</font></p>
+
+<p><font size="4" face="Comic Sans MS">L'objectif est d'amener
+une masse fixée à un ressort d'une position initiale quelconque
+le plus près possible de sa position d'équilibre et de faire en
+sorte qu'elle se déplace le moins possible. L'état du système
+est décrit par (x,y) où x est la position de la masse et y sa
+vitesse. (x,y) est appelée position dans l'espace des phases. Le
+système est commandé par une force u exercée sur la masse,
+dont le coût est 1/2 u<sup>2</sup>.</font></p>
+
+<p><font size="4" face="Comic Sans MS">Les équations qui
+déterminent l'évolution du système sont :</font></p>
+
+<ul>
+    <li><font size="4" face="Comic Sans MS">dx/dt = y</font> </li>
+    <li><font size="4" face="Comic Sans MS">dy/dt = -x-2x<sup>3</sup>+u</font>
+    </li>
+</ul>
+
+<p><font size="4" face="Swis721 BlkCn BT">Formulation
+lagrangienne</font></p>
+
+<p><font size="4" face="Comic Sans MS">Le lagrangien instantané
+est L = c<sub>x</sub> x2 + c<sub>y</sub> y2 + c<sub>u</sub> u<sup>2
+</sup>+ </font><font size="4" face="Symbol">l</font><font
+size="4" face="Comic Sans MS"><sub>x</sub> (y-v<sub>x</sub>) + </font><font
+size="4" face="Symbol">l</font><font size="4"
+face="Comic Sans MS"><sub>y</sub>(-x-2x<sup>3</sup>+u-v<sub>y</sub>)
+avec v<sub>x</sub>=dx/dt et v<sub>y</sub>=dy/dt</font></p>
+
+<p><font size="4" face="Comic Sans MS">Les conditions
+d'optimalité sont :</font></p>
+
+<ul>
+    <li><font size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">L/</font><font size="4" face="Symbol">¶</font><font
+        size="4" face="Courier New">x = d/dt(</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">L/</font><font size="4" face="Symbol">¶</font><font
+        size="4" face="Courier New">v<sub>x</sub>) =&gt; 2 </font><font
+        size="4" face="Comic Sans MS">c<sub>x</sub></font><font
+        size="4" face="Courier New"> x - </font><font size="4"
+        face="Symbol">l</font><font size="4" face="Comic Sans MS"><sub>y</sub>(1+6x<sup>2</sup>)
+        = -</font><font size="4" face="Courier New">d</font><font
+        size="4" face="Symbol">l</font><font size="4"
+        face="Comic Sans MS"><sub>x</sub></font><font size="4"
+        face="Courier New">/dt =&gt; d</font><font size="4"
+        face="Symbol">l</font><font size="4" face="Comic Sans MS"><sub>x</sub></font><font
+        size="4" face="Courier New">/dt </font>= -2 <font
+        size="4" face="Comic Sans MS">c<sub>x</sub></font> x + <font
+        size="4" face="Symbol">l</font><font size="4"
+        face="Comic Sans MS"><sub>y</sub>(1+6x<sup>2</sup>)</font>
+    </li>
+</ul>
+
+<ul>
+    <li><font size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">L/</font><font size="4" face="Symbol">¶</font><font
+        size="4" face="Courier New">y = d/dt(</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">L/</font><font size="4" face="Symbol">¶</font><font
+        size="4" face="Courier New">v<sub>y</sub>) =&gt; 2 </font><font
+        size="4" face="Comic Sans MS">c<sub>y</sub></font><font
+        size="4" face="Courier New"> y + </font><font size="4"
+        face="Symbol">l</font><font size="4" face="Comic Sans MS"><sub>x</sub>
+        = -</font><font size="4" face="Courier New">d</font><font
+        size="4" face="Symbol">l</font><font size="4"
+        face="Comic Sans MS"><sub>y</sub></font><font size="4"
+        face="Courier New">/dt =&gt; d</font><font size="4"
+        face="Symbol">l</font><font size="4" face="Comic Sans MS"><sub>x</sub></font><font
+        size="4" face="Courier New">/dt </font>= -2 <font
+        size="4" face="Comic Sans MS">c<sub>y</sub></font> y - <font
+        size="4" face="Symbol">l</font><font size="4"
+        face="Comic Sans MS"><sub>x</sub></font> </li>
+</ul>
+
+<ul>
+    <li><font size="4" face="Courier New">d</font><font size="4"
+        face="Symbol">l</font><font size="4" face="Comic Sans MS"><sub>y</sub></font><font
+        size="4" face="Courier New">/dt = -</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">H/</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">y</font> = <font size="4"
+        face="Symbol">-l</font><font size="4"
+        face="Comic Sans MS"><sub>x</sub></font><font size="4"
+        face="Courier New">=&gt; </font><font size="4"
+        face="Symbol">l</font><font size="4" face="Comic Sans MS"><sub>x</sub>=-</font><font
+        size="4" face="Courier New">d</font><font size="4"
+        face="Symbol">l</font><font size="4" face="Comic Sans MS"><sub>y</sub></font><font
+        size="4" face="Courier New">/dt =&gt; d</font><font
+        size="4" face="Symbol">l</font><font size="4"
+        face="Comic Sans MS"><sub>y</sub></font><font size="4"
+        face="Courier New">/dt=-</font><font size="4"
+        face="Symbol">l</font><font size="4" face="Comic Sans MS"><sub>x</sub></font>
+    </li>
+    <li><font size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">L/</font><font size="4" face="Symbol">¶</font><font
+        size="4" face="Courier New">u = 0</font> = 2 <font
+        size="4" face="Comic Sans MS">c<sub>u</sub></font> u + <font
+        size="4" face="Symbol">l</font><font size="4"
+        face="Comic Sans MS"><sub>y</sub></font> =&gt; u = -<font
+        size="4" face="Symbol">l</font><font size="4"
+        face="Comic Sans MS"><sub>y</sub>/2c<sub>u</sub></font> </li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><font size="4" face="Swis721 BlkCn BT">Formulation
+hamiltonienne</font></p>
+
+<p><font size="4" face="Comic Sans MS">Le hamiltonien est H = c<sub>x</sub>
+x2 + c<sub>y</sub> y2 + c<sub>u</sub> u<sup>2</sup> + </font><font
+size="4" face="Symbol">l</font><font size="4"
+face="Comic Sans MS"><sub>x</sub> y + </font><font size="4"
+face="Symbol">l</font><font size="4" face="Comic Sans MS"><sub>y</sub>(-x-2x<sup>3</sup>+u)</font></p>
+
+<p><font size="4" face="Comic Sans MS">Les conditions
+d'optimalité sont</font></p>
+
+<ul>
+    <li><font size="4" face="Courier New">d</font><font size="4"
+        face="Symbol">l</font><font size="4" face="Comic Sans MS"><sub>x</sub></font><font
+        size="4" face="Courier New">/dt = -</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">H/</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">x</font> = -2 <font size="4"
+        face="Comic Sans MS">c<sub>x</sub></font> x + <font
+        size="4" face="Symbol">l</font><font size="4"
+        face="Comic Sans MS"><sub>y</sub>(1+6x<sup>2</sup>)</font>
+    </li>
+    <li><font size="4" face="Courier New">d</font><font size="4"
+        face="Symbol">l</font><font size="4" face="Comic Sans MS"><sub>y</sub></font><font
+        size="4" face="Courier New">/dt = -</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">H/</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">y</font> = -2 <font size="4"
+        face="Comic Sans MS">c<sub>y</sub></font> y <font
+        size="4" face="Symbol">-l</font><font size="4"
+        face="Comic Sans MS"><sub>x</sub></font> </li>
+    <li><font size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">H/</font><font size="4" face="Symbol">¶</font><font
+        size="4" face="Courier New">u = 0</font> = 2 <font
+        size="4" face="Comic Sans MS">c<sub>u</sub></font> u + <font
+        size="4" face="Symbol">l</font><font size="4"
+        face="Comic Sans MS"><sub>y</sub></font> =&gt; u = -<font
+        size="4" face="Symbol">l</font><font size="4"
+        face="Comic Sans MS"><sub>y</sub>/2c<sub>u</sub></font> </li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><font size="4" face="Swis721 BlkCn BT">Exemple économique :
+modèle de Ramsey</font></p>
+
+<p><font size="4" face="Comic Sans MS, cursive">Il s'agit de
+trouver la fonction c(t) optimale qui maximise l'utilité :</font></p>
+
+<table border="0" cellpadding="2">
+    <tr>
+        <td><font size="4" face="Courier New">max U = </font></td>
+        <td><font face="Symbol">ó</font> <sup>oo</sup> </td>
+        <td><font size="4" face="Courier New">u(c(t)) exp(-at) dt</font></td>
+        <td valign="top">&nbsp;</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td><font face="Symbol">õ</font> 0 </td>
+        <td valign="top" colspan="2">&nbsp;</td>
+    </tr>
+</table>
+
+<p><font size="4" face="Comic Sans MS, cursive">La commande c(t)
+est la consommation au temps t. Le facteur exp(-at) permet de
+prendre en compte la préférence pour le présent.</font></p>
+
+<p><font size="4" face="Comic Sans MS, cursive">Les équations
+qui régissent le système sont :</font></p>
+
+<ul>
+    <li><font size="4" face="Comic Sans MS, cursive">dk(t)/dt =
+        f(k(t)) - c(t) - n k(t)</font></li>
+    <li><font size="4" face="Comic Sans MS, cursive">k(0) = k0</font></li>
+    <li><font size="4" face="Comic Sans MS, cursive">k(t)&gt;=0,
+        c(t)&gt;=0</font></li>
+</ul>
+
+<p><font size="4" face="Comic Sans MS, cursive">où k représente
+le capital et n le taux d'accroissement de la population.</font></p>
+
+<p><font size="4" face="Comic Sans MS, cursive">Le hamiltonien
+est :</font></p>
+
+<p><font size="4" face="Comic Sans MS, cursive">H(t) = u(c(t))
+exp(-at) + m(t) (f(k(t)) - c(t) - n k(t))</font></p>
+
+<p><font size="4" face="Comic Sans MS, cursive">On pose l(t) =
+m(t) exp(at), donc m(t) = l(t) exp(-at)</font></p>
+
+<p><font size="4" face="Comic Sans MS, cursive">On a donc H(t) =
+exp(-at)(u(c(t)) + l(t)(f(k(t)) - c(t) - n k(t))</font></p>
+
+<p><font size="4" face="Comic Sans MS, cursive">Les conditions
+d'optimalité sont :</font></p>
+
+<ul>
+    <li><font size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">H/</font><font size="4" face="Symbol">¶</font><font
+        size="4" face="Courier New">c = 0 = u'(c(t)) - l(t) =&gt;
+        l(t) = u'(c(t))</font></li>
+    <li><font size="4" face="Courier New">dm/dt = -</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">H/</font><font size="4" face="Symbol">¶</font><font
+        size="4" face="Courier New">k ou dl/dt = </font><font
+        size="4" face="Symbol">-¶</font><font size="4"
+        face="Courier New">H/</font><font size="4" face="Symbol">¶</font><font
+        size="4" face="Courier New">k exp(at) + al = l
+        (n-f'(k)+a)</font></li>
+    <li><font size="4" face="Courier New">lim(t-&gt;oo) k(t)(l(t)
+        exp(-at)) = lim(t-&gt;oo)k(t)(u'(c(t)) exp(-at)) = 0</font></li>
+</ul>
+
+<p><font size="4" face="Courier New">On élimine le
+multiplicateur l :</font></p>
+
+<p><font size="4" face="Courier New">dl/dt = du'(c(t))/dt =
+u'(c(t)) (n - f'(k) + a)</font></p>
+
+<p><font size="4" face="Courier New">=&gt; (du'(c(t))/dt) /
+u'(c(t)) = n - f'(k) + a</font></p>
+
+<p><font size="4" face="Courier New">&lt;=&gt; u''(c(t))
+(dc(t)/dt) / u'(c(t)) = n - f'(k) + a</font></p>
+
+<p><font size="4" face="Courier New">&lt;=&gt; (c(t)
+u''(c(t))/u'(c(t))) (dc(t)/dt)/c(t) = n - f'(k) + a</font></p>
+
+<p><font size="4" face="Courier New">=&gt; dc(t)/dt =
+u'(c(t))/u''(c(t)) (n - f'(k) + a)</font></p>
+
+<p><font size="4" face="Courier New">Le sentier optimal est donc
+caractérisé par les conditions :</font></p>
+
+<ul>
+    <li><font size="4" face="Courier New">dk/dt = f(k) - c - n k</font></li>
+    <li><font size="4" face="Courier New">dc/dt =
+        u'(c(t))/u''(c(t)) (n - f'(k) + a)</font></li>
+    <li><font size="4" face="Courier New">lim k(t)(u'(c(t))
+        exp(-at)) = 0</font></li>
+</ul>
+
+<p><font size="6" face="Swis721 BlkCn BT">Equation de Hamilton -
+Jacobi - Bellman</font></p>
+
+<p><font size="4" face="Comic Sans MS, cursive">Cette équation
+concerne des problèmes d'optimisation du même type que le
+principe de Pontryagin.</font></p>
+
+<p><font size="4" face="Comic Sans MS, cursive">On considère un
+ensemble de problèmes paramétrés par l'état initial y et
+l'instant de départ s :</font></p>
+
+<table border="0" cellpadding="2">
+    <tr>
+        <td><font size="4" face="Courier New">min J(y,s,u) = </font>
+        </td>
+        <td><font face="Symbol">ó</font> <sup>T</sup> </td>
+        <td><font size="4" face="Courier New">f(t,x(t),u(t))dt +
+        m(x(T))</font></td>
+        <td valign="top">&nbsp;</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td><font face="Symbol">õ</font> s </td>
+        <td valign="top" colspan="2">&nbsp;</td>
+    </tr>
+</table>
+
+<p><font size="4" face="Courier New">dx(t)/dt = a(t,x(t),u(t))</font></p>
+
+<p><font size="4" face="Courier New">u(t) </font><font size="4"
+face="Symbol">Î </font><font size="4" face="Courier New">U
+ensemble des commandes possibles</font></p>
+
+<p><font size="4" face="Courier New">x(s) = y</font></p>
+
+<p><font face="Comic Sans MS, cursive">On définit :</font></p>
+
+<p><font size="4" face="Courier New">V(y,s) = min<sub>u</sub></font><font
+size="4" face="Symbol, serif"><sub>Î</sub></font><font size="4"
+face="Courier New"><sub>U </sub>J(y,s,u) </font></p>
+
+<p><font size="4" face="Comic Sans MS, cursive">c'est-à-dire la
+valeur minimale de J(y,s,u) quand u parcourt U. </font></p>
+
+<p><font size="4" face="Comic Sans MS, cursive">Si V est
+différentiable en (y,s) alors l'équation de Hamilton - Jacobi -
+Bellman est satisfaite :</font></p>
+
+<p style="margin-left: 2cm"><font size="4" face="Symbol">¶</font><font
+size="4" face="Courier New, monospace">V(x,t)/</font><font
+size="4" face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">t + min (f(t,x,u) + </font><font
+size="4" face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">V(x,t)/</font><font size="4"
+face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">x . a(t,x,u)) = 0</font></p>
+
+<p><font size="4" face="Comic Sans MS, cursive">où </font><font
+size="4" face="Symbol">¶</font><font size="4"
+face="Comic Sans MS, cursive">V(x,t)/dx désigne le gradient de V
+et . désigne le produit scalaire, c'est-à-dire : </font></p>
+
+<p style="margin-left: 2cm"><font size="4" face="Symbol">¶</font><font
+size="4" face="Courier New, monospace">V(x,t)/</font><font
+size="4" face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">t + min (f(t,x,u) + </font><font
+size="4" face="Symbol, serif">S</font><font size="4"
+face="Courier New, monospace"><sub>i=1</sub><sup>n</sup></font><font
+size="4" face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">V(x,t)/</font><font size="4"
+face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">x<sub>i</sub> a<sub>i</sub>(t,x,u))
+= 0</font></p>
+
+<p><font size="4" face="Comic Sans MS, cursive">avec la condition
+finale :</font></p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Courier New, monospace">V(T,x) = m(x)</font></p>
+
+<p><font size="4" face="Comic Sans MS, cursive">En définissant
+le hamiltonien suivant :</font></p>
+
+<p style="margin-left: 2cm"><font size="4" face="Courier New">H(x,t,</font><font
+size="4" face="Symbol, serif">l</font><font size="4"
+face="Courier New">) = min<sub>u</sub></font><font size="4"
+face="Symbol, serif"><sub>Î</sub></font><font size="4"
+face="Courier New"><sub>U</sub> (f(t,x,u) + </font><font size="4"
+face="Symbol, serif">l</font><font size="4" face="Courier New"> .
+a(t,x,u)</font></p>
+
+<p><font size="4" face="Comic Sans MS, cursive">l'équation de
+Hamilton - Jacobi - Bellman devient :</font></p>
+
+<p style="margin-left: 2cm"><font size="4" face="Symbol">¶</font><font
+size="4" face="Courier New">V(x,t)/</font><font size="4"
+face="Symbol">¶</font><font size="4" face="Courier New">t +
+H(x,t,</font><font size="4" face="Symbol">¶</font><font size="4"
+face="Courier New">V(x,t)/</font><font size="4" face="Symbol">¶</font><font
+size="4" face="Courier New">x) = 0</font></p>
+
+<p>Cette équation rappelle l'équation de Hamilton - Jacobi en
+physique : </p>
+
+<p><font size="4" face="Symbol">¶</font><font size="4"
+face="Courier New">S/</font><font size="4" face="Symbol">¶</font><font
+size="4" face="Courier New">t + H(q,t,</font><font size="4"
+face="Symbol">¶</font><font size="4" face="Courier New">S/</font><font
+size="4" face="Symbol">¶</font><font size="4" face="Courier New">q)
+= 0</font></p>
+
+<p><font size="4" face="Courier New">V correspond à l'action S.</font></p>
+
+<p><font size="5" face="Swis721 BlkCn BT">Equation de Hamilton -
+Jacobi - Bellman : cas discret</font></p>
+
+<p><font size="4" face="Comic Sans MS">On considère un système
+d'état x commandé par u, le nouvel état étant déterminé par
+:</font></p>
+
+<blockquote>
+    <p><font size="4" face="Courier New">x' = a<sub>d</sub>(x,u)</font></p>
+</blockquote>
+
+<p><font size="4" face="Comic Sans MS">On appelle V(x) le
+meilleur résultat qu'on peut obtenir à partir de l'état x. On
+a alors la forme discrète de l'équation d'Hamilton - Jacobi -
+Bellman :</font></p>
+
+<blockquote>
+    <p><font size="4" face="Courier New">V(x) = min <sub>u</sub></font><font
+    size="4" face="Symbol"><sub>Î</sub></font><font size="4"
+    face="Courier New"><sub>U(x)</sub>(f<sub>d</sub>(x,u) +
+    V(x')) = min <sub>u</sub></font><font size="4" face="Symbol"><sub>Î</sub></font><font
+    size="4" face="Courier New"><sub>U(x)</sub>(f<sub>d</sub>(x,u)
+    + V(a<sub>d</sub>(x,u)))</font></p>
+</blockquote>
+
+<p><font size="4" face="Comic Sans MS">où f<sub>d</sub>(x,u)
+désigne la valeur à minimiser (ou le coût) associée à
+l'état x et l'action u.</font></p>
+
+<p><font size="4" face="Comic Sans MS">Si u* est l'action
+optimale, on a :</font></p>
+
+<blockquote>
+    <p><font size="4" face="Courier New">V(x) = f<sub>d</sub>(x,u*)
+    + V(a<sub>d</sub>(x,u*))</font></p>
+</blockquote>
+
+<p><font size="4" face="Comic Sans MS">Cette égalité est la
+forme discrète du principe de Pontryagin. On peut l'écrire sous
+la forme :</font></p>
+
+<blockquote>
+    <p><font size="4" face="Courier New">V(a<sub>d</sub>(x,u*)) -
+    V(x) = -f<sub>d</sub>(x,u*) </font></p>
+</blockquote>
+
+<p>&nbsp;</p>
+
+<p><font size="5" face="Swis721 BlkCn BT">Equation de Hamilton -
+Jacobi - Bellman : cas continu</font></p>
+
+<p><font size="4" face="Comic Sans MS">L'équation d'évolution
+du système est :</font></p>
+
+<blockquote>
+    <p><font size="4" face="Courier New">dx/dt = a(x,u)</font></p>
+</blockquote>
+
+<p><font size="4" face="Comic Sans MS">V(x') peut être approché
+par :</font></p>
+
+<blockquote>
+    <p><font size="4" face="Courier New">V(x) + </font><font
+    size="4" face="Symbol">S</font><font size="4"
+    face="Courier New"><sub>i=1</sub><sup>n</sup></font><font
+    size="4" face="Symbol">¶</font><font size="4"
+    face="Courier New">V/</font><font size="4" face="Symbol">¶</font><font
+    size="4" face="Courier New">x a<sub>i</sub>(x,u)dt</font></p>
+</blockquote>
+
+<p><font size="4" face="Comic Sans MS">Etant donné que fd(x,u) =
+f(x,u) dt, on a donc :</font></p>
+
+<blockquote>
+    <p><font size="4" face="Courier New">V(x) = min <sub>u</sub></font><font
+    size="4" face="Symbol"><sub>Î</sub></font><font size="4"
+    face="Courier New"><sub>U(x)</sub>(f(x,u)dt + V(x) + </font><font
+    size="4" face="Symbol">S</font><font size="4"
+    face="Courier New"><sub>i=1</sub><sup>n</sup></font><font
+    size="4" face="Symbol">¶</font><font size="4"
+    face="Courier New">V/</font><font size="4" face="Symbol">¶</font><font
+    size="4" face="Courier New">x</font><font size="4"
+    face="Courier New, monospace"><sub>i</sub></font><font
+    size="4" face="Courier New"> a<sub>i</sub>(x,u)dt)</font></p>
+</blockquote>
+
+<p><font size="4" face="Comic Sans MS">ce qui se simplifie en
+soustrayant V(x) et en divisant par dt pour obtenir l'équation
+de Hamilton - Jacobi - Bellman (forme continue) :</font></p>
+
+<blockquote>
+    <p><font size="4" face="Courier New">min <sub>u</sub></font><font
+    size="4" face="Symbol"><sub>Î</sub></font><font size="4"
+    face="Courier New"><sub>U(x)</sub>(f(x,u) + </font><font
+    size="4" face="Symbol">S</font><font size="4"
+    face="Courier New"><sub>i=1</sub><sup>n</sup></font><font
+    size="4" face="Symbol">¶</font><font size="4"
+    face="Courier New">V/</font><font size="4" face="Symbol">¶</font><font
+    size="4" face="Courier New">x</font><font size="4"
+    face="Courier New, monospace"><sub>i</sub></font><font
+    size="4" face="Courier New"> a<sub>i</sub>(x,u)) = 0</font></p>
+</blockquote>
+
+<p><font size="4" face="Comic Sans MS">Si on applique cette
+équation à la commande optimale u* on obtient :</font></p>
+
+<blockquote>
+    <p><font size="4" face="Courier New">f(x,u*) + </font><font
+    size="4" face="Symbol">S</font><font size="4"
+    face="Courier New"><sub>i=1</sub><sup>n</sup></font><font
+    size="4" face="Symbol">¶</font><font size="4"
+    face="Courier New">V/</font><font size="4" face="Symbol">¶</font><font
+    size="4" face="Courier New">x</font><font size="4"
+    face="Courier New, monospace"><sub>i</sub></font><font
+    size="4" face="Courier New"> a<sub>i</sub>(x,u*) = 0</font></p>
+</blockquote>
+
+<blockquote>
+    <p><font size="4" face="Courier New">ou</font></p>
+</blockquote>
+
+<blockquote>
+    <p><font size="4" face="Symbol">S</font><font size="4"
+    face="Courier New"><sub>i=1</sub><sup>n</sup></font><font
+    size="4" face="Symbol">¶</font><font size="4"
+    face="Courier New">V/</font><font size="4" face="Symbol">¶</font><font
+    size="4" face="Courier New">x</font><font size="4"
+    face="Courier New, monospace"><sub>i</sub></font><font
+    size="4" face="Courier New"> a<sub>i</sub>(x,u) = -f(x,u)</font></p>
+</blockquote>
+
+<p><font size="4" face="Comic Sans MS">Dans le cas où f et a
+dépendent de t, cette équation se généralise en :</font></p>
+
+<p><font size="4" face="Courier New, monospace">min</font><font
+size="4" face="Courier New"><sub>u</sub></font><font size="4"
+face="Symbol"><sub>Î</sub></font><font size="4"
+face="Courier New"><sub>U(x)</sub></font><font size="4"
+face="Courier New, monospace"> (f(t,x,u) + </font><font size="4"
+face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">V(x,t)/</font><font size="4"
+face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">t + </font><font size="4"
+face="Symbol, serif">S</font><font size="4"
+face="Courier New, monospace"><sub>i=1</sub><sup>n</sup></font><font
+size="4" face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">V(x,t)/</font><font size="4"
+face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">x<sub>i</sub> a<sub>i</sub>(t,x,u))
+= 0</font></p>
+
+<p><font size="4" face="Comic Sans MS">que l'on peut aussi
+écrire :</font></p>
+
+<p><font size="4" face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">V(x,t)/</font><font size="4"
+face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">t + min</font><font size="4"
+face="Courier New"><sub>u</sub></font><font size="4"
+face="Symbol"><sub>Î</sub></font><font size="4"
+face="Courier New"><sub>U(x)</sub></font><font size="4"
+face="Courier New, monospace"> (f(t,x,u) + </font><font size="4"
+face="Symbol, serif">S</font><font size="4"
+face="Courier New, monospace"><sub>i=1</sub><sup>n</sup></font><font
+size="4" face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">V(x,t)/</font><font size="4"
+face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">x<sub>i</sub> a<sub>i</sub>(t,x,u))
+= 0</font></p>
+
+<p>&nbsp;</p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Courier New, monospace"></font>&nbsp;</p>
+
+<p style="margin-left: 2cm"><font size="5"
+face="Swis721 BlkCn BT">Equation de Hamilton - Jacobi - Bellman
+et principe de Pontryagin</font></p>
+
+<p style="margin-left: 2cm"><font size="4" face="Comic Sans MS">On
+peut retrouver le principe de Pontryagin à partir de l'équation
+de Hamilton - Jacobi - Bellman. Ce principe peut être
+considéré comme une spécialisation de l'équation d'Hamilton -
+Jacobi - Bellman appliquée à la commande optimale u*. Il est
+donné par l'équation précédemment obtenue :</font></p>
+
+<blockquote>
+    <p><font size="4" face="Courier New">f(x,u*) + </font><font
+    size="4" face="Symbol">S</font><font size="4"
+    face="Courier New"><sub>i=1</sub><sup>n</sup></font><font
+    size="4" face="Symbol">¶</font><font size="4"
+    face="Courier New">V/</font><font size="4" face="Symbol">¶</font><font
+    size="4" face="Courier New">x</font><font size="4"
+    face="Courier New, monospace"><sub>i</sub></font><font
+    size="4" face="Courier New"> a<sub>i</sub>(x,u*) = 0</font></p>
+</blockquote>
+
+<p style="margin-left: 2cm"><font size="4" face="Comic Sans MS">On
+définit :</font></p>
+
+<blockquote style="margin-left: 6cm">
+    <p><font size="4" face="Symbol">l</font><font size="4"
+    face="Courier New"><sub>i</sub> = </font><font size="4"
+    face="Symbol">¶</font><font size="4" face="Courier New">V/</font><font
+    size="4" face="Symbol">¶</font><font size="4"
+    face="Courier New">x<sub>i</sub></font></p>
+</blockquote>
+
+<blockquote style="margin-left: 6cm">
+    <p><font size="4" face="Courier New">H(x,u,</font><font
+    size="4" face="Symbol">l</font><font size="4"
+    face="Courier New">) = f(x,u) + </font><font size="4"
+    face="Symbol">S</font><font size="4" face="Courier New"><sub>i=1</sub><sup>n</sup></font><font
+    size="4" face="Symbol">l</font><font size="4"
+    face="Courier New"><sub>i</sub>a<sub>i</sub>(x,u)</font></p>
+</blockquote>
+
+<p style="margin-left: 2cm"><font size="4" face="Comic Sans MS">L'équation
+d'Hamilton - Jacobi - Bellman donne :</font></p>
+
+<blockquote style="margin-left: 6cm">
+    <p><font size="4" face="Courier New">H(x(t),u*(t),</font><font
+    size="4" face="Symbol">l</font><font size="4"
+    face="Courier New">(t)) = 0</font></p>
+</blockquote>
+
+<p style="margin-left: 2cm"><font size="4" face="Comic Sans MS">La
+commande optimale u* est celle qui minimise </font><font size="4"
+face="Courier New">H(x(t),u*(t),</font><font size="4"
+face="Symbol">l</font><font size="4" face="Courier New">(t)).</font></p>
+
+<p style="margin-left: 2cm"><font size="4" face="Comic Sans MS">Si
+u* est déterminé par x, c'est-à-dire u*=p*(x), alors le
+hamiltonien est une fonction de x et </font><font size="4"
+face="Symbol">l </font><font size="4" face="Comic Sans MS">uniquement
+: </font><font size="4" face="Courier New">H(x,</font><font
+size="4" face="Symbol">l</font><font size="4" face="Courier New">)
+= f(x,p*(x)) + </font><font size="4" face="Symbol">S</font><font
+size="4" face="Courier New"><sub>i=1</sub><sup>n</sup></font><font
+size="4" face="Symbol">l</font><font size="4" face="Courier New"><sub>i</sub>a<sub>i</sub>(x,p*(x))</font></p>
+
+<p style="margin-left: 2cm"><font size="4" face="Comic Sans MS">On
+a alors en différentiant par rapport à x :</font></p>
+
+<blockquote style="margin-left: 6cm">
+    <p><font size="4" face="Symbol">¶</font><font size="4"
+    face="Courier New">f(x,p*(x))/</font><font size="4"
+    face="Symbol">¶</font><font size="4" face="Courier New">x<sub>i</sub>
+    + </font><font size="4" face="Symbol">S</font><font size="4"
+    face="Courier New"><sub>j=1</sub><sup>n</sup></font><font
+    size="4" face="Symbol"> ¶l</font><font size="4"
+    face="Courier New"><sub>j/</sub></font><font size="4"
+    face="Symbol">¶</font><font size="4" face="Courier New">x<sub>i
+    </sub>a<sub>j</sub>(x,p*(x)) + </font><font size="4"
+    face="Symbol">S</font><font size="4" face="Courier New"><sub>i=1</sub><sup>n</sup></font><font
+    size="4" face="Symbol"> l</font><font size="4"
+    face="Courier New"><sub>i </sub></font><font size="4"
+    face="Symbol">¶</font><font size="4" face="Courier New">a<sub>i</sub>(x,p*(x))/</font><font
+    size="4" face="Symbol">¶</font><font size="4"
+    face="Courier New">x<sub>i</sub> = 0</font></p>
+</blockquote>
+
+<p style="margin-left: 2cm"><font size="4" face="Comic Sans MS">car
+le hamiltonien est égal à 0 le long de la trajectoire optimale.</font></p>
+
+<p style="margin-left: 2cm"><font size="4" face="Comic Sans MS">Etant
+donné la définition de </font><font size="4" face="Symbol">l</font><font
+size="4" face="Courier New"><sub>i</sub> = </font><font size="4"
+face="Symbol">¶</font><font size="4" face="Courier New">V/</font><font
+size="4" face="Symbol">¶</font><font size="4" face="Courier New">x<sub>i
+</sub></font><font size="4" face="Comic Sans MS">on a </font><font
+size="4" face="Symbol">¶l</font><font size="4"
+face="Courier New"><sub>i/</sub></font><font size="4"
+face="Symbol">¶</font><font size="4" face="Courier New">x<sub>j </sub>=
+</font><font size="4" face="Symbol">¶</font><font size="4"
+face="Courier New">/</font><font size="4" face="Symbol">¶</font><font
+size="4" face="Courier New">x<sub>j </sub></font><font size="4"
+face="Symbol">¶</font><font size="4" face="Courier New">/</font><font
+size="4" face="Symbol">¶</font><font size="4" face="Courier New">x<sub>i
+</sub>V = </font><font size="4" face="Symbol">¶</font><font
+size="4" face="Courier New">/</font><font size="4" face="Symbol">¶</font><font
+size="4" face="Courier New">x<sub>i </sub></font><font size="4"
+face="Symbol">¶</font><font size="4" face="Courier New">/</font><font
+size="4" face="Symbol">¶</font><font size="4" face="Courier New">x<sub>j
+</sub>V = </font><font size="4" face="Symbol">¶l</font><font
+size="4" face="Courier New"><sub>j/</sub></font><font size="4"
+face="Symbol">¶</font><font size="4" face="Courier New">x<sub>i</sub></font></p>
+
+<p style="margin-left: 2cm"><font size="4" face="Comic Sans MS">Donc
+</font><font size="4" face="Courier New">d</font><font size="4"
+face="Symbol">l</font><font size="4" face="Courier New"><sub>i</sub>/dt
+= </font><font size="4" face="Symbol">S</font><font size="4"
+face="Courier New"><sub>j=1</sub><sup>n</sup> </font><font
+size="4" face="Symbol">¶l</font><font size="4"
+face="Courier New"><sub>i/</sub></font><font size="4"
+face="Symbol">¶</font><font size="4" face="Courier New">x<sub>j </sub>dx<sub>j</sub>/dt
+</font></p>
+
+<blockquote style="margin-left: 6cm">
+    <p><font size="4" face="Courier New">= </font><font size="4"
+    face="Symbol">S</font><font size="4" face="Courier New"><sub>j=1</sub><sup>n</sup>
+    </font><font size="4" face="Symbol">¶l</font><font size="4"
+    face="Courier New"><sub>j/</sub></font><font size="4"
+    face="Symbol">¶</font><font size="4" face="Courier New">x<sub>i
+    </sub>dx<sub>j</sub>/dt </font></p>
+</blockquote>
+
+<blockquote style="margin-left: 6cm">
+    <p><font size="4" face="Courier New">= </font><font size="4"
+    face="Symbol">S</font><font size="4" face="Courier New"><sub>j=1</sub><sup>n</sup>
+    </font><font size="4" face="Symbol">¶l</font><font size="4"
+    face="Courier New"><sub>j/</sub></font><font size="4"
+    face="Symbol">¶</font><font size="4" face="Courier New">x<sub>i</sub>
+    a<sub>j</sub>(x,p*(x))</font></p>
+</blockquote>
+
+<p style="margin-left: 2cm"><font size="4" face="Comic Sans MS">On
+a donc</font></p>
+
+<p><font size="4" face="Symbol">¶</font><font size="4"
+face="Courier New">f(x,p*(x))/</font><font size="4" face="Symbol">¶</font><font
+size="4" face="Courier New">x<sub>i</sub> + d</font><font
+size="4" face="Symbol">l</font><font size="4" face="Courier New"><sub>i</sub>/dt
++ </font><font size="4" face="Symbol">S</font><font size="4"
+face="Courier New"><sub>i=1</sub><sup>n</sup></font><font
+size="4" face="Symbol"> l</font><font size="4" face="Courier New"><sub>i
+</sub></font><font size="4" face="Symbol">¶</font><font size="4"
+face="Courier New">a<sub>i</sub>(x,p*(x))/</font><font size="4"
+face="Symbol">¶</font><font size="4" face="Courier New">x<sub>i</sub>
+= 0</font></p>
+
+<blockquote style="margin-left: 6cm">
+    <p><font size="4" face="Courier New">donc</font></p>
+</blockquote>
+
+<p><font size="4" face="Courier New">d</font><font size="4"
+face="Symbol">l</font><font size="4" face="Courier New"><sub>i</sub>/dt
+= - </font><font size="4" face="Symbol">¶</font><font size="4"
+face="Courier New">f(x,p*(x))/</font><font size="4" face="Symbol">¶</font><font
+size="4" face="Courier New">x<sub>i</sub> - </font><font size="4"
+face="Symbol">S</font><font size="4" face="Courier New"><sub>i=1</sub><sup>n</sup></font><font
+size="4" face="Symbol"> l</font><font size="4" face="Courier New"><sub>i
+</sub></font><font size="4" face="Symbol">¶</font><font size="4"
+face="Courier New">a<sub>i</sub>(x,p*(x))/</font><font size="4"
+face="Symbol">¶</font><font size="4" face="Courier New">x<sub>i</sub>
+= - </font><font size="4" face="Symbol">¶</font><font size="4"
+face="Courier New">H/</font><font size="4" face="Symbol">¶</font><font
+size="4" face="Courier New">x<sub>i </sub></font></p>
+
+<blockquote style="margin-left: 6cm">
+    <p><font size="4" face="Courier New"><sub>avec</sub></font></p>
+</blockquote>
+
+<p><font size="4" face="Courier New">H(x,u,</font><font size="4"
+face="Symbol">l</font><font size="4" face="Courier New">) =
+f(x,u) + </font><font size="4" face="Symbol">S</font><font
+size="4" face="Courier New"><sub>i=1</sub><sup>n</sup></font><font
+size="4" face="Symbol">l</font><font size="4" face="Courier New"><sub>i</sub>a<sub>i</sub>(x,u)</font></p>
+
+<blockquote style="margin-left: 6cm">
+    <p>&nbsp;</p>
+</blockquote>
+
+<p style="margin-left: 2cm"><font size="5"
+face="Swis721 BlkCn BT">Commandabilité</font></p>
+
+<p style="margin-left: 2cm"><font size="4" face="Comic Sans MS">Un
+système est commandable ou contrôlable si pour tous x0 et x1 il
+existe un temps T et une fonction de commande u amenant le
+système de x0 à x1 pendant le temps T.</font></p>
+
+<p style="margin-left: 2cm"><font size="4" face="Comic Sans MS">Si
+le système est linéaire c'est-à-dire défini par dx/dt =
+f(x,u) = Ax + Bu alors le système est commandable si la matrice
+de commandabilité M = (B, AB, A<sup>2</sup>B, ... , A<sup>n-1</sup>B)
+a le rang maximum. Si le système n'est pas linéaire, la matrice
+de commandabilité peut être calculée à partir d'une version
+linéarisée du système.</font></p>
+
+<p style="margin-left: 2cm">&nbsp;</p>
+
+<h2>Théorie des jeux discrets</h2>
+
+Considérons un jeu à m joueurs avec un ensemble E de positions. A chaque position est associée un joueur à qui c'est le tour de jouer, ainsi qu'un ensemble de positions accessibles. Parmi toutes les positions, certaines sont des positions finales, à partir desquelles aucune position n'est accessible. A ces positions on associe un vecteur de m valeurs correspondant aux gains des joueurs. On peut également associer à chaque position un vecteur de m valeurs correspondant au vecteur final obtenu si chaque joueur joue le mieux possible. On peut déterminer ce vecteur de valeurs pour chaque position en partant des positions finales et en remontant vers la ou les positions initiales de la façon suivante : soit une position pour laquelle c'est au tour du joueur i de jouer. On peut déterminer son vecteur de valeurs si les vecteurs de valeurs de toutes les positions accessibles à partir de cette position ont été déterminés. Il s'agit du vecteur de valeurs dont la i-ème composante est maximale.
+<p>
+<h3>Cas particulier des jeux à 2 joueurs et à somme nulle</h3>
+Dans de cas, le vecteur valeur est de la forme (v, -v) et peut être remplacé par un simple nombre v que le joueur 1 cherche à maximiser et le joueur 2 à minimiser.
+
+<h2>Jeux différentiels : généralisation de la théorie d'Isaacs aux jeux à plusieurs joueurs et à somme non nulle</h2>
+
+<p>Un jeu différentiel est un système commandé par plusieurs
+joueurs. C'est un jeu continu que l'on peut obtenir par passage à la limite à partir d'un jeu discret.</p>
+
+L'état du jeu est représenté par un vecteur x = (x1, ..., xn) dont l'évolution est déterminée par l'équation dx<sub>j</sub>/dt = a<sub>j</sub>(x,u) où u est une matrice avec u<sub>ik</sub> = k-ième composante de la commande du joueur i.
+<p>
+Le gain du joueur i est l'intégrale de f<sub>i</sub>(x,u) dt + H<sub>i</sub>(s) où s est l'état final.
+<p>
+Lors de ce passage à la limite, la méthode de détermination du vecteur de valeurs des jeux discrets aboutit à l'équation :
+<p>
+max(u1,1) ... max(un,n) <font face=symbol>S</font><sub>j</sub> (<font face=symbol>¶</font>V<sub>i</sub>/<font face=symbol>¶</font>x<sub>j</sub>a<sub>j</sub>(x,u) + f<sub>i</sub>(x,u)) = 0
+<p>
+avec max(ui,i) = vecteur dont la i-ème composante est maximale obtenu en faisant varier ui.
+<p>
+En fonction d'une position x et du gradient du vecteur de valeurs V ( <font face=symbol>l</font> = grad V ) avec <font face=symbol>l</font><sub>ij</sub> = <font face=symbol>¶</font>V<sub>i</sub>/<font face=symbol>¶</font>x<sub>j</sub> on détermine la commande optimale correspondante notée u*(x,<font face=symbol>l</font>).
+<p>
+On a alors :
+<p>
+<font face=symbol>S</font><sub>j</sub> <font face=symbol>¶</font>V<sub>i</sub>/<font face=symbol>¶</font>x<sub>j</sub> a<sub>j</sub>(x,u*(x,<font face=symbol>l</font>) + f<sub>i</sub>(x,u*(x,<font face=symbol>l</font>) = 0.
+<p>
+En dérivant par rapport à x<sub>k</sub> on obtient :
+<p>
+d/dt <font face=symbol>¶</font>V<sub>i</sub>/<font face=symbol>¶</font>x<sub>k</sub> + <font face=symbol>S</font><sub>j</sub><font face=symbol>¶</font>V<sub>i</sub>/<font face=symbol>¶</font>x<sub>j</sub> <font face=symbol>¶</font>a<sub>j</sub>/<font face=symbol>¶</font>x<sub>k</sub>(x,u*(x,<font face=symbol>l</font>)) + <font face=symbol>¶</font>f<sub>i</sub>/<font face=symbol>¶</font>x<sub>k</sub>(x,u*(x,<font face=symbol>l</font>)) = 0
+<p>
+En définissant le hamiltonien H<sub>i</sub> = <font face=symbol>S</font><sub>j</sub> <font face=symbol>¶</font>V<sub>i</sub>/<font face=symbol>¶</font>x<sub>j</sub> a<sub>j</sub>(x,u*) + f<sub>i</sub>(x,u*)
+<p>
+on obtient : <p>
+d<font face=symbol>l</font><sub>ik</sub>/dt =
+d/dt <font face=symbol>¶</font>V<sub>i</sub>/<font face=symbol>¶</font>x<sub>k</sub> =
+- <font face=symbol>¶</font>H<sub>i</sub>/<font face=symbol>¶</font>x<sub>k</sub>
+
+<h3>Cas des jeux à 2 joueurs et à somme nulle</h3>
+
+Le vecteur valeur V est de la forme (v, -v) et peut être remplacé par un simple nombre.
+<p>
+L'équation <p>
+max(u1,1) ... max(un,n) <font face=symbol>S</font><sub>j</sub> (<font face=symbol>¶</font>V<sub>i</sub>/<font face=symbol>¶</font>x<sub>j</sub>a<sub>j</sub>(x,u) + f<sub>i</sub>(x,u) = 0
+<p>
+devient :
+max<sub>u1</sub> min<sub>u2</sub> <font face=symbol>S</font><sub>j</sub> (<font face=symbol>¶</font>V/<font face=symbol>¶</font>x<sub>j</sub>a<sub>j</sub>(x,u1,u2) + f(x,u1,u2) = 0
+<p>
+On retrouve l'équation ME d'Isaacs.
+<p>
+L'équation
+<p>
+<font face=symbol>S</font><sub>j</sub> <font face=symbol>¶</font>V<sub>i</sub>/<font face=symbol>¶</font>x<sub>j</sub> a<sub>j</sub>(x,u*(x,<font face=symbol>l</font>) + f<sub>i</sub>(x,u*(x,<font face=symbol>l</font>) = 0.
+<p>
+devient<p>
+<font face=symbol>S</font><sub>j</sub> <font face=symbol>¶</font>V/<font face=symbol>¶</font>x<sub>j</sub> a<sub>j</sub>(x,u*(x,<font face=symbol>l</font>) + f(x,u*(x,<font face=symbol>l</font>) = 0.
+<p>
+On retrouve l'équation ME2 d'Isaacs.
+<p>
+
+<h3>Cas d'un jeu à un joueur</h3>
+On retrouve le problème de la commande optimale.
+<p>
+L'équation
+<p>
+d/dt <font face=symbol>¶</font>V<sub>i</sub>/<font face=symbol>¶</font>x<sub>k</sub> + <font face=symbol>S</font><sub>j</sub><font face=symbol>¶</font>V<sub>i</sub>/<font face=symbol>¶</font>x<sub>j</sub> <font face=symbol>¶</font>a<sub>j</sub>/<font face=symbol>¶</font>x<sub>k</sub>(x,u*(x,<font face=symbol>l</font>)) + <font face=symbol>¶</font>f<sub>i</sub>/<font face=symbol>¶</font>x<sub>k</sub>(x,u*(x,<font face=symbol>l</font>)) = 0
+<p>
+devient
+<p>
+d/dt <font face=symbol>¶</font>V/<font face=symbol>¶</font>x<sub>k</sub> + <font face=symbol>S</font><sub>j</sub><font face=symbol>¶</font>V/<font face=symbol>¶</font>x<sub>j</sub> <font face=symbol>¶</font>a<sub>j</sub>/<font face=symbol>¶</font>x<sub>k</sub>(x,u*(x,<font face=symbol>l</font>)) + <font face=symbol>¶</font>f<sub>i</sub>/<font face=symbol>¶</font>x<sub>k</sub>(x,u*(x,<font face=symbol>l</font>)) = 0
+<p>
+Cette équation est équivalente à l'équation de Hamilton - Jacobi - Bellman, étant donné d'une part qu'on a <font face=symbol>S</font><sub>j</sub><font face=symbol>¶</font>V/<font face=symbol>¶</font>x<sub>j</sub> <font face=symbol>¶</font>a<sub>j</sub>/<font face=symbol>¶</font>x<sub>k</sub>(x,u*(x,<font face=symbol>l</font>)) + <font face=symbol>¶</font>f<sub>i</sub>/<font face=symbol>¶</font>x<sub>k</sub>(x,u*(x,<font face=symbol>l</font>)) = max<sub>u</sub> ( <font face=symbol>S</font><sub>j</sub><font face=symbol>¶</font>V/<font face=symbol>¶</font>x<sub>j</sub> <font face=symbol>¶</font>a<sub>j</sub>/<font face=symbol>¶</font>x<sub>k</sub>(x,u) + <font face=symbol>¶</font>f<sub>i</sub>/<font face=symbol>¶</font>x<sub>k</sub>(x,u) ) et d'autre part qu'ici on a choisi par convention de maximiser la valeur.
+<p>
+En définissant le hamiltonien H = <font face=symbol>S</font><sub>j</sub> <font face=symbol>¶</font>V/<font face=symbol>¶</font>x<sub>j</sub> a<sub>j</sub>(x,u*) + f<sub>i</sub>(x,u*)
+<p>
+l'équation 
+<p>
+d<font face=symbol>l</font><sub>ik</sub>/dt =
+d/dt <font face=symbol>¶</font>V<sub>i</sub>/<font face=symbol>¶</font>x<sub>k</sub> =
+- <font face=symbol>¶</font>H<sub>i</sub>/<font face=symbol>¶</font>x<sub>k</sub>
+<p>
+devient
+<p>
+d<font face=symbol>l</font><sub>k</sub>/dt =
+d/dt <font face=symbol>¶</font>V/<font face=symbol>¶</font>x<sub>k</sub> =
+- <font face=symbol>¶</font>H/<font face=symbol>¶</font>x<sub>k</sub>
+
+
+<h3>Généralisation des multiplicateurs de Lagrange</h3>
+
+<p>Le joueur i veut minimiser f<sub>i</sub>(x,u1,...,un) avec
+h(x,u1,...,un) = 0. Le joueur i peut faire varier x et ui. </p>
+
+<p>Les composantes de grad fi dans les directions de x et ui sont
+colinéaires aux composantes de grad h selon ces mêmes
+directions : </p>
+
+<ul>
+    <li>dfi/dx + <font face="symbol">l</font>i . dhi/dx = 0 </li>
+    <li>dfi/dui + <font face="symbol">l</font>i . dhi/dui = 0 </li>
+</ul>
+
+<p>On définit le lagrangien de façon similaire: </p>
+
+<p>Li = fi + <font face="symbol">l</font>i . h </p>
+
+<p>et on a alors : </p>
+
+<ul>
+    <li>dLi/dx = 0 </li>
+    <li>dLi/dui = 0 </li>
+    <li>dLi/d<font face="symbol">l</font>i = 0 </li>
+</ul>
+
+<p>On a également une généralisation du principe de Pontryagin
+et de l'équation de Hamilton - Jacobi - Bellman avec des
+formules similaires où on ajoute un indice correspondant au
+numéro du joueur aux variables f, <font face="symbol">l</font>,
+m, L, H, V, et u lorsqu'on dérive par rapport à u, sinon u
+désigne le vecteur de fonctions (u1, ... , un). </p>
+
+<h3><font size="4" face="Courier New">Résolution des jeux différentiels par la méthode hamiltonienne</font></h3>
+
+<p><font size="4" face="Comic Sans MS">Un jeu différentiel est
+un système dont l'état X évolue en fonctions des commandes de
+n joueurs selon la loi :</font></p>
+
+<p><font size="4" face="Courier New">X(0) = X<sub>0</sub></font></p>
+
+<p><font size="4" face="Courier New">dX(t)/dt = a(t,X(t),u<sub>1</sub>(t),
+... ,u<sub>n</sub>(t)) </font></p>
+
+<p><font size="4" face="Courier New">avec u<sub>i</sub>(t) </font><font
+size="4" face="Symbol">Î </font><font size="4"
+face="Courier New">U ensemble des commandes possibles</font></p>
+
+<p><font size="4" face="Courier New">ou dX(t)/dt = a(t,X(t),U(t))
+avec U(t) = (u<sub>1</sub>(t), ... ,u<sub>n</sub>(t)) </font></p>
+
+<h3><font size="4" face="Courier New">Chaque joueur a pour
+objectif de minimiser (ou maximiser) sa fonction de coût (ou de
+gain) :</font></h3>
+
+<table border="0" cellpadding="2">
+    <tr>
+        <td><font size="4" face="Courier New">min J<sub>i</sub>(y,s,u)
+        = </font></td>
+        <td><font face="Symbol">ó</font> <sup>T</sup> </td>
+        <td><font size="4" face="Courier New">f<sub>i</sub>(t,x(t),U(t))dt
+        + m<sub>i</sub>(x(T))</font></td>
+        <td valign="top">&nbsp;</td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+        <td><font face="Symbol">õ</font> s </td>
+        <td valign="top" colspan="2">&nbsp;</td>
+    </tr>
+</table>
+
+<h3><font size="4" face="Courier New">On définit un hamiltonien
+H<sub>i </sub>et un vecteur adjoint </font><font size="4"
+face="Symbol">l</font><font size="4" face="Courier New"><sub>i </sub>pour
+chaque joueur :</font></h3>
+
+<blockquote>
+    <p><font size="4" face="Courier New">H<sub>i</sub>(t,X(t),U(t),</font><font
+    size="4" face="Symbol">l</font><font size="4"
+    face="Courier New"><sub>i</sub>(t)) = f<sub>i</sub>(t,X(t),u(t))
+    + </font><font size="4" face="Symbol">l</font><font size="4"
+    face="Courier New"><sub>i</sub>(t) . a(t,X(t),U(t))</font></p>
+</blockquote>
+
+<h3><font size="4" face="Courier New">Les conditions
+d'optimalité sont :</font></h3>
+
+<ul>
+    <li><font size="4" face="Courier New">dX(t)/dt = </font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">H<sub>i</sub>(t)/</font><font size="4"
+        face="Symbol">¶l</font><font size="4" face="Courier New"><sub>i</sub></font>
+    </li>
+</ul>
+
+<ul>
+    <li><font size="4" face="Courier New">X(0) = X<sub>0</sub></font>
+    </li>
+</ul>
+
+<ul>
+    <li><font size="4" face="Courier New">d</font><font size="4"
+        face="Symbol">l</font><font size="4" face="Courier New"><sub>i</sub>(t)/dt
+        = -</font><font size="4" face="Symbol">¶</font><font
+        size="4" face="Courier New">H<sub>i</sub>(t)/</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">X(t)</font> </li>
+</ul>
+
+<ul>
+    <li><font size="4" face="Symbol">l</font><font size="4"
+        face="Courier New"><sub>i</sub>(T) = m<sub>i</sub>'(X(T))</font>
+    </li>
+</ul>
+
+<ul>
+    <li><font size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">H<sub>i</sub>(t)/</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">u<sub>i</sub>(t)
+        = 0</font> </li>
+</ul>
+
+<h3 style="margin-top: 0cm; margin-bottom: 0cm"><font size="4"
+face="Courier New">L'équilibre de Nash consiste à déterminer
+les valeurs initiales ou finales des vecteurs </font><font
+size="4" face="Symbol">l</font><font size="4" face="Courier New"><sub>i
+</sub>de sorte que si on remplace un des </font><font size="4"
+face="Symbol">l</font><font size="4" face="Courier New"><sub>i </sub>par
+une autre valeur, le résultat sera moins bon pour le joueur i.</font></h3>
+
+<p><br>
+<br>
+</p>
+
+<p><font size="5" face="Swis721 BlkCn BT">Exemple : jeu de
+poursuite</font></p>
+
+<p><font size="4" face="Comic Sans MS">Un chauffeur poursuit un
+piéton en voiture. Son but est de s'approcher le plus possible
+du piéton. Le but du piéton est de s'éloigner le plus possible
+de la voiture. La voiture est limité dans ses possiblilités de
+virage : le coût d'un changement de direction est proportionnel
+au carré de l'angle. Le piéton change de direction comme il
+veut. Tous deux ont une vitesse constante.</font></p>
+
+<p><font size="4" face="Comic Sans MS">L'état peut être décrit
+par les coordonnées (x1,y1) de la voiture et sa direction a, et
+les coordonnées (x2,y2) du piéton. On peut le décrire de
+façon plus compacte par le vecteur voiture -&gt; piéton de
+composantes (x,y) avec x=x2-x1 et y=y2-y1.</font></p>
+
+<p><font size="4" face="Comic Sans MS">Les équations du
+mouvement sont alors :</font></p>
+
+<ul>
+    <li><font size="4" face="Comic Sans MS">dx/dt = - v1 cos a +
+        v2 cos u2</font></li>
+    <li><font size="4" face="Comic Sans MS">dy/dt = - v1 sin a +
+        v2 sin u2</font></li>
+    <li><font size="4" face="Comic Sans MS">da/dt = v1/L u1</font></li>
+</ul>
+
+<p><font size="4" face="Comic Sans MS">Le hamiltonien du
+chauffeur est :</font></p>
+
+<p><font size="4" face="Comic Sans MS">H1 = u1<sup>2</sup> + x<sup>2</sup>
++ y<sup>2</sup> + px1 (- v1 cos a + v2 cos u2) + py1 (- v1 sin a
++ v2 sin u2) + pa1 v1/L u1</font></p>
+
+<p><font size="4" face="Comic Sans MS">(avec </font><font
+size="4" face="Symbol">l</font><font size="4" face="Courier New"><sub>1</sub></font><font
+size="4" face="Comic Sans MS">=( px1 py1 pa1 )' et </font><font
+size="4" face="Symbol">l</font><font size="4" face="Courier New"><sub>2</sub></font><font
+size="4" face="Comic Sans MS">=( px2 py2 pa2 )' )</font></p>
+
+<p><font size="4" face="Comic Sans MS">et celui du piéton :</font></p>
+
+<p><font size="4" face="Comic Sans MS">H2 = - x<sup>2</sup>
+- y<sup>2</sup> + px2 (- v1 cos a + v2 cos u2) + py2 (-
+v1 sin a + v2 sin u2) + pa2 v1/L u1</font></p>
+
+<p><font size="4" face="Comic Sans MS">Les conditions
+d'optimalité sont :</font></p>
+
+<ul>
+    <li><font size="4" face="Comic Sans MS">d px1/dt = </font><font
+        size="4" face="Courier New">-</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">H<sub>1</sub>/</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">x = -2x</font></li>
+    <li><font size="4" face="Comic Sans MS">d py1/dt = </font><font
+        size="4" face="Courier New">-</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">H<sub>1</sub>/</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Comic Sans MS">y = -2y</font></li>
+    <li><font size="4" face="Comic Sans MS">d pa1/dt = </font><font
+        size="4" face="Courier New">-</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">H<sub>1</sub>/</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">a </font><font size="4"
+        face="Comic Sans MS">= v1 (- px1 sin a + py1 cos a)</font></li>
+</ul>
+
+<ul>
+    <li><font size="4" face="Comic Sans MS">d px2/dt = </font><font
+        size="4" face="Courier New">-</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">H<sub>2</sub>/</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">x = 2x</font></li>
+</ul>
+
+<ul>
+    <li><font size="4" face="Comic Sans MS">d py2/dt = </font><font
+        size="4" face="Courier New">-</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">H<sub>2</sub>/</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Comic Sans MS">y = 2y</font></li>
+</ul>
+
+<ul>
+    <li><font size="4" face="Comic Sans MS">d pa2/dt = </font><font
+        size="4" face="Courier New">-</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">H<sub>2</sub>/</font><font
+        size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">a </font><font size="4"
+        face="Comic Sans MS">= v1 (- px2 sin a + py2 cos a)</font></li>
+</ul>
+
+<ul>
+    <li><font size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">H<sub>1</sub>/</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">u<sub>1</sub>
+        = 0 = 2 u<sub>1</sub> + pa1 v1/L =&gt; u<sub>1</sub> =
+        -1/2 pa1 v1/L</font></li>
+    <li><font size="4" face="Symbol">¶</font><font size="4"
+        face="Courier New">H<sub>1</sub>/</font><font size="4"
+        face="Symbol">¶</font><font size="4" face="Courier New">u<sub>2
+        </sub>= 0 = v2 (- px2 sin u2 + py2 cos u2) </font><p><font
+        size="4" face="Courier New">=&gt; px2 sin u2 = py2 cos u2</font></p>
+        <p><font size="4" face="Courier New">=&gt; sin u2 / cos
+        u2 = py2 / px2</font></p>
+        <p><font size="4" face="Courier New">=&gt; tg u2 = py2 /
+        px2</font></p>
+        <p><font size="4" face="Courier New">=&gt; u2 = arctg
+        (py2/px2)</font></p>
+    </li>
+</ul>
+
+<h3>Programme SCILAB</h3>
+
+<p>Taper par exemple : [px1,py1,pa1,px2,py2,pa2]=solve(1,0.01,10)
+</p>
+
+<p>
+
+<!--textarea rows="260" cols="60"-->
+
+<pre>
+
+function [r]=plotpoint(x,y)
+ xrect(x,y,0,0)
+//plot([x,x],[y,y]);
+r=0;
+endfunction
+
+// function [r]=traj ( )
+// function [sl1,sl2]=traj(fp,T,px1,py1,pa1,px2,py2,pa2)
+
+function [sl1,sl2]=traj(fp,T,p1,p2)
+px1=p1(1)
+py1=p1(2)
+pa1=p1(3)
+
+px2=p2(1)
+py2=p2(2)
+pa2=p2(3)
+
+pi = 3.1415926
+
+dt=0.04
+// T=5
+
+v1=5
+v2=3
+L=2
+
+xmin=-10
+xmax=10
+ymin=10
+ymax=-10
+
+
+
+// function [r]=traj()
+
+sl1=0
+sl2=0
+x1=0
+y1=0
+x2=-3
+y2=1
+x=x2-x1
+y=y2-y1
+a=0
+// px1=0
+// py1=0
+// pa1=0
+// px2= 1
+// py2=1
+// pa2=1
+
+// clf
+if (fp > 0)
+ xclear()
+ plot([xmin,xmax,xmax,xmin],[ymin,ymin,ymax,ymax])
+end
+
+// axis([xmin,xmax,ymin,ymax])
+// hold on
+
+for t=0:dt:T
+
+ u1=-0.5*pa1*v1/L;
+ // u2=atan(py2/px2) ;
+u2 = imag(log(px2+sqrt(-1)*py2));
+
+ x1=x1 +dt*v1*cos(a);
+ y1=y1 +dt*v1*sin(a);
+
+ x2=x2 +dt*v2*cos(u2);
+ y2=y2+dt*v2*sin(u2);
+
+ x=x2-x1;
+ y=y2-y1;
+
+if fp 
+ plotpoint(x1,y1);
+ plotpoint(x2,y2);
+ plotpoint(xmin+(xmax-xmin)*t/T,sl1/8);
+plotpoint(xmin+(xmax-xmin)*(1-t/T),sl2/8);
+end
+
+ a=a+dt *v1/L*u1;
+
+ px1 =px1+dt* (-2*x);
+ py1=py1+dt*(-2*y);
+ pa1=pa1+dt*(v1*(-px1*sin(a)+py1*cos(a)));
+
+ px2 =px2+dt*(2*x);
+ py2=py2+dt*(2*y);
+ pa2=pa2+dt*(v1*(-px2*sin(a)+py2*cos(a)));
+
+ sl1=sl1 +dt *(u1^2+x^2 +y^2);
+ sl2=sl2+dt*(-x^2-y^2);
+
+
+end
+r=0
+endfunction
+
+// traj()
+
+function r=test()
+fp=1
+T=5
+px1=0
+py1=0
+pa1=0
+px2= 1
+py2=1
+pa2=1
+p1=[px1,py1,pa1]
+p2=[px2,py2,pa2]
+traj(fp,T,p1,p2 )
+r=0
+endfunction
+
+function [sl1,sl2,p1,p2]=solve(T,eps,m)
+
+px1=0
+py1=0
+pa1=0
+px2=1.01
+py2=1.01
+pa2=1
+
+p1=[px1,py1,pa1]
+p2=[px2,py2,pa2]
+
+dp=0.5
+
+s=0
+
+while 1 
+
+ s=s+1
+ if s>m 
+  break
+ end
+
+ // plotpoint(px1/10,px2/10)
+ // plotpoint(py1/10,py2/10)
+// plotpoint(pa1/10,pa2/10)
+ 
+ [sl1,sl2] = traj(1,T,p1,p2)
+ printf("sl1=%f sl2=%f\n",sl1,sl2)
+ disp(p1,p2)
+
+ sl1p = sl1
+ sl2p = sl2
+
+af=0
+
+for i=1:3
+p1(i)=p1(i)+dp
+// clf
+ if (af>0) 
+  xclear() 
+ end
+ [sl1t,sl2t] = traj(af,T,p1,p2)
+ if sl1t &lt; sl1
+  printf ("amelioration pour 1\n") 
+  sl1=sl1t
+  sl2=sl2t
+  if (af==0)
+   traj(1,T,p1,p2)
+   printf("sl1=%f sl2=%f\n",sl1,sl2)
+   disp(p1,p2)
+  end
+ else
+ p1(i)=p1(i)-2*dp
+// clf
+if (af>0)
+xclear()
+end
+  [sl1t,sl2t] = traj(af,T,p1,p2)
+  if sl1t &lt; sl1 
+   printf ("amelioration pour 1\n") 
+   sl1=sl1t
+   sl2=sl2t
+   if (af==0)
+    traj(1,T,p1,p2)
+    printf("sl1=%f sl2=%f\n",sl1,sl2)
+    disp(p1,p2)
+   end
+  else
+   p1(i) =p1(i)+dp
+  end
+ end
+
+p2(i)=p2(i)+dp
+// clf
+if (af>0)
+ xclear()
+end
+[sl1t,sl2t] = traj(af,T,p1,p2)
+ if sl2t &lt; sl2 
+  printf ("amelioration pour 2\n") 
+  sl1=sl1t
+  sl2=sl2t
+  if (af==0)
+   traj(1,T,p1,p2)
+   printf("sl1=%f sl2=%f\n",sl1,sl2)
+   disp(p1,p2)
+  end
+ else
+  p2(i)=p2(i)-2*dp
+ // clf
+ if (af>0)
+ xclear()
+ end
+  [sl1t,sl2t] = traj(af,T,p1,p2)
+  if sl2t &lt; sl2 
+   printf ("amelioration pour 2\n") 
+   sl1=sl1t
+   sl2=sl2t
+   if (af==0)
+    traj(1,T,p1,p2)
+    printf("sl1=%f sl2=%f\n",sl1,sl2)
+    disp(p1,p2)
+   end
+  else
+   p2(i)=p2(i)+dp
+  end
+ end
+
+end
+
+ if ((sl1==sl1p) & (sl2==sl2p)) 
+  dp=dp/2
+ // else
+ // dp=dp*2
+ end
+
+ if dp&lt;eps 
+   break
+ end
+
+end
+
+px1=p1(1)
+py1=p1(2)
+pa1=p1(3)
+
+px2=p2(1)
+py2=p2(2)
+pa2=p2(3)
+
+traj(1,T,p1,p2)
+
+r=0
+endfunction
+
+</pre>
+
+<!--/textarea-->
+</p>
+
+<blockquote style="margin-left: 10cm; margin-right: 10cm">
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+</blockquote>
+
+<p><font size="5" face="Swis721 BlkCn BT">Equation de Hamilton -
+Jacobi - Bellman - Isaacs</font></p>
+
+<p><font size="4" face="Comic Sans MS, cursive">Cette équation
+est une généralisation de l'équation de Hamilton - Jacobi -
+Bellman qui s'applique aux jeux différentiels à somme nulle
+avec 2 joueurs. L'équation est :</font></p>
+
+<p style="margin-left: 2cm"><font size="4" face="Courier New">min<sub>u</sub></font><font
+size="4" face="Symbol, serif"><sub>Î</sub></font><font size="4"
+face="Courier New"><sub>U</sub> max<sub>v</sub></font><font
+size="4" face="Symbol, serif"><sub>Î</sub></font><font size="4"
+face="Courier New"><sub>U'</sub></font><font size="4"
+face="Courier New, monospace">(f(t,x,u,v)+</font><font size="4"
+face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">V(x,t)/</font><font size="4"
+face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">t+</font><font size="4"
+face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">V(x,t)/</font><font size="4"
+face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">x.a(t,x,u,v)) = 0</font></p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Courier New, monospace">ou </font><font size="4"
+face="Courier New">min<sub>u</sub></font><font size="4"
+face="Symbol, serif"><sub>Î</sub></font><font size="4"
+face="Courier New"><sub>U</sub> max<sub>v</sub></font><font
+size="4" face="Symbol, serif"><sub>Î</sub></font><font size="4"
+face="Courier New"><sub>U'</sub> H = 0</font></p>
+
+<p style="margin-left: 2cm"><font size="4" face="Courier New">avec
+H = </font><font size="4" face="Courier New, monospace">f(t,x,u,v)+</font><font
+size="4" face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">V(x,t)/</font><font size="4"
+face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">t+</font><font size="4"
+face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">V(x,t)/</font><font size="4"
+face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">x.a(t,x,u,v)</font></p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Courier New, monospace">La différentiation donne
+l'équation :</font></p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Courier New, monospace">dp<sub>i</sub>/dt = - </font><font
+size="4" face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">H/</font><font size="4"
+face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">x<sub>i</sub></font></p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Courier New, monospace">avec p<sub>i</sub>=</font><font
+size="4" face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">V(x,t)/</font><font size="4"
+face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">x</font></p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Courier New, monospace">ou en notation matricielle :</font></p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Courier New, monospace">dp/dt = -(</font><font size="4"
+face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">f/</font><font size="4"
+face="Symbol">¶</font><font size="4"
+face="Courier New, monospace">x)' p</font></p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Courier New, monospace"></font>&nbsp;</p>
+
+<p style="margin-left: 2cm"><font size="5"
+face="Swis721 BlkCn BT">Exemple : le jeu du chauffeur homicide</font></p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Comic Sans MS, cursive">Un chauffeur conduisant un
+véhicule circulaire de rayon b, de vitesse constante v1 = 1 avec
+un rayon de braquage limité, veut écraser un piéton qui vourt
+à la vitesse v2.</font></p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Comic Sans MS, cursive">La commande du chauffeur est la
+déviation de sa trajectoire u1 avec la contrainte abs(u1)&lt;=1.
+Celle du piéton est sa direction u2.</font></p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Comic Sans MS, cursive">Dans le repère orthonormé centré
+sur le centre du véhicule avec l'axe x2 dirigé vers le piéton,
+les équations sont :</font></p>
+
+<ul>
+    <li><font size="4" face="Comic Sans MS, cursive">dx1/dt = -u1
+        x2 + v2 sin u2</font></li>
+    <li><font size="4" face="Comic Sans MS, cursive">dx2/dt = -1
+        + u1 x1 + v2 cos u2</font></li>
+</ul>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Comic Sans MS, cursive">Le chauffeur gagne si x1<sup>2</sup>
++ x2<sup>2</sup> &lt;= b<sup>2</sup></font></p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Comic Sans MS, cursive">Le hamiltonien est :</font></p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Comic Sans MS, cursive">H = p1 (-u1 x2 + v2 sin u2) + p2
+(-1 + u1 x1 + v2 cos u2)</font></p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Comic Sans MS, cursive">L'équation d'Isaacs min u1 max u2
+H = 0 donne les valeurs optimales suivantes des commandes :</font></p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Comic Sans MS, cursive">u1 = signe(p1 x2 - p2 x1)</font></p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Comic Sans MS, cursive">sin u2 = p1/(p1<sup>2</sup>+p2<sup>2</sup>),
+cos u2 = p2/(p1<sup>2</sup>+p2<sup>2</sup>)</font></p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Comic Sans MS, cursive">et l'évolution des variables
+adjointes :</font></p>
+
+<ul>
+    <li><font size="4" face="Comic Sans MS, cursive">avec le
+        hamiltonien : </font><ul>
+            <li><font size="4" face="Comic Sans MS, cursive">dp1/dt
+                = - </font><font size="4" face="Symbol">¶</font><font
+                size="4" face="Courier New, monospace">H/</font><font
+                size="4" face="Symbol">¶</font><font size="4"
+                face="Courier New, monospace">x<sub>1</sub></font><font
+                size="4" face="Comic Sans MS, cursive"> = - p2 u1</font></li>
+            <li><font size="4" face="Comic Sans MS, cursive">dp2/dt
+                = - </font><font size="4" face="Symbol">¶</font><font
+                size="4" face="Courier New, monospace">H/</font><font
+                size="4" face="Symbol">¶</font><font size="4"
+                face="Courier New, monospace">x<sub>2</sub></font><font
+                size="4" face="Comic Sans MS, cursive"> = p1 u1</font></li>
+        </ul>
+    </li>
+    <li><font size="4" face="Comic Sans MS, cursive">avec le
+        calcul matriciel :</font></li>
+</ul>
+
+<blockquote>
+    <p style="margin-left: 2cm"><font size="4" face="Symbol">¶</font><font
+    size="4" face="Courier New, monospace">f/</font><font
+    size="4" face="Symbol">¶</font><font size="4"
+    face="Courier New, monospace">x = </font></p>
+    <table border="0">
+        <tr>
+            <td><font size="4" face="Symbol">(¶</font><font
+            size="4" face="Courier New, monospace">f1/</font><font
+            size="4" face="Symbol">¶</font><font size="4"
+            face="Courier New, monospace">x1 </font></td>
+            <td><font size="4" face="Symbol">¶</font><font
+            size="4" face="Courier New, monospace">f1/</font><font
+            size="4" face="Symbol">¶</font><font size="4"
+            face="Courier New, monospace">x2)</font></td>
+        </tr>
+        <tr>
+            <td>(<font size="4" face="Symbol">¶</font><font
+            size="4" face="Courier New, monospace">f2/</font><font
+            size="4" face="Symbol">¶</font><font size="4"
+            face="Courier New, monospace">x1</font></td>
+            <td><font size="4" face="Symbol">¶</font><font
+            size="4" face="Courier New, monospace">f2/</font><font
+            size="4" face="Symbol">¶</font><font size="4"
+            face="Courier New, monospace">x1)</font></td>
+        </tr>
+    </table>
+    <p style="margin-left: 2cm"><font size="4"
+    face="Courier New, monospace">=</font></p>
+    <table border="0">
+        <tr>
+            <td>(0 </td>
+            <td>-u1)</td>
+        </tr>
+        <tr>
+            <td>(u1 </td>
+            <td>0)</td>
+        </tr>
+    </table>
+</blockquote>
+
+<blockquote>
+    <p style="margin-left: 2cm"><font size="4"
+    face="Courier New, monospace">dp/dt = -(</font><font size="4"
+    face="Symbol">¶</font><font size="4"
+    face="Courier New, monospace">f/</font><font size="4"
+    face="Symbol">¶</font><font size="4"
+    face="Courier New, monospace">x)' p = </font></p>
+    <table border="0">
+        <tr>
+            <td>(-p2 u1)</td>
+        </tr>
+        <tr>
+            <td>(p1 u1)</td>
+        </tr>
+    </table>
+</blockquote>
+
+<table border="0">
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+</table>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Comic Sans MS, cursive"></font>&nbsp;</p>
+
+<p style="margin-left: 2cm"><font size="4"
+face="Comic Sans MS, cursive"></font>&nbsp;</p>
+
+<p>Références</p>
+
+<ul>
+    <li>Fritz Reinhardt et Heinrich Soeder, Atlas des
+        mathématiques, Le Livre de Poche </li>
+    <li>L. Pontryaguine, V. Boltianski, R. Gamkrélidzé, E. Michtchenko, Théorie mathématique des processus optimaux, Editions de Moscou
+
+    <li>Jacques Gauvin, Leçons de programmation mathématiques,
+        Editions de l'Ecole Polytechnique de Montréal </li>
+    <li><a
+        href="http://www.iro.umontreal.ca/~marcotte/Ift3512/Compiegne.pdf">Stéphane
+        Mottelet, Optimisation non-linéaire, Université de
+        Technologie de Compiègne -
+        http://www.iro.umontreal.ca/~marcotte/Ift3512/Compiegne.pdf
+        </a></li>
+    <li>Jacques Thépot, Optimisation pour l'économie
+        d'entreprise, Dalloz </li>
+    <li><a
+        href="http://www.cert.fr/colloques/bail2004/%20fichiers/Authors/Richardson-Wang.pdf">&nbsp;Numerical
+        Solution of Hamilton-Jacobi-Bellman Equations by an
+        Exponentially Fitted Finite Volume Method -
+        http://www.cert.fr/colloques/bail2004/
+        fichiers/Authors/Richardson-Wang.pdf </a></li>
+    <li><a href="http://msl.cs.uiuc.edu/planning/">Steven
+        M. LaValle, Planning Algorithms, University of Illinois -
+        http://msl.cs.uiuc.edu/planning/</a> </li>
+    <li>Jean-Christophe
+        Culioli, Introduction à l'optimisation </li>
+    <li><a
+        href="http://www.math.u-psud.fr/~trelat/publications.html">Emmanuel
+        Trélat, Contrôle optimal, théorie et applications,
+        Université Paris-Sud -
+        http://www.math.u-psud.fr/~trelat/publications.html </a></li>
+    <li>Maïtine
+        Bergounioux, Optimisation et contrôle des systèmes
+        linéaires, Dunod </li>
+    <li>Rufus Isaacs, Differential Games, Dover
+    <li><a href="http://www.vuse.vanderbilt.edu/ ~kootj/Class/2001/Spring/optimal.ps">S. S. Sastry, Lectures in Optimal Control and Dynamical Games - http://www.vuse.vanderbilt.edu/ ~kootj/Class/2001/Spring/optimal.ps </a></li>
+    <li><a href="http://www.control.lth.se/education/game99/">Game Theory 1999 - http://www.control.lth.se/education/game99/</a></li>
+
+<li><a href="http://pythie.cepremap.cnrs.fr/~ernst/pdfdoc/majeur_97.pdf">Ekkehard Ernst, Mémoire majeur DEA économie des institutions : Jeux différentiels et analyse dynamique des institutions - http://pythie.cepremap.cnrs.fr/~ernst/pdfdoc/majeur_97.pdf</a>
+
+<li>Katheline Schubert, Macroéconomie Comportements et croissance, Vuibert
+<li>David Romer, Macroéconomie approfondir, McGraw-Hill/Ediscience
+<li>E. Malinvaud, Théorie macroéconomique, Dunod
+<li>Analyse macroéconomiques, Repères La Découverte
+<li>Jean-Luc Gaffard, Croissance et fluctuations économiques, Montchrestien
+<li><a href=http://marquet.u-bordeaux4.fr/documents1/7Crendogene.pdf>Les théories de la croissance endogène - http://marquet.u-bordeaux4.fr/documents1/7Crendogene.pdf </a>
+ 
+</ul>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+</body>
+</html>

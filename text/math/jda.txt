@@ -1,0 +1,61 @@
+Jeux différentiels et automates
+
+rétroactions (si) fonctions de l'état x reçues par acteurs qui émettent des actions (ui) qui modifient l'état
+
+dx/dt = f(t,x,u1,...,un)
+si(x)
+ui(a)
+ai = g(t,a,si)
+fonction d'utilité u(si)
+problème : f connu, si connu -> trouver g et ui
+
+rétroaction r de système vers combinatoire acteur
+action u de combinatoire acteur vers système
+données q de mémoire vers combinatoire acteur
+données q' de combinatoire acteur vers mémoire
+
+fonction de transition T(q,r)=(q',u)
+- continu
+- discontinu : états finis q1...qm, r1...rp, u1...un
+
+matrice de coefficients T_qr=(q',u) ou T_qrq'u = probabilité de transition
+e=(r,q) -> s=(q',u)
+s_i = somme de T_ij e_j
+
+min f(x) avec g(x)=0 
+L=f(x)+p*g(x)
+@L/@x=0
+@l/@p=g(g)=0
+
+s_i = somme T_ij e_j
+pour acteur i : s_ij(t= = somme sur k de T_ijk(t) e_ik(t)
+
+Delta x = f(t,x,U) avec U=(u1...un)
+
+pour joueur i : max Ji = somme sur t de l(r_i(t))
+avec x(t)-x(t-1)=f(x(t-1),U(t))
+et u_ij(t) = somme sur k de S_ijk(t) (r_ik(t);q_ik(t))
+et q_ij(t)-q_ij(t-1) = somme sur k de T_ijk(t) (r_ik(t);q_ik(t))
+r = (r_;...;r_;0;...;0), q=(0;...;0;q_;...q_)
+j_i(t) = l(r_i(t))
+
+L_i(x,U,r,S,T,q) = somme sur t de j_i(t) - p_i(t) * (x(t)-x(t-1)-f(x(t-1),U(t)) - somme sur j de M_ij(u_ij(t) - somme sur k de S_ijk(t)(r_ik(t)+q_ik(t)) - somme sur j de N_ij * (q_ij(t)-q_ij(t-1) - somme sur k de T_ijk(t) * (r_ik(t) + q_ik(t))
+
+@L_i/@x_i(t)=0
+@L/@u_ij=0
+@L_i/@r_ij=0
+@L_i/@S_ijk=0
+@L_i/@T_ijk=0
+@L_i/@q_ijk=0
+
+@L_i/@x_j = 0 = p (t)(1-@/@x_j(t) f(x(t-1) U(t)) + p_i(t+1) (-1-@/@x_j(t) f(x(t),u(t+1))
+@L/@u_ij(t) = 0 = p_i(t) @/@u_ij(t) f(x(t+1)U(t))
+@L_i/@r_ik(t) = 0 = somme sur j de M_ij S_ijk + somme sur j de N_ij T_ijk
+@L/@S_ijk(t) = 0 = M_ij(t) (r_ik(t) + q_ik(t))
+@L_i/@T_ijk(t) = 0 = N_ij (r_ik(t) + q_ik(t))
+@L_i/@q_ijk(t) = 0 = somme sur j de M_ij(t) S_ijk(t) + somme sur j de N_ij(t) T_ijk(t) - somme sur j de N_ij + somme sur j de N_ij(t+1)
+
+p_i(t+1)-p_i(t) = p(t) @/@x_j(t) f(x(t-1),u(t))
+
+lagrangien instantané L(t)
+@L/@x - @/@t @L/@(dx/dt) = 0

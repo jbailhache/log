@@ -1,0 +1,162 @@
+Reflection principle :
+	All d. IsDem d => eval (concl d)
+			  eval (left d) = eval (right d)
+			  eval_left d = eval_right d
+		          eval_LR K d = eval_LR (KI) d
+			  LR K K d = LR K (KI) d
+	eval rI = I ...
+	eval (rap rf ra) = eval rf (eval ra)
+
+        Feferman uniform reflection principle :
+	All n. (Pr("phi(n)") => phi(n))
+	All n. (Exist d. Dem (d, "phi(n)") => phi(n))
+	All n. All d. (Dem (d, "phi(n)" => phi(n))
+	[All n. IsDem n =>] All d. IsDem d => (Dem (d, "phi(n)")=>phi(n))
+						eval (concl d)
+						eval (left d) = eval (right d)
+	Parametrize with theory T:
+	refl T : All d. IsDem T d => eval T (left T d) = eval T (right T d)
+				     eval_LR T K d = eval_LR T (KI) d	 	
+
+	All d. IsDem T d => eval_LR T K d = eval_LR T (K I) d
+
+	parametrize with flag eval/rep :
+	All d. IsDem T d => LR T K K d = LR T K (KI) d
+
+	if d is a demonstration ot theory T, then 
+	the evaluated left part of the conclusion of d equals the right part.
+
+Representation of theory T by combinators
+	T = list of rules
+	rule = <arity, function>
+	arity = number : 0 z s = z
+			 suc n z s = s n
+	pair <a, b> f = f a b
+	list : nil n i = n
+	       ins x l n i = i x l
+	index n l = l err (^x:^s: n x : ^p: index p s)
+	function : f LR1 ev lr lsd
+
+Representation of a demonstration :
+        d = <rn, [sd0, sd1, ...]>
+		rn = number of the rule
+		sdi = subdem number i	
+
+	LR T ev lr d 
+		T = theory = list of <arity, function>
+		ev = K for evaluation, KI for representation 
+		lr = K for left, KI for right
+		d = representation of demonstration
+
+	LR T ev lr d = Y : ^LR1 : d : ^rn : ^lsd :
+			index rn T : ^arity: ^f:
+			f LR1 T ev lr lsd.
+ 
+Example :
+        rule	rep	meaning		arity	function
+	I    rI=<1,[]>	I=I		0	^LR1: ^t: ^ev: ^lr: ^lsd: 
+						 ev I rI
+	K    rK=<2,[]>	K=K		0
+	S    rS=<3,[]>	S=S		0
+	E		E=E		0
+	If		If=If		0
+	ap   rap f a =  f=g,a=b->fa=gb  2
+	     <6,[f,a]>2		                 ^LR1: ^t: ^ev: ^lr: ^lsd: 
+				 		 ev I rap (LR1 ev lr : index 0 lsd) 
+				          		  (LR1 ev lr : index 1 lsd)
+	transym         a=b,a=c->b=c    2
+		rtransym b c =			^LR1: ^t: ^ev: ^lr: ^lsd:
+		<7,[b,c]> 		 	 eqdem (LR1 t (KI) K b)
+					       	       (LR1 t (KI) K c)
+					               (LR1 t ev (KI) (lr b c)) (ev I rI)	
+	defI rdefI a = <8,[a]>		1	^LR1: ^t: ^ev: ^lr: ^lsd:
+			a=a'->Ia=a'			lr (ev I rap (ev I rI)) I : 
+						    LR1 t ev lr : index 0 lsd)
+
+	defK		a=a',b=b'->Kab=a' 2	^LR1: ^t: ^ev: ^lr: ^lsd:
+							lr (ev I rap (ev I rap (ev K rK)   
+								(LR1 t ev lr : index 0 lsd)) 
+								(LR1 t ev lr : index 1 lsd))
+							   (LR1 t ev lr : index 0 lsd) 								
+
+	defS				3	^LR1: ^t: ^ev: ^lr: ^lsd:
+							lr (ev I rap (ev I rap (ev I rap (ev S rS)
+								(LR1 t ev lr : index 0 lsd))									
+								(LR1 t ev lr : index 1 lsd))
+								(LR1 t ev lr : index 2 lsd))
+							   (ev I rap (ev I rap (LR1 t ev lr : index 0 lsd)
+									       (LR1 t ev lr : index 2 lsd))
+							             (ev I rap (LR1 t ev lr : index 1 lsd)
+									       (LR1 t ev lr : index 2 lsd)))							
+			a=a',b=b',c=c'->Sabc=a'c'(b'c')
+	AE		SEI=KI		0	^LR1: ^t: ^ev: ^lr: ^lsd:
+						 LR1 t ev lr : 
+						 lr (rap (rap rS rE) rI) (rap rK rI)
+	EA		Eab=I->a=b	1
+	MP		If I = I	0
+	AI		S If I = KI	0
+	AK	     S(K(S If)If)=K(KI) 0
+	AS		l_AS=K(KI)	0
+	RPA		l_RPA=K(KI)	0
+        
+
+    SEI = ap (ap (S, E), I);
+    KI = ap (K, I);
+    IfI = ap (If, I);
+    SIfI = ap (ap (S, If), I);
+    SKSIfIf = ap ( ap (S ,ap (K , ap (S, If)) ), If);
+    KKI = ap (K, KI);
+    KKKI = ap (K, KKI);
+
+    u = U(Order(0));
+    p = Var ("p", u);
+    q = Var ("q", u);
+    r = Var ("q", u);
+    x = ap (ap (If, ap (ap (If, p), ap (ap (If, q), r))),
+                ap (ap (If, ap (ap (If, p), q)),
+                            ap (ap (If, p), r))
+                );
+    l_AS = lambda (p, lambda (q, lambda (r, x)));
+    print_string (print_param, "l_AS = ");
+    print_dem (print_param, l_AS);
+    print_string (print_param, "\n");
+    Fa = KKI;
+
+    x = ap (ap (If, ap (ap (If, ap (ap (If, p), Fa)), Fa)), p);
+    l_RPA = lambda (p, x);
+    
+Extension of a theory T with reflection : T1 = refl T
+	Add new item <n+1, fr> at the end of list T
+	reflection principle : 
+		All d. IsDem T d => LR T K K d = LR T K (KI) d
+		                    l d = r d
+			with l d = LR T K K d
+		     	     r d = LR T K (KI) d
+		or :
+		MapDem T l = MapDem T r
+		with MapDem T f = [ f rI, f rK, f rS, f rE, f rIf,
+				    (MapDem T : ^rf : MapDem T : ^ra :
+			             f (rap rf ra)), ...]
+
+		representation of MapDem =  rMapDem 
+			eval rMapDem = LR T K x rMapDem = MapDem
+		representation of T = rT
+		representation of l = rl
+		representation of r = rr
+
+	refl	MapDem T l=MapDem T r	0    fr=^LR1: ^t: ^ev: ^lr: ^lsd:
+						 LR1 t ev lr : 
+						 rap (rap rMapDem rT) (lr rl rr)
+
+	transfinite iteration :
+		increasing list of rules
+		T = function Ord -> rule ?
+		1 rule refl with premise Ord x = I
+
+		 
+	
+
+
+
+
+

@@ -1,0 +1,146 @@
+abstrait
+
+absurde
+
+accord
+
+analyse
+
+anarchie
+        Comme la d‚mocratie, l'anarchie est incomplŠte ou inconsistante.
+Si rien n'est interdit, il n'est pas interdit d'interdire et l'anarchie
+s'effondre. S'il est interdit d'interdire, l'anarchie est limit‚e.
+La nature a horreur du vide. Dans les pays o— le pouvoir politique s'effondre,
+le vide politique est vite rempli par des bandes arm‚es qui font r‚gner leur
+loi.
+
+art
+        A quoi sert l'art ? S'il ne servait … rien, cela signifierait que 
+c'est quelque chose d'important car on le fait pour lui-mˆme en tant que
+but en soi et non pour un autre but.  
+        L'art a une utilit‚ psychotrope car il nous met dans un ‚tat mental
+ad‚quat pour exercer d'autres activit‚s.
+
+autre
+
+avoir
+        On peut perdre tout ce qu'on a beaucoup plus facilement qu'on l'a
+acquis. Les acquis les plus solides sont ceux qu'on risque peu de perdre.
+Par exemple les oeuvres que l'on a cr‚‚es et diffus‚es assez largement.
+
+bien, mal
+        "O— est le bien, o— est le mal ? Pour moi, le bien c'est ce que 
+je veux."
+        Fant“mas.
+
+
+boucle
+
+certitude
+
+choix
+
+complexit‚
+
+conscience
+
+d‚mocratie
+        <!-- Toute d‚mocratie est n‚cessairement incomplŠte ou inconsistante, 
+de mˆme que toute th‚orie math‚matique selon le th‚orŠme de G”del. 
+La d‚mocratie consiste … faire ce que veut la majorit‚. Mais que faire si
+la majorit‚ est contre la d‚mocratie ? Si on applique strictement le principe
+de la d‚mocratie, on doit alors l'abolir. Si on veut la pr‚server, on doit
+la limiter en d‚cidant qu'elle ne s'applique pas au principe de la d‚mocratie
+lui-mˆme. Mais on remet alors en cause son fondement : quand on n'est pas
+d'accord, plut“t que de se battre, on compte combien on est dans chaque camp, 
+et les plus nombreux sont d‚clar‚s vainqueurs sans combat. -->
+        Que faire quand on n'est pas d'accord sur la conduite des affaires 
+d'une soci‚t‚ ? On peut se battre et les plus forts feront ce qu'ils veulent
+mais on aura pris des coups. Les plus forts ‚tant probablement les plus
+nombreux, on peut aussi compter combien on est dans chaque camp et d‚clarer 
+les plus nombreux vainqueurs sans combat. C'est le fondement de la d‚mocratie.
+Mais que faire si la majorit‚ est contre la d‚mocratie ? Si on applique 
+strictement le principe de la d‚mocratie, on doit alors l'abolir. 
+Si on veut la pr‚server, on doit la limiter en d‚cidant qu'elle ne s'applique pas au principe de la d‚mocratie
+lui-mˆme. Mais on remet alors en cause son fondement et on en revient au
+combat. C'est ce qui s'est pass‚ en Alg‚rie : quand les islamistes ont gagn‚
+les ‚lections, le pouvoir les a annul‚ et le pays a bascul‚ dans la guerre civile.
+Toute d‚mocratie est n‚cessairement incomplŠte ou inconsistante, 
+de mˆme que toute th‚orie math‚matique selon le th‚orŠme de G”del. 
+
+esprit
+
+id‚e
+
+imagination
+
+inconscient
+
+ind‚terminisme
+
+infini
+
+information
+
+intelligence
+        Capacit‚ de percevoir des r‚gularit‚s.
+        Capacit‚ de d‚crire quelque chose dans un langage par une expression 
+la plus courte possible en utilisant les r‚gularit‚s per‡ues pour compresser
+les donn‚es brutes.
+        L'intelligence est une activit‚ cr‚atrice non m‚canisable qui permet de 
+transcender les limitations du th‚orŠme de G”del, qui d‚montre qu'un systŠme 
+formel fini ne permet pas de g‚n‚rer toutes les v‚rit‚s de l'arithm‚tique.
+Un systŠme formel quelconque S0, s'il n'est pas inconsistant, est n‚cessairement
+incomplet. On peut le rendre moins incomplet en lui ajoutant en axiome une v‚rit‚ 
+non d‚montrable, par exemple en utilisant un principe de r‚flexion 
+        Pour tout n, dem (d, [p(n)]) => p(n)) (principe de r‚flexion uniforme de Feferman)
+        Pour tout d, eval (concl (d))
+        Pour tout d, eval (gauche (d)) = eval (droit (d))
+o— 
+        d est le nombre de G”del codant une d‚monstration, 
+        dem (d, p) signifi que d est le nombre de G”del d'une d‚monstration 
+dont la conclusion est une proposition de nombre de G”del p,
+        [p] est le nombre de G”del de p
+
+        On obtient ainsi un systŠme S1 qui est lui aussi un systŠme formel 
+fini auquel le th‚orŠme de G”del s'applique … nouveau. On peut r‚it‚rer le 
+mˆme proc‚d‚ en appliquant un principe de r‚flexion … S1 pour obtenir un
+systŠme S2 et ainsi de suite. On obtient une suite de systŠmes S0, S1, S2, ...
+qu'on peut englober dans un systŠme S omega, qui est lui aussi un systŠme fini
+auquel on peut appliquer le principe de r‚flexion pour obtenir un systŠme 
+S omega+1, et ainsi de suite. On a donc une suite transfinie de systŠmes 
+formels. Solomon Feferman a d‚montr‚ que l'it‚ration transfinie du principe de r‚flexion 
+uniforme permet d'acc‚der … toutes les v‚rit‚s arithm‚tiques.
+        Mais l'intelligence cr‚ative est n‚cessaire pour produire cette
+        it‚ration transfinie c'est … dire pour produire la suite des ordinaux transfinis,
+car la d‚tection de r‚gularit‚s permet de r‚aliser qu'on est dans un processus
+r‚gulier et qu'il faut passer … la limite et ‚viter ainsi de rester bloqu‚ en dessous
+d'un certain ordinal. Il faut, par exemple, se rendre compte de la
+r‚gularit‚ de la suite 0, omega, omega*2, omega*3 ... pour passer … la limite
+omega^2 et continuer au del… de cette limite.
+
+
+
+
+je, moi
+
+libert‚
+
+math‚matique
+        Etude de rien. 
+        L'ensemble vide est inclus dans tous les ensembles.
+        Les math‚matiques peuvent s'appliquer … tous les
+domaines.
+        Les v‚rit‚s math‚matiques sont vraies dans notre monde
+et dans tous les mondes possibles, et resteraient vraies mˆme
+s'il n'y avait pas de monde, mais les domaines des math‚matiques 
+utiles pour d‚crire un certain monde peuvent d‚pendre de ce monde.
+
+modification
+
+n‚gation
+
+relation
+
+
+

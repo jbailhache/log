@@ -1,0 +1,460 @@
+﻿Réflexions sur l'origine du langage
+
+
+Une hypothèse sur l'origine du langage inspirée par 4 personnages : Julius Pokorny, le touriste égaré, l'italien et le schtroumpf
+
+En parcourant le Proto-Indo-European Etymological Dictionary, édition anglaise révisée de l'Indogermanisches Etymologisches Wörterbuch de Julius Pokorny, j'ai été étonné par le nombre de sens différents que peut avoir un même mot en proto-indo-européen, et par le nombre de mots différents ayant un même sens. Par exemple, le mot bher peut vouloir dire porter, jaillir, couper, bourdonner, rôtir et tisser. Autant dire que bher signifie schtroumpfer! Le sens du discours pouvait-il être transmis avec un vocabulaire aussi polysémique? Et si ce n'étaient pas les mots qui portaient le sens du discours à l'origine? Les hommes préhistoriques d'avant le langage se trouvaient dans la situation du touriste égaré dans un pays dont il ne connait pas la langue et pour qui la seule possibilité est de se faire comprendre par des gestes. Il est donc probable que les gestes aient précédé les mots, qui n'étaient peut-être à l'origine que des sons destinés à "souligner" les gestes, à l'inverse des italiens qui soulignent leurs mots par des gestes. Puis progressivement des habitudes seraient apparues, faisant qu'on utilisait certaines combinaisons de sons plutôt que d'autres pour souligner certains gestes, et ainsi ces combinaisons de sons auraient acquis le sens des gestes auxqels elles étaient associées et seraient devenues les mots.
+
+
+Une hypothèse concernant l'origine des consonnes dites aspirées
+
+Certaines consonnes sont dits aspirées. Pourtant, pour prononcer ces sons, l'air n'est pas aspiré mais expiré. Alors pourquoi les appelle-t-on aspirées? Peut-être qu'elles étaient réellement aspirées autrefois. A l'époque préhistorique les hommes étaient des chasseurs cueilleurs. Etant donné que l'homme était un animal social, il parait probable qu'il chassait en groupe, et qu'il pouvait donc être amené à échanger des informations pendant qu'il poursuivait une proie. Pour pouvoir parler facilement tout en courant et sans avoir à reprendre son souffle, il utilisait peut-être un langage composé d'une alternance de syllabes prononcés en expirant l'air et de syllabes prononcées en aspirant l'air. Les consonnes contenues dans les syllabes prononcées en aspirant l'air auraient logiquement été appelées consonnes aspirées par les linguistes de l'époque. Puis l'homme s'est sédentarisé, a développé l'agriculture et l'élevage. Il se serait alors aperçu que, quand on ne court pas, il est plus facile de parler en expirant l'air uniquement. Les syllabes autrefois prononcées en aspirant l'air auraient alors été alors prononcées avec un souffle d'air qui s'approche phonétiquement du son produit en aspirant l'air, mais par habitude l'appellation de consonne aspirée serait restée.
+
+
+Origine unique ou multiple des langues
+
+Merritt Ruhlen termine l'épilogue de son livre "The origin of language" par cette phrase :
+"Enfin, j'ai tenté de montrer qu'une fois comprises les véritables bases de la classification des langues, et celle-ci une fois dégagée de la mythologie actuellement à la mode, s'impose inéluctablement la conclusion que toutes les langues du monde partagent une origine commune."
+Cette conviction repose sur la découverte de "vingt-sept racines mondiales, c'est-à-dire de vingt-sept mots répandus dans de si nombreuses familles régionales qu'on ne peut expliquer leur ressemblance que par le fait qu'ils ont fait partie de la langue originelle commune à l'ensemble des langues du monde, qui a dû être parlée par nos ancêtres il y a cinquante mille ans environ" selon Merritt Ruhlen.
+Mais le problème c'est que pour être utilisable une langue doit comporter plusieurs centaines de mots. Les 27 mots communs ne représentent qu'une petite minoroté, à la fois de la langue originelle et des langues qu'elle aurait engendré. Qu'en est-il alors des autres mots?
+Il est possible qu'il y ait eu une langue originelle qui ait évolué en plusieurs langues filles, et que chacune de ces langues filles a évolué, de nouveaux mots apparaissant continuellement, les mots originels tombant en désuétude voire dans l'oubli, comme par exemple en anglais le mot dog a remplacé hound. Mais si c'est comme ça que les choses se sont passées, n'est-ce pas un abus de langage de dire que toutes les langues proviennent d'une langue originelle commune ? Ne devrait-on pas plutôt dire que les différentes familles de langues se sont constituées pour la plus grande partie indépendamment les unes des autres, sauf pour quelques dizaines de mots qui proviennent d'une langue originelle qui a pour la plus grande partie disparu ?
+
+
+Héritage génétique et emprunt
+
+Habituellement on fait la différence entre les mots d'une langue hérités génétiquement d'une langue mère et les mots empruntés à une autre langue. Cette différence est-elle pertinente? Supposons par exemple que suite à une invasion ou une migration de population deux peuples parlant deux langues différentes L1 et L2 sont amenés à vivre ensemble sur un même territoire, chaque peuple apprenant des mots de la langue de l'autre et les incorporant dans sa langue pour finalement aboutir à une langue L3 dans laquelle les langues L1 et L2 interviennent à parts égales. Doit-on alors considérer L3 comme une langue fille de L1 empruntant 50% de son vocabulaire à L2 ou l'inverse? Ni l'un ni l'autre. L3 est une langue qui résulte d'une combinaison à parts égales de L1 et L2. Et même dans le cas d'une langue L3 résultant pour la plus grande partie de L1 et pour quelques mots de L2 on peut la considérer comme une combinaison de L1 pour une part importante et de L2 pour une petite part. D'une façon générale toute langue peut être considérée comme combinaison de plusieurs langues mères avec des parts différentes, ainsi que de mots propres à cette langue, créés de toute pièce.
+
+
+Comment déterminer s'il existe un rapport entre 2 langues
+
+On peut considérer qu'il y a un rapport entre 2 langues si la probabilité que la proximité entre l'une des langues et une langue aléatoire soit supérieure ou égale à la proximité entre les 2 langues est suffisamment petite (en supposant que la proximité est mesurée par un nombre tel que plus les langues sont proches plus ce nombre est grand).
+Il faut pour cela définir:
+- une mesure de la proximité entre 2 langues
+- une procédure pour générer une langue aléatoire
+
+Proximité entre 2 langues
+
+Pour mesurer la proximité entre 2 langues, on peut se baser sur une liste de mots préétablie et comparer ces mots dans les 2 langues. Pour pouvoir comparer les mots il faut utiliser une écriture phonétique commune. Il faut aussi tenir compte des mots voisins: synonymes plus ou moins proches, nom et verbe liés... On peut définir pour chaque couple de mots un coefficient qui vaut 1 si les 2 mots ont exactement le même sens, qui est proche de 1 si les mots sont des synonymes, entre 0 ou 1 si les mots sont liés, et 0 si les mots n'ont aucun rapport. On définit ainsi une notion de   proximité sémantique entre mots. Cette proximité sémantique est la même dans toutes les langues. Elle concerne donc les signifiés et non les signifiants. D'autre part, il faut mesurer la proximité phonétique entre les signifiants dans les 2 langues.
+Formellement, la proximité entre les 2 langues peut être définie par :
+proximité(langue1,langue2) = somme pour mot1 dans mots de somme pour mot2 dans mots de proximité sémantique(mot1,mot2) x proximité phonétique(signifiant(mot1,langue1),signifiant(mot2,langue2))
+Il reste à définir la notion de proximité phonétique entre signifiants.
+La proximité phonétique peut se définir en établissant une correspondance entre phonèmes ou groupes de phonèmes du premier mot et du deuxième mot. Il faut tenir compte des probabilités d'évolutions entre phonèmes et donc définir une notion de proximité entre phonèmes. Il faut aussi tenir compte de la régularité entre les correspondances. Pour ce faire, on pourra remplacer la simple somme scalaire de la formule ci-dessus par une somme vectorielle: la proximité sémantique reste scalaire mais la proximité phonétique devient vectorielle et devra être définie de sorte que des correspondances similaires donnent lieu à une proximité plus grande. La définition exacte de cette proximité phonétique vectorielle reste à préciser.
+
+
+Reconstruction
+
+La reconstruction consiste, à partir de listes de mots dans différentes langues, à déterminer, pour chaque mot de chaque langue, s'il a été créé de toute pièce ou s'il vient d'un autre mot d'une autre langue. On pourra éventuellement introduire des langues reconstruites ne figurant pas dans les langues fournies en données. La reconstruction optimale est celle qui respecte un principe comparable au principe de moindre action en physique. On associe une certaine action à la création d'un mot et à l'évolution phonétique et sémantique d'un mot. La reconstruction optimale est celle pour laquelle l'action totale est minimale. 
+Supposons par exemple qu'on ait deux mots M1 et M2 de sens S1 et S2 dans deux langues L1 et L2. Il s'agit de savoir si ces deux mots ont été créés de toute pièce séparément dans ces deux langues ou s'ils viennent d'un mot M3 de sens S3 dans langue L3, langue mère de L1 et L2. On calcule l'action associée à ces deux mots dans les deux hypothèses :
+origine séparée : action de la création de M1 + action de la création de M2
+origine commune : action de la création de M3 + action de l'évolution de (M3,S3) à (M1,S1) + action de l'évolution de (M3,S3) à (M2,S2)
+L'action d'une évolution augmente à la fois avec l'écart phonétique entre les mots et l'écart sémantique entre les sens des mots.
+On voit dans les formules ci-dessus que l'origine commune ne correspondra à la moindre action que si l'on peut trouver un couple (M3,S3) tel que :
+action de l'évolution de (M3,S3) à (M1,S1) + action de l'évolution de (M3,S3) à (M2,S2) < action de la création de M1 + action de la création de M2 - action de la création de M3 
+ce qui ne sera possible que si à la fois M1 est assez proche de M2 et S1 est assez proche de S2.
+L'action de l'évolution de (M3,S3) à (M1,S1) pourra être définie comme la somme de l'action de l'évolution de M3 à M1 et de l'action de l'évolution de S3 à S1. L'action de l'évolution de S3 à S1 correspond à une distance sémantique. On pourra définir l'action de l'évolution de M3 à M1 en découpant ces mots et en faisant correspondre chaque tranche de M3 à une tranche de M1 et en additionnant les actions correspondantes, qui devront prendre en compte les probabilités d'évolution d'un groupe de phonèmes vers un autre d'après les lois connues des linguistes. On pourra aussi avoir des correspondances croisées (métathèses) avec une contribution correspondante à l'action d'évolution.
+Les mots créés de toute pièce peuvent être considérés comme des mots empruntés à une "langue vide" ne contenant qu'un seul mot vide de sens non défini.
+Il faut aussi tenir compte de la régularité des correspondances. On pourra pour cela introduire des règles de transformation d'une suite de phonèmes en une autre, la création de cette règle étant associée à une certaine action. Une règle peut être réutilisée pour produire plusieurs mots d'une même langue.
+Il reste à déterminer les paramètres exacts définissant l'action. Ces paramètres sont liée à la probabilité que les évolutions se produisent.
+On pourra tester les paramètres de définition de l'action en reconstruisant une langue connue, par exemple le latin à partir de plusieurs langues latines.
+On pourra déterminer automatiquement les paramètres optimaux par méthode heuristique en reconstruisant le latin par exemple et en minimisant la différence entre le latin reconstruit et le latin réel. Il faudra pour cela définir une mesure de la différence entre deux langues.
+
+
+Complexité décroissante
+
+Il est étonnant que plus une langue est ancienne, plus elle est complexe. L'évolution va dans le sens de la simplification. Par exemple le proto-indo-européen distinguait le singulier, le duel et le pluriel. Le duel a disparu dans ses langues filles. Les déclinaisons en proto-indo-européen comportent 8 cas (nominatif, vocatif, accusatif, instrumental, datif, ablatif, génitif, locatif). Le latin n'en comporte que 6, l'instrumental et l'ablatif ayant disparu. Les conjugaisons comportaient également plus de temps en proto-indo-européen que dans ses langues filles. On aurait logiquement pu s'attendre à ce que les humains commencent à parler avec une langue rudimentaire qui se serait progressivement complexifiée. L'évolution vers la simplification constitue-t-il une adaptation au niveau intellectuel humain ? Une langue complexe pourrait en effet être adaptée à une espèce très évoluée, mais inadaptée à une autre espèce moins évoluée.
+
+
+Le terrien
+
+Humanus, humain en latin, vient de humus, la terre. En proto-indo-européen, homme se dit dhghemon et vient de dhghem ou ghdem ou ghdom (peut-être par métathèse), la terre ou la Terre. Selon Merritt Ruhlen, dans la langue originelle, tika signifiait terre et mano signifiait homme. Dhghemon pourrait venir de tika-mano, l'homme de la terre ou de la Terre, le terrien. Est-ce pour le distinguer d'autres hommes qui ne seraient pas de la terre ou de la Terre ?
+
+Indogermanisches Wörterbuch de Gerhard Köbler
+http://www.koeblergerhard.de/idgwbhin.html
+
+*g̑ʰđem-, *g̑ʰđom-, idg., Sb.: nhd. Erde, Erdboden; ne. earth (N.), floor (N.); RB.: Pokorny 414 (600/16), ind., iran., phryg./dak., gr., alb., ital., kelt., germ., balt., slaw., toch., heth.; W.: gr. χθών (chthōn), F., Erde, Erdbogen; W.: s. gr. χθαμαλός (chthamalós), Adj., niedrig, flach; W.: s. gr. χθόνιος (chthónios), Adj., der Erde angehörig, unterirdisch; W.: vgl. gr. χαμᾶζε (chamaze), Adv., zur Erde, zu Boden; W.: vgl. gr. χαμηλός (chamēlós), Adv., am Boden befindlich, niedrig; W.: vgl. gr. Δημήτηρ (Dēmḗtēr), Δαμάτηρ (Damatēr), Δαμμάτηρ (Dammatēr), F.=PN nhd. Demeter; W.: ? vgl. gr. νεοχμός (neochmós), Adj., neu; W.: lat. humus, M., Erde, Erdboden, Erdreich; W.: s. lat. homo, hemo (ält.), M., Mensch, Mann
+
+
+Les 27 racines mondiales selon Merritt Ruhlen
+
+aja	mère, parent féminin plus âgé
+aq'wa	eau
+bu(n)ka	genou, courber
+bur	cendres, poussière
+cun(g)a	nez, sentir
+kama	tenir
+kano	bras
+kati	os
+k'olo	trou
+kuan	chien
+ku(n)	qui
+kuna	femme
+mako	enfant
+maliq'a	sucer, têter, allaiter, poitrine
+mana	rester
+mano	homme
+mena	penser
+mi(n)	quoi
+pal	deux
+par	voler (dans les airs)
+poko	bras
+puti	vulve
+teku	jambe, pied
+tik	doigt, un
+tika	terre
+tsaku	jambe, pied
+tsuma	poil, cheveu
+
+
+Les grandes familles de langues selon Merritt Ruhlen :
+
+- Eurasiatique : indo-européen, japonais, eskimo-aléoute
+
+- Kartvélienne : géorgien
+
+- Dravidienne : sud de l'Inde
+
+- Afro-asiatique : sémitique, tchadique
+
+- Nilo-saharienne
+
+- Nigéro-kordofanienne : nombreuses langues africaines
+
+- Khoisane : Afrique du sud-ouest
+
+- Dene-caucasienne : chinois, tibétain, na-dene (langue amérindienne du Canada),  langues caucasiennes, basque, langues ienisséiennes (ket) (Sibérie centrale), burushaski (Pakistan)
+
+- Amérinde : langues amérindiennes autres que na-dene
+
+- Austrique : langues d'Asie du sud-est, de l'est de l'Inde et du Pacifique
+
+- Indo-pacifique : langues de Nouvelle-Guinée et de Tasmanie
+
+- Australienne
+
+
+Langages boréens selon le modèle de Starostin (d'après Wikipedia)
+http://en.wikipedia.org/wiki/Borean_languages
+
+    * "Borean"
+          o Nostratic (speculative, Holger Pedersen 1903)
+                + Afroasiatic (widely recognized family)[6]
+                + Eurasiatic (speculative, Joseph Greenberg 2000), c.f. Indo-Uralic
+                      # Indo-European (widely recognized family)
+                      # Uralic (widely recognized family)
+                      # Macro-Altaic (controversial; Roy Andrew Miller 1971, Gustaf John Ramstedt 1952, Matthias Castrén 1844)[7]
+                            * Turkic (widely recognized family)
+                            * Mongolic (widely recognized family)
+                            * Tungusic (widely recognized family)
+
+                            * Korean (language isolate)
+                            * Japonic (widely recognized family)
+                      # Paleosiberian (phylogenetic unity widely rejected)
+                            * Nivkh[8]
+                            * Eskimo–Aleut
+                            * Yukaghir (sometimes grouped with Uralic)
+                            * Chukotko-Kamchatkan
+                + Kartvelian (widely recognized family)[9]
+                + Dravidian (widely recognized family)[9]
+          o Dene–Daic (speculative, Starostin 2005)
+                + Dené–Caucasian (speculative, Nikolayev 1991; expanded by Bengtson 1997), c.f. Dené–Yeniseian (Edward Vajda 2008)
+                      # Na-Dené (widely recognized family)
+                      # Basque (language isolate)
+                      # Sino-Caucasian (speculative, Starostin 2006)
+                            * Sino-Tibetan (widely recognized family)
+                            * North Caucasian (speculative unification of East Caucasian and West Caucasian, Nikolayev & Starostin 1994)
+                            * Yeniseian (widely recognized family)
+                            * Burushaski (language isolate)
+                + Austric (speculative, Wilhelm Schmidt 1906)
+                      # Austroasiatic (widely recognized family)
+                      # Miao–Yao (widely recognized family)
+                      # Austro-Tai (speculative, Paul Benedict 1942)
+                            * Austronesian (widely recognized family)
+                            * Tai–Kadai (widely recognized family)
+
+
+Liens :
+
+Langages boréens : http://en.wikipedia.org/wiki/Borean_languages
+
+The Tower of Babel : http://starling.rinet.ru/
+
+Long range etymologies search : http://starling.rinet.ru/cgi-bin/query.cgi?basename=\data\eura\globet&root=config&morpho=0
+
+complete list : http://starling.rinet.ru/cgi-bin/response.cgi?root=config&morpho=0&basename=\data\eura\globet&first=1&off=&text_proto=&method_proto=substring&ic_proto=on&text_meaning=&method_meaning=substring&ic_meaning=on&text_nostr=&method_nostr=substring&ic_nostr=on&text_afas=&method_afas=substring&ic_afas=on&text_scc=&method_scc=substring&ic_scc=on&text_austr=&method_austr=substring&ic_austr=on&text_amer=&method_amer=substring&ic_amer=on&text_afr=&method_afr=substring&ic_afr=on&text_notes=&method_notes=substring&ic_notes=on&text_reference=&method_reference=substring&ic_reference=on&text_any=&method_any=substring&sort=proto&ic_any=on
+
+liste Swadesh: http://fr.wikipedia.org/wiki/Liste_Swadesh
+
+dictionnaire nostratique : http://www.dspace.cam.ac.uk/handle/1810/196512
+
+
+Proto-nostratique
+
+Selon Wiktionary:
+Langue hypothétique, qui serait l'ancêtre des langues indo-européennes, ouraliennes, altaïques, caucasiennes du Sud, et chamitosémitiques.
+
+    * Cette supra-famille serait issue d'un proto-nostratique parlé il y a dix mille ans au moins.
+
+
+Notation phonétique 
+
+voyelles :
+a
+ö
+è
+e (é)
+i
+ü
+u
+ô
+o
+
+consonnes :
+
+labiales :
+m
+b
+p
+v
+f
+
+dentales ou alvéolaires :
+n
+d
+t
+D 
+T
+s
+z
+S (ch)
+j
+r
+l
+
+vélaires :
+ñ ou N
+g
+k
+G ou R
+K ou H
+
+glottales  :
+h
+
+voyelles diphtonguées :
+y
+w
+
+
+Liste Swadesh de 207 mots du français
+http://fr.wikipedia.org/wiki/Liste_Swadesh
+Les mots en gras figurent également dans la liste de 100 mots.
+1.je 
+2.tu, vous (formel) 
+3.il 
+4.nous 
+5.vous (pluriel) 
+6.ils 
+7.ceci, celui-ci 
+8.cela, celui-là 
+9.ici 
+10.là 
+11.qui 
+12.quoi 
+13.où 
+14.quand 
+15.comment 
+16.ne ... pas 
+17.tout 
+18.beaucoup 
+19.quelques 
+20.peu 
+21.autre 
+22.un 
+23.deux 
+24.trois 
+25.quatre 
+26.cinq 
+27.grand 
+28.long 
+29.large 
+30.épais 
+31.lourd 
+32.petit 
+33.court 
+34.étroit 
+35.mince 
+36.femme 
+37.homme (mâle adulte) 
+38.homme (être humain) 
+39.enfant 
+40.femme (épouse) 
+41.mari 
+42.mère 
+43.père 
+44.animal 
+45.poisson 
+46.oiseau 
+47.chien 
+48.pou 
+49.serpent 
+50.ver 
+51.arbre 
+52.forêt 
+53.bâton 
+54.fruit 
+55.graine 
+56.feuille (d'un végétal) 
+57.racine 
+58.écorce 
+59.fleur 
+60.herbe 
+61.corde 
+62.peau 
+63.viande 
+64.sang 
+65.os 
+66.graisse 
+67.oeuf 
+68.corne 
+69.queue (d'un animal) 
+70.plume (d'un oiseau) 
+71.cheveux 
+72.tête 
+73.oreille 
+74.oeil 
+75.nez 
+76.bouche 
+77.dent 
+78.langue (organe) 
+79.ongle 
+80.pied 
+81.jambe 
+82.genou 
+83.main 
+84.aile 
+85.ventre 
+86.entrailles, intestins 
+87.cou 
+88.dos 
+89.poitrine 
+90.coeur (organe) 
+91.foie 
+92.boire 
+93.manger 
+94.mordre 
+95.sucer 
+96.cracher 
+97.vomir 
+98.souffler 
+99.respirer 
+100.rire 
+101.voir 
+102.entendre 
+103.savoir 
+104.penser 
+105.sentir (odorat) 
+106.craindre 
+107.dormir 
+108.vivre 
+109.mourir 
+110.tuer 
+111.se battre 
+112.chasser (le gibier) 
+113.frapper 
+114.couper 
+115.fendre 
+116.poignarder 
+117.gratter 
+118.creuser 
+119.nager 
+120.voler (dans l'air) 
+121.marcher 
+122.venir 
+123.s'étendre, être étendu 
+124.s'asseoir, être assis 
+125.se lever, se tenir debout 
+126.tourner (intransitif) 
+127.tomber 
+128.donner 
+129.tenir 
+130.serrer, presser 
+131.frotter 
+132.laver 
+133.essuyer 
+134.tirer 
+135.pousser 
+136.jeter, lancer 
+137.lier 
+138.coudre 
+139.compter 
+140.dire 
+141.chanter 
+142.jouer (s'amuser) 
+143.flotter 
+144.couler (liquide) 
+145.geler 
+146.gonfler (intransitif) 
+147.soleil 
+148.lune 
+149.étoile 
+150.eau 
+151.pluie 
+152.rivière 
+153.lac 
+154.mer 
+155.sel 
+156.pierre 
+157.sable 
+158.poussière 
+159.terre (sol) 
+160.nuage 
+161.brouillard 
+162.ciel 
+163.vent 
+164.neige 
+165.glace 
+166.fumée 
+167.feu 
+168.cendre 
+169.brûler (intransitif) 
+170.route 
+171.montagne 
+172.rouge 
+173.vert 
+174.jaune 
+175.blanc 
+176.noir 
+177.nuit 
+178.jour 
+179.an, année 
+180.chaud (température) 
+181.froid (température) 
+182.plein 
+183.nouveau 
+184.vieux 
+185.bon 
+186.mauvais 
+187.pourri 
+188.sale 
+189.droit (rectiligne) 
+190.rond 
+191.tranchant 
+192.émoussé 
+193.lisse 
+194.mouillé, humide 
+195.sec 
+196.juste, correct 
+197.près 
+198.loin 
+199.droite 
+200.gauche 
+201.à 
+202.dans 
+203.avec (ensemble) 
+204.et 
+205.si (condition) 
+206.parce que 
+207.nom 
+
+
+

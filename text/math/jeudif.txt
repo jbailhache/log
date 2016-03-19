@@ -1,0 +1,111 @@
+Jeux différentiels
+ aussi appelés jeux dynamiques ou systèmes réactifs
+
+Jeux à information complète
+
+Un jeu différentiel est un système dont l'état X évolue en fonctions des commandes de n joueurs selon la loi :
+
+X(0) = X0
+
+dX(t)/dt = a(t,X(t),u1(t), ... ,un(t)) 
+
+avec ui(t) Î U ensemble des commandes possibles
+
+ou dX(t)/dt = a(t,X(t),U(t)) avec U(t) = (u1(t), ... ,un(t)) 
+
+Chaque joueur a pour objectif de minimiser (ou maximiser) sa fonction de coût (ou de gain) :
+min Ji(y,s,u) = 
+ ó T 
+ fi(t,x(t),U(t))dt + mi(x(T))
+  
+ 
+ 
+ õ s 
+  
+ 
+
+On définit un hamiltonien Hi et un vecteur adjoint li pour chaque joueur :
+Hi(t,X(t),U(t),li(t)) = fi(t,X(t),u(t)) + li(t) . a(t,X(t),U(t))
+Les conditions d'optimalité sont :
+dX(t)/dt = ¶Hi(t)/¶li 
+
+X(0) = X0 
+
+dli(t)/dt = -¶Hi(t)/¶X(t) 
+
+li(T) = mi'(X(T)) 
+
+¶Hi(t)/¶ui(t) = 0 
+
+L'équilibre de Nash consiste à déterminer les valeurs initiales ou finales des vecteurs li de sorte que si on remplace un des li par une autre valeur, le résultat sera moins bon pour le joueur i.
+
+
+Généralisation aux jeux à information incomplète avec rétroaction
+
+cas discret
+automate
+Chaque joueur envoie une action u_i au système.
+Le système envoie à chaque joueur une rétroaction s_i qui dépend de son état x.
+fonction de transition de l'état : le nouvel état dépend de l'état précédent et des actions reçues.
+Décomposition du joueur en fonction de transition + mémoire.
+transition de l'état a du joueur en fonction de son état précédent et de la rétroaction reçue
+
+cas continu
+dx/dt = f(t,x,u_1,...,u_n)
+s_i=s_i(x)
+u_i = u_i(a_i)
+da_i/dt=g_i(t,a_i,s_i)
+
+fonction d'utilité l_i(s_i)
+
+problème : f connu, s_i() connus -> trouver g_i et u_i
+
+décomposition des joueurs en fonction de transition + mémoire :
+la fonction de transition T_i reçoit en entrée la rétroaction r_i et l'état de la mémoire q_i. Il produit en sortie l'action u_i et le nouvel état mémoire q_i'.
+T(q,r)=(q',u)
+modèle continu ou discret
+matrice de coefficients T_qr=(q',u)
+ou T_qrq'u = probabilité de transition
+
+entrée e=(r,q) -> sortie s=(q',u)
+s_i(t) = somme(j) T_ij(t) e_j(t)
+
+pour joueur i :
+s_ij(t) = somme(k) T_ijk(t) e_ik(t)
+
+delta x = f(t,x,U) U=u_1...u_n
+
+pour joueur i : max J_i(t) = somme(t) l(r_i(t))
+avec x(t)-x(t-1)=f(x(t-1),U(t))
+et u-ij(t) = somme(k) S_ijk(t) [r_ik(t);q_ik(t)]
+et q_ij(t)-q_ij(t-1)=somme(k) T_ijk(t) [r_ik(t);q_ik(t))
+
+[r_ik(t);q_ik(t)] -> r_ik(t) + q_ik(t) 
+avec r = [r_1;...;r_R;0;...0]
+     q = [0;...;0;q_1;...q_Q]
+
+L_i = somme(t) j_i(t) - lambda_i(t) (x(t)-x(t-1)-f(x(t-1),U(t)) - somme(j) mu_ij (u_ij(t)-somme(k) S_ijk(t)(r_ik(t)+q_ik(t)) - somme(j) nu_ij (q_ij(t)-q_ij(t-1) - somme(k) T_ijk(t) (r_ik(t)+q_ik(t))
+= L_i(x,U,r,S,T,q)
+
+(dp = dérivée partielle)
+
+dp L_i/dp x_i(t) = 0
+dp L_i/dp u_ij = 0
+dp L_i/dp r_ij = 0
+dp L_i/dp S_ijk = 0
+dp L_i/dp T_ijk = 0
+dp L_i/dp q_ij = 0
+
+dp L_i/dp x_j(t) = 0 = -lambda_i(t) (1-dp/dp x_j(t) f(x(t-1),U(t)) + lambda_i(t-1)(-1-dp/dp x_j(t) f(x(t),u(t+1))
+dp L/dp u_ij(t) = 0 = lambda_i(t) dp/dp u_ij(t) f(x(t+1),U(t))
+dp L_i/dp r_ik(t) = 0 = somme(j) mu_ij S_ijk + somme(j) nu_ij T_ijk(t)
+dp L_i/dp sigma_ijk(t) = 0 = mu_ij(t)r_ik(t) + q_ik(t)
+dp L_i/dp T_ijk(t) = 0 = nu_ij(r_ik(t)+q_ik(t))
+dp L_i/dq_ijk(t)=0=somme(j) mu_ij(t) S_ijk(t) + somme(j) nu_ij(t) T_ijk(t) - somme(j) nu_ij + somme(j) nu_ij(t+1)
+
+lambda_i(t+1) - lambda_i(t) = lambda(t) dp/dp x_j(t) f(x(t-1),u(t))
+
+dp L/dp x - d/dt dp L/dp(dx/dt) = 0
+
+
+

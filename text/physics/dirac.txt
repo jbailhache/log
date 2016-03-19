@@ -1,0 +1,46 @@
+With a metrics (+ - - -)
+the Klein-Gordon equation is : ([] + m^2) PSI(x) = 0
+with [] = d/dt^2 - d/dx^2 - d/dy^2 - d/dz^2
+
+Let gamma^mu (i=0..3) be 4 matrices :
+
+gamma^0 = ONE 0
+          0 -ONE 
+
+gamma^k = 0       sigma^k
+          -sigma^k 0
+
+ONE = 1 0 
+      0 1
+
+sigma^1 = 0 1
+          1 0
+
+sigma^2 = 0 -i
+          i  0
+
+sigma^3 = 1 0
+          0 -1
+
+Let A/ be (sum over mu = 0,1,2,3 of ) gamma^mu A_mu
+
+The Dirac equations are :
+	(i d/ - m) PSI(x) = 0
+and :
+	i (d_mu PSIbar) gamma^mu + m PSIbar = PSIbar (i <-d/ + m) = 0
+
+The lagrangian is :
+	L = PSIbar (i d/ - m) PSI
+	= - PSIbar (i <-d/ + m) PSI
+        = 1/2 (i PSIbar <-d/ PSI - i PSIbar d/ PSI) - m PSIbar PSI
+	= 1/2 (i PSIbar gamma^mu d_mu PSI - i d_mu PSIbar gamma^mu PSI) - m PSIbar PSI
+
+	L_DEM = PSIbar (i D/ - m) PSI = PSIbar (i d/ - e A/ - m) PSI
+	with D_mu = d_mu + i e A_mu
+
+	L_QED = -1/4 F_mu_nu F^mu^nu + PSIbar (i D/ - m) PSI 
+
+See also http://tjd-online.simplenet.com/Dirac/Dirac.html
+
+
+

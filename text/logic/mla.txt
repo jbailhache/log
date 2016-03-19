@@ -1,0 +1,25 @@
+\x.x = I
+\x.y = Ky if x not in y
+\x.ab = S \x.a \x.b = \x.a (1) \x.b
+\x.a(n)b = \x.a (n+1) \x.b
+\x.(a =n= b) == \x.a =n+1= \x.b
+\x.(p =n> q) == (\x.p =n+1> \x.q)
+
+(a(n+1)b)x = (ax) (n) (bx)
+(a =n+1= b) x == (ax =n= bx)
+(p =n+1> q) x == (px =n> qx)
+
+Interpretation :
+	a (0) b = ab
+	a (1) b = the x for which ax = bx
+	          or for all x in U, ax = bx
+        p =0> q : p => q
+        p =1> q : p included in q
+  		
+
+
+
+
+
+
+

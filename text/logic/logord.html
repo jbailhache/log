@@ -1,0 +1,300 @@
+<html>
+<head>
+<title>Les systèmes de logiques de Turing basés sur les ordinaux</title>
+</head>
+<body>
+<h2>Les systèmes de logiques de Turing basés sur les ordinaux</h3>
+D'après "Systems of Logic based on Ordinals" de Alan M. Turing.
+<p>
+Le théorème de Gödel montre que chaque système de logique (système formel) est incomplet, mais il indique aussi comment, à partir d'un système L, un système plus complet L' peut être obtenu. En répétant le processus, on obtient une suite de systèmes de plus en plus complets L, L1 = L', L2 = L1', ... On peut contruire une logique L omega dans laquelle les théorèmes démontrables sont la totalité des théorèmes démontrables à l'aide des logiques L, L1, L2, ... On peut ensuite construire L 2 omega à partir de L omega de la même façon qu'on a construit L omega à partir de L. De cette façon on peut associer un système de logique à tout ordinal constructif. On peut se demander si un système de logique de ce type est complet en ce sens que à chaque problème A correspond un ordinal alpha tel que A est puisse être résolu au moyen de la logique L alpha.
+
+<h3>Le calcul des conversions. Représentations de Gödel.</h3>
+
+Le "Calcul des conversions" (lambda-calcul) de Church permet une plus grande clarté et simplicité d'expression.
+<p>
+On définit la notion d'expression bien formée (EBF) à laquelle est associée des variables libres et/ou liées. Une EBF est soit :
+<ul>
+<li> une variable, c'est sa seule variable libre et elle n'a pas de variable liée
+<li> delta, qui n'a pas de variable libre ni liée
+<li> {M}(N) où M et N sont des EBF, dont les variables libres (respectivement liées) sont les variables libres (respectivement liées) de M et celles de N
+<li>lambda V [M] où M est une EBF et V une de ses variables libres, ses variables libres sont celles de M sauf V, et ses variables liées sont celles de M ainsi que V.
+</ul>Une EBF est dite en forme normale si elle n'a pas de partie de la forme {lambda V [M]}(N) ni de la forme {{delta}(M)}(N) où M et N n'ont pas de variable libre.
+<p>
+On dit qu'une EBF est immédiatement convertible en une autre si elle peut être obtenue :
+<ul>
+<li>(i) en remplaçant une occurence d'une partie bien formée lambda V [M] par lambda U [N] où la variable U n'apparait pas dans M et N est obtenue en remplaçant V par U
+<li>(ii) en remplaçant une partie bien formée {lambda V [M]} (N) par la formule obtenue à partir de M en remplaçant V par N, à condition que les variables liées de M soient différentes de V et des variables libres de N
+<li>(iii) en effectuant l'opération inverse de la précédente
+<li>(iv) en remplaçant une partie bien formée {{delta}(M)}(M) par lambda f [lambda x [{f} ({f}(x))]] si M est en forme normale et n'a pas de variable libre
+<li>(v) en remplaçant une partie bien formée {{delta}(M)}(N) par lambda f [lambda x [{f}(x)]] si M et N sont en forme normale, ne sont pas transformables
+
+ l'un en l'autre par application répétée de (1), et n'ont pas de variable libre.
+<li> (vi) en effectuant l'opération inverse de (iv)
+<li> (vii) en effectuant l'opération inverse de (v)
+</ul>
+</ul>
+Une formule A est dite convertible en une autre formule B (abrégé en "A conv B") s'il existe une suite finie de conversions immédiate permettant de passer d'une formule à l'autre.
+<p>
+Notations :
+<ul>
+<li> I -> lambda x [x] signifie que I est une abréviation pour lambda x [x]
+<li> Si une formule F est (représentée par) un unique symbole on abrège {F}(X) par F(X).
+<li> une formule {{F}(X)}(Y) peut être abrégée en {F}(X,Y) ou F(X,Y)
+<li> une formule lambda V1 [ ... [lambda Vr [M]] ... ] peut être abrégée en lambda V1 ... Vr . M
+</ul>
+On introduit les abréviations :
+<ul>
+<li> 1 -> lambda f x . f(x)
+<li> 2 -> lambda f x . f(f(x))
+<li> 3 -> lambda f x . f(f(f(x))) 
+<li> etc...
+</ul>
+ainsi que S -> lambda u f x . f(u(f,x))
+<p>
+Si n représente un entier positif, S(n) est convertible en une formule qui représente son successeur.
+<p>
+Si f est une fonction d'entiers positifs ayant pour valeur des entiers positifs et qu'il y a une EBF F ne contenant pas delta telle que pour tout entier positif n, F(n) est convertible en la formule représentant f(n), alors on dit que f(n) est lambda-definissable ou formellement définissable, et que F définit formellement f(n).
+<p> On introduit l'abréviation X+Y -> {lambda a b f x . a(f,b(f,x))}(X,Y)
+<p>
+On dit qu'une EBF G énumère la suite G(1), G(2), ... et toute autre suite dont les termes sont convertibles en ceux de cette suite.
+<p>
+Quand une formule est convertible en une autre qui est en forme normale, on dit que la seconde est la forme normale de la première.
+<p>
+On a les théorèmes suivants concernant les formes normales :
+<ul>
+<li> (A) Si une formule a 2 formes normales elles sont convertibles l'une en l'autre en utilisant seulement (i)
+<li> (B) Si une formule a une forme normale alors toute partie bien formée de cette formule a une forme normale
+<li> (C) Aucun programme ne peut déterminer si une formule a une forme normale
+<li> (D) On appelle représentation de Gödel (RDG) d'une formule un nombre qui représente cette formule. Il existe une EBF form telle que si a est la RDG d'une EBF A sans variable libre alors form(a) conv A.
+<li> (E) Il existe une EBF Gr telle que si A est une EBF avec une forme normale sans variable libre almors Gr(A) conv a où à est la RDG d'une forme normale de A.
+</ul>
+
+<h3>Calculabilité effective. Abréviation de traitement.</h3>
+
+Une fonction est dite "effectivement calculable" si ses valeurs peuvent être trouvées par un processus purement mécanique.
+<p>
+On introduit une EBF w avec la propriété w(m,n) conv r si r est le plus grand entier positif, s'il existe, pour lequel m puissance r divise n et r = 1 sinon. On introduit aussi Dt avec les propriétés :
+<ul>
+<li> Dt(n,n) conv 3
+<li> Dt(n+m,n) conv 2
+<li> Dt(n,n+m) conv 1
+</ul>
+
+<h3>Théorèmes arithmétiques</h3>
+
+On appellera théorème arithmétique un théorème de la forme "theta(x) s'annulle pour un nombre infini de nombres naturels x" où theta(x) est une fonction primitive récursive.
+<p>
+Une forme alternative pour les théorèmes arithmétiques est "four tout nombre naturel x il existe un nombre naturel y tel que phi(x,y) s'annulle" où phi(x,y) est primitive récursive.
+<p>
+La question de la vérité d'un énoncé de la forme "f(x) s'annulle-t-elle pour tout x" ou f(x) est une fonction calculable peut être réduite à une question sur la vérité d'un théorème arithmétique, mais la réciproque est fausse.
+<p>
+Tout théorème arithmétique est équivalent à un énoncé de la forme "A(n) est convertible en 2 pour toute EBF n représentant un entier positif", A étant une EBF déterminée par le théorème. A est alors dit dual. De tels énoncés sont réductibles à des théorèmes arithmétiques.
+<p>
+
+<h3>Un type de problème qui n'est pas arithmétique</h3>
+Suppo
+sons que nous disposons d'un oracle permettant de résoudre les problèmes arithmétiques. Cet oracle ne peut être une machine. A l'aide de cet oracle nous pouvons fabriquer un nouveau type de machine, les o-machines, ayant parmi leurs opérations de bases la résolution d'un problème arithmétique donné.
+<p>
+La question est-ce qu'une de ces machines imprime une infinité de 0 ou 1 n'est pas un problème arithmétique.
+<p>
+
+<h3>Les théorèmes syntaxique en tant que théorèmes arithmétiques</h3>
+
+Considérons une nouvelle règle qui produit uniquement des formules démontrables au sens originel.
+Considérons une énumération des formules démontrables.
+Soit phi(r)la RGD de la r-ième formule de l'énumération. 
+Soit psi(r) la RDG de la r-ième formule obtenue par la nouvelle règle
+Les énoncés de la forme<br>
+(r) (existe s) [psi(r) = phi(s)]<br>
+sont arithmétiques.
+
+<h3>Formules logiques</h3>
+
+Une formule L est appelée formule logique ou logique si elle vérifie la propriélé : si A est une formule telle que L(A) conv 2, alors A est dual, c'est à dire A(n) conv 2 pour toute EBF n représentant un entier positif.
+<br>
+Si L est une logique, l'ensemble des formules A telles que L(A) conv 2 est appelé l'extension de L.
+<br>
+Il existe une formule X telle que, si M a une forme normale, n'a pas de variable libre et n'est pas convertible en 2, alors X(M) conv 1, mais si M conv 2, alors X(M) conv 2.
+<br>
+Si L est une logique, alors lambda x . X(L(x)) est aussi une logique dont l'extension est la même que celle de L, et qui a la propriété que si A n'a pas de variable libre, alors {lambda x . X(L(x))}(A) est soit toujours convertible en 1 ou en 2 soit n'a pas de forme normale. Une logique avec cette propriété sera dite standardisée.
+<br>
+On dira qu'une logique L' est au moins aussi complète qu'une logique L si l'extension de L est un sous-ensemble de l'extension de L'. La logique L' est plus complète que la logique L si l'extension de L est un sous-ensemble propre de l'extension de L'.
+<br>
+Supposons qu'on a un ensemble de règles qui permettent de démontrer que des formules sont duales, c'est-à-dire qu'on a un système de logique symbolique dans lequel les propositions démontrées expriment le fait que certaines formules sont duales. Alors on peut trouver une formule logique dont l'extension consiste en les formules qui peuvent être démontrées duales par ces règles, autrement dit il y a une règle pour obtenir la formule logique à partir du système de logique symbolique. En fait le système de logique nous permet d'obtenir une fonction calculable d'entiers positifs dont les valeurs parcourent les RDG des formules démontrables au moyen des règles données. Par le théorème d'équivalence des fonctions calculables et lambda-définissables, il existe une formule J telle que J(1), J(2), ... sont les RDG de ces formules. Posons maintenant :
+<p>
+W -> lambda j v . P (lambda u . delta (j(u), v), 1, I, 2)
+<p>
+Alors W(J) est une logique qui possède les propriétés requises.
+<br>
+Réciproquement, il existe une formule W' telle que si L est une logique, alors W'(L) énumère l'extension de L, car il existe une formule Q telle que Q(L,A,n) conv 2 si et seulement si L(A) est convertible en 2 en moins de n étapes. On pose alors :
+<p>
+W' = lambda l n . form (w (2, P(lambda x . Q (l, Q (l, form (w(2,x)), w(3,x)), n)))
+<br>
+Dans le cas où on a une logique symbolique dont les propositions peuvent être interprétées comme des propositions arithmétiques mais ne sont pas exprimées sous forme de dualité de formules, on a encore une formule logique correspondante, mais sa relation avec la logique symbolique n'est pas si simple.
+<br>
+Nous nous intéresserons principalement aux questions de complétude.
+<br>
+On dit qu'une formule logique L est complète si son extension inclut toutes les formules duales, autrement dit elle permet de démontrer tous les théorèmes arithmétiques vrais. Le théorème de Gödel entraine qu'aucune formule logique n'est complète.
+<br>
+Soit Y une EBF telle que Y(n) est une logique pour tout entier positif n. Les formules de l'extension de Y(n) sont énumérées par W(Y(n)) et les extensions combinées de ces logiques par :
+<p>
+lambda r . (Y (w(2,r), w(3,r)))
+<p>
+Si on pose
+<p>
+Gamma -> lambda y . W' (lambda r . W (y, w(2,r), w(3,r))))
+<p>
+alors Gamma(Y) est une logique dont l'extension est l'extension combinée de Y(1), Y(2), Y(3), ...
+<p>
+A toute EBF L on peut associer une EBF V(L) telle qu'une condition nécessaire et suffisante pour que L soit une formule logique est que V(L) soit duale. Soit Nm une EBF qui énumère toutes les formules avec des formes normales et pas de variables libres. Alors la condition pour que L soit une logique est que L(Nm(r),s) conv 2 pour tous entiers positifs r, s, c'est-à-dire que lambda a . L(Nm(w(2,a), w(3,a)) soit dual.
+<br>
+On peut poser :
+<p>
+V -> lambda l a . l (Nm (w(2,a)), w(3,a))
+
+<h3>Ordinaux</h3>
+
+On définit une série D(x) munie d'une relation d'ordre G(x,y) par D et G vérifiant (7.1) :
+<ul>
+<li> G(x,y) & G(y,z) => G(x,z)
+<li> D(x) & D(y) => G(x,y) v G(y,x) v x=y
+<li> G(x,y) => D(x) & D(y)
+<li> ~G(x,x)
+</ul>
+La série est dite bien ordonnée et la relation d'ordre est appelée un ordinal si toute sous-série non vide a un premier terme, c'est-à-dire si :
+<p>
+(D') {(existe x) (D'(x)) & (x) (D'(x) => D(x)) => (existe z) (y) [D'(z) & (D'(y) => G(z,y) v z=y)]} (7.2)
+<p>
+Cette condition est équivalente à celle selon laquelle toute sous-suite descendante se termine :
+<p>
+(x) {D'(x) => D(x) & (existe y) (D'(y) & G(y,x))} => (x) (~D'(x)) (7.3)
+<p>
+La relation d'ordre G(x,y) est dite similaire à G'(x,y) s'il existe une bijection entre les séries transformant une relation en l'autre.
+<p>
+Les relations d'ordre sont considérées comme appartenant au même ordinal si et seulement si elles sont similaires.
+<p>
+On aimerait nommer tous les ordinaux mais ça n'est pas possible, car la classe des ordinaux n'est pas dénombrable. Les restrictions qu'on impose sont :
+<ul>
+<li> D(x) implique que x est un entier positif
+<li> D(x) et G(x,y) sont calculables
+</ul>
+D et G peuvent alors être décrits par une seule EBF Omega avec les propriétés :
+<ul>
+<li> Omega(m,n) conv 4 si D(m) ou D(n) sont faux
+<li> Omega(m,n) conv 3 si D(m) est vrai
+<li> Omega(m,n) conv 2 si D(m), D(n), G(m,n) ~(m=n) sont vrais
+<li> Omega(m,n) conv 1 si D(m), D(n), ~G(m,n), ~(m=n) sont vrais
+</ul>
+Etant donné les conditions auxquelles D(x) et G(x,y) sont soumis, Omega satisfait aussi :
+<ul>
+<li> (a) Si Omega(m,n) est convertible en 1 ou 2, alors Omega(m,m) et Omega(n,n) sont convertibles en 3
+<li> (b) Si Omega(m,m) est Omega(n,n) sont convertibles en 3, alors Omega(m,n) est convertible en 1, 2 ou 3
+<li> (c) Si Omega(m,n) est convertible en 1, alors Omega(n,m) est convertible en 2 et réciproquement
+<li> (d) Si Omega(m,n) et Omega(n,p) sont convertibles en 1, alors Omega(m,p) aussi
+<li> (e) Il n'y a pas de suite m1, m2, ... telle que Omega(m i+1, m i) conv 2 pour tout entier positif i
+<li> (f) Omega(m,n) est toujours convertible en 1, 2, 3 ou 4
+</ul>
+Si une formule Omega satisfait ces conditions, alors il existe des fonctions propositionnelles correspondantes D(x) et G(x,y). On dit alors que Omega est une formule ordinale si elle satisfait les conditions (a) - (f).
+<br>
+Il s'ensuit que Dt est une formule ordinale représentant omega.
+<p>
+On définit :
+<ul>
+<li> U -> lambda u f x . u (lambda y . f (y(I,x)))
+<li> Suc -> lambda a u f x . f (a(u,f,x))
+</ul>
+On définit une relation d'ordre partielle <, la notion de fomule ordinale C-K (pour Church-Kleene) et la notion de représentation d'ordinaux par des formules :
+<ul>
+<li> (1) Si A conv B, alors A < C => B < C et C < A => C < B
+<li> (2) A < Suc(A)
+<li> (3) Pour tous entiers positifs m et n, lambda u f x . R(n) < lambda u f x . R(m) implique lambda u f x . R(n) < lambda u f x . u(R)
+<li> (4) Si A < B et B < C alors A < C
+<li> (5) A < B seulement si c'est nécessaire pour satisfaire (1) - (4)
+<li> (6) Si A conv B et A est une formule ordinale C-K alors B est une formule ordinale C-K
+<li> (7) U est une formule ordinale C-K
+(8) Si A est une formule ordinale C-K, alors Suc(A) est une formule ordinale C-K
+(9) Si lambda u f x . R(n) est une formule ordinale C-K et lambda u f x . R(n) < lambda u f x . R(S(n)) pour tout entier positif n, alors lambda u f x . u(R) est une formule ordinale C-K.
+(10) Une formule est une formule ordinale C-K seulement si c'est nécessaire pour satisfaire (6) - (9)
+(11) Si A conv B et A représente alpha, alors B représente alpha
+(12) U représente 1
+(13) Si A représente alpha alors Suc(A) représente alpha+1
+(14) Si lambda u f x . R(n) représente alpha n pour tout entier positif n, alors lambda u f x . u(R) représente la limite supérieure de la suite a1, a2, a3, ...
+(15) Une formule représente un ordinal seulement en vertu de (11) - (14)
+</ul>
+On représente un ordinal représenté par A par Xi A. On écrit A <= B pour A < B ou A conv B.
+<p>
+Si phi est une propriété telle que 
+<ul>
+<li> Si A conv B et phi(A) alors phi(B)
+<li> phi(U)
+<li> Si phi(A) alors phi(Suc(A))
+<li> Si phi (lambda u f x . R(n)) et lambda u f x . R(n) < lambda u f x . R(S(n)) pour tout entier positif n, alors phi (lambda u f x . u(R))
+</ul>
+alors phi(A) pour toute formule ordinale C-K A.
+<p>
+On a les théorèmes suivants :
+<ul>
+<li> Toute formule ordinale C-K est convertible en la forme lambda u f x . B où B est en forme normale
+<li> Il existe une méthode qui permet de déterminer pour toute formule ordinale C-K en quelle forme U, Suc (lambda u f x . B), lambda u f x . u(R) (où u est libre dans R) elle est convertible, et de déterminer B ou R.
+<li> Si A représente un ordinal, Xi A est unique. Si Xi A et Xi B existent et A < B, alors Xi A < Xi B.
+<li> Si A, B, C sont des formules ordinales C-K et B < A, C < A alors soit C < C, C < B ou B conv C.
+<li> Une formule A est une formule ordinale C-K si
+<ul>
+<li> U <= A
+<li> Si lambda u f x . u(R) <= A et n est un entier positif alors lambda u f x . R(n) < lambda u f x . R(S(n))
+<li> Pour toutes EBF B, C avec B < A, C < A, on a B < C, C < B ou B conv C, mais jamais B < B
+<li> Il n'y a pas de suite infinie B1, B2, ... telle que B r < B r- < A pour tout r
+</ul>
+<li> Il existe une formule H telle que, si A est une formule ordinale C-K, alors H(A) est une formule ordinale représentant le même ordinal. H(A) n'est pas une formule ordinale sauf si A est une formule ordinale C-K.
+</ul>
+
+<h3>Logiques ordinales</h3>
+
+Une logique ordinale est une EBF Lambda telle que Lambda(Omega) est une formule logique si Omega est une formule ordinale.
+<p>
+Voyons maintenant comment on peut obtenir des logiques ordinales.
+<p>
+Supposons qu'on a une classe W de systèmes logiques, et une méthode qui permet, à partir d'un système C de W, d'obtenir un nouveau système C' de W tel que les formules démontrables par C' incluent celles démontrables par C. Soit un système valide C0 de W. Supposons enfin que, étant donnée une suite calculable C1, C2, ... de systèmes de W, le "système limite" appartient aussi à W. Dans ces circonstances, on peut construire une logique ordinale. Associons des entiers positifs aux systèmes de sorte que à chaque C correszpond un entier positif m_C et que m_C décrit complètement les règles de procédure de C. Alors il existe une EBF K telle que K(m_C) conv m_C' pour tout C de W, et il existe une EBF Theta telle que, si D(r) conv m_C pour tout entier positif r, alors Theta(D) conv m_C, où C est le système limite ce C1, C2, ... A chaque système C de W on peut associer une formule logique L_C, la relation entre eux est que si G est une formule de W et le théorème arithmétique correspondant à G affirme que B est dual, alors L_C(B) conv 2 si et seulement si G est démontrable dans C. Alors il existe une EBF G telle que G(m_C) conv L_C pour tout C de W. Soit N -> lambda a . G (a(Theta,K,M_C0)). Alors N(A) est une formule logique pour toute formule ordinale C-K A, et si A < B, alors N(B) est plus complète que N(A), pourvu qu'il existe des formules démontrables dans C' mais pas dans C pour tout C valide de W.
+<p>
+On peut maintenant considérer des classes particulières W de systèmes. Pour W on prend la classe des systèmes des Principia Mathematica en leur adjoignant des ensembles d'axiomes.
+<p>
+A tout système C de W on peut associer une fonction primitive récursive P_c(m,n) signifiant "m est la RDG d'une démonstration de la formule dont la RDG est n". On appelle la formule de récursion correspondante Proof_C[x_0,y_0] (c'est-à-dire Proof_C[f(m)0,f(n)0] est démontrable si P_C(m,n) est vrai, et sa négation est démontrable sinon.C' est alors obtenu à partir de C en lui ajoutant toutes les formules de la forme
+<p>
+(existe x_0) Proof_C [x_0, f(m)0] => F
+<p>
+où m est la RDG de F.
+<p>
+
+<h3>Questions de complétude</h3>
+
+Le but des logiques ordinales est d'éviter autant que possible les effets du théorème de Gödel qui entraine qu'il est impossible d'obtenir une formule logique complète ou un système de logique complet. Mais on peut à partir d'un système donné en obtenir un plus complet par adjonction  en tant qu'axiomes de formules non démontrables dans le système d'origine, et on peut obtenir un système encore plus complet par répétition de ce processus, et ainsi de suite. La répétition de ce processus donne un nouveau système pour chaque formule ordinale C-K.
+<p>
+Une logique ordinale Lambda est dite invariante jusqu'à un ordinal alpha si pour toutes formules ordinales Omega, Omega' représentant le même ordinal inférieur à alpha, l'extension de Lambda(Omega) est identique à l'extension de Lambda(Omega'). Une logique ordinale est invariante si elle est invariante jusqu'à chaque ordinal représenté par une formule ordinale.
+<p>
+On peut montrer qu'il existe des logiques ordinales complètes, mais il n'existe pas de logique ordinale invariante complète.
+<p>
+On a les théorèmes d'incomplétude suivants :
+<ul>
+<li> Si une logique ordinale Lambda est invariante jusqu'à un ordinal alpha, alors pour toute formule ordinale Omega représentant un ordinal beta inférieur à alpha, l'extension de Lambda(Omega) est contenue dans la somme des extensions des logiques Lambda(P) où P est fini.
+<li> Si une logique ordinale Lambda est invariante C-K jusqu'à un ordinal alpha, alors pour toute formule ordinale C-K A représentant un ordinal b inférieur à alpha, l'extension de Lambda(H(A)) est contenue dans la somme des extensions des logiques Lambda(H(F)) où F est une formule ordinale C-K représentant un ordinal inférieur à omega puissance 2.
+</ul>
+
+<h3>L'hypothèse du continu. Une disgression.</h3>
+
+L'hypothèse du continu affirme que 2 puissance aleph_0 = aleph_1, en d'autres termes, si omega_1 est le plus petit ordinal alpha supérieur à omega tel qu'une série avec le type d'ordre alpha ne peut pas être mis en bijection avec les entiers positifs, alors les ordinaux inférieurs à omega_1 peuvent être mis en bijection avec les entiers positifs.
+
+<h3>Le but des logiques ordinales</h3>
+
+Le raisonnement mathématique peut être vu comme l'exercice d'une combinaison de 2 facultés : l'intuition et l'ingéniosité.
+<p>
+Etant donnée l'impossibilité de trouver une logique formelle qui élimine complètement la nécessité d'utiliser l'intuition, on se tourne vers des systèmes de logique non constructifs dans lesquels les étapes d'une démonstrations ne sont pas tous mécaniques, certains étant intuitifs. Un exemple de logique non constructive est donné par toute logique ordinale.
+
+<h3>Logiques ordinales de Gentzen</h3>
+
+Pour prouver la consistance d'un certain système de logique formelle, Gentzen a utilisé le principe d'induction transfinie sur les ordinaux inférieurs à epsilon_0 et a suggéré qu'une induction transfinie menée suffisemment loin suffirait à résoudre tous les problèmes de consistance.
+
+
+</ul>
+
+</body>
+</html>

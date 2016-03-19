@@ -1,0 +1,129 @@
+<HTML>
+<head>
+<title>Intelligence cr&eacute;ative, r&eacute;gularit&eacute;s et compression</title>
+<meta name="keywords" content="intelligence,r&eacute;gularit&eacute;,compression,logique,cr&eacute;ativit&eacute;,r&eacute;flexion,G&ouml;del,Feferman">
+</head>
+<body>
+<h3>Intelligence cr&eacute;ative, r&eacute;gularit&eacute;s et compression</h3>
+
+<p>
+Le but des math&eacute;matiques est d'&eacute;tablir des v&eacute;rit&eacute;s absolues qui ne sont pas
+li&eacute;es &agrave; une r&eacute;alit&eacute; physique particuli&egrave;re. En ce sens, les math&eacute;matiques
+peuvent &ecirc;tre consid&eacute;r&eacute;es comme l'&eacute;tude du n&eacute;ant, et paradoxalement ce n&eacute;ant
+a une structure tr&egrave;s riche. Pour &eacute;tablir ces v&eacute;rit&eacute;s de fa&ccedil;on certaine,
+des math&eacute;maticiens comme Hilbert voulaient les faire reposer sur une construction
+rigoureuse faite de v&eacute;rit&eacute;s simples consid&eacute;r&eacute;es comme &eacute;videntes appel&eacute;es
+axiomes, assembl&eacute;es gr&agrave;ce &agrave; des r&eacute;gles consid&eacute;r&eacute;es &eacute;galement comme &eacute;videntes.
+C'est ce qu'on appelle un syst&egrave;me formel. 
+<p>
+Mais G&ouml;del a d&eacute;montr&eacute; que dans
+tout syst&egrave;me formel assez puissant pour poss&eacute;der le concept de nombre,
+on peut construire une proposition qui exprime sa propre ind&eacute;montrabilit&eacute; :
+les propositions et les d&eacute;monstrations sont cod&eacute;es par des nombres et on
+construit une proposition de la forme : 
+<br>
+"Il n'existe pas de nombre qui
+code une d&eacute;monstration de la proposition cod&eacute;e par le nombre g." 
+<br>
+et qui a 
+pour code le nombre g lui-m&ecirc;me. Pour cela on part de la proposition F
+cod&eacute;e par le nombre f :
+<br>
+"Il n'existe pas de nombre qui code une d&eacute;monstration de la proposition 
+cod&eacute;e par le nombre qui code la proposition obtenue en substituant par 
+le nombre u la variable libre de la proposition cod&eacute;e par le nombre u."
+<br>
+Cette proposition comporte une variable libre u.
+En rempla&ccedil;ant cette variable par le code f de cette proposition, on obtient
+la proposition G cod&eacute;e par g :
+<br>
+"Il n'existe pas de nombre qui code une d&eacute;monstration de la proposition
+cod&eacute;e par le nombre qui code la proposition obtenue en substituant par 
+le nombre f la variable libre de la proposition cod&eacute;e par le nombre f,
+c'est-&agrave;-dire la proposition F". 
+<br>
+Or la proposition obtenue en substituant par le nombre f la variable libre de
+F &eacute;tant la proposition G, celle-ci peut s'&eacute;crire : 
+<br>
+"Il n'existe pas de nombre qui code une d&eacute;monstration de G" 
+<br>
+c'est-&agrave;-dire :
+<br>
+"Je ne suis pas d&eacute;montrable".
+<br>
+On peut remarquer que cette construction est isomorphe &agrave; celle du 
+combinateur de point fixe en logique combinatoire et en lambda-calcul,
+consistant &agrave; d&eacute;finir le point fixe d'une fonction comme l'auto-application
+de cette fonction et de la fonction d'auto-application : 
+Y f = A (B f A) = B f A (B f A) = f (A (B f A))
+La construction
+de G consiste en quelque sorte &agrave;  
+construire un point fixe de la non d&eacute;montrabilit&eacute;.
+
+<p>
+On a donc une propositon G qui exprime sa propre ind&eacute;montrabilit&eacute; dans le
+syst&egrave;me formel consid&eacute;r&eacute;.
+Si elle est vraie, le syst&egrave;me est incomplet. Si elle est fausse, alors elle
+est d&eacute;montrable et le syst&egrave;me est inconsistant.
+<p>
+Pour franchir cette limitation, on pourrait ajouter la proposition G en axiome &agrave; un syst&egrave;me S0
+incomplet dans lequel elle n'est pas d&eacute;montrable. 
+On peut &eacute;galement ajouter une proposition appel&eacute;e principe de r&eacute;flexion 
+qui dit que si d est le
+code d'une d&eacute;monstration D et p est le code de la conclusion de D, alors
+la proposition P cod&eacute;e par p est vraie.
+Ce principe consiste en quelque sorte &agrave; donner au syst&egrave;me une connaissance 
+de lui-m&ecirc;me.
+Mais on obtient alors un 
+nouveau syst&egrave;me formel S1 auquel on peut appliquer le m&ecirc;me raisonnement pour
+obtenir une proposition G1 qui n'est pas d&eacute;montrable dans S1. On pourrait
+alors ajouter S1 en axiome &agrave; G1 pour obtenir un syst&egrave;me S2, et ainsi de suite.
+On pourrait m&ecirc;me englober cette suite infinie de syst&egrave;mes dans un syst&egrave;me 
+Sw qui aurait lui-m&ecirc;me sa proposition g&ouml;delienne Gw qu'on pourrait ajouter
+&agrave; Sw pour obtenir Sw+1, et ainsi de suite, Sw+2, ... Sw*2, Sw*3, ... Sw^2, ...
+Sw^w, Sw^w^w, ... S epsilon0, S epsilon1 ... autrement dit une suite transfinie
+de syst&egrave;mes formels. 
+Feferman a d&eacute;montr&eacute; que l'it&eacute;ration transfinie du principe de r&eacute;flexion
+permet d'engendrer toutes les v&eacute;rit&eacute;s de l'arithm&eacute;tique.
+<p>
+C'est l&agrave; qu'intervient l'intelligence cr&eacute;ative, car la production d'ordinaux
+transfinis de plus en plus grand n'est pas automatisable : &agrave; tout programme
+produisant une suite d'ordinaux x0, x1, x2, ... on peut associer un ordinal limite
+xw et continuer avec xw+1, ... Le probl&egrave;me consiste &agrave; s'apercevoir quand
+on est dans un processus r&eacute;gulier pour passer &agrave; la limite et continuer.
+Par exemple, quand on passe de 0 &agrave; suc 0, puis suc (suc 0), ... on voit que c'est
+un processus r&eacute;gulier qui a pour limite w. Mais plus on monte dans les grands
+ordinaux, plus les r&eacute;gularit&eacute;s deviennent subtiles et difficiles &agrave; d&eacute;celer
+et plus on risque de tourner en rond en croyant avancer.
+<p>  
+On peut ainsi emmagasiner de l'intelligence dans un grand ordinal
+transfini et la restituer dans un syst&egrave;me formel en effectuant l'in&eacute;ration
+transfinie jusqu'&agrave; cet ordinal du principe de r&eacute;flexion.
+La quintessence de l'intelligence cr&eacute;ative, non automatisable, consiste
+&agrave; d&eacute;celer des r&eacute;gularit&eacute;s. On peut la formaliser par la capacit&eacute; &agrave; 
+repr&eacute;senter une expression par une description la plus compacte possible.
+Par exemple, "rep 10 suc 0" (o&ugrave; rep d&eacute;signe la r&eacute;p&eacute;tition  
+d'une op&eacute;ration un certain nombre de fois) est plus compacte que 
+"suc (suc (suc (suc (suc (suc (suc (suc (suc (suc 0)))))))))".
+On pourrait produire une suite d'ordinaux transfinis de plus en plus grands
+de la fa&ccedil;on suivante : on part de 0 puis on r&eacute;p&egrave;te ind&eacute;finiment un processus
+consistant &agrave; prendre le successeur, d&eacute;crire de fa&ccedil;on compacte, et 
+quand un nombre n apparait dans une expression e[n], passer &agrave; la limite
+de la fonction qui &agrave; x associe e[x].
+Ainsi, on obtient 0, suc 0, suc (suc 0), ... et il arrive un moment (qui
+d&eacute;pend de la fa&ccedil;on exacte de mesurer la taille d'une expression) o&ugrave; on
+pourra compacter l'expression en une expression de la forme rep n suc 0,
+par exemple rep 5 suc 0. On passe alors &agrave; la limite de (lambda x. rep x suc 0)
+que l'on peut noter rep w suc 0, et qui vaut w, puis on continue avec 
+suc (rep w suc 0) = w + 1,... rep 5 suc (rep w suc 0), <br>
+rep w suc (rep w suc 0) = w * 2, ... <br>
+rep w (rep w suc) 0 = w ^ 2, ... <br>
+rep w (rep w (rep w suc)) 0 = w ^ 3, ... <br>
+rep 5 (rep w) suc 0 = w ^ 5, <br>
+rep w (rep w) suc 0 = w ^ w, ... <br>
+rep w (rep w) (rep w) suc 0 = w ^ w ^ w, ... <br>
+et ainsi de suite.
+<p>
+
+</body>
+</HTML>

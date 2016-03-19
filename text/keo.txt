@@ -1,0 +1,123 @@
+REFLEXIONS METAPHYSIQUES
+ 
+La seule réalité est la perception présente de notre état mental qui contient les souvenirs de nos sensations et actions passées. Tout le reste est construction mentale. La perception est un transfert d'information d'un réel perçu vers un esprit percevant. Elle suppose donc l'existence de l'esprit, ainsi que le réel.
+
+Les informations que nous percevons ne sont pas aléatoires mais présentent des régularités. Elles sont comme le développement d'un germe plus petit. Cela permet de construire un modèle mathématique du réel. 
+Quelle peut être la place et la nature de l'esprit dans ce modèle?
+Les physiciens ont découvert que les particules se comportent de façon probabiliste. Le cerveau peut amplifier le comportement d'une particule au niveau de l'individu.
+Si la matière est constituée d'une infinité de niveaux imbriqués, tout modèle fini est approximatif. Le réel est la limite d'une suite infinie de théories finies.
+Le sentiment que la colonie de cellules appelée individu a de constituer une entité spirituelle monadique vient de l'énorme écart existant entre la forte connectivité interne et la plus faible connectivité externe.
+
+Pourquoi les lois de la physique permettent l'existence d'une complexité rendant possible une vie intelligente? C'est le principe anthropique. Peut-on conclure à l'existence d'un être suprême qui les aurait choisies? L'hypothèse des mondes multiples permet d'imaginer qu'il existe une infinité d'univers, un pour chaque ensemble de lois possible. De plus elle permet d'expliquer le non déterminisme de la physique quantique sans recourir au hasard, en supposant que lors du collapse de la fonction d'onde l'univers se "ramifie".
+Cette hypothèse, bien que plus complexe au niveau de son développement, est plus simple au niveau du "germe" qui l'engendre.
+L'arborescence de tous les mondes serait déterminée mais le fait que nous ne percevons qu'une ramification nous la ferait percevoir comme choisie par notre libre arbitre.
+Si l'esprit existe dans l'instant, la notion de choix serait illusoire et l'éthique s'effondrerait si on ne lui conservait son sens en considérant que ce ne sont que des théories et que l'erreur est plus grave dans un sens que dans l'autre.
+
+Pourquoi y a-t-il quelque chose et pas rien? Que se passerait-il s'il n'y avait rien? Seules les mathématiques existeraient car elles sont l'étude de rien. Il existerait donc des modèles mathématiques ainsi que des suites infinies convergentes de tels modèles. Une telle imbrication infinie pourrait alors engendrer un esprit qui la percevrait comme un monde dans lequel il vit. Ainsi il apparaît que l'univers pourrait être engendré par le néant ou, dit autrement, que le néant ne pourrait pas exister car il engendre nécessairement le tout.
+
+L'esprit coexiste dans les univers compatibles avec ses perceptions.
+Une ramification du faisceau d'univers est perçue comme action si elle intervient à l'intérieur de l'être vivant ou comme perception à l'extérieur.
+Cette distinction dépend du niveau de précision de la théorie considérée.
+
+Si l'esprit existe dans la durée, on peut dire plus précisément que l'exercice du libre arbitre par un être vivant consiste à choisir un sous-ensemble de théories mathématiques infinies, ou d'univers, parmi l'ensemble des théories compatibles, l'instant considéré, avec l'état de l'esprit de cet être vivant. On peut également considérer le libre arbitre comme l'observation par l'esprit de son propre choix.
+
+La dissymétrie du temps pourrait venir du fait que le point de fixation le plus proche (Big Bang) est situé dans le passé, les perturbations se propageant dans la direction opposée.
+
+Le plaisir est le moyen utilisé par la nature pour nous conduire à réaliser ses buts.
+
+LOGIQUE COMBINATOIRE SYMBOLIQUE
+Notations:
+ abc=(ab)c
+ (pt x.a=b)=(\x.a=\x.b) avec \=lambda
+ \x.x=I
+ \x.y=Ky si y ne contient pas x
+ \x.(ab)=S(\x.a)(\x.b)
+ \x.(fx)=f
+Axiomes:
+ a=b->b=a
+ a=b,b=c->a=c
+ =g,a=b->fa=gb
+ I=I K=K S=S Z=Z 
+ a=a'->Ia=a'
+ a=a',b=b'->Kab=a'
+ a=a',b=b',c=c'->Sabc=a'c'(b'c')
+Une logique permettant de manipuler des propositions p=~p:
+Distinguer affirmation d'une implication p=!>q (si on a pu démontrer p, alors on peut affirmer q) et interrogation p=?>q (en faisant l'hypothèse p, on peut démontrer q)
+axiomes:
+ Modus ponens : p=!>q,p->q
+ p=?>p
+ p=!>(q=?>p)
+ (p=?>(q=!>r))=!>((p=?>q)=!>(p=?>r)) - on peut appliquer le modus ponens sous l'hypothèse p
+Représentation en logique combinatoire:
+Les propositions sont des égalités a=b
+ a=b=*>c=d est représenté par E*abc=E*abd
+ ~(a=b) est représenté par E!abK=E!ab(KI) ou E?abK=E?ab(KI)
+les axiomes deviennent:
+ Modus ponens : SE!I=KI ou E!aab=b
+ pt a.pt b.(E?aba=E?abb)
+ le troisième axiome devient inutile
+ pt a.pt b.pt f.pt x.(E?ab(fx)=E?abf(E?abx))
+
+ORDINAUX TRANSFINIS
+
+0,sx=xU{x},xUy->x,->y
+Hfx=xUfxUf(fx)U...->x,->Hf(fx)
+H'Ffx=FxUF(fx)UF(f(fx))U...->Fx,->H'Ff(fx)
+x*>y<=>x>=y
+x*>y et y*>x : x ~= y
+x*>suc y<=>x>y
+
+ordinal x : Omega
+	0 : Omega
+	x : Omega => sx : Omega
+	x1,x2,... :Omega=>Uxi:Omega
+
+	x*>0
+	x*>y=>u:Omega
+	~(x*>suc x)
+
+0, 1=s0, 2=s(s0)...
+w=Hs0
+w+1=s(Hs0)
+w*2=Hs(Hs0)
+w^2=H(Hs)0
+w^w=HHs0
+epsilon 0 = R1 H s 0 = s0 U Hs0 U HHs0 U ...
+... H R1 H s 0
+... R1 H R1 H s 0
+... R2 R1 H s 0
+... R3 R2 R1 H s 0 = R(3->1) H s 0
+... R(x->1) H s 0
+
+x = H [R(|->1 H s 0] 0
+x = R(x->1) H s 0
+x = [[[H [R(|->1) |... |.. |.] 0]]] H s 0
+  = R(1;1) H s 0
+
+    [[[[H [R(|->2 |.... |... |.. |.] 0]]]] R(1;1) H s 0
+  = R(1;2) R(1;1) H s 0 ...
+  R(2;1) H s 0 ...
+
+PRINCIPE DE REFLEXION
+
+Refl t (Ord 0) = Refl0 t
+Refl t0 (Ord x) = Refl0 tx
+Tx = t0 U Refl t0 U { Ord x }
+
+
+Petite sirène, 
+Tes deux yeux regardent la mer, 
+La lune est couleur de miel. 
+
+Petite sirène, 
+Tes deux yeux s'ouvrent sur le ciel, 
+Un parfum d'encens flotte dans l'air. 
+
+Petite sirène, 
+Tes deux yeux courent sur la terre, 
+La pluie a un goût amer. 
+
+HYPNOS, rien que pour toi. 
+
+
+

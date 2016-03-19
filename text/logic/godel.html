@@ -1,0 +1,127 @@
+<html>
+<head>
+<title>Théorème de Gödel, transfini et intelligence créative</title>
+</head>
+<body>
+<h2>Théorème de Gödel, transfini et intelligence créative</h2>
+
+<h3>Logique</h3>
+
+Science relative aux processus de la pensée rationnelle (induction, déduction, hypothèse p. ex.) et à la formulation discursive des vérités.
+<br>
+En logique on manipule d'une part des propositions qui constituent des énoncés complets pouvant être vrais ou faux, et d'autre part des prédicats qui doivent être complétés par un sujet pour constituer une proposition, qui pourra être vraie ou fausse selon le sujet auquel on applique le prédicat. On note P(x) la proposition obtenue en appliquant le prédicat P au sujet x.
+
+<h3>Systèmes formels</h3>
+
+Les systèmes formels permettent de prouver la vérité de faits mathématiques. Ils sont constitués d'un ensemble de faits considérés comme évidents et appelés axiomes, et d'un ensemble de règles de déduction qui permettent, à partir d'un certain nombre de faits établis appelés théorèmes, d'en déduire d'autres.
+<br>
+Exemples d'axiomes :
+<ul>
+<li> P =&gt; P
+<li> P =&gt; (Q =&gt; P)
+</ul>
+Exemple de règle (modus ponens) :<br>
+De P =&gt; Q et P on peut déduire Q 
+<br>
+On pouvait espérer que cette méthode permettrait de prouver toute vérité mathématique en la construisant à partir d'axiomes et de règles adéquates, pourvu que le système formel choisi soit constitué d'un ensemble d'axiomes et de règles suffisemment complet pour formaliser complètement la notion de vérité mathématique dans un certain domaine.
+
+<h3>Premier théorème d'incomplétude de Gödel</h3>
+
+Le mathématicien Kurt Gödel a démontré qu'en fait c'est impossible. En effet, pour tout domaine des mathématiques qui englobe l'arithmétique (la théorie des nombres entiers naturels), quels que soient les axiomes et les règles choisis pour constituer un certain système formel, si ce système est consistant (ne permet pas de prouver une chose et son contraire) on pourra construire une proposition dite indécidable, dont on ne pourra prouver ni la vérité ni la fausseté dans ce système formel. C'est le premier théorème d'incomplétude de Gödel.
+
+<h3>Démonstration du premier théorème d'incomplétude de Gödel</h3>
+La démonstration fait appel à une représentation du système formel par des objets qu'il peut manipuler (les nombres entiers). Les propositions et les démonstrations sont "codées" par des nombres entiers. Le système formel acquiert ainsi une sorte de capacité d'introspection. Des propositions portant sur des nombres peuvent être interprétées en terme de faits portant sur le système formel, tels que la proposition "telle proposition est démontrable dans le système formel" que l'on pourra exprimer sous une forme du type "il existe un nombre n tel que n est le code d'une démonstration de la proposition dont le code est le nombre p".
+<br>
+Le principe de la démonstration consiste à construire une proposition qui exprime sa propre indémontrabilité.
+<br>
+On part d'un prédicat F défini par : F(p) = "Il n'existe pas de nombre n qui soit le code d'une démonstration du prédicat de code p appliqué au nombre p".
+<br>
+Ensuite on détermine le nombre f, le code du prédicat F, et on considère la proposition de Gödel de ce système formel : G = F(f).
+<br>
+La proposition G est donc de la forme : "Il n'existe pas de nombre n qui soit le code d'une démonstration de F(f)" 
+<br>
+ou G = "Il n'existe pas de nombre n qui soit le code d'une démonstration de G". 
+<br>
+Autrement dit, G dit "Je ne suis pas démontrable" !
+Si G était fausse, alors G serait démontrable, donc vraie (sinon un système qui permettrait de démontrer des choses fausses serait sans intérêt), donc G ne peut pas être fausse, donc G est vraie. On a donc trouvé une proposition vraie qui ne peut pas être démontrée par le système formel. Donc tout système formel consistant qui englobe l'arithmétique est nécessairement incomplet.
+<br>
+
+<h3>Signification du premier théorème d'incomplétude de Gödel</h3>
+
+On ne peut pas enfermer la notion de vérité mathématique dans un système fini permettant de déterminer mécaniquement si une proposition est vraie. Il y a donc une part de créativité dans le travail du mathématicien.
+
+<h3>Deuxième théorème d'incomplétude de Gödel</h3>
+
+De ce premier théorème, Gödel a déduit un deuxième théorème d'incomplétude selon lequel la consistance d'un système formel qui vérifie les mêmes conditions n'est pas démontrable dans le cadre de ce système formel.
+
+<h3>Peut-on dépasser la limitation du premier théorème d'incomplétude ?</h3>
+
+On a donc un système formel qui est limité car on a trouvé une proposition G qui est vraie mais n'est pas démontrable dans ce système formel. On pourrait penser que pour résoudre ce problème il suffit d'ajouter G comme axiome à ce système. Mais ça ne résout pas le problème, car on obtient alors un nouveau système formel auquel on peut appliquer la même méthode pour obtenir une nouvelle proposition de Gödel qui exprimera sa propre indémontrabilité dans ce nouveau système. On pourrait même construire une suite infinie de systèmes S0, S1, S2, ... qui auront chacun leur proposition de Gödel G0, G1, G2... mais le théorème de Gödel s'applique même au système constitué par cette suite infinie de systèmes, ainsi qu'à tous les systèmes qu'on pourrait obtenir par cette méthode, en ajoutant la proposition de Gödel à un système incomplet et en regroupant une suite infinie de systèmes dans un seul système. C'est là qu'apparait la notion de transfini.
+
+<h3>Les ordinaux transfinis</h3>
+
+Les ordinaux transfinis constituent une extension de la notion de nombre entier. Les nombres entiers peuvent être définis pas :
+<ul>
+<li> 0 est un nombre entier
+<li> Si n est un nombre entier, alors le successeur de n (n+1) est un nombre entier
+</ul>
+
+On peut définir les ordinaux transfinis de façon similaire en ajoutant une règle définissant la notion d'ordinal limite d'une suite infinie :
+<ul>
+<li> 0 est un ordinal
+<li> Si x est un ordinal, alors le successeur de x est un ordinal 
+<li> A toute fonction f qui à un nombre entier associe un ordinal, on peut associer un ordinal dit limite 
+</ul>
+Les ordinaux sont dits transfinis à partir de l'ordinal appelé omega, limite associée à la fonction identité.
+
+<h3>Systèmes formels et ordinaux transfinis</H3>
+
+Des logiciens tels que Alan Turing et Solomon Feferman ont étudié la possibilité d'augmenter un système formel de façon que sa proposition de Gödel devienne démontrable et de réitérer cette opération de façon transfinie.
+<br>
+Dans "Systems of Logic Based on Ordinals", Alan Turing a écrit :
+<br>
+"Le célèbre théorème de Gödel montre que tout système de logique est en un certain sens incomplet, " (Turing appelait "système de logique" ou "logique" ce qu'on appelle actuellement "système formel") "mais en même temps il indique des moyens par lesquels à partir d'un système L de logique un système plus complet L' peut être obtenu. En répétant le processus on obtient une séquence L, L1 = L', L2 = L1', ... chacun plus complet que le précédent. On peut construire une logique L omega dans laquelle les théorèmes démontrables sont la totalité des théorèmes démontrables à l'aide les logiques L, L1, L2, ... On peut alors former L 2 omega à partir de L omega de la même façon que L omega a été formé à partir de L. En procédant de cette façon on peut associer un système de logique à tout ordinal constructif" (Les ordinaux constructifs sont les ordinaux qu'on peut décrire dans un certain système de notation.) "On peut se demander si une séquence de logiques de ce type est complète dans le sens qu'à chaque problème A correspond un ordinal alpha tel que A peut être résolu au moyen de la logique L alpha." (...) <br>
+
+<br>
+Alan Turing a construit un tel système de "logique ordinale" mais Solomon Feferman a montré que ce système n'était pas complet et il a montré que, par contre, un autre système reposant sur une itération transfinie d'un principe de réflexion uniforme permet de démontrer toutes les propositions vraies de l'arithmétique.  Ce principe consiste à dire que si pour tout n, P(n) est démontrable dans un système S, alors la proposition "pour tout n, P(n)" est vraie.
+<!-- 
+"Pour tout nombre entier n, si il existe un nombre entier p qui est le code d'une démonstration de P(n), alors P(n) est vrai." 
+-->
+<h3>Ordinaux transfinis et créativité</h3>
+
+Avec cette méthode, on pourrait se demander si on n'a pas trouvé un moyen d'automatiser la production d'un système qui permettrait de démontrer toutes les vérités mathématiques. Mais ce n'est pas le cas. En effet, la production d'ordinaux transfinis de plus en plus grands n'est pas entièrement automatisable en ce sens que si on trouve un algorithme qui produit une suite croissante d'ordinaux, on peut définir un ordinal limite associé à cet algorithme, et donc cet ordinal limite ne sera pas atteint par cet algorithme ainsi que tous les ordinaux qui lui sont supérieurs.
+<br>
+Dans "Systems of Logic Based on Ordinals", Alan Turing a écrit :
+<br>
+"Quand on a une logique ordinale, on est en position de démontrer des théorèmes de la théorie des nombres par les opérations intuitives de reconnaissance de formules représentant des ordinaux, et les opérations mécaniques d'effectuer les conversions."
+<br>
+Concrètement, pour construire des ordinaux de plus en plus grands, on part de 0, on ajoute 1, on répète l'opération, on atteint ainsi 2, 3, 4... et là, on se rend compte qu'on est dans un processus répétitif, on passe alors à la limite omega, puis on continue avec omega+1, omega+2... on s'aperçoit qu'on est dans un nouveau schéma répétitif, on passe à la limite omega + omega = omega x 2, puis omega x 3, nouveau schéma répétitif, on passe à la limite omega x omega = omega puissance 2, etc..
+<br>
+Toute la difficulté consiste à se rendre compte qu'on est dans un schéma répétitif, et c'est là le coeur de l'intelligence créatrice, la faculté de percevoir les régularités (cf tests de QI).
+<br>
+Les ordinaux transfinis peuvent donc constituer une sorte de réservoir d'intelligence créative, nécessitant de mettre en oeuvre cette intelligence créative pour les construire, et pouvant la restituer si on effectue une itération transfinie d'un principe de réflexion sur un système formel.
+<br>
+<!--
+Dans "Systems of Logic Based on Ordinals", Alan Turing a écrit : 
+<br>
+"Le raisonnement mathématique peut être vu assez schématiquement comme l'exercice de la combinaison de deux facultés qu'on peut appeler intuition et ingéniosité. L'activité de l'intuition consiste à porter des jugements spontanés qui ne sont pas le résultat de séquences de rainonnement conscient. Ces jugements sont souvent mais pas invariablement corrects (...) L'exercice de l'ingéniosité en mathématique consiste à aider l'intuition par un arrangement convenable de propositions et éventuellement des figures géométriques ou des dessins".
+-->
+<h3>Références</h3>
+
+<ul>
+<li> The Undecidable - Edited by Martin Davis (Dover)
+<ul>
+<li> Kurt Gödel - On Formally Undecidable Porpositions of the Principia Mathematica and Related Systems
+<li> Kurt Gödel - On Undecidable Propositions of Formal Mathematical Systems
+<li> Alan M. Turing - Systems of Logic Based on Ordinals
+</ul>
+<li> Douglas Hofstadter - Gödel, Escher, Bach, les Brins d'une Guirlande Eternelle
+<li> David Madore's WebLog: Nombres ordinaux : une (longue) introduction - <a href="http://www.madore.org/~david/weblog/d.2011-09-18.1939.nombres-ordinaux-intro.html">http://www.madore.org/~david/weblog/d.2011-09-18.1939.nombres-ordinaux-intro.html</a>
+<li> Turing and Ordinal Logics - <a href="http://www.infotech.monash.edu.au/assets/documents/about/turing-centenary/turing-ordinal-logics-2012.pdf">http://www.infotech.monash.edu.au/assets/documents/about/turing-centenary/turing-ordinal-logics-2012.pdf</a>
+<li> Georges Harrisson - Metatheory and Reflection in Theorem Proving: A Survey and Critique - <a href="http://www.cl.cam.ac.uk/~jrh13/papers/reflect.html">http://www.cl.cam.ac.uk/~jrh13/papers/reflect.html</a>
+<li> Solomon Feferman - Turing's Thesis - <a href="http://math.stanford.edu/~feferman/papers/turing.pdf">http://math.stanford.edu/~feferman/papers/turing.pdf</a>
+
+</ul>
+
+</body>
+</html>

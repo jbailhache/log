@@ -1,0 +1,88 @@
+<html>
+<head>
+<meta charset="UTF-8">
+<title>RLME - R&eacute;gression lin&eacute;aire mobile exponentielle</title>
+</head>
+<body>
+<h2>RLME - R&eacute;gression lin&eacute;aire mobile exponentielle</h2>
+
+<h3>Moyenne arithm&eacute;tique</h3>
+Rappelons que la moyenne arithm&eacute;tique d'une s&eacute;rie de nombres Y(1),
+..., Y(n) est d&eacute;finie par :
+<br>
+M = (Y(1) + ... + Y(n)) / n
+
+<h3>Moyenne mobile exponontielle (MME)</h2>
+La MME permet de lisser une s&eacute;rie temporelle, par exemple le cours
+d'un instrument financier. C'est une moyenne pond&eacute;r&eacute;e de la valeur
+actuelle et de la MME pr&eacute;c&eacute;dente. La MME de Y est d&eacute;finie par :
+<br>
+MMEY(t) = c * Y(t) + (1-c) * MMEY(t-1)
+<br>
+Le MME pr&eacute;sente l'inconv&eacute;nient d'&ecirc;tre d&eacute;cal&eacute;e vers le futur par
+rapport &agrave; la s&eacute;rie &eacute;tudi&eacute;e.
+
+<h3>R&eacute;gression lin&eacute;aire</h3>
+La r&eacute;gression lin&eacute;aire consiste &agrave; d&eacute;terminer, &agrave; partir d'un ensemble
+de points (X(i), Y(i)) une fonction lin&eacute;aire f(X) = a * X + b qui
+minimise les &eacute;carts entre f(X(i)) et Y(i).
+<br>
+Les formules de calcul de a et b sont les suivantes :
+<br>
+( voir <a href="http://informatique.coursgratuits.net/methodes-numeriques/regressions-et-interpolations.php">http://informatique.coursgratuits.net/methodes-numeriques/regressions-et-interpolations.php</a>
+)
+<br>
+a = (n * somme(X(i)*Y(i)) - somme(X(i)) * somme(Y(i))) / (n *
+somme(X(i)^2) - (somme(X(i)))^2)
+<br>
+b = (somme(X(i)^2) * somme(Y(i)) - somme(X(i)) * somme(X(i)*Y(i))) /
+(n * somme(X(i)^2) - (somme(X(i)))^2)
+<br>
+avec somme = somme pour i=1 &agrave; n
+<br>
+On peut r&eacute;&eacute;crire ces formules en utilisant des moyennes au lieu de
+sommes, en rempla&ccedil;ant somme(...) par n * moyenne(...) o&ugrave; moyenne(...)
+d&eacute;signe la moyenne arithm&eacute;tique des (...) En effectuant cette
+substitution et en simplifiant, on obtient :
+<br>
+a = (moyenne(X(i)*Y(i)) - moyenne(X(i)) * moyenne(Y(i))) /
+(moyenne(X(i)^2) - moyenne(X(i))^2)
+<br>
+b = (moyenne(X(i)^2) * moyenne(Y(i)) - moyenne(X(i)) *
+moyenne(X(i)*Y(i))) / (moyenne(X(i)^2) - moyenne(X(i))^2)
+<br>
+Dans le cas particulier d'une s&eacute;rie temporelle avec t = 1, 2, 3, ...
+on a i = t et X(i) = i = t.
+
+<h3>R&eacute;gression lin&eacute;aire mobile exponentielle (RLME)</h3>
+
+La RLME est &agrave; la r&eacute;gression lin&eacute;aire ce que la MME est &agrave; la moyenne
+arithm&eacute;tique. Elle est obtenue en rempla&ccedil;ant dans la formule de la
+r&eacute;gression lin&eacute;aire les moyennes arithm&eacute;tiques par des MME.
+<br>
+On peut calculer la RLME d'une s&eacute;rie temporelle Y(T) par les formules
+suivantes :
+<ul>
+<li> MMEY(0) = Y(0)
+<li> MMET(0) = 0
+<li> MMET2(0) = 0
+<li> MMETY(0) = 0
+<li> A(0) = 0
+<li> B(0) = Y(0)
+<li> MMEY(T) = c * Y(T) + (1-c) * MMEY(T-1)
+<li> MMET(T) = c * T + (1-c) * MMET(T-1)
+<li> MMET2(T) = c * T^2 + (1-c) * MMET2(T-1)
+<li> MMETY(T) = c * T * Y(T) + (1-c) * MMETY(T-1)
+<li> D(T) = MMET2(T) - MMET(T)^2
+<li> si D(T) = 0 alors A(T) = A(T-1) sinon A(T) = (MMETY(T) - MMET(T)
+* MMEY(T)) / D(T)
+<li> si D(T) = 0 alors B(T) = B(T-1) sinon B(T) = (MMET2(T) * MMEY(T)
+- MMET(T) * MMETY(T)) / D(T)
+<li> RLME(T) = A(T) * T + B(T)
+</ul>
+<br>
+On obtient ainsi un lissage de la s&eacute;rie temporelle X(t) qui "colle"
+mieux &agrave; celle-ci que sa MME.
+</body>
+</html>
+

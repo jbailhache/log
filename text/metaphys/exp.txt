@@ -1,0 +1,82 @@
+Is it possible to transmit some information faster than light 
+and to modify the past ? These problems are raised by the following
+thought experiment :
+
+ Screen |        |
+        |        | Slit 1
+        |  			          +--------------+
+        |        |                        | Measurement  |
+        |        |            <- * ->     | device   / on|
+        |        |            Source      |           off|
+        |                                 +--------------+
+        |        | Slit 2
+        |        | 
+ 
+A source emits pairs of particles in opposite directions. 
+The particles on the left goes through 2 slits to the screen.
+The particles on the right goes to a measurement device which records
+their directions and keep the recording confined in the box in such a way
+that no information concerning this recording goes out of the box.
+First the measurement device is turned off, and the source is turned on.
+The experimentator can see interference fringes on the screen.
+Then the measurement device is turned on. The experimentator goes on
+watching at the screen. Then he opens the measurement device and look at
+the recording of the direction of the particles.
+
+- When the measurement device is turned off, does the interference fringes
+disappear immediately ? Is there some information transmitted faster than 
+light from the measurement device to the screen ? 
+
+- If not, what happens when the experimentator looks at the recording in
+the measurement device ? Does it acts bact on the 
+past, creating a world in which there are no interference fringes ?
+
+- According to the theory of relativity, faster than light transmission
+is equivalent to transmission to the past. What happens if we send
+to the past an information different from the one we received ?
+
+- What happens if we decide to look at the recording if we see interference 
+fringes, and to erase it if we don't see fringes ?
+
+- How could this experiment be interpreted in terms of Many-Worlds interpretation ?
+According to Michael Clive Price's Everett FAQ (http://www.hedweb.com/manworld.htm)
+	"The splitting is a local process that is causally transmitted from 
+	system to system at light or sub-light speeds"
+Does this mean that as long as the measurement information is kept in the device,
+the splitting is confined in the device, so concerning the outside of 
+the device, it is like if the measurement has not been done ?
+Let us consider a point X located on a dark fringe.
+According to the Many-Worlds interpretation, there is one world
+in which the particle reaches X through slit 1 with amplitude Psi,
+an d one world in which it reaches X through slit 2 with amplitude -Psi,
+and the total makes 0, so this world is never observed. 
+But what happens if some recording of which slit the particles went through 
+is kept ? Does these two opposite worlds still annihilate them mutually ?
+Do they become observable only when the experimentator looks at the recording ?
+
+- How could this experiment be described with Dirac brackets notation ?
+Let |X> represent the state in which a particle reaches a point X located
+on a dark fringe, |S1> the state of the device recording that the particle
+goes through slit 1, and |S2> same for slit 2. Then if we consider only this 
+point X we would get 1/sqrt(2) * (|X>|S1> - |X>|S2>).
+If we ignore |S1> and |S2> we get 1/sqrt(2) * (|X> - |X>) = 0, which
+indicates that the particle never reaches X.
+The problem with this notation is that a state such as |X>|S1> puts
+together states of components |X> and |S1> located in different points of space.
+How can we describe this composed state at instant t ? It is the 
+tensorial product of states of components AT THE SAME TIME t, but 
+this means nothing in the absolute according to the theory of 
+relativity, since the notion of simultaneity is not absolute but
+depends on the movement.
+
+I would appreciate if you have some ideas about these problems.
+
+        Jacques.
+ 
+Visit my homepages : 
+	http://www.byoc.com/homepage/134885/
+	http://www.chez.com/log/
+	http://members.rotfl.com/log/
+
+
+

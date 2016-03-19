@@ -1,0 +1,268 @@
+
+La connexion A<sub><font face="symbol">m</font></sub> est le gradient de la phase <font face="symbol">f</font> : si on part d'un point
+x<sup><font face="symbol">m</font></sup> avec une phase <font face="symbol">f</font> et qu'on se déplace vers x<sup><font face="symbol">m</font></sup> + dx<sup><font face="symbol">m</font></sup> on a une 
+phase <font face="symbol">f</font> + d<font face="symbol">f</font> = <font face="symbol">f</font> + A<sub><font face="symbol">m</font></sub> dx<sup><font face="symbol">m</font></sup>. 
+Dans le cas général d'un champ de jauge non alélien (Yang-Mills) on a 
+une phase <font face="symbol">f</font><sup><font face="symbol">a</font></sup> qui devient <font face="symbol">f</font><sup><font face="symbol">a</font></sup> + A<sup><font face="symbol">a</font></sup><sub><font face="symbol">m</font></sub> dx<sup><font face="symbol">m</font></sup>,
+où <font face="symbol">a</font> parcourt les dimensions du groupe associé au champ de jauge.
+Dans le cas de l'électromagnétisme, ce groupe est U(1) et n'a qu'une dimension,
+donc on peut simplifier en supprimant l'indice <font face="symbol">a</font>.
+<p>
+On a une analogie entre le potentiel A<sub><font face="symbol">m</font></sub> et la connection :
+<br>
+Si on part d'un point x<sup><font face="symbol">m</font></sup> avec un vecteur v<sup><font face="symbol">n</font></sup> et qu'on transporte parallèlement
+ce vecteur vers x<sup><font face="symbol">m</font></sup> + dx<sup><font face="symbol">m</font></sup>, on a le vecteur 
+x<sup><font face="symbol">m</font></sup> - <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">r</font></sub><sub><font face="symbol">s</font></sub> v<sup><font face="symbol">r</font></sup> dx<sup><font face="symbol">s</font></sup>.
+<br>
+On remarque toutefois une différence : dans le cas du champ de jauge, on
+ajoute une phase A<sup><font face="symbol">a</font></sup><sub><font face="symbol">m</font></sub> dx<sup><font face="symbol">m</font></sup> alors que dans la connection affine on multiplie
+v<sup><font face="symbol">r</font></sup> par la matrice <font face="symbol">d</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">r</font></sub> + <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">r</font></sub><sub><font face="symbol">s</font></sub> dx<sup><font face="symbol">s</font></sup>. 
+Je pressens là une analogie avec la différence entre algèbre et groupe de Lie.
+
+<p>
+Le champ est défini par la variation de phase dans une boucle infinitésimale.
+<br>
+Supposons qu'on effectue une boucle P + dx + dy - dx - dy, en supposant pour simplifier
+que dx et dy sont dans les directions des vecteurs de base du système
+de coordonnées. <br>
+<pre>
+          A<sub><font face="symbol">m</font></sub> + <font face="symbol">¶</font><sub>y</sub> A<sub><font face="symbol">m</font></sub> dy                 
+   P+dy <------------------ P+dx+dy
+    |            -dx          <sup>
+</sup>    |                         |
+A<sub><font face="symbol">m</font></sub>  | -dy                     |
+    |                     +dy | A<sub><font face="symbol">m</font></sub> + <font face="symbol">¶</font><sub>x</sub> A<sub><font face="symbol">m</font></sub> dx
+    |                         |
+    V            +dx          |
+    P ---------------------> P+dx
+   <font face="symbol">f</font>         A<sub><font face="symbol">m</font></sub> 
+
+</pre>
+On arrive en P + dx avec une phase <font face="symbol">f</font> + A<sub>x</sub> dx.
+En P + dx, le potentiel est A<sub><font face="symbol">m</font></sub> + <font face="symbol">¶</font><sub>x</sub> A<sub><font face="symbol">m</font></sub> dx.
+On arrive donc en P + dx + dy avec une phase 
+<font face="symbol">f</font> + A<sub>x</sub> dx + (A<sub>y</sub> + <font face="symbol">¶</font><sub>x</sub> A<sub>y</sub> dx) dy <br>
+puis de même en P + dx + dy - dx avec une phase
+<font face="symbol">f</font> + A<sub>x</sub> dx + (A<sub>y</sub> + <font face="symbol">¶</font><sub>x</sub> A<sub>y</sub> dx) dy - (A<sub>x</sub> + <font face="symbol">¶</font><sub>y</sub> A<sub>x</sub> dy) dx <br>
+et on revient en P avec une phase : <br>
+<font face="symbol">f</font> + A<sub>x</sub> dx + (A<sub>y</sub> + <font face="symbol">¶</font><sub>x</sub> A<sub>y</sub> dx) dy - (A<sub>x</sub> + <font face="symbol">¶</font><sub>y</sub> A<sub>x</sub> dy) dx - A<sub>y</sub> dy
+<br>
+qu'on peut simplifier en 
+<font face="symbol">f</font> + (<font face="symbol">¶</font><sub>x</sub> A<sub>y</sub> - <font face="symbol">¶</font><sub>y</sub> A<sub>x</sub>) dx dy = <font face="symbol">f</font> + F<sub>x</sub><sub>y</sub> dx dy.
+<br>
+Dans ce calcul, pour simplifier j'ai supposé que le long d'un trajet le
+potentiel est celui correspondant à l'extrémité des plus petits x et y,
+mais j'ai vérifié qu'en prenant le potentiel du milieu du trajet les
+termes supplémentaires (de la forme 1/2 <font face="symbol">¶</font><sub>x</sub> A<sub>x</sub> dx<sup>2</sup>) s'annulent
+et on trouve le même résultat.
+<p>
+Supposons maintenant qu'on va de P à P + dx + dy en passant 
+par P + dx puis en passant par P + dy et on calcule la différence de phase.
+<br>
+On part de P avec une phase <font face="symbol">f</font>, on passe en P + dx avec une phase
+<font face="symbol">f</font> + A<sub>x</sub> dx puis en P + dx + dy avec une phase 
+<font face="symbol">f</font> + A<sub>x</sub> dx + (A<sub>y</sub> + <font face="symbol">¶</font><sub>x</sub> A<sub>y</sub> dx) dy
+= <font face="symbol">f</font> + A<sub>x</sub> dx + A<sub>y</sub> dy + <font face="symbol">¶</font><sub>x</sub> A<sub>y</sub> dx dy.
+<br>
+On part de P avec une phase <font face="symbol">f</font>, on passe en P + dy avec une phase
+<font face="symbol">f</font> + A<sub>y</sub> dy puis en x + dy + dx avec une phase
+<font face="symbol">f</font> + A<sub>y</sub> dy + (A<sub>x</sub> + <font face="symbol">¶</font><sub>y</sub> A<sub>x</sub> dy) dx
+= <font face="symbol">f</font> + A<sub>y</sub> dy + A<sub>x</sub> dx + <font face="symbol">¶</font><sub>y</sub> A<sub>x</sub> dx dy.
+<br>
+La différence est : <br>
+<font face="symbol">f</font> + A<sub>y</sub> dy + A<sub>x</sub> dx + <font face="symbol">¶</font><sub>y</sub> A<sub>x</sub> dx dy -
+<font face="symbol">f</font> + A<sub>x</sub> dx + A<sub>y</sub> dy + <font face="symbol">¶</font><sub>x</sub> A<sub>y</sub> dx dy
+<br>
+= (<font face="symbol">¶</font><sub>y</sub> A<sub>x</sub> - <font face="symbol">¶</font><sub>x</sub> A<sub>y</sub>) dx dy = -F<sub>x</sub><sub>y</sub> dx dy.
+<br>
+On trouve l'opposé de la première boucle car ici on tourne dans l'autre
+sens (-dy-dx+dy+dx).
+<p>
+
+Il y a une analogie entre le champ et la courbure qui correspond à la transformation 
+d'un vecteur transporté le long d'une boucle infinitésimale.
+
+Si on part de P avec un vecteur v<sup><font face="symbol">m</font></sup> et on le transporte parrallèlement
+vers P + dx, on obtient :
+<br>
+(<font face="symbol">d</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub> - <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> dx<sup><font face="symbol">r</font></sup>) v<sup><font face="symbol">n</font></sup> 
+= v<sup><font face="symbol">m</font></sup> - <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> v<sup><font face="symbol">n</font></sup> dx<sup><font face="symbol">r</font></sup>
+<br>
+En P + dx, on a une connexion <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> + 
+<font face="symbol">¶</font><sub><font face="symbol">s</font></sub> <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> dx<sup><font face="symbol">s</font></sup>
+<br>
+En transportant le vecteur obtenu en P + dx 
+(soit v<sup><font face="symbol">m</font></sup> - <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> v<sup><font face="symbol">n</font></sup> dx<sup><font face="symbol">r</font></sup>) 
+parallèlement vers P + dx + dy, on le multiplie par
+<br>
+<font face="symbol">d</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub> - 
+(<font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> + <font face="symbol">¶</font><sub><font face="symbol">s</font></sub> <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> dx<sup><font face="symbol">s</font></sup>)
+dy<sup><font face="symbol">r</font></sup>
+<br>
+et on obtient donc : 
+<br>
+(<font face="symbol">d</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub> - 
+(<font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> + <font face="symbol">¶</font><sub><font face="symbol">s</font></sub> <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> dx<sup><font face="symbol">s</font></sup>)
+dy<sup><font face="symbol">r</font></sup>) 
+(v<sup><font face="symbol">n</font></sup> - <font face="symbol">G</font><sup><font face="symbol">n</font></sup><sub><font face="symbol">t</font></sub><sub><font face="symbol">x</font></sub> v<sup><font face="symbol">t</font></sup> dx<sup><font face="symbol">x</font></sup>)
+<br>
+= v<sup><font face="symbol">m</font></sup> - <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">t</font></sub><sub><font face="symbol">x</font></sub> v<sup><font face="symbol">t</font></sup> dx<sup><font face="symbol">x</font></sup> - <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> v<sup><font face="symbol">n</font></sup> dy<sup><font face="symbol">r</font></sup>
+- <font face="symbol">¶</font><sub><font face="symbol">s</font></sub> <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> v<sup><font face="symbol">n</font></sup> dy<sup><font face="symbol">r</font></sup> dx<sup><font face="symbol">s</font></sup> 
++ <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> <font face="symbol">G</font><sup><font face="symbol">n</font></sup><sub><font face="symbol">t</font></sub><sub><font face="symbol">x</font></sub> v<sup><font face="symbol">t</font></sup> dx<sup><font face="symbol">x</font></sup> dy<sup><font face="symbol">r</font></sup>
++ <font face="symbol">¶</font><sub><font face="symbol">s</font></sub> <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> <font face="symbol">G</font><sub><font face="symbol">n</font></sub><sub><font face="symbol">t</font></sub><sub><font face="symbol">x</font></sub> v<sup><font face="symbol">t</font></sup> dx<sup><font face="symbol">x</font></sup> dy<sup><font face="symbol">r</font></sup> dx<sup><font face="symbol">s</font></sup>
+<br>
+On peut ignorer le dernier terme en dx<sup>2</sup> dy négligeable devant les termes en dx dy.<br>
+Il reste donc :
+<br>
+v<sup><font face="symbol">m</font></sup> - <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">t</font></sub><sub><font face="symbol">x</font></sub> v<sup><font face="symbol">t</font></sup> dx<sup><font face="symbol">x</font></sup> - <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> v<sup><font face="symbol">n</font></sup> dy<sup><font face="symbol">r</font></sup>
+- <font face="symbol">¶</font><sub><font face="symbol">s</font></sub> <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> v<sup><font face="symbol">n</font></sup> dy<sup><font face="symbol">r</font></sup> dx<sup><font face="symbol">s</font></sup> 
++ <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> <font face="symbol">G</font><sup><font face="symbol">n</font></sup><sub><font face="symbol">t</font></sub><sub><font face="symbol">x</font></sub> v<sup><font face="symbol">t</font></sup> dx<sup><font face="symbol">x</font></sup> dy<sup><font face="symbol">r</font></sup>
+<br>
+Symétriquement, avec le trajet P + dy + dx, on obtient :
+<br>
+v<sup><font face="symbol">m</font></sup> - <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">t</font></sub><sub><font face="symbol">x</font></sub> v<sup><font face="symbol">t</font></sup> dy<sup><font face="symbol">x</font></sup> - <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> v<sup><font face="symbol">n</font></sup> dx<sup><font face="symbol">r</font></sup>
+- <font face="symbol">¶</font><sub><font face="symbol">s</font></sub> <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> v<sup><font face="symbol">n</font></sup> dx<sup><font face="symbol">r</font></sup> dy<sup><font face="symbol">s</font></sup> 
++ <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> <font face="symbol">G</font><sup><font face="symbol">n</font></sup><sub><font face="symbol">t</font></sub><sub><font face="symbol">x</font></sub> v<sup><font face="symbol">t</font></sup> dy<sup><font face="symbol">x</font></sup> dx<sup><font face="symbol">r</font></sup>
+<br>
+En faisant la différence, les termes V<sup><font face="symbol">m</font></sup>, <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">t</font></sub><sub><font face="symbol">x</font></sub> v<sup><font face="symbol">t</font></sup> dx<sup><font face="symbol">x</font></sup>
+et <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> v<sup><font face="symbol">n</font></sup> dy<sup><font face="symbol">r</font></sup> s'annulent.
+Il reste :
+<br>
+<font face="symbol">¶</font><sub><font face="symbol">s</font></sub> <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> v<sup><font face="symbol">n</font></sup> dx<sup><font face="symbol">s</font></sup> dy<sup><font face="symbol">r</font></sup> -
+<font face="symbol">¶</font><sub><font face="symbol">s</font></sub> <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> v<sup><font face="symbol">n</font></sup> dx<sup><font face="symbol">r</font></sup> dy<sup><font face="symbol">s</font></sup> +
+<font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">l</font></sub><sub><font face="symbol">r</font></sub> <font face="symbol">G</font><sup><font face="symbol">l</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">s</font></sub> v<sup><font face="symbol">n</font></sup> dx<sup><font face="symbol">r</font></sup> dy<sup><font face="symbol">s</font></sup> -
+<font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">l</font></sub><sub><font face="symbol">s</font></sub> <font face="symbol">G</font><sup><font face="symbol">l</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> v<sup><font face="symbol">n</font></sup> dx<sup><font face="symbol">r</font></sup> dy<sup><font face="symbol">s</font></sup>
+<br>
+= R<sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub><sub><font face="symbol">s</font></sub> v<sup><font face="symbol">n</font></sup> dx<sup><font face="symbol">r</font></sup> dy<sup><font face="symbol">s</font></sup>
+<br>
+Un autre calcul similaire (moins clair à mon avis) se trouve dans 
+<a href="http://vishnu.mth.uct.ac.za/omei/gr/chap6/node9.html">
+http://vishnu.mth.uct.ac.za/omei/gr/chap6/node9.html</a>
+<br>
+Une boucle -dy-dx+dy+dy multiplie donc v<sup><font face="symbol">n</font></sup> par la matrice <font face="symbol">d</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub> + R<sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub><sub><font face="symbol">s</font></sub>
+dx<sup><font face="symbol">r</font></sup> dy<sup><font face="symbol">s</font></sup>
+<br>
+Une boucle en sens inverse +dx+dy-dx-dy multiplie v<sup><font face="symbol">n</font></sup> par <font face="symbol">d</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub> - R<sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub><sub><font face="symbol">s</font></sub>
+dx<sup><font face="symbol">r</font></sup> dy<sup><font face="symbol">s</font></sup> et ajoute F<sub>x</sub><sub>y</sub> dx dy à la phase.
+<br>
+On a donc une correspondance entre le potentiel et la connexion 
+d'une part, et entre le champ et la courbure d'autre part.
+<p>
+La théorie de Kaluza Klein met en évidence une autre correspondance
+entre le potentiel et la métrique d'une part, et entre le champ et la 
+connexion d'autre part.
+<br>
+Il s'agit d'une théorie dans laquelle la seule force est la gravitation
+dans un espace produit de l'espace-temps par le groupe associé au
+champ de jauge : U(1) pour l'électromagnétisme, SU(2) pour l'interaction
+faible, SU(3) pour l'interation forte, SU(5) pour la théorie unifiée.
+<br>
+Le potentiel est introduit dans les "vielbeins" qui sont les généralisations
+des tétrades ou vierbeins dans un espace à un nombre quelconque de dimensions.
+(voir <a href="http://www-th.phys.rug.nl/~schaar/htmlreport/node52.html">
+Tetrad Formalism</a>)
+<br>
+On définit la matrice de changement de base e<sup>a</sup><sub><font face="symbol">m</font></sub> entre un système
+de coordonnées localement plat et un système de coordonnées curviligne.
+Le tenseur métrique en coordonnées curviligne est :
+<br>
+g<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> = <font face="symbol">h</font><sub>a</sub><sub>b</sub> e<sup>a</sup><sub><font face="symbol">m</font></sub> e<sup>b</sup><sub><font face="symbol">n</font></sub>
+<br>
+où <font face="symbol">h</font><sub>a</sub><sub>b</sub> est le tenseur métrique de l'espace-temps plat : 
+1 -1 -1 -1 dans la diagonale, 0 ailleurs.
+<br>
+On introduit le potentiel dans la matrice e<sup>a</sup><sub><font face="symbol">m</font></sub> de la façon suivante :
+<pre>
+e<sup>a</sup><sub><font face="symbol">m</font></sub> = ( e'<sup>a'</sup><sub><font face="symbol">m</font>'</sub>           0      )
+     ( e''<sup>a''</sup><sub><font face="symbol">n</font>''</sub> A<sup><font face="symbol">n</font>''</sup><sub><font face="symbol">m</font>'</sub>   e''<sup>a''</sup><sub><font face="symbol">m</font>''</sub> )     
+</pre>
+où les ' désignent l'espace-temps et les '' les dimensions compactifiées
+associées au groupe du champ de jauge.
+<p>
+Pour simplifier les calculs, on peut attribuer des indices différents aux dimensions étendues et
+compactifiées, par exemple: t=0, x=1, y=2, z=3 et 4 à d-1 pour les 
+dimensions compactifiées, et considérer que les indices de tous les tenseurs 
+varient de 0 à d-1, en complétant avec des 0, par exemple :
+<pre>
+A<sup><font face="symbol">a</font></sup><sub><font face="symbol">m</font></sub> = ( 0     0 )
+      ( A<sup><font face="symbol">a</font></sup><sub><font face="symbol">m</font></sub>   0 )
+</pre>
+Avec cette convention, on a :
+<br>
+e<sup>a</sup><sub><font face="symbol">m</font></sub> = e'<sup>a</sup><sub><font face="symbol">m</font></sub> + e''<sup>a</sup><sub>n</sub> A<sup>n</sup><sub><font face="symbol">m</font></sub> + e''<sup>a</sup><sub><font face="symbol">m</font></sub> <br>
+= e'<sup>a'</sup><sub><font face="symbol">m</font></sub> + e''<sup>a</sup><sub>n</sub> (A<sup>n</sup><sub><font face="symbol">m</font></sub> + <font face="symbol">d</font><sup>n</sup><sub><font face="symbol">m</font></sub>) <br>
+= e'<sup>a</sup><sub><font face="symbol">m</font></sub> + e''<sup>a</sup><sub><font face="symbol">m</font></sub> + e''<sup>a</sup><sub>m</sub> A<sup>m</sup><sub><font face="symbol">m</font></sub>
+<p>
+Le tenseur métrique en coordonnées curviligne est alors :
+<br>
+g<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> = <font face="symbol">h</font><sub>a</sub><sub>b</sub> e<sup>a</sup><sub><font face="symbol">m</font></sub> e<sup>b</sup><sub><font face="symbol">n</font></sub> <br>
+= <font face="symbol">h</font><sub>a</sub><sub>b</sub> (e'<sup>a</sup><sub><font face="symbol">m</font></sub> + e''<sup>a</sup><sub><font face="symbol">m</font></sub> + e''<sup>a</sup><sub>m</sub> A<sup>m</sup><sub><font face="symbol">m</font></sub>) 
+(e'<sup>b</sup><sub><font face="symbol">n</font></sub> + e''<sup>b</sup><sub><font face="symbol">n</font></sub> + e''<sup>b</sup><sub>n</sub> A<sup>n</sup><sub><font face="symbol">n</font></sub>) <br>
+= <font face="symbol">h</font><sub>a</sub><sub>b</sub> e'<sup>a</sup><sub><font face="symbol">m</font></sub> e'<sup>b</sup><sub><font face="symbol">n</font></sub> 
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e'<sup>a</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub><font face="symbol">n</font></sub> 
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e'<sup>a</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub>n</sub> A<sup>n</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub><font face="symbol">m</font></sub> e'<sup>b</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub>n</sub> A<sup>n</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub>m</sub> A<sup>m</sup><sub><font face="symbol">m</font></sub> e'<sup>b</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub>m</sub> A<sup>m</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub>m</sub> A<sup>m</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub>n</sub> A<sup>n</sup><sub><font face="symbol">n</font></sub>
+<br>
+Etant donné que <font face="symbol">h</font><sub>a</sub><sub>b</sub> e'<sup>a</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub><font face="symbol">n</font></sub> = 0
+(car <font face="symbol">h</font><sub>a</sub><sub>b</sub> est non nul pour a = b, e'<sup>a</sup><sub><font face="symbol">m</font></sub> est non nul pour a entre
+0 et 3 et e''<sup>b</sup><sub><font face="symbol">n</font></sub> est non nul pour b entre 4 et d-1) et de même
+pour <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub><font face="symbol">m</font></sub> e'<sup>b</sup><sub><font face="symbol">n</font></sub>, on a:
+
+g<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> = <font face="symbol">h</font><sub>a</sub><sub>b</sub> e'<sup>a</sup><sub><font face="symbol">m</font></sub> e'<sup>b</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub>n</sub> A<sup>n</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub>m</sub> A<sup>m</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub>m</sub> A<sup>m</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub>n</sub> A<sup>n</sup><sub><font face="symbol">n</font></sub>
+<br>
+= g'<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> 
++ g''<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> 
++ g''<sub><font face="symbol">m</font></sub><sub>n</sub> A<sup>n</sup><sub><font face="symbol">n</font></sub> 
++ g''<sub>m</sub><sub><font face="symbol">n</font></sub> A<sup>m</sup><sub><font face="symbol">n</font></sub>
++ g''<sub>m</sub><sub>n</sub> A<sup>m</sup><sub><font face="symbol">m</font></sub> A<sup>n</sup><sub><font face="symbol">n</font></sub>
+<br>
+Voir aussi <a href="http://www-th.phys.rug.nl/~schaar/htmlreport/node13.html">
+Reduction of the Low Energy String Effective Action</a>
+<br>
+On voit ici que le potentiel A apparait dans les composantes 4 à d-1
+du tenseur métrique.
+<p>
+La connexion est définie en fonction de la métrique par :
+<br>
+<font face="symbol">G</font><sup><font face="symbol">l</font></sup><sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> = 1/2 ( 
+<font face="symbol">¶</font><sub><font face="symbol">n</font></sub> g<sub><font face="symbol">r</font></sub><sub><font face="symbol">m</font></sub> +
+<font face="symbol">¶</font><sub><font face="symbol">m</font></sub> g<sub><font face="symbol">r</font></sub><sub><font face="symbol">n</font></sub> -
+<font face="symbol">¶</font><sub><font face="symbol">r</font></sub> g<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> ) g<sup><font face="symbol">l</font></sup><sup><font face="symbol">r</font></sup>
+<br>
+Je ne développerai pas le calcul détaillé ici mais il fait apparaitre
+le champ F<sup><font face="symbol">r</font></sup><sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> dans <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">n</font></sub><sub><font face="symbol">r</font></sub> et <font face="symbol">G</font><sup><font face="symbol">m</font></sup><sub><font face="symbol">r</font></sub><sub><font face="symbol">n</font></sub>
+pour <font face="symbol">r</font> entre 4 et d-1, et en considérant la charge comme les
+composantes de l'impulsion dans les dimensions compactifiées,
+l'équation des géodésiques d<sup>2</sup>x<sup><font face="symbol">l</font></sup>/dt<sup>2</sup> =
+- <font face="symbol">G</font><sup><font face="symbol">l</font></sup><sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> dx<sup><font face="symbol">m</font></sup>/dt dx<sup><font face="symbol">n</font></sup>/dt permet de retrouver la
+force : par exemple dans le cas de l'électromagnétisme :
+ f<sup><font face="symbol">l</font></sup> = m d<sup>2</sup>x<sup><font face="symbol">l</font></sup>/dt<sup>2</sup> = q dx<sup><font face="symbol">m</font></sup>/dt F<sup><font face="symbol">l</font></sup><sub><font face="symbol">m</font></sub>.
+
+<p>
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,160 @@
+All the numbers
+
+A^w A^w B A A A ...     1/(w+w)
+A^w B A A A ...         1/w
+A A B A A A ...         1/4
+A B A A A ...           1/2
+A B B A A A ...         3/4
+A B^w B A A A ...       1-1/w
+B A A A ...             1
+B B A A A ...           2
+B^w A^w B A A A ...     w/2
+B^w A B A A A ...       w-1 
+B^w B A A A ...         w
+B^w B B A A A ...       w+1
+B^w B^w B A A A ...     w+w
+
+
+Transfinite cardinals
+
+An ordinal a is identified with the set { b : b < a } of all ordinals less
+than a : 0 = {}, 1 = {0}, 2 = {0, 1} = {{}, {{}}}, 3 = {0, 1, 2}...
+w = {0, 1, 2...}, w+1 = {0, 1, 2, ..., w}...
+
+If a = lim(a_n) then b < a iff b is less than one of the a_n's. a is the least
+ordinal greater than all the a_n's. Therefore, a = { b : b < a } 
+= { b : exist n . b < a_n } = U { b : b < a_n } = U a_n.
+
+Definitions
+        sup A = first ordinal > any member of A.
+        S is countable if 0, finite or card w.
+
+Two principles of ordinal generation :
+I: a -> a + 1 least ordinal > a
+II: sequence a_n -> lim (a_n) = least ordinal > all the a_n
+combined into
+III: For every set A of ordinals, there is a least ordinal > every member of A 
+called sup A.
+
+Definitions
+        First number class : w, finite ordinals
+        Second number class : all additional ordinals that can be obtained 
+                by repeatedly using I and II where II is applied only to
+                countable sequences a_n. This is the collection of all
+                countable infinite ordinals.
+        aleph_1 = sup (second number class)
+
+Aleph_1 lies beyond any countable sum of ordinals less than itself.
+We can only reach aleph_1 by adding together aleph_1 ordinals.
+An ordinal a that cannot be represented as a sum of less than a ordinals 
+less than a is called regular. 0, 1, 2, w and aleph_1 are regular.
+
+Cardinality
+
+card S is the least ordinal a such that card a = card S.
+aleph_0 = w
+aleph_1 is the first uncountable cardinal.
+aleph_2 is the first cardinal > aleph_1.
+aleph_w = { 0, 1, ... aleph_0, ... , aleph_1, ... }
+For every cardinal k, k < 2^k.
+Generalized Continuum Hypothesis : for all k, 2^k = k+ the least cardinal
+greater than k.
+2^aleph_a = aleph_a+1
+
+The continuum
+
+Large cardinals
+
+An ordinal is a generalized number that can be counted up to by a process 
+of repeatedly taking the next step after all the preceding steps.
+W (the collection of all ordinals) can be seen as an imaginary ordinal.
+W is a regulal cardinal.
+In ZF, regularity is introduced as the axiom of replacement :
+{ f(y) : y in x } is a set.
+This axiom is a weak form of the Reflection Principle :
+For every conceivable property of ordinals P, if W has property P, then
+there is at least one ordinal x < W that has also property P.
+Not only is W regular, W does not have the form k+ for any cardinal k.
+W is a limit cardinal, rather than successor. 
+A cardinal that has this property is called inaccessible.
+t is inaccessible if
+- t is regular
+- whenever k < t, k+ < t
+
+Analogy :
+        0       1       2       w       aleph_1
+        0       w       aleph_1 theta   rho
+
+There are W inaccessible cardinals less than W. W is hyperinaccessible.
+0-hyperinaccessible = inaccessible
+1-hyperinaccessible = hyperinaccessible
+v is a+1-hyperinaccessible if v is a-hyperinaccessible preceded by v a-hyperinaccessibles
+for limit l : v is l-hyperinaccessible if v is a-hyperinaccessible for every a<l
+
+m is a-hyperinaccessible for every a < m : m is hyper-hyper-inaccessible or
+hyper^2 inaccessible.
+m is 1-hyper^2-inaccessible if m is inaccessible and there are m hyper^2-inaccessibles
+less than m.
+m is hyper^3-inaccessible if m is a-hyper^2-inaccessible for all a < m.
+m is super-hyper-inaccessible if m is inaccessible and preceded by m
+hyper^a-inaccessibles for every a < m.
+
+r preceded by r inaccessibles, r hyperinaccessibles, r super-hyper-inaccessibles...
+is called a Mahlo cardinal.
+r is a Malho caridnal if r is inaccessible and whenever I is a set of ordinals 
+such that there are r members of I less than r then there is an inaccessible 
+cardinal k < r such that there are k members of I less than k.
+r is Mahlo if it satisfies the Fixed-Point Reflexion Principle :
+for every fixed-point property P, there is a k < r such that k enjoys P.
+P is a fixed point property if it has the form : # is inaccessible and there
+are # ordinals less than # that have property I.
+
+The collection of all fixed-point properties is conceivable, and that is why the
+Reflection Principle can be applied to get Mahlo cardinals. There are various other
+standard conceivable collections of properties for which the same kind of argumentt
+can be carried out. Large cardinals obtained in this way are called indescriptible
+cardinals, and they are generally quite a bit bigger than the first Mahlo cardinal.
+
+Strongly inaccessible cardinal t :
+- t is regular
+- whenever k < t, 2^k < t
+GCH => strongly inaccessible = inaccessible
+
+cardinals
+        inaccessible
+        Mahlo
+        indescribable
+        ineffable
+        partition
+        Ramsey
+        measurable
+        strongly compact
+        supercompact
+        extendible
+
+        0       1       2       w       aleph_1
+        0       w       aleph_1 theta   rho
+        0       k               lambda
+
+The first measurable cardinal is k.
+k is measurable if there is a method of deciding which subsets of k are dense and
+which are sparse. Dense subsets are called big or nodal.
+The method for picking out the dense, big nodal subsets of k is simply
+represented by taking the set N of all the dense subsets of k. k is 
+measurable if we can find such an N that is k-complete, meaning that the
+intersection of less than k of the members of N is also a member of k. 
+k is measurable if there is a set M included in Parts(k) such that
+a) no subsets of k with cardinality less than k are in M
+b) the intersection of less than k members of M is also a member of M
+c) For every A included in k, either A or the complement A' =
+{ a in k : a not in A } of A is in M (but not both).
+M is called a k-complete ultrafilter on k.
+
+
+Reference
+
+Infinity and the mind
+The science and Philosophy of the Infinite
+Rudy Rucker
+
+

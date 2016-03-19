@@ -1,0 +1,45 @@
+
+<!--Connexion établie--><!--Base de données sélectionnée--><HTML><head><title>Notations pour le calcul tensoriel</title><meta name=keywords content=""></head><body>
+<h3>Notations pour le calcul tensoriel</h3>
+
+<pre>
+
+Produit de matrices : 
+ A B = C
+ A^i_j B^j_k = C^i_k
+ A(i,j) B(j,k) = C(i,k) ou somme(j) A(i,j) B(j,k) = C(i,k)
+ (i)A(j) (j)B(k) = (i)C(k)
+ -A-B- = -C-
+ prod(A,1,0,B) = C
+ A2:1_0:B2 = C2
+ 
+dimension = vecteur
+ A(n,p,q) -> (3) -> (1) -> (1)
+ représentation par suite de nombres : 3 n p q valeurs...
+ adresse de a(ijk) = 1 + 3 + (ip+j)q+k
+ cas général : d n0 ... nd-1 valeurs...
+ 
+ind(A,J) avec J = vecteur d'indices (i,j,k)
+
+opérations
+ prodext(A,B) = A B = A(i1...in) B(j1...jn)
+ trace(u,v,A) = Auv. = A (i0 ... iu-1 i iu+1 ... iv-1 i iv+1 ... in-1)
+ transpose(u,v,A) = Auxv = A (i0 ... iv ... iu ... in-1)
+ prod(A,u,v,B) = Au_vB = trace(u,n+v,prodext(A,B))
+ sum(A,u) = Au. = prod(A,u,0,V1) avec V1 = (1 1 ... 1)
+ diago(A,u) = Au< ou Au*
+ diag(u,v,A) = Auv> ou Auv*
+ prodpar(A,u,v,B) = Au*vB
+
+ sum(u,diag(u,v,A)) = trace(u,v,A)
+ diag(1,2,prodpar(A,0,0,B))
+ 
+ exemple : matrice à diagonaliser dans l'analyse factorielle universelle
+  S = prod(inv(trace(1,3,prod(prod(D,0,0,X),0,0,X))),1,0,prod(prod(D,0,0,sum(2,X)),0,0,sum(2,X)))
+  S = (I/((D2:0_0X3)0_0Z3)13.)1_0((D2:0_0(Z3:2.))0_0(Z3:2.))
+
+ 
+ 
+
+</pre>
+</body></HTML>

@@ -1,0 +1,58 @@
+                                      
+dem S (refl d) -> dem (refl S) d       
+ Dans le systeme S la preuve refl d est
+la preuve d dans le systeme refl S     
+ c'est a dire S augmente de son principe
+ de reflexion : pour toute preuve d de S,                                      
+ la conclusion de d dans S est vraie dans S                                                                             
+
+S -> S0, S1 ... f n = Sn               
+d -> <n, d> = refl^n d                 
+dem Sn d                               
+f_refl f = \n. ( f n U a_refl f)       
+a_refl f : pour tout <n, d> true (concl <n, d>)                                
+f_refl^w f = f U f_refl f U f_refl (f_refl f) U ...                            
+<n1, n2, d>                                        
+ou <b, x> (b booleen) = <V, S> ou <F, <b, x>> recursivement                    
+refl (s0 U S1 U ...) = refl S0 U refl S U ...                                 
+n -> p -> refl^n (Sp)                  
+                                       
+Un systeme formel est un generateur de 
+theoremes                               
+generateur non deterministe :          
+ oneof nodes = n -> n (sn1, ... , snp) 
+            loop : alt exit : refl                
+ n -> "a = b"                          
+ n -> (n1, n') n1 dans [0..N-1] N = nombre de noeuds                           
+  0 1 2 ... N-1                        
+  N N+1 ...                            
+  ...                                  
+ n' -> n'0 ... n'p-1 avec p = arite du noeud n1                                
+  n'-> n'0 n''0, n''0 -> n'1 n''1, ...               0 1 3 ...                  
+
+  2 4 ...                              
+  5 ...                                
+                                       
+ refl S principe de reflexion du systeme
+ formel S est exprimable par un        
+  axiome a_RS = b_RS                   
+                                       
+ Systeme formel avec axiome "trou de reflexivite" : S (a_TR = b_TR)
+                         
+ S0 = S (I = I)              
+ S1 = refl S0 = S (<a_RS0, I> = <b_RS0, I>)                                    
+ S2 = refl S1 = S (<a_RS1, <a_RS0, I>> = <b_RS1, <b_RS0, I>>)                  
+ ...                                   
+ ord x -> Sx = refl^x S0               
+  0 -> S0                              
+  suc -> refl                          
+  lim f -> TR_lim_f <a_TRf0, <a_TRf1, .
+            
+ Sw = S (<I, <<a_RS0, I>, <<a_RS1, <a_RS0, I>>, ...>>> =                       
+         <I, <<b_RS0, I>, <<b_RS1, <b_RS0, I>>, ...>>>)                        
+ ( cette representation me semble en fait plus simple que <I, <a_RS0, <a_RS1...>>                                     
+   par la definition pour lim f qui l'engendre )                                                                        
+˜
+
+
+

@@ -1,0 +1,92 @@
+<HTML>  
+<head>
+<title>Gauge fields and Kaluza-Klein theory</title>
+</head>
+
+<body>
+
+<h3>Gauge fields and Kaluza-Klein theory</h3>
+
+Correspondance potential A<sub><font face="symbol">m</font></sub> - connection and field F<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> - curvature 
+<p>
+In a loop (+dx,+dy,-dx,-dy) the phase increases by :<br>
+A<sub>x</sub> dx + (A<sub>y</sub> + <font face="symbol">�</font><sub>x</sub> A<sub>y</sub> dx) dy - (A<sub>x</sub> + <font face="symbol">�</font><sub>y</sub> A<sub>x</sub> dy) dx - A<sub>y</sub> dy<br>
+= (<font face="symbol">�</font><sub>x</sub> A<sub>y</sub> - <font face="symbol">�</font><sub>y</sub> A<sub>x</sub>) dx dy <br>
+= F<sub>x</sub><sub>y</sub> dx dy
+<p>
+Kaluza-Klein theory
+<p>
+The vielbeins e<sup>a</sup><sub><font face="symbol">m</font></sub> are the matrices of base changing between curved and 
+locally flat coordinates.
+<br>
+The metric tensor g<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> in curved coordinates is : <br>
+g<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> = <font face="symbol">h</font><sub>a</sub><sub>b</sub> e<sup>a</sup><sub><font face="symbol">m</font></sub> e<sup>b</sup><sub><font face="symbol">n</font></sub>
+<br>
+where <font face="symbol">h</font><sub>a</sub><sub>b</sub> is the metric tensor of the flat space-time (1 -1 -1 -1 on
+the diagonal, 0 elsewhere).
+<p>
+According to Kaluza-Klein theory, gauge fields are equivalent to gravitation
+(curvature of space-time according to general relativity)
+in compactified dimensions.
+<p>
+The vielbein is :
+<br>
+<pre>
+e<sup>a</sup><sub><font face="symbol">m</font></sub> = ( e'<sup>a'</sup><sub><font face="symbol">m</font></sub>         0   )
+     ( e''<sup>a''</sup><sub><font face="symbol">n</font>''</sub> A<sup><font face="symbol">n</font>''</sup><sub><font face="symbol">m</font></sub>    e''<sup>a''</sup><sub><font face="symbol">m</font>''</sub> )     
+</pre>
+<br>
+where e'<sup>a'</sup><sub><font face="symbol">m</font></sub> is the vielbein of the space-time, e''<sup>a''</sup><sub><font face="symbol">m</font>''</sub>
+is the vielbein of the compactified dimensions, and A<sup><font face="symbol">n</font>''</sup><sub><font face="symbol">m</font></sub> is the 
+potential.
+<p>
+We can number the dimensions of space-time from 0 to 3 (0=t, 1=x, 2=y, 3=z)
+and the compactified dimensions from 4 to d-1, and consider all the tensor defined
+for indices varying from 0 to d-1, completed with zeros, for example :
+<br>
+<pre>
+A<sup>m</sup><sub><font face="symbol">m</font></sub> = ( 0      0 )
+      ( A<sup>m</sup><sub><font face="symbol">m</font></sub>   0 )
+</pre>
+<br>
+with indices <font face="symbol">m</font> = 0..3 and m = 4..d-1; A<sup>m</sup><sub><font face="symbol">m</font></sub> is 0 if <font face="symbol">m</font> is not in 0..3 or
+m is not in 4..d-1.
+<p>
+With this convention, we have : <br>
+e<sup>a</sup><sub><font face="symbol">m</font></sub> = e'<sup>a</sup><sub><font face="symbol">m</font></sub> + e''<sup>a</sup><sub>n</sub> A<sup>n</sup><sub><font face="symbol">m</font></sub> + e''<sup>a</sup><sub><font face="symbol">m</font></sub> <br>
+= e'<sup>a'</sup><sub><font face="symbol">m</font></sub> + e''<sup>a</sup><sub>n</sub> (A<sup>n</sup><sub><font face="symbol">m</font></sub> + <font face="symbol">d</font><sup>n</sup><sub><font face="symbol">m</font></sub>) <br>
+= e'<sup>a</sup><sub><font face="symbol">m</font></sub> + e''<sup>a</sup><sub><font face="symbol">m</font></sub> + e''<sup>a</sup><sub>m</sub> A<sup>m</sup><sub><font face="symbol">m</font></sub>
+<p>
+Then the metric tensor in curved coordinates is : <br>
+g<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> = <font face="symbol">h</font><sub>a</sub><sub>b</sub> e<sup>a</sup><sub><font face="symbol">m</font></sub> e<sup>b</sup><sub><font face="symbol">n</font></sub> <br>
+= <font face="symbol">h</font><sub>a</sub><sub>b</sub> (e'<sup>a</sup><sub><font face="symbol">m</font></sub> + e''<sup>a</sup><sub><font face="symbol">m</font></sub> + e''<sup>a</sup><sub>m</sub> A<sup>m</sup><sub><font face="symbol">m</font></sub>) 
+(e'<sup>b</sup><sub><font face="symbol">n</font></sub> + e''<sup>b</sup><sub><font face="symbol">n</font></sub> + e''<sup>b</sup><sub>n</sub> A<sup>n</sup><sub><font face="symbol">n</font></sub>) <br>
+= <font face="symbol">h</font><sub>a</sub><sub>b</sub> e'<sup>a</sup><sub><font face="symbol">m</font></sub> e'<sup>b</sup><sub><font face="symbol">n</font></sub> 
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e'<sup>a</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub><font face="symbol">n</font></sub> 
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e'<sup>a</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub>n</sub> A<sup>n</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub><font face="symbol">m</font></sub> e'<sup>b</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub>n</sub> A<sup>n</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub>m</sub> A<sup>m</sup><sub><font face="symbol">m</font></sub> e'<sup>b</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub>m</sub> A<sup>m</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub>m</sub> A<sup>m</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub>n</sub> A<sup>n</sup><sub><font face="symbol">n</font></sub>
+<br>
+Since <font face="symbol">h</font><sub>a</sub><sub>b</sub> e'<sup>a</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub><font face="symbol">n</font></sub> = 0 because <font face="symbol">h</font><sub>a</sub><sub>b</sub> is not 0 only if a = b,
+e'<sup>a</sup><sub><font face="symbol">m</font></sub> is not zero only if a is in 0..3 and e''<sup>b</sup><sub><font face="symbol">n</font></sub> is not zero only if
+b is in 4..d-1, and same for <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub><font face="symbol">m</font></sub> e'<sup>b</sup><sub><font face="symbol">n</font></sub> we have :
+<br>
+g<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> = <font face="symbol">h</font><sub>a</sub><sub>b</sub> e'<sup>a</sup><sub><font face="symbol">m</font></sub> e'<sup>b</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub>n</sub> A<sup>n</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub>m</sub> A<sup>m</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub><font face="symbol">n</font></sub>
++ <font face="symbol">h</font><sub>a</sub><sub>b</sub> e''<sup>a</sup><sub>m</sub> A<sup>m</sup><sub><font face="symbol">m</font></sub> e''<sup>b</sup><sub>n</sub> A<sup>n</sup><sub><font face="symbol">n</font></sub>
+<br>
+= g'<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> 
++ g''<sub><font face="symbol">m</font></sub><sub><font face="symbol">n</font></sub> 
++ g''<sub><font face="symbol">m</font></sub><sub>n</sub> A<sup>n</sup><sub><font face="symbol">n</font></sub> 
++ g''<sub>m</sub><sub><font face="symbol">n</font></sub> A<sup>m</sup><sub><font face="symbol">n</font></sub>
++ g''<sub>m</sub><sub>n</sub> A<sup>m</sup><sub><font face="symbol">m</font></sub> A<sup>n</sup><sub><font face="symbol">n</font></sub>
+<p>
+
+</body>
+</HTML>

@@ -1,0 +1,605 @@
+
+été 1986
+logique : aff, test, hyp
+prolog extension hypothèse, logique 1er ordre
+hyp [ ... ] local
+soit(x) -> parcourt les objets existant
+creer(x) -> crée un nouvel objet
+
+aff(A/\B) : aff a ; aff B
+test(A/\B) : test A, test B
+
+aff(A\/B) : faux -> hyp [aj(aff A) faux] hyp [aj(aff B) faux]
+test(A\/B) : hyp [aj(faux->test A) aj(faux->test B) faux]
+
+p \?/ q : (p =!> faux) =?> (q =!> faux) =?> faux
+cf pour tout r. (p =!> r) =?> (q =!> r) =?> r
+A\/B = ~(~A/\~B)
+~A = A => faux
+~! a = a =!> faux : faux -> a
+~? a = a =?> faux : hyp [aj(a) faux]
+
+aff(~A) : faux -> test A
+test(~A) : hyp[aj(aff A) faux]
+
+A => B = ~A \/ B = ~ (A /\ ~B)
+
+aff(A=>B) : faux -> test A hyp [aj(aff B) faux]
+test(A=>B) : hyp [aj(aff A) aj(faux->test B) faux]
+                    hyp [aj(aff A) test B]
+
+aff(pour tout x. A x) : faux -> soit(x) hyp [aj(aff (A x)) faux]
+test(pour tout x. A x) : hyp [creer(x) test(A x)]
+
+aff (existe x. p x) : creer(x) aff(p x)
+test(existe x. p x) : hyp [aj(faux->soit(x) test(p x) faux]
+
+
+été 1986
+logique modale
+[]A
+- A=a : []a
+- A=B/\C : [](B/\C) = []B /\ []C
+- A=[]B : [][]B=[]B
+- A=~B
+	- B=b : []~b
+	- B=~C : []~~C=[]C
+	- B=[]C : []~[]C=~[]C
+	- B=C/\D : []~(C/\D)=[](~C\/~D)=[](E\/F)
+		- E et F sans [] : [](E\/F)
+		- [] dans F : [](E\/F)
+			- F=G/\H : [](E\/(G/\H))=[]((E\/G)/\(E\/H))=[](E\/G)/\[](E\/H)
+			- F=[]G : [](E\/[]G)[]E\/[]G
+			- F=~G : [](E\/~G)
+				- G=H/\I : [](E\/(H/\I))=[](E\/~H\/~I)
+				- G=~H : [](E\/~~H)=[](E\/H)
+				G=[]H : [](E\/~[]H)=[]E\/~[]H
+		- [] dans E : similaire
+
+~p : p n'est pas démontrable 
+ différent: faux -> p (aff)
+                hyp [aj(p) faux] (int)
+
+
+(V) D 26-11-1986
+mathématiques
+connaissance absolue
+base nécessaire
+métamathématique, logique, système formel
+langage de base (LCS)
+Prolog, Lisp
+problèmes souvent rencontrés, généraux, paradigmes
+problème métamathématique, logique, méthode générale de résoluton
+quels problèmes souvent rencontrés ?
+symboles, atomes, identificateurs
+différence mathématiques / informatique, théorèmes
+informatique spécification cf Z
+spécification (relation) -théorème-> implémentation
+cf interprète Z en prolog
+problème: inefficace
+théorème
+problème décidabilité
+
+D 15-7-1984
+inconscient partie du cerveau ou autre conscience
+conscience inconsciente ?
+ce qu'on appelle conscient est-il le cerveau ?
+
+logique
+axiomatique
+notion de modèle
+table opérateurs
+
+but connaissance
+métaconnaissance
+logique mathématique
+métaphysique (général)
+physique
+
+logique
+théorie, système, modèle
+représentation
+simplification, résolution de problèmes
+théorie générale
+états de conscience supérieurs
+rappel de soi (Gurdjieff)
+inconscient
+
+logique théorie axiomatique -> modèle
+spécification -> implémentation
+
+
+été 1985 R Philippe
+Le matin des magiciens
+modes de fonctionnement binaire et analogique
+irréversibilité du temps
+chose à décrire par une expression Lisp
+(intel p) -> x, (eval x) x la plus simple possible telle que (p (eval x))
+(a a a a a a) : (rep 6 a) ou (quote (a a a a a a))
+
+problème métaphysique cerveau liberté G. Palm
+liberté sens restreint, sens large
+cassette l'image de soi
+cybernétique
+U2 a sort of homecoming
+cerveau ordinateur
+conscience mémoire vive programme en cours d'exécution
+inconscient programme sauvegarde
+
+problème connaissance pas but, moyen
+comportement essais expériences
+personnalité éducation
+but pouvoir
+liberté
+on est des machines fabriquées par les éons
+
+
+V 6-9-1985
+physique modèle temps
+intelligence
+intel perception physique
+impleff opération mathématique
+irréversibilité du temps
+pourquoi ?
+univers fixé par le passé
+lois d'évolution symétriques
+les perturbations de l'esprit, du libre arbitre sont dissymétriques, agissent dans un sens.
+non déterminisme:
+- faux, déterminisme sous-jacent
+- faux, observation
+- vrai, dés, hasard pur
+- vrai, libre arbitre
+intel et impleff
+ intel : p -> x la plus courte, y = (eval x), r = (p x) différent de nil
+impleff : *(f x) = y ou (f x1 ... xn) = y1 ... yn
+f -> g tel que (g x) = (f x), g la plus efficace
+*(eval f) = g
+f -> g telle que (eva lg) = y, g la plus rapide à évaluer
+
+Automne 1985
+LC, FP
+
+LC
+f x
+P x y f = f x y
+\x.x = I = S K K, I a = a
+\x.a = K a si x pas dans a, K a b = a 
+\x.(a b) = S(\x.a)(\x.b), S a b c = a c (b c)
+\x.(a b) = B a (\x.b) si x pas dans a, B a b c = a (b c)
+\x.(a b) = C (\x.a) b si x pas dans b, C a b c = a c b
+
+FP
+f:x = &:<f,x>
+fst:<x,y>=x, snd:<x,y>=y (P=I)
+\x.x = I, I a = a
+\x.a = K:a, K:a:b = a
+\x.(a b) = a o \x.b = comp:<a,\x.b>
+\x.<a,b> = [\x.a,\x.b] = consf:<\x.a,\x.b>
+\x.(a b) = \x.&:<a,b> = & o [\x.a,\x.b]
+((cur:f):x):y = f:<x,y>
+théorèmes:
+(K:f) o g = K:f
+définition:
+(p->f;g) o h = p o h -> f o h ; g o h
+p -> (p->f;g) ; h = p->f;h
+[h;p->f;g] = p->[h,f];[h;g]
+
+not o p -> f ; g = p -> g ; f
+and o [p,q] -> f ; g = p -> (q -> f ; g) ; g
+or o [p,q] -> f ; g = (p -> f ; p) -> f ; g
+h o (p -> f ; g) = p -> h o f ; h o g
+p -> h ; (p -> f ; g) = p -> h ; g
+[p -> f ; g, h] = p ->[f,h] ; [g,h]
+
+lambek
+(f o g) o h = f o (g o h)
+I o f = f, f o I = f
+fst o [f,g] = f
+snd o [f,g] = g
+[fst o f, snd o f] = f
+& o [(cur:f) o fst, snd] = f
+cur:(& o [f o fst,snd]) = f
+
+def
+cur:fst = K
+cur:snd = KI
+
+conseq
+cur o & = I
+[fst,snd] = I
+[f,g] o h = [f o h, g o h]
+& o [cur:f, g]  f o [I, g]
+(cur:f) o g = cur(f o [g o fst, snd])
+
+
+D 29-12-1985
+types
+- langages non typés : langage machine, LC, lambda calcul, [ZF]
+ fonctions manipulant des structures de données utilisées pour représenter des objets mathématiques
+ -> convention de représentation (type concret)
+ si on sait qu'une valeur est d'un type alors on sait ce qu'elle représente, sa signification 
+ mais une valeur seule ne permet pas de connaitre son type
+ type concret : énumération, n-uplet
+- contrôle statique de type, types associés aux variables, arguments, résultats
+ cf Pascal, Ada, LC, lambda calcul typés
+ -> overloading
+- gestion dynamique des types, types associés aux valeurs
+ objet : paire <représentation du type, valeur>
+ manipulation d'objets dont on ne connait pas statiquement le type mais qui contiennent leur type
+ -> programmation dirigée par les types, LOO
+ hiérarchie, héritage, héritage multiple
+
+
+LC : représentation des primitives
+exemple : X a b c d e = b (K a (S d (b d)) K d e
+- nombre d'arguments nécessaires : 4
+- effet
+instrictions :
+ PRIM n : empiler nième primitive
+ ARG n : empiler nième argument
+ APP : application
+exemple (arité 4)
+ ARG 2 PRIM K ARG 1 APP APP PRIM S ARG 4 APP ARG 2 ARG 4 APP APP APP PRIM K APP ARG 4 APP
+définition de K et S :
+K a b -> a arité 2 ARG 1
+S a b c -> a c (b c) arité 3 ARG 1 ARG 3 APP ARG 2 ARG 3 APP APP
+cf LU
+exemples :
+ K = ('(R car [cdr cdr] cons gto) &)
+ S = ('(R car [R cdr cdr car] app [R cdr car [R cdr cdr car]] app app gto) &)
+avec
+ app = [['nil]cons] cons
+S = ('(ARITE 2 ARG 1 ARG 3 APP ARG 2 ARG 3 APP APP gto) &)
+ avec définitions adéquates de ARITE, ARG, APP
+ APP = X app
+ARITE n -> GETARG ... GETARG
+
+
+V 31-10-1986
+LC
+proto-vérité : vérité mathématique élémentaire
+représentée en LC
+- a=b, a et b combinateurs, combinaison par & (application) de K et S
+\x.x = I
+\x.a = K a
+\x.a b = S(\x.a)(\x.b)
+I a = a
+K a b = a
+S a b c = a c (b c)
+combinaisons logiques de proto-vérités -> proto-vérité
+a=b /\ c=d -> <a,c>=<b,d>
+avec <x,y> = P x y; P x y f = f x y
+pour tout x. f x = g x => f = g
+il existe x. f x = g x
+a = b => c = d
+il existe f. f a = c /\ f b = d
+<= évident
+=> 2 cas
+- c = d : f = K c ou K d
+- a différent de b discernables : g discriminant : g a = V, g b = F => f = \x. g x c d
+
+
+décembre 1985
+LC et prolog, unification LC
+LC : type constr. rep. struct.
+- vide
+- a u b
+- K, S
+- a b
+exemple : listes
+ nil n i = n
+ ins x l n i = i x l
+type liste a = {nil} u {ins} (ap) a (ap) (liste a)
+type paramétré par a, récursif
+Prolog:
+ append([],l,l).
+ append([X|A],B,[X|C]) :- append(A,B,C).
+utilisation inverse : une liste l -> séparer en 2 listes
+manipulation de listes en LC : exemple : append
+append a b = a b : ^(x s) : ins x : append s b.
+unif / LC : exemple : append %a %b = l
+avec l = ins x : ins y nil
+et type de a = liste univ
+univ = {K} u {S} u (univ (ap) univ)
+définition append : substituer append par combinaison de K et S correspondant
+utiliser règles LC :
+ K a b = a 
+ S a b c = a c (b c)
+%a %b : ^(x s) : ins x : append s %b = ins x : ins y nil
+%a variable en position active
+type : liste univ = nil u ins univ (liste univ)
+ins univ (liste univ) : 
+ins %a1 %a2 %b : ^(x s) : ins x : append s %b = ins x : ins y nil
+réduire -> ins %a1 : append %a2 b = ins x : ins y nil
+unifier -> %a1 = x, append %a2 b = y, etc...
+2 cas
+type u de différents types (cons) 
+%a = nil
+nil %b : ^(x s) : ... = ins x : ins y nil
+%b = ins x : ins y nil
+%a = ins %a1 %a2
+%a1 : univ
+%a2 : liste univ
+
+hiver-printemps 1986
+types
+types constr.
+- vide
+- a u b : union
+- {x} {K} {S} : valeur
+- a (ap) b : application
+vérités mathématiques
+- x appartient à a 
+- a inclus dans b, b contient a, univ = a => b, I appartient à a -> b, pour tout x. x appartient à a => x appartient à b
+- I appartient à a
+- vide contient a, a inclus dans vide, non existe x appartient à a
+- existe x appartient à a
+ext
+(Boole)
+- a u b
+- a inter b
+- ~ a = a => faux
+- a => b
+applyto x f = f x
+
+
+J 6-3-1986
+formalisme universel (LC)
+vérités mathématiques, représentation
+théorie |- théorème
+schémas de règles, axiomes, arbres avec variables
+instances
+ règle a1, ..., an |- b
+ cas particulier n=0 |-b axiome
+ curry : a1 |- ... an |- b
+
+th -) r =|> th ||- r vérité mathématique
+th ||- a |- b =|> th ||- a =|> th ||- b
+(th ||- a  =|> th ||- b) =|> th ||- (a |- b)
+th ||- a |- b =|> th u "a" |- b
+th ||- a |- (b |- a) (K)
+th ||- (a |- b |- c) |- (a |- b) |- a |- c (S)
+gen règle th1 ||- th2 def : th2 ||- r =|> th1 ||- r
+th ||- q |- r =|> th ||- p |- q =|> th ||- p |- r
+th ||= vide
+th ||= th
+th1 ||= th2 <|=|> (th1 u th2) ||- p => th1 ||- p)
+th2 ||= th3 => th1 ||= th2 =|> th1 ||= th3
+th1 ||= th1 =|> th1 -> r =|> th ||- r
+
+
+Me 2-4-1986
+LC
+\x.x = I = S K K, I a = a
+\x.a = K a, K a b = a
+\x.(a b) = S (\x.a) (\x.b), S a b c = a c (b c)
+.E0 = eval -.E0 = représentation LC combinaison par & de K et S
+représentation virtuelle imaginaire, "magique"
+.E0 -x -y = V si eval -x = eval -y, F sinon
+-x, -y représentations avec K et S
+avec V x y = x, F x y = y
+-x, -y représentations
+eval x = x (\(p) : p K S) (\(rf ra) : (eval rf) (eval ra))
+.E1 = eval -.E1
+.E1 -x -y = V si eval -x = eval -y, F sinon
+-x, -y représentations avec K, S et .E0
+substituer dans -x et -y les .E0 par combinaisons de K et S d'après -.E0
+et comparer en utilisant E0
+[ .E2, .E3, ... .Ew, .Ew+1... ordinaux ...
+  cf GEB cantatatata sortir du système ]
+.E2 = eval -.E2, .E2 -x -y = V si eval -x = eval -y, F sinon
+-x, -y avec K, S, .E1
+substituer dans -x et -y les .E1 par combinaison de K et S d'après -.E1 
+et comparer en utilisant E0
+fonction -.Ei -> -.Ei+1, point fixe (Y) -> -.Eoo -eval-> .Eoo
+ rep = struct primitive *, application * *
+ prim = struct P.E, PK, PS
+ex: -I = application (application PS PK) PK
+notation application rf ra = rf :. ra
+ (rf :. ra1) :. ra2 = rf :. ra1 :. ra2
+def eval = ^(r) : r (^(p) : P bottom K S) (^(rf ra) : eval rf (eval ra))
+def substP.E = ^(x r) : r <x, PK, PS> (^(rf ra) : application (substP.E x rf) (substP.E x ra))
+def .E1 = ^(rx ry) : .E0 (substP.E -.E0 rx) (substP.E -.E0 ry)
+def .E2 = ^(rx ry) : .E0 (substP.E -.E1 rx) (substP.E -.E1 ry)
+
+juin 2014
+test d'égalité partiel
+.E'0 -x -y e d i 
+ = e => eval -x = eval -y
+ = d => ~(eval -x = eval -y)
+ = i (indéterminé)
+
+
+1986 
+LC, logique
+LC
+solvabilité:
+combinateur x solvable
+<=> existe a1 ... an. x a1 ... an = I
+I solvable
+f x solvable => f solvable
+V et F solvables
+exemple démonstration V solvable
+I solvable I = K I I
+=> K I solvable => K solvable
+ou K I I = I
+démonstration insolvabilité
+cf GEB "fond"
+démonstration non démontrabilité
+proposition non atteignable
+par axiomes -regles->
+Y n insolvable si N normal
+
+Juin 1986
+LC combinateur L de Constable
+L l c x = y = c avec x placé d'après l
+I a = a
+K a b = a, K a = L []a, K = L []
+S a b c = a c (b c), S = L [[F]] (L [F,F]] (L[[V],[F]]))
+def L l c x = l (eval c) : K : K :
+ (contient l : ^(s) : s V (K (K V)))
+ (L (extraire l : ^(s) : s F (K (K V)))
+ c x x)
+ (c (^(p) : p K S)
+    (^(f a) :
+     L (extraire l : ^(s) : s bottom : ^(x f) x) f x :
+     L (extraire l : ^(s) : s bottom : ^(x f) x F V) a x))
+
+
+Juin 1986 
+LCD
+cf Constable PL/CV, Martin Löf TIT...
+représentations de combinateurs LC
+arbres binaires noeuds &, feuilles K, S
+représentation structure: 
+exemple : r = prim * | applic * *
+prim p tp ta = tp p, PK k s = k, PS k s = s
+applic rf ra tp ta = ta rf ra
+ou r = applic * * | RK | RS
+cf N rep struct : zero | succ * rep interp n f = f ^ n
+problème: rep fonct rep -> rep par 1 rep
+ap(r1,r2)->r résultat
+impossible:
+RPA: 
+ reps corresp à K et S avec prop corresp
+ (ap (ap (rk, x), y) = x, ...
+ -> reg def comme Y avec ap, rk, rs au lieu de &, K, S
+ prop ap(ry,rf) = ap(rf,ap(ry,rf)) = f(ap(ry,rf)) = f(f...) -> expression infinie
+LC: indiscernabilité, extensionalité
+combinateurs non autotypés
+1 fonction doit savoir de quel type sont
+ses arguments pour pouvoir les utiliser
+LCD: objets (combinateurs discernables) : éventuellement infinis
+ K, K(a)
+ S, S(a), S(a,b)
+ D, ...
+opération ap
+ ap(K,a) = K(a), ap(K(a),b) = a
+ ap(S,a) = S(a), ap(S(a),b) = S(a,b), ap(S(a,b),c) = ap(ap(a, c),ap(b,c)) 
+expression LCD
+- non réduites avec ap
+- réduites sans ap
+représentation expressions réduites avec K, S, D et ap :
+K(a) -> ap(K,a)
+S(a) -> ap(S,a)
+S(a,b) -> ap(ap(S,a),b)
+D x -> représentation de x (struct ou interp)
+D, D(a), ... D(a,k,s,d)
+
+
+Me 11-6-1986
+ZF
+objets de la théorie: ensembles
+relation binaire x appartient à y
+axiomes
+vide: existe x tout y [ y n'appartient pas à x ] ; x = vide
+ext: tout x tout y [ tout z (z appartient à x <=> z appartient à y) => x = y]
+paire: tout x tout y existe z tout t [ t appartient à z <=> t = x \/ t = y)] ; z = { x, y}
+réunion: tout x existe y tout z [z appartient à y => existe t (t appartient à x /\ z appartient à t)] ; y = U x
+parties: tout x existe y tout z [ z appartient à y <=> tout t (t appartient à z => t appartient à x)] ; y = P x
+infini: existe x (vide appartient à x et tout y (y appartient à x => y u { y } appartient à x)) ; x = N = { vide, { vide }, ... }
+compréhension: tout x1 ... tout xk tout x existe y tout z [z appartient à y => z appartient à x /\ A(z,x1,...xk)]
+remplacement: tout x1 ... tout xk tout x existe y tout z [z appartient à y <=> existe u (u appartient à x et A(u,x,x1,...,xk))]
+ si tout a tout b tout b' [A(a,b,x1,...,xk)=A(a,b',x1,...,xk) => b=b']
+
+vide: existe ide tout y [ y n'appartient pas à vide ]
+
+
+D 3-8-1986
+ensemble d'objets E
+ensemble d'ap fonct F
+f appartient à F arité n : x1 ... xn appartient à E -> f(x1 ... xn) appartient à E
+si f définie en x1 ... xn
+base B incluse dans E telle que B engendre E avec F
+comb ass ap avec fonction de base -> f non prim appartient à G
+cf langage de programmation extensible Lisp, FP, LC
+tenseurs, circuits, ACS, gen règles
+/*>: base B : op d'arité 8
+
+combinatorisation
+B' = B u F u { K, S } 
+F' = { & } 
+-> E'
+exemple : f(x1,x2) appartient à E
+ = & (&(f,x1), x2) ou f x1 x2
+K et S:
+ &(&(K,a),b) = a
+ &(&(&(S,a),b),c) = &(&(a,c),&(b,c))
+-> op de F rep par l'objet de E'
+ ass d'op de F -> objet de E'
+ plus de différence entre combinaison d'objet -> nouvel objet 
+ et combinaison d'op -> nouvelle op
+
+codage des éléments de E' par des éléments de E ?
+problèmes
+exemple N : K, S combinaison avec & -> Y
+telle que pour tout n appartenant à N, &(Y,n) = &(n,&(Y,n)) 
+s appartient à N code de succ
+&(Y,s) = x appartient à N = &(s,&(Y,s)) = &(s,x)
+-> x = succ x impossible
+
+problèmes : expression sans signification
+
+E' engendré par & à partir de B u F u { K, S } 
+-> contient en particulier tous les combinateurs combinaisons par & de K et S
+closure, application partielle
+cf LC discernable
+K, Ka, S, Sa, Sab
+modèle, sémantique, signification
+ut rep LC
+ex N
+
+LCS
+triplets d'égalités (a=a, a=b, b=b)
+représente l'égalité a=b
+axiomes : 
+ x=x -> (x=x, x=x, x=x)
+ a=b -> (a=a, a=b, b=b)
+
+
+programme test QI
+suite d'entiers - découvrir règle et appliquer pour prolonger
+exemple :
+ 4 6 8 10 ...
+ +2 
+ ... 12 14 16
+problème : génération de suites d'entiers
+suites infinies finiment descriptibles
+cf système formel
+suites de base
+mécanisme de combinaison de suites
+suites de base:
+ 0 0 0 ...
+ 1 0 ...
+ 0 1 ...
+ 0 1 0 2 0 1 0 3 0 1 0 ...
+opérations
+ s1+s2
+ -s
+ s1*s2
+ s1(x)s2
+ integ s
+ diff s
+ s1%s2
+ s1[s2]
+exemples de suites
+ 0 % integ 1 = 0 1 0 1 ...
+ integ 1 = 1 1 1 ...
+ integ 1 + integ 1 = 2 2 2 ...
+ integ integ 1 = 1 2 3 4 ...
+ integ integ 1 - integ 1 = 0 1 2 3 .., 
+
+
+Vie : échange entre moi (esprit, libre arbitre) et la réalité
+
+Théorie de Jean Charon
+- connaissance : choisir librement un ensemble de symboles
+- réflexion : ensemble de liens entre symboles : faits
+- acte : intersection entre symboles de deux âmes
+- amour : complémentation
+
+savoir et faire
+long terme : 2 points de vue :
+- égoïste : réincarnation
+- altruiste : organisme société
+

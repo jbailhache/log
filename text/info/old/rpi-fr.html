@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Raspberry Pi</title>
+</head>
+<body>
+<h2>Raspberry Pi</h2>
+<p>
+<h3>Configuration réseau</h3>
+<p>
+/etc/network/interfaces
+<div style="color: lime; background-color: black;"><pre>
+auto lo
+iface lo inet loopback
+
+### port ethernet de la carte
+### adresse fixe pour réseau local
+# iface eth0 inet static
+# address 192.168.1.20
+# netmask 255.255.255.0
+
+### ou adresse dhcp pour connexion a box internet
+auto eth0
+allow-hotplug eth0
+iface eth0 inet dhcp
+
+### port ethernet USB
+iface eth1 inet dhcp
+
+### wifi
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+wpa-ssid "myssid"
+wpa-psk "mypass"
+
+allow-hotplug ppp0
+iface ppp0 inet dhcp
+
+</pre></div>
+
+<p>
+<h3>
+
+
+</body>
+</html>
+

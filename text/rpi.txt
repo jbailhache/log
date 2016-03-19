@@ -1,0 +1,1857 @@
+RASPBERRY PI
+
+CONFIGURATION RESEAU
+/etc/network/interfaces
+
+auto lo
+iface lo inet loopback
+
+# port ethernet de la carte
+# adresse fixe pour réseau local
+iface eth0 inet static
+address 192.168.1.20
+netmask 255.255.255.0
+
+# ou adresse dhcp pour connexion a box internet
+auto eth0
+allow-hotplug eth0
+iface eth0 inet dhcp
+
+# port ethernet USB
+iface eth1 inet dhcp
+
+# wifi
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+wpa-ssid "myssid"
+wpa-psk "mypass"
+
+allow-hotplug ppp0
+iface ppp0 inet dhcp
+
+
+VNC SERVER
+
+sudo apt-get install tightvncserver
+
+Démarrage automatique : /etc/init.d/vncboot
+---
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides: vncboot
+# Required-Start: $remote_fs $syslog
+# Required-Stop: $remote_fs $syslog
+# Default-Start: 2 3 4 5
+# Default-Stop: 0 1 6
+# Short-Description: Start VNC server at boot time
+# Description: Start VNC server at boot time.
+### END INIT INFO
+
+USER=root
+HOME=/root
+export USER HOME
+
+VNCUSER='pi'
+eval cd ~$VNCUSER
+
+case "$1" in
+
+ start)
+  echo "Starting VNC Server for $VNCUSER"
+  su $VNCUSER -c '/usr/bin/tightvncserver :1'
+  ;;
+
+ stop)
+  echo "Stopping VNC Server"
+  # /usr/bin/tightvncserver -kill :1
+  pkill Xtightvnc
+  ;;
+
+ *)
+  echo "Usage: /etc/init.d/vncboot {start|stop}"
+  exit 1
+  ;;
+
+esac
+
+exit 0
+---
+
+$ sudo chmod 755 /etc/iniut.d/vncboot
+$ sudo update-rc.d vncboot defaults
+
+
+CAMERA
+
+$ raspistill -o cam.jpg
+
+
+SIM900
+http://imall.iteadstudio.com/raspberry-pi-gsm-add-on.html
+
+$ minicom -b 115200 -D /dev/ttyAMA0
+
+Commandes du modem :
+http://www.cooking-hacks.com/documentation/tutorials/raspberry-pi-gprs-gsm-quadband-sim900
+---
+libeliumCooking Hacks by LibeliumMy AccountWishlistCartCheckoutLog In Search:
+Search
+ rssflickrinstagramtwitterfacebookyoutube
+ English  arrow
+Shop
+Arduino
+Starter Kits
+Shields
+Wireless
+Packs
+Enclosures
+Prototyping
+Converters
+Books
+Designed by CH
+Waspmote
+Kits
+Core Boards
+Sensor Boards
+Sensors
+Radio Modules
+Accessories
+3D Printer
+3D Printer Kits
+Electronics
+Mechanics
+Structure
+Tools
+Raspberry Pi
+Starter Kits
+Shields
+Sensors
+e-Health
+Motion
+Gas
+Proximity
+Temp. & Humi.
+Humidity
+Light
+Current
+Flow
+Sound
+Load
+Agriculture
+Water Qlty.
+Actuators
+Buttons
+Buttons
+Relays
+Infrared
+Laser
+Solenoids
+Miscellaneous
+Wireless
+Bluetooth
+RFID
+802.15.4 / ZigBee
+LoRa
+GSM / GPRS
+GPS
+WiFi
+RF
+Antennas
+DevTools
+ARM
+Arduino
+AVR
+.NET
+Breakout boards
+PIC
+e-Health
+E-Textile
+iPad/iPhone
+Components
+Components
+Microcontrollers
+Resistors
+Capacitors
+Breadboards
+Sockets
+Miscellaneous
+Connectors
+Robotics
+Drivers
+Motors
+Mechanical
+Servos
+Accessories
+Cables
+Antennas
+Displays
+LED
+RFID TAGs
+Programmers
+Converters
+Miscellaneous
+Power
+Batteries
+Solar Panels
+Power Supply
+Tools
+Soldering
+Hand Tools
+Prototyping
+On Demand
+Tutorials
+Arduino Guides
+Raspberry Pi Guides
+Intel Galileo Guides
+Videos
+Projects
+Forum
+Customer ServiceDistributorsManifestoBlog
+Arduino
+Waspmote
+3D Printer
+Raspberry Pi
+Sensors
+Actuators
+Wireless
+DevTools
+Robotics
+Accessories
+On Demand
+Starter Kits
+Shields
+Wireless
+Packs
+Enclosures
+Prototyping
+Converters
+Books
+Designed by CH
+GPRS/GSM Quadband (SIM900) shield for Raspberry Pi Tutorial
+Tutorial Index
+Introduction
+Step 1: The GPRS/GSM shield (hardware)
+Step 2: Using GSM/GPRS module with AT commands
+Step 3: Powering the board
+Step 4: Using the shield in standalone mode - Calls
+Originating and receiving voice calls
+Command summary
+Step 5: Using the shield in standalone mode - Sending and receiving SMS
+Command summary
+Step 6: Using the shield in standalone mode - FTP
+Command summary
+Step 7: Using the shield in standalone mode - TCP and UDP
+Single client
+Multiple client
+Command summary
+Step 8: Using the shield in standalone mode - HTTP
+Command summary
+Links and Documentation
+Go to IndexIntroduction
+Ingredients:
+
+1 x Raspberry Pi
+1 x GPRS SIM900 shield for Raspberry Pi
+1 x GPRS antenna
+1 x SIM card
+NOTE: If you don't have a Raspberry Pi you can get one buying a Raspberry Pi Starter Kit.
+
+Difficulty: Medium -  medium
+
+Preparation Time: 45 minutes
+
+gprs_quadband_module
+ 
+NOTE: All the code examples in this tutorial use the arduPi library. You can see the documentation and download the library here.
+
+ 
+NOTE: If you are looking for a complete solution to use 3G, GPRS and A-GPS, you can use our 3G/GPRS shield for Arduino/Raspberry Pi (3G + GPRS) or our Kit with Audio/Video
+
+NOTE: If you are interested in Wireless Sensor Networks (WSN), M2M and the Internet of Things (IoT) projects check our new open source sensor platform: Waspmote which counts with more than 70 sensors available to use and a low consumption mode of just 0.7uA to ensure years of battery life. Know more at:
+
+Waspmote Main Page (Libelium)
+Waspmote Brief Description (Cooking Hacks)
+ Go to IndexStep 1: The shield (hardware)
+The board (shield) we are going to use in this tutorial is the GPRS/GSM Quadband Module (SIM900) for Arduino/Raspberry Pi from Cooking hacks.
+
+The GPRS shield is fully compatible with old Arduino USB versions, Duemilanove and Mega.
+
+GPRS Shield diagram version 2:
+
+NOTE: The Arduino/Raspberry Pi jumper MUST be in Raspberry Pi position. The Raspberry Pi position should be used only if the shield is connected to a Raspberry Pi.
+A wrong position of this jumper can damage the GPRS shield.
+
+gprs_diagram
+GPRS Shield diagram version 1:
+
+gprs_diagram
+ 
+Go to IndexStep 2: Using GSM/GPRS module with AT commands
+Important issues:
+
+Use capital letters for AT commands.
+Send CR (Carriage return) and LF (Line feed) after the AT command.
+Place the serial communication jumpers in the right position.
+Use an external power supply and place the power jumpers in the right position. If the shield is powered from the Raspberry Pi, the power jumper must be in Arduino 5V position. It the shield is powered from the Vin input (in the shield), the power jumper must be in Vext position.
+The first thing we are going to do with the module is to check the basic AT commands. In this case, serial communication jumpers have to be set on USB gateway position.
+
+Basic configuration:
+
+gprs_quadband_module
+Connect the GPRS/GSM shield to the Raspberry Pi to Arduino shield.
+
+gprs_quadband_module
+Then introduce the SIM card in the GPRS/GSM shield.
+
+Finally open on the Raspberry a serial port terminal to communicate with the GPRS/GSM shield (just run cutecom in a terminal). This step can be done directly on ther Raspberry with a keyboard, mouse and screen plugged, or via ssh exporting X (e.g: ssh -X pi@<ip adress of raspberry>)
+
+Be sure that you are sending CR (Carriage return) and LF (Line Feed).
+
+Set the baudrate to 115200 bps and open the serial port, then press the ON button for two seconds. Then if you type AT you'll get OK, this means that the communication with the module is working fine. Now, with the module working you can check some AT commands to control the module, the basic commands are:
+
+Important type commands in capital letters and with CR (carriage return) and LF (line feed)!!!
+
+Command	Response	Description
+AT	OK	If you get OK, the communication with the module is working
+AT+CPIN="****"	OK	If the SIM card is locked with PIN (**** is the pin number)
+AT+COPS?	 	Operator information
+Note
+Factory baudrate setting is auto-bauding by default. Baudrate can be fixed using the command AT+IPR=baudrate . Allowed baudrates: 0 (Auto-bauding) , 1200 , 2400 , 4800 , 9600 , 19200 , 38400 , 57600 and 115200 ;
+
+All the AT commands here
+
+Go to IndexStep 3: Powering the board:
+Probably the Raspberry Pi is not able to give all the current the module needs to work, if your module goes down when it tries to connect to the network, you can use an external power supply (12V - 2A) on the shield.
+
+Remember set the power switch of the Raspberry to arduino shield to EXT (switch closer to Raspberry Pi logo).
+
+How to set the power jumper in the GPRS/GSM shield?.
+
+If you want that the shield takes power from Raspberry => Set the jumper to Arduino 5V possition
+
+If you want the GPRS/GSM shield takes power from an external supply => Set the jumper to V ext. possition
+
+For powering the shield from external supply, you have to use V in ext. connector (Vin + GND).
+
+If you use a power supply with output smaller than 2 A, you should add an extra capacitor for the power.
+
+For example, a 220 uF electrolytic capacitor between 3.3V and GND.
+
+Go to IndexStep 4: Using the shield in standalone mode - Calls
+Originating and receiving voice calls
+The code example and the connection diagram shown below are used to originate a voice call and, pushing a button, end that voice call. The button is connected between digital pin 7 an ground. A 10kΩ pull-up resistor is needed at this pin.
+
+Hide Code
+/*
+*  Copyright (C) 2012 Libelium Comunicaciones Distribuidas S.L.
+*  http://www.libelium.com
+*
+*  This program is free software: you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation, either version 3 of the License, or
+*  (at your option) any later version.
+*
+*  This program is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  You should have received a copy of the GNU General Public License
+*  along with this program.  If not, see .
+*
+*  Version 0.1
+*  Author: Alejandro Gállego
+*/
+//Include ArduPi library
+#include "arduPi.h"
+
+
+void switchModule(); //Declaration of an aditonal function apart from setup() and loop();
+
+int led = 9;
+int button = 8;
+int onModulePin = 2;        // the pin to switch on the module (without press on button)
+
+int timesToSend = 1;        // Numbers of calls to make
+int count=0;
+
+char phone_number[]="*********";     // ********* is the number to call
+
+void switchModule(){
+    digitalWrite(onModulePin,HIGH);
+    delay(2000);
+    digitalWrite(onModulePin,LOW);
+}
+
+void setup(){
+
+    Serial.begin(115200);                // UART baud rate
+    delay(2000);
+    pinMode(button, INPUT);
+    pinMode(led, OUTPUT);
+    pinMode(onModulePin, OUTPUT);
+
+    for (int i=0;i < 5;i++){
+        delay(1000);
+    } 
+}
+
+void loop(){
+
+    while (count < timesToSend){
+
+        Serial.print("ATD");     
+        Serial.print(phone_number);     
+        Serial.println(";");        
+
+        while(digitalRead(button)==1);        
+
+        Serial.println("ATH");            // disconnects the existing call
+
+        delay(5000);
+
+        count++;
+    }
+}
+
+int main (){
+	setup();
+	while(1){
+		loop();
+	}
+	return (0);
+}
+
+To make a lost call next code is used.
+
+Hide Code
+/*
+*  Copyright (C) 2012 Libelium Comunicaciones Distribuidas S.L.
+*  http://www.libelium.com
+*
+*  This program is free software: you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation, either version 3 of the License, or
+*  (at your option) any later version.
+*
+*  This program is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  You should have received a copy of the GNU General Public License
+*  along with this program.  If not, see .
+*
+*  Version 0.1
+*  Author: Alejandro Gállego
+*/
+//Include ArduPi library
+#include "arduPi.h"
+
+
+void switchModule(); //Declaration of an aditonal function apart from setup() and loop();
+
+int led = 9;
+int onModulePin = 2;        // the pin to switch on the module (without press on button)
+
+int timesToSend = 1;        // Numbers of calls to make
+int count = 0;
+int tones = 5;                //Each tone has a duration of 6 seconds aprox.
+
+char phone_number[]="*********";     // ********* is the number to call
+
+void switchModule(){
+    digitalWrite(onModulePin,HIGH);
+    delay(2000);
+    digitalWrite(onModulePin,LOW);
+}
+
+void setup(){
+
+    Serial.begin(115200);                // UART baud rate
+    delay(2000);
+    pinMode(led, OUTPUT);
+    pinMode(onModulePin, OUTPUT);
+    switchModule();                    // switches the module ON
+
+    for (int i=0;i < 5;i++){
+        delay(5000);
+    } 
+}
+
+void loop(){
+
+    while (count < timesToSend){
+        
+
+        Serial.print("ATD");     
+        Serial.print(phone_number);     
+        Serial.println(";");   
+        delay(6000*tones);
+        Serial.println("ATH");            // cancel the call
+
+        delay(5000);
+
+        count++;
+    }
+}
+
+int main (){
+	setup();
+	while(1){
+		loop();
+	}
+	return (0);
+}
+To receive calls the used code are this and the connection diagram is the same that the used to originate calls. Don't forget the pull-up resistor on pin 12.
+
+Command summary
+Command	Response	Description
+ATD*********;	 	********* is the number to call.
+ATA	OK	Answer an incoming call.
+ATH	OK	Cancel voice calls.
+Go to IndexStep 5: Using the shield in standalone mode - Sending and receiving SMS
+The first code is used to send a SMS, the second one reads the first SMS into the memory.
+
+Hide Code
+/*
+*  Copyright (C) 2012 Libelium Comunicaciones Distribuidas S.L.
+*  http://www.libelium.com
+*
+*  This program is free software: you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation, either version 3 of the License, or
+*  (at your option) any later version.
+*
+*  This program is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  You should have received a copy of the GNU General Public License
+*  along with this program.  If not, see .
+*
+*  Version 0.1
+*  Author: Alejandro Gállego
+*/
+
+//Include ArduPi library
+#include "arduPi.h"
+
+
+void switchModule();
+
+int led = 9;
+int onModulePin = 2;        // the pin to switch on the module (without press on button)
+
+int timesToSend = 1;        // Numbers of SMS to send
+int count = 0;
+
+char phone_number[]="*********";     // ********* is the number to call
+
+void switchModule(){
+    digitalWrite(onModulePin,HIGH);
+    delay(2000);
+    digitalWrite(onModulePin,LOW);
+}
+
+void setup(){
+
+    Serial.begin(115200);                // UART baud rate
+    delay(2000);
+    pinMode(led, OUTPUT);
+    pinMode(onModulePin, OUTPUT);
+    switchModule();                    // switches the module ON
+
+    for (int i=0;i < 5;i++){
+        delay(5000);
+    } 
+
+    Serial.println("AT+CMGF=1");         // sets the SMS mode to text
+    delay(100);
+}
+
+void loop(){
+
+    while (count < timesToSend){
+        delay(1500);
+        Serial.print("AT+CMGS=\"");     // send the SMS number
+        Serial.print(phone_number);
+    Serial.println("\"");
+        while(Serial.read()!='>');      
+        Serial.print("Hola caracola...");     // the SMS body
+        delay(500);
+        Serial.write(0x1A);       //sends ++
+        Serial.write(0x0D);
+        Serial.write(0x0A);
+
+        delay(5000);
+
+        count++;
+    }
+}
+
+int main (){
+	setup();
+	while(1){
+		loop();
+	}
+	return (0);
+}
+Hide Code
+/*
+*  Copyright (C) 2012 Libelium Comunicaciones Distribuidas S.L.
+*  http://www.libelium.com
+*
+*  This program is free software: you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation, either version 3 of the License, or
+*  (at your option) any later version.
+*
+*  This program is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  You should have received a copy of the GNU General Public License
+*  along with this program.  If not, see .
+*
+*  Version 0.1
+*  Author: Alejandro Gállego
+*/
+
+//Include ArduPi library
+#include "arduPi.h"
+
+
+void switchModule();
+
+int led = 9;
+int onModulePin = 2;        // the pin to switch on the module (without press on button) 
+
+int timesToSend = 1;        // Numbers of SMS to send
+int count = 0;
+
+int n_sms,x,sms_start;
+char data[256];
+
+void switchModule(){
+    digitalWrite(onModulePin,HIGH);
+    delay(2000);
+    digitalWrite(onModulePin,LOW);
+}
+
+void setup(){
+
+    Serial.begin(115200);                // UART baud rate
+    delay(2000);
+    pinMode(led, OUTPUT);
+    pinMode(onModulePin, OUTPUT);
+    switchModule();                    // switches the module ON
+
+    for (int i=0;i < 5;i++){
+        delay(5000);
+    } 
+
+    Serial.println("AT+CMGF=1");         // sets the SMS mode to text
+    delay(1000);
+}
+
+void loop(){
+    
+    
+        Serial.println("AT+CMGR=1");    //Reads the first SMS
+        Serial.flush();
+        for (x=0;x < 255;x++){            
+            data[x]='\0';                        
+        } 
+        x=0;
+        do{
+            while(Serial.available()==0);
+            data[x]=Serial.read();  
+            x++;           
+            if(data[x-1]==0x0D&&data[x-2]=='"'){
+                x=0;
+            }
+        }while(!(data[x-1]=='K'&&data[x-2]=='O'));
+
+        data[x-3]='\0';        //finish the string before the OK
+
+        Serial.println(data);    //shows the message
+
+        delay(5000);
+
+}
+
+int main (){
+	setup();
+	while(1){
+		loop();
+	}
+	return (0);
+}
+Command summary
+Command	Response	Description
+AT+CMGF=	OK	Specifies the input and output format of the short messages. 0 for PDU mode and 1 for text mode.
+AT+CMGS	 	Sends a message.
+AT+CMGR=*	 	Reads a message. * is the number of the message.
+Go to IndexStep 6: Using the shield in standalone mode - FTP
+Creating a file into the FTP server, writing it and reading it.
+
+Hide Code
+/*
+*  Copyright (C) 2012 Libelium Comunicaciones Distribuidas S.L.
+*  http://www.libelium.com
+*
+*  This program is free software: you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation, either version 3 of the License, or
+*  (at your option) any later version.
+*
+*  This program is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  You should have received a copy of the GNU General Public License
+*  along with this program.  If not, see .
+*
+*  Version 0.1
+*  Author: Alejandro Gállego
+*/
+
+//Include ArduPi library
+#include "arduPi.h"
+
+void switchModule();
+
+int led = 9;
+int onModulePin = 2;        // the pin to switch on the module (without press on button) 
+
+char data[1024];
+int x=0;
+int data_size;
+char aux;
+
+
+void switchModule(){
+    digitalWrite(onModulePin,HIGH);
+    delay(2000);
+    digitalWrite(onModulePin,LOW);
+}
+
+void setup(){
+
+    Serial.begin(115200);                // UART baud rate
+    delay(2000);
+    pinMode(led, OUTPUT);
+    pinMode(onModulePin, OUTPUT);
+    switchModule();                    // switches the module ON
+
+    for (int i=0;i < 4;i++){
+        delay(5000);
+    } 
+    
+    Serial.println("AT+SAPBR=3,1,\"Contype\",\"GPRS\"");    //Configures GPRS connection
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    
+    Serial.println("AT+SAPBR=3,1,\"APN\",\"myAPN\"");
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    
+    Serial.println("AT+SAPBR=1,1");
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    
+    Serial.println("AT+FTPCID=1");    //Selects profile 1 for FTP operations
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    
+    Serial.println("AT+FTPSERV=\"FTP_IP_dir\"");    //Configures FTP parameters
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    
+    Serial.println("AT+FTPPORT=port_number");
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    
+    Serial.println("AT+FTPUN=\"username\"");
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    
+    Serial.println("AT+FTPPW=\"password\"");
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    
+    
+}
+
+void loop(){
+    
+    Serial.println("AT+FTPPUTNAME=\"filename.extension\"");    //Sets destiny file name
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    
+    Serial.println("AT+FTPPUTPATH=\"/\"");    //Sets destiny file path
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    
+    Serial.println("AT+FTPPUT=1");    //Starts session
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!=',');  
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!=','); 
+    delay(100);
+
+    data_size=0;
+    while(Serial.available()==0);
+    
+    aux=Serial.read();
+    do{
+        data_size*=10;
+        data_size+=(aux-0x30);
+        while(Serial.available()==0);
+        aux=Serial.read();        
+    }while(aux!=13);
+        
+    Serial.println("AT+FTPPUT=2,100");    //Sends data
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='+');  
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='\r'); 
+    delay(100);
+    
+    Serial.print("0000000011111111222222223333333344444444555555556666666677777777000000001111111122222222333333334444");
+    
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='+');
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='\r');
+    delay(100);
+    
+    Serial.println("AT+FTPPUT=2,0");    //Closes the file and the session
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='+');  
+    delay(100);
+
+    Serial.println("AT+FTPGETNAME=\"filename.extension\"");    //Sets file name to download
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    
+    Serial.println("AT+FTPGETPATH=\"/\"");    //Sets file path to download
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    
+    Serial.println("AT+FTPGET=1");    //Starts session
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!=',');  
+    delay(100);
+    
+    Serial.println("AT+FTPGET=2,512");    //Request data
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!=',');  
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!=','); 
+    delay(100);
+    
+    data_size=0;
+    while(Serial.available()==0);
+    
+    aux=Serial.read();        //Gets data length
+    do{
+        data_size*=10;
+        data_size+=(aux-0x30);
+        while(Serial.available()==0);
+        aux=Serial.read();        
+    }while(aux!=13);
+    
+    for(x=0;x<=data_size;x++){    //Gets data string
+        while(Serial.available()==0);
+    data[x]=Serial.read();
+    }
+    
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!=':');  
+    delay(100);
+        
+    Serial.print(data);
+
+    while(1);
+
+}
+
+int main (){
+	setup();
+	while(1){
+		loop();
+	}
+	return (0);
+}
+
+Command summary
+AT command	Response	Description
+AT+SAPBR	OK	Configures GPRS profile.
+AT+FTPCID=1	OK	Selects profile 1 for FTP.
+AT+FTPSERV=”****”	OK	Sets FTP server domain name or IP address. **** is the domain name or the IP.
+AT+FTPPORT=***	OK	Sets FTP server port. *** is the port.
+AT+FTPUN=”***”	OK	Sets user name for FTP server access. *** is the user name.
+AT+FTPPW=”***”	OK	Sets password for FTP server access. *** is the password.
+AT+FTPPUTNAME="****"	OK	Sets destiny name for the file.*** is the name of the file.
+AT+FTPPUTPATH="****"	OK	Sets destiny file path. *** is the path of the file.
+AT+FTPPUT	OK	Use to put a file into the FTP server.
+AT+FTPGETNAME="****"	OK	Sets origin name for the file.*** is the name of the file.
+AT+FTPGETPATH="****"	OK	Sets origin file path. *** is the path of the file.
+AT+FTPGET	 	Use to get a file into the FTP server.
+Go to IndexStep 7: Using the shield in standalone mode - TCP and UDP
+Single client
+Sending data to a TCP server first, and then it sends to a UDP server.
+
+Hide Code
+/*
+*  Copyright (C) 2012 Libelium Comunicaciones Distribuidas S.L.
+*  http://www.libelium.com
+*
+*  This program is free software: you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation, either version 3 of the License, or
+*  (at your option) any later version.
+*
+*  This program is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  You should have received a copy of the GNU General Public License
+*  along with this program.  If not, see .
+*
+*  Version 0.1
+*  Author: Alejandro Gállego
+*/
+
+//Include ArduPi library
+#include "arduPi.h"
+
+
+void switchModule();
+
+int led = 9;
+int onModulePin = 2;        // the pin to switch on the module (without press on button)
+
+char data[1024];
+
+int x = 0;
+
+char name[20];
+
+char server[ ]="";
+char port[ ]="";
+
+void switchModule(){
+    digitalWrite(onModulePin,HIGH);
+    delay(2000);
+    digitalWrite(onModulePin,LOW);
+}
+
+void setup(){
+
+    Serial.begin(115200);                // UART baud rate
+    delay(2000);
+    pinMode(led, OUTPUT);
+    pinMode(onModulePin, OUTPUT);
+    switchModule();                    // switches the module ON
+
+    for (int i=0;i < 4;i++){
+        delay(5000);
+    } 
+
+    Serial.println("AT+CIPMUX=0");      //single connection 
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');
+    delay(100);
+
+
+
+    Serial.println("AT+CSTT=\"myAP\""); 
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');
+    delay(100);
+
+    Serial.println("AT+CIICR"); 
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');
+    delay(100);
+
+    Serial.println("AT+CIFSR"); 
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='.');
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='\n');
+    delay(100);
+
+    Serial.println("AT+CIPSTART=\"TCP\",\"IP_dir\",\"port\"");  
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');
+    delay(100);
+
+    do{     //waits for connection
+        while(Serial.available()==0);
+    }while(Serial.read()!='K'); 
+    delay(100);
+
+    Serial.println("AT+CIPSEND");   //sending data
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='>');
+    delay(100);
+    Serial.print("Data test!");
+    Serial.write(0x1A);    //EOL character
+    Serial.write(0x0D);
+    Serial.write(0x0A);
+    delay(100);
+
+    Serial.println("AT+CIPCLOSE");  
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');
+    delay(100);
+
+
+    Serial.println("AT+CIPSTART=\"UDP\",\"IP_dir\",\"port\"");  
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');
+    delay(100);
+
+    do{     //waits for connection
+        while(Serial.available()==0);
+    }while(Serial.read()!='K'); 
+    delay(100);
+
+    Serial.println("AT+CIPSEND");   //sending data
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='>');
+    delay(100);
+    Serial.print("Data test!");
+    Serial.write(0x1A);    //EOL character
+    Serial.write(0x0D);
+    Serial.write(0x0A);
+    delay(100);
+
+    Serial.println("AT+CIPCLOSE");  
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');
+
+    
+}
+
+void loop()
+{
+
+    delay(500);
+    digitalWrite(led,HIGH);
+    delay(500);
+    digitalWrite(led,LOW);
+    
+    
+}
+
+int main (){
+	setup();
+	while(1){
+		loop();
+	}
+	return (0);
+}
+
+Multiple client
+SIM900 allows to use 8 connections simultaneously. Here is the example code with a UDP and TCP connections.
+
+Show Code
+/*
+*  Copyright (C) 2012 Libelium Comunicaciones Distribuidas S.L.
+*  http://www.libelium.com
+*
+*  This program is free software: you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation, either version 3 of the License, or
+*  (at your option) any later version.
+*
+*  This program is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  You should have received a copy of the GNU General Public License
+*  along with this program.  If not, see .
+*
+*  Version 0.1
+*  Author: Alejandro Gállego
+*/
+
+//Include ArduPi library
+#include "arduPi.h"
+
+
+void switchModule();
+
+int led = 9;
+int onModulePin = 2;        // the pin to switch on the module (without press on button)
+
+char data[1024];
+
+int x = 0;
+
+char name[20];
+
+char server[ ]="";
+char port[ ]="";
+
+
+void switchModule(){
+    digitalWrite(onModulePin,HIGH);
+    delay(2000);
+    digitalWrite(onModulePin,LOW);
+}
+
+void setup(){
+
+    Serial.begin(115200);                // UART baud rate
+    delay(2000);
+    pinMode(led, OUTPUT);
+    pinMode(onModulePin, OUTPUT);
+    switchModule();                    // switches the module ON
+
+    for (int i=0;i < 4;i++){
+        delay(5000);
+    } 
+
+    Serial.println("AT+CIPMUX=1");      //multiple connection   
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');
+    delay(100);
+
+    Serial.println("AT+CSTT=\"myAPN\"");    
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');
+    delay(100);
+
+    Serial.println("AT+CIICR"); 
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');
+    delay(100);
+
+    Serial.println("AT+CIFSR"); 
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='.');
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='\n');
+    delay(100);
+
+    Serial.println("AT+CIPSTART=0,\"TCP\",\"IP_dir\",\"port\"");    //TCP connection in id 0    
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');
+    delay(100);
+
+    do{     //waits for connection
+        while(Serial.available()==0);
+    }while(Serial.read()!='K'); 
+    delay(100);
+
+    Serial.println("AT+CIPSTART=1,\"UDP\",\"IP_dir\",\"port\"");    //UDP connection in id 1
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');
+    delay(100);
+
+    do{     //waits for connection
+        while(Serial.available()==0);
+    }while(Serial.read()!='K'); 
+    delay(100);
+
+    Serial.println("AT+CIPSEND=0"); //sending data
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='>');
+    delay(100);
+    Serial.print("Data test!");
+    Serial.write(0x1A);    //EOL character
+    Serial.write(0x0D);
+    Serial.write(0x0A);
+    delay(100);
+
+    Serial.println("AT+CIPSEND=1"); //sending data
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='>');
+    delay(100);
+    Serial.print("Data test!");
+    Serial.write(0x1A);    //EOL character
+    Serial.write(0x0D);
+    Serial.write(0x0A);
+    delay(100);
+
+    Serial.println("AT+CIPCLOSE=0");    
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');
+    delay(100);
+    
+    Serial.println("AT+CIPCLOSE=1");    
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');
+
+    
+}
+
+void loop()
+{
+
+    delay(500);
+    digitalWrite(led,HIGH);
+    delay(500);
+    digitalWrite(led,LOW);
+    
+    
+}
+
+int main (){
+	setup();
+	while(1){
+		loop();
+	}
+	return (0);
+}
+Command summary
+AT command	Response	Description
+AT+CIPMUX=	OK	Selects single connection (0) or multiple connection (1)
+AT+CSTT="myAPN"	OK	Sets APN
+AT+CIICR	 	Brings up wireless connection
+AT+CIFSR	 	Get local IP address
+AT+CIPSTART	 	Establishes a connection with a server.
+AT+CIPSEND	 	Sends data when the a connection is established.
+AT+CIPCLOSE	 	Closes the connection
+Go to IndexStep 8: Using the shield in standalone mode - HTTP
+SIM900 can launch a HTTP operation like GET or POST. Here is an example with GET operation:
+
+Hide Code
+/*
+*  Copyright (C) 2012 Libelium Comunicaciones Distribuidas S.L.
+*  http://www.libelium.com
+*
+*  This program is free software: you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation, either version 3 of the License, or
+*  (at your option) any later version.
+*
+*  This program is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  You should have received a copy of the GNU General Public License
+*  along with this program.  If not, see .
+*
+*  Version 0.1
+*  Author: Alejandro Gállego
+*/
+
+//Include ArduPi library
+#include "arduPi.h"
+
+
+void switchModule();
+
+int led = 9;
+int onModulePin = 2;        // the pin to switch on the module (without press on button)
+
+char data[1024];
+int data_size;
+char aux;
+int x = 0;
+
+
+void switchModule(){
+    digitalWrite(onModulePin,HIGH);
+    delay(2000);
+    digitalWrite(onModulePin,LOW);
+}
+
+void setup(){
+
+    Serial.begin(115200);                // UART baud rate
+    delay(2000);
+    pinMode(led, OUTPUT);
+    pinMode(onModulePin, OUTPUT);
+    digitalWrite(led,LOW);
+    switchModule();                    // switches the module ON
+
+    for (int i=0;i < 5;i++){
+        delay(5000);
+    } 
+    
+    Serial.println("AT+SAPBR=3,1,\"Contype\",\"GPRS\"");    //Sets GPRS parameters
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    
+    Serial.println("AT+SAPBR=3,1,\"APN\",\"myAPN\"");
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    
+    Serial.println("AT+SAPBR=1,1");
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    Serial.println("AT+HTTPINIT");
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    
+    Serial.println("AT+HTTPPARA=\"CID\",1");    //Sets GPRS profile to use with HTTP
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    
+}
+
+void loop()
+{
+
+    Serial.println("AT+HTTPPARA=\"URL\",\"www.libelium.com\"");    //Sets URL direction
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+    
+    
+    Serial.println("AT+HTTPACTION=0");  //Connects with the HTTP server, this action can need to wait a several time
+    x=0;
+    
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!=','); 
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='\r'); 
+    delay(100);
+                
+    Serial.println("AT+HTTPREAD=0,200");   //Reads 200 bytes from byte 0    
+     
+    do{
+        while(Serial.available()==0); 
+    }while(Serial.read()!=':');
+   
+
+    data_size=0;
+    while(Serial.available()==0);
+    
+    aux=Serial.read();
+    do{
+        data_size*=10;
+        data_size+=(aux-0x30);
+        while(Serial.available()==0);
+        aux=Serial.read();        
+    }while(aux!='\r');
+    
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='\n');  
+
+    for(x=0;x<=data_size;x++){
+        while(Serial.available()==0);
+    data[x]=Serial.read();
+    }
+
+    Serial.println("AT+HTTPTERM");    //Closes the opened HTTP session
+    do{
+        while(Serial.available()==0);
+    }while(Serial.read()!='K');  
+    delay(100);
+
+    printf("%s",data);    //Shows data
+    
+}
+
+int main (){
+	setup();
+	loop(); //Run the loop only 1 time
+	return (0);
+}
+
+Command summary
+AT command	Response	Description
+AT+SAPBR	OK	Configures GPRS profile
+AT+HTTPINIT	OK	Initializes HTTP service
+AT+HTTPPARA	OK	Configures HTTP parameters
+AT+HTTPACTION=0	OK	Sets HTTP Method Action , GET in this chase.
+AT+HTTPREAD	 	Reads HTTP data
+AT+HTTPTERM	OK	Closes the opened HTTP session.
+Go to IndexLinks and Documentation
+Schematic of the shield
+AT command manual
+SIM900 Module Info
+NOTE: If you are looking for a complete solution to use 3G, GPRS and A-GPS, you can use our 3G/GPRS shield for Arduino (3G + GPRS) or our Kit with Audio/Video
+
+ 
+<< Back to "Documentation Index"
+
+••
+••
+••
+
+CART
+You have no items in your shopping cart.
+COMPARE PRODUCTS
+You have no items to compare.
+info_pagos
+ OHS Supporter
+© Libelium Comunicaciones Distribuidas S.L. | Terms of use
+
+Virtual store subsidized by the Department of Science, Technology and University of the Government of Aragon
+---
+
+Configuration ppp pour connexion internet :
+https://wiki.archlinux.org/index.php/3G_and_GPRS_modems_with_pppd
+
+Configuration
+
+The following files are also available as netcfg-ppp-mobile-git in the Arch User Repository.
+/etc/ppp/options-mobile
+Create this file:
+/etc/ppp/options-mobile
+ttyUSB0
+921600
+lock
+crtscts
+modem
+passive
+novj
+defaultroute
+noipdefault
+usepeerdns
+noauth
+hide-password
+persist
+holdoff 10
+maxfail 0
+debug
+The first line is the modem device (ttyUSB0 in the example) and it will be a permanent option while your hardware doesn't changes. You may want to modify some options (see man pppd). The proposed setup tries to keep the connection permanently established, reconnecting when necessary.
+/etc/ppp/peers
+Add these files:
+root@quark:/etc/ppp/peers# ll
+total 8
+-rw-r----- 1 root root 141 Jun 20 19:29 mobile-auth
+-rw-r----- 1 root root 104 Jun 20 19:29 mobile-noauth
+lrwxrwxrwx 1 root root  13 Jun 20 19:30 provider -> mobile-noauth
+The provider symlink defines the default peer for pppd, and as you see it points to the mobile-noauth file. It is possible to setup a different file with user/password for each carrier (with mobile-auth being a example) but it seems that this is not necessary (at least, not for Vodafone or Simyo in Spain).
+/etc/ppp/peers/mobile-auth
+file /etc/ppp/options-mobile
+user "your_usr"
+password "your_pass"
+connect "/usr/sbin/chat -v -t15 -f /etc/ppp/chatscripts/mobile-modem.chat"
+/etc/ppp/peers/mobile-noauth
+file /etc/ppp/options-mobile
+connect "/usr/sbin/chat -v -t15 -f /etc/ppp/chatscripts/mobile-modem.chat"
+/etc/ppp/chatscripts
+Since the chatscripts directory does not exists in Arch, manually create it to place a few new files there:
+root@quark:/etc/ppp/chatscripts# ll
+total 44
+lrwxrwxrwx 1 root root  15 Jun 19 19:17 apn -> apn.es.vodafone
+-rw-r--r-- 1 root root  37 Jun 19 16:27 apn.es.simyo
+-rw-r--r-- 1 root root  35 Jun 19 16:27 apn.es.vodafone
+-rw-r--r-- 1 root root 394 Jun 20 19:29 mobile-modem.chat
+lrwxrwxrwx 1 root root  12 Jun 19 18:59 mode -> mode.3G-only
+-rw-r--r-- 1 root root  29 Jun 19 22:12 mode.3G-only
+-rw-r--r-- 1 root root  28 Jun 19 17:05 mode.3G-pref
+-rw-r--r-- 1 root root  29 Jun 19 17:05 mode.GPRS-only
+-rw-r--r-- 1 root root  28 Jun 19 17:06 mode.GPRS-pref
+-rw-r--r-- 1 root root   3 Jun 19 23:40 mode.NONE
+lrwxrwxrwx 1 root root   8 Jun 20 19:29 pin -> pin.CODE
+-rw------- 1 root root  13 Jun 20 19:29 pin.CODE
+-rw-r--r-- 1 root root   3 Jun 19 23:37 pin.NONE
+The core script is mobile-modem.chat, which dialogues with the modem and properly inserts another tiny scripts for selecting the APN, GPRS/3G and the PIN code. You probably won't need to modify it. This script is interpreted by the limited (but powerful enough) chat tool, included in the standard ppp package. With the proposed method, you'll keep a little personal file-based "database" of settings.
+If you exchange the SIM card, to select the new carrier you only need to update the apn symlink to point to the correct apn file and restart the ppp network (for example with killall -HUP pppd). The same for changing between 3G/GPRS forced modes (mode symlink).
+The other files consist in a single line, which in some cases you may need to modify in order to customize it.
+/etc/ppp/chatscripts/mobile-modem.chat
+ABORT 'BUSY'
+ABORT 'NO CARRIER'
+ABORT 'VOICE'
+ABORT 'NO DIALTONE'
+ABORT 'NO DIAL TONE'
+ABORT 'NO ANSWER'
+ABORT 'DELAYED'
+REPORT CONNECT
+TIMEOUT 6
+'' 'ATQ0'
+'OK-AT-OK' 'ATZ'
+TIMEOUT 3
+'OK' @/etc/ppp/chatscripts/pin
+'OK\d-AT-OK' 'ATI'
+'OK' 'ATZ'
+'OK' 'ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0'
+'OK' @/etc/ppp/chatscripts/mode
+'OK-AT-OK' @/etc/ppp/chatscripts/apn
+'OK' 'ATDT*99***1#'
+TIMEOUT 30
+CONNECT ''
+/etc/ppp/chatscripts/apn.es.vodafone
+AT+CGDCONT=1,"IP","ac.vodafone.es"
+/etc/ppp/chatscripts/apn.es.simyo
+AT+CGDCONT=1,"IP","gprs-service.com"
+/etc/ppp/chatscripts/apn.no.telenor
+AT+CGDCONT=1,"IP","Telenor"
+(of course, you'll have to create your own apn files, replacing "ac.vodafone.es" or "gprs-service.com" by your own APN strings on them).
+For Telenor, use your mobile phone number (without country code) for both user and password in /etc/ppp/peers/mobile-noauth.
+/etc/ppp/chatscripts/pin.CODE
+AT+CPIN=1234
+/etc/ppp/chatscripts/pin.NONE
+AT
+If your SIM card has the PIN code disabled, you should symlink pin to pin.NONE to avoid sending it. When a SIM card has the PIN code enabled, it is only required to be sent the first time after power on. There is a modem command to query about this, but since I didn't find a reliable way to use it in the chat script, the PIN, when enabled, is always sent. This has no drawbacks, other than a little additional delay also due to the chat script limitations while recovering from the modem error response (if the PIN was no longer required).
+/etc/ppp/chatscripts/mode.3G-only
+AT\^SYSCFG=14,2,3fffffff,0,1
+/etc/ppp/chatscripts/mode.3G-pref
+AT\^SYSCFG=2,2,3fffffff,0,1
+/etc/ppp/chatscripts/mode.GPRS-only
+AT\^SYSCFG=13,1,3fffffff,0,0
+/etc/ppp/chatscripts/mode.GPRS-pref
+AT\^SYSCFG=2,1,3fffffff,0,0
+/etc/ppp/chatscripts/mode.NONE
+AT
+The SYSCFG line in the mode.* files is device-dependent, and likely Huawei-specific. It does not works in Nokia phones (you may symlink mode to mode.NONE, which only sends the AT command with no effect). I had to investigate before achieving success with both EM770 and E220 modems. Despite many forums reporting a "4" trailing code, it seems that the trailing 0/1 number, while optional in E220, becomes mandatory in EM770 for truly switching the mode. At the end of this guide there are explained the available options for this command. As previously said, you may simply link to mode.NONE and use your modem defaults in case of problems.
+Start the pppd
+
+To start the pppd daemon, either run pon/poff or /etc/rc.d/ppp start|stop. In Arch this can be automated to occur at system boot by adding "@ppp" after "network" in the DAEMONS line of /etc/rc.conf (the "@" places it in background, since pppd start may be a bit slow).
+The log is stored in /var/log/messages.
+With the above proposed setup, while the new ppp0 interface is up, pppd will automatically set your default route (if none previously existing) as well as the /etc/resolv.conf contents. It seems very reliable handling DNS switchings (the backup is kept in resolv.conf.backup.ppp0, but I never had to manually restore it, even after a power failure).
+---
+
+http://stackoverflow.com/questions/25301229/raspberry-pi-sim900-default-internet-access
+
+Some notes before start:
+
+Make sure the power supply you used for raspberrypi is exact 5V and it can provide at-least 2A current without voltage drop-out.The SIM900 power-source must be 3.3V 2A
+
+Set the SIM900 baud rate to 115200 via: AT+IPR=115200
+
+Check the modem serial peripheral via: $ screen /dev/ttyAMA0 115200 type AT<enter> it will echo: OK. Hit ctrl+a k y to exit.
+/etc/ppp/options-mobile
+
+ttyAMA0
+115200
+lock
+crtscts
+modem
+passive
+novj
+defaultroute
+replacedefaultroute
+noipdefault
+usepeerdns
+noauth
+hide-password
+persist
+holdoff 10
+maxfail 0
+debug
+Create the /etc/ppp/peers directory:
+
+$ mkdir /etc/ppp/peers
+$ cd /etc/ppp/peers
+/etc/ppp/peers/mobile-auth
+
+file /etc/ppp/options-mobile
+user "your_usr"
+password "your_pass"
+connect "/usr/sbin/chat -v -t15 -f /etc/ppp/chatscripts/mobile-modem.chat"
+/etc/ppp/peers/mobile-noauth
+
+file /etc/ppp/options-mobile
+connect "/usr/sbin/chat -v -t15 -f /etc/ppp/chatscripts/mobile-modem.chat"
+Create the /etc/ppp/chatscripts directory:
+
+$ mkdir /etc/ppp/chatscripts
+/etc/ppp/chatscripts/mobile-modem.chat
+
+ABORT 'BUSY'
+ABORT 'NO CARRIER'
+ABORT 'VOICE'
+ABORT 'NO DIALTONE'
+ABORT 'NO DIAL TONE'
+ABORT 'NO ANSWER'
+ABORT 'DELAYED'
+REPORT CONNECT
+TIMEOUT 6
+'' 'ATQ0'
+'OK-AT-OK' 'ATZ'
+TIMEOUT 3
+'OK' @/etc/ppp/chatscripts/pin
+'OK\d-AT-OK' 'ATI'
+'OK' 'ATZ'
+'OK' 'ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0'
+'OK' @/etc/ppp/chatscripts/mode
+'OK-AT-OK' @/etc/ppp/chatscripts/apn
+'OK' 'ATDT*99***1#'
+TIMEOUT 30
+CONNECT ''
+/etc/ppp/chatscripts/my-operator-apn
+
+AT+CGDCONT=1,"IP","<apn-name>"
+/etc/ppp/chatscripts/pin.CODE
+
+AT+CPIN=1234
+/etc/ppp/chatscripts/pin.NONE
+
+AT
+/etc/ppp/chatscripts/mode.3G-only
+
+AT\^SYSCFG=14,2,3fffffff,0,1
+/etc/ppp/chatscripts/mode.3G-pref
+
+AT\^SYSCFG=2,2,3fffffff,0,1
+/etc/ppp/chatscripts/mode.GPRS-only
+
+AT\^SYSCFG=13,1,3fffffff,0,0
+/etc/ppp/chatscripts/mode.GPRS-pref
+
+AT\^SYSCFG=2,1,3fffffff,0,0
+The SYSCFG line in the mode.* files is device-dependent, and likely Huawei-specific, So You may use the mode.NONE file if your modem is SIM900. *
+/etc/ppp/chatscripts/mode.NONE
+
+AT
+Make some symbolic links:
+
+$ ln -s /etc/ppp/chatscripts/my-operator-apn /etc/ppp/chatscripts/apn
+$ ln -s /etc/ppp/chatscripts/mode.NONE /etc/ppp/chatscripts/mode
+$ ln -s /etc/ppp/chatscripts/pin.NONE /etc/ppp/chatscripts/pin
+If you have to enter credentials use mobile-auth
+
+$ mv provider provider.example
+$ ln -s /etc/ppp/peers/mobile-noauth /etc/ppp/peers/provider
+Check syslog in another console:
+
+$ tail -f /var/log/syslog | grep -Ei 'pppd|chat'
+Finally issue the pon command to see the result:
+
+$ pon
+The base instruction : https://wiki.archlinux.org/index.php/3G_and_GPRS_modems_with_pppd
+---
+
+Exemple de configuration :
+---
+root@raspberrypi:/etc/ppp# ls -l
+total 108
+-rw------- 1 root root   168 janv. 23 17:27 chap-secrets
+-rw------- 1 root root    96 janv. 22 03:49 chap-secrets.1
+drwxr-xr-x 2 root root  4096 janv. 24 09:55 chatscripts
+-rwxr-xr-x 1 root root  1754 nov.  29 16:27 ip-down
+drwxr-xr-x 2 root root  4096 janv. 22 02:17 ip-down.d
+-rwxr-xr-x 1 root root  1892 nov.  29 16:27 ip-up
+drwxr-xr-x 2 root root  4096 janv. 22 02:17 ip-up.d
+-rwxr-xr-x 1 root root   784 nov.  29 16:27 ipv6-down
+drwxr-xr-x 2 root root  4096 nov.  29 16:27 ipv6-down.d
+-rwxr-xr-x 1 root root   922 nov.  29 16:27 ipv6-up
+drwxr-xr-x 2 root root  4096 nov.  29 16:27 ipv6-up.d
+-rw-r--r-- 1 root root   397 janv. 23 20:13 mobile-modem.chat
+-rw-r--r-- 1 root root 13209 nov.  29 16:27 options
+-rw-r--r-- 1 root root 13209 janv. 23 02:33 options.1
+-rw-r--r-- 1 root root   160 janv. 20 11:42 options-mobile
+-rw------- 1 root root  1854 janv. 23 17:27 pap-secrets
+-rw------- 1 root root  1750 janv. 22 03:49 pap-secrets.1
+-rw------- 1 root root  1764 janv. 23 01:07 pap-secrets.bak
+drwxr-s--- 2 root dip   4096 janv. 24 09:55 peers
+drwxr-xr-x 2 root root  4096 janv. 23 02:27 resolv
+-rw-r--r-- 1 root root    52 janv. 25 13:21 resolv.conf
+root@raspberrypi:/etc/ppp# cat options-mobile
+ttyAMA0
+115200
+lock
+crtscts
+modem
+passive
+novj
+defaultroute
+replacedefaultroute
+noipdefault
+usepeerdns
+noauth
+hide-password
+persist
+holdoff 10
+maxfail 0
+debug
+
+root@raspberrypi:/etc/ppp# cd peers
+root@raspberrypi:/etc/ppp/peers# ls -l
+total 32
+-rw-r----- 1 root dip   279 janv. 23 02:29 bouygues
+-rw-r----- 1 root dip   251 janv. 23 02:29 bouygues.1
+-rw-r--r-- 1 root dip   137 janv. 23 23:54 mobile-auth
+-rw-r--r-- 1 root dip   105 janv. 23 20:12 mobile-noauth
+-rw-r----- 1 root dip   246 janv. 22 03:42 orange
+lrwxrwxrwx 1 root dip    13 janv. 24 09:55 provider -> mobile-noauth
+-rw-r----- 1 root dip  1093 janv. 20 11:13 provider.1
+-rw-r--r-- 1 root root   30 mai   23  2012 wvdial
+-rw-r--r-- 1 root root   75 mai   23  2012 wvdial-pipe
+root@raspberrypi:/etc/ppp/peers# cat mobile-noauth
+file /etc/ppp/options-mobile
+connect "/usr/sbin/chat -v -t15 -f /etc/ppp/chatscripts/mobile-modem.chat"
+
+root@raspberrypi:/etc/ppp/peers# cat mobile-auth
+file /etc/ppp/options-mobile
+user "orange"
+password "orange"
+connect "/usr/sbin/chat -v -t15 -f /etc/ppp/chatscripts/mobile-modem.chat"
+
+root@raspberrypi:/etc/ppp/peers# cat bouygues
+# This optionfile was generated by pppconfig 2.3.18. 
+# 
+#
+hide-password 
+noauth
+connect "/usr/sbin/chat -v -f /etc/chatscripts/bouygues"
+debug
+/dev/ttyAMA0
+9600
+defaultroute
+noipdefault 
+user "guest"
+remotename bouygues
+ipparam bouygues
+
+usepeerdns
+connect-delay 20000
+persist
+
+root@raspberrypi:/etc/ppp/peers# cat orange
+# This optionfile was generated by pppconfig 2.3.18. 
+# 
+#
+hide-password 
+noauth
+connect "/usr/sbin/chat -v -f /etc/chatscripts/orange"
+debug
+/dev/ttyAMA0
+115200
+defaultroute
+noipdefault 
+user "orange"
+remotename orange
+ipparam orange
+
+usepeerdnsroot@raspberrypi:/etc/ppp/peers# cd ..
+root@raspberrypi:/etc/ppp# cd chatscripts
+root@raspberrypi:/etc/ppp/chatscripts# ls -l
+total 40
+lrwxrwxrwx 1 root root  12 janv. 24 09:55 apn -> bouygues-apn
+-rw-r--r-- 1 root root  34 janv. 24 00:10 bouygues-apn
+-rw-r--r-- 1 root root 396 janv. 24 00:11 mobile-modem.chat
+lrwxrwxrwx 1 root root  30 janv. 24 00:04 mode -> /etc/ppp/chatscripts/mode.NONE
+-rw-r--r-- 1 root root  30 janv. 23 20:17 mode.3G-only
+-rw-r--r-- 1 root root  29 janv. 23 20:18 mode.3G-pref
+-rw-r--r-- 1 root root  30 janv. 23 20:18 mode.GPRS-only
+-rw-r--r-- 1 root root  29 janv. 23 20:19 mode.GPRS-pref
+-rw-r--r-- 1 root root   3 janv. 23 20:20 mode.NONE
+-rw-r--r-- 1 root root  27 janv. 24 09:44 orange-apn
+lrwxrwxrwx 1 root root  29 janv. 23 20:22 pin -> /etc/ppp/chatscripts/pin.NONE
+-rw-r--r-- 1 root root  14 janv. 23 20:16 pin.CODE
+-rw-r--r-- 1 root root   3 janv. 24 00:10 pin.NONE
+root@raspberrypi:/etc/ppp/chatscripts# cat mobile-modem.chat
+ABORT 'BUSY'
+ABORT 'NO CARRIER'
+ABORT 'VOICE'
+ABORT 'NO DIALTONE'
+ABORT 'NO DIAL TONE'
+ABORT 'NO ANSWER'
+ABORT 'DELAYED'
+REPORT CONNECT
+TIMEOUT 6
+'' 'ATQ0'
+'OK-AT-OK' 'ATZ'
+TIMEOUT 3
+'OK' @/etc/ppp/chatscripts/pin
+'OK\d-AT-OK' 'ATI'
+'OK' 'ATZ'
+'OK' 'ATQ0 V1 E1 S0=0 &C1 &D2 +FCLASS=0'
+'OK' @/etc/ppp/chatscripts/mode
+'OK-AT-OK' @/etc/ppp/chatscripts/apn
+'OK' 'ATDT*99***1#'
+TIMEOUT 30
+CONNECT ''
+root@raspberrypi:/etc/ppp/chatscripts# cat bouygues-apn
+AT+CGDCONT=1,"IP","ebouygtel.com"
+root@raspberrypi:/etc/ppp/chatscripts# cat orange-apn
+AT+CGDCONT=1,"IP","orange"
+root@raspberrypi:/etc/ppp/chatscripts# cat pin.NONE
+AT
+root@raspberrypi:/etc/ppp/chatscripts# cat pin.CODE
+AT+CPIN=1234
+
+root@raspberrypi:/etc/ppp/chatscripts# cat mode.NONE
+AT
+root@raspberrypi:/etc/ppp/chatscripts# 
+
+
+
+
+

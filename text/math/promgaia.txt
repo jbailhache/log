@@ -1,0 +1,33 @@
+Prométhée et Gaia
+
+Dans une situation de choix, on a n actions possibles 
+a1 ... an et k critères f1 ... fk.
+
+On a une matrice qui à chaque action ai et à chaque critère fj
+associe fj(ai).
+
+	f1	...	fn
+a1	f1(a1)  ...	fn(a1)
+.	.		.
+.	.		.
+.	.		.
+an	f1(an) ...	fn(an)
+
+Pour un critère fi, on compare deuxactions aj et ak
+avec différentes fonctions de préférence p(fi(aj),fi(ak)).
+
+Pour chaque action ai on définit :
+- son pouvoir : combien elle domine les autres : 
+ somme sur j et k de wk p (fk(ai), fk(aj))
+- sa faiblesse : combien elle est dominée :
+ somme sur j et k de wk p (fk(aj), fk(ai))
+
+On obtient deux ordres qui permettent de construire un arbre.
+
+Les actions ai sont des points (individus) dans un espace
+de dimension k correspondant au nombre de critères.
+On fait une analyse en composantes principales des actions.
+Decision stick = variation des poids w.
+"cerveau du décideur" = hypercube dans lequel on peut faire varier ces poids,
+projeté sur le plan de l'ACP.
+

@@ -1,0 +1,254 @@
+<HTML>
+
+<head>
+
+<title>La Théorie des Nombres Typographique de Douglas Hofstater</title>
+
+<meta name="keywords" 
+
+ content="Hofstadter,théorie,nombres,TNT,système,formel,theory,number,formal,system">
+
+</head>
+
+<body&gt;
+
+<h3>            
+    <SCRIPT LANGUAGE="JavaScript">
+      if (top.frames.length == 0)
+      {
+        no_frames=1;
+  
+        document.write(
+          '<CENTER>',
+          '<TABLE BORDER=0 ALIGN=CENTER WIDTH=468 CELLPADDING=0 CELLSPACING=0>',
+          '  <TR>',
+          '    <TD WIDTH=468>',
+          '      <map name="tsbanner">',
+          '        <area shape="rect" coords="0,0,377,19" href="http://www.terrashare.com">',
+          '        <area shape="rect" coords="377,0,467,19" href="http://www.terrashare.com/join1a">',
+          '      </map>',
+          '      <IMG SRC="http://www.terrashare.com/banner.gif" usemap="#tsbanner" border=0><BR>',
+          '    </TD>',
+          '  </TR>',
+          '  <TR>',
+          '    <TD WIDTH=468>');
+  
+        document.write(
+          '      <NOLAYER>',
+          '      <IFRAME SRC="http://ad2.doubleclick.net/adi/sonar.terrashare/reach;sz=468x60;ord=27694652?" ',
+          '        width="468" height="60" marginwidth="0" marginheight="0" hspace="0" ',
+          '        vspace="0" frameborder="0" scrolling="no">',
+          '      <A HREF="http://ad2.doubleclick.net/jump/sonar.terrashare/reach;sz=468x60;ord=27694652?" target="_top" BORDER=0><IMG SRC="http://ad2.doubleclick.net/ad/sonar.terrashare/reach;ord=27694652" width="468" height="60" border="0"></A>',
+          '      </IFRAME>',
+          '      </NOLAYER>',
+          '      <ILAYER id="ad1" visibility="hide" width="468" height="60"></ILAYER>');
+    
+        document.write(
+          '    </TD>',
+          '  </TR>',
+          '</TABLE>',
+          '</CENTER>');
+      }
+    </SCRIPT>
+    <NOSCRIPT>  
+      <CENTER>
+      <TABLE BORDER=0 ALIGN=CENTER WIDTH=468 CELLPADDING=0 CELLSPACING=0>
+        <TR>
+          <TD WIDTH=468>
+            <map name="tsbanner">
+              <area shape="rect" coords="0,0,377,19" href="http://www.terrashare.com">
+              <area shape="rect" coords="377,0,467,19" href="http://www.terrashare.com/join1a">
+            </map>
+            <IMG SRC="http://www.terrashare.com/banner.gif" usemap="#tsbanner" border=0><BR>
+          </TD>
+        </TR>
+        <TR>
+          <TD WIDTH=468>
+            <A HREF="http://ad2.doubleclick.net/jump/sonar.terrashare/reach;sz=468x60;ord=27694652?" target="_top" BORDER=0><IMG SRC="http://ad2.doubleclick.net/ad/sonar.terrashare/reach;ord=27694652" width="468" height="60" border="0"></A>
+          </TD>
+        </TR>
+      </TABLE>
+      </CENTER>
+    </NOSCRIPT>
+  La Théorie des Nombres Typographiques de Douglas Hofstadter</h3>
+
+<p>
+
+Référence : Douglas Hofstadter, Gödel, Escher, Bach, 
+
+les Brins d'une Guirlande Eternelle, InterEditions, Paris.
+
+<p>
+ 
+<h4>Calcul propositionnel</h4>
+
+<ul>
+
+<p><li>Expressions bien formées
+
+	<ul>
+
+	<li> Atomes : P, Q, R, P', Q', R', P'' ...
+
+	<li> x, y -&gt; ~x, &lt;x & y&gt;, &lt;x V y&gt;, &lt;x => y&gt;
+
+	</ul>
+
+<p><li>Règles
+
+	<ul>
+
+	<li> Adjonction : x, y |- &lt;x & y&gt;
+
+	<li> Séparation : 
+
+		<ul>
+
+		<li> &lt;x & y&gt; |- x
+
+		<li> &lt;x & y&gt; |- y
+
+		</ul>
+
+	<li> Double tilde : ~~ peut être supprimée ou introduite
+
+		si le résultat est bien formé.
+
+	<li> Fantaisie : [x ... y ...] |- &lt;x => y&gt;
+
+	<li> Report : x |- [y ... x ] (Tout théorème de la réalité de niveau supérieur
+
+		peut être introduit dans une fantaisie)
+
+	<li> Détachement : x, &lt;x => y&gt; |- y
+
+	<li> Contraposition : &lt;x => y&gt; et <~y => ~x> sont interchangeables.
+
+	<li> De Morgan : <~x & ~y&gt; et ~&lt;x V y&gt; sont interchangeables.
+
+	<li> Echange : &lt;x V y&gt; et <~x => y&gt; sont interchangeables.
+
+	</ul>
+
+<p>
+
+<h4>TNT</h4>
+
+<p>
+
+<ul>
+
+<p><li>Termes
+
+	<ul>
+
+	<li> Symboles numériques : 0, 1 = S0, 2 = SS0, 3 = SSS0 ...
+
+	<li> Variables : a, b, c, d, e, a', ...
+
+	<li> Termes s, t -&gt; Ss, (s+t), (s.t)
+
+	</ul>
+
+<p><li>Propositions
+
+	<ul>
+
+	<li> Atomes propositionnels : s = t
+
+	<li> propositions x, y -&gt; ~x, &lt;x & y&gt;, &lt;x V y&gt;, &lt;x => y&gt;, Eu:x, Au:x 
+
+	</ul>
+
+<p><li>Règles
+
+	<ul>
+
+	<li>Règles du calcul propositionnel
+
+	<li>Axiomes
+
+		<ul>
+
+		<li> Aa:~Sa=0
+
+		<li> Aa:(a+0)=a
+
+		<li> Aa:Ab:(a+Sb)=S(a+b)
+
+		<li> Aa:(a.0)=0
+
+		<li> Aa:Ab:(a.Sb)=((a.b)+a)
+
+		</ul>
+
+	<li>Nouvelles règles de la TNT : quantificateurs
+
+		<ul>
+
+		<li>Spécification : 
+
+			<ul>
+
+			<li> Au:x |- x
+
+			<li> Au:x |- [u-&gt;y]x substitution de u par y dans x,
+
+				si y ne contient aucune variable quantifiée dans x.
+
+			</ul>
+
+		<li>Généralisation :
+
+			x |- Au:x si u est libre dans x.
+
+			Restriction : dans une fantaisie, aucune
+
+			généralisation d'une variable libre dans la 
+
+			prémisse de cette fantaisie n'est permise.
+
+		<li>Interchangeabilité : Au:~et ~Eu: sont interchangeables
+
+			dans un théorème.
+
+		<li>Existence : Si un terme (qui ne contient pas de variable non libre)
+
+			apparait dans un théorème, il est possible
+
+			de le remplacer par une nouvelle variable
+
+			en plaçant E en tête du théorème.
+
+		</ul>
+
+	<li>Règles d'égalité et de succession
+
+		<ul>
+
+		<li> Symétrie : r=s |- s=r
+
+		<li> Transitivité : r=s, s=t |- r=t
+
+		<li> Ajout de S : r=t |- Sr=St
+
+		<li> Suppression de S : Sr=St |- r=t
+
+		</ul>
+
+	</ul>
+
+</ul>
+
+ 
+
+   
+      <LAYER src="http://ad2.doubleclick.net/adi/sonar.terrashare/reach;sz=468x60;ord=27694652?" 
+        width="468" height="60" visibility="hide" 
+        onload="moveToAbsolute(ad1.pageX, ad1.pageY); visibility='show';" clip="468,60">
+      </LAYER>
+      </body>
+
+</HTML>
+
+ 

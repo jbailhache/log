@@ -1,0 +1,1001 @@
+<HTML><head>
+<title>Gauge fields, Kaluza Klein theory, least action principle and general relativity</title>
+<meta name="keywords" content="physics,gauge field,Kaluza Klein,least action,general relativity">
+ 
+</head>
+
+<body>
+
+See also 
+<ul>
+<li><a href="http://www-th.phys.rug.nl/~schaar/htmlreport/report.html">
+Stringy black holes</a>, by Jan Pieter van der Schaar 
+</ul>
+
+<h3>Gauge fields</h3>
+<h4>Example of the electromagnetic field</h4>
+<p>
+The electromagnetic field is a gauge field associated with U(1) which 
+is simply the circle. <br>
+It can also be viewed as gravitation in the fifth dimension of a 5 dimensional
+space obtained by multiplying the 4 dimensional space-time by the circle U(1)
+which is compactified to the Planck length. This is Kaluza-Klein theory. 
+<p>
+The phase is a point on the circle U(1). <br>
+The potential A<sub>m</sub> = (A<sub>t</sub>=V A<sub>x</sub> A<sub>y</sub> A<sub>z</sub>) is the gradient of the phase. 
+In the general case, the potential is A<sup>a</sup><sub>m</sub> where a
+is one of the compactified dimensions of the phase space, but in the case of 
+the electromagnetic field, the circle U(1) has only 1 dimension, so
+this indice a is useless.<br>
+The field F<sub>mn</sub> is d<sub>m</sub>A<sub>n</sub>-d<sub>n</sub>A<sub>m</sub>
+where d is the partial derivation. It means that F<sub>mn</sub> is the
+dephasage of an infinitesimal loop in the plane mn.
+In the general case the field is :<br> 
+F<sub>mn</sub><sup>a</sup> 
+= d<sub>m</sub>A<sub>n</sub><sup>a</sup>
+- d<sub>n</sub>A<sub>m</sub><sup>a</sup>
++ f<sub>bc</sub><sup>a</sup>A<sub>m</sub><sup>b</sup>A<sub>n</sub><sup>c</sup>
+<br>
+where m and n are dimensions of space-time (t,x,y,z) and a, b, c are 
+dimensions of phase space (compactified dimensions).
+
+<p>
+The field satisfies 
+d<sub>m</sub>F<sub>np</sub> + d<sub>p</sub>F<sub>mn</sub> + d<sub>n</sub>F<sub>pm</sub> = 0
+or e<sup>mnpq </sup>d<sub>n</sub>F<sub>pq</sub> = 0.
+<p>
+The potential A<sub>m</sub> is determined by the current density of
+the sources J<sub>m</sub> = rho v<sub>m</sub> (where rho is the charge density
+and v the speed) by the relation : [] A<sub>m</sub> = mu<sub>0</sub>J<sub>m</sub>
+with [] = 1/c d<sup>2</sup>/dt<sup>2</sup> 
+- d<sup>2</sup>/dx<sup>2</sup> 
+- d<sup>2</sup>/dy<sup>2</sup> 
+- d<sup>2</sup>/dz<sup>2</sup>.
+<p>
+A particle moving in an electromagnetic field is submitted to a force.
+
+
+f = e F v
+<pre>
+( gamma/c f.v )     (0    Ex/c Ey/c Ez/c) (gamma c )
+( gamma fx    ) = e (Ex/c 0    Bz   -By ) (gamma vx) 
+( gamma fy    )     (Ey/c Bz   0    Bx  ) (gamma vy)
+( gamma fz    )     (Ez/c By   -Bx  0   ) (gamma vz)
+</pre>
+<p>
+ 
+F<sub>mn</sub> =
+<pre>
+(0     Ex/c Ey/c Ez/c)
+(-Ex/c 0    -Bz  By  )
+(-Ey/c Bz   0    -Bx )
+(-Ez/c -By  Bx   0   )
+</pre>
+<p> 
+F<sup>mn</sup> =
+<pre>
+(0    -Ex/c -Ey/c -Ez/c)
+(Ex/c 0     -Bz   By   )
+(Ey/c Bz    0     -Bx  )
+(Ez/c -By   Bx    0    )
+</pre>
+
+</p>
+The sign before E depends on the metrics (+---) or (-+++)
+</p>
+
+<h4>Kaluza Klein theory</h4>
+
+The 4 dimensional curved (by gravity) space-time with the electromagnetic gauge field on U(1)
+is equivalent to a 5 dimensional space-time (4 dimensional space time multilied by U(1))
+with only gravity.
+<p>
+Notations :
+<ul>
+<li> g_mn is the metric of the 4 dimensional space-time
+<li> Phi is the dilaton which is the metric of U(1)
+<li> g'_mn is the metric of the 5 dimensional space-time
+</ul>
+ 
+<pre>
+g'_mn = ( g_mn - Phi A_m A_n   - Phi A_m )
+        ( - Phi A_n            - Phi     )
+
+g'^mn = ( g^mn   - A^m        )
+        ( - A^n  - 1/Phi + A^2)
+</pre>
+
+<h4>Generalization to any gauge field</h4>
+
+Gauge fields corresponding to known physical forces :
+<ul>
+<li>Gravity : no gauge field, it is the curvation of 4 dimensional space-time
+<li>Electromagnetism : U(1)
+<li>Weak interaction : SU(2)
+<li>Strong interaction : SU(3)
+<li>Unification EM-weak-strong : SU(5) 
+</ul>
+The phase is a point of an internal space with n compactified dimensions.
+<br>
+The potential A<sub>m</sub><sup>a</sup> is the gradient of the phase,
+ where m is a dimension of space-time (t,x,y,z) and a is a compactified dimension.
+<p>
+Conventions : mu' = { mu, m } where 
+<ul>
+<li> mu are the 4 dimensions of space-time t, x, y, z
+<li> m are the internal coordinates of compactified dimensions
+<li> mu' are all the coordinates of the generalized space-time
+</ul>
+ 
+The vielbeins (matrices of base changing between curved and locally flat coordinates) are :
+<pre>
+E'^a'_mu' = ( e^a_mu          0     )
+            ( A_mu^k E^n_k    E^n_m )
+
+e'_a'^mu' = ( e_a^mu    -e_a^rho A_rho^m )
+            ( 0         E^n_m            )
+</pre>
+The metric is :
+<pre>
+g'_mu'nu' = ( g_m_n + G_m_n A_mu^m A_nu^n   A_mu^m G_m_n )
+            ( A_nu^n G_m_n                  G_mn         )
+
+g'^mu'nu' = ( g^mu^nu   -A^mu^n               )
+            ( -A^nu^m   G^mn + A^rho^m A_rho_n)
+
+or more symetrically :
+
+g'^mu'nu' = ( g^mu^nu            -A_nu^n g^mu^nu              )
+            ( -A_mu^m g^mu^nu    G^mn + g^mu^nu A_mu^m A_nu^n ) 
+
+</pre>
+
+
+<h3>Least action principle</h3>
+<p>
+dL/dq = d/dt (dL/d(dq/dt) 
+<p>
+Action S = -mc integ ds
+<p>
+ds<sup>2</sup> = c<sup>2</sup>dt<sup>2</sup> - (dx<sup>2</sup>+dy<sup>2</sup>+dz<sup>2</sup>)
+<p>
+ds = c sqrt(1-v<sup>2</sup>/c<sup>2</sup>)dt
+<p>
+Lagrangian of a particle if an electromagnetic field :<br>
+L = 1/2 mv<sup>2</sup> + e A.v - eV<br>
+where 
+<ul>
+<li> L is the lagrangian
+<li> m is the mass of the particle
+<li> v is its speed
+<li> e is its charge
+<li> A is the vector potential
+<li> V is the scalar potential
+</ul>
+<p>
+S = - SIGMA mc integ ds - SIGMA e integ A<sub>m</sub>dx<sup>m</sup>
++ 1/2mu<sub>0</sub> integ<sub>t<sub>1</sub></sub><sup>t<sub>2</sub></sup>dt
+integ(E<sup>2</sup>/c<sup>2</sup>-B<sup>2</sup>)d tau
+<br>
+= - SIGMA mc integ ds - SIGMA e integ A<sub>m</sub>dx<sup>m</sup>
++ 1/2mu<sub>0</sub> integ<sub>t<sub>1</sub></sub><sup>t<sub>2</sub></sup>dt
+integ(-1/2 F<sub>mn</sub>F<sup>mn</sup>)d tau
+<p>
+L = -1/4 F<sub>mn</sub>F<sup>mn</sup> + A<sub>m</sub>J<sup>m</sup>
+
+<h4>General relativity</h4>
+Connection Gamma<sup>l</sup><sub>mn</sub> = 1/2 g<sup>ls</sup> ( d<sub>m</sub>g<sub>sn</sub> + d<sub>n</sub>g<sub>sm</sub> - d<sub>s</sub>g<sub>mn</sub>)
+<p>
+
+
+S<sub>g</sub> = -1/(2 khi c) integ sqrt(-g) R d Omega with khi = 2 pi G / c<sup>4</sup>
+<br>
+R<sub>mn</sub> - 1/2 g<sub>mn</sub>R = khi T<sub>mn</sub>
+<p>  
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<!--Converted with LaTeX2HTML 98.1p1 release (March 2nd, 1998)
+originally by Nikos Drakos (nikos@cbl.leeds.ac.uk), CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<!--Navigation Panel-->
+<A NAME="tex2html262"
+ HREF="node14.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next_motif.gif"></A> 
+<A NAME="tex2html259"
+ HREF="node9.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_motif.gif"></A> 
+<A NAME="tex2html255"
+ HREF="node12.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="previous_motif.gif"></A> 
+<A NAME="tex2html261"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents_motif.gif"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html263"
+ HREF="node14.html">Four-dimensional Actions and Dual</A>
+<B> Up:</B> <A NAME="tex2html260"
+ HREF="node9.html">String Effective Actions</A>
+<B> Previous:</B> <A NAME="tex2html256"
+ HREF="node12.html">Kaluza Klein Theory</A>
+<BR>
+<BR>
+<!--End of Navigation Panel-->
+
+<H1><A NAME="SECTION00540000000000000000">&#160;</A>
+<A NAME="red">&#160;</A>
+<BR>
+Reduction of the Low Energy String Effective Action
+</H1>
+
+<P>
+The method discussed in the previous section can be generalised to include more dimensions and more complicated fields. We can use it to reduce our ten-dimensional string effective action sea10 to four dimensions. 
+But let's consider the general case of an effective action in <I>D</I>-dimensions that we want to reduce to (<I>D</I>-<I>d</I>) dimensions. So in the simplest case we assume that space-time is of the form <IMG
+ WIDTH="65" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img149.gif"
+ ALT="$M\times K$">,
+where <I>M</I> has <I>D</I>-<I>d</I> dimensions and <I>K</I> has <I>d</I> dimensions and all fields are independent of the coordinates <I>y</I><SUP><I>m</I></SUP> of <I>K</I>. 
+
+<P>
+This the simplest way to compactify the extra dimensions and of course there are more interesting ways to do this compactification which have more realistic features, but they are also far more difficult. For the moment we will stick to the case in which the fields are taken to  be independent of the extra <I>K</I> coordinates.
+
+<P>
+We will use the following notation: Local coordinates of <I>M</I> are <IMG
+ WIDTH="24" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img91.gif"
+ ALT="$x^{\mu}$">
+(
+<!-- MATH: $\mu=0,1,\ldots,D-d-1$ -->
+<IMG
+ WIDTH="192" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img150.gif"
+ ALT="$\mu=0,1,\ldots,D-d-1$">), internal coordinates of <I>K</I> are <I>y</I><SUP><I>m</I></SUP>, (
+<!-- MATH: $m=1,\ldots,d$ -->
+<IMG
+ WIDTH="107" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img151.gif"
+ ALT="$m=1,\ldots,d$">). The total space <IMG
+ WIDTH="65" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img149.gif"
+ ALT="$M\times K$">
+has signature (
+<!-- MATH: $+-\ldots -$ -->
+<IMG
+ WIDTH="83" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img152.gif"
+ ALT="$+-\ldots -$">)
+and fields in this <I>D</I>-dimensional space are denoted with a hat, as well as their coordinates (<IMG
+ WIDTH="18" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img153.gif"
+ ALT="$\hat\Phi$">,
+
+<!-- MATH: $\hat g_{\hat\mu\hat\nu}$ -->
+<IMG
+ WIDTH="30" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img154.gif"
+ ALT="$\hat g_{\hat\mu\hat\nu}$">,
+etc.), (
+<!-- MATH: $\hat\mu=0,1,\ldots ,D-1$ -->
+<IMG
+ WIDTH="159" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img155.gif"
+ ALT="$\hat\mu=0,1,\ldots ,D-1$">). Quantities without a hat are then the (<I>D</I>-<I>d</I>)-dimensional ones.
+
+<P>
+We begin with the first terms of the low energy string effective action seff, the Einstein term coupled to the Dilaton:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{equation}
+S_E = \int_M d^{D-d}x \int_K d^dy \sqrt{\hat g} e^{-\hat\Phi} \left\{ -\hat R - \partial_{\hat\mu} \hat\Phi \partial^{\hat\mu}\hat\Phi \right\}.
+\end{equation} -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="r1">&#160;</A><IMG
+ WIDTH="385" HEIGHT="42"
+ SRC="img156.gif"
+ ALT="\begin{displaymath}
+S_E = \int_M d^{D-d}x \int_K d^dy \sqrt{\hat g} e^{-\hat\Phi...
+...artial_{\hat\mu} \hat\Phi \partial^{\hat\mu}\hat\Phi \right\}.
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(3.18)</TD></TR>
+</TABLE>
+</DIV>
+<BR CLEAR="ALL"><P></P>
+If we assume that the internal space <I>K</I> is compact, we can perform the integration over the internal coordinates: 
+<!-- MATH: $\int_K d^dy =1$ -->
+<IMG
+ WIDTH="90" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img157.gif"
+ ALT="$\int_K d^dy =1$">.
+<BR>
+
+<P>
+It is very useful to do this reduction with the aid of so called vielbeins (vierbeins or tetrads in four dimensions, vielbeins in any other dimension). With the use of these vielbeins we make the connection between curved coordinate systems and local Lorentz (flat) coordinates. See appendix <A HREF="node51.html#appa"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="cross_ref_motif.gif"></A> for a short introduction of these vielbeins.
+
+<P>
+On the same transformation grounds that we saw in the previous section we can determine the reduction of these vielbeins. 
+Let again the greek indices denote the curved indices, (
+<!-- MATH: $\hat\mu=\{\mu,m\}$ -->
+<IMG
+ WIDTH="96" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img158.gif"
+ ALT="$\hat\mu=\{\mu,m\}$">)
+where <I>m</I> labels the internal coordinates. 
+And the hatted roman indices will denote the Lorentz indices in <I>D</I>-dimensions, (
+<!-- MATH: $\hat a=\{a,n\}$ -->
+<IMG
+ WIDTH="88" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img159.gif"
+ ALT="$\hat a=\{a,n\}$">). We assume that the internal space is flat, so there is no difference between the internal 'curved' indices and the internal Lorentz indices. The vielbeins reduce in the following way [<A
+ HREF="node57.html#maharana">5</A>]:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{equation}
+\hat e^{\hat a}{}_{\hat\mu} = \left( \begin{array}{cc} e^a{}_\mu & 0 \\& \\A_\mu{}^k E^{n}{}_k & E^n{}_m \end{array} \right) \quad\mbox{and}\quad e_{\hat a}{}^{\hat\mu} = \left( \begin{array}{cc} e_a{}^\mu & -e_a{}^\rho A_\rho{}^m \\&\\0 & E^n{}_m \end{array} \right).
+\end{equation} -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+ WIDTH="498" HEIGHT="76"
+ SRC="img160.gif"
+ ALT="\begin{displaymath}\hat e^{\hat a}{}_{\hat\mu} = \left( \begin{array}{cc} e^a{}_...
+...-e_a{}^\rho A_\rho{}^m \\ &\\ 0 & E^n{}_m \end{array} \right).
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(3.19)</TD></TR>
+</TABLE>
+</DIV>
+<BR CLEAR="ALL"><P></P>
+The internal metric is 
+<!-- MATH: $G_{mn} = E^k{}_m \delta_{kl} E^l{}_n$ -->
+<IMG
+ WIDTH="151" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img161.gif"
+ ALT="$G_{mn} = E^k{}_m \delta_{kl} E^l{}_n$">
+and the space-time metric is 
+<!-- MATH: $g_{\mu\nu} = e^a{}_\mu \eta_{ab} e^b{}_\nu$ -->
+<IMG
+ WIDTH="127" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img162.gif"
+ ALT="$g_{\mu\nu} = e^a{}_\mu \eta_{ab} e^b{}_\nu$">.
+We can express the <I>D</I>-dimensional metric in these quantities as we did in previous section [<A
+ HREF="node57.html#cvetic">8</A>]:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{equation}
+\hat g_{\hat\mu\hat\nu} = \left( \begin{array}{cc} g_{\mu\nu} + G_{mn} A_\mu{}^m A_\nu{}^n & A_\mu{}^m G_{mn} \\&\\A_nu{}^n G_{mn} & G_mn \end{array} \right)
+\end{equation} -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+ WIDTH="329" HEIGHT="76"
+ SRC="img163.gif"
+ ALT="\begin{displaymath}\hat g_{\hat\mu\hat\nu} = \left( \begin{array}{cc} g_{\mu\nu}...
+...u{}^m G_{mn} \\ &\\ A_nu{}^n G_{mn} & G_mn \end{array} \right)
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(3.20)</TD></TR>
+</TABLE>
+</DIV>
+<BR CLEAR="ALL"><P></P>
+and its inverse
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{equation}
+\hat g_{\hat\mu\hat\nu} = \left( \begin{array}{cc} g^{\mu\nu} & - A^{\mu n} \\&\\-A^{\nu m} & G^{mn} + A^{\rho m} A_\rho{}^n \end{array} \right).
+\end{equation} -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+ WIDTH="290" HEIGHT="76"
+ SRC="img164.gif"
+ ALT="\begin{displaymath}\hat g_{\hat\mu\hat\nu} = \left( \begin{array}{cc} g^{\mu\nu}...
+...{\nu m} & G^{mn} + A^{\rho m} A_\rho{}^n \end{array} \right).
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(3.21)</TD></TR>
+</TABLE>
+</DIV>
+<BR CLEAR="ALL"><P></P>
+So when we reduce <I>d</I> dimensions, the <I>D</I>-dimensional metric will reduce to a (<I>D</I>-<I>d</I>)-dimensional metric, <I>d</I> abelian vector fields <IMG
+ WIDTH="40" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img165.gif"
+ ALT="$A_\mu{}^m$">,
+(
+<!-- MATH: $m=1,\ldots,d$ -->
+<IMG
+ WIDTH="107" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img151.gif"
+ ALT="$m=1,\ldots,d$">)
+and a scalar matrix <I>G</I><SUB><I>mn</I></SUB>. Because a metric is a symmetric tensor, this scalar matrix <I>G</I><SUB><I>mn</I></SUB> will consist of 
+<!-- MATH: ${\textstyle{1\over 2}}d (d+1)$ -->
+<IMG
+ WIDTH="82" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img166.gif"
+ ALT="${\textstyle{1\over 2}}d (d+1) $">
+independent scalar fields.
+
+<P>
+We can put these expressions into the Einstein part of our effective action r1 and after a tedious calculation one finds
+<BR>
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{eqnarray}
+S =& \int_M d^{D-d}x \sqrt{|g|} e^{-\phi} \left\{ -R + g^{\mu\nu} \partial_\mu \phi \partial_nu \phi + \right. \nonumber\\
+& \left. + {\textstyle{1\over 4}}g^{\mu\nu} \partial_\mu G_{mn} \partial_\nu G^{mn} + {\textstyle{1\over 4}}G_{mn} F_{\mu\nu}{}^m(A) F^{\mu\nu n}(A) \right\},
+\end{eqnarray} -->
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><I>S</I> =</TD>
+<TD ALIGN="CENTER" NOWRAP><IMG
+ WIDTH="323" HEIGHT="49" ALIGN="MIDDLE" BORDER="0"
+ SRC="img167.gif"
+ ALT="$\textstyle \int_M d^{D-d}x \sqrt{\vert g\vert} e^{-\phi} \left\{ -R + g^{\mu\nu} \partial_\mu \phi \partial_nu \phi + \right.$"></TD>
+<TD>&nbsp;</TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+&nbsp;</TD></TR>
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="CENTER" NOWRAP><IMG
+ WIDTH="392" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img168.gif"
+ ALT="$\textstyle \left. + {\textstyle{1\over 4}}g^{\mu\nu} \partial_\mu G_{mn} \parti...
+...{mn} + {\textstyle{1\over 4}}G_{mn} F_{\mu\nu}{}^m(A) F^{\mu\nu n}(A) \right\},$"></TD>
+<TD>&nbsp;</TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(3.22)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+where we have made a shift in the Dilaton field
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH: \begin{displaymath}
+\phi = \hat\Phi - {\textstyle{1\over 2}}\log \det G_{mn}
+\end{displaymath} -->
+
+
+<IMG
+ WIDTH="177" HEIGHT="35"
+ SRC="img169.gif"
+ ALT="\begin{displaymath}\phi = \hat\Phi - {\textstyle{1\over 2}}\log \det G_{mn} \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+and of course 
+<!-- MATH: $F_{\mu\nu}{}^m = \partial_\mu A_\nu{}^m - \partial_\nu A_\nu{}^m$ -->
+<IMG
+ WIDTH="202" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img170.gif"
+ ALT="$F_{\mu\nu}{}^m = \partial_\mu A_\nu{}^m - \partial_\nu A_\nu{}^m$">.
+<BR>
+
+<P>
+We also have to reduce the other part of our string effective action involving the anti-symmetric field tensor 
+<!-- MATH: $B_{\mu\nu}$ -->
+<IMG
+ WIDTH="35" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img102.gif"
+ ALT="$B_{\mu\nu}$">
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{equation}
+S_{\hat B} = -{\textstyle{1\over 12}} \int_M d^{D-d}x \int_K d^dy \sqrt{|g|} e^{-\Phi} \hat H_{\hat\mu\hat\nu\hat\rho} \hat H^{\hat\mu\hat\nu\hat\rho} ,
+\end{equation} -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="sb">&#160;</A><IMG
+ WIDTH="365" HEIGHT="42"
+ SRC="img171.gif"
+ ALT="\begin{displaymath}
+S_{\hat B} = -{\textstyle{1\over 12}} \int_M d^{D-d}x \int_K...
+...t H_{\hat\mu\hat\nu\hat\rho} \hat H^{\hat\mu\hat\nu\hat\rho} ,
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(3.23)</TD></TR>
+</TABLE>
+</DIV>
+<BR CLEAR="ALL"><P></P>
+where 
+<!-- MATH: $\hat H_{\hat\mu\hat\nu\hat\rho} = \partial{[\hat\mu} \hat B_{\hat\nu\hat\rho]}$ -->
+<IMG
+ WIDTH="129" HEIGHT="44" ALIGN="MIDDLE" BORDER="0"
+ SRC="img172.gif"
+ ALT="$\hat H_{\hat\mu\hat\nu\hat\rho} = \partial{[\hat\mu} \hat B_{\hat\nu\hat\rho]}$">.
+
+<P>
+We can derive that the following reduction of the <I>D</I>-dimensional anti-symmetric field tensor gives us the correct transformation properties in (<I>D</I>-<I>d</I>) dimensions 
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{equation}
+\hat B_{\hat\mu\hat\nu} = \left(
+\begin{array}{cc} B_{\mu\nu} - {\textstyle{1\over 2}}A_{[\mu}{}^m B_{\nu ] m}+B_{mn}A_\mu{}^mA_\nu{}^n & B_{\mu n}-B_{nm} A_{\mu}{}^m \\
+&\\
+-B_{\nu m} + B_{mn} A_{\nu}{}^n & B_{mn}
+\end{array} \right).
+
+\end{equation} -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+ WIDTH="516" HEIGHT="76"
+ SRC="img173.gif"
+ ALT="\begin{displaymath}\hat B_{\hat\mu\hat\nu} = \left(
+\begin{array}{cc} B_{\mu\nu...
+...
+-B_{\nu m} + B_{mn} A_{\nu}{}^n & B_{mn}
+\end{array} \right).
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(3.24)</TD></TR>
+</TABLE>
+</DIV>
+<BR CLEAR="ALL"><P></P>
+So the <I>D</I>-dimensional anti-symmetric field tensor gives us in <I>D</I>-<I>d</I> dimensions again a anti-symmetric field tensor, <I>d</I> abelian vector fields <IMG
+ WIDTH="40" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img174.gif"
+ ALT="$B_{\mu m}$">
+and a <IMG
+ WIDTH="48" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img175.gif"
+ ALT="$d\times d$">
+scalar matrix <I>B</I><SUB><I>mn</I></SUB>, which because of anti-symmetry has 
+<!-- MATH: ${\textstyle{1\over 2}}d(d-1)$ -->
+<IMG
+ WIDTH="82" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img176.gif"
+ ALT="${\textstyle{1\over 2}}d(d-1)$">
+independent components. 
+
+<P>
+Note that 
+<!-- MATH: $\hat B_{\hat\mu\hat\nu}$ -->
+<IMG
+ WIDTH="35" HEIGHT="44" ALIGN="MIDDLE" BORDER="0"
+ SRC="img177.gif"
+ ALT="$\hat B_{\hat\mu\hat\nu}$">
+is a gauge tensor field: 
+<!-- MATH: $\delta\hat B_{\hat\mu\hat\nu} = \partial_{[\mu} \Lambda_{\nu]}$ -->
+<IMG
+ WIDTH="117" HEIGHT="44" ALIGN="MIDDLE" BORDER="0"
+ SRC="img178.gif"
+ ALT="$\delta\hat B_{\hat\mu\hat\nu} = \partial_{[\mu} \Lambda_{\nu]}$">.
+This means that the (<I>D</I>-<I>d</I>)-dimensional fields will have the following transformation properties:
+<BR>
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{eqnarray}
+\delta B_{\mu\nu} &=& \partial_{[\mu} \Lambda_{\nu]} \nonumber\\
+\delta B_{\mu m} &=& \partial_{\mu} \Lambda_m \nonumber
+\end{eqnarray} -->
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="44" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img179.gif"
+ ALT="$\displaystyle \delta B_{\mu\nu}$"></TD>
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+<TD ALIGN="LEFT" NOWRAP><IMG
+ WIDTH="52" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img180.gif"
+ ALT="$\displaystyle \partial_{[\mu} \Lambda_{\nu]}$"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+&nbsp;</TD></TR>
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="49" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img181.gif"
+ ALT="$\displaystyle \delta B_{\mu m}$"></TD>
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+<TD ALIGN="LEFT" NOWRAP><IMG
+ WIDTH="49" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img182.gif"
+ ALT="$\displaystyle \partial_{\mu} \Lambda_m$"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+&nbsp;</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+<P>
+We can use the vielbeins to convert the curved indices of <IMG
+ WIDTH="22" HEIGHT="22" ALIGN="BOTTOM" BORDER="0"
+ SRC="img183.gif"
+ ALT="$\hat H$">
+to Lorentz indices 
+<!-- MATH: $\hat H_{\hat a \hat b \hat c}$ -->
+<IMG
+ WIDTH="40" HEIGHT="44" ALIGN="MIDDLE" BORDER="0"
+ SRC="img184.gif"
+ ALT="$\hat H_{\hat a \hat b \hat c}$">
+and then use the reduced vielbeins (<IMG
+ WIDTH="30" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img185.gif"
+ ALT="$e^a{}_\mu$">
+and <I>E</I><SUP><I>n</I></SUP><SUB><I>m</I></SUB>) to convert them back to (<I>D</I>-<I>d</I>)-dimensional curved indices:
+<BR>
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{eqnarray}
+\hat {\textstyle{1\over 12}} H^2 &=& {\textstyle{1\over 12}}\hat H_{\hat a \hat b\hat c} \hat H^{\hat a \hat b\hat c} = \nonumber\\
+&=& {\textstyle{1\over 12}} H_{mnk} H^{mnk} + {\textstyle{1\over 4}}H_{\mu mn} H^{\mu mn} + {\textstyle{1\over 4}}H_{\mu\nu m} H^{\mu\nu m} + {\textstyle{1\over 12}} H_{\mu\nu\rho} H^{\mu\nu\rho} .
+\end{eqnarray} -->
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="47" HEIGHT="49" ALIGN="MIDDLE" BORDER="0"
+ SRC="img186.gif"
+ ALT="$\displaystyle \hat {\textstyle{1\over 12}} H^2$"></TD>
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+<TD ALIGN="LEFT" NOWRAP><IMG
+ WIDTH="114" HEIGHT="48" ALIGN="MIDDLE" BORDER="0"
+ SRC="img187.gif"
+ ALT="$\displaystyle {\textstyle{1\over 12}}\hat H_{\hat a \hat b\hat c} \hat H^{\hat a \hat b\hat c} =$"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+&nbsp;</TD></TR>
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+<TD ALIGN="LEFT" NOWRAP><IMG
+ WIDTH="483" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img188.gif"
+ ALT="$\displaystyle {\textstyle{1\over 12}} H_{mnk} H^{mnk} + {\textstyle{1\over 4}}H...
+...mu\nu m} H^{\mu\nu m} + {\textstyle{1\over 12}} H_{\mu\nu\rho} H^{\mu\nu\rho} .$"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(3.25)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+Here 
+<!-- MATH: $H_{mnk} =0$ -->
+<I>H</I><SUB><I>mnk</I></SUB> =0 since <I>B</I><SUB><I>mn</I></SUB> is independent of the <I>K</I> coordinates. We can also calculate the other terms:
+<BR>
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{eqnarray}
+H_{\mu mn} &=& e^r{}_\mu \hat e_r{}^{\hat \mu} \hat H_{\mu mn} = \partial_\mu B_{mn}, \\
+\nonumber\\
+H_{\mu\nu m} &=& e^r{}_\mu e^s{}_\nu \hat e_r{}^{\hat\mu} \hat e_s{}^{\hat\nu} \hat H_{\hat\mu\hat\nu m} \nonumber\\
+&=& F_{\mu\nu m}(B) - B_{mn} F_{\mu\nu}{}^n(A),\\
+\nonumber\\
+H_{\mu\nu\rho} &=& e^r{}_\mu e^s{}_\nu e^t{}_\rho \hat e_r{}^{\hat\mu} \hat e_s{}^{\hat\nu} \hat e_{t}{}^{\hat \rho} \hat H_{\hat\mu\hat\nu\hat\rho} \nonumber\\
+	     &=& \partial_\mu B_{\nu\rho} - {\textstyle{1\over 2}}( A_\mu{}^r F_{\nu\rho r}(B) + B_{\mu r} F_{\nu\rho}{}^r(A) ) + \mbox{cycl.},
+\end{eqnarray} -->
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="49" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img189.gif"
+ ALT="$\displaystyle H_{\mu mn}$"></TD>
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+<TD ALIGN="LEFT" NOWRAP><IMG
+ WIDTH="183" HEIGHT="44" ALIGN="MIDDLE" BORDER="0"
+ SRC="img190.gif"
+ ALT="$\displaystyle e^r{}_\mu \hat e_r{}^{\hat \mu} \hat H_{\mu mn} = \partial_\mu B_{mn},$"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(3.26)</TD></TR>
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">&nbsp;</TD>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+&nbsp;</TD></TR>
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="49" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img191.gif"
+ ALT="$\displaystyle H_{\mu\nu m}$"></TD>
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+<TD ALIGN="LEFT" NOWRAP><IMG
+ WIDTH="146" HEIGHT="44" ALIGN="MIDDLE" BORDER="0"
+ SRC="img192.gif"
+ ALT="$\displaystyle e^r{}_\mu e^s{}_\nu \hat e_r{}^{\hat\mu} \hat e_s{}^{\hat\nu} \hat H_{\hat\mu\hat\nu m}$"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+&nbsp;</TD></TR>
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+<TD ALIGN="LEFT" NOWRAP><IMG
+ WIDTH="205" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img193.gif"
+ ALT="$\displaystyle F_{\mu\nu m}(B) - B_{mn} F_{\mu\nu}{}^n(A),$"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(3.27)</TD></TR>
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">&nbsp;</TD>
+<TD>&nbsp;</TD>
+<TD>&nbsp;</TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+&nbsp;</TD></TR>
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="44" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img194.gif"
+ ALT="$\displaystyle H_{\mu\nu\rho}$"></TD>
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+<TD ALIGN="LEFT" NOWRAP><IMG
+ WIDTH="185" HEIGHT="44" ALIGN="MIDDLE" BORDER="0"
+ SRC="img195.gif"
+ ALT="$\displaystyle e^r{}_\mu e^s{}_\nu e^t{}_\rho \hat e_r{}^{\hat\mu} \hat e_s{}^{\hat\nu} \hat e_{t}{}^{\hat \rho} \hat H_{\hat\mu\hat\nu\hat\rho}$"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+&nbsp;</TD></TR>
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+<TD ALIGN="LEFT" NOWRAP><IMG
+ WIDTH="376" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img196.gif"
+ ALT="$\displaystyle \partial_\mu B_{\nu\rho} - {\textstyle{1\over 2}}( A_\mu{}^r F_{\nu\rho r}(B) + B_{\mu r} F_{\nu\rho}{}^r(A) ) + \mbox{cycl.},$"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(3.28)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+where 
+<!-- MATH: $F_{\mu\nu m}(B) = \partial_\mu B_{\nu m} - \partial_{\nu} B_{\mu m}$ -->
+<IMG
+ WIDTH="230" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img197.gif"
+ ALT="$F_{\mu\nu m}(B) = \partial_\mu B_{\nu m} - \partial_{\nu} B_{\mu m}$">.
+
+<P>
+Due to the dimensional reduction there arise extra terms in the definition in the field strength tensor 
+<!-- MATH: $H_{\mu\nu\rho}$ -->
+<IMG
+ WIDTH="44" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img107.gif"
+ ALT="$H_{\mu\nu\rho}$">.
+These are the so called Abelian Chern-Simons terms.
+<BR>
+
+<P>
+We can put all these terms back into the action. The total reduced effective action, consisting of the Einstein part as well as the part with the anti-symmetric field tensor, can be written in a very symmetric form [<A
+ HREF="node57.html#maharana">5</A>]. The claim is that there is a <I>O</I>(<I>d</I>,<I>d</I>) global symmetry that keeps this action invariant. (see Appendix <A HREF="node54.html#appodd"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]" SRC="cross_ref_motif.gif"></A> on the symmetry group <I>O</I>(<I>d</I>,<I>d</I>).)
+
+<P>
+First we have to introduce the 
+<!-- MATH: $2d\times 2d$ -->
+<IMG
+ WIDTH="66" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img198.gif"
+ ALT="$2d\times 2d$">
+scalar matrix <I>M</I>, 
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{equation}
+M=\left( \begin{array}{cc} G^{-1} & -G^{-1}B \\BG^{-1}&G-BG^{-1}B \end{array} \right),
+\end{equation} -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+ WIDTH="258" HEIGHT="54"
+ SRC="img199.gif"
+ ALT="\begin{displaymath}M=\left( \begin{array}{cc} G^{-1} & -G^{-1}B \\ BG^{-1}&G-BG^{-1}B \end{array} \right),
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(3.29)</TD></TR>
+</TABLE>
+</DIV>
+<BR CLEAR="ALL"><P></P>
+where <I>G</I> is the <IMG
+ WIDTH="48" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img175.gif"
+ ALT="$d\times d$">
+metric scalar matrix <I>G</I><SUB><I>mn</I></SUB> and <I>B</I> is the scalar matrix <I>B</I><SUB><I>mn</I></SUB>. Furthermore we have to introduce the matrix <I>L</I>:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{equation}
+L = \left( \begin{array}{cc} 0&I_d\\I_d&0 \end{array} \right),
+\end{equation} -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+ WIDTH="134" HEIGHT="54"
+ SRC="img200.gif"
+ ALT="\begin{displaymath}L = \left( \begin{array}{cc} 0&I_d\\ I_d&0 \end{array} \right),
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(3.30)</TD></TR>
+</TABLE>
+</DIV>
+<BR CLEAR="ALL"><P></P>
+which is the identity matrix of the group <I>O</I>(<I>d</I>,<I>d</I>) in a basis rotated from the one with a diagonal identity &#229;ppodd. If we also put the field strength tensors of the vector fields in a <I>d</I>+<I>d</I> doublet, 
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{equation}
+{\cal F}^i_{\mu\nu} = \left( \begin{array}{c} F_{\mu\nu}{}^m(A) \\F_{\mu\nu m}(B) \end{array} \right) = \partial_\mu {\cal A}_\nu{}^i - \partial_\nu {\cal A}_mu{}^i,
+\end{equation} -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+ WIDTH="329" HEIGHT="54"
+ SRC="img201.gif"
+ ALT="\begin{displaymath}{\cal F}^i_{\mu\nu} = \left( \begin{array}{c} F_{\mu\nu}{}^m(...
+... \partial_\mu {\cal A}_\nu{}^i - \partial_\nu {\cal A}_mu{}^i,
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(3.31)</TD></TR>
+</TABLE>
+</DIV>
+<BR CLEAR="ALL"><P></P>
+where 
+<!-- MATH: $i=1,\ldots,2d$ -->
+<IMG
+ WIDTH="107" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img202.gif"
+ ALT="$i=1,\ldots,2d$">,
+the total action can be written as [<A
+ HREF="node57.html#sen1">7</A>][<A
+ HREF="node57.html#maharana">5</A>]
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{equation}
+S = \int_M d^{D-d}x \sqrt{|g|} e^{-\phi} {\cal L},
+\end{equation} -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><A NAME="redsea">&#160;</A><IMG
+ WIDTH="195" HEIGHT="42"
+ SRC="img203.gif"
+ ALT="\begin{displaymath}
+S = \int_M d^{D-d}x \sqrt{\vert g\vert} e^{-\phi} {\cal L},
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(3.32)</TD></TR>
+</TABLE>
+</DIV>
+<BR CLEAR="ALL"><P></P>
+with 
+<!-- MATH: ${\cal L}={\cal L}_1+{\cal L}_2+{\cal L}_3+{\cal L}_4$ -->
+<IMG
+ WIDTH="195" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img204.gif"
+ ALT="${\cal L}={\cal L}_1+{\cal L}_2+{\cal L}_3+{\cal L}_4$">,
+where
+<BR>
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{eqnarray}
+{\cal L}_1 &=& -R + (\partial\phi)^2, \nonumber\\
+{\cal L}_2 &=& -{\textstyle{1\over 8}} g^{\mu\nu} \mbox{tr} (\partial_\mu ML \partial_\nu ML) , \nonumber\\
+{\cal L}_3 &=& {\textstyle{1\over 4}}g^{\mu\mu'}g^{\nu\nu'} {\cal F}_{\mu\nu}^i (LML)_{ij} {\cal F}_{\mu'\nu'}^j,\nonumber\\
+{\cal L}_4 &=& -{\textstyle{1\over 12}} g^{\mu\mu'}g^{\nu\nu'}g^{\rho\rho'} H_{\mu\nu\rho} H_{\mu'\nu'\rho'}, \nonumber\\
+\end{eqnarray} -->
+
+<TABLE ALIGN="CENTER" CELLPADDING="0" WIDTH="100%">
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="26" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img205.gif"
+ ALT="$\displaystyle {\cal L}_1$"></TD>
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+<TD ALIGN="LEFT" NOWRAP><IMG
+ WIDTH="106" HEIGHT="40" ALIGN="MIDDLE" BORDER="0"
+ SRC="img206.gif"
+ ALT="$\displaystyle -R + (\partial\phi)^2,$"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+&nbsp;</TD></TR>
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="26" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img207.gif"
+ ALT="$\displaystyle {\cal L}_2$"></TD>
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+<TD ALIGN="LEFT" NOWRAP><IMG
+ WIDTH="193" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img208.gif"
+ ALT="$\displaystyle -{\textstyle{1\over 8}} g^{\mu\nu} \mbox{tr} (\partial_\mu ML \partial_\nu ML) ,$"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+&nbsp;</TD></TR>
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="26" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img209.gif"
+ ALT="$\displaystyle {\cal L}_3$"></TD>
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+<TD ALIGN="LEFT" NOWRAP><IMG
+ WIDTH="222" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img210.gif"
+ ALT="$\displaystyle {\textstyle{1\over 4}}g^{\mu\mu'}g^{\nu\nu'} {\cal F}_{\mu\nu}^i (LML)_{ij} {\cal F}_{\mu'\nu'}^j,$"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+&nbsp;</TD></TR>
+<TR VALIGN="MIDDLE"><TD NOWRAP ALIGN="RIGHT"><IMG
+ WIDTH="26" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img211.gif"
+ ALT="$\displaystyle {\cal L}_4$"></TD>
+<TD ALIGN="CENTER" NOWRAP>=</TD>
+<TD ALIGN="LEFT" NOWRAP><IMG
+ WIDTH="222" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img212.gif"
+ ALT="$\displaystyle -{\textstyle{1\over 12}} g^{\mu\mu'}g^{\nu\nu'}g^{\rho\rho'} H_{\mu\nu\rho} H_{\mu'\nu'\rho'},$"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+&nbsp;</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+where 
+<!-- MATH: $H_{\mu\nu\rho} = \partial_{[\mu} B_{\nu\rho]} + 2{\cal A}_{[\mu}{}^i L_{ij} {\cal F}_{\nu\rho]}^j$ -->
+<IMG
+ WIDTH="247" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img213.gif"
+ ALT="$H_{\mu\nu\rho} = \partial_{[\mu} B_{\nu\rho]} + 2{\cal A}_{[\mu}{}^i L_{ij} {\cal F}_{\nu\rho]}^j$">.
+This action is obviously invariant under the <I>O</I>(<I>d</I>,<I>d</I>) transformation:
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<!-- MATH: \begin{equation}
+M \to \Omega M \Omega^T, \quad {\cal A}_\mu{}^i \to \Omega_{ij} {\cal A}_{\mu}{}^j,
+\end{equation} -->
+
+<TABLE WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE"><TD ALIGN="CENTER" NOWRAP><IMG
+ WIDTH="253" HEIGHT="34"
+ SRC="img214.gif"
+ ALT="\begin{displaymath}M \to \Omega M \Omega^T, \quad {\cal A}_\mu{}^i \to \Omega_{ij} {\cal A}_{\mu}{}^j,
+\end{displaymath}"></TD>
+<TD WIDTH=10 ALIGN="RIGHT">
+(3.33)</TD></TR>
+</TABLE>
+</DIV>
+<BR CLEAR="ALL"><P></P>
+keeping the other fields invariant and where 
+<!-- MATH: $\Omega \in O(d,d)$ -->
+<IMG
+ WIDTH="99" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img215.gif"
+ ALT="$\Omega \in O(d,d)$">
+satisfying
+<BR><P></P>
+<DIV ALIGN="CENTER">
+<!-- MATH: \begin{displaymath}
+\Omega^T L \Omega = L
+\end{displaymath} -->
+
+
+<IMG
+ WIDTH="87" HEIGHT="28"
+ SRC="img216.gif"
+ ALT="\begin{displaymath}\Omega^T L \Omega = L \end{displaymath}">
+</DIV>
+<BR CLEAR="ALL">
+<P></P>
+<BR>
+
+<P>
+So the reduction of a Low energy String Effective Action in <I>D</I> dimensions to <I>D</I>-<I>d</I> dimensions results allways in a action redsea which has an <I>O</I>(<I>d</I>,<I>d</I>) symmetry. This dual symmetry is called T-Duality, where the 'T' stands for Target-space. In the case of the string effective action of the bosonic sector of the Heterotic string sea10 we have to reduce from <I>D</I>=10 to four dimensions. This means <I>d</I>=6 and the reduced action will be invariant under <I>O</I>(6,6) transformations. This also means there will be 12 vector fields and <I>M</I> will be a 
+<!-- MATH: $12\times 12$ -->
+<IMG
+ WIDTH="66" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img217.gif"
+ ALT="$12\times 12$">
+matrix with 36 independent scalars.
+
+<P>
+As we mentioned before, we expect that compactification on more complicated manifolds <I>K</I> will give more realistic features in four dimensions. 
+In fact there are very many ways to perform this compactification and it is not clear yet which of them should be the correct way.
+
+<P>
+<HR>
+<!--Navigation Panel-->
+<A NAME="tex2html262"
+ HREF="node14.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next_motif.gif"></A> 
+<A NAME="tex2html259"
+ HREF="node9.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_motif.gif"></A> 
+<A NAME="tex2html255"
+ HREF="node12.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="previous_motif.gif"></A> 
+<A NAME="tex2html261"
+ HREF="node1.html">
+<IMG WIDTH="65" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="contents" SRC="contents_motif.gif"></A>  
+<BR>
+<B> Next:</B> <A NAME="tex2html263"
+ HREF="node14.html">Four-dimensional Actions and Dual</A>
+<B> Up:</B> <A NAME="tex2html260"
+ HREF="node9.html">String Effective Actions</A>
+<B> Previous:</B> <A NAME="tex2html256"
+ HREF="node12.html">Kaluza Klein Theory</A>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Jan Pieter van der Schaar</I>
+<BR><I>1998-08-26</I>
+</ADDRESS>
+ 
+
+</body></html>
+

@@ -1,0 +1,146 @@
+Modèle économique du chômage
+
+population de travailleurs avec différents niveaux de qualification ou compétence
+représentée par une fonction de densité associant à chaque niveau de qualification une densité de population
+ou classement de la population par ordre de qualification = réciproque de l'intégrale de la fonction de densité
+
+fonction d'utilité du travailleur dépendant du salaire et du temps de travail
+
+commandes du gouvernement : 
+ salaire minimum en fonction du temps de travail (heures normales / supplémentaires, durée maxi : salaire -> infini)
+ redistribution en fonction du revenu (salaire) : allocations, impots
+
+Les entreprises proposent différents postes avec différents salaires et niveaux de qualifications requis
+commandes de l'entreprise :
+ répartition du capital entre les différents postes de travail
+ salaire en fonction du niveau de qualification et du temps de travail
+ répartition des postes par qualification requise (fonction de densité)
+ embauche des plus qualifiés
+ "remplissage" à partir du haut
+ les moins qualifiés restent au chômage
+
+production en fonction du capital, du temps de travail et du niveau de qualification
+
+comportement en fonction du revenu : si revenu inférieur à minimum vital : vols, émeutes, révolution ...
+
+commande des travailleurs
+ durée de travail acceptée
+
+fonction d'utilité de l'état
+ état démocratique : majorité - paradoxe de Condorcet ?
+
+Modèle simplifié à 2 niveaux de qualification
+ capital k = k1 + k2
+ commande : salaire w1(t), w2(t)
+ consommation c(t)
+ commande de l'état : 
+  salaire minimum wmin(t)
+  durée de travail l(t)
+  redistribution R(w) = R0 + R1 w : commandes R0(t) et R1(t)
+ utilité de l'entreprise : intégrale de ue(c)*e^(-T*t)dt 
+  avec ue(c)=(c^(1-s)-1)/(1-s)
+ travailleurs non qualifiés :
+  intégrale de uw*(R0+(R1+1)l1 wh1, l1)*e^(-T*t)dt
+ travailleurs qualifiés :
+  intégrale de uw*(R0+(R1+1)l2 wh2, l2)*e^(-T*t)dt
+
+ intégrale de uw*(w+R(w),l)*e^(-T*t)dt
+=intégrale de uw*(w+R0+R1*w,l)*e^(-T*t)dt
+=intégrale de uw*(R0+(R1+1)*w,l)*e^(-T*t)*dt
+=intégrale de uw*(R0+(R1+1)*l*wh,l)*e^(-T*t)dt
+
+ dk/dt = f1(k1,l1) + f2(k-k1,l2) - c
+ dk/dt = k1^a * l1^(1-a) + (k-k1)^a * l2^(1-a) - c
+  l'entreprise commande k1 (capital affecté aux postes non qualifiés) et c (consommation)
+  les travailleurs non qualifiés commandent l1 (temps de travail)
+  les travailleurs qualifiés commandent l2 (temps de travail)
+
+ @He/@c = 0 = ue'(c)*e^(-T*t)-pe
+ @He/@wh1 = 0
+ @He/@wh2 = 0
+ @He/@k1 = 0 = pe * (Dh(f1(k1+h,l1)-f2(k-k1+h,l2))
+  avec Dx(f(x))=f'(0)
+ @Hnq/@l1 = 0 = Dh uw(R0+(R1+1)*(l1+h),wh1,l1)*e^(-T*t) + pnq * Dh f1(k1,l1+h)
+ @Hq/@l2 = 0
+
+hamiltoniens
+ entreprise : He = ue(c)*e^(-T*t) + pe * (f1(k1,l1) + f2(k-k1,l2) - c)
+ non qual.  : Hnq = uw(R0+(R1+1)*l1*wh1,l1)*e^(-T*t) + pnq * (f1(k1,l1)+f2(k-k1,l2)-c)
+ qualifiés  : Hq = uw * (R0+(R1+1)l2 * wh2,l2)*e^(-T*t) + pq * (f1(k1,l1)+f2(k-k1,l2)-c)
+
+dpe/dt = -@He/@k = pe * Dh f2(k-k1+h,l2)
+dpnq/dt = -@Hnq/@k = pnq Dh f2(k-k1+h,l2)
+dpq/dt = -@Hq/@k = pq * Dh f2(k-k1+h,l2)
+
+
+Autre modèle
+
+2 niveaux de qualification q1 et q2
+populations p1 et p2
+fonction de production Y=F(K,L) = q_i*K^a*L^(1-a)
+L'entreprise répartit son capital K en K1 et K2
+commande K1(t), K2=K-K1
+propose des postes 
+ - non qualifiés pour un salaire horaire w1
+ - qualifiés pour un salaire horaire w2
+commandes w1(t), w2(t)
+ou
+les travailleurs fixent le salaire à partir duquel ils acceptent de travailler
+l'Etat fixe
+ - le salaire horaire minimum wmin
+ - les allocations chomage r
+ - le taux d'imposition du salaire i
+commandes wmin(t), r(t), i(t)
+
+données :
+ - populations p1, p2
+ - fonction de production Y = q_i * k^a * l^(1-a)
+ - fonction d'utilité u(w,l) w=salaire horaire, l=temps de travail
+ 
+gouvernement :
+ commandes :
+  l(t) : temps de travail
+  wmin(t) : salaire horaire minimum
+  r(t) : allocations chômage
+  i(t) : taux d'imposition
+
+entreprise
+ max intégrale de c^(1-s)/(1-s)*e^(-T*t)dt
+ commandes :
+  k1(t) : capital affecté aux postes non qualifiés
+  w1(t)>=wmin(t)
+  w2(t)>=wmin(t)
+  l1max
+  l2max
+
+évolution
+dk/dt=q1 * k1^a * l1^(1-a) + q2 * k2^a * l2^(1-a) - w1*l1 - w2*l2
+avec
+l1 = temps de travail sur poste 1
+l2 = temps de travail sur poste 2
+
+un travailleur a-t-il intérêt à occuper le poste 2 ?
+oui si u((1-i)w2,l)>u(r,0)
+dans ce cas :
+temps de travail disponible = p2 * l
+si p2 * l > l2max alors l2 = l2max
+reste temps p2 * l - l2max
+si p2 * l < l2max alors l2 = p2 * l, reste 0
+sinon l2 = 0
+un travailleur a-t-il intérêt à occuper le poste 1 ?
+oui si u((1-i)*w1,l) > u(r,0)
+disponible : reste + p1 * l
+si l1max < reste on n'embauche que des qualifiés : l1 = l1max
+si l1max < reste + p1 * l : l1 = l1max
+si l1max > reste + p1 * l : l1 = reste + p1 * l
+
+H=c(t)^(1-s)/(1-s)*e^(-T*t) + p * somme sur i de (q_i*k_i(t)^a*l_i(t)^(1-a)-w_i(t)*l_i(t))-c(t))
+dp/dt=-@H/@k = - p * q2 * a *(k-k1)^(a-1) * l2^(1-a)
+@H/@v=0 pour v=w1,w2,l1max,l2max
+@H/@k1 = 0 = p * q1 * a * k1^(a-1) * l1^(1-a)
+@H/@w1 = 0 = -p*l1
+@H/@w2 = 0 = -p*l2
+@H/@l1max = 0
+@H/@l2max = 0
+
+
