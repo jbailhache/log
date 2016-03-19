@@ -1,0 +1,53 @@
+Compte-rendu de la partie :
+Distribution des rôles :
+a : médecin normal sain
+b : médecin normal sain
+c : informaticien hôte sain
+d : astronaute hôte muté
+e : psychologue résistant sain
+
+Le capitaine est a. L'équipage s'endort. Les médecins ( a b ) se réveillent, se reconnaissent et se rendorment.
+Les mutants ( d ) se réveillent. Ils mutent ou tuent un membre de l'équipage.
+Ils paralysent quelqu'un d'autre.
+Les mutants ont muté c et ont paralysé e. Le médecin a est sain. Le médecin b est sain. Les médecins ( a b ) se réveillent. Ils choisissent de soigner chacun une personne ou de tuer une seule personne.
+Les médecins ont soigné a.Ils ont aussi tenté de soigner c sans y parvenir car il est hôte. L'informaticien c est muté. L'informaticien se réveille. L'ODB lui indique qu'il y a 2 mutant(s).
+Le psychologue e est sain et est paralysé. Le psychologue se réveille. Il indique quelle personne il souhaite examiner.
+Indiquer au psychologue que a est sain. Le généticien  est inexistant. 
+L'espion  est inexistant. 
+
+C'est le jour, l'équipage se réveille.
+
+Le capitaine est toujours a. L'équipage vote pour tuer quelqu'un ou pas. 
+a a voté pour tuer d
+b n'a pas voté
+c n'a pas voté
+d n'a pas voté
+e n'a pas voté
+
+Résultat du vote :
+1 votes pour tuer d
+Choix du capitaine a : 
+L'équipage a décidé de tuer d. Il était astronaute hôte muté. C'est la nuit, l'équipage s'endort. 
+Les mutants ( c ) se réveillent. Ils mutent ou tuent un membre de l'équipage.
+Ils paralysent quelqu'un d'autre.
+L'informaticien c est muté. L'informaticien se réveille. L'ODB lui indique qu'il y a 2 mutant(s).
+Le psychologue e est sain. Le psychologue se réveille. Il indique quelle personne il souhaite examiner.
+Indiquer au psychologue que a est sain. Le généticien  est inexistant. 
+L'espion  est inexistant. 
+
+C'est le jour, l'équipage se réveille.
+
+Le capitaine est toujours a. L'équipage vote pour tuer quelqu'un ou pas. 
+a a voté pour tuer e
+b n'a pas voté
+c n'a pas voté
+e n'a pas voté
+
+Résultat du vote :
+1 votes pour tuer e
+Choix du capitaine a : 
+L'équipage a décidé de tuer e. Il était psychologue résistant sain. C'est la nuit, l'équipage s'endort. 
+Les mutants ( b c ) se réveillent. Ils mutent ou tuent un membre de l'équipage.
+Ils paralysent quelqu'un d'autre.
+Les mutants ont muté a et ont paralysé a. 
+Il n'y a plus que des mutants, ils ont gagné.

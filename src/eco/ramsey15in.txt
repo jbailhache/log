@@ -1,0 +1,2 @@
+restart:
+fnp:=x->A*x^alpha:D(fnp):fp1:=x->simplify(D(fnp)(x)):

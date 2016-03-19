@@ -1,0 +1,240 @@
+<HTML>
+<HEAD>
+<TITLE>Test Java</TITLE>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+
+function startdemo()
+{
+	cyber=window.open('start.htm', 'CyberExplorer', 'toolbar=no,location=no,directories=no,status=yes,menubar=no,scrollbars=yes,resizable=yes,copyhistory=no')
+}
+
+function toStringLine (x)
+{
+var f, atom, buf;
+	atom = 1;
+	buf = "";
+	for (f in x)
+	{
+		atom = 0;
+		buf += f + "=" + toString (x[f]) + "; "	
+	}
+	if (atom == 1)
+		return "" + x;
+	else
+		return "{ " + buf + "}";
+}
+
+function toString (x)
+{
+var f, atom, buf, margin, tab;
+	if (toString.arguments.length >= 2)
+		margin = toString.arguments[1];
+	else
+		margin = "";
+	if (toString.arguments.length >= 3)
+		tab = toString.arguments[2];
+	else
+		tab = "\t";
+	atom = 1;
+	buf = "";
+	for (f in x)
+	{
+		atom = 0;
+		buf += margin + f + " = " + toString (x[f], margin + tab, tab) + ";\r\n";
+	}
+	if (atom == 1)
+		return "" + x;
+	else
+		return "\r\n" + buf;
+}
+
+function toStringTest1 (x, tab)
+{
+var f, atom, buf;
+	atom = 1;
+	buf = "";
+	for (f in x)
+	{
+		atom = 0;
+		buf += tab + f + " = " + toStringTest1 (x[f]) + "; "	
+	}
+	if (atom == 1)
+		return "" + x;
+	else
+		return "{ " + buf + "}";
+}
+
+function toStringTest (x, tab)
+{
+var f, atom, buf;
+	atom = 1;
+	buf = "";
+	for (f in x)
+	{
+		atom = 0;
+		buf += tab + f + " = " + toStringTest (x[f]) + "; "	
+	}
+	if (atom == 1)
+		return "" + x;
+	else
+		return "{ " + buf + "}";
+}
+
+function sexpr (type, val)
+{
+	this.type = type;
+ 	this.fst = val;
+	if (sexpr.arguments.length >= 3)
+		this.snd = sexpr.arguments[2];
+}
+
+function mkAtom (a)
+{
+	return new sexpr (1, a);
+}
+
+function cons (a, b)
+{
+	return new sexpr (2, a, b);
+}
+
+function isAtom (a)
+{
+	return a.type == 1;
+}
+
+function isCons (x)
+{
+	return x.type == 2;
+}
+
+function valAtom (a)
+{
+	if (isAtom (a))
+		return a.fst;
+}
+
+function fst (x)
+{
+	if (isCons (x))
+		return x.fst;
+}
+
+function snd (x)
+{
+	if (isCons (x))
+		return x.snd;
+}
+ 
+function objet_toString ()
+{
+var buf;
+	buf = "";
+	for (var f in this)
+		buf += f + "=" + this[f] + ";";
+	return buf;
+}
+
+function objet (f1, f2, f3)
+{
+	this.f1 = f1;
+	this.f2 = f2;
+	this.f3 = f3;
+	this.toString = objet_toString;
+}
+
+function total ()
+{
+var i, t;
+	t = 0;
+	for (i=0; i<total.arguments.length; i++)
+		t += total.arguments[i];
+	return t;
+}
+
+var obj, obj1;
+
+function test ()
+{
+var browser;
+var now;
+var buf;
+	browser = navigator.appName;
+	alert ("You are using <" + browser + "> and you are reading \"" +
+		document.title + "\" " + location.href  );
+	/* document.write ("<HTML><BODY>cookie = (" + document.cookie + ")</BODY></HTML>"); */
+	/*
+	window.status = "bonjour";
+	window.open ("bonjour.htm");
+	*/
+	now = new Date();
+	alert ("Il est " + now.getHours() + " heures");
+	document.form1.res.value = eval (document.form1.expr.value);
+	alert ("Le resultat est : " + eval ("3 * 4"));
+
+	/*
+	obj.f1 = "field 1";
+	obj.f2 = "field 2";
+	obj.f3 = "field 3";
+	*/
+	obj = new objet ("field 1", "field 2", "field 3");
+	obj1 = new objet ("objet", obj, "imbrique" );
+	/*
+	buf = "";
+	for (var f in obj)
+		buf += f + "=" + obj[f] + ";";
+	*/
+	buf = obj.toString ();
+	alert (buf);
+
+	alert (" " + total (6, 4, 8));
+}
+
+function evaluer ()
+{
+	/* alert ("expr = " + document.form1.expr.value); */
+	document.form1.res.value = "Undefined";
+	document.form1.res.value = eval (document.form1.expr.value);
+}
+
+//-->
+</SCRIPT>
+
+</HEAD>
+<BODY BGCOLOR="#000000" TEXT="#ffffff">
+<center>
+<P>
+<FORM NAME="form1">
+<input type="button" value="Test" onClick="test()">
+<p>
+<!--
+test
+<SCRIPT LANGUAGE="JavaScript">
+	document.write ("ecriture dans script");
+</SCRIPT>
+dans le document
+<p>
+-->
+Expression a evaluer :
+<p>
+<input size=60 name="expr">
+<p>
+<input type="button" value="Evaluer" onClick="evaluer()">
+<p>
+Resultat : 
+<p>
+<input size=70,35 name="res">
+<p>
+<input size=30 name="input1">
+<p>
+<input type="button" value="bouton1">
+<p>
+</FORM>
+ 
+</center>
+
+
+</BODY>
+</HTML>

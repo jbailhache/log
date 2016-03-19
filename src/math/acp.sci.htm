@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0075)http://teledev.multimania.com/sites/afpage.php?site=log&titre=ACP+en+SCILOG -->
+<!--Connexion établie--><!--Base de données sélectionnée--><HTML><HEAD><TITLE>ACP en SCILOG</TITLE>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type>
+<META content=ACP,SCILOG name=keywords>
+<META content="MSHTML 5.00.2314.1000" name=GENERATOR></HEAD>
+<BODY><PRE>"Exemple tiré de Analyse de données, Applications et méthodes pratiques ...
+de A. Henry-Labordère, ed. Masson, p 53 ...
+Données : chaque ligne correspond à un individu, ...
+chaque colonne à un caractère ...
+Caractères : luxe, sportivité, cout ...
+Individus : Jag. E, TR4, 2CV, DS, Cadillac"
+
+nomscarac = ["*lux", "*spo", "*cou"]
+nomsindiv = ["JagE", "TR4", "2CV", "DS", "Cad"]
+
+data = [8	10	4.5	;
+	4	6	2.5	;
+	2	1	0.9	;
+	6	4	2.6	;
+	10	4	8	]
+
+"Nombre d individus et de caractères"
+[nindiv, ncarac] = size (data)
+
+mcarac = eye (ncarac, ncarac)
+
+"Données centrées"
+centre = sum (data, 1) / nindiv
+cdata = data - ones (nindiv, 1) * centre
+cmcarac = mcarac - ones (ncarac, 1) * centre
+czero = - centre
+
+"Valeurs et vecteurs propres de la matrice d inertie"
+inertie = cdata' * cdata
+[valpr, vecpr] = bdiag (inertie)
+valprv = diag(valpr)
+
+"Tri dans l ordre décroissant des valeurs propres"
+[valprvo, ordre] = sort (valprv)
+vecpro = vecpr (:,ordre)
+
+"Projection : pour représenter les individus sur un plan ...
+considérer les 2 premières colonnes de cette matrice"
+project = cdata * vecpro
+projectcarac = cmcarac * vecpro
+projectzero = czero * vecpro
+
+plot2d ([project(:,1);projectzero(1);projectcarac(:,1)], ... 
+        [project(:,2);projectzero(2);projectcarac(:,2)], ...
+	0)
+
+
+
+for i=1 : nindiv
+	xstring (project(i,1), project(i,2), nomsindiv(i))
+end
+
+for i=1 : ncarac
+	xstring (projectcarac(i,1), projectcarac(i,2), nomscarac(i))
+end
+
+xstring (projectzero(1), projectzero(2), "0")
+
+"Variante : on donne des poids différents aux individus"
+poids = [3 1 6 4 5]
+D = diag(poids)
+inertie1 = cdata' * D * cdata
+
+"On continue pareil"
+[valpr1, vecpr1] = bdiag (inertie1)
+valprv1 = diag(valpr1)
+
+"Tri dans l ordre décroissant des valeurs propres"
+[valprvo1, ordre1] = sort (valprv1)
+vecpro1 = vecpr (:,ordre1)
+
+"Projection : pour représenter les individus sur un plan ...
+considérer les 2 premières colonnes de cette matrice"
+project1 = cdata * vecpro1
+
+ 
+</PRE></BODY></HTML>

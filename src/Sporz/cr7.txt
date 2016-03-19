@@ -1,0 +1,28 @@
+Compte-rendu de la partie :
+
+Phase debut
+
+Phase distrib
+Distribution des rôles :
+a : médecin normal sain
+b : astronaute hôte muté
+c : médecin normal sain
+d : informaticien résistant sain
+e : psychologue hôte sain
+
+
+Phase election
+
+Phase nuit1
+Le capitaine est a. L'équipage s'endort. Les médecins ( a c ) se réveillent, se reconnaissent et se rendorment.
+
+Phase mutants
+Les mutants ( b ) se réveillent. Ils mutent ou tuent un membre de l'équipage.
+Ils paralysent quelqu'un d'autre.
+
+Phase medecins
+Les mutants ont tué e et ont paralysé d. Le médecin a est sain. Le médecin c est sain. Les médecins ( a c ) se réveillent. Ils choisissent de soigner chacun une personne ou de tuer une seule personne.
+
+Phase informaticien
+Les médecins ont tué b. 
+Il n'y a plus de mutants, les humains ont gagné.

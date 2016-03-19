@@ -1,0 +1,63 @@
+(
+(def CADR : CDR CAR)
+
+(def GETPROP : GETPROPS GETVENV)
+(def PUTPROP : ARG symb : %symb GETPROPS SETVENV %symb SETPROPS)
+(def SETPROP : ARG symb : %symb GETPROPS SETVENV %symb SETPROPS)
+
+(def RESTART : 13 TYO 10 TYO "Restarting" PRINTSTRING 13 TYO 10 TYO)
+
+(def LOAD : READFILE MAPEXEC)
+
+(def MAPEXEC : ARG l : 
+ %l NCONSPTHEN () :
+ %l CAR REP PRINT EXEC :
+ %l CDR MAPEXEC)
+
+(def MAPPRINT : ARG l :
+ %l NCONSPTHEN () :
+ %l CAR PRINT :
+ %l CDR MAPPRINT)
+
+(def CONTIENT : C Q : ARG _f : ARG _x : ARG _l :
+        %_l NCONSPTHEN '() :
+        %_l CAR %_x %_f EXEC : REP THEN I :
+        DEP %_l CDR %_x Q () %_f CONS Q CONTIENT CONS EXEC)
+
+(def UNLIST : ARG l :
+        %l NCONSPTHEN I :
+        %l CAR %l CDR UNLIST)
+
+(def ONEOF : ARG l :
+        %l NCONSPTHEN END :
+        ALT (%l CAR) :
+        %l CDR ONEOF)
+
+(def AND : C THEN '())
+
+(def OR : B (REP THEN I) DEP)
+
+(def EXIT KI)
+
+(def synonym def)
+
+(def MAJPRIO :
+        GETPRIO GETINCR PLUS SETPRIO)
+
+(def INCRPRIO : ARG i :
+        GETSTRAT ARG (p . s) :
+        %p %i PLUS ARG p1 :
+        %(p1 . s) SETSTRAT)
+
+(def SCHEDULE : ALT END I)
+
+(def BUTLAST : ARG l :
+        %l NCONSPTHEN '() :
+        %l CDR NCONSPTHEN '() :
+        %l CDR BUTLAST %l CAR CONS)
+
+(def defprop : C Q : C Q : C Q : ECH3 SETPROP)
+
+(def NL : 13 TYO 10 TYO)
+
+)

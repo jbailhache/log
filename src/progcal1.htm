@@ -1,0 +1,260 @@
+
+<!--Connexion établie--><!--Base de données sélectionnée--><HTML><head><title>Programmation de calculatrices scientifiques</title><meta name=keywords content="programmation,calculatrice,Casio,fx-180P,équation,dichotomie"></head><body>
+<h3>Programmation de calculatrices scientifiques</h3> 
+
+Citizen graphing calculator SRP-320G
+et Casio fx-180P Plus. 
+
+<h4>Résolution d'équation par dichotomie</h4>
+
+Exemple pour une fonction croissante entre 0 et 1 : f(x) = -(x^2 - 3x + 1) 
+<p> Sur Citizen :
+<br>
+Données : bornes -> A et B, précision -> E
+<br>
+Prog 4 :<pre>-(X^2-3X+1)->Y</pre>
+Prog 5 :
+<pre>
+Lbl 1: (A+B)/2->X:
+Prog 4: Abs Y < E => X$
+Y>0=>Goto 2
+X->A: Goto 1:
+Lbl 2: X->B: Goto 1
+</pre>
+
+<p> Sur Casio :
+Entrées :
+<ul>
+<li> borne inférieure Kin1
+<li> borne supérieure Kin2
+<li> précision Kin4
+</ul>
+
+<p>
+Programme Casio :
+<pre>
+Kout1 Kin5
+Kout2 Kin6
+Kout5 + Kout6 = / 2 = Min 
+x^2 - 3 x MR + 1 = +/- Kin3
+Kout5 Kin1 
+MR Kin2
+Kout3 - Kout4 = x>0
+MR Kin1 
+Kout6 Kin2 
+Kout3 +/- - Kout4 = x>0
+MR
+</pre>
+
+<p>
+Pour une fonction décroissante, permuter Kout5 Kin1 MR Kin2 et MR Kin1 Kout6 Kin2
+<p>
+Autre programme pour f décroissante x^2 - 3x + 1 :
+
+<p>
+Données :
+<ul>
+<li> borne inférieure Kin1 Min
+<li> borne supérieure Kin2
+<li> 1 Kin3
+<li> précision Kin4
+</ul>
+
+<p>
+<pre>
+Kout3 x^2 sqrt + Kout3 = / 2 = / Kout3 = Kin6 
+x MR + (1 - Kout6) x Kout1 = Kin1
+(1 - Kout6) x MR + Kout6 x Kout2 = Kin2
+Kout1 + Kout2 = / 2 = Min
+x^2 - 3 x MR + 1 = Kin3
+x^2 sqrt - Kout4 = x>0
+MR
+</pre>
+
+<h3>Limite d'une suite</h3>
+
+Exemple : u(0) = 0, u(n+1) = sqrt(u(n)+1) tend vers (1 + sqrt(5)) / 2
+<p>
+
+Sur Citizen : <br>
+Données : valeur initiale -> B
+Programme : 
+<pre>
+Lbl 1:B->A:sqrt(A+1)->B:Abs(A-B)>0.00001=>Goto 1:B$
+</pre>
+
+Sur Casio : <p>
+Données : 
+<ul>
+<li> valeur initiale Kin1
+<li> précision Kin4
+</ul>
+
+<pre>
+Kout1 Min
+MR + 1 = sqrt Kin1
+- MR = x^2 sqrt - Kout4 = x>0
+Kout1
+</pre>
+
+<h3>Fonction rendant 0 pour x<0 et 1 pour x>0 sur Casio</h3>
+
+<pre>
+Min MR x^2 sqrt + MR = / 2 = / MR =
+</pre>
+
+<h3>Transformation d'algorithmes pour Casio</h3>
+
+<pre>
+while (p(x))
+    if (p1(q))
+        q = f(q);
+    else
+        q = g(q);
+
+
+begin:
+    q = q1;
+    q1 = f(q);
+    if (p(q) && p1(q)) goto begin;
+    q1 = g(q);
+    if (p(q)) goto begin;
+
+</pre>
+
+<h3>Formules utiles</h3>
+
+Gamma(x) = integrale de 0 à infini de t^(x-1) e^-t dt<br>
+Gamma(x+1) = x Gamma(x)<br>
+x! = Gamma(x+1) = integrale de 0 à infini de t^x e^t dt
+<p>
+Calcul de Gamma(x+1) sur Casio
+<pre>
+P3 : Min MR x^y 5 x MR +/- e^x =
+</pre>
+Calcul de l'intégrale de 0 à 30 (pour t>30 le résultat est négligeable) : MODE 1 P3 0 RUN 30 RUN -> 120
+<p>Sur Citizen :
+Prog 6 :
+<pre>T^X x e(_T) -> Y</pre>
+Prog 7 :
+<pre>
+0->S: A+E/2->T: 
+Lbl 1: Prog 6: S+Y->S:
+T+E->T: T<B=>Goto 1:
+SxE$
+</pre>
+<h3>Produit scalaire de vecteurs</h3>
+
+Sur Citizen
+<pre>
+0->S: 0->K:
+Lbl 1: K >= N => Goto 2:
+A[K]xT[K]+S->S:
+K+1->K: Goto 1: Lbl 2
+</pre>
+
+<h3>Permutations</h3>
+Sur Citizen
+<p>
+Données : 
+nombre d'éléments->D : permutation -> E[0] à E[D-1] :
+numéro de la permutation -> A
+<p>
+Résultat dans E[], signe dans B, C<0 : terminé, C>=0 : non terminé
+<p>
+Prog 3:
+<pre>
+D-2->C:
+Lbl 1: C<0 => Goto 9:
+E[C] >= D-1 => Goto 2:
+Lbl 3: E[C]+1 -> E[C]:
+Lbl 6: 0->B:
+Lbl 4: B>=C => Goto 7:
+E[C]=E[B] => Goto 3:
+B+1->B: Goto 4: Lbl 7:
+C+1->C:
+C>=D=>Goto 9:
+0->E[C]: Goto 6:
+Lbl 2: C-1->C: Goto 1:
+Lbl 9: A+1->A:
+A=4=>0->A:
+1->B:
+A=1=>_1->B:
+A=2=>_1->B
+</pre>
+
+<h3>Déterminant d'une matrice</h3>
+Programme Citizen
+<p>
+Prog 0 : calcul d'un terme
+<p>
+Données : 
+adresse de la matrice -> L : 
+dimension -> D :
+permutation -> E[0] à E[D-1]
+
+<pre>
+1->R: 0->K:
+Lbl 1: K>=D=>Goto 2:
+RxA[L+K+DxE[K]]->R:
+K+1->K: Goto 1: Lbl 2
+</pre>
+
+Prog 1 : Déterminant
+<p>
+Données :
+dimension -> D :
+adresse de la matrice -> L :
+valeurs -> A[L] à A[L+D^2-1] :
+<pre>
+0->S: 0->A: 1->B: 0->K:
+Lbl 1: K>=D=>Goto 2:
+K->E[K]:
+K+1->K: Goto 1: Lbl 2:
+Prog 0:
+S+BR->S:
+Prog 3:
+C>=0=>Goto 2
+</pre>
+
+<h3>Inversion d'une matrice</h3>
+
+Prog 4: calcul d'un élément
+<p>
+Données : 
+dimension -> D :
+adresse de la matrice -> P:
+adresse libre pour copie -> Q:
+valeurs -> A[P] à A[P+D^2-1]:
+<pre>
+P+D^2->Q:
+0->K: Lbl 1: K>=D^2=>Goto 2:
+ A[P+K]->A[Q+K]:
+K+1->K: Goto 1: Lbl 2:
+0->K: Lbl 3: K>=D=>Goto 4:
+ 0->A[Q+J+DK]:
+ 0->A[Q+K+DI]:
+K+1->K: Goto 3: Lbl 4:
+1->A[Q+J+DI]:
+Q->L: Prog 1
+</pre>
+Calcul de l'inverse :
+<p>
+Données : 
+dimension -> D :
+adresse de la matrice -> P :
+adresse pour le résultat -> O :
+adresse libre pour copie -> Q :
+valeurs -> A[P]à A[P+D^2-1] 
+<pre>
+P->L: Prog 1: S->N:
+0->I: Lbl 1: I>=D=>Goto 2:
+0->J: Lbl 3: J>=D=>Goto 4:
+ Prog 4
+ S/N->A[O+I+DJ]
+J+1->J: Goto 3: Lbl 4:
+I+1->I: Coto 1: Lbl 2
+</pre>
+
+
+</body></HTML>

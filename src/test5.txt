@@ -1,0 +1,20 @@
+getchar
+ra=@c
+[ra]=r0
+:loop
+ra=@char
+r0=[ra]
+r1=1
+r0=r0-r1
+ra=@char
+[ra]=r0
+putchar
+ra=@char
+r0=[ra]
+bp @loop
+ret
+align 4
+:char
+res 4
+
+

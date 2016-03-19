@@ -1,0 +1,421 @@
+<BASE HREF="http://www.chez.com/log/src/java/">
+<HTML>
+<head>
+<title>LCEI en JavaScript</title>
+<script language=JavaScript>
+
+function evaluer1 ()
+{
+	document.form1.res.value = eval (document.form1.expr.value);
+}
+
+function omkdem (n, a, b)
+{
+	this.node = n;
+	this.sd = new Array(2);
+	this.sd[0] = a;
+	this.sd[1] = b;
+}
+
+function mkdem (n, a, b)
+{
+	return new omkdem (n, a, b);
+}
+
+function node (d)
+{
+	return d.node;
+}
+
+function sd (x, i)
+{
+	return x.sd[i];
+}
+
+function numvar (x)
+{
+	return x.sd[0];
+}
+
+function nomsym (x)
+{
+	return x.sd[0];
+}
+
+var node_ap = "-";
+var node_apsubst = "_";
+var node_rtransym = "/";
+var node_axiom = "=";
+var node_lambda = "^";
+var node_variable = "V";
+var node_symbol = "s";
+var node_left = "<";
+var node_right = ">";
+var node_refl = "`";
+var node_Refle = "$";
+
+function ap (f, a)
+{
+	return mkdem (node_ap, f, a);
+}
+
+function apsubst (f, a)
+{
+	return mkdem (node_apsubst, f, a);
+}
+
+function rtransym (a, b)
+{
+	return mkdem (node_rtransym, a, b);
+}
+
+function axiom (a, b)
+{
+	return mkdem (node_axiom, a, b);
+}
+
+function lambda (a)
+{
+	return mkdem (node_lambda, a, 0);
+}
+
+function variable (n)
+{
+	return mkdem (node_variable, n, 0);
+}
+
+function symbol (s)
+{
+	return mkdem (node_symbol, s, 0);
+}
+
+function nleft (a)
+{
+	return mkdem (node_left, a, 0);
+}
+
+function nright (a)
+{
+	return mkdem (node_right, a, 0);
+}
+
+function nrefl (a)
+{
+	return mkdem (node_refl, a, 0);
+}
+
+function nRefle (a)
+{
+	return mkdem (node_Refle, a, 0);
+}
+
+function oreadres (result, rest)
+{
+	this.result = result;
+	this.rest = rest;
+}
+
+function readres (result, res)
+{
+	return new oreadres (result, res);
+}
+ 
+function readexpr (s)
+{
+var c, r, x, y, a, b, r1, r2, z;
+	c = s.charAt(0);
+	r = s.substring(1,s.length);
+	if (c == node_ap)
+	{
+		x = readexpr (r);
+		a = x.result;
+		r1 = x.rest;
+		y = readexpr (r1);
+		b = y.result;
+		r2 = y.rest;
+		c = ap (a, b);
+		z = readres (c, r2);		 
+		return z;
+	}
+	else if (c == node_apsubst)
+	{
+		x = readexpr (r);
+		a = x.result;
+		r1 = x.rest;
+		y = readexpr (r1);
+		b = y.result;
+		r2 = y.rest;
+		c = apsubst (a, b);
+		z = readres (c, r2);		 
+		return z;
+	}
+	else if (c == node_rtransym)
+	{
+		x = readexpr (r);
+		a = x.result;
+		r1 = x.rest;
+		y = readexpr (r1);
+		b = y.result;
+		r2 = y.rest;
+		c = rtransym (a, b);
+		z = readres (c, r2);		 
+		return z;
+	}
+	else if (c == node_axiom)
+	{
+		x = readexpr (r);
+		a = x.result;
+		r1 = x.rest;
+		y = readexpr (r1);
+		b = y.result;
+		r2 = y.rest;
+		c = axiom (a, b);
+		z = readres (c, r2);		 
+		return z;
+	}
+	else if (c == node_lambda)
+	{
+		x = readexpr (r);
+		a = x.result;
+		r1 = x.rest;
+		b = lambda (a);
+		z = readres (b, r1);
+		return z;
+	}
+	else if (c == node_left)
+	{
+		x = readexpr (r);
+		a = x.result;
+		r1 = x.rest;
+		b = nleft (a);
+		z = readres (b, r1);
+		return z;
+	}
+	else if (c == node_right)
+	{
+		x = readexpr (r);
+		a = x.result;
+		r1 = x.rest;
+		b = nright (a);
+		z = readres (b, r1);
+		return z;
+	}
+	else if (c == node_refl)
+	{
+		x = readexpr (r);
+		a = x.result;
+		r1 = x.rest;
+		b =  nrefl (a);
+		z = readres (b, r1);
+		return z;
+	}
+	else if (c == node_Refle)
+	{
+		x = readexpr (r);
+		a = x.result;
+		r1 = x.rest;
+		b = nRefle (a);
+		z = readres (b, r1);
+		return z;
+	}
+	else if (c.charCodeAt(0) >= "0".charCodeAt(0) && 
+		 c.charCodeAt(0) <= "9".charCodeAt(0))
+	{
+		a = variable (c.charCodeAt(0) - "0".charCodeAt(0));
+		z = readres (a, r);
+		return z;
+	}
+	a = symbol (c);	 
+	z = readres (a, r);
+	return z;
+}
+
+function printexpr (x)
+{
+	if (node(x) == node_lambda
+	 || node(x) == node_left 
+	 || node(x) == node_right
+	 || node(x) == node_refl
+         || node(x) == node_Refle)
+		r = node(x) + printexpr(sd(x,0));
+	else if (node(x) == node_ap 
+	      || node(x) == node_apsubst 
+	      || node(x) == node_rtransym 
+	      || node(x) == node_axiom)
+		r = node(x) + printexpr(sd(x,0)) + printexpr(sd(x,1)); 		 
+	else if (node(x) == node_variable)
+		/*r = String.fromCharCode(sd(x,0));*/
+		r = sd(x,0);
+	else if (node(x) == node_symbol) 
+ 		r = sd(x,0);
+	return r;
+}
+		
+function shift (m, n, x)
+{
+	if (x == 0)
+		return x;
+	if (node(x) == node_variable)
+	{
+		if (numvar(x) >= m)
+			return variable (numvar(x) + n);
+		else
+			return x;
+	}
+	if (node(x) == node_lambda)
+ 		return lambda (shift (m+1, n, sd(x,0)));
+ 	if (node(x) == node_symbol)
+		return x;
+	return mkdem (node(x), shift(m, n, sd(x,0)), shift (m, n, sd(x,1)));
+}
+
+function subst (n, y, z)
+{
+	if (y == 0)
+		return 0;
+	if (node(y) == node_variable)
+	{
+		if (numvar(y) == n)
+			return z;
+		if (numvar(y) > n)
+			return variable (numvar(y) - 1);
+	}
+	if (node(y) == node_ap)
+		return ap (subst (n, sd(y,0), z),
+			   subst (n, sd(y,1), z));
+	if (node(y) == node_lambda)
+		return lambda (subst (n+1, sd(y,0), shift(0,1,z)));
+	if (node(y) == node_symbol)
+		return y;
+	return mkdem (node(y), subst (n, sd(y,0), z), subst (n, sd(y,1), z));
+}
+
+function equal (x, y)
+{
+	if (x == y)
+		return true;
+	if (x == 0)
+		return false;
+	if (y == 0)
+		return false;
+	if (node(x) != node(y))
+		return false;
+	if (node(x) == node_variable)
+ 	{
+		if (numvar(x) == numvar(y))
+			return true;
+		else
+			return false;	
+	}
+	if (node(x) == node_symbol)
+	{
+		if (nomsym(x) == nomsym(y))
+			return true;
+		else
+			return false;
+	}
+	if (!equal (sd(x,0), sd(y,0)))
+		return false;
+	if (!equal (sd(x,1), sd(y,1)))
+		return false;
+	return true;
+}
+
+function lr (r, d)
+{
+var d1, f, a, s0, s1;
+	if (node(d) == node_ap)
+		d1 = ap (lr(r,sd(d,0)), lr(r,sd(d,1)));
+	else if (node(d) == node_apsubst)
+	{
+		f = lr (1, sd(d,0));
+		a = lr (1, sd(d,1));
+		if (r == 0 || node(f) != node_lambda)
+		{
+			s0 = lr (r, sd(d,0));
+			s1 = lr (r, sd(d,1));
+			d1 = ap (s0, s1);
+		}
+		else
+			d1 = subst (0, sd(f,0), a);
+	}
+	else if (node(d) == node_rtransym)
+	{
+		if (equal (lr(1,sd(d,0)), lr(1,sd(d,1))))
+			d1 = lr(0,sd(d,r));
+		else
+			d1 = d;
+	}
+	else if (node(d) == node_lambda)
+		d1 = lambda (lr(r,sd(d,0)));
+	else if (node(d) == node_variable ||node(d) == node_symbol)
+		d1 = d;
+	else if (node(d) == node_axiom)
+		d1 = sd(d,r);
+	else if (node(d) == node_left)
+	{
+		if (r == 0)
+			d1 = nleft (lr(r,sd(d,0)));
+		else
+			d1 = lr(0,lr(r,sd(d,0)));
+	}
+	else if (node(d) == node_right)
+	{
+		if (r == 0)
+			d1 = nright (lr(r,sd(d,0)));
+		else
+			d1 = lr(1,lr(r,sd(d,0)));
+	}
+	else if (node(d) == node_refl)
+		d1 = sd(d,0);
+ 	else if (node(d) == node_Refle)
+	 	d1 = lr (r, lr (r, sd(d,0)));
+	return d1;
+}
+
+function evaluer2 ()
+{
+var x, l, r1;
+	/*x = ap(symbol("a"),symbol("b"));*/
+	/*x = symbol("a");*/
+	/*x = readexpr ("a"); */
+	r = readexpr (document.form1.expr.value);
+	x = r.result;
+	l = lr (0, x);
+	r = lr (1, x);
+	/*x = symbol ("a");*/
+	/*alert ("node " + x.node);
+	alert ("name " + x.sd[0]);*/
+	s = printexpr(x) + " : " + printexpr(l) + " = " + printexpr(r);
+	document.form1.res.value = s;	
+	/* document.form1.res.value = printexpr (readexpr (document.form1.expr.value)); */
+}
+	
+function evaluer ()
+{
+var x, l, r, r1, s;
+ 	r = readexpr (document.form1.expr.value);
+	x = r.result;
+	l = lr (0, x);
+	r = lr (1, x);
+ 	s = printexpr(x) + " : " + printexpr(l) + " = " + printexpr(r);
+	document.form1.res.value = s;
+}
+
+
+
+
+
+</script>
+</head>
+<body>
+<h3>LCEI en JavaScript</h3>
+<form name=form1>
+<input size=60 name=expr>
+<p>
+<input type=button value="Evaluer" onClick="evaluer()">
+<p>
+<input size=60,20 name=res>
+</form>
+</body>
+</HTML> 

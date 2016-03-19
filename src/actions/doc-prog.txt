@@ -1,0 +1,72 @@
+Programme de calcul des taux de progression d'actions
+-----------------------------------------------------
+
+Le programme se présente sous la forme d'une classe Actions définie dans le fichier Actions.java avec un programme principal contenu dans la méthode main et plusieurs méthodes correspondant notamment aux différents traitements.
+
+Les données sont enregistrées dans les variables globales :
+ nActions : nombre d'actions suivies
+ nomsActions : noms des actions suivies
+ nCours : nombre de cours saisis 
+ coursActions : tableau des cours
+
+Chaque élément du tableau coursActions contient :
+ - la date (année, mois, jour, heure, minutes)
+ - le nom de l'action
+ - le cours
+Cette structure est définie dans le fichier Cours.java.
+
+Les données peuvent être enregistrées dans des fichiers au format suivant :
+- 1ère ligne : noms des actions séparés par des ";"
+- 2ème ligne : date de référence au format JJ/MM/AAAA;HH:MM
+- lignes suivante : une ligne par cours au format : nom action;JJ/MM/AAAA;HH:MM;cours
+
+Le programme principal (méthode main dans Actions.java) commence par lire le fichier cours.txt s'il existe, puis rentre dans une boucle qui affiche un menu avec les différents traitements possible et demande le traitement à effectuer jusqu'à ce que l'utilisateur demande de terminer. Une méthode est associée à chaque traitement.
+
+Les différents traitements :
+
+0: Effacer les données - méthode effacer
+Il suffit pour cela de mettre à 0 le nombre d'actions et de cours.
+
+1: Lire les noms des actions - méthode lireNomsActions
+La méthode demande le nom de l'action, la lit sur l'entrée standard et l'ajoute au tableau nomsActions en incrémentant nActions. Si on tape seulement Entrée on termine la lecture des noms des actions.
+
+2: Afficher les noms des actions - méthode afficherNomsActions
+On parcourt le tableau nomsActions de 0 à nActions (exclus) et on affiche l'élément correspondant
+
+3: Lire les cours des actions - méthode lireCoursActions
+On lit la date (année, mois, jour, heure, minutes) sur l'entrée standard puis pour chaque action suivie on demande son cours. On peut taper seulement Entrée pour ne pas rentrer de cours pour une action. Si on a tapé un cours, on l'ajoute au tableau coursActions en incrémentant nCours. Quand on a demandé les cours de toutes les actions suivies, on affiche la progression des cours depuis la date de référence.
+
+4: Afficher les cours des actions - méthode afficherCoursActions
+On parcourt le tableau coursActions et pour chaque cours on affiche la date, le cours et le nom de l'action.
+
+5: Indiquer la date de référence - méthode lireDateRef
+On demande la date de référence (année, mois, jour, heure, minutes) et on l'enregistre dans des variables globales.
+
+6: Enregistrer les cours dans un fichier - méthode enregistrerFichier
+On peut appeler cette méthode avec un nom de fichier en paramètre, ou avec une chaine vide auquel cas le nom de fichier est demandé. On enregistre les noms des actions, la date de référence et les cours dans le fichier.
+
+7: Lire un fichier de cours - méthode lireFichier
+On peut appeler cette méthode avec un nom de fichier en paramètre, ou avec une chaine vide auquel cas le nom de fichier est demandé. On lit le contenu du fichier, on ajoute les noms des actions contenus dans le fichier à la variable globale nomsActions en incrémentant nActions, on met la date de référence contenue dans le fichier, et on ajoute les cours contenus dans le fichier au tableau coursActions en incrémentant nCours.
+
+8: Calculer la progression des cours - méthode progression
+On demande la date (année, mois, jour) pour laquelle on veut calculer les taux de progression des cours, puis on appelle la méthode afficherProgression qui calcule les taux de progressions pour tous les cours définis à la fois à la date de référence et à la date demandée, puis pour chaque action on affiche le nom de l'action, le cours à la date de référence, le cours à la date demandée et le taux de progression.
+
+9: Terminer
+On enregistre les actions et les cours dans le fichier cours.txt et on sort de la boucle.
+
+
+Méthodes auxiliaires :
+
+myFormat : formatage d'un nombre pour l'affichage
+
+formatAction : formatage du nom d'une action pour affichage avec largeur fixe
+
+formatDate : formatage d'une date au format JJ/MM/AAAA
+
+formatDateRef : formatage de la date de référence au format JJ/MM/AAAA HH:MM
+
+ajouterActions : ajoute des actions à nomsActions si elles n'y sont pas déjà, en incrémentant nActions.
+
+coursDate : cherche dans coursActions le cours d'une action donnée à une date donnée
+
+afficherProgression : affiche la progression des cours entre la date de référence et une date donnée

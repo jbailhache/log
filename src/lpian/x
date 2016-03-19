@@ -1,0 +1,10 @@
+('(((chevre blanchette) sur (rive gauche)) ((homme toto) sur (rive gauche)) ((loup loulou) sur (rive gauche)) ((chou chou1) sur (rive gauche)) ((rive gauche) proche (rive droite)) ((rive droite) proche (rive gauche)))
+'(((chevre blanchette) sur (rive droite)) ((homme toto) sur (rive droite)) ((loup loulou) sur (rive gauche)) ((chou chou1) sur (rive gauche)) ((rive gauche) proche (rive droite)) ((rive droite) proche (rive gauche))) (((homme toto) sur (rive gauche)) ((loup loulou) sur (rive gauche)) ((chevre blanchette) sur (rive gauche)) ((chou chou1) sur (rive gauche)) ((rive gauche) proche (rive droite)) ((rive droite) proche (rive gauche)))
+MEMES-BASES PRINT)
+
+('(((chevre blanchette) sur (rive gauche)) ((homme toto) sur (rive gauche)) ((loup loulou) sur (rive gauche)) ((chou chou1) sur (rive gauche)) ((rive gauche) proche (rive droite)) ((rive droite) proche (rive gauche)))
+'(((chevre blanchette) sur (rive droite)) ((homme toto) sur (rive droite)) ((loup loulou) sur (rive gauche)) ((chou chou1) sur (rive gauche)) ((rive gauche) proche (rive droite)) ((rive droite) proche (rive gauche)))
+MEMES-BASES PRINT)
+
+
+

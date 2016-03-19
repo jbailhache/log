@@ -1,0 +1,53 @@
+
+<HTML>
+<head>
+<title>Edit script edit.cgi</title>
+</head>
+<body>
+<form method=post action=save.cgi>
+
+<input type=text name=filename>
+<p>
+<input type=submit value=Create>
+<p>
+
+<textarea rows=20 cols=60 name=text>
+#!/usr/local/bin/perl 
+
+
+ use TripodCGI;
+ 
+ $cgi = new TripodCGI;
+ $filename = $cgi->param('filename');
+
+print "Content-type: text/html\n\n
+<HTML>
+<head>
+<title>Edit script $filename</title>
+</head>
+<body>
+<form method=post action=save.cgi>
+
+<input type=text name=filename>
+<p>
+<input type=submit value=Create>
+<p>
+
+<textarea rows=20 cols=60 name=text>
+";
+ open SCRIPT, $filename;
+ print while <SCRIPT>;
+ close SCRIPT;
+print "
+</text"; print "area>
+
+</form>
+</body>
+</HTML>";
+
+ 
+</textarea>
+
+</form>
+</body>
+</HTML>

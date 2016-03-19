@@ -1,0 +1,94 @@
+
+	src = "";
+	src += "&cons ^x ^y ";
+	src += "{ [mkexpr (quote SEQ) #2#] ^z {~ ";
+	src += "  [rplac z #0# x] ";
+	src += "  [rplac z #1# y] ";
+	src += "  z } ";
+	src += "&mapr ^rmap ^l ^f ";
+	src += "{ [sign plus arity l #-2#] #-1# ";
+	src += "(~eqthen l ";
+	src += "[cons eval f subexpr l #0# ";
+	src += " eval dup rmap subexpr l #1# f] } ";
+	src += "&map [mapr (quote mapr)] ";
+	src += "&mapvect ^v ^f ";
+	src += "{ [mkexpr arity v] ^r {~ ";
+	src += "  #0# ^i (for [plus arity v #-1#] ";
+	src += "          [rplac r i eval f subexpr v i]) }";
+	src += "&l (quote (SEQ a (SEQ b (SEQ c nil)))) ";
+	src += "{ [print rep map l ^x (MAP x)] ";
+	src += "  [print rep map (VECT a b c) ^x (MAP x)] ";
+        src += "}";
+
+
+  else if (op.equals ("then"))
+  {
+   int x;
+   if ((int)(pile.niveau(0).valeur))
+    x = 0;
+   else
+    x = 1;
+   r = new expr ("CTX", new expr ("SEQ", instr.sousexpr[x], cont),
+	pile.sousexpr[1], args, env);
+  }
+  else if (op.equals("and")) /* (and a b) -> { a (then b #0#) } */
+  {
+   r = new expr ("CTX", 
+    new expr ("SEQ", instr.sousexpr[0], 
+     new expr ("SEQ", new expr ("then", instr.sousexpr[1], new expr(0)), cont)),
+    pile, args, env);
+  }
+  else if (op.equals("or")) /* (or a b) -> { a dup (then nop {drop b}) } */
+  {
+   r = new expr ("CTX", 
+    new expr ("SEQ", instr.sousexpr[0],
+     new expr ("SEQ", new expr("dup"),
+      new expr ("SEQ", new expr ("then", new expr("nop"), new expr("SEQ",new expr("drop"),
+                                                                   instr.sousexpr[1]) ),
+       cont))),
+    pile, args, env);
+  }
+	else if (op.equals("not"))
+	{
+		if ((int)(pile.niveau(0).valeur))
+			r = pushctx (new expr(0), popctx(1,ctx));
+		else
+			r = pushctx (new expr(1), popctx(0,ctx));
+	}
+	else if (op.equals("eq"))
+	{
+		if (equal (pile.niveau(0), pile.niveau(1)))
+			r = pushctx (new expr(1), popctx(2,ctx));
+		else
+			r = pushctx (new expr(0), popctx(2,ctx));
+	}
+	else if (op.equals("lt"))
+	{
+		if (pile.niveau(0).valeur < pile.niveau(1).valeur)
+			r = pushctx (new expr(1), popctx(2,ctx));
+		else
+			r = pushctx (new expr(0), popctx(2,ctx));
+	}
+	else if (op.equals("le"))
+	{
+		if (pile.niveau(0).valeur <= pile.niveau(1).valeur)
+			r = pushctx (new expr(1), popctx(2,ctx));
+		else
+			r = pushctx (new expr(0), popctx(2,ctx));
+	}
+	else if (op.equals("gt"))
+	{
+		if (pile.niveau(0).valeur > pile.niveau(1).valeur)
+			r = pushctx (new expr(1), popctx(2,ctx));
+		else
+			r = pushctx (new expr(0), popctx(2,ctx));
+	}
+	else if (op.equals("ge"))
+	{
+		if (pile.niveau(0).valeur >= pile.niveau(1).valeur)
+			r = pushctx (new expr(1), popctx(2,ctx));
+		else
+			r = pushctx (new expr(0), popctx(2,ctx));
+	}
+	
+

@@ -1,0 +1,81 @@
+
+L l c x = y
+        = c avec x place d'apres l
+        l = liste de chemins dans l'arbre
+        c = arbre
+
+        [V,V,F]
+
+        Kab=a, Ka=L[]a, K=L[]
+        
+        Sabc=ac(bc)
+        S=L[[F]](L[F,F]] (
+                L[[V],[F]]))
+
+transym a=c, b=c -> a=b
+egap    f=g, a=b -> fa=gb
+        a = Ia
+        a = Kab
+        ac(bc) = Sabc
+
+        I=I
+        K=K
+        S=S
+        S E! I = KI
+        ...
+
+        -> Kab = a
+        -> Sabc = ac(bc) 
+        
+        |- p -> |- V=p
+        |- V=p -> |- p
+
+        |- x, |- x=y -> |- y
+        |- f=g -> |- fx=gx
+
+        [fg] (f=g) = [x](fx=gx)
+        [xy] (x=y) = [f] (fx=fy)
+
+        [xy] (V=(x=y)) \/ (F=(x=y))
+
+        [x] x=x
+        [xy] (x=y) = (y=x)
+        [xyz] ((x=y) => (y=z) => (x=z))
+
+        |- V=px, |- F=py -> |- F=(x=y)
+
+                |- F=(px=py) -> |- F=(x=y)
+
+        |- [fg] f=g => [x] fx=gx
+        (x) |- [fg] (f=g => (fx=gx)) 
+        
+        |- [pxy] (((V=(x=y)) => p) => (((F=(x=y)) => p) => p))
+
+        |-pV, |-pF -> [xy] p(x=y)
+        |- [xy] (x=y) = [z] (y=z) = (x=z)
+
+
+        -> Kab = a
+        -> Sabc = ac(bc) 
+        
+        |- p -> |- V=p
+        |- V=p -> |- p
+
+        |- x, |- x=y -> |- y
+        |- f=g -> |- fx=gx
+
+        [fg] (f=g) = [x](fx=gx)
+        [xy] (x=y) = [f] (fx=fy)
+
+        [xy] (V=(x=y)) \/ (F=(x=y))
+
+        [x] x=x
+        [xy] (x=y) = (y=x)
+        [xyz] ((x=y) => (y=z) => (x=z))
+
+        fX=gX, X ...
+        f Xi, Xi pas dans f -> KV = f
+
+        (x=y)
+
+

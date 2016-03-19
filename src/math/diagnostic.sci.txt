@@ -1,0 +1,44 @@
+"Diagnostic : ...
+data contient les données connues sur une population"
+"le premier caractère (1ere colonne) doit être estimé chez x (1ere ligne)"
+"On fait la moyenne pondérée par 1/d^2 en tenant compte"
+"d une distance virtuelle entre x et l espace de la population connue"
+"on doit estimer l élément 1, 1"
+
+data = [0	8	5	;
+	1	9	3	;
+	8	1	6	;
+	3	8	4	;
+	7	2	5	;
+	2	7	8	]
+
+d = d
+
+[n,p] = size(data)
+
+x = data (1,:)
+
+data1 = data (:, 2:3)
+centre1 = sum(data1,1) / n
+cdata1 = data1 - ones (n, 1) * centre1
+ecart1 = sqrt (sum (cdata1 .* cdata1, 1) / n)
+cndata1 = cdata1 ./ (ones(n,1) * ecart1)
+
+cnx1 = cndata1(1,:)
+
+// rdata1 = [[d;zeros(n-1,1)] (cndata1 - (ones(n,1) * cnx1))]
+rdata1 = [[0;-d*ones(n-1,1)] (cndata1 - (ones(n,1) * cnx1))]
+d2 = sum (rdata1 .* rdata1, 2)
+coefs = [0; ones(n-1,1) ./ d2(2:n)]
+coefs1 = coefs(2:n)
+ref = data (:,1)
+ref1 = ref(2:n)
+estim1 = (coefs1' * ref1) / sum(coefs1)
+  
+
+ 
+
+
+
+
+

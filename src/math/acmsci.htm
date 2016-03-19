@@ -1,0 +1,69 @@
+
+<!--Connexion établie--><!--Base de données sélectionnée--><HTML><head><title>ACM en SCILAB</title><meta name=keywords content=""></head><body>
+<pre>
+
+colonnes = ["A1", "A2", "A3", "B1", "B2", "C1", "C2", "C3", "C4"];
+lignes = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+
+R = [2 2 4;
+     2 1 3;
+     3 1 2;
+     1 2 4];
+
+[n,p] = size(R);
+
+s = 3;
+
+Z = [ 0 1 0 0 1 0 0 0 1;
+      0 1 0 1 0 0 0 1 0;
+      0 0 1 1 0 0 1 0 0;
+      1 0 0 0 1 0 0 0 1;
+      1 0 0 0 1 0 0 0 1;
+      0 1 0 0 1 0 0 1 0;
+      0 0 1 1 0 1 0 0 0;
+      1 0 0 1 0 1 0 0 0;
+      0 1 0 1 0 0 1 0 0;
+      0 1 0 0 1 0 0 1 0;
+      0 0 1 0 1 0 1 0 0;
+      1 0 0 1 0 0 0 0 1];
+
+z = sum(Z);
+[n,p] = size (Z);
+
+B = Z' * Z;
+D = diag(diag(B));
+F = 1/(n*s) * Z;
+Dp = 1/(n*s) * D;
+Dn = 1/n * eye(n,n);
+S = 1/s * Z' * Z * inv(D);
+
+[valpr, vecpr] = bdiag (S);
+valprv = diag(valpr);
+[valprvo, ordre] = sort(valprv);
+u = vecpr (:,ordre);
+lambda = valpr (:, ordre);
+
+phi = inv(D) * u;
+
+/// [valpr,vecpr] = bdiag (1/s * inv(D) * Z' * Z);
+/// valprv = diag(valpr);
+/// [valprvo, ordre] = sort(valprv);
+/// phi = vecpr (:,ordre);
+
+[valpr,vecpr] = bdiag (1/s * Z * inv(D) * Z');
+valprv = diag(valpr);
+[valprvo, ordre] = sort(valprv);
+psi = vecpr (:,ordre);
+
+xset ("window", 1);
+plot2d (psi(:,1), psi(:,2), 0);
+for i=1 : n
+ xstring (psi(i,1), psi(i,2), lignes(i));
+end
+plot2d (phi(:,1), phi(:,2), 0);
+for i=1 : p
+ xstring (phi(i,1), phi(i,2), colonnes(i));
+end
+
+</pre>
+</body></HTML>

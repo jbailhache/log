@@ -1,0 +1,7 @@
+[MSLPIA.C]
+Breakpoints=126;1;0;
+[Windows]
+File1=ext.c,-4,-30,548,366,1,1
+File2=serial.c,22,29,553,300,0,0
+File3=MSLPIA.C,44,58,575,329,0,0
+File4=main.c,-4,-30,548,366,1,0

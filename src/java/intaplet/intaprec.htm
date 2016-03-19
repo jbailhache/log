@@ -1,0 +1,16 @@
+
+<body>
+
+<applet code=intaplet.class width=300 height=200>
+
+<param name=init value='
+ &fact ^rfact ^x { x #0# (eqthen #1# 
+  [times x eval rfact rfact plus x #-1#] ) }
+ {
+  [rplac global #1# textfield [rep fact (qt fact) #6#] #10#]
+  [add applet "" subexpr global #1#]
+ }'>
+
+</applet>
+
+</body>

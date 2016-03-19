@@ -1,0 +1,116 @@
+
+#include <stdio.h>
+#include <math.h>
+#include <graphics.h>
+
+#define MAX 1000
+
+/* float cours [MAX]; */
+
+float cours[] = { 248.8, 248.8, 249, 249, 249, 249.5, 250, 249.5, 249.5, 250, 249.5, 250, 249.7, 249.5, 249.4,
+	249.3, 249.6, 249.3, 249.7, 249.1, 249.7, 249.7, 249.8, 250, 250, 250, 250.4, 250.5, 250.9, 250.9, 250.4, 249.4, 249, 249, 48.8, 248.6, 248.4, 248.2,
+	248, 248, 247.5, 247.5, 247.1, 246.9, 247.1, 247.5, 248, 247.5, 247, 247.5, 246.9, 247.5, 247.7, 248, 248,
+	248, 248, 247.6, 247.2, 247.1, 248, 247.5, 248, 248, 248, 248.4, 249, 248.3, 248, 248.3, 248.7 };
+
+int n;
+
+#define capital_init 10000
+#define frais 4
+
+FILE *out;
+
+simul ()
+{
+int t, nt, nta;
+float capital;
+
+	capital = capital_init;
+	nt = 0;
+
+	for (t=1; t<n-1; t++)
+	{
+		if ((cours[t] - cours[t-1]) > 0.2) /* ‡a monte : acheter */
+		{
+			nta = (capital - frais) / (cours[t] * 1.1);
+			capital -= nta * cours[t+1];
+			capital -= frais;
+			nt += nta;
+			fprintf (out, "Achat %2d … %6.2f -> %3d %8.2f %8.2f\n",
+				nta, cours[t+1], nt, capital, capital+nt*cours[t+1]);
+		}
+		else if ((cours[t-1] - cours[t]) > 0.2) /* ‡a baisse : vendre */
+		{
+			capital += nt * cours[t+1];
+			capital -= frais;
+			fprintf (out, "Vente %2d … %6.2f -> %3d %8.2f %8.2f\n",
+				nt, cours[t+1], 0, capital, capital+0*cours[t+1]);
+			nt = 0;
+		}
+	}
+
+	capital += nt * cours[n-1];
+	printf ("Rendement : %f\n", capital / capital_init);
+
+
+}
+
+main ()
+{
+char filename[200];
+FILE *f;
+float x;
+int i;
+int driver, mode, status;
+
+	out = fopen ("out.lis", "w");
+	if (out == NULL)
+	{
+		perror ("out.lis");
+		out = stdout;
+	}
+/*
+	printf ("Fichier cours? ");
+	gets (filename);
+	f = fopen (filename, "r");
+	if (f == NULL)
+	{
+		perror (filename);
+		return;
+	}
+
+	for (i=0; i<MAX; i++)
+	{
+		if (feof(f))
+			break;
+		fscanf (f, "%f", &x);
+		cours[i] = x;
+	}
+
+	n = i;
+*/
+	n = sizeof (cours) / sizeof (cours[0]);
+
+	for (i=0; i<n; i++)
+	{
+		printf ("%04d : %4.2f\n", i, cours[i]);
+	}
+
+	/*
+	driver = DETECT;
+	mode = 0;
+
+	initgraph (&driver, &mode, "c:\\tc");
+	status = graphresult ();
+	if (status != grOk)
+		printf ("Erreur initgraph %d 0x%X\n", status, status);
+
+	for (i=0; i<n; i++)
+		putpixel (i+1, (260-cours[i])*10, 1);
+
+	restorecrtmode ();
+	*/
+
+	simul ();
+
+}
+

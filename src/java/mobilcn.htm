@@ -1,0 +1,47 @@
+
+<!--Connexion établie--><!--Base de données sélectionnée--><HTML><head><title>Image mobile en JavaScript, nouvelle version compatible</title><meta name=keywords content="Test"></head><body >
+<a href=http://users.skynet.be/jonbogi/faire.htm>
+Faire bouger un objet sur une page
+</a>
+
+<SCRIPT LANGUAGE="javascript"> 
+var hautimage = 100; 
+var gaucheimage = 100; 
+document.write('<IMG SRC="../planet.gif" ID=planet STYLE="position:absolute;top:'+hautimage+';left:'+gaucheimage+'">'); 
+</SCRIPT>
+
+<FORM>
+<INPUT TYPE=button VALUE=gauche onClick="bouge(-10,0)">
+<INPUT TYPE=button VALUE=droite onClick="bouge(10,0)">
+<INPUT TYPE=button VALUE=haut onClick="bouge(0,-10)">
+<INPUT TYPE=button VALUE=bas onClick="bouge(0,10)">
+</FORM>
+
+<SCRIPT LANGUAGE=JavaScript> 
+
+function getElement (document, name)
+{
+if (document.layers) /* Old NS */
+ return document.layers[name];
+else if(document.getElementById) /* DHTML */
+ return document.getElementById(name);
+else if (document.all) /* Old IE */
+ return document.all[name];
+else /* too old */
+{
+ document.write("Your browser is too old !"); 
+ return null;
+}
+}
+
+function bouge(x,y) 
+{ 
+hautimage += y; 
+gaucheimage += x; 
+var eplanet = getElement(document,"planet");
+eplanet.style.top = hautimage;
+eplanet.style.left = gaucheimage;
+} 
+</SCRIPT>
+
+</body></HTML>

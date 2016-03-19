@@ -1,0 +1,8 @@
+Avant le debut
+<p><li> Auteur1 : Texte1.
+<p><li> Auteur2 : Texte2,
+suite du texte2.
+<p><li> Auteur3
+Suite auteur3 : texte3,
+suite texte 3.
+<p><li> Fin.

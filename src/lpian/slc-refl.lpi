@@ -1,0 +1,221 @@
+(
+
+{ Utilities }
+
+(def-slc KI : AP K I)
+
+{ pair }
+(def-slc P : LAMBDA x : LAMBDA y : LAMBDA f : APN f x y)
+
+{ composition }
+(def-slc B : LAMBDA f : LAMBDA g : LAMBDA x : AP f : AP g x)
+
+
+{ Representation of terms }
+
+(def-slc RZ : 
+ LAMBDA z : LAMBDA v : LAMBDA l : LAMBDA a : LAMBDA t : LAMBDA s : LAMBDA e 
+ z)
+
+(def-slc RDBV : LAMBDA n :
+ LAMBDA z : LAMBDA v : LAMBDA l : LAMBDA a : LAMBDA t : LAMBDA s : LAMBDA e :
+ AP v n)
+
+(def-slc RDBL : LAMBDA x :
+ LAMBDA z : LAMBDA v : LAMBDA l : LAMBDA a : LAMBDA t : LAMBDA s : LAMBDA e :
+ AP l x)
+
+(def-slc RAP : LAMBDA x : LAMBDA y : 
+ LAMBDA z : LAMBDA v : LAMBDA l : LAMBDA a : LAMBDA t : LAMBDA s : LAMBDA e :
+ APN a x y)
+
+(def-slc RLTRANSYM : LAMBDA x : LAMBDA y : 
+ LAMBDA z : LAMBDA v : LAMBDA l : LAMBDA a : LAMBDA t : LAMBDA s : LAMBDA e :
+ APN t x y)
+
+(def-slc RSUBST : LAMBDA x : LAMBDA y :
+ LAMBDA z : LAMBDA v : LAMBDA l : LAMBDA a : LAMBDA t : LAMBDA s : LAMBDA e :
+ APN s x y)
+
+(def-slc RA :
+ LAMBDA z : LAMBDA v : LAMBDA l : LAMBDA a : LAMBDA t : LAMBDA s : LAMBDA e 
+ e)
+
+
+{ Natural numbers }
+
+(def-slc ZERO : 
+ LAMBDA z : LAMBDA s 
+ z)
+
+(def-slc SUC : LAMBDA n :
+ LAMBDA z : LAMBDA s :
+ AP s n)
+
+(def-slc eqn : LAMBDA n : LAMBDA p :
+ n (p K (AP K KI)) (LAMBDA n1 : p KI : LAMBDA p1 : APN eqn n1 p1))
+
+(def-slc plus : LAMBDA n : LAMBDA p :
+ n p : LAMBDA n1 : AP SUC : APN plus n1 p)
+
+(def-slc ge : LAMBDA n : LAMBDA p :
+ n (p K : LAMBDA p1 KI) : LAMBDA n1 : K)
+
+
+{ Representation of pair : 
+   P = (DBL : DBL : DBL : AP (AP (DBV 0) (DBV 2)) (DBV 1)) } 
+
+(def-slc RP : 
+ AP RDBL : AP RDBL : AP RDBL : 
+ AP RAP (AP RAP (AP RDBV ZERO) (AP RDBV 2)) (AP RDBV 1))
+
+
+{ left and right }
+{ ralr = < RAL , RAR > }
+
+(def-slc left : LAMBDA ralr : LAMBDA w : APN w
+ RZ
+ RDBV
+ (LAMBDA x : RDBL : AP left x)
+ (LAMBDA x : LAMBDA y : APN RAP (AP left x) (AP left y))
+ (LAMBDA x : LAMBDA y : APN equal (AP left x) (AP left y) (AP right x) (APN RLTRANSYM x y))
+ (LAMBDA x : LAMBDA y : APN RAP (AP RDBL x) y)
+ (APN eval ralr : AP ralr K) )
+
+(def-slc right : LAMBDA ralr : LAMBDA w : APN w 
+ RZ
+ RDBV
+ (LAMBDA x : RDBL : AP right x)
+ (LAMBDA x : LAMBDA y : APN RAP (AP right x) (AP right y))
+ (LAMBDA x : LAMBDA y : APN equal (AP left x) (AP right x) (AP right y) (APN RLTRANSYM x y))
+ (LAMBDA x : LAMBDA y : APN subst x y)
+ (APN eval ralr : AP ralr (AP K I)) )
+
+
+{ Equality }
+
+(def-slc equal : LAMBDA v : LAMBDA w : 
+ APN v
+ (APN w K (AP K KI) (AP K KI) (AP K : AP K KI) (AP K : AP K KI) (AP K : AP K KI) KI)
+ (LAMBDA n : APN y KI
+  (LAMBDA p : APN eqn p q)
+  (AP K KI) (AP K : AP K KI) (AP K : AP K KI) (AP K : AP K KI) KI)
+ (LAMBDA x : APN w KI (AP K KI)
+  (LAMBDA y : APN equal x y)
+  (AP K : AP K KI) (AP K : AP K KI) (AP K : AP K KI) KI)
+ (LAMBDA x1 : LAMBDA y1 : APN w
+  K (AP K KI) (AP K KI) 
+  (LAMBDA x2 : LAMBDA y2 : 
+   APN equal x1 x2 (APN equal y1 y2) KI)
+  (AP K : AP K KI) (AP K : AP K KI) KI)
+ (LAMBDA x1 : LAMBDA y1 : APN w
+  K (AP K KI) (AP K KI) (AP K : AP K KI) 
+  (LAMBDA x2 : LAMBDA y2 : 
+   APN equal x1 x2 (APN equal y1 y2) KI)
+  (AP K : AP K KI) KI)
+ (LAMBDA x1 : LAMBDA y1 : APN w
+  K (AP K KI) (AP K KI) (AP K : AP K KI) (AP K : AP K KI) 
+  (LAMBDA x2 : LAMBDA y2 : 
+   APN equal x1 x2 (APN equal y1 y2) KI)
+  KI)
+ K)
+
+
+{ Substitution }
+
+(def-slc subst : LAMBDA x : LAMBDA y :
+ APN subst1 ZERO x y)
+
+(def-slc subst1 : LAMBDA n : LAMBDA x : LAMBDA y : x 
+ x
+ (LAMBDA n1 : ge n1 n (AP RDBV (APN plus n1 n)) x) 
+ (LAMBDA x1 : APN subst1 (AP SUC n) x1 (APN shift ZERO (AP SUC ZERO) y))
+ (LAMBDA x1 : LAMBDA y1 : APN RAP (APN subst1 n x1 y) (APN subst1 n y1 y))
+ (LAMBDA x1 : LAMBDA y1 : APN RLTRANSYM (APN subst1 n x1 y) (APN subst1 n y1 y))
+ (LAMBDA x1 : LAMBDA y1 : APN RSUBST (APN subst1 n x1 y) (APN subst1 n y1 y))
+ x)
+
+(def-slc shift : LAMBDA m : LAMBDA n : LAMBDA x : x
+ x
+ (LAMBDA n1 : ge n1 m (AP RDBV : AP plus n n1) x)
+ (LAMBDA x1 : AP RDBL : APN shift (AP SUC m) n x1)
+ (LAMBDA x1 : LAMBDA y1 : APN RAP (APN shift m n x1) (APN shift m n y1))
+ (LAMBDA x1 : LAMBDA y1 : APN RLTRANSYM (APN shift m n x1) (APN shift m n y1))
+ (LAMBDA x1 : LAMBDA y1 : APN RSUBST (APN shift m n x1) (APN shift m n y1))
+ x)
+
+
+{ Evaluation }
+
+(def-slc eval : LAMBDA ralr : LAMBDA w : APN w
+ Z
+ DBV
+ (LAMBDA x : DBL : APN eval ralr x)
+ (LAMBDA x : LAMBDA y : AP (APN eval ralr x) (APN eval ralr y))
+ (LAMBDA x : LAMBDA y : LTRANSYM (APN eval ralr x) (APN eval ralr y))
+ (LAMBDA x : LAMBDA y : SUBST (APN eval ralr x) (APN eval ralr y))
+ (EQUAL (APN eval ralr (AP ralr K)) (APN eval ralr (AP ralr (AP K I)))) )
+
+
+{ Reflection }
+
+{ with evaluation }
+
+{
+(def-slc fl : LAMBDA ralr : LAMBDA x :
+ APN eval ralr : APN left ralr x)
+
+(def-slc fr : LAMBDA ralr : LAMBDA x :
+ APN eval ralr : APR right ralr x)
+
+(def-slc mapterm : LAMBDA ralr : LAMBDA f :
+ AP P (AP f RZ) :
+ AP P (AP mapint : B f RDBV) :
+ AP P (APN mapterm ralr : B f RDBL) :
+ AP P (APN mapterm ralr : LAMBDA x : APN mapterm ralr : LAMBDA y : AP f : APN RAP x y) :
+ AP P (APN mapterm ralr : LAMBDA x : APN mapterm ralr : LAMBDA y : AP f : APN RLTRANSYM x y) :
+ AP P (APN mapterm ralr : LAMBDA x : APN mapterm ralr : LAMBDA y : AP f : APN RSUBST x y) :
+ AP f RA)
+
+(def refl : LAMBDA ralr : 
+ P (APN mapterm ralr (AP fl ralr)) (APN mapterm ralr (AP fr ralr)))
+}
+
+{ without evaluation }
+
+(def-slc fl : LAMBDA ralr : LAMBDA x :
+ APN left ralr x)
+
+(def-slc fr : LAMBDA ralr : LAMBDA x :
+ APR right ralr x)
+
+(def-slc mapterm : LAMBDA ralr : LAMBDA f :
+ AP RP (AP f RZ) :
+ AP RP (AP mapint : B f RDBV) :
+ AP RP (APN mapterm ralr : B f RDBL) :
+ AP RP (APN mapterm ralr : LAMBDA x : APN mapterm ralr : LAMBDA y : AP f : APN RAP x y) :
+ AP RP (APN mapterm ralr : LAMBDA x : APN mapterm ralr : LAMBDA y : AP f : APN RLTRANSYM x y) :
+ AP RP (APN mapterm ralr : LAMBDA x : APN mapterm ralr : LAMBDA y : AP f : APN RSUBST x y) :
+ AP f RA)
+
+(def-slc mapint : LAMBDA f : 
+ AP RP (AP f ZERO) : 
+ AP mapint : LAMBDA n : AP f : SUC n)
+
+(def-slc refl : LAMBDA ralr : 
+ P (APN mapterm ralr (AP fl ralr)) (APN mapterm ralr (AP fr ralr)))
+
+(def-slc addrefl : LAMBDA ralr :
+ LAMBDA lr :
+ lr (P (ralr K) (APN refl ralr K))
+    (P (ralr KI) (APN refl ralr KI)))
+
+{ axiom : 
+ (EQUAL 
+  (APN eval ralr : AP ralr K)
+  (APN eval ralr : AP ralr KI))
+}
+
+          
+
+)

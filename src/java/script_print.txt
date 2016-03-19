@@ -1,0 +1,126 @@
+^FAX 
+&dup ^x { x x }
+{ 
+ [printout "Infos fax recu: "]
+ [printout rep FAX]
+ [socket "localhost" #6029#] ^sock
+ {
+  [printout " socket="] [printout rep sock]
+  [dataoutputstream sock] ^os {~
+  [printout " os="] [printout rep os]
+  [printout " write->"]
+  [printout rep write os printout dup 
+   concat "&dup ^x { x x } &drop ^x nop { " 
+   concat rep FAX 
+   "^FAX
+    {
+     [printout rep FAX]
+     [frame \"Fax recu\"] ^frm 
+     {
+      [setflowlayout frm]
+      [add frm \"\" label concat \"Vous avez recu un fax: \\n\" rep FAX]
+      [resize frm #300# #200#]
+      [show frm]      
+     }
+     [subexpr FAX #8#] ^np {~
+     [printout rep np] [printout \" pages \"]
+            
+   [socket \"localhost\" #6020#] ^sock1 {~
+   [printout \"socket: \"] [printout rep sock1]
+   [datainputstream sock1] ^is {~
+   [printout \"\\ninput stream: \"] [printout rep is]
+   [dataoutputstream sock1] ^os {~
+   [printout \"\\noutput stream: \"] [printout rep os]
+   [printout \"\\nwrite login: \"]
+   [printout rep write os \"USER\\nadmin\\nPASS\\npadmin\\n\"]
+   [printout \"\\nreadline 1: \"]
+   [printout rep readline is]
+   [printout \"\\nreadline 2: \"]
+   [printout rep readline is]
+
+   [subexpr FAX #9#] ^filename {~ 
+   [printout \"\\nfilename: \"]
+   [printout filename]
+   [concat \"FAXDATA\\n\" concat filename \"\\n\"] ^commande {~
+   [printout \"\\nwrite \"]
+   [printout commande]
+   [printout \" -> \"]
+   [printout rep write os commande]
+   [mkexpr PAGES np] ^pages {~
+   [printout \"\\npages: \"] [printout rep pages]
+   (loop {~
+   [printout \"\\nreadline 3: \"]
+   [printout rep dup readline is]
+   \"FAXDATA\" (~ eqthen {
+   [printout \"\\npage \"]
+   [printout dup readline is]
+   ^scurpage [compil concat \"#\" concat scurpage \"#\"] ^curpage {~
+   [printout \"\\npage \"] [printout curpage]
+   [printout \"\\ntaille \"]
+   [printout dup readline is]
+   ^str [compil concat \"#\" concat str \"#\"] ^n {~
+   [printout \"\\ntaille \"] [printout rep n]
+   [rplac pages curpage readbytes is n]
+   [drop readline is]
+    } exit )   
+
+   [printout rep printfax pages]
+ 
+   [view faxviewer container \"Fax recu\" pages]
+
+   [printout \"\\nlogout \"]
+   [printout rep write os \"END\\n\"]
+   [printout rep close sock1]
+
+    }
+  EndOfScript HALT }\n"]
+  [close sock]
+ }
+ [mailmsg "smtp.noos.fr" "jbailhache@amplitude.fr" "Test mail par script"] ^message
+ {
+  [printout " message:"]
+  [printout rep message]
+  [printout " addrecipient:"] 
+  [printout rep addrecipient message "jacques.bailhache@lycos.fr"]
+  [printout rep addrecipient message "log31@lycos.com"]
+  [printout rep addrecipient message "j.bailhache@amplitude.fr"]
+  [printout " addpart:"]
+  [printout rep addpart message "" "" "" "" "text" concat "Donnees:" rep FAX]
+  [subexpr FAX #8#] ^np 
+  {  
+   [printout rep np] [printout " pages "]
+   #0# ^i 
+   (loop
+    {
+     [printout " i="] [printout rep i] 
+     [printout rep dup printout " sign=" sign 
+      printout rep dup printout " plus->" plus np times i #-1#] #1#
+     (eqthen
+      {
+	[printout " ... "]
+	[mkstr #1# charat "0123456789" i] ^stri
+	{
+	 [printout " stri="] [printout stri]
+	 [concat "c:\\fmw\\SendTmp\\"
+	  concat subexpr FAX #9#
+	  concat ".00" stri]
+         [printout " filename page fax:"] [printout dup]
+ 	 [file "rw"]
+	 [printout " file:"] [printout dup]
+	 readall
+	 [printout " readall "]
+ 	 [concat "page" concat stri ".tif"] ^filename
+	 {
+	  [printout " filename attachment:"] [printout filename]
+	  [addpart message "Application" "Octet-Stream" filename filename "binary"]
+	  [printout " addpart:"] [printout rep]
+	 }
+	}
+	[(set i) plus i #1#]	 
+      }
+      exit) } )
+  }
+  [printout " sendmail:"]
+  [printout rep sendmail message]
+ }
+}

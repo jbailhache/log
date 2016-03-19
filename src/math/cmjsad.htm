@@ -1,0 +1,2764 @@
+
+<!--Connexion établie--><!--Base de données sélectionnée--><HTML><head><title>Calculatrice matricielle en JavaScript avec fonctions d'analyse de données (26)</title><meta name=keywords content=""></head><body>
+<h3>Calculatrice matricielle en JavaScript</h3>
+ 
+<script language=JavaScript>
+
+function techo (x)
+{
+ /*echo (x);*/
+ return 0;
+}
+ 
+function tafficher (s, a)
+{
+ /*afficher (s, a);*/
+ return 0;
+}
+      
+function trace (s, x)
+{
+ 
+ techo (s);
+ techo (x);
+ techo ("<br>");
+ 
+}
+
+function echo (s)
+{
+ document.write (s);
+}
+
+function mat (nl, nc)
+{
+var i;
+ this.nl = nl;
+ this.nc = nc;
+ this.data = new Array (nl);
+ for (i=0; i<nl; i++)
+  this.data[i] = new Array (nc);
+}
+
+function list (n)
+{
+    this.n = n;
+    this.data = new Array (n);
+}
+
+function nl (a)
+{
+ return a.nl;
+}
+
+function nc (a)
+{
+ return a.nc;
+}
+
+function fill (x, nl, nc)
+{
+var a, i, j;
+ a = new mat (nl, nc);
+ for (i=0; i<nl; i++)
+ for (j=0; j<nc; j++)
+  a.data[i][j] = x;
+ return a;
+}
+
+function add_mat (a, b)
+{
+var c, i, j;
+ c = new mat (a.nl, a.nc);
+  for (i=0; i<a.nl; i++)
+ {
+   for (j=0; j<a.nc; j++)
+   c.data[i][j] = a.data[i][j] + b.data[i][j];
+ }
+ return c;
+}
+
+function prod_scal_mat (x, a)
+{
+var b;
+    b = new mat (a.nl, a.nc);
+    for (i=0; i<a.nl; i++)
+    for (j=0; j<a.nc; j++)
+        b.data[i][j] = x * a.data[i][j];
+    return b;
+}
+
+
+function prod_mat (a, b)
+{
+var c, i, j, k;
+        if (a == 1) return b;
+        if (b == 1) return a;
+
+ tafficher ("a=", a);
+ tafficher ("b=", b);
+
+        if (a.nc != b.nl)
+        {
+         document.write ("<p>Produit incorrect : ");
+         print_mat (a);
+         document.write ("<p>par");
+         print_mat (b);
+         document.write ("<p>***********************************");
+         return fill (0, 1, 1);
+        }
+ c = new mat (a.nl, b.nc);
+  for (i=0; i<c.nl; i++)
+ {
+   for (j=0; j<c.nc; j++)
+  {
+   c.data[i][j] = 0;
+   for (k=0; k<a.nc; k++)
+    c.data[i][j] += a.data[i][k] * b.data[k][j];
+   }
+ }
+ tafficher("c=",c);
+ return c;
+}
+
+function prodp (a, b)
+{
+var c, i, j, k, n;
+        if (a == 1) return b;
+        if (b == 1) return a;
+        if (a.nc <= b.nl)
+         n = a.nc;
+        else
+         n = b.nl;;
+  c = new mat (a.nl, b.nc);
+  for (i=0; i<c.nl; i++)
+  {
+   for (j=0; j<c.nc; j++)
+   {
+    c.data[i][j] = 0;
+    for (k=0; k<n; k++)
+     c.data[i][j] += a.data[i][k] * b.data[k][j];
+   }
+ }
+ return c;
+}
+
+function transpose_mat (a)
+{
+var b, i, j;
+ b = new mat (a.nc, a.nl);
+  for (i=0; i<b.nl; i++)
+ {
+   for (j=0; j<b.nc; j++)
+   b.data[i][j] = a.data[j][i];
+ }
+ return b;
+}
+
+function diag(a)
+{
+var b, i, j;
+ b = new mat (a.nl, a.nl);
+ for (i=0; i<a.nl; i++)
+ for (j=0; j<a.nl; j++)
+  if (i == j)
+   b.data[i][j] = a.data[i];
+  else
+   b.data[i][j] = 0;
+ return b;
+}
+
+function pair (fst, snd)
+{
+    this.fst = fst;
+    this.snd = snd;
+}
+
+function id (n)
+{
+var a, i;
+ a = fill (0, n, n);
+ for (i=0; i<n; i++)
+  a.data[i][i] = 1;
+ return a;
+}
+
+function centre (X)
+{
+ return prod_scal_mat (1/X.nl, prod_mat (fill(1,1,X.nl), X));
+}
+
+function centrer (X)
+{
+ return add_mat (X, prod_scal_mat (-1, prod_mat (fill(1,X.nl,1), centre(X))));
+}
+
+function prod_par (a, b)
+{
+var c, i, j;
+ c = new mat (a.nl, a.nc);
+ for (i=0; i<a.nl; i++)
+ for (j=0; j<a.nc; j++)
+  c.data[i][j] = a.data[i][j] * b.data[i][j];
+ return c;
+}
+
+function power_par (a, x)
+{
+var b;
+ b = new mat (a.nl, a.nc);
+ for (i=0; i<a.nl; i++)
+ for (j=0; j<a.nc; j++)
+  b.data[i][j] = Math.pow (a.data[i][j], x);
+ return b;
+}
+
+function variance (a)
+{
+ return prod_scal_mat (1/a.nl, prod_mat (fill(1,1,a.nl), prod_par(a,a)));
+}
+
+function mat_red (a)
+{
+var v, s, r, i;
+ tafficher ("mat_red ", a); 
+ v = variance (a);
+ techo (" variance "); techo (v);
+ r = fill (0, a.nc, a.nc);
+ for (i=0; i<a.nc; i++)
+ {
+  s = Math.sqrt(v.data[0][i]);
+  if (s!=0)
+   r.data[i][i] = 1/s;
+  else
+   r.data[i][i] = 1;
+ }
+ tafficher ("mat_red -> ", r);
+ return r;
+}
+
+function centred (X)
+{
+var Y, Z, r;
+ tafficher ("centred ", X);
+ Y = centrer (X);
+ tafficher ("centré : ", Y);
+ r = mat_red (Y);
+ tafficher ("r=", r)
+ Z = prod_mat (Y, r);
+ tafficher ("centred -> ", Z);
+ return Z;
+}
+
+function superp (a, b)
+{
+var c, i, j, nc;
+ if (a.nc <= b.nc)
+  nc = a.nc;
+ else
+  nc = b.nc;
+ c = new mat (a.nl+b.nl, nc);
+ for (i=0; i<a.nl; i++)
+ for (j=0; j<nc; j++)
+  c.data[i][j] = a.data[i][j];
+ for (i=0; i<b.nl; i++)
+ for (j=0; j<nc; j++)
+  c.data[a.nl+i][j] = b.data[i][j];
+ return c;
+}
+
+function puissance1 (a)
+{
+var d, u, v, t, i, j, l, l1, tz;
+    /*echo ("<p>puissance");*/
+    d = a.nl;
+    /*echo ("d =", d);
+    echo (d);*/
+    u = new mat (d, 1);
+    /*echo (" 1 ");*/
+
+    v = new mat (d, 1);
+    t = new mat (d, 1);
+    for (i=0; i<d; i++)
+    {
+        u.data[i][0] = 0;
+        v.data[i][0] = 0;
+    }
+    u.data[0][0] = 1;
+    v.data[0][0] = 1;
+
+    l = 0;
+    l1 = 1;
+
+    while ((l-l1)*(l-l1)>0.000000001)
+    {
+        /* echo ("<p>u0="); echo (u.data[0][0]); */
+        /* echo ("<p>u="); print_mat(u); */
+        l1 = l;
+        l = 0;
+        for (j=0; j<d; j++)
+        {
+            t.data[j][0] = 0;
+            for (i=0; i<d; i++)
+                t.data[j][0] += a.data[j][i] * u.data[i][0];
+            l += t.data[j][0] * v.data[j][0];
+        }
+        tz = 1;
+        for (j=0; j<d; j++)
+        {
+         if (t.data[j][0] > 0.000000000001)
+          tz = 0;
+        }
+        if (tz == 1)
+        {
+         tafficher ("retour u=", u);
+         return new pair (0, u);
+        }
+        tafficher ("... t=", t);        
+        techo ("<br>l="); techo(l);
+        for (i=0; i<d; i++)
+            u.data[i][0] = t.data[i][0] / l;
+        tafficher ("... u=", u);
+    }
+
+    return new pair (l, u);
+
+}
+
+/*
+function norme (u)
+{
+ tuu = prod (t(u), u);
+ return Math.sqrt (tuu.data[0][0]);
+}
+*/
+
+function norme (a)
+{
+var s, i, j;
+ s = 0;
+ for (i=0; i<a.nl; i++)
+ for (j=0; j<a.nc; j++)
+  s += a.data[i][j] * a.data[i][j];
+ return Math.sqrt (s);
+}
+
+function puissance (a)
+{
+ ep = puissance1 (a);
+ u = ep.snd;
+ tafficher ("u = ", u);
+ n = norme (u);
+ v = psm (1/n, u);
+ tafficher ("v = ", v);
+ return new pair (ep.fst, v);
+}
+
+/*
+function puissance (a)
+{
+ return puissance1 (a);
+}
+*/
+
+function deflation (a)
+{
+var d, i, j, k, p, q, ak, xk, r, x1, w, l, c;
+    d = a.nl;
+    ak = new list(d);
+    ak.data[0] = a;
+    xk = new list(d);
+    w = new mat (d, d);
+    l = new mat (d, 1);
+
+    for (k=0; k<d; k++)
+    {
+        /*echo ("<p>déflation étape "); echo (k);
+        print_mat (ak.data[k]);*/
+        rp = puissance (ak.data[k]);
+        /*echo ("<p>valeur propre : "); echo (rp.fst);
+        echo ("<p>vecteur propre : "); print_mat (rp.snd);*/
+        l.data[k][0] = rp.fst;
+        /*echo (" *1* ");*/
+        xk.data[k] = new mat (d, d);
+        /*echo (" *2* ");*/
+        for (i=0; i<d; i++)
+            xk.data[k].data[i][k] = rp.snd.data[i][0];
+        /*echo (" *3* ");*/
+
+        for (p=k-1; p>=0; p--)
+        {
+            /*echo (" p= "); echo (p);*/
+            /* x(p)k = x(p+1)k + lp/(lk-lp)<w(p),x(p+1)k>x(p)p */
+            q = 0;
+/* verifier w */
+            for (i=0; i<d; i++)
+                q += w.data[i][p] * xk.data[p+1].data[i][k];
+            if (l.data[k][0] == 0 && l.data[p][0] == 0)
+             c = 0; /* ou 1 ? */
+            else
+             c = l.data[p][0]/(l.data[k][0]-l.data[p][0]);
+            q *= c;
+            for (i=0; i<d; i++)
+                xk.data[p].data[i][k] = xk.data[p+1].data[i][k] + q * xk.data[p].data[i][p]; 
+/* a verifier */
+            techo (" p="); techo(p); tafficher (" xp = ", xk.data[p]);
+
+        }
+
+        /*echo (" *4* ");*/
+        if (k >= d-1) 
+        {
+            /*
+            echo ("<p>Résultat déflation :");
+            echo ("<p>Valeurs propres : "); print_mat (l);
+            echo ("<p>Vecteurs propres : "); print_mat (xk.data[0]);
+
+            */
+            return new pair (l, xk.data[0]);
+        }
+        /*echo (" *5* ");*/
+
+        /* w(k) = x(k)k / <x(k)k,x(k)k> */
+
+        r = 0;
+        /*echo (" *6* ");*/
+        for (i=0; i<d; i++)
+        {
+            x1 = xk.data[k].data[i][k];
+            r += x1 * x1;
+        }
+        /*echo (" *7* ");*/
+        for (i=0; i<d; i++)
+        {
+            w.data[i][k] = xk.data[k].data[i][k] / r;
+        }
+        /*echo ("<p>w="); print_mat (w);*/
+      
+        /* A(k+1) = A(k) - lk x(k)k w(k)t */   
+
+        ak.data[k+1] = new mat (d, d);
+        for (i=0; i<d; i++)
+        for (j=0; j<d; j++)
+        {
+            /*echo ("<p>element A(k+1) "); echo (i); echo (" "); echo(j); */
+            ak.data[k+1].data[i][j] = ak.data[k].data[i][j] - l.data[k][0] * xk.data[k].data[i][k] * w.data[j][k];
+            /*echo (" = "); echo (ak.data[k+1].data[i][j]);*/
+        }
+        /*echo ("A(k+1)="); print_mat (ak.data[k+1]);*/
+    }
+    
+ 
+}
+
+function print_mat (a)
+{
+var i, j;
+        if (a == 1) 
+        {
+         echo (" 1<p>");
+         return 1;
+        }
+        echo ("<p><table border=1>");
+ for (i=0; i<a.nl; i++)
+ {
+  echo ("<tr>");
+  for (j=0; j<a.nc; j++)
+  {
+   echo ("<td align=right>");
+                        if (a.data[i][j] == 0)
+                         echo ("<font color=white>0</font>");
+                        else
+    echo (a.data[i][j]); 
+   echo ("</td>");
+  }
+  echo ("</tr>");
+ }
+ echo ("</table>");
+
+}
+
+function permutation (n)
+{
+var i;
+    this.dim = n;
+    this.data = new Array (n);
+    this.phase = 0;
+    this.sign = 1;
+    for (i=0; i<n; i++)
+        this.data[i] = i;
+}
+
+function permuter (p)
+{
+var etat, b, c, d;
+ d = p.dim;
+ etat = 0;
+ for (;;)
+ switch (etat)
+ {
+  case 0: 
+   c = d-2;
+  case 1: 
+   if (c < 0) { etat=9; break; }
+   if (p.data[c] >= d-1) { etat=2; break; }
+  case 3:
+   p.data[c]++;
+   if (p.data[c] >= d) { etat=2; break; }
+  case 6:
+   b = 0;
+  case 4:
+   if (b >= c) { etat=7; break; }
+   if (p.data[c] == p.data[b]) { etat=3; break; }
+   b++; etat=4; break;
+  case 7:
+   c++;
+   if (c >= d) { etat=9; break; }
+   p.data[c] = 0; etat=6; break;
+  case 2: 
+   c--; etat=1; break;
+  case 9: 
+   p.phase++;
+   if (p.phase == 4) p.phase = 0;
+   p.sign = 1;
+   if (p.phase == 1 || p.phase == 2) p.sign = -1;
+   return c; /* finished if c < 0 */
+ }
+}
+
+function permuter1 (p)
+{
+var b, c, i, trouve;
+    for (c=p.dim-2; c>=0; c--)
+    {
+        while (p.data[c] < p.dim-1)
+        {
+            p.data[c]++;
+            trouve=0;
+            for (b=0; b<c; b++)
+                if (p.data[c] == p.data[b])
+                {
+                    trouve=1; 
+                    break;
+                }
+            if (trouve==0)
+            {
+                 for(i=c+1;i<d;i++) p.data[i]=0;
+            }
+
+ 
+
+        }
+
+
+
+/*
+        if (p.data[c] < p.dim-1)
+        {
+
+            p.data[c]++;
+            if (p.data[c] < p.dim)
+            {
+
+            }
+
+        }
+*/
+    }
+    p.phase++;
+    if (p.phase == 4) p.phase = 0;
+    p.sign = 1.0;
+    if (p.phase == 1 || p.phase == 2) p.sign = -1.0;
+}
+
+function element (a, perm)
+{
+var r, k;
+ r = 1.0;
+ for (k=0; k<a.nl; k++)
+  r *= a.data[k][perm.data[k]];
+ return r;
+}
+
+function determinant (a)
+{
+var d, perm, s, x, status;
+    d = a.nl;
+    perm = new permutation (d);
+    s = 0.0;
+    for (;;)
+    {
+        x = element (a, perm);
+        s += perm.sign * x;
+        status = permuter (perm);
+        if (status < 0) break;
+    }
+    return s;
+}
+
+function cofacteur (a, i1, j1)
+{
+var b, i, j, det, d;
+ /*echo ("a=");
+ print_mat(a);*/
+ d = a.nl;
+ b = new mat (d, d);
+ for (i=0; i<d; i++)
+ for (j=0; j<d; j++)
+  b.data[i][j] = a.data[i][j];
+ /*echo ("b=");
+ print_mat(b);*/
+ for (i=0; i<d; i++)
+ {
+  b.data[i][j1] = 0.0;
+  b.data[i1][i] = 0.0;
+ }
+ b.data[i1][j1]= 1.0;
+ /*echo ("b=");
+ print_mat (b);*/
+ det = determinant (b);
+ return det;
+}
+
+function inverse1 (a)
+{
+var b, i, j, det, d;
+ d = a.nl;
+ b = new mat (d, d);
+ det = determinant (a);
+ for (i=0; i<d; i++)
+ for (j=0; j<d; j++)
+  b.data[i][j] = cofacteur (a, j, i) / det;
+ return b;
+}
+
+function invn (a)
+{
+var d, b, p, i, j, k, t;
+ d = a.nl;
+ b = id (d);
+ p = psm (1, a);
+ for (i=0; i<d; i++)
+ {
+  /*echo ("<br>i="); echo(i); echo (".");*/
+  t = 1/p.data[i][i];
+  for (j=0; j<d; j++)
+  {
+   p.data[i][j] *= t;
+   b.data[i][j] *= t;
+  }
+  for (j=0; j<d; j++)
+  {
+   if (j != i)
+    t = - (p.data[j][i]);
+   for (k=0; k<d; k++)
+   {
+    p.data[j][k] += t * p.data[i][k];
+    b.data[j][k] += t * b.data[i][k];
+   } 
+  }
+ }
+ return p;
+}
+
+function normeligne (a)
+{
+ max = 0;
+ for (i=0; i<a.nl; i++)
+ {
+  s = 0;
+  for (j=0; j<a.nc; j++)
+   s += Math.abs (a.data[i][j]);
+  if (s > max)
+   max = s;
+ }
+ return max;
+}
+
+function normecolonne (a)
+{
+ max = 0;
+ for (i=0; i<a.nl; i++)
+ {
+  s = 0;
+  for (j=0; j<a.nc; j++)
+   s += Math.abs (a.data[j][i]);
+  if (s > max)
+   max = s;
+ }
+ return max;
+}
+
+function invpr (A)
+{
+var d, I, B, E, e, i;
+ d = A.nl;
+ I = id(d);
+ B = psm (1/(normeligne(A)*normecolonne(A)), t(A));
+ E = add (I, psm (-1, prod(B,A)));
+ e = norme(E);
+ i=0;
+ while (norme(E) > 0.00000001)
+ {
+  B = prod (add (I, E), B);
+  /*afficher ("B = ", B);*/
+  E = add (I, psm (-1, prod(B,A)));
+  /*afficher ("E = ", E);*/
+  e1 = e;
+  e = norme(E);
+  i++;
+  if (i>6 && e>e1) break;
+ }
+ return B;
+}
+
+function inverse (a)
+{
+ if (nl(a) == 0 && nc(a) == 0)
+  return fill (0, 0, 0);
+ else
+  return invpr(a);
+}
+
+function exp (a)
+{
+var d, s, b, c, i, j, k, l, m;
+ d = a.nl;
+ s = new mat (d, d);
+ b = new mat (d, d);
+ c = new mat (d, d);
+ for (i=0; i<d; i++)
+ for (j=0; j<d; j++)
+ {
+  if (i == j)
+   s.data[i][j] = 1;
+  else
+   s.data[i][j] = 0;
+  b.data[i][j] = a.data[i][j];
+ }
+ k = 1;
+ for (;;)
+ {
+  /*echo ("<br>b="); print_mat(b);*/
+  for (i=0; i<d; i++)
+  for (j=0; j<d; j++)
+   s.data[i][j] += b.data[i][j]; 
+  k++;
+  m = 0;
+  for (i=0; i<d; i++)
+  for (j=0; j<d; j++)
+  {
+   c.data[i][j] = 0;
+   for (l=0; l<d; l++)
+    c.data[i][j] += a.data[i][l] * b.data[l][j];
+   c.data[i][j] /= k;
+   if (c.data[i][j] > m)
+    m = c.data[i][j];
+   if (c.data[i][j] < -m)
+    m = -c.data[i][j];
+  }
+  for (i=0; i<d; i++)
+  for (j=0; j<d; j++)
+   b.data[i][j] = c.data[i][j];
+  if (m < 0.00000001)
+   break;
+  if (k > 1000)
+   break;
+ }
+ return s;
+}
+ 
+function buffer (s)
+{
+ this.data = s;
+ this.ptr = 0;
+}
+
+function getnbr (buf)
+{
+ var s;
+ s = "";
+ while ((buf.data.substring (buf.ptr, buf.ptr+1) == " " ||
+         buf.data.substring (buf.ptr, buf.ptr+1) == "\n" ||
+         buf.data.substring (buf.ptr, buf.ptr+1) == "\r") && buf.data.length >= buf.ptr) buf.ptr++;
+ while (buf.data.substring (buf.ptr, buf.ptr+1) != " " &&
+        buf.data.substring (buf.ptr, buf.ptr+1) != "\n" &&
+        buf.data.substring (buf.ptr, buf.ptr+1) != "\r" &&
+        buf.data.length >= buf.ptr)
+ {
+  s += buf.data.substring (buf.ptr, buf.ptr+1);
+  buf.ptr++;
+ }
+ if (s == "") return null;
+ /*document.write ("s=" + s + ".<br>");*/
+ return parseFloat(s);
+}
+
+matrices = new Array (200);
+
+function add (A, B)
+{
+ return add_mat (A, B);
+}
+
+function psm (x, A)
+{
+ return prod_scal_mat (x, A);
+}
+
+function prod (A, B)
+{
+ return prod_mat (A, B);
+}
+
+function t(A)
+{
+ return transpose_mat(A);
+}
+
+function det (A)
+{
+ return determinant (A);
+}
+
+function inv (A)
+{
+ return inverse (A);
+}
+
+function valpr (A)
+{
+ r = deflation(A);
+ return r.fst;
+}
+
+function vecpr (A)
+{
+ r = deflation(A);
+ return r.snd;
+}
+
+function graph1 (A, nl, nc)
+{
+var minx, maxx, miny, maxy, i, j, g, l, c, s, x, y;
+ g = new Array (nl);
+ for (i=0; i<nl; i++)
+ {
+  /* g[i] = new String (nc); */
+  /* remplir g[i] avec des espaces */
+  g[i] = new Array(nc);
+  for (j=0; j<nc; j++)
+   g[i][j] = " ";
+ }
+ minx = A.data[0][0];
+ maxx = A.data[0][0];
+ miny = A.data[0][1];
+ maxy = A.data[0][1];
+ for (i=1; i<A.nl; i++)
+ {
+  if (A.data[i][0] < minx)
+   minx = A.data[i][0];
+  if (A.data[i][0] > maxx)
+   maxx = A.data[i][0];
+  if (A.data[i][1] < miny)
+   miny = A.data[i][1];
+  if (A.data[i][1] > maxy)
+   maxy = A.data[i][1];
+ }
+ for (i=0; i<A.nl; i++)
+ {
+  c = 1 + (nc-5) * (A.data[i][0] - minx) / (maxx - minx);
+  l = 1 + nl - (nl-2) * (A.data[i][1] - miny) / (maxy - miny);
+  /* ecrire i en position c dans g[l] */
+  s = Number(i).toString(10);
+  for (j=0; j<s.length; s++)
+   g[l][c+j] = s.charAt(j);
+ }
+ document.write ("<p> x = " + Number(minx).toString(10) + " ... " + Number(maxx).toString(10) + ", y = " + Number(miny).toString(10) + " ... " + Number(maxy).toString(10) + ".<p>");
+
+ document.write ("<pre>");
+ for (l=0; l<nl; l++)
+ {
+  y = miny + (maxy - miny) * (nl - l + 1) / (nl - 2);
+  for (j=0; j<nc; j++)
+   document.write (g[l][c]);
+  document.write("\n");
+ }
+ document.write ("</pre>");
+}
+
+function graph2 (A, nl, nc)
+{
+var minx, maxx, miny, maxy, i, j, g, l, c, s, x, y;
+ g = new mat (nl, nc);
+ for (i=0; i<nl; i++)
+ {
+  /* g[i] = new String (nc); */
+  /* remplir g[i] avec des espaces */
+  for (j=0; j<nc; j++)
+   g.data[i][j] = 0;
+ }
+ 
+ minx = A.data[0][0];
+ maxx = A.data[0][0];
+ miny = A.data[0][1];
+ maxy = A.data[0][1];
+ for (i=1; i<A.nl; i++)
+ {
+  if (A.data[i][0] < minx)
+   minx = A.data[i][0];
+  if (A.data[i][0] > maxx)
+   maxx = A.data[i][0];
+  if (A.data[i][1] < miny)
+   miny = A.data[i][1];
+  if (A.data[i][1] > maxy)
+   maxy = A.data[i][1];
+ }
+ for (i=0; i<A.nl; i++)
+ {
+  c = 1 + (nc-2) * (A.data[i][0] - minx) / (maxx - minx);
+  l = 1 + nl - (nl-2) * (A.data[i][1] - miny) / (maxy - miny);
+  /* ecrire i en position c dans g[l] */
+  g.data[l][c] = i+1; 
+ }
+ document.write ("<p> x = " + Number(minx).toString(10) + " ... " + Number(maxx).toString(10) + ", y = " + Number(miny).toString(10) + " ... " + Number(maxy).toString(10) + ".<p>");
+ return g; 
+}
+ 
+function graph3 (A, nl, nc)
+{
+var minx, maxx, miny, maxy, i, j, g, l, c, s, x, y;
+ g = new mat (nl, nc);
+ for (i=0; i<nl; i++)
+ for (j=0; j<nc; j++)
+   g.data[i][j] = 0;
+
+ minx = A.data[0][0];
+ maxx = A.data[0][0];
+ miny = A.data[0][1];
+ maxy = A.data[0][1];
+
+ for (i=1; i<A.nl; i++)
+ {
+  if (A.data[i][0] < minx)
+   minx = A.data[i][0];
+  if (A.data[i][0] > maxx)
+   maxx = A.data[i][0];
+  if (A.data[i][1] < miny)
+   miny = A.data[i][1];
+  if (A.data[i][1] > maxy)
+   maxy = A.data[i][1];
+ }
+
+ document.write ("<p> x = " + Number(minx).toString(10) + " ... " + Number(maxx).toString(10) + ", y = " + Number(miny).toString(10) + " ... " + Number(maxy).toString(10) + ".<p>");
+
+ for (i=0; i<A.nl; i++)
+ {
+  c = 1 + (nc-3) * (A.data[i][0] - minx) / (maxx - minx);
+  l = 1 + (nl-3) * (A.data[i][1] - miny) / (maxy - miny);
+  l = nl - l - 1;
+  c = Math.floor(c);
+  l = Math.floor(l);
+/*  document.write ("<p>y = " + Number(A.data[i][1]).toString(10) + ", nl = " + Number(nl).toString(10) + ", l = " + Number(l).toString(10) + ".<p>");*/
+  if (l < 0) l = 0;
+  if (l > g.nl-1) l = g.nl-1;
+  if (c < 0) c = 0;
+  if (c > g.nc-1) c = g.nc-1;
+  g.data[l][c] = i+1; 
+
+ }
+ 
+ return g;
+}
+
+function graphc (A, abc, ord, nl, nc)
+{
+var minx, maxx, miny, maxy, i, j, g, l, c, s, x, y;
+ g = new mat (nl, nc);
+ for (i=0; i<nl; i++)
+ for (j=0; j<nc; j++)
+   g.data[i][j] = 0;
+
+ minx = A.data[0][abc];
+ maxx = A.data[0][abc];
+ miny = A.data[0][ord];
+ maxy = A.data[0][ord];
+
+ for (i=1; i<A.nl; i++)
+ {
+  if (A.data[i][abc] < minx)
+   minx = A.data[i][abc];
+  if (A.data[i][abc] > maxx)
+   maxx = A.data[i][abc];
+  if (A.data[i][ord] < miny)
+   miny = A.data[i][ord];
+  if (A.data[i][ord] > maxy)
+   maxy = A.data[i][ord];
+ }
+
+ if (minx == maxx)
+ {
+  minx--;
+  maxx++;
+ }
+
+ if (miny == maxy)
+ {
+  miny--;
+  maxy++;
+ }
+
+ document.write ("<p> x = " + Number(minx).toString(10) + " ... " + Number(maxx).toString(10) + ", y = " + Number(miny).toString(10) + " ... " + Number(maxy).toString(10) + ".<p>");
+
+ for (i=0; i<A.nl; i++)
+ {
+  c = 1 + (nc-3) * (A.data[i][abc] - minx) / (maxx - minx);
+
+  techo (" data="); techo (A.data[i][ord]);
+  techo (" miny="); techo (miny);
+  techo (" maxy="); techo (maxy);
+  techo (" nl="); techo(nl);
+
+  l = 1 + (nl-3) * (A.data[i][ord] - miny) / (maxy - miny);
+  techo ("(1)l="); techo(l); 
+  l = nl - l - 1;
+  techo (" (2)l="); techo(l); 
+  c = Math.floor(c);
+  l = Math.floor(l);
+  techo (" (3)l="); techo(l); 
+/*  document.write ("<p>y = " + Number(A.data[i][1]).toString(10) + ", nl = " + Number(nl).toString(10) + ", l = " + Number(l).toString(10) + ".<p>");*/
+  if (l < 0) l = 0;
+  techo (" (4)l="); techo(l); 
+  if (l > g.nl-1) l = g.nl-1;
+  techo (" (5)l="); techo(l);
+  if (c < 0) c = 0;
+  if (c > g.nc-1) c = g.nc-1;
+  techo (" (6)l="); techo(l); techo(" c="); techo(c); 
+  g.data[l][c] = i+1; 
+
+ }
+ 
+ return g;
+}
+
+function graph (A, nl, nc)
+{
+ return graphc (A, /* 0, 1, */ abcisse, ordonnee, nl, nc);
+}
+
+function graphnum (A, N, nl, nc)
+{
+var minx, maxx, miny, maxy, i, j, g, l, c, s, x, y;
+ g = new mat (nl, nc);
+ for (i=0; i<nl; i++)
+ for (j=0; j<nc; j++)
+   g.data[i][j] = 0;
+
+ minx = A.data[0][0];
+ maxx = A.data[0][0];
+ miny = A.data[0][1];
+ maxy = A.data[0][1];
+
+ for (i=1; i<A.nl; i++)
+ {
+  if (A.data[i][0] < minx)
+   minx = A.data[i][0];
+  if (A.data[i][0] > maxx)
+   maxx = A.data[i][0];
+  if (A.data[i][1] < miny)
+   miny = A.data[i][1];
+  if (A.data[i][1] > maxy)
+   maxy = A.data[i][1];
+ }
+
+ if (minx == maxx)
+ {
+  minx--;
+  maxx++;
+ }
+
+ if (miny == maxy)
+ {
+  miny--;
+  maxy++;
+ }
+
+ document.write ("<p> x = " + Number(minx).toString(10) + " ... " + Number(maxx).toString(10) + ", y = " + Number(miny).toString(10) + " ... " + Number(maxy).toString(10) + ".<p>");
+
+ for (i=0; i<A.nl; i++)
+ {
+  c = 1 + (nc-3) * (A.data[i][0] - minx) / (maxx - minx);
+  l = 1 + (nl-3) * (A.data[i][1] - miny) / (maxy - miny);
+  l = nl - l - 1;
+  c = Math.floor(c);
+  l = Math.floor(l);
+/*  document.write ("<p>y = " + Number(A.data[i][1]).toString(10) + ", nl = " + Number(nl).toString(10) + ", l = " + Number(l).toString(10) + ".<p>");*/
+  if (l < 0) l = 0;
+  if (l > g.nl-1) l = g.nl-1;
+  if (c < 0) c = 0;
+  if (c > g.nc-1) c = g.nc-1;
+  g.data[l][c] = /*i+1*/ N.data[i][0]; 
+
+ }
+ 
+ return g;
+}
+
+function afficher (s, A)
+{
+ document.write ("<p><p>");
+ document.write (s);
+ print_mat (A);
+}
+
+function ind (a, i, j)
+{
+ return a.data[i][j];
+}
+
+function setind (a, i, j, x)
+{
+ a.data[i][j] = x;
+}
+
+function matrix (n, p)
+{
+ return new mat (n, p);
+}
+
+function ACP (X, nl, nc)
+{
+var Z, R, ep, lambda, U, C, g;
+ Z = centred (X);
+ R = prod_scal_mat (1/Z.nl, prod_mat (transpose_mat(Z), Z));
+ document.write ("<p>Corrélations : ");
+ print_mat (R);
+ ep = deflation (R);
+ lambda = ep.fst;
+ document.write ("Valeurs propres : ");
+ print_mat (lambda);
+ U = ep.snd;
+ document.write ("Facteurs principaux : ");
+ print_mat (U);
+ Z1 = superp (Z, superp (fill(0,1,Z.nc), prod_scal_mat (/* 1/ */Z.nc, id(Z.nc))));
+ C = prod_mat (Z1, U);
+ g = graph (C, nl, nc);
+ return g;
+}
+
+function AFC (K, nlg, ncg)
+{
+var k, F, n, p, M, P, Dn, Dp, MP, X, C, S, ep, Lambda, Cp, Cn, Cpn, G;
+ G = fill (0, 1, 1);
+ n = nl(K);
+ p = nc(K);
+ k = prod (fill(1,1,n), prod (K, fill(1,p,1)));
+ afficher ("Nombre d'individus : ", k);
+ k = ind (k, 0, 0);
+ F = psm (1/k, K);
+ afficher ("Fréquences : ", F);
+ M = prod (F, fill(1,p,1));
+ afficher ("Totaux des lignes : ", M);
+ P = prod (fill(1,1,n), F);
+ afficher ("Totaux des colonnes : ", P);
+ Dn = diag (M);
+ Dp = diag (P);
+
+ MP = prod (M, P);
+ afficher ("Fréquences théoriques : ", MP);
+
+ X = prod_par (add (F, psm (-1, MP)), power_par (MP, -0.5));
+ afficher ("X = ", X);
+ C = prod_par (add (F, psm (-1, MP)), power_par (prod (M, power_par(P,0.5)), -1));
+ afficher ("C = ", C);
+ S = prod (t(X), X);
+ afficher ("S = ", S);
+ ep = deflation (S);
+ Lambda = ep.fst;
+ Cp = ep.snd;
+ afficher ("Cp = ", Cp);
+ Cn = prod (C, Cp);
+ afficher ("Cn = ", Cn);
+ Cpn = superp (Cp, Cn);
+ G = graph (Cpn, nlg, ncg);
+ return G;
+}
+
+/*
+ S = prod (t(F), prod (inv(Dn), prod (F, inv(Dp))));
+ T = prod (F, prod (inv(Dp), prod (t(F), inv(Dn))));
+*/
+
+function AFCC (K, nlg, ncg)
+{
+var k, F, n, p, M, P, Dn, Dp, MP, X, C, S, ep, Lambda, Cp, Cn, Cpn, G, S, T, S1, T1;
+ afficher ("AFC de", K);
+ G = fill (0, 1, 1);
+ n = nl(K);
+ p = nc(K);
+ k = prod (fill(1,1,n), prod (K, fill(1,p,1)));
+ afficher ("Nombre d'individus : ", k);
+ k = ind (k, 0, 0);
+ F = psm (1/k, K);
+ afficher ("Fréquences : ", F);
+ M = prod (F, fill(1,p,1));
+ afficher ("Totaux des lignes : ", M);
+ P = prod (fill(1,1,n), F);
+ afficher ("Totaux des colonnes : ", P);
+ Dn = diag (M);
+ afficher ("Dn = ", Dn);
+ iDn = inv(Dn);
+ afficher ("Dn^-1 = ", iDn);
+ Dp = diag (t(P));
+ afficher ("Dp = ", Dp);
+ iDp = inv(Dp);
+ afficher ("Dp^-1 = ", iDp);
+
+ S1 = prod (t(F), iDn);
+ afficher ("S1 = ", S1);
+ T1 = prod (F, iDp);
+ afficher ("T1 = ", T1);
+ S = prod (S1, T1);
+ afficher ("S = ", S);
+ T = prod (T1, S1);
+ afficher ("T = ", T);
+
+ ep = deflation (S);
+ Lambda = ep.fst;
+ afficher ("Valeurs propres : ", Lambda);
+ U = ep.snd;
+ afficher ("U = ", U);
+
+ ep = deflation (T);
+ afficher ("Valeurs propres : ", ep.fst);
+ V = ep.snd;
+ afficher ("V = ", V);
+
+ Psi = prod (prod (iDn, T1), U);
+ afficher ("Psi = ", Psi);
+
+ Phi = prod (prod (iDp, S1), V);
+ afficher ("Phi = ", Phi);
+
+ C = superp (Phi, Psi);
+ G = graph (C, nlg, ncg);
+ afficher ("Graphe : ", G);
+ return C;
+
+}
+
+function AFCO (K, nlg, ncg)
+{
+var k, F, n, p, M, P, Dn, Dp, MP, X, C, S, ep, Lambda, Cp, Cn, Cpn, G, S, T, S1, T1;
+ afficher ("AFC de", K);
+ G = fill (0, 1, 1);
+ n = nl(K);
+ p = nc(K);
+ k = prod (fill(1,1,n), prod (K, fill(1,p,1)));
+ afficher ("Nombre d'individus : ", k);
+ k = ind (k, 0, 0);
+ F = psm (1/k, K);
+ afficher ("Fréquences : ", F);
+ M = prod (F, fill(1,p,1));
+ afficher ("Totaux des lignes : ", M);
+ P = prod (fill(1,1,n), F);
+ afficher ("Totaux des colonnes : ", P);
+ Dn = diag (M);
+ afficher ("Dn = ", Dn);
+ iDn = inv(Dn);
+ afficher ("Dn^-1 = ", iDn);
+ Dp = diag (t(P));
+ afficher ("Dp = ", Dp);
+ iDp = inv(Dp);
+ afficher ("Dp^-1 = ", iDp);
+
+ S1 = prod (t(F), iDn);
+ afficher ("S1 = ", S1);
+ T1 = prod (F, iDp);
+ afficher ("T1 = ", T1);
+ S = prod (S1, T1);
+ afficher ("S = ", S);
+ T = prod (T1, S1);
+ afficher ("T = ", T);
+
+ ep = deflation (S);
+ Lambda = ep.fst;
+ afficher ("Valeurs propres : ", Lambda);
+ U = ep.snd;
+ afficher ("U = ", U);
+
+ ep = deflation (T);
+ afficher ("Valeurs propres : ", ep.fst);
+ V = ep.snd;
+ afficher ("V = ", V);
+
+ Psi = prod (prod (iDn, T1), U);
+ afficher ("Psi = ", Psi);
+
+ Phi = prod (prod (iDp, S1), V);
+ afficher ("Phi = ", Phi);
+
+ /* C = superp (Phi, Psi); */
+ C = superp (U, V);
+ G = graph (C, nlg, ncg);
+ afficher ("Graphe : ", G);
+ return C;
+
+}
+
+function AFCS (K, nlg, ncg)
+{
+var k, F, n, p, M, P, Dn, Dp, MP, X, C, C1, C2, S, ep, Lambda, Cp, Cn, Cpn, G, S, T, S1, T1;
+ afficher ("AFC de", K);
+ G = fill (0, 1, 1);
+ n = nl(K);
+ p = nc(K);
+ k = prod (fill(1,1,n), prod (K, fill(1,p,1)));
+ afficher ("Nombre d'individus : ", k);
+ k = ind (k, 0, 0);
+ F = psm (1/k, K);
+ afficher ("Fréquences : ", F);
+ M = prod (F, fill(1,p,1));
+ afficher ("Totaux des lignes : ", M);
+ P = prod (fill(1,1,n), F);
+ afficher ("Totaux des colonnes : ", P);
+ Dn = diag (M);
+ afficher ("Dn = ", Dn);
+ iDn = inv(Dn);
+ afficher ("Dn^-1 = ", iDn);
+ Dp = diag (t(P));
+ afficher ("Dp = ", Dp);
+ iDp = inv(Dp);
+ afficher ("Dp^-1 = ", iDp);
+
+ S1 = prod (t(F), iDn);
+ afficher ("S1 = ", S1);
+ T1 = prod (F, iDp);
+ afficher ("T1 = ", T1);
+ S = prod (S1, T1);
+ afficher ("S = ", S);
+ T = prod (T1, S1);
+ afficher ("T = ", T);
+
+ ep = deflation (S);
+ Lambda = ep.fst;
+ afficher ("Valeurs propres : ", Lambda);
+ U = ep.snd;
+ afficher ("U = ", U);
+
+ ep = deflation (T);
+ afficher ("Valeurs propres : ", ep.fst);
+ V = ep.snd;
+ afficher ("V = ", V);
+
+ Psi = prod (prod (iDn, T1), U);
+ afficher ("Psi = ", Psi);
+
+ Phi = prod (prod (iDp, S1), V);
+ afficher ("Phi = ", Phi);
+
+ /* C = superp (Phi, Psi); */
+ /* C = superp (U, V); */
+ C1 = prod (iDn, prod (F, prod (iDp, U)));
+ C2 = prod (iDp, prod (t(F), prod (iDn, V)));
+ C = superp (C1, C2);
+ G = graph (C, nlg, ncg);
+ afficher ("Graphe : ", G);
+ return C;
+
+}
+
+function AFCE (K, nlg, ncg)
+{
+var k, F, n, p, M, P, Dn, Dp, MP, X, C, C1, C2, S, ep, Lambda, Cp, Cn, Cpn, G, S, T, S1, T1;
+ afficher ("AFC de", K);
+ G = fill (0, 1, 1);
+ n = nl(K);
+ p = nc(K);
+ k = prod (fill(1,1,n), prod (K, fill(1,p,1)));
+ afficher ("Nombre d'individus : ", k);
+ k = ind (k, 0, 0);
+ F = psm (1/k, K);
+ afficher ("Fréquences : ", F);
+ M = prod (F, fill(1,p,1));
+ afficher ("Totaux des lignes : ", M);
+ P = prod (fill(1,1,n), F);
+ afficher ("Totaux des colonnes : ", P);
+ Dn = diag (M);
+ afficher ("Dn = ", Dn);
+ iDn = inv(Dn);
+ afficher ("Dn^-1 = ", iDn);
+ Dp = diag (t(P));
+ afficher ("Dp = ", Dp);
+ iDp = inv(Dp);
+ afficher ("Dp^-1 = ", iDp);
+
+ S1 = prod (iDn, F);
+ afficher ("S1 = ", S1);
+ T1 = prod (iDp, t(F));
+ afficher ("T1 = ", T1);
+ S = prod (S1, T1);
+ afficher ("S = ", S);
+ T = prod (T1, S1);
+ afficher ("T = ", T);
+
+ ep = deflation (S);
+ Lambda = ep.fst;
+ afficher ("Valeurs propres : ", Lambda);
+ U = ep.snd;
+ afficher ("U = ", U);
+
+ ep = deflation (T);
+ afficher ("Valeurs propres : ", ep.fst);
+ V = ep.snd;
+ afficher ("V = ", V);
+/*
+ Psi = prod (prod (iDn, T1), U);
+ afficher ("Psi = ", Psi);
+
+ Phi = prod (prod (iDp, S1), V);
+ afficher ("Phi = ", Phi);
+*/
+ /* C = superp (Phi, Psi); */
+ /* C = superp (U, V); */ 
+ C1 = prod (iDp, prod (t(F), U));
+ C2 = prod (iDn, prod (F, V));
+ C = superp (C1, C2);
+
+ G = graph (C, nlg, ncg);
+ afficher ("Graphe : ", G);
+ return C;
+
+}
+ 
+function dist (X)
+{
+var n, p, D, i, j, k;
+ n = nl(X);
+ p = nc(X);
+ D = fill (0, n, n);
+ for (i=0; i<n; i++)
+ for (j=0; j<n; j++)
+ for (k=0; k<p; k++)
+  D.data[i][j] += Math.pow (X.data[i][k] - X.data[j][k], 2);
+ return D;
+}
+
+function torgerson (D)
+{
+var n, A, W, WD;
+ n = nl(D);
+ A = add (id(n), psm (-1/n, fill(1,n,n)));
+ W = psm (-.5, prod (A, prod (D, A)));
+ WD = psm (1/n, W);
+ return WD;
+}
+
+function ACPD (D, nlg, ncg)
+{
+var WD, ep, Lambda, U, G;
+ WD = torgerson (D);
+ afficher ("Matrice à diagonaliser : ", WD);
+ ep = deflation (WD);
+ Lambda = ep.fst;
+ U = ep.snd;
+ afficher ("U = ", U);
+ G = graph (U, nlg, ncg);
+ afficher ("Graphe : ", G);
+ return U;
+}
+
+function ACPDP (X, nlg, ncg)
+{
+ D2 = dist (X);
+ D4 = prod_par (D2, D2);
+ return ACPD (D4, nlg, ncg);
+}
+
+/*
+
+D = 1/n * eye(n,n)
+g = X' * D * ones(n,1)
+Y = X - ones(n,1) * g'
+V = Y' * D * Y
+
+moyenne = sum (X, 1) / n
+variance = sum (Y .* Y, 1) / n
+ecart = sqrt (variance)
+Dinvs = diag (ones(ecart)./ecart)
+Z = Y * Dinvs
+R = Dinvs * V * Dinvs
+R1 = Z' * D * Z
+R-R1
+Dinvs2 = diag (ones(variance)./variance)
+M = Dinvs2
+MV = M * V
+
+[valpr, vecpr] = bdiag (MV)
+valprv = diag(valpr)
+[valprvo, ordre] = sort(valprv)
+u = vecpr (:,ordre)
+lambda = valpr (:, ordre)
+c = Y * u
+
+
+:PROGRAM:ACPNT
+:dim [D]->L6
+:L6(1)->N
+:L6(2)->P
+:P->G
+:N^-1->D
+:{N,1}->dim [A]
+:Fill(1,[A])
+:[D]t*D*[A]->[C]
+:[D]-[A]*[C]t->[E]
+:[E]t*D*[E]->[B]
+:{P,P}->dim [A]
+:Fill(0,[A])
+:For(I,1,P)
+:0->S
+:For(J,1,N)
+:S+[E](J,I)²->S
+:End
+:sqrt(N/S)->[A](I,I)
+:End
+:For(I,1,G)
+:[A](I,I)->L2(I)
+:End
+:[E]*[A]->[E]
+--- pour version transposée ajouter : [E]t->[E]:N->G:P->N
+:[E]t*D*[E]->[B]
+:[B]->[A]
+:For(I,1,N)
+:For(J,1,G)
+:[E](I,J)->L5((I-1)G+J)
+:End
+:End
+---:[A]*[B]->[A]
+---:augment([D],[E])->[D]
+:2->H
+:prgmDEFLA
+:{G,G}->dim [A]
+:Fill(0,[A])
+:For(I,1,G)
+:L2(I)->[A](I,I)
+:End
+:{N,G}->dim [E]
+:For(I,1,N)
+:For(J,1,G)
+:L5((I-1)G+J)->[E](I,J)
+:End
+:End
+{N,G}->dim [D]
+:{N+G,G}->dim [E]
+:For(I,1,G)
+:G->[E](N+I,I)
+:End
+:[E]*[A]*[A]*[C]->[B]
+:[E]*[C]->[B]
+:ClrDraw
+:DispGraph
+:For(I,1,N+G)
+:91*([B](I,1)-Xmin)/(Xmax-Xmin)->C
+:57-57*([B](I,2)-Ymin)/(Ymax-Ymin)->L
+:int C->C
+:int L->L
+:max(C,0)->C
+:min(C,85)->C
+:max(L,0)->L
+:min(L,57)->L
+:If I<=N
+:Then
+:Text(L,C,I)
+:Else
+:Text(L,C,"V")
+:Text(L,C+4,I-N)
+:End
+:End
+:
+
+*/
+ 
+function dataafuacp (X)
+{
+var n, p, Y, i, j;
+ /*afficher ("X = ", X);*/
+ n = nl(X);
+ p = nc(X);
+ Y = fill (0, n, p*p);
+ /*afficher ("Y1 = ", Y);*/
+ for (i=0; i<n; i++)
+ for (j=0; j<p; j++)
+ {
+  /*afficher ("Y:", Y);*/
+  Y.data[i][j*p+j] = X.data[i][j];
+ }
+ /*afficher ("Y : ", Y);*/
+ return Y;
+}
+
+function dataafuacn (X, Y) /* construction d'un escalier à 2 marches */
+{
+ n = X.nl;
+ p = X.nc;
+ q = Y.nc;
+ Z = fill (0, n, 2*(p+q));
+ for (i=0; i<n; i++)
+ {
+  for (j=0; j<p; j++)
+   Z.data[i][j] = X.data[i][j];
+  for (j=0; j<q; j++)
+   Z.data[i][2*p+q+j] = Y.data[i][j];
+ }
+ return Z; 
+}
+
+function AFU (Y, p, k1, k2, nlg, ncg)
+{
+var n, r, q, V, X, W, iW, tXX, i, j, k, S, ep, Lambda, U, Y, C, G, Xg, Yg, Cs, D, Ck, Cc, Ak1, Vk1, Cc1, Ak2, Vk2, Cc2; 
+ n = nl(Y);
+ r = nc(Y);
+ q = r/p;
+ D = id(n);
+ V = prod (t(Y), Y);
+ X = fill (0, n, p);
+ W = fill (0, p, p);
+ for (i=0; i<n; i++)
+ for (j=0; j<p; j++)
+ for (k=0; k<q; k++)
+  X.data[i][j] += Y.data[i][k*p+j];
+ afficher ("X = ", X);
+ for (i=0; i<p; i++)
+ for (j=0; j<p; j++)
+ for (k=0; k<q; k++)
+  W.data[i][j] += V.data[k*p+i][k*p+j];
+ afficher ("W = ", W);
+ tXX = prod (t(X), X);
+ afficher ("tXX = ", tXX);
+ iW = inv(W);
+ afficher ("W^-1 = ", iW);
+ /*S = prod (inv(W), prod (t(X), X));*/
+ S = prod (iW, tXX);
+ afficher ("S = ", S);
+ ep = deflation (S);
+ Lambda = ep.fst;
+ afficher ("Valeurs propres : ", Lambda);
+ U = ep.snd;
+ afficher ("U = ", U);
+ 
+ Xg = superp (X, fill(0,1,nc(X)));
+ Xg = superp (Xg, psm(p,id(nc(X))));
+ afficher ("Xg = ", Xg);
+ C = prod (Xg, U);
+ G = graph (C, nlg, ncg);
+
+ echo ("<p>Individus 1 à "); echo (n);
+ echo (", origine "); echo (n+1);
+ echo (", variables "); echo (n+2); echo (" à "); echo (n+1+nc(X));
+ afficher ("Graphe sans centrage-réduction : ", G);
+
+ Yg = centred (X);
+ Yg = superp (Yg, fill(0,1,nc(Y)));
+ Yg = superp (Yg, psm(p,id(nc(Y))));
+
+ afficher ("Yg = ", Yg);
+ C = prod (Yg, U);
+ G = graph (C, nlg, ncg);
+ echo ("<p>Individus 1 à "); echo (n);
+ echo (", origine "); echo (n+1);
+ echo (", variables "); echo (n+2); echo (" à "); echo (n+1+nc(X));
+ afficher ("Graphe avec centrage-réduction : ", G);
+
+ V = prod (X, U);
+ afficher ("V = ", V);
+
+ Cs = fill (0, 0, p);
+ for (k=0; k<q; k++)
+ {
+  /* Ak = Xk W^-1 X'k D */
+  Xk = fill (0, n, p);
+  for (i=0; i<n; i++)
+  for (j=0; j<p; j++)
+   Xk.data[i][j] = Y.data[i][j+p*k];
+  echo ("<p>k="); echo(k);
+  afficher ("Xk = ", Xk);
+  Ak = prod (Xk, prod (iW, prod (t(Xk), D)));
+  afficher ("Ak = ", Ak);
+  Vk = prod (Ak, V);
+  afficher ("Vk = ", Vk);
+  Ck = prod (t(Xk), prod (D, Vk));
+  afficher ("Ck = ", Ck);
+  Cs = superp (Cs, Ck);  
+ }
+ G = graph (Cs, nlg, ncg);
+ afficher ("graphe : ", G);
+
+  Xk1 = fill (0, n, p);
+  for (i=0; i<n; i++)
+  for (j=0; j<p; j++)
+   Xk1.data[i][j] = Y.data[i][j+p*k1];
+  afficher ("Xk1 = ", Xk1);
+
+  Xk2 = fill (0, n, p);
+  for (i=0; i<n; i++)
+  for (j=0; j<p; j++)
+   Xk2.data[i][j] = Y.data[i][j+p*k2];
+  afficher ("Xk2 = ", Xk2);
+
+ /* Cc = prod (iW, prod (t(Xk2), prod (D, prod (Xk1, prod (iW, prod (t(Xk1), prod (D, V)))))));
+ */
+  Ak1 = prod (Xk1, prod (iW, prod (t(Xk1), D)));
+  afficher ("Ak1 = ", Ak1);
+  Vk1 = prod (Ak1, V);
+  afficher ("Vk1 = ", Vk1);
+  Cc1 = prod (iW, prod (t(Xk2), prod (D, Vk1))); 
+  afficher ("Cc1 = ", Cc1);
+
+  Ak2 = prod (Xk2, prod (iW, prod (t(Xk2), D)));
+  afficher ("Ak2 = ", Ak2);
+  Vk2 = prod (Ak2, V);
+  afficher ("Vk2 = ", Vk2);
+  Cc2 = prod (iW, prod (t(Xk1), prod (D, Vk2))); 
+  afficher ("Cc2 = ", Cc2);
+
+  Cc = superp (Cc1, Cc2);
+  
+ Gc = graph (Cc, nlg, ncg);
+ afficher ("Graphe correspondances :", Gc);
+
+ return C; 
+
+}
+
+function haut (A, n)
+{
+var B, p, i, j;
+ p = nc(A);
+ B = fill (0, n, p);
+ for (i=0; i<n; i++)
+ for (j=0; j<p; j++)
+ {
+  if (i < nl(A))
+   B.data[i][j] = A.data[i][j];
+  else
+   B.data[i][j] = 0;
+ }
+ return B;
+}
+
+/*
+function suppl (Y, p, ns, ps)
+{
+var Yaa;
+*/
+
+function AFUIVSM (Y, D, p, ns, ps, k1, k2, nlg, ncg)
+{
+var n, r, q, V, X, W, iW, tXX, i, j, k, S, ep, Lambda, U, Y, C, G, Xg, Yg, Cs, Ck, Cc, Ak1, Vk1, Cc1, Ak2, Vk2, Cc2,
+ na, pa, ra, Yaa, Yba, Ytd, Yt, Yg, C1, G1, Xh, Vh;
+
+ afficher ("Tableau brut : ", Y);
+ n = nl(Y);
+ r = nc(Y);
+ q = r / p;
+ /*D = 1;*/ /* métrique des individus = I */
+
+ na = n - ns;
+ pa = p - ps;
+ ra = pa * q;
+ Yaa = fill (0, na, ra);
+ Yba = fill (0, n, ra);
+
+ for (i=0; i<n; i++)
+ for (k=0; k<q; k++)
+ for (j=0; j<pa; j++)
+ {
+  Yba.data[i][k*pa+j] = Y.data[i][k*p+j];
+  if (i<na)
+   Yaa.data[i][k*pa+j] = Y.data[i][k*p+j];
+ }
+ afficher ("Tableau actif : ", Yaa);
+ afficher ("Variables actives : ", Yba);
+
+ Ytd = psm (1/n, prodp (t(Y), prodp (D, Yba)));
+ afficher ("Ytd = ", Ytd);
+ echo ("<p>p="); echo (p);
+ echo (" pa="); echo(pa); 
+ echo (" q="); echo(q);
+ Yt = fill (0, p /*ps*/, ra);
+ for (i=0; i<p /*ps*/; i++)
+ for (k=0; k<q; k++)
+ for (j=0; j<pa; j++)
+/*  Yt.data[i][k*pa+j] = Ytd.data[k*p+pa+i][k*pa+j];*/
+  Yt.data[i][k*pa+j] = Ytd.data[k*p+i][k*pa+j];
+
+ afficher ("Yt = ", Yt);
+/*
+ Yg = superp (Yba, fill (0,1,ra));
+ Yg = superp (Yg, psm(pa,id(ra)));
+ Yg = superp (Yg, Yt);
+*/
+ Yg = superp (Yba, Yt);
+ Yg = superp (Yg, fill (0,1,ra));
+ Yg = superp (Yg, psm(pa,id(ra)));
+
+ ng = nl(Yg);
+
+ afficher ("Yg = ", Yg);
+
+  
+
+ V = prodp (t(Yaa), prodp (D, Yaa));
+
+ X = fill (0, n, p);
+ Xa = fill (0, n, pa);
+ Xg = fill (0, ng, pa);
+
+ W = fill (0, pa, pa);
+
+ for (i=0; i<n; i++)
+ for (j=0; j<p; j++)
+ for (k=0; k<q; k++)
+  X.data[i][j] += Y.data[i][k*p+j];
+ afficher ("X = ", X);
+
+ for (i=0; i<na; i++)
+ for (j=0; j<pa; j++)
+ for (k=0; k<q; k++)
+  Xa.data[i][j] += Yba.data[i][k*pa+j];
+ afficher ("Xa = ", Xa);
+
+ for (i=0; i<ng; i++)
+ for (j=0; j<pa; j++)
+ for (k=0; k<q; k++)
+  Xg.data[i][j] += Yg.data[i][k*pa+j];
+ afficher ("Xg = ", Xg);
+ 
+ for (i=0; i<pa; i++)
+ for (j=0; j<pa; j++)
+ for (k=0; k<q; k++)
+  W.data[i][j] += V.data[k*pa+i][k*pa+j];
+ afficher ("W = ", W);
+
+ tXX = prodp (t(Xa), prodp (D, Xa));
+ afficher ("tXX = ", tXX);
+ iW = inv(W);
+ afficher ("W^-1 = ", iW);
+ /*S = prod (inv(W), prod (t(X), X));*/
+ S = prod (iW, tXX);
+ afficher ("S = ", S);
+ ep = deflation (S);
+ Lambda = ep.fst;
+ afficher ("Valeurs propres : ", Lambda);
+ U = ep.snd;
+ afficher ("U = ", U);
+ 
+/*
+ Xg = superp (X, fill(0,1,nc(X)));
+ Xg = superp (Xg, psm(p,id(nc(X))));
+*/
+
+ afficher ("Xg = ", Xg);
+ C = prod (Xg, U);
+ afficher ("C = ", C);
+ G = graph (C, nlg, ncg);
+
+/*
+ echo ("<p>Individus actifs 1 à "); echo (na);
+ echo ("<br>Individus supplémentaires "); echo (na+1); echo (" à "); echo (n);
+ echo ("<br>Origine "); echo (n+1); 
+ echo ("<br>Variables actives "); echo (n+2); echo (" à "); echo (n+1+pa*q);
+ echo ("<br>Variables supplémentaires "); echo (n+2+pa*q) ; echo (" à "); echo (ng); echo ("<p>");
+*/
+
+ echo ("<p>Individus actifs 1 à "); echo (na);
+ echo ("<br>Individus supplémentaires "); echo (na+1); echo (" à "); echo (n);
+ echo ("<br>Variables actives "); echo (n+1); echo (" à "); echo (n+pa);
+ echo ("<br>Variables supplémentaires "); echo (n+pa+1) ; echo (" à "); echo (n+p); echo ("<p>");
+ echo ("<br>Origine "); echo (n+p+1); 
+ echo ("<br>Axes "); echo (n+p+2); echo (" à "); echo (ng); echo ("<p>");
+
+/*
+ echo (", origine "); echo (n+1);
+ echo (", variables "); echo (n+2); echo (" à "); echo (n+1+nc(X));
+*/
+
+ afficher ("Graphe sans centrage-réduction : ", G);
+
+ Xcr = centred (Xg);
+ C = prod (Xcr, U);
+ G = graph (C, nlg, ncg);
+ afficher ("Graphe avec centrage-réduction : ", G);
+
+ V = prod (Xg, U);
+ afficher ("V = ", V);
+
+ Cs = fill (0, 0, pa);
+ Cms = fill (0, 0, pa);
+ Ccms = fill (0, 0, pa);
+ for (k=0; k<q; k++)
+ {
+  /* Ak = Xk W^-1 X'k D */
+  Xk = fill (0, ng, pa);
+  for (i=0; i<ng; i++)
+  for (j=0; j<pa; j++)
+   Xk.data[i][j] = Yg.data[i][j+pa*k];
+  if (k == k1)
+   Xk1 = Xk;
+  if (k == k2)
+   Xk2 = Xk;
+  echo ("<p>k="); echo(k);
+
+  Xh = haut (Xg, n);
+  Xk = haut (Xk, n);
+  Vh = haut (V, n);
+
+  afficher ("Xk = ", Xk);
+  Ak = prod (Xk, prodp (iW, prodp (t(Xk), D)));
+  afficher ("Ak = ", Ak);
+  Vk = prodp (Ak, V);
+  afficher ("Vk = ", Vk);
+  Ck = prodp (t(Xk), prodp (D, Vk));
+  afficher ("Ck = ", Ck);
+  Cs = superp (Cs, Ck);
+
+  Xh = haut (Xg, n);
+  Xk = haut (Xk, n);
+  Vh = haut (V, n);
+
+/* :[A]^-1[C]t[B][A]^-1[B]t[E]->[B] */
+  Cmk = prod (iW, prodp (t(Xh), prodp (D, prodp (Xk, prodp (iW, prodp (t(Xk), prodp (D, Vh)))))));
+  Cms = superp (Cms, Cmk);
+/* :[A]^-1([C]t[C][A]^-1[C]t-[B]t[B][A]^-1[B]t)[E]->[B] */
+  Ccmk = prod (iW, prodp (add (prodp (t(Xh), prodp (D, prodp (Xh, prodp (iW, t(Xh))))), psm (-1, prodp (t(Xk), prodp (D, prodp (Xk, prodp (iW, t(Xk))))))), prodp (D, Vh))); 
+  afficher ("Ccmk = ", Ccmk);
+  Ccms = superp (Ccms, Ccmk);
+ }
+ G = graph (Cs, nlg, ncg);
+ afficher ("graphe : ", G);
+
+ G = graph (Cms, nlg, ncg);
+ afficher ("Graphe AFUM : ", G);
+
+ G = graph (Ccms, nlg, ncg);
+ afficher ("Graphe ACM : ", G);
+
+/*
+  Xk1 = fill (0, ng, pa);
+  for (i=0; i<ng; i++)
+  for (j=0; j<pa; j++)
+   Xk1.data[i][j] = Yg.data[i][j+pa*k1];
+*/
+  afficher ("Xk1 = ", Xk1);
+
+/*
+  Xk2 = fill (0, ng, pa);
+  for (i=0; i<ng; i++)
+  for (j=0; j<pa; j++)
+   Xk2.data[i][j] = Y.data[i][j+pa*k2];
+*/
+  afficher ("Xk2 = ", Xk2);
+
+ /* Cc = prod (iW, prod (t(Xk2), prod (D, prod (Xk1, prod (iW, prod (t(Xk1), prod (D, V)))))));
+ */
+  Ak1 = prod (Xk1, prodp (iW, prodp (t(Xk1), D)));
+  afficher ("Ak1 = ", Ak1);
+  Vk1 = prodp (Ak1, V);
+  afficher ("Vk1 = ", Vk1);
+  Cc1 = prod (iW, prodp (t(Xk2), prodp (D, Vk1))); 
+  afficher ("Cc1 = ", Cc1);
+
+  Ak2 = prod (Xk2, prodp (iW, prodp (t(Xk2), D)));
+  afficher ("Ak2 = ", Ak2);
+  Vk2 = prodp (Ak2, V);
+  afficher ("Vk2 = ", Vk2);
+  Cc2 = prod (iW, prodp (t(Xk1), prodp (D, Vk2))); 
+  afficher ("Cc2 = ", Cc2);
+
+  Cc = superp (Cc1, Cc2);
+  
+ Gc = graph (Cc, nlg, ncg);
+ afficher ("Graphe correspondances avec individus ajoutés :", Gc);
+
+ Xk1 = haut (Xk1, n);
+ afficher ("Xk1 = ", Xk1);
+ Xk2 = haut (Xk2, n);
+ afficher ("Xk2 = ", Xk2);
+ V = haut (V, n);
+ afficher ("V = ", V);
+
+  Ak1 = prod (Xk1, prodp (iW, prodp (t(Xk1), D)));
+  afficher ("Ak1 = ", Ak1);
+  Vk1 = prodp (Ak1, V);
+  afficher ("Vk1 = ", Vk1);
+  Cc1 = prod (iW, prodp (t(Xk2), prodp (D, Vk1))); 
+  afficher ("Cc1 = ", Cc1);
+
+  Ak2 = prod (Xk2, prodp (iW, prodp (t(Xk2), D)));
+  afficher ("Ak2 = ", Ak2);
+  Vk2 = prodp (Ak2, V);
+  afficher ("Vk2 = ", Vk2);
+  Cc2 = prod (iW, prodp (t(Xk1), prodp (D, Vk2))); 
+  afficher ("Cc2 = ", Cc2);
+
+  Cc = superp (Cc1, Cc2);
+  
+ Gc = graph (Cc, nlg, ncg);
+ afficher ("Graphe correspondances sans individus ajoutés :", Gc);
+
+ C1 = prod (iW, prodp (t(Xg), prodp (D, prodp(Xg, prodp (iW, prodp (t(Xg, V)))))));
+ G1 = graph (C1, nlg, ncg);
+ afficher ("Graphe AFUCMS : ", G1);
+ 
+ return C; 
+
+}
+
+function dataafu3 (E, a, b, c)
+{
+var n,p,q,r,D,i,j,k,x,l;
+ n = a*b*c;
+ p = a+b+c;
+ q = 3;
+ r = p*q;
+ D = fill(0,n,r);
+ for(i=0;i<a;i++)
+ for(j=0;j<b;j++)
+ for(k=0;k<c;k++)
+ {
+  x=Math.sqrt(E.data[i][j+k*b]);
+  l=i+a*(j+b*k);
+  D.data[l][i]=x;
+  D.data[l][j+a+p]=x;
+  D.data[l][k+a+b+2*p]=x;
+ }
+ return D;
+}
+
+
+function AFUIVS(Y, p, ns, ps, k1, k2, nlg, ncg)
+{
+ return AFUIVSM (Y, 1, p, ns, ps, k1, k2, nlg, ncg);
+}
+
+function metranapart (Z, D)
+{
+var M;
+ afficher ("metranapart: Z=", Z);
+ afficher ("D=", D);
+ n = nl(Z);
+ if (D == 1)
+  D1 = id(n);
+ else
+  D1 = D;
+ afficher ("Métrique D1 = ", D1);
+ P = prod(Z,prod(inv(prod(t(Z),prod (D1,Z))),prod(t(Z),D1)));
+ afficher ("P = ", P);
+ M = add (D1, psm (-1, P));
+ afficher ("M = ", M);
+ return M;
+}
+
+function XaZfixe (X, Z, D)
+{
+ return prod (metranapart(Z,D), X);
+}
+
+function ANAPART (X, Z, nlg, ncg)
+{
+var n, p, q, D, V11, V12, V21, V22, B, S, ep, Lambda, U, V, C, G, DXU, i, j;
+
+ afficher ("ANAPART: X=", X);
+ afficher ("Z=", Z);
+ n = nl(X);
+ p = nc(X);
+ q = nc(Z);
+ D = psm (1/n, id(n));
+ afficher ("Métrique ", D);
+ V11 = prod(t(X),prod(D,X)); afficher("V11=",V11);
+ V12 = prod(t(X),prod(D,Z)); afficher("V12=",V12);
+ V21 = prod(t(Z),prod(D,X)); afficher("V21=",V21);
+ V22 = prod(t(Z),prod(D,Z)); afficher("V22=",V22);
+/* :([E]t*D*[E])^-1*[E]t*D*[D]->[B] */
+ B = prod (inv(V22), V21); afficher("B=",B);
+/* :([D]tD[D]-[D]tD[E][B]->[A] */
+ S = add (V11, psm (-1, prod (V12, B))); afficher ("S=",S);
+ ep = deflation (S);
+ Lambda = ep.fst;
+ afficher ("Valeurs propres : ", Lambda);
+ U = ep.snd;
+ afficher ("Vecteurs propres : ", U);
+ /*V = prod (X, U);*/
+ V = prod (B, U); 
+ afficher ("V=",V)
+ for (i=0; i<nl(V); i++)
+ for (j=0; j<nc(V); j++)
+ {
+  V.data[i][j] /= Math.sqrt (Lambda.data[j][0]);
+  /*
+  echo ("i="); echo(i); echo(", j="); echo(j); 
+  afficher ("V=", V);
+  */
+ }
+ afficher ("V=",V);
+ C = superp (U, V);
+ G = graph (C, nlg, ncg);
+ afficher ("Graphe : ", G);
+ DXU = prod (D, prod (X, U)); afficher ("DXU=", DXU);
+ C = superp (prod(t(X),DXU), prod(t(Z),DXU));
+ G = graph (C, nlg, ncg);
+ afficher ("graphe sans réduction : ", G);
+ U = centred(U); afficher ("U centré réduit = ", U);
+ V = centred(V); afficher ("V centré réduit = ", V);
+ X = centred(X); afficher ("X centré réduit : ", X);
+ Z = centred(Z); afficher ("Z centré réduit = ", Z);
+ DXU = prod (D, prod (X, U)); afficher ("DXU=", DXU);
+ C = superp (prod(t(X),DXU), prod(t(Z),DXU));
+ G = graph (C, nlg, ncg);
+ afficher ("graphe avec réduction : ", G);
+ return C;
+}
+
+
+
+function ACN (X, Y, nlg, ncg)
+{
+var n, p, q, D, V11, V22, V12, V21, S1, S2, S, ep, Lambda, U, V, Ur, Vr, CX, CY, C, G, C1, XU, YV;
+ n = nl(X);
+ p = nc(X);
+ q = nc(Y); 
+ D = psm (1/n, id(n));
+ V11 = prod (t(X), prod (D, X));
+ afficher ("V11 = ", V11);
+ V12 = prod (t(X), prod (D, Y));
+ afficher ("V12 = ", V12);
+ V22 = prod (t(Y), prod (D, Y));
+ afficher ("V22 = ", V22);
+ V21 = prod (t(Y), prod (D, X));
+ afficher ("V21 = ", V21);
+ S1 = prod (inv(V11), V12);
+ afficher ("V11^-1 V12 = ", S1);
+ S2 = prod (inv(V22), V21);
+ afficher ("V22^-1 V21 = ", S2);
+
+ S = prod (S1, S2);
+ afficher ("S = ", S);
+ ep = deflation (S);
+ Lambda = ep.fst;
+ afficher ("Valeurs propres : ", Lambda);
+ U = ep.snd;
+ afficher ("Vecteurs propres U : ", U);
+ V = prod (S2, U);
+ afficher ("V = ", V);
+
+ T = prod (S2, S1);
+ afficher ("T = ", T);
+ ep = deflation (T);
+ LambdaT = ep.fst;
+ afficher ("Valeurs propres : ", LambdaT);
+ W = ep.snd;
+ afficher ("Vecteurs propres W : ", W);
+ 
+ Xr = centred (X);
+ afficher ("X centré réduit : ", Xr);
+ Yr = centred (Y);
+ afficher ("Y centré réduit : ", Yr);
+ /*
+ Ur = centred (U);
+ afficher ("U centré réduit : ", Ur);
+ Vr = centred (V);
+ afficher ("V centré réduit : ", Vr);
+ CX = prod (prod(t(Xr),Xr), Ur);
+ afficher ("CX = ", CX);
+ CY = prod (prod(t(Yr),Yr), Vr);
+ */
+ CX = prod (prod(t(Xr),Xr), U);
+ afficher ("CX = ", CX);
+ CY = prod (prod(t(Yr),Yr), V);
+ afficher ("CY = ", CY);
+ C = superp (CX, CY);
+ G = graph (C, nlg, ncg);
+ afficher ("Graphe : ", G);
+
+ CX = prod (prod(t(X),X), U);
+ afficher ("CX = ", CX);
+ CY = prod (prod(t(Y),Y), V);
+ afficher ("CY = ", CY);
+ C = superp (CX, CY);
+ G = graph (C, nlg, ncg);
+ afficher ("Graphe sans centrage-réduction : ", G);
+
+ XU = prod(X,U);
+ YV = prod(Y,V);
+ C1 = superp (XU, YV);
+ afficher ("graphe des individus : ", graph(C1,nlg,ncg));
+ afficher ("par rapport au premier tableau :", graph(XU,nlg,ncg));
+ afficher ("par rapport au second tableau :", graph(YV,nlg,ncg));
+ 
+/*
+ C = prod (S2, U);
+ G = graph (C, nlg, ncg);
+ afficher ("Graphe AFC 1", G);
+
+ C = prod (S1, V);
+ G = graph (C, nlg, ncg);
+ afficher ("Graphe AFC 2", G);
+*/
+ C = superp (prod(S2,U), prod(S1,W));
+ G = graph (C, nlg, ncg);
+ afficher ("Graphe AFC", G);
+
+ return C1;
+}
+
+function suite (a, d, n)
+{
+ s = matrix (n, 1);
+ for (i=0; i<n; i++)
+  s.data[i][0] = a + i * d;
+ return s;
+}
+
+function ADCP (X, Y, nlg, ncg)
+{
+var n, p, D, A, Xr, S, ep, Lambda, U, C, G; 
+ n = nl(X);
+ p = nc(X);
+ q = nc(Y)
+ D = psm (1/n, id(n));
+ /*A = mat_red (centrer(X));*/
+ /* afficher ("Matrice de réduction : ", A); */
+ Xr = centred(X);
+ afficher ("Données centrées réduites : ", Xr);
+ /*R = prod (t(Xr), prod (D, Xr));*/
+ A = prod (t(Xr), prod (D, Xr));
+ Dp = prod (t(Y), prod(D, Y));
+ S = prod (inv(A), prod (t(Xr), prod (D, prod (Y, prod (inv(Dp), prod (t(Y), prod (D, Xr)))))));
+ afficher ("Matrice à diagonaliser : ", S);
+ ep = deflation (S);
+ Lambda = ep.fst;
+ afficher ("Valeurs propres : ", Lambda);
+ U = ep.snd;
+ afficher ("Vecteurs propres : ", U);
+ A = superp (prod (Y, suite (1, 1, q)), suite (q, 1, p+1));
+ Xr = superp (Xr, superp (fill(0,1,p), psm(p,id(p))));
+ C = prod (Xr, U);
+ G = graphnum (C, A, nlg, ncg);
+ afficher ("Graphe par classe : ", G);
+ G = graph (C, nlg, ncg);
+ afficher ("graphe individus : ", G);
+ return C;
+}
+
+function ADCN (X1, Y, nlg, ncg)
+{
+var X, n, p, q, D, V11, V22, V12, V21, S1, S2, S, ep, Lambda, U, V, Ur, Vr, CX, CY, C, G;
+ X = centred (X1);
+ n = nl(X);
+ p = nc(X);
+ q = nc(Y); 
+ D = psm (1/n, id(n));
+ V11 = prod (t(X), prod (D, X));
+ afficher ("V11 = ", V11);
+ V12 = prod (t(X), prod (D, Y));
+ afficher ("V12 = ", V12);
+ V22 = prod (t(Y), prod (D, Y));
+ afficher ("V22 = ", V22);
+ V21 = prod (t(Y), prod (D, X));
+ afficher ("V21 = ", V21);
+ S1 = prod (inv(V11), V12);
+ afficher ("S1 = ", S1);
+ S2 = prod (inv(V22), V21);
+ afficher ("S2 = ", S2);
+ S = prod (S1, S2);
+ afficher ("S = ", S);
+ ep = deflation (S);
+ Lambda = ep.fst;
+ afficher ("Valeurs propres : ", Lambda);
+ U = ep.snd;
+ afficher ("Vecteurs propres : ", U);
+ /* Xr = centred (X); */
+ Xr = X;
+ A = superp (prod (Y, suite (1, 1, q)), suite (q, 1, p+1));
+ Xr = superp (Xr, superp (fill(0,1,p), psm(p,id(p))));
+ C = prod (Xr, U);
+ G = graphnum (C, A, nlg, ncg);
+ afficher ("Graphe par classe : ", G);
+ G = graph (C, nlg, ncg);
+ afficher ("graphe individus : ", G);
+ return C;
+}
+
+function power (A, x)
+{
+var ep, Lambda, U, B, i, C;
+ if (x == 0)
+  return 1;
+ if (x == 1)
+  return A;
+ ep = deflation (A);
+ Lambda = ep.fst;
+ U = ep.snd;
+ /* A U = U D_Lambda
+    A = U D_Lambda U^-1
+    A^x = U D_Lambda^x U^-1
+  */
+ B = fill (0, nl(A), nc(A));
+ for (i=0; i<nl(A); i++)
+  B.data[i][i] = Math.pow (Lambda.data[i][0], x);
+ C = prod (U, prod (B, inv(U)));
+ return C;
+}
+
+function ACU (X, Y, a, b, c, d, nlg, ncg)
+{
+var n, p, q, D, V11, V22, V12, V21, S1, S2, S, ep, Lambda, U, V, Ur, Vr, CX, CY, C, G;
+ n = nl(X);
+ p = nc(X);
+ q = nc(Y); 
+ D = psm (1/n, id(n));
+ V11 = prod (t(X), prod (D, X));
+ afficher ("V11 = ", V11);
+ V12 = prod (t(X), prod (D, Y));
+ afficher ("V12 = ", V12);
+ V22 = prod (t(Y), prod (D, Y));
+ afficher ("V22 = ", V22);
+ V21 = prod (t(Y), prod (D, X));
+ afficher ("V21 = ", V21);
+/*
+ S1 = prod (inv(V11), V12);
+ S2 = prod (inv(V22), V21);
+*/
+ V11a = power (V11, a);
+ afficher ("V11^a = ", V11a);
+ V12b = power (V12, b);
+ afficher ("V12^b = ", V12b);
+ S1 = prod (V11a, V12b);
+ afficher ("S1 = ", S1);
+ V22c = power (V22, c);
+ afficher ("V22^c = ", V22c);
+ V21d = power (V21, d);
+ afficher ("V21^d = ", V21d);
+ S2 = prod (V22c, V21d);
+ afficher ("S2 = ", S2);
+ S = prod (S1, S2);
+ afficher ("S = ", S);
+ ep = deflation (S);
+ Lambda = ep.fst;
+ afficher ("Valeurs propres : ", Lambda);
+ U = ep.snd;
+ afficher ("Vecteurs propres : ", U);
+ V = prod (S2, U);
+ afficher ("V = ", V);
+ Xr = centred (X);
+ afficher ("Xr = ", Xr);
+ Yr = centred (Y);
+ afficher ("Yr = ", Yr);
+ Ur = centred (U);
+ afficher ("Ur = ", Ur);
+ Vr = centred (V);
+ afficher ("Vr = ", Vr);
+ CX = prod (prod(t(Xr),Xr), Ur);
+ afficher ("CX = ", CX);
+ CY = prod (prod(t(Yr),Yr), Vr);
+ afficher ("CY = ", CY);
+ C = superp (CX, CY);
+ afficher ("C = ", C);
+ G = graph (C, nlg, ncg);
+ return G;
+
+}
+
+function discont1 (K)
+{
+var p, q, n, X, i, j;
+ p = K.nl;
+ q = K.nc;
+ n = p * q;
+ X = fill (0, n, p+q);
+ for (i=0; i<p; i++)
+ for (j=0; j<q; j++)
+ {
+  X.data[i*q+j][i] = Math.sqrt(K.data[i][j]); 
+  X.data[i*q+j][p+j] = Math.sqrt(K.data[i][j]);
+ }
+ return X;
+}
+
+function discont (K) /* CORCAN dans programme TI82 */
+{
+var p, q, n, X, Y, i, j;
+ p = K.nl;
+ q = K.nc;
+ n = p * q;
+ X = fill (0, n, p);
+ Y = fill (0, n, q);
+ for (i=0; i<p; i++)
+ for (j=0; j<q; j++)
+ {
+  X.data[i*q+j][i] = Math.sqrt(K.data[i][j]); 
+  Y.data[i*q+j][j] = Math.sqrt(K.data[i][j]);
+ }
+ return new pair (X, Y);
+}
+
+function udiscont (K)
+{
+var p, q, n, X, i, j;
+ p = K.nl;
+ q = K.nc;
+ n = p * q;
+ X = fill (0, n, 2*(p+q));
+ for (i=0; i<p; i++)
+ for (j=0; j<q; j++)
+ {
+  X.data[i*q+j][i] = Math.sqrt(K.data[i][j]); 
+  X.data[i*q+j][2*p+q+j] = Math.sqrt(K.data[i][j]);
+ }
+ return X;
+}
+
+function co (K) 
+{
+var B, i, j;
+ B = fill (0, K.nl+K.nc, K.nl+K.nc);
+ for (i=0; i<K.nl; i++)
+ for (j=0; j<K.nc; j++)
+ {
+  B.data[i][i] += K.data[i][j];
+  B.data[K.nl+j][K.nl+j] += K.data[i][j];
+  B.data[i][K.nl+j] = K.data[i][j];
+  B.data[K.nl+j][i] = K.data[i][j];
+ }
+ return B;
+}
+
+function ap (vbl, f, valeur)
+{
+var _apply_result, instr, r;
+ instr = vbl + "=" + Number(valeur).toString(10) + "; " + "_apply_result=" +f;
+ r = eval (instr);
+ return _apply_result;
+}
+
+function integrale (min, max, vbl, f)
+{
+
+}
+
+function Gamma (a)
+{
+var G, x, dx;
+ G = 0;
+ dx = 0.01;
+ for (x=dx/2; x<30; x+=dx)
+  G += Math.exp (-x) * Math.pow (x, a-1) * dx;
+ return G;
+}
+
+function densite_khi2 (n, x)
+{
+ return 1 / (Math.pow (2, n/2) * Gamma (n/2)) * Math.exp (-x/2) * Math.pow (x, n/2-1);
+}
+
+function khi2 (n, k)
+{
+var p, dp;
+ p = 0;
+ dx = 0.1;
+ for (x=k+dx/2; x<100; x+=dx)
+ {
+  y = densite_khi2(n,x);
+  p += y * dx;
+/*  document.write ("<p>x = " + Number(x).toString(10) + ", y = " + Number(y).toString(10) + ", p = " + Number(p).toString(10)); */
+  if (y < 0.0001)
+   break;
+ } 
+ return p;
+}
+
+function testkhi2 (K)
+{ 
+var M, P, k, T, D, D2, Q, k2, p;
+ M = prod (K, fill(1,nc(K),1));
+ afficher ("M = ", M);
+ P = prod (fill(1,1,nl(K)), K);
+ afficher ("P = ", P);
+ k = prod (P, fill(1,nc(K),1));
+ afficher ("k = ", k);
+ T = psm (1/k.data[0][0], prod (M, P));
+ afficher ("T = ", T);
+ D = add (K, psm(-1,T));
+ afficher ("D = ", D);
+ D2 = prod_par (D, D);
+ afficher ("D2 = ", D2);
+ Q = prod_par (D2, power_par(T,-1));
+ afficher ("Q = ", Q);
+ k2 = prod (fill(1,1,nl(Q)), prod (Q, fill(1,nc(Q),1)));
+ afficher ("khi2 = ", k2);
+/*
+ if (nl(K) >= nc(K))
+  n = nc(K) - 1;
+ else
+  n = nl(K) - 1;
+*/
+ n = (nl(K)-1) * (nc(K)-1);
+ document.write ("<p>" + Number(n).toString(10) + " degrés de liberté<p>");
+ p = khi2(n,k2.data[0][0]);
+
+ /* document.write ("<p>L'hypothèse d'indépendance est acceptée pour un seuil d'erreur inférieur à " + Number(p * 100).toString(10) + " %.<p>"); */
+ 
+ document.write ("<p>S'il y a indépendance, il y a " + Number(p * 100).toString(10) + " % de chance d'avoir des résultats aussi corrélés. L'hypothèse d'indépendance est acceptée si le seuil d'erreur choisi est inférieur à cette probabilité." );
+ return p;
+}
+
+
+
+
+
+/*
+*/
+
+function readmatrices ()
+{
+var buf;
+var x;
+var nmat, nrowsa, ncolsa, nrowsb, ncolsb, nrowsc, ncolsc;
+var dataa, datab, datac;
+var s, a, b;
+var i, j;
+var A, B, C, n;
+var rd, l, v;
+var flag_add, flag_scal, flag_prod, flag_transpose, flag_diag, flag_det, flag_inverse, flag_propre, flag_exp, flag_graph, nl, nc, flag_autre, formule;
+var abcisseval;
+
+ abcisseval = document.readform.abcisse.value;
+ abcisse = parseInt (abcisseval);
+ ordonnee = parseInt (document.readform.ordonnee.value);
+ n = parseFloat (document.readform.n.value);
+
+ buf = new buffer (document.readform.dataa.value);
+ nrowsa = parseInt (document.readform.nrowsa.value);
+ ncolsa = parseInt (document.readform.ncolsa.value);
+ A = new mat (nrowsa, ncolsa);
+ for (i=0; i<nrowsa; i++)
+ for (j=0; j<ncolsa; j++)
+ {
+  x = getnbr (buf);
+  if (x == null) break;
+  A.data[i][j] = x;
+ }
+
+ buf = new buffer (document.readform.datab.value);
+ nrowsb = parseInt (document.readform.nrowsb.value);
+ ncolsb = parseInt (document.readform.ncolsb.value);
+ B = new mat (nrowsb, ncolsb);
+ for (i=0; i<nrowsb; i++)
+ for (j=0; j<ncolsb; j++)
+ {
+  x = getnbr (buf);
+  if (x == null) break;
+  B.data[i][j] = x;
+ }
+
+ buf = new buffer (document.readform.datac.value);
+ nrowsc = parseInt (document.readform.nrowsc.value);
+ ncolsc = parseInt (document.readform.ncolsc.value);
+ C = new mat (nrowsc, ncolsc);
+ for (i=0; i<nrowsc; i++)
+ for (j=0; j<ncolsc; j++)
+ {
+  x = getnbr (buf);
+  if (x == null) break;
+  C.data[i][j] = x;
+ }
+
+ flag_add = document.readform.add.checked;
+ flag_scal = document.readform.scal.checked;
+ flag_prod = document.readform.prod.checked;
+ flag_transpose = document.readform.transpose.checked;
+ flag_diag = document.readform.diag.checked;
+ flag_det = document.readform.det.checked;
+ flag_inverse = document.readform.inverse.checked;
+ flag_propre = document.readform.propre.checked;
+ flag_exp = document.readform.exp.checked;
+ flag_graph = document.readform.graph.checked;
+ nl = document.readform.nl.value;
+ nc = document.readform.nc.value;
+ flag_autre = document.readform.autre.checked;
+ formule = document.readform.formule.value;
+
+ document.write ("n = " + n);
+/*
+ trace ("nrowsa=",nrowsa);
+ trace ("ncolsa=",ncolsa);
+ trace ("nrowsb=",nrowsb);
+ trace ("ncolsb=",ncolsb);
+*/
+ document.write ("<p>A = ");
+ print_mat (A);
+ document.write ("<p>B = ");
+ print_mat (B);
+ document.write ("<p>C = ");
+ print_mat (C);
+ 
+ if (flag_add)
+ { document.write ("<p>A + B = "); print_mat (add_mat (A, B)); }
+ if (flag_scal)
+ { document.write ("<p>n A = "); print_mat (prod_scal_mat (n, A)); }
+ if (flag_prod) 
+ { document.write ("<p>A B = "); print_mat (prod_mat (A, B)); }
+ if (flag_transpose)
+ { document.write ("<p>Transposée de A = "); print_mat (transpose_mat (A)); }
+ if (flag_diag)
+ {
+  document.write ("diag(A) = ");
+  print_mat (diag(A));
+ }
+ if (flag_det)
+ { document.write ("<p>Déterminant de A = " + determinant(A)); }
+ if (flag_inverse)
+ { document.write ("<p>Inverse de A = "); print_mat (inverse(A)); }
+ if (flag_propre)
+ {
+ rd = deflation (A);
+ l = rd.fst;
+ v = rd.snd;
+ echo ("<p>Valeurs propres de A : ");
+ print_mat (l);
+ echo ("<p>Vecteurs propres de A : ");
+ print_mat (v);
+ }   
+ if (flag_exp)
+ {
+  document.write ("<p>Exponentielle de A = ");
+  print_mat (exp(A));
+ }
+ if (flag_graph)
+ {
+  document.write ("<p>Graphe de A : <p>");
+  print_mat (graph (A, nl, nc));
+ }
+ if (flag_autre)
+ {
+  document.write ("<p>" + formule + " = ");
+  print_mat (eval (formule));
+ }
+
+
+}
+
+display ()
+{
+var nmat;
+ nmat = parseInt (document.readform.nmat.value);
+ print_mat (matrices[nmat]);
+}
+ 
+</script>
+
+<form name="readform">
+
+
+<p>
+<ul>
+<li><input type=checkbox name=add> A + B = add (A, B)
+<li><input type=checkbox name=scal> n A = psm (n, A)
+<li><input type=checkbox name=prod> A B = prod (A, B)
+<li><input type=checkbox name=transpose> transposée de A = t(A)
+<li><input type=checkbox name=diag> matrice diagonale contenant les éléments du vecteur colonne A = diag(A)
+<li><input type=checkbox name=det> déterminant de A = det (A)
+<li><input type=checkbox name=inverse> inverse de A = inv (A)
+<li><input type=checkbox name=propre> éléments propres de A : valeurs propres valpr(A), vecteurs propres vecpr(A)
+<li><input type=checkbox name=exp> exponentielle de A = exp(A)
+<li><input type=checkbox name=graph> graphe de A
+<input name=nl size=3> lignes, 
+<input name=nc size=3> colonnes
+<li><input type=checkbox name=autre> autre opération :
+<input name=formule size=70><br> exemple : prod (A, t(B))
+</ul>
+<p>
+Graphes : colonne <input type="text" name="abcisse" size=3 value="0"> en abcisse et <input type="text" name="ordonnee" size=3 value="1"> en ordonnee (à partir de 0)
+<p>
+<p>Autres fonctions :
+<ul>
+<li> fill(x,nl,nc) : matrice de nl lignes et nc colonnes remplie de x
+<li> id(n) : identité
+<li> prod_par(A,B) produit élément par élement
+<li> power_par(A,x) : puissance x élément par élément
+<li> power(A,x) : matrice A puissance x
+<li> centre(A) : centre de gravité
+<li> centrer(A) : données centrées
+<li> variance(A)
+<li> centred(A) : données centrées réduites
+<li> superp(A,B) : superposition
+<li> co(A) : construction du tableau de Burt
+<li> discont(A).fst, discont(A).snd : tableaux disjonctifs associés à un tableau de contingence
+<li> udiscont(A) : tableau pour AFU
+<li> ACP(A,nl,nc) : analyse en composantes principales des données dans A avec graphe sur nl lignes et nc colonnes
+<li> AFC(A,nl,nc) : analyse factorielle des correspondances
+<li> AFCC, AFCO, AFCS, AFCE : différentes version d'AFC
+<li> dist(X) : distances au carré
+<li> ACPD(A,nl,nc) : ACP sur tableau de distances
+<li> ACN(A,B,nl,nc) : analyse canonique
+<li> AFU(A,p,k1,k2,nl,nc) : analyse factorielle universelle avec p variables, analyse des correspondances sur caractères k1 et k2
+<li> AFUIVS (Y, p, ns, ps, k1, k2, nlg, ncg) : idem avec ns individus supplémentaires en bas et ps variables supplémentaires à droite
+<li> AFUIVSM (Y, D, p, ns, ps, k1, k2, nlg, ncg) : idem avec métrique D (individus, variables)
+<li> ADCP(A,B,nl,nc) et ADCN(A,B,nl,nc) : analyse discriminante
+<li> ACU(A,B,a,b,c,d,nl,nc) : analyse comparative universelle <br>
+En faisant varier les paramètres a, b, c, d on obtient différentes analyses :
+<ul>
+<li> 1 0 0 0 : ACP
+<li> -1 1 -1 1 : analyse canonique, analyse discriminante
+<li> -1 1 0 1 : analyse discriminante ?
+<li> 0 1 -1 1 : analyse projective
+<li> 0 1 0 1 : analyse procrustéenne orthogonale
+<li> 0 0 -1 1 : analyse procrustéenne sans contrainte
+</ul>
+<li> testkhi2(A) : test d'indépendance du khi2
+
+</ul>
+<p>
+Equivalences entre analyses :
+<ul>
+<li> ACP(A) et AFU(dataafuacp(centred(A)),nc(A)) 
+<li> AFC(A) avec colonnes 0 en abcisse et 1 en ordonnée, AFCC(co(A)), AFCS(co(A)), AFCE(co(A)) (et ACN (discont(A).fst, discont(A).snd) et AFU(udiscont(A),nl(A)+nc(A)) ?) avec colonnes 1 et 2
+<li> ADCP(A,B), ADCN(A,B), ACN(A,B)
+<li> ACN(A,B) et AFU(dataafuacn(A,B),nc(A)+nc(B)) : le graphe des variables de ACN correspond aux derniers numéros de AFU et le graphe des individus de ACN aux premiers numéros de AFU
+
+</ul>
+
+<p>
+n = 
+<input name="n">
+<p>
+ 
+<input type=submit value=Calculer onClick="readmatrices()">
+<p>
+
+Introduction de la matrice A :
+<input name="nrowsa" size=3 value=0> lignes, 
+<input name="ncolsa" size=3 value=0> colonnes<p>
+Tapez ci-dessous les valeurs séparées par des espaces :<br>
+<textarea name="dataa" rows=10 cols=60>
+</textarea>
+<p>
+
+Introduction de la matrice B :
+<input name="nrowsb" size=3 value=0> lignes, 
+<input name="ncolsb" size=3 value=0> colonnes<p>
+Tapez ci-dessous les valeurs séparées par des espaces :<br>
+<textarea name="datab" rows=10 cols=60>
+</textarea>
+<p>
+
+Introduction de la matrice C :
+<input name="nrowsc" size=3 value=0> lignes, 
+<input name="ncolsc" size=3 value=0> colonnes<p>
+Tapez ci-dessous les valeurs séparées par des espaces :<br>
+<textarea name="datac" rows=10 cols=60>
+</textarea>
+<p>
+
+</form>
+</body></HTML>

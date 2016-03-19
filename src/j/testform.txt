@@ -1,0 +1,21 @@
+Exemple de forme en J
+
+Démarrer J
+File / New js
+Edit / Form edit
+New... edit, id=edit1
+New... button
+double clic sur le bouton
+code...
+ajouter :
+	wdinfo 'You typed:' , edit1
+File / Save
+Control - testform.js : OK
+Design - testform.js Run
+File / Open profile.js
+Design - testform.js Run
+taper Hello
+cliquer Test
+"You typed:Hello"
+
+

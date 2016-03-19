@@ -1,0 +1,9 @@
+(
+
+(def FILTRE : GETENV UNIF SETENV)
+
+(def NVDEM I)
+
+(def LIST1 : QUOTE () ECH CONS)
+
+)

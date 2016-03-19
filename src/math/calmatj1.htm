@@ -1,0 +1,667 @@
+
+<!--Connexion établie--><!--Base de données sélectionnée--><HTML><head><title>Calculatrice matricielle en JavaScript</title><meta name=keywords content=""></head><body>
+<h3>Calculatrice matricielle en JavaScript</h3>
+ 
+<script language=JavaScript>
+
+ 
+function echo (s)
+{
+	document.write (s);
+}
+
+function mat (nl, nc)
+{
+var i;
+	this.nl = nl;
+	this.nc = nc;
+	this.data = new Array (nl);
+	for (i=0; i<nl; i++)
+		this.data[i] = new Array (nc);
+}
+
+function list (n)
+{
+    this.n = n;
+    this.data = new Array (n);
+}
+
+function add_mat (a, b)
+{
+var c, i, j;
+	c = new mat (a.nl, a.nc);
+ 	for (i=0; i<a.nl; i++)
+	{
+ 		for (j=0; j<a.nc; j++)
+			c.data[i][j] = a.data[i][j] + b.data[i][j];
+	}
+	return c;
+}
+
+function prod_scal_mat (x, a)
+{
+var b;
+    b = new mat (a.nl, a.nc);
+    for (i=0; i<a.nl; i++)
+    for (j=0; j<a.nc; j++)
+        b.data[i][j] = x * a.data[i][j];
+    return b;
+}
+
+
+function prod_mat (a, b)
+{
+var c, i, j, k;
+	c = new mat (a.nl, b.nc);
+ 	for (i=0; i<c.nl; i++)
+	{
+ 		for (j=0; j<c.nc; j++)
+		{
+			c.data[i][j] = 0;
+			for (k=0; k<a.nc; k++)
+				c.data[i][j] += a.data[i][k] * b.data[k][j];
+ 		}
+	}
+	return c;
+}
+
+function transpose_mat (a)
+{
+var b, i, j;
+	b = new mat (a.nc, a.nl);
+ 	for (i=0; i<b.nl; i++)
+	{
+ 		for (j=0; j<b.nc; j++)
+			b.data[i][j] = a.data[j][i];
+	}
+	return b;
+}
+
+function pair (fst, snd)
+{
+    this.fst = fst;
+    this.snd = snd;
+}
+
+function puissance (a)
+{
+var d, u, v, t, i, j, l, l1;
+    /*echo ("<p>puissance");*/
+    d = a.nl;
+    /*echo ("d =", d);
+    echo (d);*/
+    u = new mat (d, 1);
+    /*echo (" 1 ");*/
+
+    v = new mat (d, 1);
+    t = new mat (d, 1);
+    for (i=0; i<d; i++)
+    {
+        u.data[i][0] = 0;
+        v.data[i][0] = 0;
+    }
+    u.data[0][0] = 1;
+    v.data[0][0] = 1;
+
+    l = 0;
+    l1 = 1;
+
+    while ((l-l1)*(l-l1)>0.000000001)
+    {
+        /* echo ("<p>u0="); echo (u.data[0][0]); */
+        /* echo ("<p>u="); print_mat(u); */
+        l1 = l;
+        l = 0;
+        for (j=0; j<d; j++)
+        {
+            t.data[j][0] = 0;
+            for (i=0; i<d; i++)
+                t.data[j][0] += a.data[j][i] * u.data[i][0];
+            l += t.data[j][0] * v.data[j][0];
+        }
+        for (i=0; i<d; i++)
+            u.data[i][0] = t.data[i][0] / l;
+    }
+
+    return new pair (l, u);
+
+}
+
+function deflation (a)
+{
+var d, i, j, k, p, q, ak, xk, r, x1, w, l;
+    d = a.nl;
+    ak = new list(d);
+    ak.data[0] = a;
+    xk = new list(d);
+    w = new mat (d, d);
+    l = new mat (d, 1);
+
+    for (k=0; k<d; k++)
+    {
+        /*echo ("<p>déflation étape "); echo (k);
+        print_mat (ak.data[k]);*/
+        rp = puissance (ak.data[k]);
+        /*echo ("<p>valeur propre : "); echo (rp.fst);
+        echo ("<p>vecteur propre : "); print_mat (rp.snd);*/
+        l.data[k][0] = rp.fst;
+        /*echo (" *1* ");*/
+        xk.data[k] = new mat (d, d);
+        /*echo (" *2* ");*/
+        for (i=0; i<d; i++)
+            xk.data[k].data[i][k] = rp.snd.data[i][0];
+        /*echo (" *3* ");*/
+
+        for (p=k-1; p>=0; p--)
+        {
+            /*echo (" p= "); echo (p);*/
+            /* x(p)k = x(p+1)k + lp/(lk-lp)<w(p),x(p+1)k>x(p)p */
+            q = 0;
+/* verifier w */
+            for (i=0; i<d; i++)
+                q += w.data[i][p] * xk.data[p+1].data[i][k];
+            q *= l.data[p][0]/(l.data[k][0]-l.data[p][0]);
+            for (i=0; i<d; i++)
+                xk.data[p].data[i][k] = xk.data[p+1].data[i][k] + q * xk.data[p].data[i][p]; 
+/* a verifier */
+
+        }
+
+        /*echo (" *4* ");*/
+        if (k >= d-1) 
+        {
+            /*
+            echo ("<p>Résultat déflation :");
+            echo ("<p>Valeurs propres : "); print_mat (l);
+            echo ("<p>Vecteurs propres : "); print_mat (xk.data[0]);
+
+            */
+            return new pair (l, xk.data[0]);
+        }
+        /*echo (" *5* ");*/
+
+        /* w(k) = x(k)k / <x(k)k,x(k)k> */
+
+        r = 0;
+        /*echo (" *6* ");*/
+        for (i=0; i<d; i++)
+        {
+            x1 = xk.data[k].data[i][k];
+            r += x1 * x1;
+        }
+        /*echo (" *7* ");*/
+        for (i=0; i<d; i++)
+        {
+            w.data[i][k] = xk.data[k].data[i][k] / r;
+        }
+        /*echo ("<p>w="); print_mat (w);*/
+      
+        /* A(k+1) = A(k) - lk x(k)k w(k)t */   
+
+        ak.data[k+1] = new mat (d, d);
+        for (i=0; i<d; i++)
+        for (j=0; j<d; j++)
+        {
+            /*echo ("<p>element A(k+1) "); echo (i); echo (" "); echo(j); */
+            ak.data[k+1].data[i][j] = ak.data[k].data[i][j] - l.data[k][0] * xk.data[k].data[i][k] * w.data[j][k];
+            /*echo (" = "); echo (ak.data[k+1].data[i][j]);*/
+        }
+        /*echo ("A(k+1)="); print_mat (ak.data[k+1]);*/
+    }
+    
+ 
+}
+
+function print_mat (a)
+{
+var i, j;
+        echo ("<p><table border=1>");
+	for (i=0; i<a.nl; i++)
+	{
+		echo ("<tr>");
+		for (j=0; j<a.nc; j++)
+		{
+			echo ("<td align=right>");
+			echo (a.data[i][j]);
+			echo ("</td>");
+		}
+		echo ("</tr>");
+	}
+	echo ("</table>");
+
+}
+
+function permutation (n)
+{
+var i;
+    this.dim = n;
+    this.data = new Array (n);
+    this.phase = 0;
+    this.sign = 1;
+    for (i=0; i<n; i++)
+        this.data[i] = i;
+}
+
+function permuter (p)
+{
+var etat, b, c, d;
+ d = p.dim;
+ etat = 0;
+ for (;;)
+ switch (etat)
+ {
+  case 0: 
+   c = d-2;
+  case 1: 
+   if (c < 0) { etat=9; break; }
+   if (p.data[c] >= d-1) { etat=2; break; }
+  case 3:
+   p.data[c]++;
+   if (p.data[c] >= d) { etat=2; break; }
+  case 6:
+   b = 0;
+  case 4:
+   if (b >= c) { etat=7; break; }
+   if (p.data[c] == p.data[b]) { etat=3; break; }
+   b++; etat=4; break;
+  case 7:
+   c++;
+   if (c >= d) { etat=9; break; }
+   p.data[c] = 0; etat=6; break;
+  case 2: 
+   c--; etat=1; break;
+  case 9: 
+   p.phase++;
+   if (p.phase == 4) p.phase = 0;
+   p.sign = 1;
+   if (p.phase == 1 || p.phase == 2) p.sign = -1;
+   return c; /* finished if c < 0 */
+ }
+}
+
+function permuter1 (p)
+{
+var b, c, i, trouve;
+    for (c=p.dim-2; c>=0; c--)
+    {
+        while (p.data[c] < p.dim-1)
+        {
+            p.data[c]++;
+            trouve=0;
+            for (b=0; b<c; b++)
+                if (p.data[c] == p.data[b])
+                {
+                    trouve=1; 
+                    break;
+                }
+            if (trouve==0)
+            {
+                 for(i=c+1;i<d;i++) p.data[i]=0;
+            }
+
+ 
+
+        }
+
+
+
+/*
+        if (p.data[c] < p.dim-1)
+        {
+
+            p.data[c]++;
+            if (p.data[c] < p.dim)
+            {
+
+            }
+
+        }
+*/
+    }
+    p.phase++;
+    if (p.phase == 4) p.phase = 0;
+    p.sign = 1.0;
+    if (p.phase == 1 || p.phase == 2) p.sign = -1.0;
+}
+
+function element (a, perm)
+{
+var r, k;
+ r = 1.0;
+ for (k=0; k<a.nl; k++)
+  r *= a.data[k][perm.data[k]];
+ return r;
+}
+
+function determinant (a)
+{
+var d, perm, s, x, status;
+    d = a.nl;
+    perm = new permutation (d);
+    s = 0.0;
+    for (;;)
+    {
+        x = element (a, perm);
+        s += perm.sign * x;
+        status = permuter (perm);
+        if (status < 0) break;
+    }
+    return s;
+}
+
+function cofacteur (a, i1, j1)
+{
+var b, i, j, det, d;
+ /*echo ("a=");
+ print_mat(a);*/
+ d = a.nl;
+ b = new mat (d, d);
+ for (i=0; i<d; i++)
+ for (j=0; j<d; j++)
+  b.data[i][j] = a.data[i][j];
+ /*echo ("b=");
+ print_mat(b);*/
+ for (i=0; i<d; i++)
+ {
+  b.data[i][j1] = 0.0;
+  b.data[i1][i] = 0.0;
+ }
+ b.data[i1][j1]= 1.0;
+ /*echo ("b=");
+ print_mat (b);*/
+ det = determinant (b);
+ return det;
+}
+
+function inverse (a)
+{
+var b, i, j, det, d;
+ d = a.nl;
+ b = new mat (d, d);
+ det = determinant (a);
+ for (i=0; i<d; i++)
+ for (j=0; j<d; j++)
+  b.data[i][j] = cofacteur (a, j, i) / det;
+ return b;
+}
+
+function test ()
+{
+var a, a2, ta, p, i, j, b, u, pu, k, x, xk, l, lk, pxk, lkxk, tp, perm, status, det, inv, ver;
+	a = 3;
+	echo ("(1) a = ");
+	echo (a);
+	/*
+	$a = array ( nl => 3, nc => 4,
+		     array (1, 4, 3, 9),
+		     array (0, 5, 2, 1),
+                     array (3, 9, 6, 4) );
+	*/
+	a = new mat (3, 4);
+	echo ("(1)");
+	b = 1;
+	echo ("(4)");
+        /* a[0] = new Array (4); */
+        echo ("(5)");
+	a.data[0][0]=1; 
+        echo ("(3)"); 
+                   a.data[0][1]=4; a.data[0][2]=3; a.data[0][3]=9;
+	a.data[1][0]=0; a.data[1][1]=5; a.data[1][2]=2; a.data[1][3]=1;
+	a.data[2][0]=3; a.data[2][1]=9; a.data[2][2]=6; a.data[2][3]=4;
+	echo ("(2)");
+ 	echo ("<p>");
+	echo (" nl=");
+	echo (a.nl);
+	echo (" nc=");
+	echo (a.nc);
+	echo ("<p>");
+/*
+	for (i=0; i<a.nl; i++)
+	{
+		for (j=0; j<a.nc; j++)
+		{
+			echo (" ");
+			echo (a.data[i][j]);
+		}
+		echo ("<br>");
+	}
+*/
+	a2 = add_mat (a, a);
+	echo ("ord a2 = "); echo (a2.nl); 
+	print_mat (a2);
+	ta = transpose_mat (a);
+	echo ("<p>Transposée : ");
+	print_mat (ta);
+	p = prod_mat (a, ta);
+	echo ("<p>Produit :");
+	print_mat (p);
+     echo ("<p>Elements propres :");
+     p.data[0][1] = 16;
+     print_mat (p);
+     tp = transpose_mat (p);
+     rp = puissance (p);
+     l = rp.fst;
+     u = rp.snd;
+     echo ("<p>valeur propre : ");
+     echo (l);
+     echo ("<p>vecteur propre : ");
+     print_mat (u);
+     echo ("Vérification : ");
+     
+     pu = prod_mat (p, u);
+     print_mat (pu);
+     lu = prod_scal_mat (l, u);
+     print_mat (lu);
+     echo ("<p>Déflation :");
+     rd = deflation (p);
+     l = rd.fst;
+     x = rd.snd;
+     echo ("<p>Valeurs propres : ");
+     print_mat (l);
+     echo ("<p>Vecteurs propres : ");
+     print_mat (x);
+     echo ("Vérification : ");
+     d = p.nl;
+     xk = new mat (d, 1);
+     echo (" *1* ");
+     for (k=0; k<p.nl; k++)
+     {
+         echo (" *2* ");
+         lk = l.data[k][0];
+         echo (" *3* ");
+         for (i=0; i<d; i++)
+             xk.data[i][0] = x.data[i][k];
+         echo (k); echo ("e valeur propre = "); echo (lk);
+         echo ("<br>vecteur propre :"); print_mat (xk);
+         pxk = prod_mat (p, xk);
+         print_mat (pxk);
+         lkxk = prod_scal_mat (lk, xk);
+         print_mat (lkxk);
+
+         
+        
+     }
+
+    perm = new permutation (4);
+    for (i=0; i<100; i++)
+    {
+        for (j=0; j<4; j++)
+            echo (perm.data[j]);
+        echo ("<br>");
+        status = permuter (perm);
+        if (status < 0) break;
+    }
+    det = determinant (p);
+    echo ("Determinant: ");
+    echo (det);
+
+    inv = inverse (p);
+    echo ("<p>Matrice inverse : ");
+    print_mat (inv);
+
+    ver = prod_mat (p, inv);
+    echo ("Verification : ");
+    print_mat (ver);    
+}
+
+function buffer (s)
+{
+ this.data = s;
+ this.ptr = 0;
+}
+
+function getnbr (buf)
+{
+ var s;
+ s = "";
+ while ((buf.data.substring (buf.ptr, buf.ptr+1) == " " ||
+         buf.data.substring (buf.ptr, buf.ptr+1) == "\n" ||
+         buf.data.substring (buf.ptr, buf.ptr+1) == "\r") && buf.data.length >= buf.ptr) buf.ptr++;
+ while (buf.data.substring (buf.ptr, buf.ptr+1) != " " &&
+        buf.data.substring (buf.ptr, buf.ptr+1) != "\n" &&
+        buf.data.substring (buf.ptr, buf.ptr+1) != "\r" &&
+        buf.data.length >= buf.ptr)
+ {
+  s += buf.data.substring (buf.ptr, buf.ptr+1);
+  buf.ptr++;
+ }
+ if (s == "") return null;
+ /*document.write ("s=" + s + ".<br>");*/
+ return parseFloat(s);
+}
+
+matrices = new Array (200);
+
+function readmatrices ()
+{
+var buf;
+var x;
+var nmat, nrowsa, ncolsa, nrowsb, ncolsb;
+var s, a, b;
+var i, j;
+var A, B, n;
+var rd, l, v;
+var flag_add, flag_scal, flag_prod, flag_det, flag_inverse, flag_propre;
+ /*
+ document.write ("Matrice numéro " + document.readform.nmat.value +","+ document.readform.data.value); */
+ buf = new buffer (document.readform.dataa.value);
+ /* document.write ("data read:" + buf.data + ".<p>"); */
+/*
+ s = "14";
+ a = 0 + s;
+ b = a + 12;
+ document.write ("Test:" + b + ".<p>"); 
+*/
+
+ n = parseFloat (document.readform.n.value);
+
+ /* nmata = parseInt (document.readform.nmata.value); */
+ nrowsa = parseInt (document.readform.nrowsa.value);
+ ncolsa = parseInt (document.readform.ncolsa.value);
+ A = new mat (nrowsa, ncolsa);
+ for (i=0; i<nrowsa; i++)
+ for (j=0; j<ncolsa; j++)
+ {
+  x = getnbr (buf);
+  if (x == null) break;
+  A.data[i][j] = x;
+  /*document.write ("read number " + x + ".<br>");*/
+ }
+
+ /*print_mat (A);*/
+
+ buf = new buffer (document.readform.datab.value);
+ nrowsb = parseInt (document.readform.nrowsb.value);
+ ncolsb = parseInt (document.readform.ncolsb.value);
+ B = new mat (nrowsb, ncolsb);
+ for (i=0; i<nrowsb; i++)
+ for (j=0; j<ncolsb; j++)
+ {
+  x = getnbr (buf);
+  if (x == null) break;
+  B.data[i][j] = x;
+  /*document.write ("read number " + x + ".<br>");*/
+ }
+ flag_add = document.readform.add.checked;
+ flag_scal = document.readform.scal.checked;
+ flag_prod = document.readform.prod.checked;
+ flag_transpose = document.readform.transpose.checked;
+ flag_det = document.readform.det.checked;
+ flag_propre = document.readform.propre.checked;
+
+ document.write ("n = " + n);
+ document.write ("<p>A = ");
+ print_mat (A);
+ document.write ("<p>B = ");
+ print_mat (B);
+ 
+ if (flag_add)
+ { document.write ("<p>A + B = "); print_mat (add_mat (A, B)); }
+ if (flag_scal)
+ { document.write ("<p>n A = "); print_mat (prod_scal_mat (n, A)); }
+ if (flag_prod) 
+ { document.write ("<p>A B = "); print_mat (prod_mat (A, B)); }
+ if (flag_transpose)
+ { document.write ("<p>Transposée de A = "); print_mat (transpose_mat (A)); }
+ if (flag_det)
+ { document.write ("<p>Déterminant de A = " + determinant(A)); }
+ if (flag_inverse)
+ { document.write ("<p>Inverse de A = "); print_mat (inverse(A)); }
+ if (flag_propre)
+ {
+ rd = deflation (A);
+ l = rd.fst;
+ v = rd.snd;
+ echo ("<p>Valeurs propres de A : ");
+ print_mat (l);
+ echo ("<p>Vecteurs propres de A : ");
+ print_mat (v);
+ }   
+
+
+
+}
+
+display ()
+{
+var nmat;
+ nmat = parseInt (document.readform.nmat.value);
+ print_mat (matrices[nmat]);
+}
+ 
+</script>
+
+<form name=readform>
+
+n = 
+<input name="n">
+<p>
+
+Introduction de la matrice A :
+<input name="nrowsa" size=3> lignes, 
+<input name="ncolsa" size=3> colonnes<p>
+Tapez ci-dessous les valeurs séparées par des espaces :
+<textarea name="dataa" rows=10 cols=60>
+</textarea>
+<p>
+Introduction de la matrice B :
+<input name="nrowsb" size=3> lignes, 
+<input name="ncolsb" size=3> colonnes<p>
+Tapez ci-dessous les valeurs séparées par des espaces :
+<textarea name="datab" rows=10 cols=60>
+</textarea>
+<p>
+<ul>
+<li><input type=checkbox name=add> A + B
+<li><input type=checkbox name=scal> n A
+<li><input type=checkbox name=prod> A B
+<li><input type=checkbox name=transpose> transposée de A
+<li><input type=checkbox name=det> déterminant de A
+<li><input type=checkbox name=inverse> inverse de A
+<li><input type=checkbox name=propre> éléments propres de A
+</ul>
+
+<input type=button value="Valider" onClick="readmatrices()">
+
+</form>
+</body></HTML>

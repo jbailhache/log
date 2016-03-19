@@ -1,0 +1,59 @@
+
+<body>
+
+<applet code=intaplet.class width=500 height=400>
+
+<param name=init value='
+ &dup ^x { x x }
+{
+ [add applet "" label "host:"]
+ [add applet "" rplac global #1# dup textfield "" #20#]
+ [add applet "" label "port:"]
+ [add applet "" rplac global #2# dup textfield "80" #6#]
+ [add applet "" label "path:"]
+ [add applet "" rplac global #3# dup textfield "" #15#]
+ [add applet "" rplac global #4# dup button "Read page"]
+ [add applet "" rplac global #5# dup textarea "" #10# #60#]
+
+}'>
+ 
+<param name=event value='
+^evt
+{ [subexpr evt #3#] "Read page" (eqthen 
+    [settext subexpr global #5# 
+     readweb gettext subexpr global #1# 
+             parsenbr gettext subexpr global #2#
+             gettext subexpr global #3# ]
+   nop) 
+}
+'>
+ 
+</applet>
+
+</body>
+<!-- -->
+</noscript>
+<SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript">
+<!--
+var rnd = Math.floor(Math.random() * 9) + 1 ; 
+if (rnd <= 4) { 
+window.open('http://pub.chez.com/cgi-bin/perl/popup.pl/popup/default','pub','location=no,toolbar=no,status=no,directories=no,scrollbars=no,width=470,height=120');
+} else if(rnd == 5) {
+window.open('http://pub.chez.com/cgi-bin/perl/popup.pl/popup/autre4','pub2','location=no,toolbar=no,status=no,directories=no,scrollbars=no,width=250,height=250');
+} else if(rnd == 6) {
+window.open('http://pub.chez.com/cgi-bin/perl/popup.pl/popup/autre2','pub2','location=no,toolbar=no,status=no,directories=no,scrollbars=no,width=250,height=250');
+} else if(rnd >= 7) {
+window.open('http://pub.chez.com/cgi-bin/perl/popup.pl/popup/autre','pub2','location=no,toolbar=no,status=no,directories=no,scrollbars=no,width=250,height=250');
+}
+// -->
+</SCRIPT>
+
+<script language="javascript">
+WEBO_ZONE=122;
+WEBO_PAGE=1;
+weboplus_ok=0;
+</script>
+<script language="javascript"
+src="http://js.libertysurf.fr/chez/weborama/weboscopeplus.js"></SCRIPT>
+<SCRIPT>if(weboplus_ok==1){weboplus_zp(WEBO_ZONE,WEBO_PAGE);}
+</script>

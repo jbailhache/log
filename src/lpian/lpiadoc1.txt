@@ -1,0 +1,97 @@
+LPIA : A PROGRAMMING LANGUAGE FOR ARTIFICIAL INTELLIGENCE
+
+LPIA is an interpreted symbolic functional language with multi-process
+capabilities and predefined pattern matching. It is inspired by combinatory
+logic, lambda calculus, Scheme and Forth.
+ 
+It uses symbolic expressions like Lisp or Scheme. 
+A symbolic expression can be :
+- a symbol
+- an integer
+- a character string
+- a pair ( car . cdr )
+
+The state of a process is represented by 5 symbolic expressions :
+- the strategy
+- the program
+- the (main) stack
+- the secondary stack
+- the environment
+
+The strategy contains the priority of the process and the increments of the
+priority used when new processes are created.
+
+The program is a list of instructions executed sequentially.
+
+The stacks are used to transmit arguments and return results.
+
+The environment is a list which associates variables to their values.
+
+
+EXECUTION
+
+When the first element of the program is a list, it is appended to the rest of
+the program :
+((a b c) d e f) -> (a b c d e f)
+
+When it is a symbol, it is replaced by its definition.
+
+When it is an instruction, a specific treatment depending on the instruction
+is done.
+
+There are different types of instructions :
+
+- Combinators which act on the program :
+I a -> a
+K a b -> a
+S a b c -> a c (b c)
+Y a -> a (Y a)
+B a b c -> a (b c)
+C a b c -> a c b
+W a b -> a b b
+APPLYTO a b -> b a
+P a b c -> c a b
+J a -> 
+
+- QUOTE pushes a value on the main stack
+
+- Stack manipulation operations :
+( instruction : main stack before / secondary stack before -> main stack after
+/ secondary stack after )
+DEP : a / -> /
+REP : a / -> a a /
+ECH : a b / -> b a /
+DES : a / -> / a
+MON : / a -> a /
+MONDEP : / a -> /
+GETH n : / a1 a2 ... an -> an / a1 a2 ... an
+
+- Tests :
+THEN a b executes a if top of stack is true, else b.
+nil = () is considered as false, all other are true.
+NCONSPTHEN a b executes a if top of stack is not a pair, else b.
+CONSP replaces the top of stack by a true value if it is a pair, otherwise by
+nil.
+
+- Execution :
+EXEC executes the top of the stack by moving it at the beginning of the
+program.
+
+- Definitions :
+GETDEF accesses to the definition of a symbol
+SETDEF modifies the definition of a symbol
+def a b sets the definition of symbol a to b
+
+- Data manipulation :
+CAR accesses to the first element of a pair
+CDR accesses to the second element of a pair
+CONS makes a new pair
+EQ tests the equality of symbolic expression (same address in memory)
+GETTYPE accesses to the type of a symbolic expression 
+SETTYPE modifies the type of a symbolic expression (expr type SETTYPE)
+RPLACA modifies the first element of a pair (expr pair RPLACA)
+RPLACD modifies the second element of a pair (expr pair RPLACD)
+
+
+ 
+

@@ -1,0 +1,155 @@
+<HTML>
+<head>
+<title>USL</title>
+</head>
+<body>
+
+<script language=JavaScript>
+
+function pair (fst, snd)
+{
+    this.fst = fst;
+    this.snd = snd;
+}
+
+function isletter (c)
+{
+ if (c == '_')
+  return 1;
+ x = c.charCodeAt(0);
+ if (x >= "A".charCodeAt(0) && x <= "Z".charCodeAt(0))
+  return 1;
+ if (x >= "a".charCodeAt(0) && x <= "z".charCodeAt(0))
+  return 1;
+ return 0;
+}
+
+function isalphanum (c)
+{
+ if (isletter (c))
+  return 1;
+ if (c.charCodeAt(0) >= "0".charCodeAt(0) &&
+     c.charCodeAt(0) <= "9".charCodeAt(0))
+  return 1;
+ return 0
+}
+
+function skip (source, i)
+{
+ for (;;)
+ {
+  switch (source.charAt(i))
+  {
+   case ' ': case '\t': case '\n': case '\r': break;
+   case '#':
+    i++;
+    while (source.charAt(i) != '\n') i++;
+   default:
+    return i;
+  }
+  i++;
+ }
+ return i;
+}
+
+function getunit (source, i)
+{
+ var unit = "";
+ i = skip (source, i);
+ if (i >= source.length)
+  return new pair ("#EOF", i);
+ if (isletter(source.charAt(i)))
+ {
+  unit = source.charAt(i++);
+  while (isalphanum(source.charAt(i)))
+   unit += source.charAt(i++);
+  document.form1.trace.value += "; U:" + unit;  
+  return new pair (unit, i);
+ }
+ else
+ {
+  document.form1.trace.value += "; u:" + source.charAt(i);
+  return new pair (source.charAt(i), i+1);  
+ }
+}
+
+
+
+function analyse1 (source, i)
+{
+ var unit, i, ui, prog;
+ prog = "";
+ while (i < source.length)
+ { 
+  ui = getunit (source, i);
+  /*document.form1.residu.value += ";" + ui;*/
+  unit = ui.fst;
+  i = ui.snd;
+
+  prog += "/" + unit;
+ }
+ return new pair(prog,i);
+}
+
+function analyse (source)
+{
+ var prog = [];
+ var n = 0;
+ var i = 0;
+ while (i < source.length)
+ {
+  prog_i = analyse1 (source, i);
+  prog[n++] = prog_i.fst;
+  i = prog_i.snd;
+ }
+ var residu = source.substring (i, source.length-1);
+ document.form1.residu.value = residu;
+ return prog;
+}
+
+function gener (prog, lang)
+{
+ return prog;
+}
+
+function traduire ()
+{
+ var prog;
+
+ document.form1.residu.value = "";
+ document.form1.trace.value = "";
+
+ prog = analyse (document.form1.source.value);
+ document.form1.javascript.value = gener (prog, "JavaScript"); 
+ 
+ /* document.form1.javascript.value = isletter (document.form1.source.value.charAt(0)); */
+
+ return 0; 
+}
+
+</script>
+
+<form name=form1>
+Code source :
+<p>
+<textarea name=source rows=6 cols=60>
+</textarea>
+<p>
+<input type=button value=Traduire onCLick="traduire()">
+<p>
+JavaScript<br>
+<textarea name=javascript rows=6 cols=60>
+</textarea>
+<p>
+R&eacute;sidu<br>
+<textarea name=residu rows=6 cols=60>
+</textarea>
+<p>
+Trace<br>
+<textarea name=trace rows=6 cols=60>
+</textarea>
+
+</form>
+
+</body>
+</HTML>

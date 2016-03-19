@@ -1,0 +1,46 @@
+
+<!--Connexion établie--><!--Base de données sélectionnée--><HTML><head><title>Tenseurs fonctionnels sur HP 48</title><meta name=keywords content=""></head><body >
+<pre>
+
+<< "<< DROP " SWAP + ">" + STR-> >> 'CST' STO
+
+<< 1 GET >> 'FST' STO
+<< 2 GET >> 'REST' STO
+<< 2 ->LIST >> 'CSTR' STO
+<< SIZE 2 < >> 'EMPTY' STO
+0 'NL' STO
+
+<< 'DIM' SWAP EVAL >> 'DIM' STO
+<< 'GT' SWAP EVAL >> 'GT' STO
+
+<< -> X I <<
+ "<<CASE DUP 'DIM' SAME THEN DROP "
+I ->STR +
+" END DUP 'GT' SAME THEN DROP DROP "
++ X + " END END>>" +
+STR-> >> >> 'MAKE' STO
+
+<< -> X I A <<
+"<<CASE DUP 'DIM' "
+A ->STR +
+" EVAL END DUP 'GT' SAME THEN DROP IF DUP "
++ I ->STR +
+" SAME THEN DROP DROP "
++ X +
+" ELSE DROP 'GET' "
++ A ->STR +
+" EVAL END END END>>"
++ STR-> >> >> 'PT' STO
+
+
+
+</pre></body></HTML>
+</pre></xmp></noscript>
+<script src="http://ads.multimania.lycos.fr/ad/test_frame_size.js"></script>
+<script language="javascript">
+if (!AD_clientWindowSize()) {
+        document.write('<NOSC'+'RIPT>');
+	}
+</script>
+
+<script type="text/javascript" src="http://ads.multimania.lycos.fr/ad/ad.php?cat=&mkw=&CC=fr&ord=1898087491&adpref="></script>

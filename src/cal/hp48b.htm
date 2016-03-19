@@ -1,0 +1,315 @@
+<HTML>
+<head>
+<title>Programmation HP 48</title>
+</head>
+<body>
+ 
+<h3>Programmation de la HP 48 en RPL système</h3>
+
+D'après "Les secrets de la HP 48 G/GX" tome 2
+<p>
+
+->EXT : "Compilateur" RPL système 
+
+<pre>
+
+<< 1 OVER SIZE FOR K 
+      K DUP2 GET
+      DUP 6 TYPE SAME THEN EVAL END
+      CASE
+         DUP TYPE 10 SAME THEN
+            #4003h SYSEVAL #62B9Ch SYSEVAL
+         END
+         DUP TYPE 0 SAME THEN
+            #18CD7h SYSEVAL
+         END
+         DUP TYPE 8 SAME THEN
+            #3F9Fh SYSEVAL #5AB3h SYSEVAL ->EXT
+         END
+         DUP TYPE 5 SAME THEN 
+            ->EXT
+         END
+         DTAG
+      END
+      PUT
+   NEXT
+   #3FB3h SYSEVAL #5AB3h SYSEVAL
+>> '->EXT' STO
+
+</pre>
+
+<p>
+->ADR : Adresse d'on objet
+   
+<pre>
+
+<< #0h NEWOB DUP
+   #806F8h 
+   #6595Ag SYSEVAL
+   10 +
+   #6595Ah SYSEVAL
+   #FFFFFh AND
+   SWAP DROP
+>> '->ADR' STO
+
+</pre>
+
+->STRI : représentation interne d'un objet
+(113 octets, checksum #A726h)
+
+<pre>
+
+<< #6657h SYSEVAL
+   DUP #5902h SYSEVAL
+   #6258Ah SYSEVAL
+   #6657h SYSEVAL
+   #5089h SYSEVAL
+   SWAP 2 ->LIST
+   #15E83h SYSEVAL
+>> '->STRI' STO
+
+</pre>
+
+<p>
+EXT-> : "décompilateur" RPL système
+(50 octets, checksum #3D12h)
+
+<pre>
+
+{ #18AB2h #18FB2h
+  #400Dh
+  { #63209h #63B05h
+    #62FBBh #EDE1h
+    #4053h  10830
+    #25C41h 
+    #63B19h
+    #60F9Bh
+    #4003h #62B9Ch
+    #6657h }
+} ->EXT 'EXT->' STO
+
+</pre>
+
+<p>
+Adresses pour SYSEVAL et RPL système
+
+<pre>
+
+2A2B4 0
+2A2C9 1
+2A2DE 2
+2A2F3 3
+
+03FEF &lt;0h>
+03FF9 &lt;1h>
+04003 &lt;2h>
+0400D &lt;3h> 
+
+03188 dup
+03223 swap
+03244 drop
+032C2 over
+
+03A81 true
+03AC0 false
+
+07497 Lpop
+
+02A74 {
+02D9D begin
+0312B end, }
+
+18FD2 ChkArg
+073F3 start
+07344 next
+073A5 step
+07221 index
+
+</pre>
+
+<h4>Création d'un objet quelconque</h4>
+
+<pre>
+{ #18AB2h #18FB2h
+  #400Dh
+  { #63209h #63B05h
+    #627BBh #EDE1h
+    #4053h 10830
+    #25C41h 
+    #63B19h
+    #60F9Bh
+    #4003h #62B9Ch
+    #6657h
+  }
+} ->EXT '->OBJ' STO
+</pre>
+
+
+<h4>Création d'un objet code à partir des codes hexadécimaux des instructions</h4>
+
+<pre>
+<< DUP SIZE 19 + R->B
+   ->STRI 11 15 SUB
+   "CCD20" SWAP +
+   SWAP +
+   ->OBJ
+>> '->CODE' STO
+
+Exemple : ajouter 1 à l'entier système au niveau 1
+
+CCD20	CODE
+42000	#24h
+8FB9760 GOSBVL	#0679Bh
+143	A=DAT1	A
+131	D1=A
+174	D1=D1+5
+143	A=DAT1	A
+E4	A=A+1	A
+141	DAT1=A	A
+8D34150	GOVLNG 	#05143h
+
+"8FB9760143131174143E41418D34150" 
+ ->CODE 'PLUS1SYSINT' STO
+
+Exemple : ajouter 1 à &lt;3h>
+"1192030000" ->OBJ PLUS1SYSINT
+&lt;4h>
+
+Les champs :
+
+Nom f	Code a	Quartets
+	b=a+8
+
+P	0	P
+WP	1	0-P
+XS	2	2
+X	3	0-2
+S	4	15
+M	5	3-14
+B	6	0-1
+W	7	0-15
+A	F	0-4
+
+Quelques instructions
+
+f=champ
+
+code	mnémonique	
+
+D0	A=0 	A
+Ab0	A=0	f
+D4	A=B	A
+Ab4	A=B	f
+C0	A=A+B	A
+Aa0	A=A+B	f
+E0	A=A-B	A
+Ba0	A=A-B	f
+0Ea0	A=A&B	f
+0Ea8	A=A!B	f	ou logique
+818a0n	A=A+n+1	f
+130	D0=A
+131	D1=A
+142	A=DAT0	A	A=(D0)
+14A
+152a	A=DAT0	f
+143	A=DAT1	A
+14B
+153a	A=DAT1	f
+15An	A=DAT0(n+1)
+15Bn	A=DAT1(n+1)
+140	DAT0=A
+148
+150a	DAT0=A	f
+141	DAT1=A
+149
+151a	DAT1=A	f
+158n	DAT0=A(n+1)
+159n	DAT1=A(n+1)	
+2n	P=n
+4qp	GOC	label 
+5qp	GONC 	label
+8Dtsrqp GOVLNG	pqrst
+8Ftsrqp GOSBVL  pqrst
+81B2	PC=A
+808C	PC=(A)
+81B4	A=PC
+01	RTN
+8A8pq	?A=0 GOYES label
+9a8
+8B0	?A>B GOYES label
+9b0
+
+Affectation des registres
+A,C : calculs
+B: emplacement libre pour prochaine adresse retour RPL à empiler
+D: mémoire libre
+D0: PC RPL
+D1: niveau 1 pile RPL
+
+</pre>
+
+
+<h4>Décompilation des instructions RPL</h4>
+
+<pre>
+Exemple : DROP
+
+{ DROP } 1 GET ->STRI
+"D9D205AA8144230B2130"
+
+D9D20	préfixe RPL
+5AA81	libneed1
+44230	drop
+B2130	fin RPL
+
+décompilation de drop : 
+#0 #3188h rcl16nib SYSEVAL
+#6412417E47103249h
+"94230174E7142164"
+#0 #3198h rcl16nib SYSEVAL
+#...C808h
+
+94230174E7142164808C
+
+#02344h	94230	adresse suivante #2349h
+#02349h 174	D1=D1+5
+	E7	D=D+1
+	142	A=DAT0	A
+	164	D0=D0+5
+	808C	PC=(A)
+
+Redéfinition de drop :
+
+"174E7142164808C" ->CODE 'ndrop' STO
+
+
+071A2 while
+071EE repeat
+071E5 endwhile
+071A2 do
+071C8 until
+071AB again
+
+61AD8 then
+0714D skip
+517DA drop;q
+06FD1 dq (do quit)
+61993 ?:dq/sk
+06E97 quote (instruction suivante empilée)
+06EEB '1postend
+0701F 'postend
+
+6595A rcl16nib
+
+06F8E eval
+
+06FB7 DropRet
+14EA5 DupRet
+60EBD SwapRet
+
+</pre>
+ 
+
+
+</body>
+</HTML> 

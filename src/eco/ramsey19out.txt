@@ -1,0 +1,178 @@
+read("f:\\eco\\ramsey17in.txt")
+
+                                  restart
+
+                              x -> A*x^alpha
+
+                        x -> A*alpha*x^(alpha - 1)
+
+                            x -> fnp(x) - mu*x
+
+                      x -> A*alpha*x^(alpha - 1) - mu
+
+                                x -> ln(x)
+
+                                     1
+                                    --
+                                    id
+
+                   (c, k, p) -> Util(c) + p*(fpn(k) - c)
+
+                                   1
+                                   - - p
+                                   c
+
+                                    alpha - 1
+                        p (A alpha k          - mu)
+
+                                  1
+                                ---- - p(t)
+                                c(t)
+
+                                       alpha - 1
+                     p(t) (A alpha k(t)          - mu)
+
+                                                    alpha - 1
+        diff(p(t), t) - ps p(t) + p(t) (A alpha k(t)          - mu)
+
+                                                 alpha - 1
+                /   1     \    ps    A alpha k(t)          - mu
+            diff| ----, t | - ---- + --------------------------
+                \ c(t)    /   c(t)              c(t)
+
+             /                                      alpha - 1      \
+           2 |     /   1     \    ps    A alpha k(t)          - mu |
+       c(t)  | diff| ----, t | - ---- + -------------------------- |
+             \     \ c(t)    /   c(t)              c(t)            /
+
+                                     alpha
+               diff(k(t), t) = A k(t)      - k(t) mu - c(t)
+
+             /                                      alpha - 1      \
+           2 |     /   1     \    ps    A alpha k(t)          - mu |
+       c(t)  | diff| ----, t | - ---- + -------------------------- |
+             \     \ c(t)    /   c(t)              c(t)            /
+
+               /                              alpha - 1      \
+             2 |     / 1    \   ps   A alpha k          - mu |
+            c  | diff| -, t | - -- + ----------------------- |
+               \     \ c    /    c              c            /
+
+                               alpha
+                            A k      - k mu - c
+
+     / --    /                              alpha - 1      \
+     | |   2 |     / 1    \   ps   A alpha k          - mu |
+solve| |  c  | diff| -, t | - -- + ----------------------- |,
+     \ --    \     \ c    /    c              c            /
+
+                       --         \
+      alpha             |         |
+   A k      - k mu - c  |, [c, k] |
+                       --         /
+
+     / --    /                              alpha - 1      \
+     | |   2 |     / 1    \   ps   A alpha k          - mu |
+solve| |  c  | diff| -, t | - -- + ----------------------- |,
+     \ --    \     \ c    /    c              c            /
+
+                       --         \
+      alpha             |         |
+   A k      - k mu - c  |, [c, k] |
+                       --         /
+
+ed1
+
+                         alpha - 1
+             A alpha k(t)          - mu   diff(c(t), t)    ps
+             -------------------------- - ------------- - ----
+                        c(t)                      2       c(t)
+                                              c(t)
+
+eqadj_1
+
+                                       alpha - 1
+                     p(t) (A alpha k(t)          - mu)
+
+edc
+
+              /             alpha - 1                             \
+            2 | A alpha k(t)          - mu   diff(c(t), t)    ps  |
+        c(t)  | -------------------------- - ------------- - ---- |
+              |            c(t)                      2       c(t) |
+              \                                  c(t)             /
+
+edk
+
+                                     alpha
+               diff(k(t), t) = A k(t)      - k(t) mu - c(t)
+
+simplify(edc)
+
+              /             alpha - 1                             \
+            2 | A alpha k(t)          - mu   diff(c(t), t)    ps  |
+        c(t)  | -------------------------- - ------------- - ---- |
+              |            c(t)                      2       c(t) |
+              \                                  c(t)             /
+
+normal(edc)
+
+                  alpha
+(A c(t) alpha k(t)      - c(t) k(t) ps - k(t) diff(c(t), t) - c(t) k(t) mu)
+
+   / k(t)
+
+edc:=normal(edc)
+
+                  alpha
+(A c(t) alpha k(t)      - c(t) k(t) ps - k(t) diff(c(t), t) - c(t) k(t) mu)
+
+   / k(t)
+
+eqc1:=subs(edc,diff(c(t),t)=0);
+
+                            alpha
+           A c(t) alpha k(t)      - c(t) k(t) ps - c(t) k(t) mu
+           ----------------------------------------------------
+                                   k(t)
+
+eqc:=subs(eqc1,c(t)=c,k(t)=k);
+
+                               alpha
+                    A c alpha k      - c k ps - c k mu
+                    ----------------------------------
+                                     k
+
+eqk:=subs(rhs(edk),c(t)=c,k(t)=k);
+
+                               alpha
+                            A k      - k mu - c
+
+solution:=solve({eqc,eqk},{c,k});
+
+     / --            alpha                                        --
+     | |  A c alpha k      - c k ps - c k mu     alpha             |
+solve| |  ----------------------------------, A k      - k mu - c  |,
+     \ --                  k                                      --
+
+          \
+          |
+   [c, k] |
+          /
+
+A:=8.0;
+
+                                    8.0
+
+alpha:=0.3;
+
+                                    0.3
+
+mu:=0.1;
+
+                                    0.1
+
+ps:=0.05;
+
+                                   0.05
+

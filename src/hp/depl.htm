@@ -1,0 +1,52 @@
+<pre>
+
+Exemple : "ABC" STR->LIST 'ABC' STO DEPL
+
+Liste des caracteres d'une chaine
+<< DUP SIZE {} 1 -> S N L I
+ << 1 N FOR I
+     L S I I SUB + 'L' STO
+    NEXT
+    L
+ >>
+>> 'STR->LIST' STO
+ 
+Chaine suivante
+<< DUP SIZE 1 ABC SIZE -> X L I N
+ << 1 WHILE REPEAT 
+     IF I L > 
+     THEN X 1 + 0
+     ELSE 
+      IF X 1 GET N <
+      THEN X I X I GET 1 + PUT 0
+      ELSE 
+       X I 1PUT 'X' STO 
+       I 1 +'I' STO
+       1
+      END
+      END >> >> 'BEXTL' STO
+
+<< DUP SIZE "" -> X L T 
+ << IF L 1 < THEN "" ELSE
+     1 L FOR I
+      T ABC X I GET GET + 'T' STO
+     NEXT
+     T
+    END
+ >> >> 'GEBTEXT' STO
+
+
+Programme principal :
+<< {} 1 -> X I
+ << CLLCD 
+    WHILE 1 REPEAT
+     "TEXTE NUMERO " I + 
+     1 DISP X GENTEXT 2 DISP 0 WAIT DROP
+     X NEXTL 'X' STO
+     I 1 + 'I' STO
+    END
+ >>
+>>
+
+
+</pre>

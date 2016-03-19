@@ -1,0 +1,14 @@
+(
+(def a1 ': dem (egal a b) : loi)
+(def a2 ': dem (egal b c) : loi)
+(def d1 : a2 a1 TRANS)
+(d1 PRINT)
+(d1 VERIF PRINT)
+(a1 AJDEMBASE)
+(a2 AJDEMBASE)
+(-1 SETINCR)
+(def-elems (a b c))
+('(egal a c) DEM PRINT)
+
+)
+

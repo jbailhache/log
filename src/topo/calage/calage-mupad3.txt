@@ -1,0 +1,100 @@
+
+t := proc(A)
+ begin
+  return (A::dom::transpose(A)):
+ end_proc:
+
+n:=6:
+
+corresp := matrix ([
+[ 1478.60, 2475.41, 992096.60, 166449.40, 0, 0 ],
+[ 1479.67, 2479.41, 992094.93, 166445.49, 0, 0 ],
+[ 1468.98, 2494.58, 992103.42, 166429.24, 0, 0 ],
+[ 1479.01, 2594.23, 992114.62, 166340.56, 992037.87, 166318.87 ],
+[ 1471.50, 2591.19, 992114.62, 166340.56, 992037.87, 166318.87 ],
+[ 1466.29, 2589.12, 992114.62, 166340.56, 992037.87, 166318.87 ]]):
+
+A := (array(1..2*n,1..4)):
+K := (array(1..2*n,1..1)):
+P := (array(1..2*n,1..2*n)):
+
+for i from 1 to 2*n do
+for j from 1 to 2*n do
+ if i=j 
+  then P[i,j]:=1
+  else P[i,j]:=0
+ end_if
+end_for
+end_for:
+
+print ("loop"):
+
+for i from 1 to n do
+ print ("i=",i):
+ x := corresp[i,1]:
+ y := corresp[i,2]:
+ XA := corresp[i,3]:
+ YA := corresp[i,4]:
+ XB := corresp[i,5]:
+ YB := corresp[i,6]:
+ print ("t10"):
+ dX := XB - XA:
+ dY := YB - YA:
+ AB2 := (dX*dX + dY*dY):
+ print ("t20"):
+ if corresp[i,5]=0 then
+  c:=0:
+  d:=0:
+  e:=0:
+  f:=0:
+ else
+  c := dX^2 / AB2:
+  d := dX * dY / AB2:
+  e := d:
+  f := dY^2 / AB2:
+ end_if:
+ print ("t30"):
+ A[i*2-1,1] := (1-c)*x - d*y:
+ A[i*2,1] := -d*x + (1-f)*y:
+ A[i*2-1,2] := -e*x - (1-c)*y:
+ A[i*2,2] := (1-f)*x + d*y:
+ A[i*2-1,3] := 1-c:
+ A[i*2,3] := -d:
+ A[i*2-1,4] := -e:
+ A[i*2,4] := 1-f:
+ print ("t40"):
+ K[i*2-1,1] := (1-c)*XA - e*YA:
+ K[i*2,1] := -d*XA + (1-f)*YA:
+ print ("end loop"):
+end_for:
+
+A:=matrix(A):
+K:=matrix(K):
+P:=matrix(P):
+
+abpq := 1/(t(A)*P*A) * t(A) * P * K:
+
+a:=abpq[1]:
+b:=abpq[2]:
+p:=abpq[3]:
+q:=abpq[4]:
+
+coord1 := array(1..n,1..2):
+for i from 1 to n do
+ x := corresp[i,1]:
+ y := corresp[i,2]:
+ coord1[i,1] := p + a*x - b*y:
+ coord1[i,2] := q + b*x + a*y:
+end_for:
+
+nxy := import::readdata("d:\\jacques\\tous.nxy"):
+
+for i from 1 to nops(nxy) do
+ n := nxy[i][1]:
+ x := nxy[i][2]:
+ y := nxy[i][3]:
+ xx := p + a*x - b*y:
+ yy := q + b*x + a*y:
+ /* fprint (Unquoted, "d:\\jacques\\coord.txt",n," ",xx," ",yy):  */
+ print (Unquoted, n,xx,yy): 
+end_for:

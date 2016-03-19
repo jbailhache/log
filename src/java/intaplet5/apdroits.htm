@@ -1,0 +1,27 @@
+
+<applet code=intaplet.class width=600 height=500>
+
+<param name=init value='
+ &conc ^a ^b ^c [concat a concat b c]
+ &droitconsult ^action ^fax
+  {
+   [node action] SHOW (eqthen yes {
+   [node action] PRINT (eqthen yes {
+   no 
+   }) })
+  }
+ &droit ^nom ^action ^fax
+  {
+   nom "toto" (eqthen [droitconsult action fax] no)
+  }
+
+ {
+  [add applet "" rplac global #1# dup textarea  
+  
+   rep droit "toto" (SHOW) (FAX "123456") 
+   #6# #40#]
+   
+
+ }'>
+
+</applet>

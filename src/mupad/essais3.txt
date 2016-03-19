@@ -1,0 +1,294 @@
+ solve(x^2=4)
+
+                            {[x = -2], [x = 2]}
+
+solve(x^2=4,x)
+
+                                  {-2, 2}
+
+%[1]
+
+                                    -2
+
+%%[2]
+Error: Unexpected '%' [line 1, col 3]
+
+
+s=solve(x^2=4,x)
+
+                                s = {-2, 2}
+
+s[2]
+
+                                   s[2]
+
+s:=solve(x^2=4,x)
+
+                                  {-2, 2}
+
+s[2]
+
+                                     2
+
+solve(sin(x)=x/2,x)
+
+                             /          x        \
+                        solve| sin(x) - - = 0, x |
+                             \          2        /
+
+solve({x-y+z=3,x+2*y-z=5,-3*x-4*y+3*z=1},{x,y,z})
+
+                         {[x = 0, y = 8, z = 11]}
+
+solve({x-y+z=3,x+2*y-z=5},{x,y,z})
+
+                   { --            z      2 z       -- }
+                   { |  x = 11/3 - -, y = --- + 2/3  | }
+                   { --            3       3        -- }
+
+solve(z^6+z^5+z^4+z^3+z^2+z+1=0,z)
+
+                          2      3      4      5      6
+          RootOf(X15 + X15  + X15  + X15  + X15  + X15  + 1, X15)
+
+Xl5
+
+                                    Xl5
+
+s:=solve(z^6+z^5+z^4+z^3+z^2+z+1=0,z)
+
+                          2      3      4      5      6
+          RootOf(X16 + X16  + X16  + X16  + X16  + X16  + 1, X16)
+
+allvalues(s)
+
+                              2      3      4      5      6
+    allvalues(RootOf(X16 + X16  + X16  + X16  + X16  + X16  + 1, X16))
+
+float(s)
+
+{0.6234898018 + 0.7818314825 I, 0.6234898019 - 0.7818314824 I,
+
+   - 0.9009688679 + 0.4338837391 I, - 0.9009688679 - 0.4338837391 I,
+
+   - 0.2225209339 + 0.9749279122 I, - 0.222520934 - 0.9749279122 I}
+
+solve(x^3+a*x+1=0,x)
+
+                                         3
+                       RootOf(a X17 + X17  + 1, X17)
+
+fsolve(cos(x)=x,x=0..1)
+
+                       fsolve(cos(x) = x, x = 0..1)
+
+float(solve(cos(x)=x,x))
+
+                              {0.7390851333}
+
+float(solve(sin(x)=x/8,x))
+
+                               {7.957321494}
+
+solve(sin(x)=x/8,x)
+
+                             /          x        \
+                        solve| sin(x) - - = 0, x |
+                             \          8        /
+
+float(solve(sin(x)=x/8,x=2..3))
+Warning: Obsolete syntax for calling domain solver used [solve]
+Error: Right hand side of second argument must be a domain [solvelib::doms\
+olve]
+
+
+float(hold(solve)(sin(x)=x/8,x=2..8))
+
+                               {7.957321494}
+
+float(hold(solve)(sin(x)=x/8,x=2..3))
+
+                               {2.785902114}
+
+dsolve(sin(x)*D(y)(x)-cos(x)*y(x)=exp(x)*sin(xà^2,y(x))
+Error: Illegal character 'à' [line 1, col 47]
+
+
+dsolve(sin(x)*D(y)(x)-cos(x)*y(x)=exp(x)*sin(x)^2,y(x))
+
+                                                    2
+        dsolve(D(y)(x) sin(x) - y(x) cos(x) = sin(x)  exp(x), y(x))
+
+de=ode(sin(x)*D(y)(x)-cos(x)*y(x)=exp(x)*sin(x)^2)
+Error: Wrong number of arguments [ode::new]
+
+
+de=ode(sin(x)*D(y)(x)-cos(x)*y(x)=exp(x)*sin(x)^2,y(x))
+
+                                                         2
+   de = ode(- y(x) cos(x) + sin(x) diff(y(x), x) - sin(x)  exp(x), y(x))
+
+solve(de)
+
+                                {[de = 0]}
+
+de:=ode(sin(x)*D(y)(x)-cos(x)*y(x)=exp(x)*sin(x)^2,y(x))
+
+                                                      2
+     ode(- y(x) cos(x) + sin(x) diff(y(x), x) - sin(x)  exp(x), y(x))
+
+solve(de)
+Error: Memory limit of demo version exceeded
+
+
+de1=ode(D(D(x))(t)+x(t)=0,x(t))
+
+                 de1 = ode(x(t) + diff(x(t), t, t), x(t))
+
+solve(de1)
+
+                                {[de1 = 0]}
+
+de1:=ode(D(D(x))(t)+x(t)=0,x(t))
+
+                    ode(x(t) + diff(x(t), t, t), x(t))
+
+solve(de1)
+
+                          {C3 cos(t) - C4 sin(t)}
+
+de2:=ode(x''(t)+x(t)=0,x(t))
+
+                    ode(x(t) + diff(x(t), t, t), x(t))
+
+solve(de2)
+
+                          {C5 cos(t) - C6 sin(t)}
+
+de3:=ode({x''(t)+x(t)=0,x(0)=1},x(t))
+
+              ode({x(t) + diff(x(t), t, t), x(0) = 1}, x(t))
+
+solve(de3)
+
+                           {cos(t) - C8 sin(t)}
+
+de4:=ode({x''(t)+x(t)=0,x(0)=1,x'(0)=0},x(t))
+
+        ode({x(t) + diff(x(t), t, t), x(0) = 1, D(x)(0) = 0}, x(t))
+
+solve(de4)
+
+                                 {cos(t)}
+
+f:=(x,Y)->[1-x^2*Y[1]]
+
+                         (x, Y) -> [1 - x^2*Y[1]]
+
+s:=numeric::odesolve(1..10,f,[2])
+Error: Memory limit of demo version exceeded
+
+s
+s:=numeric::odesolve(1..2,f,[2])
+
+                              [0.5018037798]
+
+f:=(x,Y)->[1+x^2*Y[1]]
+
+                         (x, Y) -> [1 + x^2*Y[1]]
+
+s
+
+                              [0.5018037798]
+
+s:=numeric::odesolve(1..2,f,[2])
+
+                               [25.65270038]
+
+plotfunc2d(a->numeric::odesolve(1..a,f,[2]))
+Error: Memory limit of demo version exceeded
+
+
+g:=a->numeric::odesolve(1..a,f,[2])
+
+                   a -> numeric::odesolve(1..a, f, [2])
+
+g(2)
+
+                               [25.65270038]
+
+g:=a->numeric::odesolve(1..a,f,[2])[1]
+
+                  a -> numeric::odesolve(1..a, f, [2])[1]
+
+g(2)
+
+                                25.65270038
+
+g(1)
+
+                                    2.0
+
+g(0)
+
+                               0.5090392081
+
+g(-1)
+
+                               -0.4176587454
+
+g(1.5)
+
+                                5.216837627
+
+g(1.9)
+
+                                17.45359367
+
+g(1.99)
+
+                                24.64196132
+
+g(1.95)
+
+                                 21.061588
+
+plotfunc2d(g(a),a=-1..1)
+Error: Can't evaluate to boolean [_less];
+during evaluation of 'numeric::odesolve'
+
+
+g(-1)
+
+                               -0.4176587454
+
+g(1)
+
+                                    2.0
+
+g(0)
+
+                               0.5090392081
+
+plotfunc2d(g(b),b=-1..1)
+Error: Can't evaluate to boolean [_less];
+during evaluation of 'numeric::odesolve'
+
+
+plotfunc2d(sin(a),a=-1..1)
+
+
+plot(plot::Function2d(g(a),a=-1..1))
+Error: Can't evaluate to boolean [_less];
+during evaluation of 'numeric::odesolve'
+
+
+plotfunc2d(g(a),a=2..3)
+Error: Can't evaluate to boolean [_less];
+during evaluation of 'numeric::odesolve'
+
+
+v:=-1:0.1:1
+
+                                     1
+

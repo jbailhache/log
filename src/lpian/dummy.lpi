@@ -1,0 +1,21 @@
+
+(
+{
+(def defclause :
+ C QUOTE : C QUOTE : C QUOTE :
+ ARG corps : ARG args : ARG pred :
+ 'defclause PRINT)
+}
+
+(def LCS-FORMINT-EG I)
+
+{
+(def SETBASE I)
+
+(def def-loi :
+ C QUOTE : C QUOTE :
+ ARG corps : ARG nom :
+ I)
+}
+
+)

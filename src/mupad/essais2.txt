@@ -1,0 +1,120 @@
+f:=x->x^2
+
+                                 x -> x^2
+
+g:=D(f)
+
+                                   2 id
+
+h:=(D@@3)(f)
+
+                                     0
+
+f:=(x,y)->sin(2*x+3*y+2*x*y)
+
+                     (x, y) -> sin(2*x + 3*y + 2*x*y)
+
+D[1](f)
+Error: Illegal operand [_index]
+
+
+D([1],f)
+
+                (x, y) -> (2*y + 2)*cos(2*x + 3*y + 2*x*y)
+
+diff(x^5,x$3)
+
+                                       2
+                                   60 x
+
+A:=taylor(tan(x),x=0,7)
+
+                            3      5       7
+                           x    2 x    17 x       9
+                       x + -- + ---- + ----- + O(x )
+                            3    15     315
+
+B:=convert(A,polynom)
+
+                    /      3      5       7                  \
+                    |     x    2 x    17 x       9           |
+             convert| x + -- + ---- + ----- + O(x ), polynom |
+                    \      3    15     315                   /
+
+B:=coerce(A,Dom::Polynomial)
+
+                                   FAIL
+
+A
+
+                            3      5       7
+                           x    2 x    17 x       9
+                       x + -- + ---- + ----- + O(x )
+                            3    15     315
+
+i:=int(cos(x)/x,x=Pi/6..Pi/12);
+Warning: Found potential discontinuities of the antiderivative.
+Try option 'Continuous' or use properties (?assume). [intlib::antiderivati\
+ve]
+
+                            / cos(x)      Pi  Pi \
+                         int| ------, x = --..-- |
+                            \    x         6  12 /
+
+float(i)
+Warning: Found potential discontinuities of the antiderivative.
+Try option 'Continuous' or use properties (?assume). [intlib::antiderivati\
+ve]
+
+                                / cos(x)      Pi  Pi \
+                    numeric::int| ------, x = --..-- |
+                                \    x         6  12 /
+
+eval(float(i))
+Warning: Found potential discontinuities of the antiderivative.
+Try option 'Continuous' or use properties (?assume). [intlib::antiderivati\
+ve]
+
+                                / cos(x)      Pi  Pi \
+                    numeric::int| ------, x = --..-- |
+                                \    x         6  12 /
+
+numeric::int(cos(x)/x,x=Pi/6..Pi/12)
+
+                                / cos(x)      Pi  Pi \
+                    numeric::int| ------, x = --..-- |
+                                \    x         6  12 /
+
+int(sin(x),x)
+
+                                  -cos(x)
+
+int(sin(x),x=0..PI/2)
+
+                                     1
+
+i:=int(cos(x)/x,x=PI/6..PI/12)
+
+                              / PI \     / PI \
+                            Ci| -- | - Ci| -- |
+                              \ 12 /     \  6 /
+
+Ci
+
+                                    Ci
+
+Ci(x)
+
+                                   Ci(x)
+
+?Ci
+i
+
+                              / PI \     / PI \
+                            Ci| -- | - Ci| -- |
+                              \ 12 /     \  6 /
+
+float(i)
+
+                               -0.6424723104
+

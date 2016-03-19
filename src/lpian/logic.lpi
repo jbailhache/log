@@ -1,0 +1,11 @@
+(
+
+(def-slc ai : LAMBDA p : EQUAL (? p p) I)
+
+(def-slc ak : LAMBDA p : LAMBDA q : 
+ EQUAL (AP p : ? q p) I)
+
+(def-slc as : LAMBDA p : LAMBDA q : LAMBDA r : 
+ EQUAL (AP (? p : AP q r) : AP (? p q) (? p r)) I) 
+
+)

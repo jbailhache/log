@@ -1,0 +1,51 @@
+<HTML>
+<head>
+<title>Animation Java</title>
+</head>
+<body>
+Animation Java
+   
+<p>
+<applet code=intaplet.class width=600 height=500>
+ 
+<param name=init value='
+ ;[rplac global #1# getimage "etoiles.gif"]
+ ;[rplac global #2# button "Test"]
+ ;[add applet "" subexpr global #2#]
+ ;[rplac global #7# panel]
+ ;[rplac global #3# textarea "" #6# #20#]
+ ;[settext subexpr global #3# "Bonjour"]
+ ;[add subexpr global #7# "" subexpr global #3#]
+ ;[add applet "" subexpr global #7#]
+ ;[rplac global #4# parsenbr getparameter "width"]
+ ;[rplac global #5# parsenbr getparameter "height"]
+ ;[rplac global #6# checkbox "Cochez ici" #1#]
+ nop'>
+ 
+<param name=mousedown value='
+ ^coord
+ ;[settext subexpr global #3# 
+   [concat gettext subexpr global #3#
+    concat "\nMouse down " [rep coord]]]
+ nop'>
+
+<param name=step value='
+ ^t
+ ;(qt ^x ^y; point; x; adse; y adse) ^mkpoint 
+ ;[setcolor (qt (color #90# #80# #120#))]
+ ;[filloval [eval mkpoint [plus #300# [times #60# [sin [times #0.2# t]]]] #250#] 
+	(vector #80# #60#)]
+ ;[setfont "Courier" NIL #30#]
+ ;[drawstring "Bonjour !" (POINT #30# #200#)]
+ ;[drawline (POINT #40# #120#) (POINT #160# #280#)]
+ ;[fillrect (POINT #60# #140#) (POINT #90# #130#)]
+ (nop)'>
+
+<param name=action value='
+ ;[settext subexpr global #3# "Action"]
+ ;[showdocument "animpln.htm"]
+ nop'>
+
+</applet>
+</body>
+</HTML>

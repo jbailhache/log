@@ -1,0 +1,203 @@
+read("c:\jacques\eco\chocs15.txt")
+Warning: Unexpected escape character '\j' in string [line 1, col 10]
+Warning: Unexpected escape character '\e' in string [line 1, col 18]
+Warning: Unexpected escape character '\c' in string [line 1, col 22]
+Error: Could not open "c:jacquesecochocs15.txt" [read]
+
+
+read("c:\\jacques\\eco\\chocs15.txt")
+
+                                  restart
+
+                              x -> A*x^alpha
+
+                            x -> diff(f(x), x)
+
+                                 alpha
+           diff(k(t), t) = A k(t)      - k(t) (mu + bet) - c(t)
+
+                                       alpha
+                      c(t) (diff(A k(t)     , k(t)) - ps - bet - mu)
+      diff(c(t), t) = ----------------------------------------------
+                                           sigma
+
+                                        alpha - 1
+                         c(k) (A alpha k          - ps - bet - mu)
+         diff(c(k), k) = -----------------------------------------
+                                     alpha
+                           sigma (A k      - k (mu + bet) - c(k))
+
+                                     9
+
+                                    1/3
+
+                                     0
+
+                                   0.08
+
+                                   0.05
+
+                                    1.0
+
+                             [x = 110.8579526]
+
+                                110.8579526
+
+                                34.36596532
+
+                                     7
+
+                                    0.1
+
+                             [x = 61.35193849]
+
+                                61.35193849
+
+                                21.47317847
+
+             --    1/3                    /    7          \ --
+             |  7 k    - 0.1 k - c, 1.0 c | ------ - 0.15 |  |
+             |                            |    2/3        |  |
+             --                           \ 3 k           / --
+
+                                  [k, c]
+
+                 +-                                     -+
+                 |       7                               |
+                 |    ------ - 0.1,          -1          |
+                 |       2/3                             |
+                 |    3 k                                |
+                 |                                       |
+                 |    1.555555556 c  2.333333333         |
+                 |  - -------------, ----------- - 0.15  |
+                 |          5/3           2/3            |
+                 |         k             k               |
+                 +-                                     -+
+
+                                61.35193849
+
+                                21.47317847
+
+                       {-0.1637458609, 0.2137458609}
+
+                     x -> pente7[2]*(x - ks7) + cstar7
+
+
+
+                                     9
+
+                                   0.08
+
+             --    1/3                     /   3         \ --
+             |  9 k    - 0.08 k - c, 1.0 c | ---- - 0.13 |  |
+             |                             |  2/3        |  |
+             --                            \ k           / --
+
+                                  [k, c]
+
+                      +-                          -+
+                      |    3                       |
+                      |  ---- - 0.08,      -1      |
+                      |   2/3                      |
+                      |  k                         |
+                      |                            |
+                      |      2.0 c     3.0         |
+                      |    - -----,   ---- - 0.13  |
+                      |        5/3     2/3         |
+                      |       k       k            |
+                      +-                          -+
+
+                                110.8579526
+
+                                34.36596532
+
+                       {-0.1408061117, 0.1908061117}
+
+                     x -> pente9[2]*(x - ks9) + cstar9
+
+                                            1/3
+             plot::Function2d(- 0.08 x + 9 x   , x = 50..115)
+
+        plot::Function2d(0.1908061117 x + 13.21359043, x = 40..115)
+
+                                    7.0
+
+                                    0.1
+
+                                             1/3
+             plot::Function2d(- 0.1 x + 7.0 x   , x = 50..115)
+
+        plot::Function2d(0.2137458609 x + 8.359455562, x = 40..115)
+
+
+
+delete(k)
+
+
+c
+
+                                34.36596532
+
+delete(c)
+
+
+A:=9
+
+                                     9
+
+mu:=0.08
+
+                                   0.08
+
+edc
+
+                                               1/3
+          diff(c(t), t) = 1.0 c(t) (diff(9 k(t)   , k(t)) - 0.13)
+
+dct=rhs(edc)
+
+                                          1/3
+               dct = 1.0 c(t) (diff(9 k(t)   , k(t)) - 0.13)
+
+dct:=rhs(edc)
+
+                                       1/3
+                  1.0 c(t) (diff(9 k(t)   , k(t)) - 0.13)
+
+edk
+
+                                     1/3
+               diff(k(t), t) = 9 k(t)    - 0.08 k(t) - c(t)
+
+dkt:=rhs(edk)
+
+                             1/3
+                       9 k(t)    - 0.08 k(t) - c(t)
+
+dct1:=subs(dct,k(t)=kc[1],c(t)=kc[2]);
+
+                                       1/3
+                1.0 kc[2] (diff(9 kc[1]   , kc[1]) - 0.13)
+
+dkt1:=subs(dkt,k(t)=kt[1],c(t)=kc[2]);
+
+                             1/3
+                      9 kt[1]    - 0.08 kt[1] - kc[2]
+
+f:=(t,kc)->[dkt1,dct1];
+
+                          (t, kc) -> [dkt1, dct1]
+
+sol:=T->numeric::odesolve(0..T,f,[kstar,0.999*cstar]);
+
+           T -> numeric::odesolve(0..T, f, [kstar, 0.999*cstar])
+
+sol:=T->numeric::odesolve(0..T,f,[kstar9,cstar9.1.5])
+
+           T -> numeric::odesolve(0..T, f, [kstar9, cstar9.1.5])
+
+plotfunc2d(sol(T),T=0..50);
+Error: Illegal argument [_concat];
+during evaluation of 'sol'
+
+

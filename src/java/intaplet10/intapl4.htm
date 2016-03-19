@@ -1,0 +1,2777 @@
+<HTML>
+<head>
+<title>Applet intaplet</title>
+</head>
+<body>
+
+<p>
+This is a Java applet running an interpret of a small programming 
+language which permits to access to the graphic features of Java
+from the HTML source. 
+<p>
+The source is transmitted as parameter to the applet.
+<p>
+Here is an example of code to be inserted into a HTML file :
+<p>
+<textarea rows=10 cols=60>
+
+<applet code=intaplet.class width=600 height=500>
+ 
+<param name=init value='
+ &dup ^x { x x }
+ {
+  [add applet "" rplac global #1# dup label "Test"]
+  [add applet "" rplac global #2# dup textfield "Hello" #10#]
+  [add applet "" rplac global #3# dup checkbox "Check" NIL #0#]
+  [rplac global #4# checkboxgroup]
+  [add applet "" rplac global #5# dup checkbox "FM" [subexpr global #4#] #1#]
+  [add applet "" rplac global #6# dup checkbox "AM" [subexpr global #4#] #0#]
+  [add applet "" rplac global #7# dup choice]
+  [additem subexpr global #7# "rouge"]
+  [additem subexpr global #7# "vert"]
+  [additem subexpr global #7# "bleu"]
+  [add applet "" rplac global #8# dup list #3# #1#]
+  [additem subexpr global #8# "cercle"]
+  [additem subexpr global #8# "carré"]
+  [additem subexpr global #8# "triangle"]
+  [add applet "" rplac global #9# dup textarea "" #6# #45#]
+  [add applet "" rplac global #10# dup button "Test"]
+
+ }'>
+
+<param name=event value=' ^evt {
+ [settext subexpr global #9# 
+  concat "Event " concat rep evt
+  concat "\ncheckbox " concat rep getstate subexpr global #3#
+  concat "\nradio " concat rep getlabel getcurrent subexpr global #4#
+  concat "\ncouleur " concat rep getselecteditem subexpr global #7#
+  concat "\nforme " concat rep getselecteditem subexpr global #8#
+
+  ""]
+ }'>
+
+<param name=init1 value='
+ ;[rplac global #1# getimage "etoiles.gif"]
+ ;[rplac global #2# button "Test"]
+ ;[add applet "" subexpr global #2#]
+ ;[rplac global #7# panel]
+ ;[rplac global #3# textarea "" #6# #20#]
+ ;[settext subexpr global #3# "Bonjour"]
+ ;[add subexpr global #7# "" subexpr global #3#]
+ ;[add applet "" subexpr global #7#]
+ ;[rplac global #4# parsenbr getparameter "width"]
+ ;[rplac global #5# parsenbr getparameter "height"]
+ ;[rplac global #6# checkbox "Cochez ici" #1#]
+ nop'>
+ 
+<param name=mousedown1 value='
+ ^coord
+ ;[settext subexpr global #3# 
+   [concat gettext subexpr global #3#
+    concat "\nMouse down " [rep coord]]]
+ nop'>
+
+<param name=time value=60>
+
+<param name=step value='
+ ^t
+ ;(qt ^x ^y; point; x; adse; y adse) ^mkpoint 
+ ;[setcolor (qt (color #90# #80# #120#))]
+ ;[filloval [eval mkpoint [plus #300# [times #60# [sin [times #0.2# t]]]] #250#] 
+	(vector #80# #60#)]
+ ;[setfont "Courier" NIL #30#]
+ ;[drawstring "Bonjour !" (POINT #30# #200#)]
+ ;[drawline (POINT #40# #120#) (POINT #160# #280#)]
+ ;[fillrect (POINT #60# #140#) (POINT #90# #130#)]
+ (nop)'>
+
+<param name=action1 value='
+ ;[settext subexpr global #3# "Action"]
+ ;[showdocument "animpln.htm"]
+ nop'>
+
+</applet>
+
+ 
+</textarea>
+
+<p>
+and here is the result :
+<p>
+
+
+<applet code=intaplet.class width=600 height=500>
+ 
+<param name=init value='
+ &dup ^x { x x }
+ {
+  [add applet "" rplac global #1# dup label "Test"]
+  [add applet "" rplac global #2# dup textfield "Hello" #10#]
+  [add applet "" rplac global #3# dup checkbox "Check" NIL #0#]
+  [rplac global #4# checkboxgroup]
+  [add applet "" rplac global #5# dup checkbox "FM" [subexpr global #4#] #1#]
+  [add applet "" rplac global #6# dup checkbox "AM" [subexpr global #4#] #0#]
+  [add applet "" rplac global #7# dup choice]
+  [additem subexpr global #7# "rouge"]
+  [additem subexpr global #7# "vert"]
+  [additem subexpr global #7# "bleu"]
+  [add applet "" rplac global #8# dup list #3# #1#]
+  [additem subexpr global #8# "cercle"]
+  [additem subexpr global #8# "carré"]
+  [additem subexpr global #8# "triangle"]
+  [add applet "" rplac global #9# dup textarea "" #6# #45#]
+  [add applet "" rplac global #10# dup button "Test"]
+
+ }'>
+
+<param name=event value=' ^evt {
+ [settext subexpr global #9# 
+  concat "Event " concat rep evt
+  concat "\ncheckbox " concat rep getstate subexpr global #3#
+  concat "\nradio " concat rep getlabel getcurrent subexpr global #4#
+  concat "\ncouleur " concat rep getselecteditem subexpr global #7#
+  concat "\nforme " concat rep getselecteditem subexpr global #8#
+
+  ""]
+ }'>
+
+<param name=init1 value='
+ ;[rplac global #1# getimage "etoiles.gif"]
+ ;[rplac global #2# button "Test"]
+ ;[add applet "" subexpr global #2#]
+ ;[rplac global #7# panel]
+ ;[rplac global #3# textarea "" #6# #20#]
+ ;[settext subexpr global #3# "Bonjour"]
+ ;[add subexpr global #7# "" subexpr global #3#]
+ ;[add applet "" subexpr global #7#]
+ ;[rplac global #4# parsenbr getparameter "width"]
+ ;[rplac global #5# parsenbr getparameter "height"]
+ ;[rplac global #6# checkbox "Cochez ici" #1#]
+ nop'>
+ 
+<param name=mousedown1 value='
+ ^coord
+ ;[settext subexpr global #3# 
+   [concat gettext subexpr global #3#
+    concat "\nMouse down " [rep coord]]]
+ nop'>
+
+<param name=time value=60>
+
+<param name=step value='
+ ^t
+ ;(qt ^x ^y; point; x; adse; y adse) ^mkpoint 
+ ;[setcolor (qt (color #90# #80# #120#))]
+ ;[filloval [eval mkpoint [plus #300# [times #60# [sin [times #0.2# t]]]] #250#] 
+	(vector #80# #60#)]
+ ;[setfont "Courier" NIL #30#]
+ ;[drawstring "Bonjour !" (POINT #30# #200#)]
+ ;[drawline (POINT #40# #120#) (POINT #160# #280#)]
+ ;[fillrect (POINT #60# #140#) (POINT #90# #130#)]
+ (nop)'>
+
+<param name=action1 value='
+ ;[settext subexpr global #3# "Action"]
+ ;[showdocument "animpln.htm"]
+ nop'>
+
+</applet>
+
+<p>
+Here are other examples of use :
+
+<ul>
+<li><a href=intapan.htm>Panel</a>
+<li><a href=intaplay.htm>Layout</a>
+<li><a href=intapf.htm>Frame</a>
+<li><a href=intaprec.htm>Recursive function</a>
+<li><a href=intapweb.htm>Get a web page</a>
+
+
+</ul>
+ 
+<p>
+The applet consists of the following Java classes :
+<ul>
+<li> expr : defines the structure of the expressions representing the
+programs and the datas
+<li> entree : the compiler which translate source into internal representation
+<li> interp : the interpret
+<li> iaFrame : class for creating frames
+<li> intaplet : the applet calling the interpret
+</ul>
+<p>
+
+<h4>Installation</h4>
+
+Copy the files
+<a href=expr.class>expr.class</a>,
+<a href=entree.class>entree.class</a>,
+<a href=interp.class>interp.class</a>,
+<a href=iaFrame.class>iaFrame.class</a> and
+<a href=intaplet.class>intaplet.class</a>
+to the directory of your web site where you put your HTML files.
+To download them click on the file names.
+<p>
+Here are the Java sources of the applet :
+
+<p>
+<a href=expr.java>expr.java</a> <a href=expr.class>Download expr.class</a>
+<p>
+<textarea rows=10 cols=60>
+ 
+ 
+public class expr
+{
+ public String noeud;
+ public double valeur;
+ public String chaine;
+ public Object objet;
+ public int arite;
+ public expr sousexpr[];
+ public String carspec = " #\"\\;:()[]{}^%&";
+
+ expr (String nd, double x, String s, Object o, int a, expr[] se)
+ {
+  noeud = nd;
+  valeur = x;
+  chaine = s;
+  objet = o;
+  arite = a;
+  sousexpr = se;
+ }
+
+ expr (String nd, double x, String s, int a, expr[] se)
+ {
+  noeud = nd;
+  valeur = x;
+  chaine = s;
+  objet = null;
+  arite = a;
+  sousexpr = se;
+ }
+
+ expr (String nd)
+ {
+  noeud = nd;
+  arite = 0;
+  valeur = 0;
+  chaine = "";
+  objet = null;
+ }
+
+ expr (String nd, double x)
+ {
+  noeud = nd;
+  valeur = x;
+  chaine = "";
+  objet = null;
+  arite = 0;
+ }
+
+ expr (double x)
+ {
+  noeud = "NBR";
+  valeur = x;
+  chaine = "";
+  objet = null;
+  arite = 0;
+ }
+
+ expr (String nd, String s)
+ {
+  noeud = nd;
+  valeur = 0;
+  chaine = s;  
+  objet = null;
+  arite = 0;
+  
+ }
+
+ expr (String nd, Object o)
+ {
+  noeud = nd;
+  valeur = 0;
+  chaine = "";
+  objet = o;
+  arite = 0;
+ }
+
+ expr (Object o)
+ {
+  noeud = "OBJ";
+  valeur = 0;
+  chaine = "";
+  objet = o;
+  arite = 0;
+ }
+
+ expr (String nd, int a, expr[] se)
+ {
+  noeud = nd;
+  valeur = 0;
+  chaine = "";
+  objet = null;
+  arite = a;
+  sousexpr = se;
+ }
+
+ expr (String nd, int a)
+ {
+  noeud = nd;
+  valeur = 0;
+  chaine = "";
+  objet = null;
+  arite = a;
+  sousexpr = new expr[a];
+  for (int i=0; i<a; i++)
+   sousexpr[i] = new expr ("NIL");
+
+ }
+
+ expr (String nd, expr x)
+ {
+  noeud = nd;
+  valeur = 0;
+  chaine = "";
+  objet = null;
+  arite = 1;
+  sousexpr = new expr[1];
+  sousexpr[0] = x;
+ }
+
+ expr (String nd, expr x, expr y)
+ {
+  noeud = nd;
+  valeur = 0;
+  chaine = "";
+  objet = null;
+  arite = 2;
+  sousexpr = new expr[2];
+  sousexpr[0] = x;
+  sousexpr[1] = y;
+ }
+
+ expr (String nd, expr x0, expr x1, expr x2)
+ {
+  noeud = nd;
+  valeur = 0;
+  chaine = "";
+  objet = null;
+  arite = 3;
+  sousexpr = new expr[3];
+  sousexpr[0] = x0;
+  sousexpr[1] = x1;
+  sousexpr[2] = x2;
+ }
+
+ expr (String nd, expr x0, expr x1, expr x2, expr x3)
+ {
+  noeud = nd;
+  valeur = 0;
+  chaine = "";
+  objet = null;
+  arite = 4;
+  sousexpr = new expr[4];
+  sousexpr[0] = x0;
+  sousexpr[1] = x1;
+  sousexpr[2] = x2;
+  sousexpr[3] = x3;
+ }
+
+ expr (String nd, expr x0, expr x1, expr x2, expr x3, expr x4)
+ {
+  noeud = nd;
+  valeur = 0;
+  chaine = "";
+  objet = null;
+  arite = 5;
+  sousexpr = new expr[5];
+  sousexpr[0] = x0;
+  sousexpr[1] = x1;
+  sousexpr[2] = x2;
+  sousexpr[3] = x3;
+  sousexpr[4] = x4;
+ }
+
+ expr (String nd, expr x0, expr x1, expr x2, expr x3, expr x4, expr x5)
+ {
+  noeud = nd;
+  valeur = 0;
+  chaine = "";
+  objet = null;
+  arite = 6;
+  sousexpr = new expr[6];
+  sousexpr[0] = x0;
+  sousexpr[1] = x1;
+  sousexpr[2] = x2;
+  sousexpr[3] = x3;
+  sousexpr[4] = x4;
+  sousexpr[5] = x5;
+ }
+
+
+
+
+ void modarite (int n)
+ {
+  arite = n;
+  sousexpr = new expr[n];
+ } 
+
+ expr niveau (int n)
+ {
+  expr x = this;
+  for (int i=0; i<n; i++)
+   x = x.sousexpr[1];
+  return x.sousexpr[0];
+ }
+
+ String rep ()
+ { 
+  /*return rep (" #\"\\;:()[]{}^%");*/
+  return rep (carspec);
+ }
+
+ String rep (String carspec)
+ {
+  if (noeud.equals ("NBR"))
+   /* return "#" + valeur + "#"; */
+   return ("" + carspec.charAt(1)) + valeur + ("" + carspec.charAt(1));
+  if (noeud.equals ("STR"))
+   /* return "\"" + chaine + "\""; */
+   return carspec.charAt(2) + chaine + carspec.charAt(2);
+  if (arite == 0 && valeur == 0 && chaine == "")
+   return noeud;
+  String r = /*"("*/ "" + carspec.charAt(6);
+  r += noeud;
+  if (valeur != 0)
+  {
+   /*System.out.println ("valeur="+valeur);*/
+   /*r += " #" + valeur + "#";*/
+   r += /* carspec.charAt(0) + */ "" + carspec.charAt(1) + valeur + carspec.charAt(1);
+  }
+  if (!chaine.equals(""))
+   /*r += " \"" + chaine + "\"";   */
+   r += /*carspec.charAt(0) + */ "" + carspec.charAt(2) + chaine + carspec.charAt(2);
+  if (objet != null)
+   r += " *";
+  for (int i=0; i<arite; i++)
+   /*r += " " + sousexpr[i].rep();*/
+   r += carspec.charAt(0) + sousexpr[i].rep();
+  r += /*")"*/ carspec.charAt(7);
+  return r;
+ }
+
+}
+ 
+ 
+
+</textarea>
+<p><a href=entree.java>entree.java</a> : <a href=entree.class>Download entree.class</a>
+<p>
+<textarea rows=10 cols=60>
+
+
+
+import java.applet.*;
+import java.awt.*;
+import java.net.*;
+import java.lang.*;
+ 
+
+public class entree
+{
+ public char c;
+ public String s;
+ boolean skipped;
+ public TextArea messages;
+ public String carspec;
+
+ entree (String cs)
+ {
+  /*
+  c = cs.charAt(0);
+  s = cs.substring(1,cs.length()-1);
+  */
+  carspec = " #\"\\;:()[]{}^%&";
+  c = 0;
+  s = cs + ".";
+  suivant();
+ }
+
+ void suivant1 ()
+ {
+  /*skipped = false;*/
+  
+   /*System.out.println ("s:" + s + ".");*/
+   if (s.length() < 1)
+   {
+    System.out.println ("Erreur: entrée vide");  
+    if (messages != null)
+     messages.setText (messages.getText() + "\nError: Unexpected end of source.");
+    c = (char)-1;
+   }
+   c = s.charAt(0);
+   System.out.print(c);
+   s = s.substring (1, s.length());
+    
+  
+  /*System.out.print(c);*/
+
+ }
+ 
+/*
+
+ void suivant ()
+ {
+  skipped = false;
+  for (;;)
+  {
+    if (s.length() < 1)
+   {
+    System.out.println ("Erreur: entrée vide");  
+    c = (char)-1;
+    if (messages != null)
+     messages.setText (messages.getText() + "\nError: Unexpected end of source.");
+    break;
+   }
+   c = s.charAt(0);
+   System.out.print(c);
+   s = s.substring (1, s.length());
+   if (!(c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == carspec.charAt(0)))
+    break;
+   else
+    skipped = true;
+  }
+ 
+ }
+ 
+
+
+*/
+
+/*
+ void suivant ()
+ {
+  skipped = false;
+  for (;;)
+  {
+   suivant1();
+   if (!(c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == carspec.charAt(0)))
+    break;
+   else
+    skipped = true;
+  }
+ }
+ */
+
+ void suivant2 ()
+ {
+  suivant1();
+  if (c == carspec.charAt(13))
+  {
+   for (;;)
+   {
+    suivant1();
+    if (c == carspec.charAt(13))
+     break;
+   }
+   suivant1();
+  }
+ }
+
+ void suivant ()
+ {
+  skipped = false;
+  for (;;)
+  {
+   suivant2();
+   if (!(c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == carspec.charAt(0)))
+    break;
+   else
+    skipped = true;
+  } 
+ }
+
+
+
+ void suivantb ()
+ {
+  skipped = false;
+  for (;;)
+  {
+   /*System.out.println ("s:" + s + ".");*/
+   if (s.length() < 1)
+   {
+    System.out.println ("Erreur: entrée vide");  
+    c = (char)-1;
+    if (messages != null)
+     messages.setText (messages.getText() + "\nError: Unexpected end of source.");
+    break;
+   }
+   c = s.charAt(0);
+   System.out.print(c);
+   s = s.substring (1, s.length());
+   if (c == carspec.charAt(13))
+   {
+    skipped = true;
+    if (s.length() < 1)
+    {
+     System.out.println ("Erreur: entrée vide");  
+     c = (char)-1;
+     if (messages != null)
+      messages.setText (messages.getText() + "\nError: Unexpected end of source.");
+     break;
+    }
+    c = s.charAt(0);
+    s = s.substring (1, s.length());
+    if (c == carspec.charAt(13))
+    {
+     if (s.length() < 1)
+     {
+      System.out.println ("Erreur: entrée vide");  
+      c = (char)-1;
+      if (messages != null)
+       messages.setText (messages.getText() + "\nError: Unexpected end of source.");
+      break;
+     }
+     c = s.charAt(0);
+     s = s.substring (1, s.length());
+     break;
+    }
+   }
+   if (!(c == ' ' || c == '\t' || c == '\n' || c == '\r' || c == carspec.charAt(0)))
+    break;
+   else
+    skipped = true;
+  }
+  /*System.out.print(c);*/
+
+ }
+ 
+ char carlu()
+ {
+  return c;
+ }
+
+ String liresym ()
+ {
+  String z = "";
+  for (;;)
+  {
+   if (!((carlu() >= 'a' && carlu() <= 'z') ||
+         (carlu() >= 'A' && carlu() <= 'Z') ||
+         (carlu() >= '0' && carlu() <= '9') ||
+	   carlu() == '_'))
+   {
+    /*System.out.println("symbole:"+z);*/
+    return z;
+   }
+   z = z + carlu();
+   suivant();
+   if (skipped)
+    return z; 
+  }
+  
+ }
+
+ String lirechaine ()
+ {
+  String z = "";
+  suivant1();
+  for (;;)
+  {
+   if (carlu() == /*'\\'*/ carspec.charAt(3))
+   {
+    suivant1();
+    if (carlu() == 'n')
+     z = z + '\n';
+    else
+     z = z + carlu();
+    suivant1();
+   }
+   else if (carlu() == /*'"'*/ carspec.charAt(2))
+   {
+    suivant();
+    return z;
+   }
+   else if (carlu() == (char)-1)
+   {
+    return z;
+   }
+   else
+   {
+    z = z + carlu();
+    suivant1(); 
+   }
+  }
+ }
+
+ double lirevaleur ()
+ {
+  String z = "";
+  suivant();
+  for (;;)
+  {
+   if (carlu() == /*'#'*/ carspec.charAt(1) || carlu() == (char)-1)
+   {
+    suivant();
+    Double x = new Double(z);
+    double y = x.doubleValue();
+    return y;
+   }    
+   z = z + carlu();
+   suivant(); 
+  }
+ }
+
+ expr subvar (int i, String v, expr x, boolean ev)
+ {
+  if (x.noeud.equals(v))
+  {
+   if (ev)
+    return new expr ("SEQ", new expr ("arg", (double)i), new expr("eval"));
+   else
+    return new expr ("arg", (double)i);
+  }
+  else if (x.noeud.equals("LDB"))
+  {
+   expr y = subvar (i+1, v, x.sousexpr[0], ev);
+   return new expr ("LDB", y);
+  }
+  else
+  {
+   expr se[] = new expr[x.arite];
+   for (int j=0; j<x.arite; j++)
+    se[j] = subvar (i, v, x.sousexpr[j], ev);
+   expr y = new expr (x.noeud, x.valeur, x.chaine, x.objet, x.arite, se);
+   return y;
+  }
+ }
+
+ expr lambda (String v, expr x)
+ {
+  expr y = subvar (0, v, x, false);
+  /*expr z = new expr ("SEQ", new expr("in"), new expr ("SEQ", y, new expr("ex")));*/
+  expr z = new expr ("LDB", y);
+  return z;
+ }
+
+ expr elambda (String v, expr x)
+ {
+  expr y = subvar (0, v, x, true);
+  /*expr z = new expr ("SEQ", new expr("in"), new expr ("SEQ", y, new expr("ex")));*/
+  expr z = new expr ("LDB", y);
+  return z;
+ }
+
+ public boolean equal (expr x, expr y)
+ { 
+  if (!x.noeud.equals(y.noeud))
+   return false;
+  if (x.valeur != y.valeur)
+   return false;
+  if (!x.chaine.equals(y.chaine))
+   return false;
+  if (x.arite != y.arite)
+   return false;
+  if (x.objet != y.objet) 
+   return false;
+  for (int i=0; i<x.arite; i++)
+  {
+   if (!equal(x.sousexpr[i], y.sousexpr[i]))
+    return false;
+  }
+  return true;
+ }
+
+
+ public expr subst (expr ca, expr par, expr dans)
+ {
+  if (equal (ca, dans))
+   return par;
+  else
+  {
+   expr se[] = new expr[dans.arite];
+   for (int j=0; j<dans.arite; j++)
+    se[j] = subst (ca, par, dans.sousexpr[j]);
+   expr y = new expr (dans.noeud, dans.valeur, dans.chaine, 
+	dans.objet, dans.arite, se);
+   return y;
+  }    
+ }
+
+ expr lirexpr ()
+ {
+  expr x = lirexpr1();
+  x.carspec = carspec;
+  return x;
+ }
+
+ expr lirexpr1 ()
+ {
+  String node;
+  double val;
+  String str;
+  int arite;
+  expr[] sousexpr1;
+  expr[] sousexpr;
+  char c1;
+
+  if (carlu() == /*'('*/ carspec.charAt(6) || carlu() == /*':'*/ carspec.charAt(5))
+  {
+   c1 = carlu();
+   suivant ();
+   node = liresym();
+
+   val = 0;
+   str = "";
+
+   if (carlu() == '#' && !skipped)
+   {
+    val = lirevaleur();
+    /*System.out.println ("val="+val);*/
+   }
+   else
+    val = 0;
+   if (carlu() == '"' && !skipped)
+    str = lirechaine();
+   else
+    str = "";
+
+   
+   arite = 0;
+   sousexpr1 = new expr[30];
+   for (;;)
+   {
+    /*System.out.println ("c:"+c);*/
+    if (carlu() == /*')'*/ carspec.charAt(7) || carlu() == (char)-1)
+     break;
+    sousexpr1[arite++] = lirexpr();
+   }
+   if (c1 == /*'('*/ carspec.charAt(6))
+    suivant();
+   sousexpr = new expr[arite];
+   for (int i=0; i<arite; i++)
+    sousexpr[i] = sousexpr1[i];
+   return new expr (node, val, str, arite, sousexpr);
+  }
+  else if (carlu() == /*';'*/ carspec.charAt(4))
+  {
+   suivant();
+   expr x = lirexpr();
+   expr y = lirexpr();
+   expr z = new expr ("SEQ", x, y);
+   return z;
+  }
+  else if ((carlu() >= 'a' && carlu() <= 'z') ||
+	     (carlu() >= 'A' && carlu() <= 'Z') ||
+		carlu() == '_' )
+  {
+   node = liresym();
+   return new expr(node);  
+  }
+  else if (carlu() == /*'#'*/ carspec.charAt(1))
+  {
+   double x = lirevaleur();
+   return new expr(x);
+  }
+  else if (carlu() == /*'"'*/ carspec.charAt(2))
+  {
+   String s = lirechaine();
+   return new expr ("STR", s);
+  }
+  else if (carlu() == /*'^'*/ carspec.charAt(12))
+  {
+   suivant();
+   String v = liresym();
+   expr x = lirexpr();
+   expr y = lambda (v, x);
+   return y;
+  }
+  else if (carlu() == carspec.charAt(14))
+  {
+   suivant();
+   /* String v = liresym(); */
+   expr v = lirexpr();
+   expr f = lirexpr();
+   expr x = lirexpr();
+   /* expr y = new expr ("SEQ", new expr ("qt", f), elambda (v, x)); */
+   expr y = subst (v, f, x);
+   return y;
+  }
+  else if (carlu() == /*'['*/ carspec.charAt(8))
+  {
+   suivant();
+   expr x = lirexpr();
+   expr y;
+   for (;;)
+   {
+    if (carlu() == /*']'*/ carspec.charAt(9) || carlu() == (char)-1)
+    {
+     suivant();
+     return x;
+    }
+    y = lirexpr();
+    x = new expr ("SEQ", y, x);
+   }
+  }
+  else if (carlu() == /*'{'*/ carspec.charAt(10))
+  {
+   suivant();
+   expr x = lirexpr();
+   expr y;
+   for (;;)
+   {
+    if (carlu() == /*'}'*/ carspec.charAt(11) || carlu() == (char)-1)
+    {
+     suivant();
+     return x;
+    }
+    y = lirexpr();
+    x = new expr ("SEQ", x, y);
+   }
+  }
+  else if (carlu() == (char)-1)
+  {
+   return new expr ("ERROR", 
+			  new expr ("STR", "Unexpected end of source"), 
+                    new expr ("NIL"));
+  }
+  /*suivant(); 
+  return new expr ("ERROR", 
+                   new expr ("STR", "Invalid character"), 
+                   new expr((double) carlu())
+	             );*/
+  char c = carlu();
+  suivant();
+  return new expr ("" + c);
+ }
+ 
+}
+
+
+
+</textarea>
+<p><a href=interp.java>interp.java</a> <a href=interp.class>Download interp.class</a>
+<p>
+<textarea rows=10 cols=60>
+
+
+import java.applet.*;
+import java.awt.*;
+import java.net.*;
+import java.lang.*;
+import java.io.*;
+ 
+class interp
+{
+
+ expr global;
+ Applet aplet;
+ expr prog_frame;
+ Graphics graph;
+ TextArea trace;
+ TextArea messages;
+ String carspec;
+ Socket sock;
+
+ interp ()
+ {
+  carspec = " #\"\\;:()[]{}^%&";
+ }
+
+ public boolean equal (expr x, expr y)
+ {
+  if (!x.noeud.equals(y.noeud))
+   return false;
+  if (x.valeur != y.valeur)
+   return false;
+  if (!x.chaine.equals(y.chaine))
+   return false;
+  if (x.arite != y.arite)
+   return false;
+  if (x.objet != y.objet) 
+   return false;
+  for (int i=0; i<x.arite; i++)
+  {
+   if (!equal(x.sousexpr[i], y.sousexpr[i]))
+    return false;
+  }
+  return true;
+ }
+
+
+ public expr subst (expr ca, expr par, expr dans)
+ {
+  if (equal (ca, dans))
+   return par; 
+  else
+  {
+   expr se[] = new expr[dans.arite];
+   for (int j=0; j<dans.arite; j++)
+    se[j] = subst (ca, par, dans.sousexpr[j]);
+   expr y = new expr (dans.noeud, dans.valeur, dans.chaine, 
+	dans.objet, dans.arite, se);
+   return y;
+  }    
+ }
+
+
+ expr getarg (double n, expr args)
+ {
+  expr args1 = args;
+  for (int i=0; i<n; i++)
+   args1 = args1.sousexpr[1];
+  return args1.sousexpr[0];
+ }
+
+ expr setarg (expr x, double n, expr args)
+ {
+  if (n == 0)
+   return new expr ("PUSH", x, args.sousexpr[1]);
+  else
+   return new expr ("PUSH", args.sousexpr[0], 
+	setarg (x, n-1, args.sousexpr[1]));
+ }
+
+ expr pushctx (expr x, expr ctx)
+ {
+  return new expr ("CTX", ctx.sousexpr[0], 
+	new expr ("PUSH", x, ctx.sousexpr[1]),
+	ctx.sousexpr[2], ctx.sousexpr[3]);
+ }
+
+ expr popctx (int n, expr ctx)
+ {
+  expr p = ctx.sousexpr[1];
+  for (int i=0; i<n; i++)
+   p = p.sousexpr[1];
+  return new expr ("CTX", ctx.sousexpr[0].sousexpr[1], p,
+	ctx.sousexpr[2], ctx.sousexpr[3]);
+ }
+
+ expr evol (expr ctx)
+ {
+  expr prog = ctx.sousexpr[0];
+  expr pile = ctx.sousexpr[1];
+  expr args = ctx.sousexpr[2];
+  expr env  = ctx.sousexpr[3];
+  expr instr = prog.sousexpr[0];
+  String op = instr.noeud;
+  expr cont = prog.sousexpr[1];
+  expr r;
+
+  r = ctx;
+
+  /*System.out.println (ctx.rep());*/
+
+  /*System.out.print (op);*/
+  if (op.equals ("qt"))
+  {
+   if (instr.arite == 1)
+    r = new expr ("CTX", cont, new expr("PUSH",instr.sousexpr[0],pile), args, env);
+   else
+    r = new expr ("CTX", cont, new expr("PUSH",instr,pile), args, env);  
+  }
+  else if (op.equals ("eval"))
+   r = new expr ("CTX", new expr ("SEQ", pile.sousexpr[0], cont),
+	pile.sousexpr[1], args, env);
+  else if (op.equals ("evol"))
+   r = new expr ("CTX", cont, new expr ("PUSH", evol(pile.sousexpr[0]), pile.sousexpr[1]),
+	args, env);
+  else if (op.equals ("SEQ"))
+   r = new expr ("CTX", new expr ("SEQ", instr.sousexpr[0], new expr ("SEQ", instr.sousexpr[1], cont)),
+	pile, args, env);
+  else if (op.equals ("in"))
+   r = new expr ("CTX", cont, pile.sousexpr[1], 
+	new expr ("PUSH", pile.sousexpr[0], args), env);
+  else if (op.equals ("ex"))
+   r = new expr ("CTX", cont, pile, args.sousexpr[1], env);
+  else if (op.equals ("LDB"))
+  {
+   expr args1 = new expr ("PUSH", pile.sousexpr[0], args);
+   expr prog1 = new expr ("SEQ", instr.sousexpr[0], 
+			new expr ("SEQ", new expr("ex"), cont));
+   r = new expr ("CTX", prog1, pile.sousexpr[1], args1, env);
+  }
+  else if (op.equals ("arg"))
+   r = new expr ("CTX", cont, new expr ("PUSH", getarg (instr.valeur, args), pile),
+	args, env);
+  else if (op.equals ("set"))
+  {
+   double val;
+   if (instr.arite == 1)
+    val = instr.sousexpr[0].valeur;
+   else
+    val = instr.valeur;
+   r = new expr ("CTX", cont, pile.sousexpr[1],
+	setarg (pile.sousexpr[0], val, args), env);
+  }
+  else if (op.equals ("Set"))
+  {
+   System.out.println ("set " + pile.niveau(0).rep());
+   r = new expr ("CTX", cont, pile.sousexpr[1].sousexpr[1],
+	setarg (pile.niveau(1), pile.niveau(0).valeur, args), env);
+  }
+  else if (op.equals ("eqthen"))
+  {
+   int x;
+   if (equal (pile.sousexpr[0], pile.sousexpr[1].sousexpr[0]))
+    x = 0;
+   else
+    x = 1;
+   r = new expr ("CTX", new expr ("SEQ", instr.sousexpr[x], cont),
+	pile.sousexpr[1].sousexpr[1], args, env);
+  }
+  else if (op.equals ("nop"))
+   r = new expr ("CTX", cont, pile, args, env);
+  else if (op.equals ("sign"))
+  {
+   double s = 0;
+   if (pile.sousexpr[0].valeur > 0)
+    s = 1;
+   if (pile.sousexpr[0].valeur < 0)
+    s = -1;
+   r = new expr ("CTX", cont, new expr ("PUSH", new expr("NBR",s), pile.sousexpr[0]),
+	args, env);
+  }
+  else if (op.equals ("plus"))
+  {
+   expr x;
+   x = new expr ("NBR", pile.sousexpr[0].valeur + pile.sousexpr[1].sousexpr[0].valeur);
+   r = new expr ("CTX", cont, new expr ("PUSH", x, pile.sousexpr[1].sousexpr[1]),
+	args, env);
+  }    
+  else if (op.equals ("times"))
+  {
+   expr x;
+   x = new expr ("NBR", pile.sousexpr[0].valeur * pile.sousexpr[1].sousexpr[0].valeur);
+   r = new expr ("CTX", cont, new expr ("PUSH", x, pile.sousexpr[1].sousexpr[1]),
+	args, env);
+  }    
+  else if (op.equals ("loop"))
+   r = new expr ("CTX", new expr ("SEQ", instr.sousexpr[0], prog),
+	pile, args, env);
+  else if (op.equals ("exit"))
+   r = new expr ("CTX", cont.sousexpr[1], pile, args, env);
+  else if (op.equals ("arity"))
+  {
+   expr x;
+   x = new expr ("NBR", pile.sousexpr[0].arite);
+   r = new expr ("CTX", cont, new expr ("PUSH", x, pile.sousexpr[1]),
+	args, env);
+  }
+  else if (op.equals ("node"))
+   r = new expr ("CTX", cont, new expr ("PUSH", new expr (pile.sousexpr[0].noeud), pile.sousexpr[1]),
+	args, env);
+  else if (op.equals ("subexpr"))
+   r = new expr ("CTX", cont, new expr ("PUSH", pile.sousexpr[0].sousexpr[(int)(pile.sousexpr[1].sousexpr[0].valeur)], pile.sousexpr[1].sousexpr[1]),
+	args, env);
+  /*
+   r = new expr ("CTX", cont, new expr ("PUSH", pile.sousexpr[1].sousexpr[0].sousexpr[(int)(pile.sousexpr[0].valeur)], pile.sousexpr[1].sousexpr[1]),
+	args, env);
+  */
+
+  else if (op.equals ("adse"))
+  {
+   expr x = pile.sousexpr[1].sousexpr[0];
+   expr[] se = new expr[x.arite+1];
+   for (int i=0; i<x.arite; i++)
+    se[i] = x.sousexpr[i];
+   se[x.arite] = pile.sousexpr[0];
+   expr y = new expr (x.noeud, x.valeur, x.chaine, x.arite+1, se);
+   r = new expr ("CTX", cont, new expr ("PUSH", y, pile.sousexpr[1].sousexpr[1]),
+	args, env);
+  }
+  else if (op.equals ("copy"))
+  {
+   expr x = pile.sousexpr[0];
+   expr y = new expr (x.noeud, x.valeur, x.chaine, x.objet, x.arite, x.sousexpr);
+   r = new expr ("CTX", cont, new expr ("PUSH", y, pile.sousexpr[1]),
+	args, env);
+  }
+  else if (op.equals ("mkexpr"))
+  {
+   String n = pile.sousexpr[0].noeud;
+   int a = (int)(pile.sousexpr[1].sousexpr[0].valeur);
+   expr x = new expr (n, a);
+   r = new expr ("CTX", cont, new expr ("PUSH", x, pile.sousexpr[1].sousexpr[1]),
+	args, env);
+  }
+  else if (op.equals ("rplac"))
+  {
+   expr x = pile.sousexpr[0];
+   int i = (int)(pile.sousexpr[1].sousexpr[0].valeur);
+   expr y = pile.sousexpr[1].sousexpr[1].sousexpr[0];
+   x.sousexpr[i] = y;
+   r = new expr ("CTX", cont, pile.sousexpr[1].sousexpr[1].sousexpr[1],
+	args, env);
+  }
+  else if (op.equals ("mkstr"))
+  {
+   String s = "";
+   for (int i=0; i<pile.niveau(0).valeur; i++)
+    /*s += " ";*/
+    s += (char)(int)(pile.niveau(1).valeur);
+   r = pushctx (new expr("STR",s), popctx(2,ctx));
+  }
+  else if (op.equals ("concat"))
+  {
+   String s = pile.niveau(0).chaine + pile.niveau(1).chaine;
+   /* System.out.println ("concat: " + s); */
+   r = pushctx (new expr ("STR", s), popctx(2,ctx));
+  }
+  else if (op.equals ("charat"))
+  {
+   double x = pile.niveau(0).chaine.charAt((int)(pile.niveau(1).valeur));
+   r = pushctx (new expr(x), popctx(2,ctx));
+  }
+  /*
+  else if (op.equals ("charset"))
+  {
+   
+  }
+  */
+  else if (op.equals ("callcc"))
+  {
+   expr prog1 = new expr ("SEQ", instr.sousexpr[0], cont);
+   expr ctx1 = new expr ("CTX", cont, pile, args, env);
+   r = new expr ("CTX", prog1, new expr ("PUSH", ctx1, pile),
+	args, env); 
+  }
+  else if (op.equals ("rcallcc"))
+  {
+   expr x = pile.sousexpr[1].sousexpr[0];
+   expr ctx1 = pile.sousexpr[0];
+   expr prog1 = ctx1.sousexpr[0];
+   r = new expr ("CTX", prog1, 
+	new expr ("PUSH", x, ctx1.sousexpr[1]), ctx1.sousexpr[2], ctx1.sousexpr[3]);
+  }
+  else if (op.equals ("excallcc"))
+  {
+   expr x = pile.sousexpr[1].sousexpr[0];
+   expr ctx1 = pile.sousexpr[0];
+   expr prog1 = new expr ("SEQ", x, ctx1.sousexpr[0]);
+   r = new expr ("CTX", prog1, 
+	ctx1.sousexpr[1], ctx1.sousexpr[2], ctx1.sousexpr[3]);
+  }
+  else if (op.equals ("printout"))
+  {
+   System.out.print (pile.sousexpr[0].chaine);
+   r = new expr ("CTX", cont, pile.sousexpr[1], args, env);
+  }
+  else if (op.equals ("rep"))
+  {
+   r = new expr ("CTX", cont, 
+	new expr ("PUSH", new expr ("STR", pile.sousexpr[0].rep(carspec)), pile.sousexpr[1]),
+	args, env);
+  }
+  else if (op.equals ("compil"))
+  {
+   entree e = new entree (pile.sousexpr[0].chaine);
+   e.carspec = carspec;
+   expr x = e.lirexpr();
+   r = new expr ("CTX", cont, new expr ("PUSH", x, pile.sousexpr[1]),
+	args, env);
+  }
+  else if (op.equals ("setspechar"))
+  {
+   carspec = pile.niveau(0).chaine;
+   r = popctx(1,ctx);
+  }
+  else if (op.equals ("readin"))
+  {
+   System.out.println ("\n" + ctx.rep());
+   String line = "";
+   byte[] b = new byte[1];
+   char c;
+   for (;;)
+   {
+    try
+    {
+     System.in.read (b);
+     c = (char)(b[0]);
+    }
+    catch (Exception e)
+    {
+     System.out.println ("*** INPUT ERROR ***");
+     c = '\n';
+    }
+    if (c == '\n' || c == '\r')
+     break;
+    line += c;
+   }
+   r = new expr ("CTX", cont,
+	new expr ("PUSH", new expr ("STR", line), pile),
+	args, env);
+  }
+  else if (op.equals ("global"))
+  {
+   r = new expr ("CTX", cont, new expr ("PUSH", global, pile),
+	args, env);
+  } 
+  else if (op.equals ("ERROR"))
+  {
+   String s = "\nError: " + instr.sousexpr[0].chaine + instr.sousexpr[1].rep();
+   System.out.println (s);
+   if (messages != null)
+    messages.setText (messages.getText() + s);
+   r = popctx(0,ctx);
+  }
+  else if (op.equals ("subst"))
+  {
+   r = pushctx (subst (pile.niveau(0), pile.niveau(1), pile.niveau(2)), popctx(3,ctx));
+  }
+  else if (op.equals ("getimage"))
+  {
+   expr x = new expr (aplet.getImage(aplet.getCodeBase(),pile.sousexpr[0].chaine));
+   r = pushctx (x, popctx(1,ctx));
+  }
+  else if (op.equals ("applet"))
+   r = pushctx (new expr((Object)aplet), popctx(0,ctx));
+  else if (op.equals ("panel"))
+   r = pushctx (new expr((Object)new Panel()), popctx(0,ctx));
+  else if (op.equals ("add"))
+  {
+   Container p = (Container)(pile.niveau(0).objet);
+   String where = pile.niveau(1).chaine;
+   Component c = (Component)(pile.niveau(2).objet);
+   if (where.equals(""))
+    p.add (c);
+   else
+    p.add (where, c);
+   r = popctx (3, ctx);
+  }
+/*
+  else if (op.equals ("setlayout"))
+  {
+   Container p = (Container)(pile.niveau(0).objet);
+   Layout l = (Layout)(pile.niveau(1).objet);
+   p.setLayout(l);
+   r = popctx (2, ctx);
+  }
+  else if (op.equals ("flowlayout"))
+   r = pushctx (new expr ((Object)new FlowLayout()), popctx(0,ctx));
+  else if (op.equals ("borderlayout"))  
+   r = pushctx (new expr ((Object)new BorderLayout()), popctx(0,ctx));
+  else if (op.equals ("gridlayout"))
+   r = pushctx (new expr ((Object)
+          new GridLayout ((int)(pile.niveau(0).valeur),
+                          (int)(pile.niveau(1).valeur)
+                         )),
+	popctx(2,ctx));
+  */
+  else if (op.equals ("setflowlayout"))
+  {
+   Container p = (Container)(pile.niveau(0).objet);
+   FlowLayout l = new FlowLayout();
+   p.setLayout(l);
+   r = popctx(1,ctx);
+  }
+  else if (op.equals ("setborderlayout"))
+  {
+   Container p = (Container)(pile.niveau(0).objet);
+   BorderLayout l = new BorderLayout();
+   p.setLayout(l);
+   r = popctx(1,ctx);
+  }
+  else if (op.equals ("setgridlayout"))
+  {
+   Container p = (Container)(pile.niveau(0).objet);
+   GridLayout l = new GridLayout((int)(pile.niveau(1).valeur),(int)(pile.niveau(2).valeur));
+   p.setLayout(l);
+   r = popctx(3,ctx);
+  }
+
+  else if (op.equals ("button"))
+  {
+   Button b;
+   b = new Button (pile.sousexpr[0].chaine);
+   /*aplet.add (b);*/
+   expr x = new expr ((Object)b);
+   r = pushctx (x, popctx(1,ctx));
+  }
+
+  else if (op.equals ("textarea"))
+  {
+   TextArea t;
+   t = new TextArea (pile.niveau(0).chaine, 
+	               (int)(pile.niveau(1).valeur),
+     			   (int)(pile.niveau(2).valeur));
+   /*aplet.add (t);*/
+   r = pushctx (new expr((Object)t), popctx(3,ctx));
+  }
+  else if (op.equals ("settext"))
+  {
+   TextComponent t = (TextComponent)(pile.niveau(0).objet);
+   String s = pile.niveau(1).chaine;
+   /* System.out.println ("settext: " + s); */
+   t.setText(s);
+   r = popctx(2,ctx);
+  }
+  else if (op.equals ("gettext"))
+  {
+   TextComponent t = (TextComponent)(pile.niveau(0).objet);
+   String s = t.getText();
+   /* System.out.println ("gettext: " + s); */
+   r = pushctx (new expr ("STR", s), popctx(1,ctx));
+  }
+  else if (op.equals ("label"))
+  {
+   Label c;
+   c = new Label (pile.niveau(0).chaine);
+   r = pushctx (new expr((Object)c), popctx(1,ctx));
+  }
+  else if (op.equals ("textfield"))
+  {
+   TextField c;
+   c = new TextField (pile.niveau(0).chaine, (int)(pile.niveau(1).valeur));
+   r = pushctx (new expr((Object)c), popctx(2,ctx));
+  }
+/*
+  else if (op.equals ("setechochar"))
+  {
+   TextField c = (TextField)(pile.niveau(0).objet);
+   c.setEchoChar (pile.niveau(1).chaine.charAt(0));
+   r = popctx (2, ctx);
+  }
+*/
+  else if (op.equals ("checkboxgroup"))
+  {
+   CheckboxGroup c = new CheckboxGroup();
+   r = pushctx (new expr((Object)c), popctx(0,ctx));
+  }
+  else if (op.equals ("getcurrent"))
+  {
+   CheckboxGroup g = (CheckboxGroup)(pile.niveau(0).objet);
+   Checkbox c = g.getCurrent();
+   r = pushctx (new expr((Object)c), popctx(1,ctx));
+  }
+  else if (op.equals ("getlabel"))
+  {
+   Checkbox c = (Checkbox)(pile.niveau(0).objet);
+   r = pushctx (new expr("STR",c.getLabel()), popctx(1,ctx));
+  }
+  else if (op.equals ("checkbox"))
+  {
+   Checkbox c;
+   CheckboxGroup g = (CheckboxGroup) (pile.niveau(1).objet);
+   boolean b = pile.niveau(2).valeur>0;
+   if (g == null)
+    c = new Checkbox (pile.niveau(0).chaine);
+   else
+    c = new Checkbox (pile.niveau(0).chaine, g, b);
+   r = pushctx (new expr ((Object)c), popctx(3,ctx));
+  }
+  else if (op.equals ("getstate"))
+  {
+   Checkbox c = (Checkbox) (pile.niveau(0).objet);
+   expr x;
+   if (c.getState())
+    x = new expr ((double)1);
+   else
+    x = new expr ((double)0);
+   r = pushctx (x, popctx(1,ctx));
+  }
+  else if (op.equals ("setstate"))
+  {
+   Checkbox c = (Checkbox) (pile.niveau(0).objet);
+   c.setState (pile.niveau(1).valeur>0);
+   r = popctx(2,ctx);
+  }
+/*
+  else if (op.equals ("checkbox"))
+  {
+   Checkbox c;
+   boolean flag;
+   if (pile.niveau(1).valeur > 0)
+    flag = true;
+   else
+    flag = false;
+   c = new Checkbox (pile.niveau(0).chaine, flag);
+   aplet.add (c);
+   r = pushctx (new expr ((Object)c), popctx(2,ctx));
+  }
+  */
+  else if (op.equals ("choice"))
+  {
+   Choice c = new Choice ();
+   r = pushctx (new expr((Object)c), popctx(0,ctx));
+  }
+  else if (op.equals ("additem"))
+  {
+   if (pile.niveau(0).objet instanceof Choice)
+   {
+    Choice c = (Choice)(pile.niveau(0).objet);
+    c.addItem (pile.niveau(1).chaine);
+   }
+   else if (pile.niveau(0).objet instanceof List)
+   {
+    List c = (List)(pile.niveau(0).objet);
+    c.addItem (pile.niveau(1).chaine);
+   }
+   r = popctx(2,ctx);
+  }
+  else if (op.equals ("getselecteditem"))
+  {
+   String s = "";
+   if (pile.niveau(0).objet instanceof Choice)
+   {   
+    Choice c = (Choice)(pile.niveau(0).objet);
+    s = c.getSelectedItem();
+   }
+   else if (pile.niveau(0).objet instanceof List)
+   {
+    List c = (List)(pile.niveau(0).objet);
+    s = c.getSelectedItem();
+   }
+   r = pushctx (new expr("STR",s), popctx(1,ctx));
+  }
+  else if (op.equals ("list"))
+  {
+   List c = new List ((int)(pile.niveau(0).valeur), pile.niveau(1).valeur>0);
+   r = pushctx (new expr((Object)c), popctx(2,ctx)); 
+  }
+  else if (op.equals ("frame"))
+  {
+   iaFrame f = new iaFrame (pile.niveau(0).chaine);
+   f.prog_frame = prog_frame;
+   f.carspec = carspec;
+   f.aplet = aplet;
+   f.global = global;
+   /*f.show();*/
+   /*f.resize ((int)(pile.niveau(1).valeur), (int)(pile.niveau(2).valeur));*/
+   r = pushctx (new expr ((Object)f),popctx (1, ctx));
+  }
+  else if (op.equals ("show"))
+  {
+   Frame f = (Frame)(pile.niveau(0).objet);
+   f.show();
+   r = popctx(1,ctx);
+  }
+  else if (op.equals ("hide"))
+  {
+   Frame f = (Frame)(pile.niveau(0).objet);
+   f.hide();
+   r = popctx(1,ctx);
+  }
+  else if (op.equals ("resize"))
+  {
+   Frame f = (Frame)(pile.niveau(0).objet);
+   f.resize ((int)(pile.niveau(1).valeur), (int)(pile.niveau(2).valeur));
+   r = popctx (3, ctx);
+  }
+  else if (op.equals ("menubar"))
+  {
+   MenuBar c = new MenuBar();
+   r = pushctx (new expr((Object)c), popctx(0,ctx));
+  }
+  else if (op.equals ("setmenubar"))
+  {
+   Frame f = (Frame)(pile.niveau(0).objet);   
+   MenuBar b = (MenuBar)(pile.niveau(1).objet);
+   f.setMenuBar(b);
+   r = popctx(2,ctx);
+  }
+  else if (op.equals ("menu"))
+  {
+   Menu c = new Menu (pile.niveau(0).chaine);
+   r = pushctx (new expr((Object)c), popctx(1,ctx));
+  }
+  else if (op.equals ("addmenuitem"))
+  {
+   Menu c = (Menu)(pile.niveau(0).objet);
+   c.add(new MenuItem(pile.niveau(1).chaine));
+   r = popctx(2,ctx);
+  }
+  else if (op.equals ("addmenu"))
+  {
+   MenuBar b = (MenuBar)(pile.niveau(0).objet);
+   Menu m = (Menu)(pile.niveau(1).objet);
+   b.add(m);
+   r = popctx(2,ctx);
+  }
+  else if (op.equals ("repaint"))
+  {
+   aplet.repaint();
+   r = popctx(0,ctx);
+  }
+  else if (op.equals ("setcolor"))
+  {
+   expr c = pile.niveau(0);
+   /*System.out.println ("Set color:" + c.rep());*/
+   graph.setColor (new Color ((int)(c.sousexpr[0].valeur),
+				      (int)(c.sousexpr[1].valeur),
+				      (int)(c.sousexpr[2].valeur)));
+   r = popctx(1,ctx);
+  }
+  else if (op.equals ("setfont"))
+  {
+   /*System.out.println ("Font: " + pile.niveau(0).chaine);*/
+   Font f = new Font (pile.niveau(0).chaine, Font.PLAIN, (int)(pile.niveau(2).valeur));
+   graph.setFont (f);
+   r = popctx(3,ctx);
+  }
+  else if (op.equals ("drawstring"))
+  {
+   expr coord = pile.niveau(1);
+   /*System.out.println ("Coord=" + coord.rep());*/
+   String s = pile.niveau(0).chaine;
+   graph.drawString (s, (int)(coord.sousexpr[0].valeur),
+				(int)(coord.sousexpr[1].valeur));
+   r = popctx (2, ctx);
+  }
+  else if (op.equals ("drawline"))
+  {
+   expr a = pile.niveau(0);
+   expr b = pile.niveau(1);
+   graph.drawLine ((int)(a.sousexpr[0].valeur),
+			 (int)(a.sousexpr[1].valeur),
+			 (int)(b.sousexpr[0].valeur),
+			 (int)(b.sousexpr[1].valeur));
+   r = popctx(2,ctx);
+  }
+  else if (op.equals ("fillrect"))
+  {
+   expr a = pile.niveau(0);
+   expr b = pile.niveau(1);
+   graph.fillRect ((int)(a.sousexpr[0].valeur),
+			 (int)(a.sousexpr[1].valeur),
+			 (int)(b.sousexpr[0].valeur),
+			 (int)(b.sousexpr[1].valeur));
+   r = popctx(2,ctx);
+  }
+  else if (op.equals ("filloval"))
+  {
+   expr a = pile.niveau(0);
+   expr b = pile.niveau(1);
+   /*System.out.println ("filloval: " + a.rep() + ", " + b.rep());*/
+   graph.fillOval ((int)(a.sousexpr[0].valeur),
+			 (int)(a.sousexpr[1].valeur),
+			 (int)(b.sousexpr[0].valeur),
+			 (int)(b.sousexpr[1].valeur));
+   r = popctx(2,ctx);
+  }
+  else if (op.equals ("getparameter"))
+  {
+   String s = aplet.getParameter (pile.niveau(0).chaine);
+   r = pushctx (new expr("STR", s), popctx(1,ctx));
+  }
+  else if (op.equals ("showdocument"))
+  {
+   String s = pile.niveau(0).chaine;
+   try
+   {
+    URL url = new URL (aplet.getCodeBase(), s);
+    AppletContext c = aplet.getAppletContext();
+    c.showDocument(url);
+   }
+   catch (Exception e)
+   {
+   }
+   r = popctx(1,ctx);
+  }
+  else if (op.equals ("socket"))
+  {
+   try 
+   {
+    Socket s = new Socket (pile.niveau(0).chaine, (int)(pile.niveau(1).valeur));
+    sock = s;
+    System.out.print ("Socket: ");
+    System.out.println (s);
+    expr x = new expr((Object)s);
+    r = pushctx (x, popctx(2,ctx));
+   }
+   catch (Exception e)
+   {
+    r = pushctx (new expr ("STR", e.toString()), popctx(2,ctx));
+   }
+  }
+  else if (op.equals ("socketoutstream"))
+  {
+   try 
+   {
+    Socket s = new Socket (pile.niveau(0).chaine, (int)(pile.niveau(1).valeur));
+    sock = s;
+    System.out.print ("Socket: ");
+    System.out.println (s);
+    DataOutputStream out = new DataOutputStream (s.getOutputStream());
+    expr x = new expr((Object)out);
+    r = pushctx (x, popctx(2,ctx));
+   }
+   catch (Exception e)
+   {
+    r = pushctx (new expr ("STR", e.toString()), popctx(2,ctx));
+   }
+  }
+  else if (op.equals ("datainputstream"))
+  {
+   try
+   {
+    Socket s = (Socket)(pile.niveau(0).objet);
+    DataInputStream dis = new DataInputStream (s.getInputStream());
+    r = pushctx (new expr((Object)dis), popctx(1,ctx));
+   }
+   catch (Exception e)
+   {
+    r = pushctx (new expr ("STR", e.toString()), popctx(1,ctx));
+   }
+  }
+  else if (op.equals ("readline"))
+  {
+   try 
+   {
+    DataInputStream dis = (DataInputStream) (pile.niveau(0).objet);
+    String s = dis.readLine();
+    r = pushctx (new expr("STR",s), popctx(1,ctx));
+   }
+   catch (Exception e)
+   { 
+    r = pushctx (new expr("STR",e.toString()), popctx(1,ctx));
+   }
+  }
+  else if (op.equals ("readbyte"))
+  {
+   try 
+   {
+    DataInputStream dis = (DataInputStream) (pile.niveau(0).objet);
+    byte[] b = new byte[1];
+    dis.read(b);
+    double x = b[0];
+    r = pushctx (new expr(x), popctx(1,ctx));
+   }
+   catch (Exception e)
+   { 
+    r = pushctx (new expr("STR",e.toString()), popctx(1,ctx));
+   }
+  }
+  else if (op.equals ("nullstring"))
+  {
+   expr x = new expr ("STR", "");
+   x.chaine = null;
+   r = pushctx (x, popctx(0,ctx));
+  }
+  else if (op.equals ("serversocket"))
+  {
+   try
+   {
+    ServerSocket s = new ServerSocket ((int)(pile.niveau(0).valeur));
+    r = pushctx (new expr((Object)s), popctx(1,ctx));
+   }
+   catch (Exception e)
+   { 
+    r = pushctx (new expr("STR",e.toString()), popctx(1,ctx));
+   }
+  }
+  else if (op.equals ("accept"))
+  {
+   try
+   {
+    ServerSocket s = (ServerSocket) (pile.niveau(0).objet);
+    Socket c = s.accept();
+    r = pushctx (new expr((Object)c), popctx(1,ctx));
+   } 
+   catch (Exception e)
+   { 
+    r = pushctx (new expr("STR",e.toString()), popctx(1,ctx));
+   }  
+  }
+  else if (op.equals ("dataoutputstream"))
+  {
+   try
+   {
+    Socket s = (Socket) (pile.niveau(0).objet);
+    DataOutputStream dos = new DataOutputStream (s.getOutputStream());
+    r = pushctx (new expr ((Object)dos), popctx(1,ctx));
+   }
+   catch (Exception e)
+   {
+    r = pushctx (new expr("STR",e.toString()), popctx(1,ctx));
+   }
+  }
+  else if (op.equals ("writebytes"))
+  {
+   try
+   {
+    DataOutputStream dos = (DataOutputStream) (pile.niveau(0).objet);
+    String s = pile.niveau(1).chaine;
+    System.out.println ("writeBytes " + s);
+    dos.writeBytes(s);
+    r = pushctx (new expr((double)1), popctx(2,ctx));
+   }
+   catch (Exception e)
+   {
+    r = pushctx (new expr("STR",e.toString()), popctx(2,ctx));
+   }
+  }
+  else if (op.equals ("writesocket"))
+  {
+   try 
+   {
+    Socket sk = (Socket) (pile.niveau(0).objet);
+    System.out.print ("socket: ");
+    System.out.println (sk);
+    /*Socket sk = sock;*/
+    String str = pile.niveau(1).chaine;
+    DataOutputStream out = new DataOutputStream (sk.getOutputStream());
+    out.writeBytes (str);
+    r = pushctx (new expr((double)1), popctx(2,ctx));
+   }
+   catch (Exception e)
+   {
+    r = pushctx (new expr("STR",e.toString()), popctx(2,ctx));
+   }
+  }
+  else if (op.equals ("writeurl"))
+  {
+   try 
+   {
+    Socket sk = new Socket (pile.niveau(0).chaine, (int)(pile.niveau(1).valeur));
+    String str = pile.niveau(2).chaine;
+    DataOutputStream out = new DataOutputStream (sk.getOutputStream());
+    out.writeBytes (str);
+    sk.close();
+    r = pushctx (new expr((double)1), popctx(3,ctx));
+   }
+   catch (Exception e)
+   {
+    r = pushctx (new expr("STR",e.toString()), popctx(3,ctx));
+   }
+  }
+  else if (op.equals ("test1"))
+  {
+  try
+  {
+   String url = pile.niveau(0).chaine;
+   int port = (int)(pile.niveau(1).valeur);
+   String text = pile.niveau(2).chaine;
+   Socket sk = new Socket (url, port);
+   sock = sk;
+/*
+   expr x = new expr((Object)sk);
+   r = pushctx (x, popctx(3,ctx));
+
+   return r;
+  }
+  catch (Exception e)
+  {
+   System.out.println (e.toString());
+   r = pushctx (new expr("STR",e.toString()), popctx(3,ctx));
+  }
+ }
+ else if (op.equals ("test2"))
+ {
+   String text = pile.niveau(2).chaine;
+
+  try
+  {
+   Socket sk = sock;
+*/
+   DataOutputStream out = new DataOutputStream (sk.getOutputStream());
+   out.writeBytes (text);
+   /*s.close();*/
+   r = pushctx(new expr((double)1),popctx(3,ctx));
+  }
+  catch (Exception e)
+  {
+   System.out.println (e.toString());
+   r = pushctx (new expr("STR",e.toString()), popctx(3,ctx));
+  }
+
+  }
+  else if (op.equals ("close"))
+  {
+   Object o = pile.niveau(0).objet;
+   try
+   {
+    if (o instanceof ServerSocket)
+    {
+     ServerSocket s = (ServerSocket) o;
+     s.close();
+    }
+    else if (o instanceof Socket)
+    {
+     Socket s = (Socket) o;
+     s.close();
+    }
+    r = pushctx (new expr("STR",""), popctx(1,ctx));
+   }
+   catch (Exception e)
+   {
+    r = pushctx (new expr("STR",e.toString()), popctx(1,ctx));
+   }
+
+  }
+  else if (op.equals ("readweb"))
+  {
+   String url = pile.niveau(0).chaine;
+   int port = (int)(pile.niveau(1).valeur);
+   String path = pile.niveau(2).chaine;
+   String page = "";
+   expr x;
+
+   try
+   {
+    Socket s = new Socket (url, port);
+    DataOutputStream out = new DataOutputStream (s.getOutputStream());
+    DataInputStream in = new DataInputStream (s.getInputStream());
+    String line;
+    out.writeBytes ("GET /new/debat/debats.php3\n");
+    while ((line = in.readLine()) != null)
+    {
+     /*System.out.println ("read: " + line);*/
+     page += line + "\n";
+    }
+    s.close();
+    x = new expr("STR",page);
+    x.valeur = 1;
+    r = pushctx (x, popctx(3,ctx));
+   }
+   catch (Exception e)
+   {
+    /*System.out.println (e.toString());*/
+    x = new expr("STR",e.toString());
+    x.valeur = 0;
+    r = pushctx (x, popctx(3,ctx));
+   }
+  }
+  else if (op.equals ("ACTION_EVENT"))
+   r = pushctx (new expr ((double) Event.ACTION_EVENT), popctx(0,ctx));
+  else if (op.equals ("MOUSE_DOWN"))
+   r = pushctx (new expr ((double) Event.MOUSE_DOWN), popctx(0,ctx));
+  else if (op.equals ("MOUSE_MOVE"))
+   r = pushctx (new expr ((double) Event.MOUSE_MOVE), popctx(0,ctx));
+
+  else if (op.equals ("parsenbr"))
+  {
+   Double x = new Double (pile.niveau(0).chaine);
+   double y = x.doubleValue();
+   r = pushctx (new expr(y), popctx(1,ctx));
+  }
+  else if (op.equals ("repnbr"))
+  {
+   String s = "" + pile.niveau(0).valeur;
+   r = pushctx (new expr("STR",s), popctx(1,ctx));
+  }
+  else if (op.equals ("div"))
+  {
+   double x = pile.niveau(0).valeur;
+   double y = pile.niveau(1).valeur;
+   double z = x / y;
+   r = pushctx (new expr (z), popctx(2,ctx));
+  }  
+  else if (op.equals ("sin"))
+  {
+   r = pushctx (new expr (Math.sin (pile.niveau(0).valeur)), 
+	popctx(1,ctx));
+  }
+  else if (op.equals ("cos"))
+  {
+   r = pushctx (new expr (Math.cos (pile.niveau(0).valeur)), 
+	popctx(1,ctx));
+  }
+  else if (op.equals ("exp"))
+  {
+   /*System.out.println ("op=exp");*/
+   r = pushctx (new expr (Math.exp (pile.niveau(0).valeur)), 
+	popctx(1,ctx));
+   /*System.out.println ("r="+r.rep());*/
+  }
+  else if (op.equals ("log"))
+  {
+   r = pushctx (new expr (Math.log (pile.niveau(0).valeur)), 
+	popctx(1,ctx));
+  }
+  else if (instr.arite > 0)
+  {
+   expr x = new expr (instr.noeud);
+   for (int i=0; i<instr.arite; i++)
+   {
+    x = new expr ("SEQ", x, new expr ("SEQ", instr.sousexpr[i], new expr("adse")));
+    r = new expr ("CTX", new expr ("SEQ", x, cont), pile, args, env);
+   }
+  }
+  else
+  {
+    r = pushctx (instr, popctx(0,ctx));
+/*
+    System.out.println ("undefined instruction: " + op);
+    r = new expr ("CTX", cont, pile, args, env);
+*/
+  }
+  
+  return r;
+  
+ }
+ 
+ expr run (expr prog)
+ {
+  if (prog == null)
+	return new expr ((double)0);
+  /*System.out.println ("Run prog " + prog.rep() + " without arg");*/
+  expr ctx = new expr ("CTX", new expr ("SEQ", prog, new expr("HALT")), 
+	new expr("EMPTY"), new expr("EMPTY"), new expr("EMPTY"));
+  if (trace != null)
+   trace.setText ("Running...");
+
+
+  for (;;)
+  {
+   /*try
+   {*/
+    /*trace.setText (ctx.rep());*/
+    ctx = evol (ctx);
+   /*}
+   catch (Exception e)
+   {
+    System.out.println (e.toString());
+    trace.setText(e.toString());
+   }*/
+   /*System.out.println (ctx.rep());*/
+   if (ctx.sousexpr[0] == null)
+   {
+    trace.setText ("Error (1)");
+    break;
+   }
+   if (ctx.sousexpr[0].noeud.equals ("HALT"))
+    break;
+   if (ctx.sousexpr[0].sousexpr[0] == null)
+   {
+    trace.setText ("Error (2)");
+    break;
+   }
+   if (ctx.sousexpr[0].sousexpr[0].noeud.equals("HALT"))
+     break;
+   
+  }
+  if (ctx.sousexpr[1] != null)
+  if (ctx.sousexpr[1].arite > 0)
+   return ctx.sousexpr[1].sousexpr[0];
+
+  return new expr ((double)0);
+
+ }
+
+
+ void rung (expr prog, expr g)
+ {
+  global = g;
+  run (prog);  
+ }
+
+ expr run (expr prog, expr x)
+ {
+  if (prog == null)
+	return new expr ((double)0);
+  /*System.out.println ("Run prog " + prog.rep() + " with " + x.rep());*/
+  expr ctx = new expr ("CTX", new expr ("SEQ", prog, new expr("HALT")), 
+	new expr ("PUSH", x, new expr("EMPTY")), new expr("EMPTY"), new expr("EMPTY"));
+  for (;;)
+  {
+   /*try
+   {*/
+    ctx = evol (ctx);
+   /*}
+   catch (Exception e)
+   {
+    trace.setText(e.toString());
+   }*/
+   if (ctx.sousexpr[0].noeud.equals ("HALT"))
+    break;
+   if (ctx.sousexpr[0].sousexpr[0].noeud.equals("HALT"))
+    break;
+  }
+  /*System.out.println ("Last ctx: " + ctx.rep());*/
+  if (ctx.sousexpr[1] != null)
+  if (ctx.sousexpr[1].arite > 0)
+   return ctx.sousexpr[1].sousexpr[0];
+
+  return new expr ((double)0);
+ }
+
+ expr runctx (expr ctx1)
+ {
+  expr ctx = ctx1;
+  for (;;)
+  {
+   ctx = evol (ctx);
+   if (ctx.sousexpr[0].noeud.equals ("HALT"))
+    break;
+   if (ctx.sousexpr[0].sousexpr[0].noeud.equals("HALT"))
+    break;
+  }
+  return ctx.sousexpr[1].sousexpr[0];
+ }
+
+}
+
+
+
+</textarea>
+<p><a href=iaFrame.java>iaFrame.java</a> <a href=iaFrame.class>Download iaFrame.class</a>
+<p>
+<textarea rows=10 cols=60>
+
+import java.applet.*;
+import java.awt.*;
+import java.net.*;
+import java.lang.*;
+ 
+class iaFrame extends Frame
+{
+ expr prog_frame;
+ String carspec;
+ Applet aplet;
+ expr global;
+
+ iaFrame (String titre)
+ {
+  super(titre);
+ }
+
+ public boolean handleEvent (Event evt)
+ {
+  
+		if (evt.id == 503)
+			return false;
+		if (prog_frame == null)
+		{
+		 switch (evt.id)
+		 {
+/*
+		 	case Event.ACTION_EVENT: 
+				return action (evt, evt.arg);
+                                
+			case Event.MOUSE_DOWN:
+				return mouseDown (evt, evt.x, evt.y);
+  */                             
+		  	default: 
+			      return false;
+		 }
+ 		}
+		interp intrp = new interp();
+            if (carspec != null)
+             intrp.carspec = carspec;
+		intrp.global = global;
+                intrp.aplet = aplet;
+                String s = "";
+                try
+                {
+                 s = (String)(evt.arg);
+                }
+                catch (Exception e)
+                {
+                }
+                expr x = intrp.run(prog_frame, new expr ("EVENT",
+			new expr((Object)evt),
+			new expr((double)evt.id),
+			new expr((Object)evt.arg),
+                        new expr("STR",s),
+			new expr((double)evt.x),
+			new expr((double)evt.y) 
+			));
+		return x.valeur>0; 
+ 
+
+  
+ }
+}
+
+
+</textarea>
+
+<p><a href=intaplet.java>intaplet.java</a> <a href=intaplet.class>Download intaplet.class</a>
+<p>
+<textarea rows=10 cols=60>
+
+ 
+
+import java.applet.*;
+import java.awt.*;
+import java.net.*;
+import java.lang.*;
+ 
+public class intaplet extends Applet implements Runnable
+{
+      Thread runner;
+      int t = 0;
+     	Image image;
+	
+	expr global;
+
+	expr prog_init;
+	expr prog_step;
+	expr prog_event;
+	expr prog_mousedown;
+	expr prog_action;
+      expr prog_frame;
+
+	TextArea messages; 
+      TextArea trace;
+
+      int n_action;
+
+      int larg, haut;
+
+      long temps = 50;
+
+	String carspec;
+/*
+	Button bouton;
+	TextArea texte;
+ 
+	int clicked = 0;
+
+      Image im;
+
+	int lettre_F[][] = {
+	{1,1,1,1,1,1,1,1},
+      {1,1,1,1,1,1,1,1},
+      {1,1,0,0,0,0,0,0},
+	{1,1,0,0,0,0,0,0},
+      {1,1,1,1,1,0,0,0},
+	{1,1,1,1,1,0,0,0},
+	{1,1,0,0,0,0,0,0},
+	{1,1,0,0,0,0,0,0},
+	{1,1,0,0,0,0,0,0}};
+*/
+
+	
+	public void init ()
+	{
+   		
+		/*System.out.println ("action: " + Event.ACTION_EVENT);*/
+
+		messages = new TextArea ("", 3, 60);
+            /*add (messages);*/
+            messages.setText ("Messages");
+
+		trace = new TextArea ("", 5, 40);
+		/*add (trace);*/
+		trace.setText ("Traces");
+
+		global = new expr ("GLOBAL", 60);
+
+		String src;
+		entree e;
+
+		carspec = getParameter ("spechar");
+		if (carspec == null)
+   		 carspec = " #\"\\;:()[]{}^%&";
+		System.out.println ("spechar: " + carspec);
+
+		String common;
+		common = getParameter ("common");
+	      if (common == null)
+		 common = "";
+		
+		src = getParameter ("init");
+	      if (src == null)
+		 prog_init = null;
+	      else
+		{
+		 e = new entree (common+src);
+		 if (carspec != null)
+		  e.carspec = carspec;
+		 e.messages = messages;
+		 prog_init = e.lirexpr();
+		}
+
+		src = getParameter ("step");
+		if (src == null)
+		 prog_step = null;
+		else
+		{
+		 e = new entree (common+src);
+		 if (carspec != null)
+		  e.carspec = carspec;
+		 e.messages = messages;
+		 prog_step = e.lirexpr();
+		}
+
+		src = getParameter ("event");
+            if (src == null)
+             prog_event = null;
+            else
+            {
+		 e = new entree (common+src);
+		 if (carspec != null)
+		  e.carspec = carspec;
+		 e.messages = messages;
+		 prog_event = e.lirexpr();
+            }
+
+		src = getParameter ("common+mousedown");
+		if (src == null)
+		 prog_mousedown = null;
+	      else
+	      {
+		 e = new entree (src);
+		 if (carspec != null)
+		  e.carspec = carspec;
+             e.messages = messages;
+		 prog_mousedown = e.lirexpr();
+		}
+
+		src = getParameter ("common+action");
+		if (src == null)
+		 prog_action = null;
+		{
+		 e = new entree (src);
+		 if (carspec != null)
+		  e.carspec = carspec;
+             e.messages = messages;
+		 prog_action = e.lirexpr();
+		}
+
+		src = getParameter ("common+frame");
+		if (src == null)
+		 prog_frame = null;
+		{
+		 e = new entree (src);
+		 if (carspec != null)
+		  e.carspec = carspec;
+             e.messages = messages;
+		 prog_frame = e.lirexpr();
+		}
+
+		src = getParameter ("time");
+            if (src != null)
+		{
+			Long x = new Long (src);
+			temps = x.longValue();
+            }	
+
+                /*trace.setText (prog_init.rep());*/
+
+		interp intrp = new interp();
+            if (carspec != null)
+             intrp.carspec = carspec;
+		intrp.global = global;
+		intrp.aplet = this;
+            intrp.prog_frame = prog_frame;
+		intrp.trace = trace;
+		intrp.trace.setText ("before run");
+		intrp.run(prog_init);
+
+
+/*	
+            im = getImage (getCodeBase(), "etoiles.gif");
+
+		bouton = new Button ("Test");
+		add (bouton);
+	Object o = null;
+	o = bouton;
+
+		texte = new TextArea ("", 1, 20);
+   		add (texte);
+*/
+	  larg=Integer.parseInt(getParameter("width"));
+	  haut=Integer.parseInt(getParameter("height"));
+
+	}
+
+/*
+     double f(double x) {
+	       return (Math.cos((x+t)/10)+1) * size().height / 2;
+    }
+
+  
+   double x_centre = 140;
+   double y_centre = 90;
+   double x_ampl = 100;
+   double y_ampl = 40;
+   long temps = 50;
+   double vitesse = 0.02;
+   double omega = 0.1;
+   int diametre = 40;
+
+   double abcisse (int t)
+   {
+    return x_centre + x_ampl * Math.cos (vitesse * t);
+   }
+
+   double ordonnee (int t)
+   {
+    return y_centre + y_ampl * Math.sin (vitesse * t);
+   }
+
+   double x, y;
+*/
+
+   public void paint (Graphics g)
+   {
+    update(g);
+   }
+
+   public void update (Graphics g)
+   {
+    if (image != null)
+     g.drawImage (image, 0, 0, null);
+   }
+
+   public void avance ()
+   {
+
+
+    /*System.out.println ("Test");*/
+    image = createImage (larg, haut);
+    Graphics g = image.getGraphics(); 
+
+    /*g.drawString (new Integer(n_action).toString(), 10, 20);*/
+
+
+		interp intrp = new interp();
+            if (carspec != null)
+             intrp.carspec = carspec;
+		intrp.global = global;
+		intrp.aplet = this;
+            intrp.graph = g;
+		expr a = new expr((double)t);
+		/*System.out.println ("Before run " + prog_step.rep() + " with " + a.rep());*/
+		intrp.run(prog_step,a);
+
+
+/*
+
+    g.setColor (new Color (0, 0, 0));
+    g.fillRect (0, 0, 299, 199);
+    
+    g.drawImage(im, 0, 0, this);
+    
+    x = abcisse(t);
+    y = ordonnee(t);
+ 
+    g.setColor (new Color (0, 128, 255));
+    g.fillOval ((int)x-diametre/2, (int)y-diametre/2, diametre, diametre);
+    for (int i=0; i<8; i++)
+    for (int j=0; j<7; j++)
+    {
+     if (lettre_F[i][j]>0)
+     {
+	int yp = (int)y + (i - 4);
+      double phi = - omega * t + (2.0 / diametre) * (j-3);
+      if (Math.cos(phi) > 0)
+      {
+	 int xp = (int)(x + diametre/2*Math.sin(phi));
+       g.setColor (new Color (10, 5, 20));
+       g.drawLine (xp, yp, xp, yp);  
+      }
+     }
+    }
+*/
+
+   }
+
+public boolean handleEvent (Event evt)
+{
+		if (evt.id == 503)
+			return false;
+		if (prog_event == null)
+		{
+		 switch (evt.id)
+		 {
+		 	case Event.ACTION_EVENT: 
+				return action (evt, evt.arg);
+                                
+			case Event.MOUSE_DOWN:
+				return mouseDown (evt, evt.x, evt.y);
+                               
+		  	default: 
+			      return false;
+		 }
+ 		}
+		interp intrp = new interp();
+            if (carspec != null)
+             intrp.carspec = carspec;
+		intrp.global = global;
+		intrp.aplet = this;
+                String s = "";
+                try
+                {
+                 s = (String)(evt.arg);
+                }
+                catch (Exception e)
+                {
+                }
+		expr x = intrp.run(prog_event, new expr ("EVENT",
+			new expr((Object)evt),
+			new expr((double)evt.id),
+			new expr((Object)evt.arg),
+                        new expr("STR",s),
+			new expr((double)evt.x),
+			new expr((double)evt.y) 
+			));
+		return x.valeur>0; 
+ 
+
+}
+ 
+public boolean mouseDown (Event evt, int xm, int ym)
+{
+
+
+		interp intrp = new interp();
+            if (carspec != null)
+             intrp.carspec = carspec;
+		intrp.global = global;
+		intrp.aplet = this;
+		expr x = intrp.run(prog_mousedown, new expr("COORD", new expr((double)xm), new expr((double)ym)));
+            return x.valeur>0;
+
+/* texte.setText ("Clic");
+
+ int d2 = (xm-(int)x)*(xm-(int)x)+(ym-(int)y)*(ym-(int)y);
+ String s = "x="+x+"\ny="+y+"\nxm="+xm+"\nym="+ym+"\nd2="+d2;
+ texte.setText (s); 
+ if (d2 < diametre*diametre/4)
+ {
+ try
+ {
+  URL url = new URL (getCodeBase(), "page.htm");
+  AppletContext ctx = getAppletContext();
+  ctx.showDocument (url);
+ }
+ catch (MalformedURLException e)
+ {
+ }
+ }
+*/
+ /*return true;*/
+}
+
+public boolean action (Event evt, Object arg)
+{
+	n_action++;
+
+		interp intrp = new interp();
+		intrp.global = global;
+		intrp.aplet = this;
+                String s = "";
+                try
+                {
+                 s = (String)arg;
+                }
+                catch (Exception e)
+                {
+                }
+		expr x = intrp.run(prog_action,
+             new expr("ACTION", 
+                      new expr((Object)evt), 
+                      new expr((Object)arg), 
+                      new expr (s)));
+
+	return x.valeur>0;
+}
+
+
+
+public void start ()
+{
+ if (runner == null)
+ {
+  runner = new Thread(this);
+  runner.start();
+ }
+}
+
+public void stop()
+{
+  runner = null;
+}
+
+public void run ()
+{
+ Thread thisThread = Thread.currentThread();
+ while (runner == thisThread)
+ {
+  repaint();
+  t++;
+  try
+  { 
+   Thread.sleep(temps);
+   avance();
+  }
+  catch (InterruptedException e)
+  {
+   break;
+  } 
+ }
+}
+
+ 
+
+}
+ 
+
+
+</textarea>
+
+<p>Console interpret :
+<a href=interpret.java>interpret.java</a>
+<a href=interpret.class>Download interpret.class</a>
+<p>
+<textarea rows=10 cols=60>
+
+ 
+
+class interpret
+{
+ public static void main (String[] args)
+ {
+  interp intrp = new interp();
+/*
+  String topctxrep = "(CTX ;(loop ;(readin);(compil)(eval)) (HALT) (EMPTY) (EMPTY) (EMPTY))";
+  entree e = new entree (topctxrep);
+  expr topctx = e.lirexpr();
+  System.out.println ("Toplevel: " + topctx.rep());
+*/
+  String src = ";(loop ;(readin);(compil)(eval)) (HALT)";
+  entree e = new entree (src);
+  expr top = e.lirexpr();
+  System.out.println ("Toplevel: " + top.rep());
+
+  expr global = new expr ("GLOBAL", 10);
+  intrp.global = global;
+  /*intrp.carspec = " ='!-/[]()<>*%";*/
+  System.out.println ("Démarrage de l'interprète...");
+  /*intrp.runctx (topctx);*/
+  expr r = intrp.run (top, new expr("Test"));
+  System.out.println ("Result: " + r.rep());
+ }
+}
+
+/* exemple :
+ ;(quote ^x ;(quote (quote));x adse) ^kwote ;(quote xxx); kwote eval
+*/
+
+
+</textarea>
+
+<p>
+The following parameters may be transmitted to the applet, containing 
+the source codes of the corresponding programs :
+<ul>
+
+<li> spechar : special characters for the syntactic analysis of the programs.
+Example :
+<pre>
+&lt;param name=spechar value=' #"\;:()[]{}^%&'&gt;
+</pre>
+The meaning of these characters are the following :
+<table border=1>
+<tr><td>position</td><td>example</td><td>meaning</td></tr>
+<tr><td>0</td><td>space</td><td>separator</td></tr>
+<tr><td>1</td><td>#</td><td>Number delimiter</td></tr>
+<tr><td>2</td><td>"</td><td>String delimitor</td></tr>
+<tr><td>3</td><td>\</td><td>Inclusion of " or \ in strings</td></tr>
+<tr><td>4</td><td>;</td><td>Sequence : ;x y = (SEQ x y)</td></tr>
+<tr><td>5</td><td>:</td><td>Begin of array automatically closed : example : (a b c : d e f) = (a b c (d e f))</td></tr>
+<tr><td>6</td><td>(</td><td>Begin of array</td></tr>
+<tr><td>7</td><td>)</td><td>End of array</td></tr>
+<tr><td>8</td><td>[</td><td>Begin of reverse sequence : [a b c] = (SEQ c (SEQ b a))</td></tr>
+<tr><td>9</td><td>]</td><td>End of reverse sequence</td></tr>
+<tr><td>10</td><td>{</td><td>Begin of sequence : {a b c} = (SEQ (SEQ a b) c)</td></tr>
+<tr><td>11</td><td>}</td><td>End of sequence</td></tr>
+<tr><td>12</td><td>^</td><td>lambda : argument of a function, variable definition</td></tr>
+<tr><td>13</td><td>%</td><td> % comment % </td></tr>
+<tr><td>14</td><td>&</td><td>substitution : &variable value expression, function definition : &f ^x body program</td></tr>
+</table>
+
+<li> common : common definitions for the following programs
+<li> init : initialisation program
+<li> time : number of milliseconds between two calls of program step
+<li> step : graphic animation, called with the number of the step on the stack
+<li> event : handling of applet events, called with the parameters of the event
+<li> mousedown : handling of a mouse click received by the applet, called with the mouse coordinates
+<li> action : handling of actions on applet components (click on a button...),
+	called with the event and the object
+<li> frame : handling of frame events
+</ul>
+
+<p> 
+This language uses a stack to transmit arguments to the functions, 
+like Forth or RPL.
+<p>
+A running process is represented by a context (CTX program stack args ext)
+where args is used by functions to store their arguments, which are
+recalled with their number.
+The internal representation of function is similar to De Brujn's lambda calculus
+but the compiler converts a definition with named variables like in Church's
+lambda calculus ^x body into the internal form (LDB body).
+<p>
+A program is a sequence of instructions (SEQ x1 (SEQ x2 ... (SEQ xn-1 xn)))
+which can also be written ; x1; x2 ... ; xn-1 xn or 
+{x1 x2 ... xn-1 xn } or
+[xn xn-1 ... x2 x1]
+which permits to white function calls in prefixed form [f x1 ... xn]
+instead of the postfixed form ;xn ... ;x1 f.
+<p>
+The data type are :
+<ul>
+<li> Symbols : example : foobar
+<li> Numbers (double) : example : #123.456#
+<li> Strings : example : "Hello !"
+<li> Records or arrays : (node x1 ... xn)
+<li> Java objects (OBJ) : generated by some instructions, cannot be entered in source
+</ul>
+
+Here are the instructions of the language :
+<ul>
+<li> nop : does nothing
+<li> (qt x) : pushes x on the stack
+<li> eval : evaluates its argument (which is on the top of the stack)
+<li> (set x) : assigns the argument to the variable x
+<li> (eqthen x y) : does x if the two arguments are equal, y otherwise.
+"; a ; b (eqthen x y)" or { a b (eqthen x y) } means "if a=b then x else y".
+<li> plus : adds its 2 arguments. Example : [plus x y] or ;y ;x plus
+<li> times : multiplies its 2 arguments
+<li> div : top of stack divided by second element of stack
+<li> (loop x) : repeats x
+<li> exit : exits from a loop
+<li> arity : number of elements of its argument
+<li> node : node of its argument
+<li> [subexpr x i] : i-th item of x
+<li> [adse x a] : x added at the end of a
+<li> copy : makes a copy of its argument
+<li> [mkexpr node n] : array of n elements with node n
+<li> [rplac x i y] : replaces the i-th element of x by y
+<li> [mkstr n c] : makes a string of length n
+<li> [concat s1 s2] : concatenation of strings
+<li> [charat s i] : i-th character of string s
+<li> (callcc x) : pushes the context representing the state of the
+current process and runs x
+<li> [rcallcc ctx x] : returns x to context ctx. 
+Example : (callcc ^ctx [rcallcc ctx foobar])
+<li> [excallcc ctx x] : does x in context ctx
+<li> [printout s] : prints the string s
+<li> [rep x] : external representation of x
+<li> [compil s] : internal representation of source s
+<li> readin : line read from standard input
+<li> global : gives the array of global variables
+<li> [button "label"] : creates a button labeled "label"
+<li> [textarea s r c] : create a text area with r rows, c columns and text s
+<li> [settext o s] : sets the text of object o to s
+<li> [gettext o] : gets the text of object o
+<li> [setcolor (COLOR r g b)] : sets the current color
+<li> [setfont font type size] : sets the current font
+<li> [drawstring s (COORD x y)] : writes a text
+<li> [drawline (POINT x1 y1) (POINT x2 y2)] : draws a line
+<li> [fillrect (POINT x y) (VECTOR w h)] : fills a rectangle
+<li> [filloval (POINT x y) (VECTOR w h)] : fills an oval
+<li> [getparameter p] : gets parameter p from the calling HTML page
+<li> [showdocument url] : displays document located at url
+<li> Other AWT function are generally similar to the corresponding Java functions
+but with names in lowercase. Please refer to a AWT documentation.
+<li> [parsenbr s] : number represented by string s
+<li> [repnbr x] : string representing number x
+<li> sin, cos, exp, log : mathematical functions
+
+</ul>
+ 
+
+
+</body>
+</html>

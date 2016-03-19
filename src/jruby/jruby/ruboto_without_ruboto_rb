@@ -1,0 +1,22 @@
+java_import "android.util.Log"
+java_import "com.mcgavren.jay.ruboto.MyActivity"
+
+java_import "android.widget.Button"
+java_import "android.widget.LinearLayout"
+java_import "android.widget.Toast"
+
+class MyActivity
+  def on_create(bundle)
+    layout = LinearLayout.new(self)
+    layout.orientation = LinearLayout::VERTICAL
+    button = Button.new(self)
+    button.text = "click me"
+    layout.add_view(button)
+    self.content_view = layout
+    request_callback CB_CLICK
+    button.on_click_listener = self
+  end
+  def on_click(view)
+    Toast.make_text(self, "#{view} was clicked", 5000).show
+  end
+end

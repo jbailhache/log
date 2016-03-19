@@ -1,0 +1,48 @@
+ORDINAUX
+
+0
+suc x = x U {x}
+x U y -> x
+      -> y
+H f x = x U fx U f(fx) U ...
+	-> x
+	-> Hf(fx)
+H'Ffx=Fx U F(fx) U F(f(fx)) U ...
+	-> Fx
+	-> H'Ff(fx)
+x *> y <=> x >= y
+x *> y et y *> x : x ~= y
+x *> suc y <=> x > y
+
+ordinal x app Omega
+	0 app Omega
+	x app Omega => suc x app Omega
+	x1, x2, ... app Omega => U xi app Omega
+
+	x *> 0
+	x *> y => u app Omega
+	~(x *> suc x)
+
+0, 1=suc 0, 2=suc(suc 0)...
+omega = H suc 0
+omega + 1 = suc(H suc 0)
+omega * 2 = H suc(H suc 0)
+omega ^ 2 = H (H suc) 0
+omega ^ omega = H H suc 0
+epsilon 0 = R1 H suc 0 = suc 0 U H suc 0 U H H suc 0 U ...
+... H R1 H suc 0
+... R1 H R1 H suc 0
+... R2 R1 H suc 0
+... R3 R2 R1 H suc 0 = R(3->1) H suc 0
+... R(x->1) H suc 0
+
+x = H [R(|->1 H suc 0] 0
+x = R(x->1) H suc 0
+x = [[[H [R(|->1) |... |.. |.] 0]]] H suc 0
+  = R(1;1) H suc 0
+
+    [[[[H [R(|->2 |.... |... |.. |.] 0]]]] R(1;1) H suc 0
+  = R(1;2) R(1;1) H suc 0 ...
+  R(2;1) H suc 0 ...
+
+

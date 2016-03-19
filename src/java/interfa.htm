@@ -1,0 +1,70 @@
+<HTML>
+<head>
+<style type="text/css">
+.popperlink { POSITION: absolute; VISIBILITY: hidden }
+</style>
+ 
+<title>Test Planète</title>
+</head>
+   
+<body background=space.gif link=black alink=black vlink=black onLoad="deplacer();" onUnload="clearTimeout(to);">
+<DIV class=popperlink id=topdecklink></DIV>
+<script language=javascript>
+
+domok = document.getElementById;
+
+if (domok)
+{
+	skn = document.getElementById("topdecklink").style;
+	content = "<a href=page.htm><img src=http://membres.lycos.fr/teledev/Php/image10.php?lambda=3></a>";
+  	document.getElementById("topdecklink").innerHTML = content;
+	skn.left = 120;
+	skn.top = 80;
+  	skn.visibility = "visible";
+
+}
+
+var to;
+var t = 0;
+
+var x_centre = 120;
+var y_centre = 80;
+var x_ampl = 100;
+var y_ampl = 40;
+var vitesse = 0.005;
+
+function abcisse (t)
+{
+ return x_centre + x_ampl * Math.cos (vitesse*t);
+}
+
+function ordonnee (t)
+{
+ return y_centre + y_ampl * Math.sin (vitesse*t);
+}
+
+function deplacer ()
+{
+var x, y;
+ t = t + 1;
+ x = abcisse (t);
+ y = ordonnee (t);
+ skn.left = x;
+ skn.top = y;
+ skn.visibility = "hidden";
+	content = "<a href=page.htm><img src=http://membres.lycos.fr/teledev/Php/image10.php?lambda="> + t + "></a>";
+  	document.getElementById("topdecklink").innerHTML = content;
+ skn.visibility = "visible";
+ to = setTimeout ("deplacer();", 100);
+}
+
+</script>
+
+<font color=blue>
+<a href=page.htm><font color=red>Test</font></a> planète
+</font>
+
+</body>
+</HTML>
+ 
+

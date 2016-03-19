@@ -1,0 +1,15 @@
+
+<body>
+
+<applet code=intaplet.class width=500 height=400>
+
+<param name=init value='{
+ [rplac global #1# textarea "" #10# #60#]
+ [add applet "" subexpr global #1#]
+ [settext subexpr global #1# 
+  readweb "127.0.0.1" #80# "/new/debat/debats.php3"]
+}'>
+ 
+</applet>
+
+</body>

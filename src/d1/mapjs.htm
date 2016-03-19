@@ -1,0 +1,76 @@
+<HTML>
+<head>
+<title>Map of the site</title>
+
+<script language="JavaScript">
+<!--
+        function trace (s)
+        {
+                /* System.out.print (" [" + s + "] ");  */
+        }
+
+        function tabul (level)
+        {
+	/* var j;
+                for (j=0; j<level; j++)
+                        document.write ("\t"); */
+        }
+        function dir (pathname, relpath, level)
+        {
+		var l, d;
+		d = new File (pathname);
+
+                try
+                {
+                        File d = new File (pathname); 
+                        l = d.list ();
+                        trace ("list called");
+                }
+                catch (Exception e)
+                {
+                        trace ("EXC1");
+                        return;
+                }
+                trace ("1");
+                /*
+                tabul (level);
+                trace ("2");
+                int len = l.length;
+                System.out.println ("<ul>");
+                */
+                trace ("3");
+                for (int i=0; i<l.length; i++)
+                {                        
+                        trace ("i="+i);
+                        if (i == 0)
+                        {
+                                tabul (level);
+                                System.out.println ("<ul>");
+                        }
+                        trace (" *** ");
+                        tabul (level);
+                        System.out.println (
+                                "<li><a href=\"" + relpath+"/"+l[i] + "\">" 
+                                + l[i] + "</a>");
+                        try 
+                        { 
+                                dir (pathname + "\\" + l[i], 
+                                     relpath + "/" + l[i], level+1);
+                        }
+                        catch (Exception e) { trace ("EXC2"); } 
+                }
+                tabul (level);        
+                System.out.println ("</ul>");
+        }
+
+        public static void main (String[] args) throws java.io.IOException
+        {
+                /* System.out.println ("Directory listing"); */
+                BufferedReader in = new BufferedReader 
+                        (new InputStreamReader (System.in));
+                /* System.out.print ("Pathname ? "); */
+                String pathname = in.readLine ();
+                dir (pathname, ".", 0);
+        }
+}
+

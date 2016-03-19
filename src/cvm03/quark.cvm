@@ -1,0 +1,484 @@
+:mainloop
+getword
+r0=[rA+4]
+rA=r0
+call rA
+r0=0
+bp @mainloop
+
+defword PUTCODE
+beginf
+getword
+scanhex
+[rC++]=r0
+endf
+
+defword HERE
+beginf
+r0=rC
+code r0={r0}
+code
+[--rB]=r0
+endcode
+endf
+
+defword LASTCP
+
+defword SP@
+beginf
+code
+r0=rB
+[--rB]=r0
+endcode
+endf
+
+defword SP!
+beginf
+code
+r0=[rB++]
+rB=r0
+endcode
+endf
+
+defword @
+beginf
+code
+rA=[rB++]
+r0=[rA]
+[--rB]=r0
+endcode
+endf
+
+defword !
+beginf
+code
+rA=[rB++]
+r0=[rB++]
+[rA]=r0
+endcode
+endf
+
+defword +
+beginf
+code
+r0=[rB++]
+r1=[rB++]
+r0=r0+r1
+[--rB]=r0
+endcode
+endf
+
+defword -
+beginf
+code
+r1=[rB++]
+r0=[rB++]
+r0=r0-r1
+[--rB]=r0
+endcode
+endf
+
+defword RUN
+beginf
+getword
+r0=[rA+4]
+rA=r0
+call rA
+endf
+
+defword INIT
+
+defword EXIT
+
+:calldef1
+beginf
+code rA={r0}
+code
+call rA
+endcode 
+endf
+
+:calldef
+beginf
+code rA={r0}
+code
+call rA
+endcode
+endf
+
+defword :
+beginf
+getword
+r0=@calldef
+[rA+4]=r0
+r0=rC
+[rA+8]=r0
+code
+beginf
+endcode
+endf
+
+defword MACRO:
+beginf
+getword
+r0=rC
+[rA+4]=r0
+r0=0
+[rA+8]=r0
+code
+beginf
+endcode
+
+defword ;
+beginf
+code
+endf
+endcode
+endf
+
+align 4
+:adrim
+res 4
+
+defword [
+beginf
+rA=@adrim
+r0=rC
+[rA]=r0
+code
+beginf
+endcode
+endf
+
+defword ]
+beginf
+code
+endf
+endcode
+rA=@adrim
+rA=[rA]
+call rA
+rC=rA
+endf
+
+:getparam
+beginf
+code r0={r0}
+code
+[--rB]=r0
+endcode
+endf
+
+defword [CREATE]
+:code_icreate
+beginf
+getword
+r0=@getparam
+[rA+4]=r0
+r0=rC
+[rA+8]=r0
+endf
+
+defword CREATE
+beginf
+r0=@code_icreate
+code rA={r0}
+code
+call rA
+endcode
+endf
+
+defword ALLOTW
+
+defword ALLOTWLIT
+beginf
+getword
+scanhex
+r1=r0
+r0=rC
+r0=r0+r1
+rC=r0
+endf
+
+defword ALLOTW
+beginf
+code
+r0=[rB++]
+endcode
+r0=@freespace
+code rA={r0}
+code
+r1=r0
+r0=r0+r1
+r1=r0
+r0=r0+r1
+r1=r0
+r0=[rA]
+r0=r0+r1
+[rA]=r0
+endcode
+endf
+
+defword DOES1>
+beginf
+r0=@lastcp
+code rA={r0}
+r0=rC
+r1=4
+r0=r0+r1
+code r0={r0}
+code
+rA=[rA]
+[rA]=r0
+endf
+beginf
+endcode
+r0=@getparam
+code rA={r0}
+code
+call rA
+endcode
+r0=rC
+r1=5
+r0=r0+r1
+code r0={r0}
+r0=@calldef
+code rA={r0}
+code
+call rA
+endf
+beginf
+endcode
+endf
+
+defword DOES>
+beginf
+r0=@lastcp
+code rA={r0}
+r0=rC
+r1=4
+r0=r0+r1
+code r0={r0}
+code
+rA=[rA]
+[rA]=r0
+endf
+beginf
+endcode
+r0=@getparam
+code rA={r0}
+code
+call rA
+endcode
+r1=rC
+code
+r0=0
+endcode
+r0=@calldef
+code rA={r0}
+code
+call rA
+endf
+endcode
+r0=rC
+rC=r1
+r1=r0
+code r0={r0}
+rC=r1
+code
+beginf
+endcode
+endf
+
+defword '
+beginf
+getword
+r0=rA
+code r0={r0}
+code
+[--rB]=r0
+endcode
+endf
+
+defword COMPILE
+beginf
+getword
+r0=[rA+8]
+code r0={r0}
+r0=[rA+4]
+code rA={r0}
+code
+call rA
+endcode
+
+defword [COMPILE]
+beginf
+getword
+r0=[rA+4]
+r1=r0
+r0=[rA+8]
+rA=r1
+call rA
+endf
+
+defword CALLADR
+beginf
+code
+r0=[rB++]
+rA=r0
+call rA
+endcode
+endf
+
+align 4
+:levellambda
+res 4
+:adrblambda
+res 400
+
+defword LAMBDA
+beginf
+rA=@levellambda
+r0=[rA]
+r1=1
+r0=r0+r1
+[rA]=r0
+r2=r0
+
+r1=rC
+code
+r0=0
+[--rB]=r0
+endcode
+
+r0=r2
+r1=r0
+r0=r0+r1
+r1=r0
+r0=r0+r1
+r1=r0
+r0=@adrblambda
+r0=r0+r1
+rA=r0
+r0=rC
+[rA]=r0
+
+code
+r0=0
+bp 0
+endcode
+r0=rC
+rC=r1
+r1=r0
+code
+code r0={r0}
+endcode
+rC=r1
+code
+beginf
+endcode
+endf
+
+defword ENDLAMBDA
+beginf
+code
+endf
+endcode
+rA=@levellambda
+r0=[rA]
+r1=r0
+r0=r0+r1
+r1=r0
+r0=r0+r1
+r1=r0
+r0=@adrblambda
+r0=r0+r1
+rA=r0
+rA=[rA]
+r0=rC
+setbradr
+rA=@levellambda
+r0=[rA]
+r1=1
+r0=r0-r1
+[rA]=r0
+endf
+
+align 4
+:labels
+res 800
+
+defword >=0BRANCH
+getchar
+code
+r0=[rB++]
+endcode
+r1=r0
+r0=r0+r1
+r1=r0
+r0=r0+r1
+r1=r0
+r0=r0+r1
+r1=r0
+r0=@labels
+r0=r0+r1
+rA=r0
+r0=rC
+[rA]=r0
+code
+bp 0
+endcode
+r0=rA
+r1=4
+r0=r0+r1
+rA=r0
+r0=[rA]
+bz @z1
+r2=r0
+r0=rA
+r1=4
+r0=r0-r1
+rA=r0
+r0=[rA]
+r1=r2
+setbradr
+:z1
+endf
+
+defword LABEL
+getchar
+r1=r0
+r0=r0+r1
+r1=r0
+r0=r0+r1
+r1=@labels
+r0=r0+r1
+r1=4
+r0=r0+r1
+rA=r0
+r0=rC
+[rA]=r0
+r0=rA
+r1=4
+r0=r0-r1
+rA=r0
+r0=[rA]
+bz @z2
+r2=r0
+r0=rA
+r1=4
+r0=r0+r1
+rA=r0
+r0=[rA]
+r1=r0
+r0=r2
+setbradr
+endf
+
+defword BYE
+beginf
+exit
+endf
+
+
+

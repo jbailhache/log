@@ -1,0 +1,14 @@
+Compte-rendu de la partie :
+Distribution des rôles :
+a : médecin normal sain
+b : psychologue résistant sain
+c : médecin normal sain
+d : informaticien hôte sain
+e : astronaute hôte muté
+
+Le capitaine est a. L'équipage s'endort. Les médecins ( a c ) se réveillent, se reconnaissent et se rendorment.
+Les mutants ( e ) se réveillent. Ils mutent ou tuent un membre de l'équipage.
+Ils paralysent quelqu'un d'autre.
+Les mutants ont tué b et ont paralysé a. Le médecin a est sain. Le médecin c est sain. Les médecins ( c ) se réveillent. Ils choisissent de soigner chacun une personne ou de tuer une seule personne.
+Les médecins ont tué e. 
+Il n'y a plus de mutants, les humains ont gagné.

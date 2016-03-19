@@ -1,0 +1,12 @@
+<pre>
+
+Liste des caracteres d'une chaine
+<< DUP SIZE {} 1 -> S N L I
+ << 1 N FOR I
+     L S I I SUB + 'L' STO
+    NEXT
+    L
+ >>
+>> 'STR->LIST' STO
+
+</pre>

@@ -1,0 +1,44 @@
+
+K = \xy.x
+S = \xyz.xz(yz)
+S(Ka)(Kb) = K(ab)
+\x.Kab = \x.a
+\x.Sabc = \x.ac(bc)
+
+[x] Kx = S(K(Kx))I
+[xy] Sxy = S(K(Sxy))I
+[xyu] K(xu)(yu) = xu
+[xyzu] S(xu)(yu)(zu) = (xu)(zu)((yu)(zu))
+[xy] S(Kx)(Ky) = K(xy)
+[f] S(Kf)I = f
+        avec ([x] a=b) = (\x.a = \x.b)
+        \ defini par
+                \x.x = I
+                \x.y = Ky si x n'est pas dans y
+                \x.ab = S(\x.a)(\x.b)
+                \x.fx = f
+
+K = \xy.Kxy
+S = \xyz.Sxyz
+\xy.S(Kx)(Ky) = \xy.K(xy)
+\xy.S(S(KK)x)y) = \xyz.xz
+\xyz.S(S(S(KS)x)y)z) = \xyz.S(Sxz)(Syz)
+
+K = \x.S(K(Kx))I
+S = \xy.S(K(Sxy))I
+
+K = S(S(KS)(S(KK)K))(K(SKK))                            
+        = \xy.Kxy
+S = S(S(KS)(S(K(S(KS)))(S(K(S(KK)))S)))(K(K(SKK)))
+        = \xyz.Sxyz
+S(S(KS)(S(KK)(S(KS)K)))(KK) = S(KK)
+        \xy.S(Kx)(Ky) = \xy.K(xy)
+S(KS)(S(KK)) = S(KK)(S(S(KS)(S(KK)(SKK)))(K(SKK)))
+        \xyu.K(xu)(yu) = \xyu.xu
+S(K(S(KS)))(S(KS)(S(KS))) = S(S(KS)(S(KK)(S(KS)(S(K(S(KS)))S))))(KS)
+        \xyzu.S(xu)(yu)(zu) = \xyzu.(xu)(zu)((yu)(zu))
+S(S(KS)K)(K(SKK)) = SKK
+        \f.S(Kf)I = \f.f
+
+
+

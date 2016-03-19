@@ -1,0 +1,254 @@
+
+<!--Connexion établie--><!--Base de données sélectionnée--><HTML><head><title>ACP sur TI82</title><meta name=keywords content="ACP,TI82,analyse,données"></head><body>
+<h3>Analyse en composantes principales sur calculatrice TI82</h3>
+
+Ce logiciel se compose de 4 programmes :
+<ul>
+<li> PUISANC : méthode de la puissance qui calcule, à partir d'une matrice [A], la première valeur propre L et le vecteur propre associé
+[B] 
+<li> DEFLA : méthode de la déflation qui calcule les H (=2 pour ACP) premières valeurs propres de [A] dans L1 et les vecteurs propres associés en colonnes dans [C]. [E] est modifié. 
+<li> ACP qui trace l'ACP des données [D]
+<li> COREL qui trace les corrélations des variables.
+</ul>
+
+<h4>Conventions</h4>
+<ul>
+<li> t = transposée
+<li> r = racine carrée
+</ul>
+
+<p><h4>Méthode de la puissance sur TI82</h4>
+<ul>
+<li>donnée : matrice [A]
+<li>résultat : valeur propre L, vecteur propre [B]
+</ul>
+
+<pre>
+PROGRAM:PUISANC
+:dim [A]:Ans(1)->D
+:{D,1}->dim [B]
+:Fill(0,B)
+:1->[B](1,1)
+:0->L:1->M
+:While abs (L-M)>0.00001
+:L->M
+:[A]*[B]->[B]
+:[B](1,1)->L
+:[B]*(L^-1)->[B]
+:End
+:[B]t*[B]
+:[B]*(1/rAns(1,1))->[B]
+:
+</pre>
+
+<p><h4>Déflation sur TI82</h4>
+<ul>
+<li>données : matrice dans [A], modifiée
+<li>résultats : valeurs propres dans L1, 
+ vecteurs propres en lignes dans [C] à partir de la ligne D+1,
+ dimension dans D
+</ul>
+
+<pre>
+PROGRAM:DEFLA
+:dim [A]:Ans(1)->D
+:{0}->L1
+:{D(D+1),D}->dim [C]
+:{D(D+1),D}->dim [E]
+:For(I,1,D,1)
+:For(J,1,D,1)
+:[A](I,J)->[E](D+I,J)
+:End
+:End
+:min(H,D)->H
+:For(K,1,H,1)
+:For(I,1,D,1)
+:For(J,1,D,1)
+:[E](KD+I,J)->[A](I,J)
+:End
+:End
+:prgmPUISANC
+:L->L1(K)
+:For(I,1,D,1)
+:[B](I,1)->[C](KD+K,I)
+:End
+:For(P,K-1,1,-1)
+:0->Q
+:For(I,1,D,1)
+:Q+[E](P,I)*[C](P+1)D+K,I)->Q
+:End
+:Q*L1(P)/(L1(K)-L1(P))->Q
+:For(I,1,D,1)
+:[C]((P+1)D+K,I)+Q*[C](PD+P,I)->[C](PD+K,I)
+:End
+:End
+:If K>=D or K>=H
+:Then
+:Goto E
+:End
+:0->R
+:For(I,1,D,1)
+:R+([C](KD+K,I)²->R
+:End
+:For(I,1,D,1)
+:[C](KD+K,I)/R->[E](K,I)
+:End
+:For(I,1,D,1)
+:For(J,1,D,1)
+:[E](KD+I,J)-L1(K)*[C](KD+K,I)*[E](K,J)->[E]((K+1)D+I,J)
+:End
+:End
+:End
+:Lbl E
+:For(I,1,D)
+:For(J,1,D)
+:[C](D+I,J)->[C](J,I)
+:End
+:End
+:{D,D}->dim [C]
+:For(I,1,D)
+:For(J,1,D)
+:[E](D+I,J)->[A](I,J)
+:End
+:End
+:
+</pre>
+
+<h4>ACP</h4>
+Données dans [D]
+
+<pre>
+:PROGRAM:ACP
+:dim [D]->L6
+:L6(1)->N
+:L6(2)->P
+:P->G
+:N^-1->D
+:{N,1}->dim [A]
+:Fill(1,[A])
+:[D]t*D*[A]->[C]
+:[D]-[A]*[C]t->[E]
+:[E]t*D*[E]->[B]
+:{P,P}->dim [A]
+:Fill(0,[A])
+:For(I,1,P)
+:0->S
+:For(J,1,N)
+:S+[E](J,I)²->S
+:End
+:N/S->[A](I,I)
+:End
+:[A]*[B]->[A]
+:augment([D],[E])->[D]
+:prgmDEFLA
+:{N,G}->dim [E]
+:For(I,1,N)
+:For(J,1,G)
+:[D](I,G+J)->[E](I,J)
+:End
+:End
+{N,G}->dim [D]
+:{N+G,G}->dim [E]
+:For(I,1,G)
+:G->[E](N+I,I)
+:End
+:[E]*[C]->[B]
+:ClrDraw
+:DispGraph
+:For(I,1,N+G)
+:91*([B](I,1)-Xmin)/(Xmax-Xmin)->C
+:57-57*([B](I,2)-Ymin)/(Ymax-Ymin)->L
+:int C->C
+:int L->L
+:max(C,0)->C
+:min(C,85)->C
+:max(L,0)->L
+:min(L,57)->L
+:If I&lt;=N
+:Then
+:Text(L,C,I)
+:Else
+:Text(L,C,"V")
+:Text(L,C+4,I-N)
+:End
+:End
+:
+
+:PROGRAM:COREL
+:dim [D]->L6
+:L6(1)->N
+:L6(2)->P
+:P->G
+:N^-1->D
+:{N,1}->dim [A]
+:Fill(1,[A])
+:[D]t*D*[A]->[C]
+:[D]-[A]*[C]t->[E]
+:[E]t*D*[E]->[B]
+:{P,P}->dim [A]
+:Fill(0,[A])
+:P->dim L2
+:Fill(0,L2)
+:For(I,1,P)
+:0->S
+:For(J,1,N)
+:S+[E](J,I)²->S
+:End
+:N/S->[A](I,I)
+:N/rS->L2(I)
+:End
+:[A]*[B]->[A]
+:augment([D],[E])->[D]
+:prgmDEFLA
+:{N,G}->dim [E]
+:For(I,1,N)
+:For(J,1,G)
+:[D](I,G+J)->[E](I,J)
+:End
+:End
+{N,G}->dim [D]
+:{N+G,G}->dim [E]
+:For(I,1,G)
+:G->[E](N+I,I)
+:End
+:[E]*[C]->[B]
+:{G,2}->dim [B]
+:For(I,1,G)
+:For(J,1,2)
+:L1(J)*[C](I,J)/L2(I)->[B](I,J)
+:End
+:End
+:ClrDraw
+:DispGraph
+:For(I,1,G)
+:91*([B](I,1)-Xmin)/(Xmax-Xmin)->C
+:57-57*([B](I,2)-Ymin)/(Ymax-Ymin)->L
+:int C->C
+:int L->L
+:max(C,0)->C
+:min(C,85)->C
+:max(L,0)->L
+:min(L,57)->L
+:If I&lt;=N
+:Then
+:Text(L,C,I)
+:Else
+:Text(L,C,"V")
+:Text(L,C+4,I-N)
+:End
+:End
+:
+
+</pre>
+
+
+
+</body></HTML>
+</noscript>      
+<script type="text/javascript">
+category = "/noref";    
+search_query = "";              
+var time = new Date();
+var ord = time.getTime();
+document.write('<scr'+'ipt type="text/javascript" src="http://www.multimania.lycos.fr/general/pub/dxpert/dxpert.phtml?search_query='+escape(search_query)+'&category='+escape(category)+'&ref='+document.location+'&ord='+ord+'"></scr'+'ipt>');
+</script>

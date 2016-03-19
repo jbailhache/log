@@ -1,0 +1,39 @@
+Compte-rendu de la partie :
+Distribution des rôles :
+a : espion normal sain
+b : fanatique normal sain
+c : psychologue normal sain
+d : astronaute hôte sain
+e : astronaute hôte muté
+f : médecin normal sain
+g : médecin normal sain
+h : généticien résistant sain
+i : informaticien normal sain
+
+Le capitaine est a. L'équipage s'endort. Les médecins ( f g ) se réveillent, se reconnaissent et se rendorment.
+Les mutants ( e ) se réveillent. Ils mutent ou tuent un membre de l'équipage.
+Ils paralysent quelqu'un d'autre.
+Les mutants ont muté f et ont paralysé h. Le médecin f est muté. Le médecin g est sain. Les médecins ( g ) se réveillent. Ils choisissent de soigner chacun une personne ou de tuer une seule personne.
+Les médecins ont soigné f.L'informaticien i est sain. L'informaticien se réveille. L'ODB lui indique qu'il y a 1 mutant(s).
+Le psychologue c est sain. Le psychologue se réveille. Il indique quelle personne il souhaite examiner.
+Indiquer au psychologue que a est sain. Le généticien h est sain et est paralysé. Le généticien se réveille. Il indique quelle personne il souhaite examiner. 
+Indiquer au généticien que a est normal. L'espion a est sain. L'espion se réveille. Il indique quelle personne il souhaite espionner. 
+Indiquer à l'espion ce qui est arrivé à a : il n'a pas été muté, il n'a pas été paralysé, il n'a pas été soigné, il a été examiné par le psychologue, il a été examiné par le généticien. 
+C'est le jour, l'équipage se réveille.
+
+Le capitaine est toujours a. L'équipage vote pour tuer quelqu'un ou pas. 
+a a voté pour tuer e
+b n'a pas voté
+c n'a pas voté
+d n'a pas voté
+e n'a pas voté
+f n'a pas voté
+g n'a pas voté
+h n'a pas voté
+i n'a pas voté
+
+Résultat du vote :
+1 vote(s) pour tuer e
+Choix du capitaine a : 
+L'équipage a décidé de tuer e. Il était astronaute hôte muté. 
+Il n'y a plus de mutants, les humains ont gagné.

@@ -1,0 +1,29 @@
+
+Pour compiler un programme Prolog, par exemple APPEND.PRO:
+	- Traduire en C :
+		PLTOC APPEND.PRO APPEND.C
+	- Compiler APPEND.C
+	- Linker avec SCHEDULE.OBJ, EXPR.OBJ et PROLOG.OBJ.
+
+Ce traducteur et son runtime system sont des shareware.
+Si vous les utilisez regulierement et que vous en etes satisfait,
+merci de bien vouloir envoyer un cheque selon vos moyens a :
+
+	Jacques Bailhache
+	Le Benvenuto
+	39 av. Monplaisir
+	06100 Nice.
+
+A partir de 80 F, vous recevrez les versions futures de ce logiciel.
+
+Historique des versions :
+-------------------------
+
+1.01	aout 1994
+
+1.02	29 aout 1994	Correction d'un bug dans l'unification des atomes.
+
+1.03	31 aout 1994    Implementation du cut.
+
+
+

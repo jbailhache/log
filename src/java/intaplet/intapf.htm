@@ -1,0 +1,39 @@
+<HTML>
+<head>
+<title>Test frame</title>
+</head>
+<body>
+
+<applet code=intaplet.class width=400 height=300>
+
+<param name=init value='
+&dup ^x { x x }
+{
+ [rplac global #1# frame "Test"]
+ [setflowlayout subexpr global #1#]
+ [add subexpr global #1# "" label "Bonjour !"]
+ [show subexpr global #1#]
+ [resize subexpr global #1# #300# #200#] 
+ [rplac global #2# textarea "" #10# #40#]
+ [add applet "" subexpr global #2#]
+
+ [rplac global #3# menubar]
+ [rplac global #4# menu "&File"]
+ [addmenuitem subexpr global #4# "&New"]
+ [addmenu subexpr global #3# subexpr global #4#]
+ [setmenubar subexpr global #1# subexpr global #3#]
+
+}'>
+
+<param name=frame value=' ^evt {
+ [settext subexpr global #2# 
+  concat "Event " concat rep evt
+  concat "\n"
+  gettext subexpr global #2#]
+ }'>
+
+</applet>
+
+
+</body>
+</HTML>

@@ -1,0 +1,43 @@
+Compte-rendu de la partie :
+Distribution des rôles :
+a : astronaute hôte muté
+b : médecin normal sain
+c : informaticien résistant sain
+d : médecin normal sain
+e : fanatique hôte sain
+f : psychologue normal sain
+g : espion normal sain
+h : astronaute normal sain
+i : généticien normal sain
+
+Le capitaine est a. L'équipage s'endort. Les médecins ( b d ) se réveillent, se reconnaissent et se rendorment.
+Les mutants ( a ) se réveillent. Ils mutent ou tuent un membre de l'équipage.
+Ils paralysent quelqu'un d'autre.
+Les mutants ont muté e et ont paralysé f. Le médecin b est sain. Le médecin d est sain. Les médecins ( b d ) se réveillent. Ils choisissent de soigner chacun une personne ou de tuer une seule personne.
+Les médecins ont tenté de soigner e sans y parvenir car il est hôte. Ils ont aussi soigné f. L'informaticien c est sain. L'informaticien se réveille. L'ODB lui indique qu'il y a 2 mutant(s).
+Le psychologue f est sain et est paralysé. Le psychologue se réveille. Il indique quelle personne il souhaite examiner.
+Indiquer au psychologue que e est muté. Le généticien i est sain. Le généticien se réveille. Il indique quelle personne il souhaite examiner. 
+Indiquer au généticien que e est hôte. L'espion g est sain. L'espion se réveille. Il indique quelle personne il souhaite espionner. 
+Indiquer à l'espion ce qui est arrivé à e : il a été muté, il n'a pas été paralysé, il n'a pas été soigné, il a été examiné par le psychologue, il a été examiné par le généticien. 
+C'est le jour, l'équipage se réveille.
+
+Le capitaine est toujours a. L'équipage vote pour tuer quelqu'un ou pas. 
+a a voté pour tuer e
+b n'a pas voté
+c n'a pas voté
+d n'a pas voté
+e n'a pas voté
+f n'a pas voté
+g n'a pas voté
+h n'a pas voté
+i n'a pas voté
+
+Résultat du vote :
+1 votes pour tuer e
+Choix du capitaine a : 
+L'équipage a décidé de tuer e. Il était fanatique hôte muté. C'est la nuit, l'équipage s'endort. 
+Les mutants ( a ) se réveillent. Ils mutent ou tuent un membre de l'équipage.
+Ils paralysent quelqu'un d'autre.
+Les mutants ont tué b et ont paralysé a. Le médecin b est mort. Le médecin d est sain. Les médecins ( d ) se réveillent. Ils choisissent de soigner chacun une personne ou de tuer une seule personne.
+Les médecins ont tué a. 
+Il n'y a plus de mutants, les humains ont gagné.

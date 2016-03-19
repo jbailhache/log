@@ -1,0 +1,1190 @@
+PLT MzScheme: Language Manual[Go to first, previous, next page;   contents;   
+index]
+Chapter 11
+
+Input and Output
+11.1  Ports
+The global variable eof is bound to the end-of-file value. The standard Scheme 
+predicate eof-object? returns #t only when applied to this value. The predicate 
+port? returns #t only for values for which either input-port? or output-port? 
+returns #t.
+11.1.1  Current Ports
+The standard Scheme procedures current-input-port and current-output-port are 
+implemented as parameters in MzScheme. See section 7.7.1.2 for more information.
+11.1.2  Opening File Ports
+The open-input-file and open-output-file procedures accept an optional flag 
+argument after the filename that specifies a mode for the file: 
+  'binary -- characters are returned from the port exactly as they are read from 
+  the file. Binary mode is the default mode.
+  'text -- return and linefeed characters written to and read from the file are 
+  filtered by the port in a platform specific manner: 
+    Unix and Mac OS X: no filtering occurs.
+    Windows reading: a return-linefeed combination from a file is returned by 
+    the port as a single linefeed; no filtering occurs for return characters 
+    that are not followed by a linefeed, or for a linefeed that is not preceded 
+    by a return.
+    Windows writing: a linefeed written to the port is translated into a 
+    return-linefeed combination in the file; no filtering occurs for returns.
+    Mac OS Classic reading: a return character read from the file is returned as 
+    a linefeed by the port; no filtering occurs for linefeeds.
+    Mac OS Classic writing: a return character written to the port is translated 
+    into a linefeed in the file; no filtering occurs for linefeeds.
+  In Windows, 'text mode works only with regular files; attempting to use 'text 
+  with other kinds of files triggers an exn:i/o:filesystem exception.
+The open-output-file procedure can also take a flag argument that specifies how 
+to proceed when a file with the specified name already exists: 
+  'error -- raise exn:i/o:filesystem (this is the default) 
+  'replace -- remove the old file and write a new one 
+  'truncate -- overwrite the old data 
+  'truncate/replace -- try 'truncate; if it fails, try 'replace 
+  'append -- append to the end of the file 
+  'update -- open an existing file without truncating it; if the file does not 
+  exist, the exn:i/o:filesystem exception is raised 
+The open-input-output-file procedure takes the same arguments as 
+open-output-file, but it produces two values: an input port and an output port. 
+The two ports are connected in that they share the underlying file device. See 
+section 11.1.5 for more information.
+Extra flag arguments are passed to open-output-file in any order. Appropriate 
+flag arguments can also be passed as the last argument(s) to 
+call-with-input-file, with-input-from-file, call-with-output-file, and 
+with-output-to-file. When conflicting flag arguments (e.g., both 'error and 
+'replace) are provided to open-output-file, with-output-to-file, or 
+call-with-output-file, the exn:application:mismatch exception is raised.
+Both with-input-from-file and with-output-to-file close the port they create if 
+control jumps out of the supplied thunk (either through a continuation or an 
+exception), and the port remains closed if control jumps back into the thunk. 
+The current input or output port is installed and restored with parameterize 
+(see section 7.7.2).
+See section 11.1.5 for more information on file ports. When an input or output 
+file-stream port is created, it is placed into the management of the current 
+custodian (see section 9.2).
+11.1.3  Pipes
+(make-pipe [limit-k]) returns two port values (see section 2.2): the first port 
+is an input port and the second is an output port. Data written to the output 
+port is read from the input port. The ports do not need to be explicitly closed.
+The optional limit-k argument can be #f or a positive exact integer. If limit-k 
+is omitted or #f, the new pipe holds an unlimited number of unread characters 
+(i.e., limited only by the available memory). If limit-k is a positive number, 
+then the pipe will hold at most limit-k unread characters; writing to the pipe's 
+output port thereafter will block until a read from the input port makes more 
+space available.
+11.1.4  String Ports
+Scheme input and output can be read from or collected into a string: 
+  (open-input-string string) creates an input port that reads characters from 
+  string.
+  (open-output-string) creates an output port that accumulates the output into a 
+  string.
+  (get-output-string string-output-port) returns the characters accumulated in 
+  string-output-port so far in a freshly-allocated string. The characters also 
+  remain in the port for further accumulation or for later calls to 
+  get-output-string.
+String input and output ports do not need to be explicitly closed. The 
+file-position procedure, described in section 11.1.5, works for string ports in 
+position-setting mode.
+Example: 
+(define i (open-input-string "hello world"))
+(define o (open-output-string))
+(write (read i) o)
+(get-output-string o) ; => "hello"
+11.1.5  File-Stream Ports
+A port created by open-input-file, open-output-file, subprocess, and related 
+functions is a file-stream port. The initial input, output, and error ports in 
+stand-alone MzScheme are also file-stream ports.
+(file-stream-port? port) returns #t if the given port is a file-stream port, #f 
+otherwise.
+Both input and output file-stream ports use a buffer. For an input port, a 
+buffer is filled with immediately-available characters to speed up future reads. 
+Thus, if a file is modified between a pair of reads to the file, the second read 
+can produce stale data. Calling file-position to set an input port's file 
+position flushes its buffer. For an output port, a buffer is filled to with a 
+sequence of written to be committed as a group, typically when a newline is 
+written. An output port's buffer use can be controlled via 
+file-stream-buffer-mode (described below). The two ports produced by 
+open-input-output-file have independent buffers.
+Three procedures work primarily on file-stream ports: 
+  (flush-output [output-port]) forces all buffered data in the given output port 
+  to be physically written. If output-port is omitted, then the current output 
+  port is flushed. Only file-stream ports and custom ports (see section 11.1.6) 
+  use buffers; when called on a port without a buffer, flush-output has no 
+  effect.
+  By default, a file-stream port flushes its buffer automatically after each 
+  newline, but this behavior can be modified with file-stream-buffer-mode. In 
+  addition, the initial current output and error ports are automatically flushed 
+  when read17, read-line, read-string, or read-string-avail! are performed on 
+  the initial standard input port.
+  (file-stream-buffer-mode file-stream-output-port [mode-symbol]) gets or sets 
+  the buffer mode for file-stream-output-port. If mode-symbol is provided, it 
+  must be one of 'none, 'line, or 'block, and the port's buffering is set 
+  accordingly. If mode-symbol is not provided, the current mode is returned. If 
+  the mode cannot be set or returned, the exn:i/o:port exception is raised.
+  (file-position port) returns the current read/write position of port, and 
+  (file-position port k) sets the read/write position to k. The latter works 
+  only for file-stream and string ports, and raises the exn:application:mismatch 
+  exception for other port kinds. Calling file-position without a position on a 
+  non-file/non-string input port returns the number of characters that have been 
+  read from that port if the position is known (see section 11.2.3), otherwise 
+  the exn:i/o:port exception is raised.
+  When (file-position port k) sets the position k beyond the current size of an 
+  output file or string, the file/string is enlarged to size k and the new 
+  region is filled with #\nul. If k is beyond the end of an input file or 
+  string, then reading thereafter returns eof without changing the port's 
+  position.
+  Not all file-stream ports support setting the position. If file-position is 
+  called with a position argument on such a file-stream port, the exn:i/o:port 
+  exception is raised.
+  When changing the file position for an output port, the port is first flushed 
+  if its buffer is not empty. Similarly, setting the position for an input port 
+  clears the port's buffer (even if the new position is the same as the old 
+  position). However, although input and output ports produced by 
+  open-input-output-file share the file position, setting the position via one 
+  port does not flush the other port's buffer.
+  (port-file-identity file-stream-port) returns an exact positive integer that 
+  represents the identity of the device and file read or written by 
+  file-stream-port. For two ports whose open times overlap, the result of 
+  port-file-identity is the same forboth ports if and only if the ports access 
+  the same device and file. For ports whose open times do not overlap, no 
+  guarantee is provided for the port identities (even if the ports actually 
+  access the same file) -- except as can be inferred through relationships with 
+  other ports. If file-stream-port is closed, the exn:i/o:port:closed exception 
+  is raised. Under Windows 95, 98, and Me, if file-stream-port is connected to a 
+  pipe instead of a file, the exn:i/o:port exception is raised.
+11.1.6  Custom Ports
+The make-custom-input-port and make-custom-output-port procedures create ports 
+with arbitrary control procedures.
+11.1.6.1  Custom Input
+(make-custom-input-port read-string-proc peek-string-proc-or-false close-proc) 
+creates an input port. The port is immediately open for reading. If close-proc 
+procedure has no side effects, then the port need not be explicitly closed.
+  read-string-proc -- a procedure that takes one argument, which is a non-empty 
+  string to fill with read characters, and returns either the number of 
+  characters read, a procedure for special inputs, a waitable for blocking (see 
+  section 7.6), or eof. The reading procedure should never itself block; if no 
+  input is immediately available, it should return 0 or a waitable (preferably 
+  the latter). If a value other than a non-negative exact integer, eof, 
+  waitable, or procedure-of-arity-four value is returned, the 
+  exn:application:type exception is raised. If the returned integer is larger 
+  than the supplied string, the exn:application:mismatch exception is raised.
+  The reading procedure can report an error by raising an exception, but only if 
+  no characters are read. Similarly, no characters should be read if eof, a 
+  waitable, or a procedure is returned. In other words, no characters should be 
+  lost due to spurious exceptions or non-character data.
+  A port's reading procedure may be called in multiple threads simultaneously 
+  (if the port is accessible in multiple threads). The port is responsible for 
+  its own internal synchronization. Note that improper implementation of such 
+  synchronization mechanisms might cause the reading procedure to block.
+  If the reading procedure returns a waitable object (see section 7.6), the 
+  waitable is treated like a 0 result, except that the system may use the 
+  waitable to block until input is available. If the waitable becomes unblocked, 
+  a later or concurrent call to the port's reading or peeking procedure must not 
+  return 0 or a waitable (otherwise, char-ready? might return #t for the port 
+  when do data is in fact available). Although the waitable allows the system to 
+  block on the port without spinning, it may also choose to treat a waitable 
+  result exactly as 0; in other words, the system may call the reading procedure 
+  again (even in the same thread) without completing a wait. The waitable will 
+  not be made externally available by the system.
+  See below for information about returning a procedure for special inputs.
+  peek-string-proc-or-false -- usually #f, which means that string peeking 
+  should be implemented by the system in terms of the reading procedure.
+  Otherwise, peek-string-proc-or-false must be a procedure that takes two 
+  arguments: a string to fill with peeked characters and a non-negative exact 
+  integer indicating a number of characters to skip in the input stream (but not 
+  in the string to fill) before writing peeked characters into the string.
+  The results and conventions for the procedure are the same as for 
+  read-string-proc. When the peeking procedire is called with a positive number 
+  for characters to skip, a waitable result applies specifically to the skip 
+  value, not to peeking in general.
+  The system does not check that multiple peeks return consistent results, or 
+  that peeking and reading produce consistent results. If peeking produces a 
+  procedure, then a future call to the reading procedure is expected to produce 
+  the same procedure, and the one returned by peeking is never invoked.
+  close-proc -- a procedure of zero arguments that is called to close the port. 
+  The port is not considered closed until the closing procedure returns. The 
+  port's waitable, reading procedure, peeking procedure, and closing procedure 
+  will never be used again via the port is closed. However, the closing 
+  procedure can be called simultaneously in multiple threads (if the port is 
+  accessible in multiple threads).
+When read-string-proc returns a procedure, the procedure is called by read,18 
+read-syntax, or read-char-or-special to ``read'' non-character input from the 
+port. The procedure is called exactly once before additional characters are read 
+from the port, and the procedure must return two values: an arbitrary value and 
+an exact, non-negative integer. The first return value is used as the read 
+result, and the second is used as the width in characters of the result (for 
+port position tracking). If read-string-proc or peek-string-proc returns a 
+procedure when called by any reading procedure other than read, read-syntax, 
+read-char-or-special, or peek-char-or-special, then the exn:application:mismatch 
+exception is raised.
+The four arguments to the procedure represent the source location of the 
+non-character value, as much as it is known (see section 11.2.3). The first 
+argument is an arbitrary value representing the source for read values -- the 
+one passed to read-syntax -- or #f if read or read-char-or-special was called. 
+The second argument is a line number (exact, positive integer) if known, or #f 
+otherwise. The third is a column number (exact, non-negative integer) or #f, and 
+the fourth is a position number (exact, positive integer) or #f.
+When the procedure returns a syntax object, then the syntax object is used 
+directly in the result of read-syntax, and converted with syntax-object->datum 
+for the result of read. If the result is not a syntax object, then the result is 
+used directly in the result for read, and converted with datum->syntax-object 
+for the result of read-syntax. In either case, structure sharing that occurs 
+only as a the result of multiple non-character results is not preserved as 
+syntax sharing.
+Instead of returning two values, the procedure can raise the exn:special-comment 
+exception to indicate that the special result is a comment, and therefore 
+produces no read result. When called by read and read-syntax, the exception is 
+caught. The exception's width field indicates the width of the special object in 
+port positions, like the second return value for a non-comment result.
+Examples: 
+(define /dev/null (make-custom-input-port (lambda (s) eof) #f void))
+(read-char /dev/null) ; => eof
+
+;; This port produces a stream of 1s:
+(define infinite-ones 
+  (make-custom-input-port
+   (lambda (s) (string-set! s 0 #\1) 1)
+   #f
+   void))
+(read-string 5 infinite-ones) ; => "11111"
+
+;; To peek ahead 25000 characters, we have to
+;;  buffer all 25000 preceding characters:
+(peek-string 5 (expt 2 5000) infinite-ones)  ; Out of memory!
+
+;; With a peek procedure, we can support arbitrary lookahead:
+(define better-infinite-ones 
+  (make-custom-input-port
+   (lambda (s) (string-set! s 0 #\1) 1)
+   (lambda (s offset) (string-set! s 0 #\1) 1)
+   void))
+(peek-string 5 (expt 2 5000) better-infinite-ones) ; => "11111"
+
+;; This port produces 0, 1, 2, 0, 1, 2, etc:
+(define mod3-cycle/not-thread-safe
+  (let ([n 0])
+    (make-custom-input-port
+     (lambda (s) (string-set! s 0 (integer->char (+ 48 n)))
+                 (set! n (modulo (add1 n) 3))
+                 1)
+     #f
+     void)))
+(read-string 5 mod3-cycle/not-thread-safe) ; => "01201"
+
+;; Same thing, but safe for concurrent access:
+(define mod3-cycle
+  (let ([n 0]
+	;; for guarding use of n:
+	[lock (make-semaphore 1)])
+    (make-custom-input-port
+     (lambda (s)
+       (if (semaphore-try-wait? lock)
+	   (begin
+	     (string-set! s 0 (integer->char (+ 48 n)))
+	     (set! n (modulo (add1 n) 3))
+	     (semaphore-post lock)
+	     1)
+	   ;; another thread must have the lock;
+	   ;; instead of spinning, wait until the
+	   ;; lock looks available:
+	   (make-semaphore-peek lock)))
+     #f
+     void)))
+(let ([result1 #f]
+      [result2 #f])
+  (let ([t1 (thread (lambda ()
+		      (set! result1 (read-string 5 mod3-cycle))))]
+	[t2 (thread (lambda ()
+		      (set! result2 (read-string 5 mod3-cycle))))])
+    (thread-wait t1)
+    (thread-wait t2)
+    (string-append result1 "," result2))) ; => "0212,10201", maybe
+
+;; Non-character port results:
+(define infinite-voids
+  (make-custom-input-port
+   (lambda (s)
+     ;; Return a procedure that produces void:
+     (lambda (where line col pos) (values (void) 1)))
+   #f
+   void))
+(read-char infinite-voids) ; => error: non-char in an unsupported context
+(read-char-or-special infinite-voids) ; => void
+11.1.6.2  Custom Output
+(make-custom-output-port waitable-or-false write-string-proc flush-proc 
+close-proc) creates an output port. The port is immediately open for writing. If 
+close-proc procedure has no side effects, then the port need not be explicitly 
+closed. The port can buffer data within its write-string-proc.
+  waitable-thunk-or-false -- #f or a procedure of no arguments that returns a 
+  waitable and object to be used with object-wait-multiple (e.g., a semaphore or 
+  another port); see section 7.6 for more information on waitables.
+  If a waitable-generating procedure is supplied, it is called by the system 
+  under certain circumstances to determine when the port is ready for writing at 
+  least one character without blocking, or ready to make progress in flushing an 
+  internal buffer without blocking. For example, the procedure is called to 
+  implement object-wait-multiple for the output port. A returned waitable must 
+  not unblock unless the port is ready for writing. Otherwise, the guarantees of 
+  object-wait-multiple will be broken for the output port.
+  The waitable-generating procedure will not always be used before a call to the 
+  writing procedure (e.g., for a non-blocking write). Even after the 
+  waitable-generating procedure is called, its result might be ignored, or the 
+  waita may be terminated arbitrarily.
+  If waitable-thunk-or-false is #f, the system assumes that writes to the port 
+  will always succeed. In other words, supplying #f is the same as supplying 
+  (lambda () (make-semaphore 1)). If the waitable-generating procedure returns a 
+  non-waitable value, it is also treated like a (make-semaphore 1) result.
+  write-string-proc -- a procedure of four arguments: 
+    an immutable string containing characters to write;
+    a non-negative exact integer for a starting offset (inclusive) into the 
+    string,
+    a non-negative exact integer for an ending offset (exclusive) into the 
+    string,
+    a boolean; #t indicates that the port is allowed to keep the written 
+    characters in a buffer, and that it is allowed to block indefinitely; #f 
+    indicates that the write should not block, and that the port should attempt 
+    to flush its buffer and completely write new characters instead of buffering 
+    them.
+  The procedure returns a non-negative exact integer representing the number of 
+  characters written and buffered, or #f if no characters could be written 
+  because the internal buffer could not be completely flushed. If the returned 
+  integer is larger than the supplied string, the exn:application:mismatch 
+  exception is raised. If the start and end indices are the same (i.e., no 
+  characters are to be written), then the final boolean argument will be #f, and 
+  the procedure should return 0 only if the buffer is completely flushed.
+  From a user's perspective, the difference between buffered and completely 
+  written data is (1) buffered data can be lost in the future due to a failed 
+  write, and (2) flush-output forces all buffered data to be completely written. 
+  Under no circumstances is buffering required.
+  If the writing procedure raises an exception, due either to write or commit 
+  operations, it must not have committed any characters (though it may have 
+  committed previously buffered characters).
+  A port's writing procedure may be called in multiple threads simultaneously 
+  (if the port is accessible in multiple threads). The port is responsible for 
+  its own internal synchronization. Note that improper implementation of such 
+  synchronization mechanisms might cause the writing procedure to block for a 
+  non-blocking write.
+  flush-proc -- a procedure of zero arguments that is called to flush the port's 
+  buffer, if any, in response to flush-output. The flushing operation can block. 
+  The flush and writing procedures can be called simultaneously in multiple 
+  threads (if the port is accessible in multiple threads). If the flushing 
+  procedure is called while another thread is flushing the buffer, the call 
+  should not return until the flush has completed.
+  close-proc -- a procedure of zero arguments that is called to close the port. 
+  The port is not considered closed until the closing procedure returns. The 
+  port's waitable, writing procedure, flushing procedure, and closing procedure 
+  will never be used again via the port is closed. However, the closing 
+  procedure can be called simultaneously in multiple threads (if the port is 
+  accessible in multiple threads), and it may be called during a call to the 
+  writing for flushing procedures by another thread; in the latter case, the 
+  write or flush must be terminated immediately with an error.
+Examples: 
+(define /dev/null (make-custom-output-port 
+		   #f 
+		   (lambda (s start end buffer-ok?) (- end start))
+		   void void))
+(display "hello" /dev/null)
+
+
+(define accum-list null)
+(define accumulator/not-thread-safe
+  (make-custom-output-port 
+   #f
+   (lambda (s start end buffer-ok?)
+     (set! accum-list
+	   (append accum-list
+		   (string->list (substring s start end))))
+     (- end start))
+   void void))
+(display "hello" accumulator/not-thread-safe)
+accum-list ; => '(#\h #\e #\l #\l #\o)
+
+(define accum-list null)
+(define accumulator 
+  (let ([lock (make-semaphore 1)])
+    (make-custom-output-port
+     (lambda () (make-semaphore-peek lock))
+     (lambda (s start end buffer-ok?)
+       (if (semaphore-try-wait? lock)
+	   (begin
+	     (set! accum-list
+		   (append accum-list
+			   (string->list (substring s start end))))
+	     (semaphore-post lock)
+	     (- end start))
+	   0))
+     void
+     void)))
+(display "hello" accumulator)
+accum-list ; => '(#\h #\e #\l #\l #\o)
+
+(define (make-capitalize port)
+  (make-custom-output-port
+   ;; This port is ready when the original is ready:
+   (lambda () port)
+   ;; Writing procedure:
+   (lambda (s start end buffer-ok?)
+     (let ([s (list->string
+	       (map char-upcase
+		    (string->list (substring s start end))))])
+       (if buffer-ok?
+	   (begin
+	     (display s port)
+	     (string-length s))
+	   (write-string-avail* s port))))
+   ;; Flush procedure --- flush original port:
+   (lambda () (flush-output port))
+   ;; Close procedure --- close original port:
+   (lambda () (close-output-port port))))
+(define orig-port (open-output-string))
+(define cap-port (make-capitalize orig-port))
+(display "Hello" cap-port)
+(get-output-string orig-port) ; => "HELLO"
+11.2  Reading and Writing
+11.2.1  Reading
+In addition to the standard reading procedures, MzScheme provides block reading 
+procedures such as read-line, read-string, and peek-string: 
+  (read-line [input-port mode-symbol]) returns a string containing the next line 
+  of characters from input-port. If input-port is omitted, the current input 
+  port is used.
+  Characters are read from input-port until a line separator or an end-of-file 
+  is read. The line separator is not included in the result string (but it is 
+  removed from the port's stream). If no characters are read before an 
+  end-of-file is encountered, eof is returned.
+  The mode-symbol argument determines the line separator(s). It must be one of 
+  the following symbols: 
+    'linefeed breaks lines on linefeed characters; this is the default.
+    'return breaks lines on return characters.
+    'return-linefeed breaks lines on return-linefeed combinations. If a return 
+    character is not followed by a linefeed character, it is included in the 
+    result string; similarly, a linefeed that is not preceded by a return is 
+    included in the result string.
+    'any breaks lines on any of a return character, linefeed character, or 
+    return-linefeed combination. If a return character is followed by a linefeed 
+    character, the two are treated as a combination.
+    'any-one breaks lines on either a return or linefeed character, without 
+    recognizing return-linefeed combinations.
+  Return and linefeed characters are detected after the conversions that are 
+  automatically performed when reading a file in text mode. For example, reading 
+  a file in text mode under Windows automatically changes return-linefeed 
+  combinations to a linefeed. Thus, when a file is opened in text mode, 
+  'linefeed is usually the appropriate read-line mode.
+  (read-string k [input-port]) returns a string containing the next k characters 
+  from input-port. The default value of input-port is the current input port.
+  If k is 0, then the empty string is returned. Otherwise, if fewer than k 
+  characters are available before an end-of-file is encountered, then the 
+  returned string will contain only those characters before the end-of-file 
+  (i.e., the returned string's length will be less than k). 19 If no characters 
+  are available before an end-of-file, then eof is returned.
+  If an error occurs during reading, some characters may be lost (i.e., if 
+  read-string successfully reads some characters before encountering an error, 
+  the characters are dropped.)
+  (read-string-avail! string [input-port start-k end-k]) reads characters from 
+  input-port and puts them into string starting from index start-k (inclusive) 
+  up to end-k (exclusive). The default value of input-port is the current input 
+  port. The default value of start-k is 0. The default value of end-k is the 
+  length of the string. Like substring, the exn:application:mismatch exception 
+  is raised if start-k or end-k is out-of-range for string.
+  If the difference between start-k and end-k is 0, then 0 is returned and the 
+  string is not modified. If no characters are available before an end-of-file, 
+  then eof is returned. Otherwise, the return value is the number of characters 
+  read. If m characters are read and m < end-k - start-k, then string is not 
+  modified at indices start-k + m though end-k.
+  Unlike read-string, read-string-avail! returns without blocking after reading 
+  immediately-available characters. It blocks only if no characters are yet 
+  available. Also unlike read-string, read-string-avail! never drops characters; 
+  if read-string-avail! successfully reads some characters and then encounters 
+  an error, it suppresses the error (treating it roughly like an end-of-file) 
+  and returns the read characters. (The error will be triggered by future 
+  reads.) If an error is encountered before any characters have been read, an 
+  exception is raised.
+  (read-string-avail!* string [input-port start-k end-k]) is like 
+  read-string-avail!, except that it returns 0 immediately if no characters are 
+  available for reading and the end-of-file is not reached.
+  (read-string-avail!/enable-break string [input-port start-k end-k]) is like 
+  read-string-avail!, except that breaks are enabled during the read. The 
+  procedure provides a guarantee about the interaction of reading and breaks: if 
+  breaking is disabled when read-string-avail!/enable-break is called, and if 
+  the exn:break exception is raised as a result of the call, then no characters 
+  will have been read from input-port. See also section 6.6.
+  (peek-string k skip-k [input-port]) is similar to read-string, except that the 
+  returned characters are preserved in the port for future reads. The skip-k 
+  argument indicates a number of characters in the input stream to skip before 
+  collecting characters to return; thus, in total, the next k + skip-k 
+  characters are inspected.
+  For most kinds of ports, inspecting k + skip-k characters requires k + skip-k 
+  bytes of memory overhead associated with the port, at least until the 
+  characters are read. No such overhead is required when peeking into a string 
+  port (see section 11.1.4), a pipe port (see section 11.1.3), or a custom port 
+  with a specific peek procedure (depending on how the peek procedure is 
+  implemented; see section 11.1.6).
+  (peek-string-avail! string skip-k [input-port start-k end-k]) is like 
+  read-string-avail!, but for peeking, and with a skip-k argument like 
+  peek-string. When skipping characters, peek-string-avail! blocks until finding 
+  the end-of-file or at least one character past the skipped characters.
+  (peek-string-avail!* string skip-k [input-port start-k end-k]) is like 
+  read-string-avail!*, but for peeking, and with a skip-k argument like 
+  peek-string. Since this procedure never blocks, it may return before even 
+  skip-k characters are available from the port.
+  (peek-string-avail!/enable-break string skip-k [input-port start-k end-k]) is 
+  the peeking version of read-string-avail!/enable-break, with a skip-k argument 
+  like peek-string.
+  (read-char-or-special input-port) is the same as read-char, except that if the 
+  input port returns a non-character value (through a value-generating procedure 
+  in a custom port; see section 11.1.6 for details), the non-character value is 
+  returned. If the input port generates exn:special-comment, the exception is 
+  propagated after adjusting the port's position information based on the 
+  exception's width field.
+  (peek-char-or-special input-port) is the same as peek-char, except that if the 
+  input port returns a non-character value (through a value-generating procedure 
+  in a custom port; see section 11.1.6 for details), the symbol 'special is 
+  returned.
+11.2.2  Writing
+In addition to the standard printing procedures, MzScheme provides print, which 
+outputs values to a port by calling the port's print handler (see section 
+11.2.5), plus the block-writing procedures such as write-string-avail: 
+  (print v [output-port]) outputs v to output-port. The default value of 
+  output-port is the current output port.
+  The print procedure is used to print Scheme values in a context where a 
+  programmer expects to see a Scheme value. The rationale for providing print is 
+  that display and write both have standard output conventions, and this 
+  standardization restricts the ways that an environment can change the behavior 
+  of these procedures. No output conventions should be assumed for print so that 
+  environments are free to modify the actual output generated by print in any 
+  way. Unlike the port display and write handlers, a global port print handler 
+  can be installed through the global-port-print-handler parameter (see section 
+  7.7.1.2).
+  (write-string-avail string [output-port start-k end-k]) write characters to 
+  output-port from string starting from index start-k (inclusive) up to end-k 
+  (exclusive). The default value of output-port is the current output port. The 
+  default value of start-k is 0. The default value of end-k is the length of the 
+  string. Like substring, the exn:application:mismatch exception is raised if 
+  start-k or end-k is out-of-range for string.
+  The result is the number of characters written and flushed to output-port. The 
+  write-string-avail procedure returns without blocking after writing as many 
+  characters as it can immediately flush. It blocks only if no characters can be 
+  flushed immediately.
+  The write-string-avail procedure never drops characters; if write-string-avail 
+  successfully writes some characters and then encounters an error, it 
+  suppresses the error and returns the number of written characters. (The error 
+  will be triggered by future writes.) If an error is encountered before any 
+  characters have been written, an exception is raised.
+  (write-string-avail* string [output-port start-k end-k]) is like 
+  write-string-avail, except that it never blocks, it returns #f if the port 
+  contains buffered data that cannot be written immediately, and it returns 0 if 
+  the port's internal buffer (if any) is flushed but no additional characters 
+  can be written immediately.
+  (write-string-avail/enable-break string [input-port start-k end-k]) is like 
+  write-string-avail, except that breaks are enabled during the write. The 
+  procedure provides a guarantee about the interaction of writing and breaks: if 
+  breaking is disabled when write-string-avail/enable-break is called, and if 
+  the exn:break exception is raised as a result of the call, then no characters 
+  will have been written to output-port. See also section 6.6.
+The fprintf, printf, and format procedures create formatted output: 
+  (fprintf output-port format-string v ···) prints formatted output to 
+  output-port, where format-string is a string that is printed; format-string 
+  can contain special formatting tags: 
+    ~n or ~% prints a newline
+    ~a or ~A displays the next argument among the vs
+    ~s or ~S writes the next argument among the vs
+    ~v or ~V prints the next argument among the vs
+    ~e or ~E outputs the next argument among the vs using the current error 
+    value conversion handler (see section 7.7.1.7) and current error printing 
+    width 
+    ~c or ~C write-chars the next argument in vs; if the next argument is not a 
+    character, the exn:application:mismatch exception is raised
+    ~b or ~B prints the next argument among the vs in binary; if the next 
+    argument is not an exact number, the exn:application:mismatch exception is 
+    raised
+    ~o or ~O prints the next argument among the vs in octal; if the next 
+    argument is not an exact number, the exn:application:mismatch exception is 
+    raised
+    ~x or ~X prints the next argument among the vs in hexadecimal; if the next 
+    argument is not an exact number, the exn:application:mismatch exception is 
+    raised
+    ~~ prints a tilde (~)
+    ~w, where w is a whitespace character, skips characters in format-string 
+    until a non-whitespace character is encountered or until a second 
+    end-of-line is encountered (whichever happens first). An end-of-line is 
+    either #\return, #\newline, or #\return followed immediately by #\newline 
+    (on all platforms).
+  The return value is void.
+  (printf format-string v ···) same as fprintf with the current output port.
+  (format format-string v ···) same as fprintf with a string output port where 
+  the final string is returned as the result.
+When an illegal format string is supplied to one of these procedures, the 
+exn:application:type exception is raised. When the format string requires more 
+additional arguments than are supplied, the exn:application:fprintf:mismatch 
+exception is raised. When more additional arguments are supplied than are used 
+by the format string, the exn:application:mismatch exception is raised.
+For example, 
+(fprintf port "~a as a string is ~s.~n" '(3 4) "(3 4)")
+prints this message to port:20 
+(3 4) as a string is "(3 4)".
+followed by a newline.
+11.2.3  Counting Positions, Lines, and Columns
+MzScheme keeps track of the position in a port as the number of characters that 
+have been read from any input port (independent of the read/write position, 
+which is accessed or changed with file-position). In addition, MzScheme can 
+track line locations and column locations when specifically enabled for a port 
+via port-count-lines! or the port-count-lines-enabled parameter (see section 
+7.7.1.2). Position, line, and column locations for a port are used by 
+read-syntax (see section 12.2 for more information). Position and line locations 
+are numbered from 1; column locations are numbered from 0. 
+  (port-count-lines! input-port) turns on line and column counting for a port. 
+  Counting can be turned on at any time, though generally it is turned on before 
+  any data is read from a port. When an input port is created, if the value of 
+  the port-count-lines-enabled parameter is true (see section 7.7.1.2), then 
+  line counting is automatically enabled for the port. Line counting cannot be 
+  disabled for a port after it is enabled.
+When counting lines, MzScheme treats linefeed, return, and return-linefeed 
+combinations as a line terminator and as a single position (on all platforms). 
+Each tab advances the column count to one before the next multiple of 8.
+A position is known for any port as long as its value can be expressed as a 
+fixnum (which is more than enough tracking for realistic applications in, say, 
+syntax-error reporting). If the position for a port exceeds the value of the 
+largest fixnum, then the position for the port becomes unknown, and line and 
+column tacking is disabled. Return-linefeed combinations are treated as a single 
+character position only when line and column counting is enabled. 
+  (port-next-location input-port) returns three values: a positive exact integer 
+  or #f for the line number of the next read character, a non-negative exact 
+  integer or #f for the character's column, and a positive exact integer or #f 
+  for the character's position.
+11.2.4  Customizing Read
+Each input port has its own port read handler. This handler is invoked to read 
+S-expressions or syntax objects from the port when the built-in read or 
+read-syntax procedure is applied to the port. A port read handler must accept 
+both a single argument or three arguments: 
+  A single argument is supplied when the port is used with read; the argument is 
+  the port being read. The return value is the value that was read from the 
+  port. 
+  Three arguments are supplied when the port is used with read-syntax; the first 
+  argument is the port being read, the second argument is a value indicating the 
+  source, and the third argument is a list of three non-negative, exact integers 
+  (see section 12.2 for more information). The return value is a syntax object 
+  that was read from the port.
+A port's read handler is configured with port-read-handler:
+  (port-read-handler input-port) returns the current port read handler for 
+  input-port.
+  (port-read-handler input-port proc) sets the handler for input-port to proc.
+The default port read handler reads standard Scheme expressions with MzScheme's 
+built-in parser (see section 14.3).
+11.2.5  Customizing Display, Write, and Print
+Each output port has its own port display handler, port write handler, and port 
+print handler. These handlers are invoked to output S-expressions to the port 
+when the standard display, write or print procedure is applied to the port. A 
+port display/write/print handler takes a two arguments: the value to be printed 
+and the destination port. The handler's return value is ignored.
+  (port-display-handler output-port) returns the current port display handler 
+  for output-port.
+  (port-display-handler output-port proc) sets the display handler for 
+  output-port to proc.
+  (port-write-handler output-port) returns the current port write handler for 
+  output-port.
+  (port-write-handler output-port proc) sets the write handler for output-port 
+  to proc.
+  (port-print-handler output-port) returns the current port print handler for 
+  output-port.
+  (port-print-handler output-port proc) sets the print handler for output-port 
+  to proc.
+The default port display and write handlers print Scheme expressions with 
+MzScheme's built-in printer (see section 14.4). The default print handler calls 
+the global port print handler (the value of the global-port-print-handler 
+parameter; see section 7.7.1.2); the default global port print handler is the 
+same as the default write handler.
+11.3  Filesystem Utilities
+Additional filesystem utilities are in MzLib; see Chapter mz:mzlibfile in PLT 
+MzLib: Libraries Manual.
+11.3.1  Pathnames
+File and directory paths are specified as strings. Since the syntax for 
+pathnames can vary across platforms (e.g., under Unix, directories are separated 
+by ``/'' while Mac OS Classic uses ``:''), MzScheme provides tools for portably 
+constructing and deconstructing pathnames.
+Most MzScheme primitives that take pathnames perform an expansion on the 
+pathname before using it. (Procedures that build pathnames or merely check the 
+form of a pathname do not perform this expansion.) Under Unix and Mac OS X, a 
+user directory specification using ``~'' is expanded.21 Under Mac OS Classic, 
+file and folder aliases are resolved to real pathnames.22 Under Windows, 
+multiple slashes are converted to single slashes (except at the beginning of a 
+shared folder name), and a slash is inserted after the colon in a drive 
+specification (if it is missing). In a Windows pathname, slash and backslash are 
+always equivalent (and can be mixed together in the same pathname).
+A pathname string cannot be empty or contain a null character (#\nul). When an 
+empty string or a string containing a null character is provided as a pathname 
+to any procedure except absolute-path?, relative-path?, complete-path?, or 
+normal-case-path, the exn:i/o:filesystem exception is raised.
+The pathname utilities are:
+  (build-path base-path sub-path ···) creates an pathname given a base pathname 
+  and any number of sub-pathname extensions. If base-path is an absolute 
+  pathname, the result is an absolute pathname; if base is a relative pathname, 
+  the result is a relative pathname. Each sub-path must be either a relative 
+  pathname, a directory name, the symbol 'up (indicating the relative parent 
+  directory), or the symbol 'same (indicating the relative current directory). 
+  Under Windows, if base-path is a drive specification (with or without a 
+  trailing slash) the first sub-path can be an absolute (driveless) path. The 
+  last sub-path can be a filename.
+  Each sub-path and base-path can optionally end in a directory separator. If 
+  the last sub-path ends in a separator, it is included in the resulting 
+  pathname.
+  Under Mac OS Classic, if a sub-path argument does not begin with a colon, one 
+  is added automatically. This means that sub-path arguments are never 
+  interpreted as absolute paths under Mac OS Classic. For other platforms, if an 
+  absolute path is provided for any sub-path, then the exn:i/o:filesystem 
+  exception is raised. On all platforms, if base-path or sub-path is an illegal 
+  path string (e.g., it contains a null character), the exn:i/o:filesystem 
+  exception is raised.
+  The build-path procedure builds a pathname without checking the validity of 
+  the path or accessing the filesystem.
+  The following examples assume that the current directory is /home/joeuser for 
+  Unix examples and My Disk:Joe's Files for Mac OS Classic examples.
+(define p1 (build-path (current-directory) "src" "scheme")) 
+  ; Unix: p1 => "/home/joeuser/src/scheme"
+  ; Mac OS Classic: p1 => "My Disk:Joe's Files:src:scheme"
+(define p2 (build-path 'up 'up "docs" "MzScheme")) 
+  ; Unix: p2 => "../../docs/MzScheme"
+  ; Mac OS Classic: p2 => ":::docs:MzScheme"
+(build-path p2 p1) 
+  ; Unix: raises exn:i/o:filesystem:path because p1 is absolute 
+  ; Mac OS Classic: => ":::docs:MzScheme:My Disk:Joe's Files:src:scheme"
+(build-path p1 p2) 
+  ; Unix: => "/home/joeuser/src/scheme/../../docs/MzScheme"
+  ; Mac OS Classic: => "My Disk:Joe's Files:src:scheme:::docs:MzScheme"
+
+
+  (absolute-path? path) returns #t if path is an absolute pathname, #f 
+  otherwise. If path is not a legal pathname string (e.g., it contains a null 
+  character), #f is returned. This procedure does not access the filesystem.
+  (relative-path? path) returns #t if path is a relative pathname, #f otherwise. 
+  If path is not a legal pathname string (e.g., it contains a null character), 
+  #f is returned. This procedure does not access the filesystem.
+  (complete-path? path) returns #t if path is a completely determined pathname 
+  (not relative to a directory or drive), #f otherwise. Note that under Windows, 
+  an absolute path can omit the drive specification, in which case the path is 
+  neither relative nor complete. If path is not a legal pathname string (e.g., 
+  it contains a null character), #f is returned. This procedure does not access 
+  the filesystem.
+  (path->complete-path path [base-path]) returns path as a complete path. If 
+  path is already a complete path, it is returned as the result. Otherwise, path 
+  is resolved with respect to the complete path base-path. If base-path is 
+  omitted, path is resolved with respect to the current directory. If base-path 
+  is provided and it is not a complete path, the exn:i/o:filesystem exception is 
+  raised. This procedure does not access the filesystem.
+  (resolve-path path) expands path and returns a pathname that references the 
+  same file or directory as path. Under Unix and Mac OS X, if path is a soft 
+  link to another pathname, then the referenced pathname is returned (this may 
+  be a relative pathname with respect to the directory owningpath) otherwise 
+  path is returned (after expansion).
+  (expand-path path) returns the expanded version of path (as described at the 
+  beginning of this section). The filesystem might be accessed, but the source 
+  or expanded pathname might be a non-existent path.
+  (simplify-path path) eliminates up-directory (``..'' in Unix, Mac OS X, and 
+  Windows) and same-directory (``.'') indicators in path. If no indicators are 
+  in path, then path is returned. Otherwise, a complete path is returned; if 
+  path is relative, it is resolved with respect to the current directory. 
+  Up-directory indicators are dropped when they refer to the parent of a root 
+  directory. The filesystem might be accessed, but the source or expanded 
+  pathname might be a non-existent path. If path cannot be simplified due to a 
+  cycle of links, the exn:i/o:filesystem exception is raised (but a successfully 
+  simplified path may still involve a cycle of links if the cycle did not 
+  inhibit the simplification).
+  (normal-case-path string) is deprecated, and should not be used.23 It returns 
+  string with ``normalized'' case letters. Under Unix and Mac OS X, this 
+  procedure always returns the input path. Under Windows and Mac OS Classic, the 
+  resulting string uses only lowercase letters. Under Windows, all forward 
+  slashes (``/'') are converted to backward slashes (``\''), and trailing spaces 
+  are removed. This procedure does not access the filesystem or guarantee that 
+  the output string is a legal pathname (i.e., string and the result may contain 
+  a null character).
+  (split-path path) deconstructs path into a smaller pathname and an immediate 
+  directory or file name. Three values are returned (see section 2.2): 
+    base is either 
+      a string pathname, 
+      'relative if path is an immediate relative directory or filename, or 
+      #f if path is a root directory. 
+    name is either 
+      a string directory name, 
+      a string file name, 
+      'up if the last part of path specifies the parent directory of the 
+      preceding path (e.g., ``..'' under Unix), or 
+      'same if the last part of path specifies the same directory as the 
+      preceding path (e.g., ``.'' under Unix). 
+    must-be-dir? is #t if path explicitly specifies a directory (e.g., with a 
+    trailing separator), #f otherwise. Note that must-be-dir? does not specify 
+    whether name is actually a directory or not, but whether path syntactically 
+    specified a directory. 
+  If base is #f, then name cannot be 'up or 'same. All strings returned for base 
+  and name are newly allocated. This procedure does not access the filesystem.
+  (find-executable-path program-sub-path related-sub-path) finds a pathname for 
+  the executable program-sub-path, returning #f if the pathname cannot be found.
+  If related-sub-path is not #f, then it must be a relative path string, and the 
+  pathname found for program-sub-path must be such that the file or directory 
+  related-sub-path exists in the same directory as the executable. The result is 
+  then the full path for the found related-sub-path, instead of the path for the 
+  executable.
+  This procedure is used by MzScheme (as a stand-alone executable) to find the 
+  standard library collection directory (see Chapter 16). In this case, program 
+  is the name used to start MzScheme and related is "collects". The 
+  related-sub-path argument is used because, under Unix and Mac OS X, 
+  program-sub-path may involve to a sequence of soft links; in this case, 
+  related-sub-path determines which link in the chain is relevant.
+  If program-sub-path has a directory path, exists as a file or link to a file, 
+  and related-sub-path is not #f, find-executable-path determines whether 
+  related-sub-path exists relative to the directory of program-sub-path. If so, 
+  the complete path for program-sub-path is returned. Otherwise, if 
+  program-sub-path is a link to another file path, the destination directory of 
+  the link is checked for related-sub-path. Further links are inspected until 
+  related-sub-path is found or the end of the chain of links is reached.
+  If program-sub-path is a pathless name, find-executable-path gets the value of 
+  the PATH environment variable; if this environment variable is defined, 
+  find-executable-path tries each path in PATH as a prefix for program-sub-path 
+  using the search algorithm described above for path-containing 
+  program-sub-paths. If the PATH environment variable is not defined, 
+  program-sub-path is prefixed with the current directory and used in the search 
+  algorithm above. (Under Windows, the current directory is always implicitly 
+  the first item in PATH, so find-executable-path checks the current directory 
+  first under Windows.)
+  (find-system-path kind-symbol) returns a machine-specific path for a standard 
+  type of path specified by kind-symbol, which must be one of the following: 
+    'home-dir -- the current user's home directory. (See below for information 
+    on the user's home directory in Windows and Mac OS Classic.)
+    'pref-dir -- the standard directory for storing the current user's 
+    preferences. Under Unix and Windows, this is the user's home directory. 
+    Under Mac OS Classic, it is the Preferences subdirectory of the System 
+    Folder. Under Mac OS X, it is the subdirectory Library/Preferences of the 
+    user's home directory. (See below for information on the user's home 
+    directory in Windows.)
+    'pref-file -- a file that contains a symbol-keyed association list of 
+    preference values; the file's directory path always matches the result 
+    returned for 'pref-dir. Under Unix and Mac OS X, the file is .plt-prefs.ss, 
+    and under Windows and Mac OS Classic, the file is plt-prefs.ss. See also 
+    get-preference in Chapter mz:mzlibfile in PLT MzLib: Libraries Manual.
+    'temp-dir -- the standard directory for storing temporary files. Under Unix 
+    and Mac OS X, this is the directory specified by the TMPDIR environment 
+    variable, if it is defined.
+    'init-dir -- the directory containing the initialization file used by 
+    stand-alone MzScheme application. It is the same as the current user's home 
+    directory. (See below for information on the user's home directory in 
+    Windows and Mac OS Classic.)
+    'init-file -- the file loaded at start-up by the stand-alone MzScheme 
+    application. The directory part of the path is the same path as returned for 
+    'init-dir. The file name is platform-specific: 
+      Unix and Mac OS X: .mzschemerc 
+      Windows and Mac OS Classic: mzschemerc.ss
+    'sys-dir -- the directory containing the operating system for Windows or Mac 
+    OS Classic. Under Unix and Mac OS X, the result is "/".
+    'exec-file -- the pathname of the MzScheme executable as provided by the 
+    operating system for the current invocation.24 Under Mac OS Classic, in the 
+    stand-alone MzScheme (or MrEd) application, it is always a complete path. In 
+    the stand-alone MzScheme application, this path is also bound initially to 
+    program.
+  Under Windows, the user's home directory is the one specified by the HOMEDRIVE 
+  and HOMEPATH environment variables. If those environment variables are not 
+  defined, or if the indicated directory does not exist, the directory 
+  containing the MzScheme executable is used as the home directory. Under Mac OS 
+  Classic, the user's ``home directory'' is the preferences directory.
+  (path-list-string->path-list string default-path-list) parses a string 
+  containing a list of paths, and returns a list of path strings. Under Unix and 
+  Mac OS X, paths in a path list are separated by a colon (``:''); under Windows 
+  and Mac OS Classic, paths are separated by a semi-colon (``;''). Whenever the 
+  path list contains an empty path, the list default-path-list is spliced into 
+  the returned list of paths. Parts of string that do not form a valid path are 
+  not included in the returned list. (The content of the list default-path-list 
+  is not inspected.)
+11.3.2  Files
+The file management utilities are: 
+  (file-exists? path) returns #t if a file (not a directory) path exists, #f 
+  otherwise. Unlike some other procedures that take a path argument, this 
+  procedure never raises the exn:i/o:filesystem exception.25
+  (link-exists? path) returns #t if a link path exists (Unix, Mac OS X, and Mac 
+  OS Classic), #f otherwise. Note that the predicates file-exists? or 
+  directory-exists? work on the final destination of a link or series of links, 
+  while link-exists? only follows links to resolve the base part of path (i.e., 
+  everything except the last name in the path). This procedure never raises the 
+  exn:i/o:filesystem exception.
+  (delete-file path) deletes the file with pathname path if it exists, returning 
+  void if a file was deleted successfully, otherwise the exn:i/o:filesystem 
+  exception is raised. If path is a link, the link is deleted rather than the 
+  destination of the link.
+  (rename-file-or-directory old-path new-path [exists-ok?]) renames the file or 
+  directory with pathname old-path -- if it exists -- to the pathname new-path. 
+  If the file or directory is renamed successfully, void is returned, otherwise 
+  the exn:i/o:filesystem exception is raised.
+  This procedure can be used to move a file/directory to a different directory 
+  (on the same disk) as well as rename a file/directory within a directory. 
+  Unless exists-ok? is provided as a true value, new-path cannot refer to an 
+  existing file or directory. Even if exists-ok? is true, new-path cannot refer 
+  to an existing file when old-path is a directory, and vice versa. (If new-path 
+  exists and is replaced, the replacement is atomic in the filesystem, except 
+  under Windows 95, 98, or Me. However, the check for existence is not included 
+  in the atomic action, which means that race conditions are possible when 
+  exists-ok? is false or not supplied.)
+  If old-path is a link, the link is renamed rather than the destination of the 
+  link, and it counts as a file for replacing any existing new-path.
+  (file-or-directory-modify-seconds path) returns the file or directory's last 
+  modification date as platform-specific seconds (see also section 15.1).26 If 
+  no file or directory path exists, the exn:i/o:filesystem exception is raised.
+  (file-or-directory-permissions path) returns a list containing 'read, 'write, 
+  and/or 'execute for the given file or directory path. If no such file or 
+  directory exists, the exn:i/o:filesystem exception is raised.
+  (file-size path) returns the (logical) size of the specified file. (Under Mac 
+  OS Classic, this is the sum of the data fork and resource fork sizes.) If no 
+  such file exists, the exn:i/o:filesystem exception is raised.
+  (copy-file src-path dest-path) creates the file dest-path as a copy of 
+  src-path. If the file is successfully copied, void is returned, otherwise the 
+  exn:i/o:filesystem exception is raised. If dest-path already exists, the copy 
+  will fail. File permissions are preserved in the copy. Under Mac OS Classic, 
+  the resource fork is also preserved in the copy. If src-path refers to a link, 
+  the target of the link is copied, rather than the link itself.
+  (make-file-or-directory-link to-path path) creates a link path to to-path 
+  under Unix and Mac OS X. The creation will fail if path already exists. The 
+  to-path need not refer to an existing file or directory. If the link is 
+  created successfully, void is returned, otherwise the exn:i/o:filesystem 
+  exception is raised. Under Windows and Mac OS Classic, the 
+  exn:misc:unsupported exception is raised always.
+11.3.3  Directories
+The directory management utilities are: 
+  (current-directory) returns the current directory and (current-directory path) 
+  sets the current directory to path. This procedure is actually a parameter, as 
+  described in section 7.7.1.1.
+  (current-drive) returns the current drive name under Windows. For other 
+  platforms, the exn:misc:unsupported exception is raised. The current drive is 
+  always the drive of the current directory.
+  (directory-exists? path) returns #t if path refers to a directory, #f 
+  otherwise. Unlike other procedures that take a path argument, this procedure 
+  never raises the exn:i/o:filesystem exception.
+  (make-directory path) creates a new directory with the pathname path. If the 
+  directory is created successfully, void is returned, otherwise the 
+  exn:i/o:filesystem exception is raised.
+  (delete-directory path) deletes an existing directory with the pathname path. 
+  If the directory is created successfully, void is returned, otherwise the 
+  exn:i/o:filesystem exception is raised.
+  (rename-file-or-directory old-path new-path exists-ok?), as described in the 
+  previous section, renames directories.
+  (file-or-directory-modify-seconds path), as described in the previous section, 
+  gets directory dates.
+  (file-or-directory-permissions path), as described in the previous section, 
+  gets directory permissions.
+  (directory-list [path]) returns a list of all files and directories in the 
+  directory specified by path. If path is omitted, a list of files and 
+  directories in the current directory is returned.
+  (filesystem-root-list) returns a list of all current root directories.
+11.4  Networking
+Mzscheme supports networking with the TCP and UDP protocols.
+11.4.1  TCP
+For information about TCP in general, see TCP/IP Illustrated, Volume 1 by W. 
+Richard Stevens.
+  (tcp-listen port-k [max-allow-wait-k reuse? hostname-string-or-false]) creates 
+  a ``listening'' server on the local machine at the specified port number 
+  (where port-k is an exact integer between 1 and 65535 inclusive). The 
+  max-allow-wait-k argument determines the maximum number of client connections 
+  that can be waiting for acceptance. (When max-allow-wait-k clients are waiting 
+  acceptance, no new client connections can be made.) The default value for 
+  max-allow-wait-k argument is 4.
+  If the reuse? argument is true, then tcp-listen will create a listener even if 
+  the port is involved in a TIME_WAIT state. Such a use of reuse? defeats 
+  certain guarantees of the TCP protocol; see Stevens's book for details. The 
+  default for reuse? is #f.
+  If hostname-string-or-false is #f (the default), then the listener accepts 
+  connections to all of the listening machine's IP addresses. Otherwise, the 
+  listener accepts connections only at the IP address associated with the given 
+  name. For example, providing "127.0.0.1" as hostname-string-or-false typically 
+  creates a listener that accepts only connections to "127.0.0.1" from the local 
+  machine.
+  The return value of tcp-listen is a TCP listener value. This value can be used 
+  in future calls to tcp-accept, tcp-accept-ready?, and tcp-close. Each new TCP 
+  listener value is placed into the management of the current custodian (see 
+  section 9.2).
+  If the server cannot be started by tcp-listen, the exn:i/o:tcp exception is 
+  raised.
+  (tcp-connect hostname-string [port-k]) attempts to connect as a client to a 
+  listening server. The hostname-string argument is the server host's internet 
+  address name27 (e.g., "www.plt-scheme.org"), and port-k (an exact integer 
+  between 1 and 65535) is the port where the server is listening.
+  Two values (see section 2.2) are returned by tcp-connect: an input port and an 
+  output port. Data can be received from the server through the input port and 
+  sent to the server through the output port. If the server is a MzScheme 
+  process, it can obtain ports to communicate to the client with tcp-accept. 
+  These ports are placed into the management of the current custodian (see 
+  section 9.2).
+  Both of the returned ports must be closed to terminate the TCP connection. 
+  When both ports are still open, closing the output port with close-output-port 
+  sends a TCP close to the server (which is seen as an end-of-file if the server 
+  reads the connection through a port). In contrast, tcp-abandon-port (see 
+  below) closes the output port, but does not send a TCP close until the input 
+  port is also closed.
+  If a connection cannot be established by tcp-connect, the exn:i/o:tcp 
+  exception is raised.
+  (tcp-connect/enable-break hostname-string [port-k]) is like tcp-connect, but 
+  breaking is enabled (see section 6.6) while trying to connect. If breaking is 
+  disabled when tcp-connect/enable-break is called, then either ports are 
+  returned or the exn:break exception is raised, but not both.
+  (tcp-accept tcp-listener) accepts a client connection for the server 
+  associated with tcp-listener. The tcp-listener argument is a TCP listener 
+  value returned by tcp-listen. If no client connection is waiting on the 
+  listening port, the call to tcp-accept will block. (See also 
+  tcp-accept-ready?, below.)
+  Two values (see section 2.2) are returned by tcp-accept: an input port and an 
+  output port. Data can be received from the client through the input port and 
+  sent to the client through the output port. These ports are placed into the 
+  management of the current custodian (see section 9.2).
+  Both of the returned ports must be closed to terminate the connection. When 
+  both ports are still open, closing the output port with close-output-port 
+  sends a TCP close to the client (which is seen as an end-of-file if the client 
+  reads the connection through a port). In contrast, tcp-abandon-port (see 
+  below) closes the output port, but does not send a TCP close until the input 
+  port is also closed.
+  If a connection cannot be accepted by tcp-accept, or if the listener has been 
+  closed, the exn:i/o:tcp exception is raised.
+  (tcp-accept-ready? tcp-listener) tests whether an unaccepted client has 
+  connected to the server associated with tcp-listener. The tcp-listener 
+  argument is a TCP listener value returned by tcp-listen. If a client is 
+  waiting, the return value is #t, otherwise it is #f. A client is accepted with 
+  the tcp-accept procedure, which returns ports for communicating with the 
+  client and removes the client from the list of unaccepted clients.
+  If the listener has been closed, the exn:i/o:tcp exception is raised.
+  (tcp-accept/enable-break tcp-listener) is like tcp-accept, but breaking is 
+  enabled (see section 6.6) while trying to accept a connection. If breaking is 
+  disabled when tcp-accept/enable-break is called, then either ports are 
+  returned or the exn:break exception is raised, but not both.
+  (tcp-close tcp-listener) shuts down the server associated with tcp-listener. 
+  The tcp-listener argument is a TCP listener value returned by tcp-listen. All 
+  unaccepted clients receive an end-of-file from the server; connections to 
+  accepted clients are unaffected.
+  If the listener has already been closed, the exn:i/o:tcp exception is raised.
+  The listener's port number may not become immediately available for new 
+  listeners (with the default reuse? argument of tcp-listen). For further 
+  information, see Stevens's explanation of the TIME_WAIT TCP state.
+  (tcp-listener? v) returns #t if v is a TCP listener value created by 
+  tcp-listen, #f otherwise.
+  (tcp-abandon-port tcp-port) is like close-output-port or close-input-port 
+  (depending on whether tcp-port is an input or output port), but if tcp-port is 
+  an output port and its associated input port is not yet closed, then then 
+  other end of the TCP connection does not receive a TCP close message until the 
+  input port is also closed.28
+  (tcp-addresses tcp-port) returns two strings. The first string is the internet 
+  address for the local machine a viewed by the given TCP port's connection.29 
+  The second string is the internet address for the other end of the connection.
+  If the given port has been closed, the exn:i/o:tcp exception is raised.
+  (tcp-port? v) returns #t if v is a port returned by tcp-accept, tcp-connect, 
+  tcp-accept/enable-break, or tcp-connect/enable-break, #f otherwise.
+11.4.2  UDP
+For information about UDP in general, see TCP/IP Illustrated, Volume 1 by W. 
+Richard Stevens (which discusses UDP in addition to TCP).
+  (udp-open-socket) creates and returns a UDP socket to send and receive 
+  datagrams (broadcasting is allowed). Initially, the socket is not bound or 
+  connected to any address or port.
+  (udp-bind! udp-socket hostname-string-or-false port-k) binds an unbound 
+  udp-socket to the local port number port-k (an exact integer between 1 and 
+  65535). The result is always void.
+  If hostname-string-or-false is #f, then the socket accepts connections to all 
+  of the listening machine's IP addresses at port-k. Otherwise, the socket 
+  accepts connections only at the IP address associated with the given name. For 
+  example, providing "127.0.0.1" as hostname-string-or-false typically creates a 
+  listener that accepts only connections to "127.0.0.1" from the local machine.
+  A socket cannot receive datagrams until it is bound to a local address and 
+  port. If a socket is not bound before it is used with a sending procedure 
+  udp-send, udp-send-to, etc., the sending procedure binds the socket to a 
+  random local port. The binding of a bound socket cannot be changed.
+  If udp-socket is already bound or closed, the exn:i/o:udp exception is raised.
+  (udp-connect! udp-socket hostname-string-or-false port-k-or-false) connects 
+  the socket to the indicated remote address and port if 
+  hostname-string-or-false is a string and port-k-or-faise is an exact integer 
+  between 1 and 65535. The result is always void.
+  If hostname-string-or-false is #f, then port-k-or-false also must be #f, and 
+  the port is disconnected (if connected). If one of hostname-string-or-false or 
+  port-k-or-false is #f and the other is not, the exn:application:mismatch 
+  exception is raised.
+  A connected socket can be used with udp-send (not udp-send-to), and it accepts 
+  datagrams only from the connected address and port. A socket need not be 
+  connected to receive datagrams. A socket can be connected, re-connected, and 
+  disconnected any number of times.
+  If udp-socket is closed, the exn:i/o:udp exception is raised.
+  (udp-send-to udp-socket hostname-address port-k string [start-k end-k]) sends 
+  (substring starting start-k end-k) as a datagram from the unconnected 
+  udp-socket to the socket at the remote machine hostname-address on the port 
+  port-k. The udp-socket need not be bound or connected; if it is not bound, 
+  udp-send-to binds it to a random local port. If the socket's outgoing datagram 
+  queue is too full to support the send, udp-send-to blocks until the datagram 
+  can be queued. The result is always void.
+  The optional start-k argument defaults to 0, and the optional end-k argument 
+  defaults to the length of string. If start-k is greater than the length of 
+  string, or if end-k is less than start-k or greater than the length of string, 
+  the exn:application:mismatch exception is raised.
+  If udp-socket is closed or connected, the exn:i/o:udp exception is raised.
+  (udp-send udp-socket string [start-k end-k]) is like udp-send-to, except that 
+  udp-socket must be connected, and the datagram goes to the connection target. 
+  If udp-socket is closed or unconnected, the exn:i/o:udp exception is raised.
+  (udp-send-to* udp-socket hostname-address port-k string [start-k end-k]) is 
+  like udp-send-to, except that it never blocks; if the socket's outgoing queue 
+  is too full to support the send, #f is returned, otherwise the datagram is 
+  queued and the result is #t.
+  (udp-send* udp-socket string [start-k end-k]) is like udp-send, except that 
+  (like udp-send-to) it never blocks and returns #f or #t.
+  (udp-send-to/enable-break udp-socket hostname-address port-k string [start-k 
+  end-k]) is like udp-send-to, but breaking is enabled (see section 6.6) while 
+  trying to send the datagram. If breaking is disabled when 
+  udp-send-to/enable-break is called, then either the datagram is sent or the 
+  exn:break exception is raised, but not both.
+  (udp-send/enable-break udp-socket string [start-k end-k]) is like udp-send, 
+  except that breaks are enabled like udp-send-to/enable-break.
+  (udp-receive! udp-socket mutable-string [start-k end-k]) accepts up to end-k - 
+  start-k characters of udp-socket's next incoming datagram into mutable-string, 
+  writing the datagram characters starting at position start-k within 
+  mutable-string. The udp-socket must be bound to a local address and port (but 
+  need not be connected). If no incoming datagram is immediately available, 
+  udp-receive! blocks until one is available.
+  Three values are returned: an exact integer that indicates the number of 
+  received characters (between 0 and end-k - start-k), a hostname string 
+  indicating the source address of the datagram, and an exact integer between 1 
+  and 65535 indincating the source port of the datagram. If the received 
+  datagram is longer than end-k - start-k bytes, the remainder is discarded.
+  The optional start-k argument defaults to 0, and the optional end-k argument 
+  defaults to the length of mutable-string. If start-k is greater than the 
+  length of mutable-string, or if end-k is less than start-k or greater than the 
+  length of mutable-string, the exn:application:mismatch exception is raised. 
+  (udp-receive!* udp-socket mutable-string [start-k end-k]) is like 
+  udp-receive!, except that it never blocks. If no datagram is available, the 
+  three result values are all #f.
+  (udp-receive!/enable-break udp-socket mutable-string [start-k end-k]) is like 
+  udp-receive!, but breaking is enabled (see section 6.6) while trying to 
+  receive the datagram. If breaking is disabled when udp-receive!/enable-break 
+  is called, then either a datagram is received or the exn:break exception is 
+  raised, but not both.
+  (udp-close udp-socket) closes udp-socket, discarding unreceived datagrams. If 
+  the socket is already closed, the exn:i/o:udp exception is raised.
+  (udp? v) returns #t if v is a socket created by udp-open-socket, #f otherwise.
+  (udp-bound? udp-socket) returns #t if udp-socket is bound to a local address 
+  and port, #f otherwise.
+  (udp-connected? udp-socket) returns #t if udp-socket is connected to a remote 
+  address and port, #f otherwise.
+  (udp->send-waitable udp-socket) returns a waitable object that is in a 
+  blocking state when udp-send-to on udp-socket would block.
+  (udp->recieve-waitable udp-socket) returns a waitable object that is in a 
+  blocking state when udp-receive! on udp-socket would block.
+
+
+
+17 Flushing is performed by the default port read handler (see section 11.2.4) 
+rather than by read itself.
+18 More precisely, the procedure is used by the default port read handler; see 
+also section 11.2.4.
+19 A temporary string of size k is allocated while reading the input, even if 
+the size of the result is less than k characters.
+20 Assuming that the current port display and write handlers are the default 
+ones; see section 11.2.5 for more information.
+21 Under Unix and Mac OS X, expansion does not convert multiple adjacent slashes 
+to a single slash. However, extra slashes in a pathname are always ignored.
+22 Mac OS X follows the Unix behavior in its treatment of links, and Mac OS 
+Classic aliases are simply zero-length files.
+23 The problem is that the procedure ``normalizes'' based on the platform, but 
+case sensitivity is instead a property of an individual filesystem mount, not 
+the platform that performs the mount.
+24 For MrEd, the executable path is the name of a MrEd executable.
+25 Under Windows, file-exists? reports #t for all variations of the special 
+filenames (e.g., "LPT1", "x:/baddir/LPT1").
+26 For FAT filesystems under Windows, directories do not have modification 
+dates. Therefore, the creation date is returned for a directory (but the 
+modification date is returned for a file).
+27 The name "localhost" generally specifies the local machine.
+28 The TCP protocol does not include a ``no longer reading'' state on 
+connections, so tcp-abandon-port is equivalent to close-input-port on input TCP 
+ports.
+29 For most machines, the answer corresponds to the current machine's only 
+internet address. But when a machine serves multiple addresses, the result is 
+connection-specific.
+[Go to first, previous, next page;   contents;   index]

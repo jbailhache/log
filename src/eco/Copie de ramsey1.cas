@@ -1,0 +1,1 @@
+fp:= (x)->A*x^alpha

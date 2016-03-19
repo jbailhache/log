@@ -1,0 +1,75 @@
+
+<HTML>
+<head>
+<title>Edit script save.cgi</title>
+</head>
+<body>
+<form method=post action=save.cgi>
+
+<input type=text name=filename>
+<p>
+<input type=submit value=Create>
+<p>
+
+<textarea rows=20 cols=60 name=text>
+#!/usr/local/bin/perl
+#
+# Author name:
+# Creation date:
+#
+# Description:
+#
+
+ use TripodCGI;
+ 
+print ("Content-type: text/html\n\n");
+ print ("
+<HTML><head><title>Saving script</title></head>
+<body>");
+
+
+ $cgi = new TripodCGI;
+ $filename = $cgi->param(filename);
+ $text = $cgi->param(text);    
+
+ open DOSAVE, ">dosave.cgi"; 
+ print DOSAVE "
+#!/usr/local/bin/perl
+
+ use TripodCGI;
+
+ ".'$'."cgi = new TripodCGI;
+ ".'$'."filename = ".'$'."cgi->param(filename);
+ ".'$'."text = ".'$'."cgi->param(text);    
+
+ open (SCRIPT, '>' . '" . $filename . "');
+ print SCRIPT ".'$text'.";
+ close SCRIPT;
+    
+ print (\"Content-type: text/html\\n\\n\");
+ print (\"
+<HTML><head><title>Saving script</title></head>
+<body>Script $filename saved<p></body></HTML>
+\");
+ ";
+
+print ("
+<form method=post action=dosave.cgi>
+<input type=submit value=Save>
+script $filename
+<textarea name=text rows=20 cols=60>
+");
+print $text;
+print ("
+</text"); print ("area>
+<p>
+$text
+</form>
+</body></HTML>
+");
+
+</textarea>
+
+</form>
+</body>
+</HTML>

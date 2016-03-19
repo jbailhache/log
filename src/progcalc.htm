@@ -1,0 +1,434 @@
+<h3>Programmation de calculatrices scientifiques</h3> 
+
+Citizen graphing calculator SRP-320G
+et Casio fx-180P Plus. 
+
+<h4>Résolution d'équation par dichotomie</h4>
+
+Exemple pour une fonction croissante entre 0 et 1 : f(x) = -(x^2 - 3x + 1) 
+<p> Sur Citizen :
+<br>
+Données : bornes -> A et B, précision -> E
+<br>
+Prog 4 :<pre>-(X^2-3X+1)->Y</pre>
+Prog 5 :
+<pre>
+Lbl 1: (A+B)/2->X:
+Prog 4: Abs Y < E => X$
+Y>0=>Goto 2
+X->A: Goto 1:
+Lbl 2: X->B: Goto 1
+</pre>
+
+<p> Sur Casio :
+Entrées :
+<ul>
+<li> borne inférieure Kin1
+<li> borne supérieure Kin2
+<li> précision Kin4
+</ul>
+
+<p>
+Programme Casio :
+<pre>
+Kout1 Kin5
+Kout2 Kin6
+Kout5 + Kout6 = / 2 = Min 
+x^2 - 3 x MR + 1 = +/- Kin3
+Kout5 Kin1 
+MR Kin2
+Kout3 - Kout4 = x>0
+MR Kin1 
+Kout6 Kin2 
+Kout3 +/- - Kout4 =
+
+<plaintext>
+x>0
+MR
+
+Pour une fonction décroissante, permuter Kout5 Kin1
+MR Kin2 et MR Kin1 Kout6 Kin2 
+
+Autre programme pour f décroissante x^2 - 3x + 1 : 
+
+Données : 
+
+borne inférieure Kin1 Min 
+borne supérieure Kin2 
+1 Kin3 
+précision Kin4 
+
+Kout3 x^2 sqrt + Kout3 = / 2 = / Kout3 = Kin6 
+x MR + (1 - Kout6) x Kout1 = Kin1
+(1 - Kout6) x MR + Kout6 x Kout2 = Kin2
+Kout1 + Kout2 = / 2 = Min
+x^2 - 3 x MR + 1 = Kin3
+x^2 sqrt - Kout4 = x>0
+MR
+
+Limite d'une suite
+
+Exemple : u(0) = 0, u(n+1) = sqrt(u(n)+1) tend vers
+(1 + sqrt(5)) / 2 
+
+Sur Citizen : 
+Données : valeur initiale -> B Programme : 
+
+Lbl 1:B->A:sqrt(A+1)->B:Abs(A-B)>0.00001=>Goto 1:B$
+
+Sur Casio : 
+
+Données : 
+
+valeur initiale Kin1 
+précision Kin4 
+
+Kout1 Min
+MR + 1 = sqrt Kin1
+- MR = x^2 sqrt - Kout4 = x>0
+Kout1
+
+Fonction rendant 0 pour x<0 et 1 pour x>0 sur Casio
+
+Min MR x^2 sqrt + MR = / 2 = / MR =
+
+Transformation d'algorithmes pour Casio
+
+while (p(x))
+if (p1(q))
+q = f(q);
+else
+q = g(q);
+
+
+begin:
+q = q1;
+q1 = f(q);
+if (p(q) && p1(q)) goto begin;
+q1 = g(q);
+if (p(q)) goto begin;
+
+
+Formules utiles
+
+Gamma(x) = integrale de 0 à infini de t^(x-1) e^-t dt
+Gamma(x+1) = x Gamma(x)
+x! = Gamma(x+1) = integrale de 0 à infini de t^x e^t
+dt 
+
+Calcul de Gamma(x+1) sur Casio 
+
+P3 : Min MR x^y 5 x MR +/- e^x =
+
+Calcul de l'intégrale de 0 à 30 (pour t>30 le
+résultat est négligeable) : MODE 1 P3 0 RUN 30 RUN ->
+120 
+
+Sur Citizen : Prog 6 : 
+
+T^X x e(_T) -> Y
+
+Prog 7 : 
+
+0->S: A+E/2->T: 
+Lbl 1: Prog 6: S+Y->S:
+T+E->T: TGoto 1:
+SxE$
+
+Produit scalaire de vecteurs
+
+Sur Citizen 
+
+0->S: 0->K:
+Lbl 1: K >= N => Goto 2:
+A[K]xT[K]+S->S:
+K+1->K: Goto 1: Lbl 2
+
+Permutations
+
+Sur Citizen 
+
+Données : nombre d'éléments->D : permutation -> E[0]
+à E[D-1] : numéro de la permutation -> A 
+
+Résultat dans E[], signe dans B, C<0 : terminé, C>=0
+: non terminé 
+
+Prog 3: 
+
+D-2->C:
+Lbl 1: C<0 => Goto 9:
+E[C] >= D-1 => Goto 2:
+Lbl 3: E[C]+1 -> E[C]:
+E[C]>=D => Goto 2:
+Lbl 6: 0->B:
+Lbl 4: B>=C => Goto 7:
+E[C]=E[B] => Goto 3:
+B+1->B: Goto 4: Lbl 7:
+C+1->C:
+C>=D=>Goto 9:
+0->E[C]: Goto 6:
+Lbl 2: C-1->C: Goto 1:
+Lbl 9: A+1->A:
+A=4=>0->A:
+1->B:
+A=1=>_1->B:
+A=2=>_1->B
+
+Déterminant d'une matrice
+
+Programme Citizen 
+
+Prog 0 : calcul d'un terme 
+
+Données : adresse de la matrice -> L : dimension -> D
+: permutation -> E[0] à E[D-1] 
+
+1->R: 0->K:
+Lbl 1: K>=D=>Goto 2:
+RxA[L+K+DxE[K]]->R:
+K+1->K: Goto 1: Lbl 2
+
+Prog 1 : Déterminant 
+
+Données : dimension -> D : adresse de la matrice -> L
+: valeurs -> A[L] à A[L+D^2-1] : 
+
+0->S: 0->A: 1->B: 0->K:
+Lbl 1: K>=D=>Goto 2:
+K->E[K]:
+K+1->K: Goto 1: Lbl 2:
+Prog 0:
+S+BR->S:
+Prog 3:
+C>=0=>Goto 2
+
+Inversion d'une matrice
+
+Prog 4: calcul d'un élément 
+
+Données : dimension -> D : adresse de la matrice ->
+P: adresse libre pour copie -> Q: valeurs -> A[P] à
+A[P+D^2-1]: 
+
+P+D^2->Q:
+0->K: Lbl 1: K>=D^2=>Goto 2:
+A[P+K]->A[Q+K]:
+K+1->K: Goto 1: Lbl 2:
+0->K: Lbl 3: K>=D=>Goto 4:
+0->A[Q+J+DK]:
+0->A[Q+K+DI]:
+K+1->K: Goto 3: Lbl 4:
+1->A[Q+J+DI]:
+Q->L: Prog 1
+
+Calcul de l'inverse : 
+
+Données : dimension -> D : adresse de la matrice -> P
+: adresse pour le résultat -> O : adresse libre pour
+copie -> Q : valeurs -> A[P]à A[P+D^2-1] 
+
+P->L: Prog 1: S->N:
+0->I: Lbl 1: I>=D=>Goto 2:
+0->J: Lbl 3: J>=D=>Goto 4:
+Prog 4
+S/N->A[O+I+DJ]
+J+1->J: Goto 3: Lbl 4:
+I+1->I: Coto 1: Lbl 2
+
+Valeurs et vecteurs propres
+
+Méthode de la puissance sur Citizen 
+
+u(kl+1) = Au(k)/->vecteur propre
+l(k)=->valeur propre 
+
+Algorithme: 
+
+données: dimension d, valeurs A[ ], résultats :
+valeur propre lambda, vecteur propre u [ ] 
+
+int i
+for i=0 to d-1
+u(i)=0; v(i)=0;
+next i
+u(0)=1; v(0)=1;
+l=0;
+repeat
+l1=l; l=0;
+for j=0 to d-1
+t(j) = 0
+for i=0 to d-1
+t(j) = t(j) + A(i+d*j) * u(i)
+next i
+l = l + t(j) * v(j)
+next j
+until fabs(l-l1) > epsilon
+
+
+Programme Citizen Données : dimension->D: adresse
+matrice->A (Aij = A[A+i+Dj]): adresses vecteurs u->B,
+v->C, w->H, valeurs ->A[A] à A[A+D^2-1]:
+epsilon->E 
+
+Résultats : F = valeur propre, A[B] à A[B+D-1] :
+vecteur propre 
+
+Programme : 
+
+0->I: Lbl 1:
+0->A[B+I]: 0->A[C+I]:
+I+1->I: I<D=>Goto 1:
+1->A[B]: 1->A[C]:
+
+Lbl 2: F->G: 0->F:
+0->J: Lbl 3:
+0->A[H+J]:
+0->I: Lbl 4:
+A[H+J]+A[A+I+DJ]xA[B+I] -> A[H+J]:
+I+1->I: I<D=>Goto 4:
+F+A[H+J]xA[C+J]->F:
+J+1->J: J<D=>Goto 3:
+
+0->I: Lbl 5:
+A[B+I]/F->A[B+I]:
+I+1->I: I<D=>Goto 5:
+Abs(F-G)>E=>Goto 2
+
+Méthode de la puissance sur TI82
+donnée : matrice [A]
+résultats : valeur propre L, vecteur propre [B]
+
+PROGRAM:PUISANC
+:dim [A]->L6
+:L6(1)->D
+:{D,1}->dim [B]
+:1->[B](1,1)
+:0->L:1->M
+:While abs (L-M)>0.00001
+:L->M
+:[A]*[B]->[B]
+:[B](1,1)->L
+:[B]*(L^-1)->[B]
+:End
+:
+
+
+Déflation 
+
+Après avoir déterminé par la méthode de la puissance
+la première valeur propre l0 et le premier vecteur
+propre x0 = x(0)0i, i=0 à d-1, on choisit un vecteur
+w=w(0) tel que <w,x0> = 1 et on applique à nouveau la
+méthode de la puissance sur A(1) = A - l0 x0 wt pour
+obtenir une valeur propre l1 qui est aussi
+valeur propre de A, et un vecteur propre v1 = x(1)1i
+à partir duquel on calcule le deuxième vecteur propre
+de A, x1 = x(0)1i = v1 + l0/(l1-l0) <w,v1> x1. On
+itère ce procédé sur A(1) : on choisit w(1) tel que
+<w(1),v1> = 1, on calcule A(2) = A(1) - l1 v1 w(1)t,
+on applique la méthode de la puissance pour obtenir
+la
+valeur propre l2 et le vecteur propre x(2)2 de A(2).
+On calcule le deuxième vecteur propre de A(1), x(1)2
+= x(2)2 + l1/(l2-l1) <w(1),x(2)2> x(1)1 puis le
+troisième vecteur propre de A, x2 = x(0)2 = x(1)2 +
+l0/(l2-l0) <w(0),x(1)2> x1, et ainsi de suite pour
+tous les éléments propres que l'on souhaite calculer.
+
+
+Algorithme 
+
+for k=0 to d-1
+puissance (d, A+d*d*k) -> lambda(k), x(k,k)
+for p=k-1 to 0 step -1
+{ x(p)k = x(p+1)k + lambda(p) /
+(lambda(k)-lambda(p)) <w(p), x(p+1)k> x(p)p }
+q=0
+for i=0 to d-1
+q = q + w(i+d*p) * x(i+d*(k+d*(p+1)))
+next i
+q = q * lambda(p) / (lambda(k)-lambda(p))
+for i=0 to d
+x(i+d*(k+d*p)) = x(i+d*(k+d*(p+1))) + q *
+x(i+d*(p+d*p))
+next i
+next p
+if k>=d-1 break
+
+{ w(k) = x(k)k / <x(k)k, x(k)k > }
+r = 0
+for i=0 to d-1
+r = r + x(i+d*(k+d*k))^2
+next i
+for i=0 to d-1
+w(i+d*k) = x(i+d*(k+d*k))/r
+next i
+
+{ A(k+1) = A(k) - lambda(k) x(k)k w(k)t }
+for i=0 to d-1
+for j=0 to d-1
+A(i+d*(j+d*(k+1))) = A(i+d*(+d*k)) -
+lambda(k) * x(j+d*(k+d*k)) * w(i+d*k)
+next j
+next i
+next k
+
+Programme Citizen 
+
+Données : 
+
+dimension->D 
+adresse matrice A -> M, Ak)ij = A[M+I+D(J+DK)]
+
+données -> A[M] à A[M+D^2-1] 
+adresse vecteurs u->B, v->C, w'->H 
+epsilon->E 
+adresse x(k)ij -> N, x(k)ij = A[N+J+D(I+DK)] 
+adresse valeurs propres -> L 
+adresse w(k)i -> O, w(k)i = A[O+I+DK] 
+
+0->K: Lbl 1:
+
+M+D^2K->A:
+N+D(1+D)K->B:
+Prog puissance:
+F->A[L+K]:
+
+K-1->P: Lbl 3: PGoto 4:
+Prog calcul
+{ x(p)k = x(p+1)k + lp/(lk-lp) x(p)p }
+P+1->P: Goto 3
+K>=D-1=>Goto 9:
+
+{ w(k) = x(k)k / }
+0->R: 0->I: Lbl 5: 
+R+A[N+I+D(K+DK)]^2->R:
+I+1->I: I<D=>Goto 5:
+
+O->I: Lbl 6:
+A[N+I+D(K+DK)]/R->A[O+I+DK]:
+I+1->I: IGoto 6:
+
+{ A(k+1) = A(k) - lk x(k)k w(k)t }
+0->I: Lbl 7:
+0->J: Lbl 8:
+A[M+I+D(J+DK)] - A[L+K] A[N+J+D(K+DK)] A[O+I+DK] ->
+A[M+I+D(J+D(K+1))]:
+J+1->J: JGoto 8:
+I+1->I: IGoto 7:
+Lbl 9
+K+1->K: Goto 1
+fin Prog puissance
+
+Prog calcul:
+0->Q: 0->I: Lbl 5:
+Q+A[O+I+DP] x A[N+I+D(K+D(P+I))]->Q:
+I+1->I: I<D=>Goto 5:
+A[L+P]/(A[L+X]-A[L+P]) x Q -> Q:
+
+0->I: Lbl 6:
+A[N+I+D(K+D(P+1))] + Q A[N+I+D(P+DP)] ->
+A[N+I+D(K+DP)]:
+I+1->I: I<D=>Goto 6
+fin Prog calcul

@@ -1,0 +1,28 @@
+cobb_douglas:=( (x)->A*x^alpha):undef;
+ces:=( (x)->A*(alpha*x^(-rho)+1-alpha)^((-1)/rho)):undef;
+"D(cobb_douglas):simplify(%(x),power):dcobb_douglas:=unapply(%,x);";
+dcobb_douglas;
+cas_setup(0,0,0,1,0,1e-10,12,1,0,0,0),maple_mode(1);
+"D(cobb_douglas):simplify(%(x),power):dcobb_douglas:=unapply(%,x);";
+dcobb_douglas;
+function_diff(cobb_douglas);
+"simplify(%(x),power)";
+dcobb_douglas:=unapply(ans(NULL),x);
+dcobb_douglas;
+function_diff(ces);
+"simplify(%(x),power)";
+ces1:=unapply(ans(NULL),x);
+edk:=diff(k(t),t)=(s*fp(k(t))-mu*k(t));
+eqk:=expr("subs(k(t)=k,rhs(edk))",1);
+expr("fp:=cobb_douglas:",1);
+"dsolve(edk,k(t)):simplify(%,power):solcd:=unapply(rhs(%),t);dsolve(edk,k(t)):simplify(%,power):solcd:=unapply(rhs(%),t);";
+fp:=ces;
+solces:=dsolve(edk,k(t));
+undef;
+A:=10;
+alpha:=(0.32);
+mu:=(0.09);
+s:=(0.12);
+fp:=cobb_douglas;
+fp1:=dcobb_douglas;
+plot([s*fp(k),mu*k],k=(0 .. 80),title="Solow",labels=["capital","epargne"],color=bleu)

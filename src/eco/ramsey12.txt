@@ -1,0 +1,60 @@
+H:=U(c)*exp(-T*t)+p*(f(k)-n*k-c)
+
+                    U(c) exp(-T t) + p (f(k) - c - k n)
+
+ec:=diff(H,c)=0
+
+                      diff(U(c), c) exp(-T t) - p = 0
+
+solve(ec,p)
+
+                         {diff(U(c), c) exp(-T t)}
+
+p1:=solve(ec,p)[1]
+
+                          diff(U(c), c) exp(-T t)
+
+ek:=diff(P(t),t)=subs(-diff(H,k),p=P(t))
+
+                 diff(P(t), t) = -P(t) (diff(f(k), k) - n)
+
+p2:=subs(p1,c=C(t))
+
+                       diff(U(C(t)), C(t)) exp(-T t)
+
+p3:=subs(p1,diff(U(c),c)=D(U)(c))
+
+                             D(U)(c) exp(-T t)
+
+p4:=subs(p3,c=C(t))
+
+                           D(U)(C(t)) exp(-T t)
+
+P:=t->p4
+
+                                  t -> p4
+
+ek
+
+D(D(U))(C(t)) diff(C(t), t) exp(-T t) - T D(U)(C(t)) exp(-T t) =
+
+   -D(U)(C(t)) exp(-T t) (diff(f(k), k) - n)
+
+ek2:=simplify(ek/(U'(C(t))*exp(-T*t)))
+
+      D(D(U))(C(t)) diff(C(t), t) - T D(U)(C(t))
+      ------------------------------------------ = n - diff(f(k), k)
+                      D(U)(C(t))
+
+ek3:=expand(ek2)
+
+            D(D(U))(C(t)) diff(C(t), t)
+            --------------------------- - T = n - diff(f(k), k)
+                     D(U)(C(t))
+
+ek4:=ek3+T
+
+            D(D(U))(C(t)) diff(C(t), t)
+            --------------------------- = T + n - diff(f(k), k)
+                     D(U)(C(t))
+

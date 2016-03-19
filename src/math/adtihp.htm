@@ -1,0 +1,2696 @@
+
+<!--Connexion établie--><!--Base de données sélectionnée--><HTML><head><title>Analyse de données avec programmes TI 82, HP 48 et BASIC</title><meta name=keywords content=""></head><body>
+ 
+<h3>Analyse de données</h3>
+  
+<h4>Notions mathématiques requises</h4>
+
+<pre>
+
+Inversion de matrice
+
+Ce programme BASIC inverse la matrice P(i,j)
+
+for j=1 to k: for i=1 to k
+ b(i,j)=0: next i: b(j,j)=1: next j
+for j=1 to k: t=1/p(j,j)
+ for i=1 to k
+  p(j,i) = t*p(j,i):
+  b(j,i) = t*b(j,i): next i
+ for h=1 to k: if h<>j then t=-p(h,j)
+  for i=1 to k
+   p(h,i) = p(h,i) + t * p(j,i)
+   b(h,i) = b(h,i) + t * b(j,i): next i
+ next h
+next j
+
+
+Diagonalisation
+Ce programme Quick Basic diagonalise la matrice COV de dimension (k,k)
+
+l=1: for j=1 to k: y(j)=1: next j
+do
+ for j=1 to k: x(j)=y(j)/l: y(j)=0: next j: l=0: ps=0
+ for j=1 to k: for h=1 to k%
+  y(j) = y(j) + x(h) * cov(h,j)
+  next h: l=l+y(j)*y(j): ps=ps+x(j)*y(j)
+ next j: l=sqr(l): ps=abs(ps)
+loop until abs(l-ps) < .000001
+
+
+
+
+Problème : Trouver un vecteur u qui maximise u'A u avec u'Mu = 1
+@(u'Au)/@u = 2Au
+L = u'Au - lambda(u'Mu-1) 
+@L/@u = 2Au - 2 lambda M u = 0
+A u = lambda M u 
+M^-1 A u = lambda u 
+u vecteur propre de M^-1 A
+
+axes principaux : droite passant par le centre g maximisant l'inertie
+projection P = a (a' M a)^-1 a' M
+inertie = Trace VMP = a'MVMa/a'Ma
+MVMa = a'MVMa/a'Ma Ma
+VMa = lambda a
+MVMa = lambda M a
+MVu = lambda U
+</pre>
+
+<h4>ACP</h4>
+ 
+<pre>
+
+Matrice des données X
+données centrées Y
+données centrées réduites Z
+D = poids des individus (par exemple 1/n)
+R = tZ D Z
+Calculer les vecteurs propres de R
+
+r_xj_yk = sqrt(lambda_k)/sigma_k u^j_k
+R_XY = D_1/sigma U D_sqrt(lambda)
+
+</pre>
+
+
+<h4>Analyse en composantes principales sur calculatrice TI82</h4>
+ 
+Ce logiciel se compose de 4 programmes :
+<ul>
+<li> PUISANC : méthode de la puissance qui calcule, à partir d'une matrice [A], la première valeur propre L et le vecteur propre associé
+[B] 
+<li> DEFLA : méthode de la déflation qui calcule les H (=2 pour ACP) premières valeurs propres de [A] dans L1 et les vecteurs propres associés en colonnes dans [C]. [E] est modifié. 
+<li> ACP qui trace l'ACP des données [D]
+<li> COREL qui trace les corrélations des variables.
+</ul>
+
+<h4>Conventions</h4>
+<ul>
+<li> tX ou Xt ou X' = transposée de X
+<li> r ou sqrt = racine carrée
+<li> --- = ligne supprimée
+</ul>
+
+<p><h4>Méthode de la puissance sur TI82</h4>
+<ul>
+<li>donnée : matrice [A]
+<li>résultat : valeur propre L, vecteur propre [B]
+</ul>
+
+<pre>
+PROGRAM:PUISANC
+:dim [A]:Ans(1)->D
+:{D,1}->dim [B]
+:Fill(0,B)
+:1->[B](1,1)
+:0->L:1->M
+:While abs (L-M)>0.00001
+:L->M
+:[A]*[B]->[B]
+:[B](1,1)->L
+:[B]*(L^-1)->[B]
+:End
+:[B]t*[B]
+:[B]*(1/rAns(1,1))->[B]
+:
+</pre>
+
+<p><h4>Puissance sur HP 48</h4>
+
+<pre>
+
+<< {0 0} SWAP 2 SWAP PUT SWAP 1 SWAP PUT >> 
+'PAR' STO
+
+<< SWAP 3 PICK SIZE 2 GET * + 1 + >>
+'IND' STO
+
+<< -> A
+ << A SIZE 1 GET -> D
+  << [[1]] D 1 PAR RDM 0 1 -> B L M
+   << WHILE L M - ABS .00001 >
+    REPEAT
+     L 'M' STO
+     A B * 'B' STO
+     B 1 GET DUP 'L' STO
+     INV B * 'B' STO
+    END
+    B TRN B * 1 GET SQRT INV B *
+   >>
+  >>
+ >>
+>>
+
+</pre>
+
+
+<p><h4>Déflation sur TI82</h4>
+<ul>
+<li>données : matrice dans [A], modifiée
+<li>résultats : valeurs propres dans L1, 
+ vecteurs propres en lignes dans [C] à partir de la ligne D+1,
+ dimension dans D
+</ul>
+
+<pre>
+PROGRAM:DEFLA
+:dim [A]:Ans(1)->D
+:{0}->L1
+:{D(H+1),D}->dim [C]
+:{D(H+1),D}->dim [E]
+:For(I,1,D,1)
+:For(J,1,D,1)
+:[A](I,J)->[E](D+I,J)
+:End
+:End
+:min(H,D)->H
+:For(K,1,H,1)
+:For(I,1,D,1)
+:For(J,1,D,1)
+:[E](KD+I,J)->[A](I,J)
+:End
+:End
+:prgmPUISANC
+:L->L1(K)
+:For(I,1,D,1)
+:[B](I,1)->[C](KD+K,I)
+:End
+:For(P,K-1,1,-1)
+:0->Q
+:For(I,1,D,1)
+:Q+[E](P,I)*[C](P+1)D+K,I)->Q
+:End
+:Q*L1(P)/(L1(K)-L1(P))->Q
+:For(I,1,D,1)
+:[C]((P+1)D+K,I)+Q*[C](PD+P,I)->[C](PD+K,I)
+:End
+:End
+:If K>=D or K>=H
+:Then
+:Goto E
+:End
+:0->R
+:For(I,1,D,1)
+:R+([C](KD+K,I)²->R
+:End
+:For(I,1,D,1)
+:[C](KD+K,I)/R->[E](K,I)
+:End
+:For(I,1,D,1)
+:For(J,1,D,1)
+:[E](KD+I,J)-L1(K)*[C](KD+K,I)*[E](K,J)->[E]((K+1)D+I,J)
+:End
+:End
+:End
+:Lbl E
+:For(I,1,D)
+:For(J,1,D)
+:[C](D+I,J)->[C](J,I)
+:End
+:End
+:{D,D}->dim [C]
+:For(I,1,D)
+:For(J,1,D)
+:[E](D+I,J)->[A](I,J)
+:End
+:End
+:
+</pre>
+
+<p><h4>Déflation sur HP 48</h4>
+
+<pre>
+
+<< DUP SIZE 1 GET -> A D
+   << D << DROP 0 >> BL 1 A PUT
+      D DUP * << DROP 0 >> BL
+      D << DROP 0 >> BL
+      [[0]] D 1 PAR RDM
+      0 0 0 0
+      -> AK XK W L I J K P
+      << 1 D FOR K
+          AK K GET PUISANC
+          L SWAP K 1 PAR SWAP PUT 'L' STO
+          XK SWAP K 1 - D * K + SWAP PUT 'XK' STO
+          K 1 - 'P' STO WHILE P 1 >= REPEAT
+           XK P 1 - D * K +
+           XK P D * K + GET
+           L P GET L K GET OVER - /
+           W P GET TRN *
+           XK P D * K + GET * 1 GET
+           XK P 1 - D * P + GET
+           * + PUT 'XK' STO
+          -1 P + 'P' STO END
+          IF K H >= THEN
+           [[0]] D DUP PAR RDM -> U
+           << 1 D FOR I
+              1 H FOR J
+               U I J PAR XK J GET I GET PUT 'U' STO
+              NEXT
+              NEXT
+              U L
+           >>
+          ELSE
+           W K 
+            XK K 1 - D * K + GET DUP DUP TRN SWAP * 1 GET / 
+           PUT 'W' STO
+           AK K 1 +
+            AK K GET 
+            L K GET 
+            XK K 1 - D * K + GET
+            W K GET 
+            TRN * * -
+           PUT 'AK' STO
+          END
+         NEXT
+      >>
+   >>
+>> 'DEFLA' STO
+
+Nouvelle version
+
+<< SWAP DUP SIZE 1 GET -> H A D
+   << D << DROP 0 >> BL 1 A PUT
+      D DUP * << DROP 0 >> BL
+      D << DROP 0 >> BL
+      [[0]] D 1 PAR RDM
+      0 0 0 0
+      -> AK XK W L I J K P
+      << 1 H FOR K
+          AK K GET PUISANC
+          L SWAP K 1 PAR SWAP PUT 'L' STO
+          XK SWAP K 1 - D * K + SWAP PUT 'XK' STO
+          K 1 - 'P' STO WHILE P 1 >= REPEAT
+           XK P 1 - D * K +
+           XK P D * K + GET
+           L P GET L K GET OVER - /
+           W P GET TRN *
+           XK P D * K + GET * 1 GET
+           XK P 1 - D * P + GET
+           * + PUT 'XK' STO
+          -1 P + 'P' STO END
+          IF K D >= THEN
+           [[0]] D DUP PAR RDM -> U
+           << 1 D FOR I
+              1 D FOR J
+               U I J PAR XK J GET I GET PUT 'U' STO
+              NEXT
+              NEXT
+              U L
+           >>
+          ELSE
+           W K 
+            XK K 1 - D * K + GET DUP DUP TRN SWAP * 1 GET / 
+           PUT 'W' STO
+           AK K 1 +
+            AK K GET 
+            L K GET 
+            XK K 1 - D * K + GET
+            W K GET 
+            TRN * * -
+           PUT 'AK' STO
+          END
+         NEXT
+      >>
+   >>
+>> 'DEFLA' STO
+
+
+<< 0 -> L F I
+ << 1 L FOR I
+     I F EVAL
+    NEXT
+    L ->LIST
+ >>
+>> 'BL' STO
+</pre>
+
+<h4>ACP</h4>
+Données dans [D]
+
+<pre>
+:PROGRAM:ACPNT
+:dim [D]->L6
+:L6(1)->N
+:L6(2)->P
+:P->G
+:N^-1->D
+:{N,1}->dim [A]
+:Fill(1,[A])
+:[D]t*D*[A]->[C]
+:[D]-[A]*[C]t->[E]
+:[E]t*D*[E]->[B]
+:{P,P}->dim [A]
+:Fill(0,[A])
+:For(I,1,P)
+:0->S
+:For(J,1,N)
+:S+[E](J,I)²->S
+:End
+:sqrt(N/S)->[A](I,I)
+:End
+:For(I,1,G)
+:[A](I,I)->L2(I)
+:End
+:[E]*[A]->[E]
+--- pour version transposée ajouter : [E]t->[E]:N->G:P->N
+:[E]t*D*[E]->[B]
+:[B]->[A]
+:For(I,1,N)
+:For(J,1,G)
+:[E](I,J)->L5((I-1)G+J)
+:End
+:End
+---:[A]*[B]->[A]
+---:augment([D],[E])->[D]
+:2->H
+:prgmDEFLA
+:{G,G}->dim [A]
+:Fill(0,[A])
+:For(I,1,G)
+:L2(I)->[A](I,I)
+:End
+:{N,G}->dim [E]
+:For(I,1,N)
+:For(J,1,G)
+:L5((I-1)G+J)->[E](I,J)
+:End
+:End
+{N,G}->dim [D]
+:{N+G,G}->dim [E]
+:For(I,1,G)
+:G->[E](N+I,I)
+:End
+:[E]*[A]*[A]*[C]->[B]
+:[E]*[C]->[B]
+:ClrDraw
+:DispGraph
+:For(I,1,N+G)
+:91*([B](I,1)-Xmin)/(Xmax-Xmin)->C
+:57-57*([B](I,2)-Ymin)/(Ymax-Ymin)->L
+:int C->C
+:int L->L
+:max(C,0)->C
+:min(C,85)->C
+:max(L,0)->L
+:min(L,57)->L
+:If I<=N
+:Then
+:Text(L,C,I)
+:Else
+:Text(L,C,"V")
+:Text(L,C+4,I-N)
+:End
+:End
+:
+
+:PROGRAM:COREL
+:dim [D]->L6
+:L6(1)->N
+:L6(2)->P
+:P->G
+:N^-1->D
+:{N,1}->dim [A]
+:Fill(1,[A])
+:[D]t*D*[A]->[C]
+:[D]-[A]*[C]t->[E]
+:[E]t*D*[E]->[B]
+:{P,P}->dim [A]
+:Fill(0,[A])
+:P->dim L2
+:Fill(0,L2)
+:For(I,1,P)
+:0->S
+:For(J,1,N)
+:S+[E](J,I)²->S
+:End
+:N/S->[A](I,I)
+:N/rS->L2(I)
+:End
+:[A]*[B]->[A]
+:augment([D],[E])->[D]
+:prgmDEFLA
+:{N,G}->dim [E]
+:For(I,1,N)
+:For(J,1,G)
+:[D](I,G+J)->[E](I,J)
+:End
+:End
+{N,G}->dim [D]
+:{N+G,G}->dim [E]
+:For(I,1,G)
+:G->[E](N+I,I)
+:End
+:[E]*[C]->[B]
+:{G,2}->dim [B]
+:For(I,1,G)
+:For(J,1,2)
+:L1(J)*[C](I,J)/L2(I)->[B](I,J)
+:End
+:End
+:ClrDraw
+:DispGraph
+:For(I,1,G)
+:91*([B](I,1)-Xmin)/(Xmax-Xmin)->C
+:57-57*([B](I,2)-Ymin)/(Ymax-Ymin)->L
+:int C->C
+:int L->L
+:max(C,0)->C
+:min(C,85)->C
+:max(L,0)->L
+:min(L,57)->L
+:If I<=N
+:Then
+:Text(L,C,I)
+:Else
+:Text(L,C,"V")
+:Text(L,C+4,I-N)
+:End
+:End
+:
+
+PROGRAM:DISTIZ
+:dim [D]->L1
+:L1(1)->N
+:L1(2)->P
+:{N,N}->dim [C]
+:For(I,1,N)
+:For(J,1,N)
+0->[C](I,J)
+For(K,1,P)
+:[C](I,J)+([D](I,K)-[D](J,K))²->[C](I,J)
+:End
+:([C](I,J)²+1)^-1->[C](I,J)
+:End
+:End
+:
+
+</pre>
+
+<h4>ACP sur HP 48</h4>
+
+<pre>
+
+<< DUP SIZE 1 GET 1 SWAP PAR
+   [[0]] SWAP RDM 1 CON SWAP * >>
+'SUML' STO
+
+<< DUP SIZE 1 GET INV SWAP SUML * >>
+'AVGL' STO
+
+<< DUP SIZE 1 GET PAR
+   [[0]] SWAP RDM 1 CON
+   OVER AVGL * - >>
+'CENTRL' STO
+
+<< DUP TRN SWAP DUP SIZE 1 GET INV * * >>
+'COVAR' STO
+
+<< COVAR DUP 0 CON DUP SIZE 1 GET -> V W P
+   << 1 P FOR I
+         W I DUP PAR V I DUP PAR GET SQRT INV 
+         PUT 'W' STO
+      NEXT
+      W 
+   >> 
+>> 'REDM' STO
+
+<< CENTRL DUP REDM * >> 'CENTRED' STO
+
+<< CENTRED DUP SIZE 1 GET INV SWAP DUP
+   DUP TRN SWAP * * 2 DEFLA DROP * >>
+'ACP' STO
+
+<< SWAP DUP SIZE 1 GET -> S C N
+   << 1 N FOR I
+         PICT
+         C I 1 PAR GET
+         C I 2 PAR GET
+         (0,1) * +
+         S I ->STR + 1 ->GROB REPL
+      NEXT >>
+>> 'GRAF' STO
+
+<< DUP SIZE 1 GET DUP DUP PAR 0 CON 0
+   -> L P D I
+   << 1 P FOR I
+         D I I PAR
+         L I GET SQRT
+         PUT 'D' STO
+      NEXT
+      D >>
+>> 'DIASQR' STO
+
+<< CENTRED DUP SIZE 1 GET INV
+   OVER DUP TRN SWAP * * 2
+   DEFLA -> Z U L
+   << Z U * "" GRAF
+      U L DIASQR * Z SIZE 2 GET SQRT * "V" GRAF >>
+>> 'ACPR' STO
+
+
+
+</pre>
+
+
+
+
+<h4>ACP sur tableau de distances au carré Delta</h4>
+
+<pre>
+Formule de Torgerson :
+W = -1/2 A Delta A
+A = I - 11'/n
+= ( 1-1/n -1/n ...     -1/n )
+   ( -1/n 1-1/n -1/n ... -1/n)
+   ...
+   (-1/n ... -1/n 1-1/n)
+
+D = métrique (par exemple 1/n)
+
+Les vecteurs propres de WD sont les composantes principales.
+
+Programme TI82 :
+
+Calcul de Delta = [C] à partir des données [D]
+
+PROGRAM:DIST
+:dim [D]->L1
+:L1(1)->N
+:L1(2)->P
+:{N,N}->dim [C]
+:For(I,1,N)
+:For(J,1,N)
+:0->[C](I,J)
+:For(K,1,P)
+:[C](I,J)+([D](I,K)-[D](J,K))^2->[C](I,J)
+:End
+:End
+:End
+:
+
+PROGRAM:ATOR
+:dim [C]:Ans(1)->N
+:{N,1}->dim [A]
+:Fill(1,[A])
+:-N^-1*[A]*[A]t->[A]
+:For(I,1,N)
+:[A](I,I)+1->[A](I,I)
+:End
+:N^-1*-.5*[A]*[C]*[A]->[A]
+
+PROGRAM:ACPC
+:dim [A]->L6
+:L6(1)->N
+:2->H
+:prgmDEFLA
+:[C]->[B]
+:ClrDraw
+:DispGraph
+:For(I,1,N)
+:91*([B](I,1)-Xmin)/(Xmax-Xmin)->C
+:57-57*([B](I,2)-Ymin)/(Ymax-Ymin))->L
+:int C->C
+int L->L
+:max(C,0)->C
+min(C,85)->C
+:max(L,0)->L
+:min(L,57)->L
+:If I>=N
+:Then
+:Text(L,C,I)
+:Else
+:Text(L,C,"V")
+:Text(L,C+4,I-N)
+:End
+:End
+: 
+
+</pre>
+
+<h4>ACP sur tableau de distances sur HP 48</h4>
+
+<pre>
+
+Tableau de donn‚es DIST --> tableau de distances
+
+<< DUP SIZE DUP 2 GET SWAP 1 GET DUP DUP PAR 0 CON
+   -> X P N D
+   << 1 N FOR I
+      1 N FOR J
+      1 P FOR K
+         D I J PAR
+         D I J PAR GET
+         X I K PAR GET
+         X J K PAR GET
+         - SQ + PUT 'D' STO
+      NEXT NEXT NEXT
+      D >>
+>> 'DIST' STO
+
+
+Tableau de distances TORG --> matrice … diagonaliser
+
+<< DUP SIZE 1 GET -> N D
+   << N IDN N DUP PAR N INV CON - -> A
+      << N INV -.5 * A * D * A * >> >>
+>> 'TORG' STO
+
+
+Tableau de distances ACPDIST
+
+<< TORG 2 DEFLA DROP "" ERASE GRAF >>
+'ACPDIST' STO
+
+
+</pre>
+
+
+<h4>Analyse canonique</h4>
+
+<pre>
+2 groupes de caracères x1 ... xp, y1 ... yq
+xi = a1 x1 + ... + ap xp = Xa dans W1
+eta = Yb dans W2
+maxi carré correlation xi eta
+projection orthogonale sur W = A
+txj D (y-y^) = 0 (y^ = projection de y)
+txj D y = txj D X a^
+a^ = (tX D X)^-1 tX D y
+y^ = X a^ = X (tX D X)^-1 tX D y
+A = X (tX D X)^-1 tX D
+
+A2 xi1 = r1 eta1
+A1 eta1 = r1 xi1
+
+A1 A2 xi1 = lambda1 xi1
+A2 A1 eta1 = lambda1 eta1
+lambda1 = r1^2
+xi1 et eta1 vecteurs propres de A1 A2 et A2 A1 associé à valeur propre lambda1
+eta1 = 1/sqrt(lambda1) A2 xi1
+xi1 = 1/sqrt(lambda1) A1 eta1
+xi = Xa, eta = Yb
+A1 = X (tX D X)^-1 tX D
+A2 = Y (tY D Y)^-1 tY D
+
+X (tX D X)^-1 tX D Y (tY D Y)^-1 tX D X = lambda X a
+Y (tY D Y)^-1 tY D X (tX D X)^-1 tX D Y b = lambda Y b
+
+V11 = tX D X
+V22 = tY D Y
+V12 = tX D Y = tV21
+
+V11^-1 V12 V22^-1 V21 a = lambda a
+V22^-1 V21 V11^-1 V12 b = lambda b
+
+b = 1/sqrt(lambda) V22^-1 V21 a
+a = 1/sqrt(lambda) V11^-1 V12 b
+
+Px Y Py X u = lambda u
+Py X Px Y w = lambda w
+
+PROGRAM:DATAAC
+:[[-3,1,5]
+  [1,-6,-5]
+  [2,-7,-4]
+  [-4,6,5]]->[D]
+:[[2,7]
+  [-5,3]
+  [-4,-7]
+  [3,-1]]->[E]
+:1->U
+:2->V
+:
+
+PROGRAM:ANACANO
+:prgmDATAAC
+:prgmANACA
+:prgmGANACA
+
+PROGRAM:ANACA
+:dim [D]->L1
+:L1(1)->N
+:L1(2)->P
+:dim [E]
+:Ans(2)->Q
+:N^-1->D
+:([D]t*D*[D])^-1*[D]t*D*[E]->[A]
+:([E]t*D*[E])^-1*[E]t*D*[D]->[D]
+:[A]*[D]->[A]
+:min(P,Q)->H
+:H->G
+:prgmDEFLA
+:G->H
+:dim [C]
+:Ans(1)
+:{Ans,H}->dim [C]
+:
+
+PROGRAM:GANACA
+:[D]*[C]->[E]
+:[C]->[D]
+:{H,1}->dim [C]
+:For(I,1,H)
+:dim [E]:Ans(1)
+:For(J,1,Ans)
+:[E](J,I)/sqrt L1(I)->[E](J,I)
+:End
+:End
+:dim [D]: Ans(1)->P
+:dim [E]:Ans(1)->Q
+:ClrDraw
+:DispGraph
+:For(I,1,P)
+:91*([D](I,U)-Xmin)/(Xmax-Xmin)->C
+:57-57*([D](I,V)-Ymin)/(Ymax-Ymin)->L
+:int C->C
+:int L->L
+:max(C,0)->C
+:min(C,85)->C
+:max(L,0)->L
+:min(L,57)->L
+:Text(L,C,"X")
+:Text(L,C+4,I)
+:End
+:For(I,1,Q)
+:91*([E](I,U)-Xmin)/(Xmax-Xmin)->C
+:57-57*([E](I,V)-Ymin)/(Ymax-Ymin)->L
+:int C->C
+:int L->L
+:max(C,0)->C
+:min(C,85)->C
+:max(L,0)->L
+:min(L,57)->L
+:Text(L,C,"Y")
+:Text(L,C+4,I
+:End
+:[D]->[A]
+:[E]->[B]
+:prgmDATAAC
+:[D]t*[D]->[C]
+:dim [C]:Ans(1)->P
+:For(I,1,P)
+:For(J,1,P)
+:If I=J
+:Then
+:1/sqrt [C](I,J)->[C](I,J)
+:Else
+:0->[C](I,J)
+:End
+:End
+:End
+:[D]*[C]->[D]
+:[E]t*[E]->[C]
+:dim [C]:Ans(1)->Q
+:For(I,1,Q)
+:For(J,1,Q)
+:If I=J
+:Then
+:1/sqrt [C](I,J)->[C](I,J)
+:Else
+:0->[C](I,J)
+:End
+:End
+:End
+:[E]*[C]->[E]
+:[A]t*[A]->[C]
+:dim [C]:Ans(1)->H
+:For(I,1,H)
+:For(J,1,H)
+:If I=J
+:Then
+1:sqrt [C](I,J)->[C](I,J)
+:Else
+:0->[C](I,J)
+:End
+:End
+:End
+:[A]*[C]->[A]
+:[B]t*[B]->[C]
+:dim [C]:Ans(1)->H
+:For(I,1,H)
+:For(J,1,H)
+:If I=J
+:Then
+:1/sqrt [C](I,J)->[C](I,J)
+:Else
+:0->[C](I,J)
+:End
+:End
+:End
+:[B]*[C]->[B]
+:[D]*[A]->[A]
+:[E]*[B]->[B]
+:[D]t*[A]->[D]
+:[E]t*[A]->[E]
+:dim [D]:Ans(1)->P
+:dim [E]:And(1)->Q
+:ClrDraw
+:DispGraph
+:For(I,1,P)
+:91*([D](I,U)-Xmin)/(Xmax-Xmin)->C
+:57-57*([D](I,V)-Ymin)/(Ymax-Ymin)->L
+:int C->C
+:int L->L
+:max(C,0)->C
+:min(C,85)->C
+:max(L,0)->L
+:min(L,57)->L
+:Text(L,C,"X")
+:Text(L,C+4,I)
+:End
+:For(I,1,Q)
+:91*([E](I,U)-Xmin)/(Xmax-Xmin)->C
+:57-57*([E](I,V)-Ymin)/(Ymax-Ymin)->L
+:int C->C
+int L->L
+max(C,0)->C
+min(C,85)->C
+:max(L,0)->L
+:min(L,57)->L
+:Text(L,C,"Y")
+:Text(L,C+4,I)
+:End
+:
+
+généralisation m séries de caractères X1 ... Xm
+? caractère z max somme cor^2(z,xi_i)
+z solution de (somme Ai)z = mu z
+Ai = Xi (tXi D Xi)^-1 tXi D
+1 caractère par groupe -> ACP
+zk = Ak z
+cas m=2 : z1 et z2 correspondent aux résultats de l'analyse canonique
+
+Omega = tXk Xk en diagonale
+A = somme Ai = X Omega^-1 tX
+Ai = Xi Omega^-1 tXi
+Pour trouver les vecteurs propres Y de A il suffit de trouver les vecteurs propres w de Omega^-1 tX X, de les normer avec tw Omega w = 1 et appliquer Y = 1/sqrt(lambda) X w.
+
+Cas particulier : X = (X1 X2) : analyse canonique
+
+Omega = [ X1'X1 0     ]
+        [ 0     X2'X2 ]
+
+X'X = [ X1'X1 X1'X2 ]
+      [ X2'X1 X2'X2 ]
+
+Omega^-1 X' X = [ I                (X1'X1)^-1 X1'X2 ]
+                [ (X2'X2)^-1 X2'X1 I                ]
+
+Omega^-1 X' X [ u ] = lambda [ u ]
+              [ v ]          [ v ]
+
+u + (X1'X1)^-1 X1'X2 v = lambda u
+(X2'X2)^-1 X2'X1 u + v = lambda v
+
+(X1'X1)^-1 X1'X2 v = (lambda-1) u
+(X2'X2)^-1 X2'X1 u = (lambda-1) v
+
+v = 1/(lambda-1) (X2'X2)^-1 X2'X1 u
+
+(X1'X1)^-1 X1'X2 (X2'X2)^-1 X2'X1 u = (lambda-1)^2 u
+
+On retrouve la formule de l'analyse canonique :
+V11^-1 V12 V22^-1 V21 a = lambda a
+avec
+V11 = tX D X
+V22 = tY D Y
+V12 = tX D Y = tV21
+dans le cas D = I
+
+Généralisation avec métrique D quelconque :
+Omega = Xk' Dk Xk en diagonale
+diagonaliser Omega^-1 X' D X
+
+Généralisation (alalyses projetées, procrustéennes)
+(changement de notation : X1->X, X2->Y
+
+[ (X'X)^-a 0        ] x [ (X'X)^a (X'Y)^b ]
+[ 0        (Y'Y)^-c ]   [ (Y'Y)^b (Y'Y)^c ]
+
+(X'X)^-a (X'Y)^b (Y'Y)^-c (Y'X)^d u = (lambda-1)^2 u
+
+
+Programme TI82
+
+données:
+ [D] : données
+ L4 : 1ère colonne dans [D] de chaque X1
+
+PROGRAM:DATAAG
+:{1,4,6,7}->L4
+:[[3,2,6,7,-3,8]
+  [-8,9,3,-5,2,-8]
+  [-8,1,7,5,8,-7]
+  [8,-3,6,4,7,7]
+  [8,-3,-9,-1,-7,7]]->[D]
+:
+PROGRAM:ANAGEN
+:prgmDATAAG
+:dim [D]:Ans(1)->N
+:dim [D]:Ans(2)->P
+:dim L4-1->M
+:N^-1->D
+:{N,1}->dim [A]
+:Fill(1,[A])
+:[D]t*D*[A]->[E]
+:[D]-[A]*[E]t->[E]
+:{N,N}->dim [A]
+:Fill(0,[A])
+:For(K,1,M)
+:[N,L4(K+1)-L4(K)}->dim [C]
+:For(I,1,N)
+:For(J,L4(K),L4(K+1)-1)
+:[E](I,J)->[C](I,J-L4(K)+1)
+:End
+:End
+:[A]+[C]*([C]t*D*[C])^-1*[C]t*D->[A]
+:End
+:N->H
+:prgmDEFLA
+:[C]->[B]
+:0->[G]
+:prgmGANAGEN
+:prgmPAUSE
+:prgmDATAAG
+:prgmCND
+:[E]t*D*[C]->[A]
+:augment([C]t,[A]t)t->[B]
+:dim [A]:Ans(1)->G
+:prgmGANAGEN
+:
+
+PROGRAM:GANAGEN
+:ClrDraw
+:DispGraph
+:For(I,1,N+G)
+:91*([B](I,1)-Xmin)/(Xmax-Xmin)->C
+:57-57*([B](I,2)-Ymin)/(Ymax-Ymin)->L
+:int C->C
+:int L->L
+:max(C,0)->C
+:min(C,85)->C
+:max(L,0)->L
+:min(L,57)->L
+:If I<=N 
+:Then
+:Text(L,C,I)
+:Else
+:Text(L,C,"V")
+:Text(L,C+4,I-N)
+:End
+:End
+:
+
+PROGRAM:PAUSE
+:For(W,1,1000)
+:End
+:
+
+PROGRAM:CND
+:dim [D]:Ans(1)->N
+:dim [D]:Ans(2)->P
+:N^-1->D
+:{N,1}->dim [A]
+:Fill(1,[A])
+:[D]t*D*[A]->[E]
+:[D]-[A]*[E]t->[E]
+:
+
+
+</pre>
+
+<h4>Analyse discriminante</h4>
+
+ACP des centres de gravités poids avec métrique V^-1 avec V = tX D X, X centré, u vecteur propre de V^-1 B.
+Analyse canonique de x1 ... xp et y1 ... yq associés aux modalités.
+
+T = inertie totale, E = inertie entre classes, D = inertie dans les classes.
+Trouver U tel que (tU E U) / (tU T U) soit maximum, ou maximiser tU E U avec tU D U = 1 : diagonaliser D^-1 E. On a lambda = (tU E U) / (tU D U).
+
+<pre>
+G = Dp^-1 Y' D X = (Y' D Y)^-1 Y' D X 
+B = G'Dp G 
+  = X' D Y Dp^-1 Dp Dp^-1 Y' D X
+  = X' D Y Dp^-1 Y' D X
+  = X' D Y (Y' D Y)^-1 Y' D X
+S = V^-1 B 
+  = (X' D X)^-1 B
+  = (X' D X)^-1 X' D Y (Y' D Y)^-1 Y' D X
+S U = U Lambda
+
+Lien avec l'analyse canonique :
+S = V11^-1 V12 V22^-1 V21
+V11 = X' D X = V
+V22 = Y' D Y = Dp
+V12 = X' D Y = G' Dp
+V21 = Y' D X = Dp G
+
+G = Dp^-1 Y' D X
+  = (Y' D Y)^-1 Y' D X
+
+S = V^-1 G' Dp Dp^-1 Dp G = V^-1 G' Dp G = V^-1 B avec B = G' Dp G
+S = V^-1 B = (X' D X)^-1 X' D Y (Y' D Y)^-1 Y' D X
+
+
+PROGRAM:DATAAD
+:[[3,5,1,6]
+  [4, 4.5, 1.5, 4]
+  [3.5, 4, 2, 8]
+  [6, 1, 5, 1]
+  [7, 1.5, 4, 5]
+  [1, 6, 5, 3]]->[D]
+:[[1,0,0]
+  [1,0,0]
+  [1,0,0]
+  [0,1,0]
+  [0,1,0]
+  [0,0,1]]->[B]
+:
+
+PROGRAM:ANADIS
+:prgmANADI
+:prgmGANADIS
+:
+
+PROGRAM:ANADI
+:prgmDATAAD
+:dim [D]->L6
+:L6(1)->N
+:L6(2)->P
+:P->G
+:N^-1->D
+:{N,1}->dim [A]
+:Fill(1,[A])
+:[D]t*D*[A]->[C]
+:[D]-[A]*[C]t->[E]
+:{P,P}->dim [A]
+:Fill(0,[A])
+:For(I,1,P)
+:0->S
+:For(J,1,N)
+S+[E](J,I)^2->S
+:End
+:sqrt(N/S)->[A](I,J)
+:End
+:For(I,1,G)
+:[A](I,I)->L2(I)
+:End
+:[E]*[A]->[E]
+:[E]t*D*[E]->[A]
+---:[A]^-1*[E]t*D*[B]*[B]t*D*[E]->[A]
+:[A]^-1*[E]t*D*[B]*([B)t*D*[B])^-1*[B]t*D*[E]->[A]
+:For(I,1,N)
+:For(J,1,G)
+:[E](I,J)->L5((I-1)G+J)
+:End
+:End
+:2->H
+:prgmDEFLA
+:
+
+PROGRAM:GANADIS
+:prgmDATAAD
+:dim [B]:Ans(2)->Q
+:{Q,1}->dim [A]
+:For(I,1,Q)
+:I->[A](I,1)
+:End
+:[B]*[A]->[A]
+:{N,G}->dim [E]
+:For(I,1,N)
+:For(J,1,G)
+:L5((I-1)G+J)->[E](I,J)
+:End
+:End
+:{N+G,G}->dim [E]
+:For(I,1,G)
+:G->[E](N+I,I)
+:End
+:[E]*[C]->[B]
+:ClrDraw
+:DispGraph
+:For(I,1,N+G)
+:91*([B](I,1)-Xmin)/(Xmax-Xmin)->C
+:57-57*([B](I,2)-Ymin)/(Ymax-Ymin)->L
+:int C->C
+:int L->L
+:max(C,0)->C
+:min(C,85)->C
+:max(L,0)->L
+:min(L,57)->L
+:If I<=N
+:Then
+:Text(L,C,"V")
+:Text(L,C+4,I-N)
+:End
+:End
+:
+
+PROGRAM:ANADISCA
+:prgmDATAAD
+:[B]->[E]
+:prgmANACA
+:prgmDATAAD
+:dim [D]:Ans(1)->N
+:N^-1->D
+:{N,1}->dim [A]
+:Fill(1,[A])
+:[D]t*D*[A]->[E]
+:[D]-[A]*[E]t->[E]
+:prgmPANADISC
+:prgmGANADISC
+:
+
+PROGRAM:PANADISC
+:prgmDATAAD
+:dim [B]:Ans(2)->Q
+:{Q,1}->dim [A]
+:For(I,1,Q)
+:I->[A](I,1)
+:End
+:[B]*[A]->[A]
+:dm [E]:Ans(1)->N
+:dim [E]:Ans(2)->G
+{N+G,G}->dim [E]
+:For(I,1,G)
+:G->[E](N+I,I)
+:End
+:[E]*[C]->[B]
+:
+
+PROGRAM:GANADISC
+:ClrDraw
+:DispGraph
+:For(I,1,N+G)
+:91*([B](I,1)-Xmin)/(Xmax-Xmin)->C
+:57-57*([B](I,2)-Ymin)/(Ymax-Ymin)->L
+:int C->C
+:int L->L
+:max(C,0)->C
+:min(C,85)->C
+:max(L,0)->L
+:min(L,57)->L
+:If I<=N
+:Then
+:Text(L,C,[A](I,1)
+:prgmPAUSE
+:Else
+:Text(L,C,"V")
+:Text(L,C+4,I-N)
+:End
+:End
+:
+
+</pre>
+
+
+<h4>Analyse des correspondances</h4>
+
+On part d'un tableau de contingence K ([D] dans le programme). 
+On calcule le tableau des fréquences F ([E]) en divisant par le nombre k (S) d'individus.
+On définit :
+<ul>
+<li> k_i. = somme pour j=1 à p de k_ij
+<li> k_.j = somme pour i=1 à n de k_ij
+<li> k = somme des k_ij
+<li> f_ij = k_ij / k
+<li> f_i. = somme pour j=1 à p de f_ij
+<li> f_.j = somme pour i=1 à n de f_ij
+</ul>
+
+On construit les matrices diagonales D_n ([A]) avec les  f_i. et Dp ([B]) avec les f_.j ;
+on construit les tableaux des profils-lignes Dn^-1 F = [f_ij / f_i. = k_ij / k_i.] et des profils-colonnes Dp^-1 tF =
+ [f_ij / f_.j = k_ij / k_.j].
+<p>
+Dans R^p, on diagonalise S = tF Dn^-1 F Dp^-1 pour obtenir les valeurs propres lambda_alpha et les vecteurs propres u_alpha.
+On calcule les coordonnées factorielles : psi_alpha = Dn^-1 D Dp^-1 u_alpha.
+<p>
+Dans R^n, on diagonalise T = F Dp^-1 tF Dn^-1 pour obtenir les valeurs propres laaambda_alpha et les vecteurs propres v_alpha.
+On calcule les coordonnées factorielles phi_alpha = Dp^-1 tF Dn^-1 v_alpha.
+<p>
+Liens :
+<ul>
+<li> <a href="http://geo.polymtl.ca/personel/marcotte/glq3402/chapitre4.pdf">
+http://geo.polymtl.ca/personel/marcotte/glq3402/chapitre4.pdf</a>
+
+</ul>
+
+<pre>
+Analyse factorielle des correspondances par analyse canonique
+
+V11 = X' D X = 1/n D1
+V22 = Y' D Y = 1/n D2
+V12 = X' D Y = 1/n F
+V21 = Y' D X = 1/n F'
+
+S = V11^-1 V12 V22^^-1 V21 = 1/n^4 D1^-1 F D2^-1 F'
+Dp^-1 F' Dn^-1 F Dp^-1 u = lambda Dp^-1 u
+phi = sqrt(lambda) Dp^-1 u
+Dp^-1 F' Dn^-1 F phi = lambda phi 
+
+S = (X' Dn X)^-1 (X' Y Dq^-1) Dq (Dq^-1 Y' X)
+= (X' Dn X)^-1 X' Y Dq^-1 Y' X
+= (X' Dn X)^-1 X' Y (Y' Y)^-1 Y' X
+Y1 = Y Dn^-1/2 -> S = (X' X)^-1 X' Y1 Y1' X
+
+</pre>
+
+Programme TI82
+<p>
+Données : tableau de contingence [D] créé par prgmDATAACO.
+Programme principal : ANACOR
+
+<pre>
+
+PROGRAM:ANACO
+:dim [D]:Ans(1)->N
+:dim [D]:Ans(2)->P
+:{P,1}->dim [A]
+:Fill(1,[A])
+:[D]*[A]->[B]
+:{1,N}->dim [A]
+:Fill(1,[A])
+:[A]*[B]
+:Ans(1,1)->S
+:S^-1*[D]->[E]
+:{P,1}->dim [A]
+:Fill (1,[A])
+:[E]*[A]->[B]
+:{N,N}->dim [A]
+:Fill(0,[A])
+:For(I,1,N)
+:[B](I,1)->[A](I,1)
+:End
+:{1,N}->dim [B]
+:Fill(1,[B])
+:[B]*[E]->[D]
+:{P,P}->dim [B]
+:Fill(0,[B])
+:For(I,1,P)
+:[D](1,I)->[B](I,I)
+:End
+:
+
+PROGRAM:ANACOR
+:prgmDATAACO
+:prgmANACO
+:[E]t*[A]^-1*[E]*[B]^-1->[A]
+:2->H
+:prgmDEFLA
+:prgmDATAACO
+:prgmANACO
+:[A]^-1*[E]*[B]^-1*[C]->[D]
+:[C]->[D]
+:For(I,1,P)
+:For(J,1,2)
+:[D](I,J)*sqrt L1(J)->[D](I,J)
+:End
+:End
+:ClrDraw
+:DispGraph
+:0->Z
+:prgmGANACO
+:[E]*[B]^-1*[E]t*[A]^-1->[A]
+:2->H
+:prgmDEFLA
+:prgmDATAACO
+:prgmANACO
+:[B]^-1*[E]t*[A]^-1*[C]->[D]
+:[C]->[D]
+:For(I,1,N)
+:For(J,1,2)
+:[D](I,J)*sqrt L1(J)->[D](I,J)
+:End
+:End
+:N->Z
+:P->Z
+:prgmGANACO
+:
+
+PROGRAM:GANACO
+:dim [D]:Ans(1)->R
+:For(I,1,R)
+:91*([D](I,1)-Xmin)/(Xmax-Xmin)->C
+:57-57*([D](I,2)-Ymin)/(Ymax-Ymin)->L
+:Int C->C
+:Int L->L
+:Max(C,0)->C
+:Min(C,85)->C
+:Max(L,0)->L
+:Min(L,57)->L
+:Text(L,C,Z+I)
+:End
+:
+
+Nouvelle version :
+ affiche les composantes X et Y au lieu de 1 et 2
+
+PROGRAM:ANACOR
+:prgmDATAACO
+:prgmANACO
+:[E]t*[A]^-1*[E]*[B]^-1->[A]
+:3->H
+:prgmDEFLA
+:prgmDATAACO
+:prgmANACO
+:[A]^-1*[E]*[B]^-1*[C]->[D]
+:[C]->[D]
+:For(I,1,P)
+:For(J,1,2)
+:[D](I,J)*sqrt L1(J)->[D](I,J)
+:End
+:End
+:ClrDraw
+:DispGraph
+:0->Z
+:2->X:3->Y
+:prgmGANACO
+:[E]*[B]^-1*[E]t*[A]^-1->[A]
+:3->H
+:prgmDEFLA
+:prgmDATAACO
+:prgmANACO
+:[B]^-1*[E]t*[A]^-1*[C]->[D]
+:[C]->[D]
+:For(I,1,N)
+:For(J,1,2)
+:[D](I,J)*sqrt L1(J)->[D](I,J)
+:End
+:End
+:N->Z
+:P->Z
+:2->X:3->Y
+:prgmGANACO
+:
+
+PROGRAM:ANACORS
+:prgmDATAACO
+:prgmANACO
+:[E]t*[A]^-1*[E]*[B]^-1->[A]
+:3->H
+:prgmDEFLA
+:prgmDATAACO
+:prgmANACO
+:[A]^-1*[E]*[B]^-1*[C]->[D]
+:[C]->[C]
+:Goto 1
+:For(I,1,P)
+:For(J,1,2)
+:[D](I,J)*sqrt L1(J)->[D](I,J)
+:End
+:End
+:Lbl 1
+:ClrDraw
+:DispGraph
+:0->Z
+:2->X:3->Y
+:prgmGANACO
+:[E]*[B]^-1*[E]t*[A]^-1->[A]
+:3->H
+:prgmDEFLA
+:prgmDATAACO
+:prgmANACO
+:[B]^-1*[E]t*[A]^-1*[C]->[D]
+:[C]->[C]
+:Goto 2
+:For(I,1,N)
+:For(J,1,2)
+:[D](I,J)*sqrt L1(J)->[D](I,J)
+:End
+:End
+:Lbl 2
+:N->Z
+:P->Z
+:2->X:3->Y
+:prgmGANACO
+:
+
+PROGRAM:ANACORE
+:prgmDATAACO
+:prgmANACO
+:[A]^-1*[E]*[B]^-1*[E]t->[A]
+:3->H
+:prgmDEFLA
+:prgmDATAACO
+:prgmANACO
+:[B]^-1*[E]t*[C]->[D]
+:Goto 1
+:For(I,1,P)
+:For(J,1,2)
+:[D](I,J)*sqrt L1(J)->[D](I,J)
+:End
+:End
+:Lbl 1
+:ClrDraw
+:DispGraph
+:0->Z
+:2->X:3->Y
+:prgmGANACO
+:[B]^-1*[E]t*[A]^-1*[E]->[A]
+:3->H
+:prgmDEFLA
+:prgmDATAACO
+:prgmANACO
+:[A]^-1*[E]*[C]->[D]
+:Goto 2
+:For(I,1,N)
+:For(J,1,2)
+:[D](I,J)*sqrt L1(J)->[D](I,J)
+:End
+:End
+:Lbl 2
+:N->Z
+:P->Z
+:2->X:3->Y
+:prgmGANACO
+:
+
+
+PROGRAM:GANACO
+:dim [D]:Ans(1)->R
+:For(I,1,R)
+:91*([D](I,X)-Xmin)/(Xmax-Xmin)->C
+:57-57*([D](I,Y)-Ymin)/(Ymax-Ymin)->L
+:Int C->C
+:Int L->L
+:Max(C,0)->C
+:Min(C,85)->C
+:Max(L,0)->L
+:Min(L,57)->L
+:Text(L,C,Z+I)
+:End
+:
+
+
+</pre>
+
+
+<h4>Nouvelle version</h4>
+
+
+<pre>
+
+Somme des lignes de F = M
+Somme des colonnes de F = P
+ANACO rend MP dans [D]
+X = (F - MP) ./ sqrt(MP)
+diagonaliser tX X et X tX
+
+PROGRAM:ANACO
+:dim [D]:Ans(1)->N
+:dim [D]:Ans(2)->P
+:{P,1}->dim [A]
+:Fill(1,[A])
+:[D]*[A]->[B]
+:{1,N}->dim [A]
+:Fill(1,[A])
+:[A]*[B]
+:Ans(1,1)->S
+:S^-1*[D]->[E]
+:{P,1}->dim [A]
+:Fill (1,[A])
+:[E]*[A]->[B]
+:[B]->[D]
+:{N,N}->dim [A]
+:Fill(0,[A])
+:For(I,1,N)
+:[B](I,1)->[A](I,1)
+:End
+:{1,N}->dim [B]
+:Fill(1,[B])
+:[D]*[B]*[E]->[D]
+:dim [D]->L5
+:For(I,1,L5(1))
+:For(J,1,L5(2))
+:[D](I,J)->L4((I-1)*L5(2)+J)
+:End
+:End
+:[B]*[E]->[D]
+:{P,P}->dim [B]
+:Fill(0,[B])
+:For(I,1,P)
+:[D](1,I)->[B](I,I)
+:End
+:L5->dim [D]
+:For(I,1,L5(1))
+:L4((I-1)*L5(2)+J)->[D](I,J)
+:End
+:End
+:
+
+PROGRAM:AFC
+:prgmDATAACO
+:prgmANACO
+:[E]t*[A]^-1*[E]*[B]^-1->[A]
+:[E]-[D]->[A]
+:For(I,1,N)
+:For(J,1,P)
+:[A](I,J)/sqrt [D](I,J)->[A](I,J)
+:End
+:End
+:[A]t*[A]->[A]
+:2->H
+:prgmDEFLA
+:prgmDATAACO
+:prgmANACO
+:[A]^-1*[E]*[B]^-1*[C]->[D]
+:[C]->[D]
+:dim [D]
+:For(I,1,Ans(1))
+:For(J,1,2)
+:[D](I,J)*sqrt L1(J)->[D](I,J)
+:End
+:End
+:ClrDraw
+:DispGraph
+:0->Z
+:prgmGANACO
+:dim [D]:Ans(1)->Y
+:[E]*[B]^-1*[E]t*[A]^-1->[A]
+:prgmDATAACO
+:prgmANACO
+:[E]-[D]->[A]
+:For(I,1,N)
+:For(J,1,P)
+:[A](I,J)/sqrt [D](I,J)->[A](I,J)
+:End
+:End
+:[A]*[A]t->[A]
+:2->H
+:prgmDEFLA
+:prgmDATAACO
+:prgmANACO
+:[B]^-1*[E]t*[A]^-1*[C]->[D]
+:[C]->[D]
+:dim [D]
+:For(I,1,Ans(1))
+:For(J,1,2)
+:[D](I,J)*sqrt L1(J)->[D](I,J)
+:End
+:End
+:Y->Z
+:P->Z
+:prgmGANACO
+:
+
+
+Troisième version
+
+PROGRAM:AFC
+:prgmDATAACO
+:prgmANACO
+:[E]-[D]->[A]
+:For(I,1,N)
+:For(J,1,P)
+:[A](I,J)/sqrt [D](I,J)->[A](I,J)
+:End
+:End
+:[A]t*[A]->[A]
+:2->H
+:prgmDEFLA
+:prgmDATAACO
+:prgmANACO
+:[C]->[D]
+:ClrDraw
+:DispGraph
+:0->Z
+:prgmGANACO
+:dim [D]:Ans(1)->Y
+:prgmDATAACO
+:prgmANACO
+:[E]-[D]->[E]
+:For(I,1,N)
+:For(J,1,P)
+:[E](I,J)/([A](I,I)*sqrt [B](J,J))->[E](I,J)
+:End
+:End
+:[E]*[C]->[D]
+:Y->Z
+:prgmGANACO
+:
+
+Transformation des données
+
+PROGRAM:CORCAN
+:dim [D]:Ans(1)->N
+:dim [D]:Ans(2)->P
+:[D]->[A]
+:{NP,N}->dim [P]
+:{NP,N}->dim [E]
+:Fill(0,[D])
+:Fill(0,[E])
+:For(I,1,N)
+:For(J,1,P)
+:sqrt [A](I,J)->[D]((I-1)P+J,I)
+:sqrt [A](I,J)->[E]((I-1)P+J,J)
+:End
+:End
+:
+
+PROGRAM:CORGEN
+:dim [D]:Ans(1)->N
+:dim [D]:Ans(2)->P
+:[D]->[A]
+:{1,1+N,1+N+P}->L4
+:{NP,N+P}->dim [D]
+:Fill(0,[D])
+:For(I,1,N)
+:For(J,1,P)
+:sqrt [A](I,J)->[D]((I-1)P+J,I)
+:sqrt [A](I,J)->[D]((I-1)P+J,N+J)
+:End
+:End
+:
+
+Construction du tableau de Burt
+
+PROGRAM:CO
+:[D]->[A]
+:dim [A]:Ans(1)->N
+:dim [A]:Ans(2)->P
+:{N+P,N+P}->dim [D]
+:Fill(0,[D])
+:For(I,1,N)
+:For(J,1,P)
+:[D](I,I)+[A](I,J)->[D](I,I)
+:[D](N+J,N+J)+[A][I,J)->[D](N+J,N+J)
+:[A](I,J)->[D](I,N+J)
+:[A](I,J)->[D](N+J,I)
+:End
+:End
+:
+
+</pre>
+
+<h4>Analyse factorielle universelle</h4>
+
+Généralisation de l'analyse canonique généralisée.
+<p>
+Dans l'analyse canonique généralisée, on a plusieurs tableaux de données X1, X2, X3 ... avec le même nombre de lignes, une par individu, et des nombres de colonnes différents. On les remplace par le même nombre de tableaux mais avec dans chaque tableau le nombre total de colonnes, et on les regroupe en un seul tableau. Pour l'analyse canonique généralisée, dans chaque tableau seules les colonnes correspondantes sont non nulles. La généralisation consiste à lever cette restriction. On a donc un tableau de données tridimensionnel quelconque(i)X(j,k) , c'est-à-dire une matrice Xi(j,k)pour chaque individu i. X associe donc une valeur à chaque individu i, chaque caractère j, et chaque "modalité" k.
+Dans le cas de l'analyse canonique généralisée, les tableaux Xi sont disposés "en escalier" dans le tableau tridimensionnel X.
+<p>
+Les autres analyses sont des cas particuliers :
+<ul>
+<li> ACP : Xi diagonale
+<li> Analyse canonique généralisée : Xi de la forme :
+<pre>
+[ x x x 0 0 0 0 0 0 ]
+[ 0 0 0 x x x 0 0 0 ]
+[ 0 0 0 0 0 0 x x x ]
+</pre>
+<li> etc...
+</ul>
+
+<p>
+Notations : 
+<ul>
+<li> AB = C, (i)A(j)(j)B(k) = (i)C(k)
+<li> A^-1 = B, A(i,j)(i,j)inv(k,l) = B(k,l)
+</ul>
+<pre>
+Projection Pk = Xk (Xk' Xk)^-1 Xk'
+Diagonaliser P = somme des Pk 
+(i3,i4)P = (i1)X(j1,k1) (i1)X(j2,k1) (j1,j2)inv(j3,j4) (i3)X(j3,k3) (i4)X(j4,k3)
+
+P = (i,j)P = somme des Pk = (i,j)P(k) (k)1 
+Pk = (i,j)P(k) = (l1)X(l3,l2) (l1)X(l4,l2) (l3,l4)inv(l5,l6) (i)X(l5,k) (j)X(l6,k)
+
+Omega est la matrice des Xk' Xk en diagonale.
+Pour simplifier on peut se ramener à diagonaliser Omega^-1 X' X
+avec (i)X(j) = (i)X(j,k) (k)1, c'est-à-dire diagonaliser :
+Q(j,j4) = (i1)X(j1,k1) (i1)X(j2,k1) (j1,j2)inv(j,j3) (i3)X(j3,k3) (k3)1 (i3)X(j4,k4) (k4)1.
+
+Généralisation avec métrique D(n,n) quelconque :
+Q(j,j4) = D(i1,i2) (i1)X(j1,k1) (i2)X(j2,k2) (j1,j2)inv(j,j3) D(i3,i4) (i3)X(j3,k3) (k3)1 (i4)X(j4,k4) (k4)1.
+(i3)Pk(i5,k) = D(i1,i2) (i1)X(j1,k1) (i2)X(j2,k1) (j1,j2)inv(j3,j4) (i3)X(j3,k) (i4)X(j4,k) D(i4,i5)
+
+En posant (j5,i3)T(j4,k3,i5) = D(i1,i2) (i1)X(j1,k1) (i2)X(j2,k1) (j1,j2,j3,j5)inv D(i4,i5) (i3)X(j3,k3) (i4)X(j4,k3)
+on a :
+(i)Q(j) = (i,l)T(j,m,l) (m)1
+et
+(i)Pk(j,k)= (l,i)T(l,j,k).
+
+  
+Généralisation pour analyses projetées et procrustéennes :
+(k)J(j,l) = 0 dans le cas de l'AFU simple
+généralisation : (k)J(j,l) = 0 pour certaines modalités k, matrice diagonale avec des 1 dans les cases correspondant aux caractères associés à la modalité k et des 0 ailleurs, pour d'autres modalités k, celles dont on veut faire disparaitre (Xk' Xk)-1 de la matrice Q à diagonaliser.
+On a alors 
+Q(j,j4) = (D(i1,i2) (i1)X(j1,k1) (i2)X(j2,k2) + K(j1,j2)) (j1,j2)inv(j,j3) (D(i3,i4) (i3)X(j3,k3) (k3)1 (i4)X(j4,k4) (k4)1 + K(j3,j4))
+avec
+K(l1,l2) = 1(k) (k)J(l1,l2) - D(i1,i2) (i1)X(j1,k1) (j1,k1)J(l1) (i2)X(j2,k2) (j2,k2)J(l2)
+
+
+La diagonalisation de Q donne les vecteurs propres U. 
+On calcule V = X U avec X = somme des Xk = (i)X(j,k) (k)1.
+On a Pk = Xk (X'k D Xk)^-1 X'K D = Xk Omega^-1 X'k D
+On calcule les Vk = Pk V
+On affiche C = X'k D Vk 
+ = X'k Pk X U
+ = X'k D Xk Omega^-1 X'k D X U
+ = X'K D Xk Omega^-1 X'K D V
+( [B]t[B][A]^-1[B]t[E] dans le programme )
+
+Pour l'analyse des correspondances on affiche :
+ C = (Xl' D Xl) Xl' D Xk Omega^-1 Xk' D X U
+ ou Omega^-1 Xl' D Xk Omega^-1 Xk' D X U
+
+Individus et variables supplémentaires
+
+X = [ Xaa Xas ] = [ X.a X.s ] = [ Xa. ]
+    [ Xsa Xss ]                 [ Xs. ]
+
+Xa. = individus actifs
+Xs. = individus supplémentaires
+X.a = variables actives
+X.s = variables supplémentaires
+
+X.s' X.a = Xta ou X..' X.a = Xta
+
+Xta contient un individu virtuel supplémentaire par variable supplémentaire.
+
+Xg = [ Xaa     ]
+     [ Xsa     ]
+     [ Xta     ]
+     [ 0 ... 0 ]
+     [ I       ]
+
+Pour calculer la matrice à diagonaliser Q (ou S) utiliser Xaa.
+
+Pour calculer les composantes principales utiliser Xg.
+
+Pour l'ACP, définir les variables supplémentaires "à tous les étages".
+
+On peut aussi définir des individus supplémentaires avec une métrique D = 
+[ 1/na 0 ...             0 ]
+[ 0    1/na ...          0 ]
+[ ...                      ]
+[ 0 ...     0 1/na 0 ... 0 ]
+[ 0 ...     0 0    0 ... 0 ]
+[ ...                      ]
+[ 0 ...                  0 ]
+
+
+</pre>
+
+<p>
+Programme TI82
+<pre>
+
+Données pour ACP
+
+PROGRAM:DATAACPU
+:[[8,-9,-4] ...]->[D]
+:2->H
+:
+
+Conversion au format pour AFU, définition de [D] et P
+
+PROGRAM:DATAAFU
+:prgmDATAACPU
+:[D]->[A]
+:dim [A]:Ans(1)->N
+:dim [A]:Ans(2)->P
+:{N,P}->dim [D]
+:Fill(0,[D])
+:For(I,1,N)
+:For(J,1,P)
+:[A](I,J)->[D](I,(J-1)P+J)
+:End
+:End
+:
+
+Traitement des données
+
+PROGRAM:AFUDATA
+:prgmDATAAFU
+:dim [D]:Ans(1)->N
+:dim [D]:Ans(2)->R
+:R/P->Q
+:[D]t*[D]->[B]
+:{N,P}->dim [C]
+:Fill(0,[C])
+:{P,P}->dim [A]
+:Fill(0,[A])
+:For(I,1,N)
+:For(J,1,P)
+:For(K,1,Q)
+:[C](I,J)+[D](I,(K-1)P+J)->[C](I,J)
+:End
+:End
+:End
+:For(I,1,P)
+:For(J,1,P)
+:For(K,1,Q)
+:[A](I,J)+[B]((K-1)P+I,(K-1)P+J)->[A](I,J)
+:End
+:End
+:End
+:
+
+Programme principal
+
+PROGRAM:AFU
+:prgmAFUDATA
+:[C]->[D]
+:{N+P,P}->dim [D]
+:For(J,1,P)
+:P->[D](N+J,J)
+:End
+:P->G
+:[A]^-1*[C]t*[C]->[A]
+:2->H
+:prgmDEFLA
+:[D]*[C]->[B]
+:prgmGACP
+:
+
+Nouvelle version
+
+PROGRAM:AFUS
+:2->U:3->V
+:prgmAFU
+:prgmAFUP
+:prgmAFUS
+:ClrDraw
+:1->A:2->B
+:prgmAFUC
+:2->A:1->B
+:prgmAFUC
+:
+
+PROGRAM:DATAACOU
+:[[3 8][9 2][5 4]]->D
+:
+
+PROGRAM:DATAAFUC
+:prgmDATAACOU
+:prgmCORCAN
+:prgmCANUNI
+:[A]->[D]
+:P+Q->P
+:
+
+PROGRAM:CANUNI
+:dim [D]:Ans(1)->N
+:dim [D]:Ans(2)->P
+:dim [E]:Ans(2)->Q
+:{N,2(P+Q)}->dim [A]
+:Fill(0,[A])
+:For(I,1,N)
+:For(J,1,P)
+:[D](I,J)->[A](I,J)
+:[E](I,J)->[A](I,2P+Q+J)
+:End
+:End
+:
+
+PROGRAM:AFU
+:prgmAFUDATA
+:[C]->[D]
+:{N+P,P}->dim [D]
+:For(J,1,P)
+:P->[D](N+J,J)
+:End
+:P->G
+:[A]^-1*[C]t*[C]->[A]
+:Max(U,V)->H
+:prgmDEFLA
+:[D]*[C]->[B]
+:prgmGACP
+:
+
+PROGRAM:AFUP
+:[C]->[E]
+:prgmAFUDATA
+:[C][E]->[E]
+:
+ 
+PROGRAM:AFUS
+:[C]->[E]
+:prgmAFUDATA
+:{N,P}->dim [B]
+:ClrDraw
+:DispGraph
+:{N,P}->dim [B]
+:For(K,1,Q)
+:For(I,1,N)
+:For(J,1,P)
+:[D](I,J+(K-1)P)->[B](I,J)
+:End
+:End
+:[B]t[B][A]^-1[B]t[E]->[B]
+:prgmGAFUS
+:End
+:
+
+PROGRAM:GAFUS
+:For(I,1,P)
+:91*([B](I,U)-Xmin)/(Xmax-Xmin)->C
+:57-57*([B](I,V)-Ymin)/(Ymax-Ymin)->L
+:Int C->C
+:Int L->L
+:Max(C,0)->C
+:Min(C,85)->C
+:Max(L,0)->L
+:Min(L,57)->L
+:Text(L,C,(K-1)P+I)
+:End
+:
+
+PROGRAM:AFUC
+:{N,P}->dim [B]
+:{N,P}->dim [C]
+:For(I,1,N)
+:For(J,1,P)
+:[D](I,J+(A-1)P)->[B](I,J)
+:[D](I,J+(B-1)P)->[C](I,J)
+:End
+:End
+:[A]^-1[C]t[B][A]^-1[B]t[E]->[B]
+:DispGraph
+:1->K
+:prgmGAFUS
+:
+
+Nouvelle version 
+
+DATAAFU :
+Flag S = 0 : données actives
+     S = 1 : données à afficher (+ supplémentaires)
+
+PROGRAM:DATAFU32
+:[[1,7, 2,1]
+ [5,1, 4,1]
+ [1,1, 4,3]]->[D]
+:3->A:2->B:2->C
+:prgmDATAAFU3
+
+PROGRAM:DATAAFU3
+:ABC->N
+:A+B+C->P
+:3->Q
+:PQ->R
+:{N,R}->dim [D]
+:Fill(0,[D])
+:For(I,1,A)
+:For(J,1,B)
+:For(K,1,C)
+:sqrt[E](I,J+(K-1)B)->X
+:I+A(J+B(K-1))->L
+:X->[D](L,I)
+:X->[D](L,J+A+P)
+:X->[D](L,K+A+B+2P)
+:End
+:End
+:End
+:
+
+PROGRAM:AFU
+:0->S
+:prgmAFUDATA
+:[A]^-1*[C]t*[C]->[A]
+:Max(U,V)->H
+:prgmDEFLA
+:[C]->[E]
+:1->S
+:prgmAFUDATA
+:{N+P,P}->dim [C]
+:For(J,1,P)
+:P->[C](N+J,J)
+:End
+:P->G
+:[C][E]->[B]
+:prgmGACP
+:
+
+PROGRAM:AFUP
+:{N,P}->dim [C]
+:[C][E]->[E]
+:
+
+PROGRAM:CXK
+:{N,P}->dim [B]
+:For(I,1,N)
+:For(J,1,P)
+:[D](I,J+(K-1)P)->[B](I,J)
+:End
+:End
+:
+
+PROGRAM:AFUS
+:ClrDraw
+:DispGraph
+:For(K,1,Q)
+:prgmCXK 
+:[A]^-1[B]t[B][A]^-1[B]t[E]->[B]
+:prgmGAFUS
+:End
+:
+
+PROGRAM:AFUCMS
+:ClrDraw
+:DispGraph
+:[A]^-1[C]t[C][A]^-1[C]t[E]->[B]
+:prgmGAFUS
+: 
+
+PROGRAM:AFUM
+:ClrDraw
+:DispGraph
+:For(K,1,Q)
+:prgmCXK
+:[A]^-1[C]t[B][A]^-1[B]t[E]->[B]
+:prgmGAFUS
+:End
+:
+
+PROGRAM:AFUCM
+:ClrDraw
+:DispGraph
+:For(K,1,Q)
+:prgmCXK
+:[A]^-1([C]t[C][A]^-1[C]t-[B]t[B][A]^-1[B]t)[E]->[B]
+:prgmGAFUS
+:End
+:
+
+PROGRAM:AFUC
+:ClrDraw
+:DispGraph
+:For(M,0,1)
+:{N,P}->dim [B]
+:{N,P}->dim [C]
+:For(I,1,N)
+:For(J,1,P)
+:[D](I,J+(A-1)P)->[B](I,J)
+:[D](I,J+(B-1)P)->[C](I,J)
+:End
+:End
+:[A]^-1[C]t[B][A]^-1[B]t[E]->[B]
+:DispGraph
+:1->K
+:prgmGAFUS
+:End
+:
+
+
+
+ 
+</pre>
+
+
+<h4>AFU sur HP 48</h4>
+
+Données dans le tableau Z,
+nombre de variables dans P,
+métrique dans D,
+axes à afficher dans A1 et A2 (numéros à partir de 1).
+Executer AFU puis AFUACP pour le graphe de l'ACP ou AFUAFC pour le graphe de l'AFC. Zoomer si les points sont trop rapprochés ou sortent du cadre.
+
+<pre>
+
+Construction du tableau de Burt :
+
+<< DUP SIZE LIST->
+   DROP -> C P Q
+   << P Q + DUP PAR 0 CON ->B
+      << 1 P FOR I
+         1 Q FOR J
+         C I J PAR GET -> X
+         << B I I PAR
+            B I I PAR GET
+            X + PUT 'B' STO
+            B P J + DUP PAR
+            B P J + DUP PAR GET
+            X + PUT 'B' STO
+            B I P J + PAR 
+            X PUT 'B' STO
+            B P J + I PAR
+            X PUT 'B' STO >>
+         NEXT 
+         NEXT
+         B >> >>
+>> 'CO' STO
+
+Construction du tableau Z pour l'AFU à partir d'un tableau de contingence pour AFC
+
+<< DUP SIZE LIST-> DROP -> C P Q
+   << P Q * P Q + 2 * PAR 0 CON -> Z
+      << 1 P FOR I
+         1 Q FOR J
+         C I J PAR GET SQRT -> X
+         << Z I 1 - Q * J + I PAR X PUT
+              I 1 - Q * J + P 2 * Q + J +
+              PAR X PUT
+            'Z' STO >>
+         NEXT
+         NEXT
+         Z >> >>
+>> 'UDISCONT' STO
+
+
+Calcul de Xk à partir de Z
+
+<< -> Z P K
+   << Z SIZE LIST-> DROP 
+      DUP P / -> N R Q
+      << N P PAR 0 CON -> X
+         << 1 N FOR I
+            1 P FOR J
+            X I J PAR
+            Z I J K 1 - P * + PAR
+            GET PUT 'X' STO
+            NEXT
+            NEXT
+            X >>
+>> >> >> 'CXK' STO
+
+
+Graphe
+
+<< SWAP DUP SIZE 1 GET -> S C N
+   << 1 N FOR I
+      IFERR
+      PICT
+      C I A1 PAR GET
+      C I A2 PAR GET
+      (0,1) * +
+      S I ->STR + 1 ->GROB
+      REPL
+      THEN DROP DROP DROP END
+      NEXT
+   >>
+>> 'GRAFU' STO
+
+
+Analyse
+
+<< Z SIZE LIST-> DROP 'R' STO 'N' STO
+   R P / 'Q' STO
+   N P PAR 0 CON 'X' STO
+   P P PAR 0 CON 'O' STO
+   1 Q FOR K
+      Z P K CXK 'XK' STO
+      X XK + 'X' STO
+      XK TRN D * XK * O + 'O' STO
+   NEXT
+   O INV 'IO' STO
+   X TRN DUP 'XT' STO
+   D * X * 'XTDX' STO
+   IO XTDX * 'S' STO
+   IF A1 A2 >= THEN A1 ELSE A2 END 'H' STO
+   S H DEFLA 'L' STO 'U' STO
+   X U * 'V' STO
+>> 'AFU' STO
+
+
+Graphe ACP
+
+<< ERASE V "" GRAFU >> 'AFUACP' STO
+
+
+Graphe AFC
+
+<< Z ERASE
+   1 Q FOR K
+      DUP P K CXK 'XK' STO
+      IO XTDX IO * XT *
+         XK TRN D * XK * IO * XK TRN *
+         - * D * V *
+      K ->STR "," + GRAFU
+   NEXT
+   DROP
+>> 'AFUAFC' STO
+
+
+Données :
+
+[[69 41 18]
+ [172 84 127]
+ [133 118 157]
+ [27 11 43]] 'C' STO
+
+C UDISCONT 'Z' STO
+
+12 INV 'D' STO
+
+7 'P' STO
+
+2 'A1' STO
+3 'A2' STO
+
+
+
+
+
+</pre>
+
+
+<h4>Régression</h4>
+
+<pre>
+
+y = X a + e
+X' X a = X' y
+a = (X' X)^-1 X' y
+e = y - X a
+
+PROGRAM:DATAREG
+:[[1,-1,-2,4]
+  [1,-2,1,4]
+  [1,5,-6,4]
+  [1,3,0,0]
+  [1,8,1,0]]->[D]
+:[[-8][2][8][-3][-2]]->[E]
+:
+
+PROGRAM:REGRES
+:prgmDATAREG
+:([D]t[D])^-1[D]t[E]->[A]
+:[E]-[D][A]->[B]
+:
+
+</pre>
+
+<h4>Test du Khi2</h4>
+
+Khi2 = somme(i=1 à n) (observé(i) - théorique(i))^2 / théorique(i)
+loi du Khi2 à n-1 degrès de liberté
+<p>
+Densité de Khi2 avec v degrès de liberté : <br>
+f(x) = 1/(2^(v/2) Gamma(v/2)) e^(-v/2) x^(v/2 - 1) <br>
+avec Gamma(a) = intégrale de 0 à +infini de e^-x x^(a-1) dx
+
+<p>
+Programme TI82
+
+<pre>
+
+PROGRAM:TESTKHI2
+:dim [D]:Ans(1)->N
+:dim [D]:Ans(2)->P
+:{1,N}->dim [A]
+:Fill(1,[A])
+:{P,1}->dim [B]
+:Fill(1,[B])
+:[A]*[D]*[B]
+:Ans(1,1)->K
+<!-- :K^-1*[D]->[E] -->
+:[D]->[E]
+:[A]*[E]->[A]
+:[E]*[B]->[B]
+:K^-1*[B]*[A]->[C] 
+:[E]-[C]->[A]
+:0->X
+:For(I,1,N)
+:For(J,1,P)
+:X+[A](I,J)²/[C](I,J)->X
+:End
+:End
+:X->K
+:Disp K
+:N->L
+---:min(N,P)-1->N
+:(N-1)(P-1)->N
+:prgmKHI2
+:L->N
+:P
+:
+
+PROGRAM:KHI2
+:"1/2^(N/2)*fnInt((e^-Y)(Y^(N/2-1)),Y,0,20))*e^(-X/2)*X^(N/2-1)"->Y1
+:.001->E
+:0->S
+:30->M
+:For(I,1,M)
+:K/M*(I-.5)->X
+:S+Y1(X)*K/M->S
+:Disp S
+:End
+:1-S->P
+:
+
+PROGRAM:KHI2
+:"1/2^(N/2)*fnInt((e^-Y)(Y^(N/2-1)),Y,0,20))*e^(-X/2)*X^(N/2-1)"->Y1
+:.001->E
+:0->S
+:30->M
+:Y1(0)->D
+:For(I,1,M)
+:0->B
+:Y1(K/M*(I-.5))->C
+Y1(K/M*I)->D
+:S+.25*(B+2XC+D)*K/M->S
+:Disp S
+:End
+:1-S->P
+:
+
+PROGRAM:KHI2
+:"1/2^(N/2)*fnInt((e^-Y)(Y^(N/2-1)),Y,0,20))*e^(-X/2)*X^(N/2-1)"->Y1
+:.001->E
+:0->S
+:K/10->D
+:K+D/2->U
+:Lbl 1
+:Y1(U)->Y
+:S+Y*D->S
+:Disp S
+:U+D->U
+:If Y>=0.0001
+:Then
+:Goto 1
+:End
+:S->P
+:
+
+PROGRAM:KHI2
+:"1/2^(N/2)*fnInt((e^-Y)(Y^(N/2-1)),Y,0,20))*e^(-X/2)*X^(N/2-1)"->Y1
+:.01->E
+:0->S
+:10->M
+:.01->D
+:D/2->U
+:Lbl  1
+:Y1(U)->Y
+:S+Y*D->S
+:Disp U
+:Disp S
+:U+D/2->U
+:min(E/Y,K/M)->D
+:U+D/2->U
+:If U+D/2<=K
+:Then
+:Goto 1
+:End
+:U-D/2->U
+:K-U->D
+:U+D/2->U
+:S+Y*D->S
+:1-S->P
+:
+
+
+</pre>
+
+<h4>Analyses partielles et projetées</h4>
+
+Coefficient de corrélation partielle entre X1 et X2 à Z constant :
+rho(X1,X2|Z)
+Mesure la liaison entre X1 et X2 à Z constant.
+<ul>
+<li> X1 = a1 Z + e1
+<li> X2 = a2 Z + e2
+</ul>
+rho(X1,X2|Z) = cov(e1,e2)/sqrt(var(e1)var(e2))
+<p>
+Généralisation :
+<ul>
+<li> X1 = a11 Z1 + a12 Z2 + ... + a1q Zq + e1
+<li> X2 = a21 Z1 + ...
+<li> ...
+<li> Xp = ap1 Z1 + ... + ep
+</ul>
+<pre>
+X = Z A + E
+A = (Z' Z)^-1 Z' X
+Covariances partielles expérimentales sur les X à Z constant :
+V(X|Z) = 1/n (X'X-X'Z'(Z'Z)^-1Z'X)
+T = [X,Z]
+V(T) = [VXX VZX]
+       [VXZ VZZ]
+VXX = 1/n X'X, VZZ = 1/n Z'Z, VZX = V'XZ = 1/N Z'X
+V(X|Z) = VXX - VZX VZZ^-1 VXZ
+
+Programme TI82
+
+PROGRAM:ANAPART
+:prgmDATAAP
+:prgmANAPAR
+:prgmGANACA
+:
+
+PROGRAM:DATAAP
+:[A]->[C]
+:prgmDATAACO3
+:prgmCORCAN
+:[D]->[A]
+:[E]->[D]
+:[A]->[E]
+:[C]->[A]
+:
+
+On peut remplacer prgmDATAACO par prgmDATAAP1 :
+
+PROGRAM:DATAAP1
+:[[55][60][61][70][69][80]]->[D]
+:prgmCENTRED
+:[D]->[E]
+:[[160,60,80]
+  [170,55,70]
+  [162,70,75]
+  [175,60,78]
+  [165,75,90]
+  [175,70,85]]->[D]
+:prgmCENTRED
+:
+
+Pour AFU :
+
+PROGRAM:DATAAFUP
+:prgmDATAAP1
+:dim [E]:Ans(1)->N
+:identity N-[E]([E]t[E])^-1[E]t->[E]
+:2->P
+:3->H
+
+Modifier AFU avec métrique [E]
+
+Version modifiée de ANACA
+
+PROGRAM:ANAPAR
+:dim [D]->L1
+:L1(1)->N
+:L1(2)->P
+:dim [E]
+:Ans(2)->Q
+:N^-1->D
+:([E]t*D*[E])^-1*[E]t*D*[D]->[B]
+:((D)tD[D]-[D]tD[E][B]->[A]
+:[B]->[D]
+:min(P,Q)->H
+:max(H,max(U,V))->H
+:H->G
+:prgmDEFLA
+:G->H
+:dim [C]
+:Ans(1)
+:{Ans,H}->dim [C]
+:
+
+Modification de GANACA : ajouter au début :
+
+:dim [C]
+:If Ans(2)<=1
+:Then
+:dim [c]
+:{Ans(1),2}->dim [C]
+:End
+
+Centrage réduction des données :
+
+PROGRAM:CENTRED
+:dim [D]:Ans(1)->N
+:dim [D]:Ans(2)->P
+:{1,N}->dim [C]
+:Fill(1,[C])
+:[D]-N^-1[C]t[C][D]->[D]
+:[D]t[D]->[C]
+:For(I,1,P)
+:For(J,1,P)
+:If C=1 
+:Then
+:1/sqrt [C](I,J)->[C](I,J)
+:Else
+:0->[C](I,J)
+:End
+:End
+:End
+:[D][C]->[D]
+:
+
+</pre>
+On peut aussi faire une ACP de "X à Z fixe", c'est-à-dire la projection de X perpendiculairement à Z, soit (I - Z(Z'DZ)^-1 Z'D) X
+= X - Z(Z'DZ)^-1 Z'DX.
+
+<pre>
+
+PROGRAM:DAEFIXE
+:[D]-[E]*([E]t[E])^-1[E]t[D]->[D]
+:
+
+prgmDATAAP1
+prgmDAEFIXE
+prgmACPNT
+
+
+Autres analyses partielles ou projetées
+
+Analyse canonique :
+diagonaliser S = (X'X)^-1 X'Z(Z'Z)^-1 Z'X = (X'X)^-1X' PZ X
+avec X' PZ X = (PZ X)'PZ X
+
+Analyse canonique des correspondances : 
+diagonaliser S = (X' Dn X)^-1 (X' Z Dq^-1) Dq (Dq^-1 Z' X)
+
+Analyse non-symétrique des correspondances :
+L'analyse du nuage des lignes de X projeté sur le sous-espace engendré par les colonnes de Z conduit à diagonaliser
+S1 = X' Z (Z' Z)^-1 Z' X = X' PZ X
+
+</pre>
+ 
+
+<h4>Tableaux multiples, groupes de variables</h4>
+
+<pre>
+Modèle TUCKALS-3 :
+s_ijk = a_iu a_jv b_kt c_uvt
+
+Modèle PARAFAC :
+x_ijk = a_it b_jt c_kt
+
+</pre>
+
+Récapitulation de méthodes d'analyse de R = (X,Z) :
+
+<table>
+<tr>
+<td> Analyse canonique </td>
+<td> (X' X)^-1 X' Z (Z' Z)^-1 Z' X </td>
+<td> ou </td> 
+<td> (Z' Z)^-1 Z' X (X' X)^-1 X' Z </td>
+</tr><tr>
+<td> Analyses projetées </td>
+<td> X' Z (Z' Z)^-1 Z' X </td>
+<td> et </td>
+<td> Z' X (X' X)^-1 X' Z </td>
+</tr><tr>
+<td> Analyses partielles </td>
+<td> X' (I - Z(Z' Z)^-1 Z') X </td>
+<td> et </td>
+<td> Z' (I - X (X' X)^-1 X') Z </td>
+<tr></tr>
+<td> Analyse procrustéenne orthogonale </td>
+<td> X' Z Z' X </td>
+<td> ou </td>
+<td> Z' X X' Z </td>
+</tr><tr>
+<td> Analyse procrustéenne sans contrainte </td>
+<td> (Z' Z)^-1 Z' X </td>
+<td> et </td>
+<td> (X' X)^-1 X' Z </td>
+</tr>
+</table>
+ 
+<h4>Analyse comparative universelle</h4>
+
+Les différentes analyses ci-dessus, sauf l'analyse partielle, peuvent être considérées comme des cas particulier d'une analyse avec une matrice à diagonaliser : <br>
+S = V11^a V12^b V22^c V21^d <br>
+avec
+<ul>
+<li> V11 = X' D X
+<li> V12 = X' D Y
+<li> V22 = Y' D Y
+<li> V21 = Y' D X
+</ul>
+En faisant varier les paramètres a, b, c, d on obtient différentes analyses :
+<ul>
+<li> 1 0 0 0 : ACP
+<li> -1 1 -1 1 : analyse canonique, analyse discriminante
+<li> -1 1 0 1 : analyse discriminante ?
+<li> 0 1 -1 1 : analyse projective
+<li> 0 1 0 1 : analyse procrustéenne orthogonale
+<li> 0 0 -1 1 : analyse procrustéenne sans contrainte
+</ul>
+
+Remarques :
+<ul>
+<li> Seules les matrices carrées peuvent être élevées à une puissance différente de 0 ou 1. Si les nombres de colonnes de X et Y sont différents, b et d ne peuvent valoir que 0 ou 1.
+<li> Les nombres de lignes et de colonnes doivent correspondre pour les produits de matrices. Si les nombres de colonnes de X et Y sont différents, des paramètres comme (-1 0 -1 1) sont incorrects car on multiplierait une matrice (p,p) par une matrice (q,q).
+</ul>
+
+<h4>Méthode STATIS</h4>
+<pre>
+q tableaux X1 ... Xq
+Xk Xk' = Wk
+Skl = trace (Wk Wl)
+(i1,i2)W(k) = (i1)X(j,k) (i2)X(j,k)
+S(k1,k2) = (i1)X(j1,k1) (i2)X(j1,k1) (i1)X(j2,k2) (i2)X(j2,k2)
+
+
+PROGRAM:DATAST
+:3->P
+:3->H
+:[[6,10,8, 9,10,4]
+  [1,2,8, 2,3,9]
+  [9,6,4, 8,6,3]
+  [5,4,6, 1,2,8]]->[D]
+:
+
+PROGRAM:STDATA
+:prgmDATAST
+:dim [D]:Ans(1)->N
+:dim [D]:Ans(2)->P
+:R/P->Q
+:
+
+PROGRAM:STATIS
+:prgmSTDATA
+:[D]t[D]->[E]
+:{Q,Q}->dim [A]
+:For(K,1,Q)
+:For(L,1,Q)
+:0->S
+:For(I,1,P)
+:For(J,1,P)
+:S+[E]((K-1)P+I,(L-1)P+J)->S
+:End
+:End
+:S->[A](K,L)
+:End
+:End
+:max(H,max(U,V))->H
+:prgmDEFLA
+:prgmSTDATA
+:{N,Q}->dim [E]
+:Fill(0,[E])
+:For(K,1,Q)
+:For(I,1,N)
+:For(J,1,P)
+:[E](I,K)+[D](I,(K-1)P+J)->[E](I,K)
+:[A](K,J)+[D](I,(K-1)P+J)->[A](K,J)
+:augment(([E][C]t,([A]t[C])t)t->[B]
+:P->G
+:prgmGACP
+:
+
+</pre>
+
+<h4>Exercices</h4>
+
+<ul>
+
+<p><li> Quel sens peut-on donner à une analyse factorielle universelle avec un tableau tridimensionnel X quelconque (et non "en escalier") ?
+
+<p><li> Trouver une généralisation de l'analyse comparative universelle pour un nombre quelconque de tableaux de variables X1, X2, ... Xm (au lieu de seulement 2 tableaux X et Y).
+
+<p><li> Trouver une généralisation de cette généralisation du même type que celle qui permet de passer de l'analyse canonique généralisée à l'analyse factorielle universelle : l'analyse comparative universelle généralisée apparait comme un cas particulier dans laquelle les tableaux X1, X2, ... Xm sont disposés comme les marches d'un escalier dans un tableau tridimensionnel X, le reste étant à 0.
+
+</ul>
+
+
+
+
+ </body></HTML>

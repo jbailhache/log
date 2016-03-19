@@ -1,0 +1,157 @@
+<HTML>
+<head>
+<title>Programmation HP 48</title>
+</head>
+<body>
+
+<h3>Programmation de la HP 48 en RPL système</h3>
+
+D'après "Les secrets de la HP 48 G/GX" tome 2
+<p>
+
+->EXT : "Compilateur" RPL système 
+
+<pre>
+
+<< 1 OVER SIZE FOR K 
+      K DUP2 GET
+      DUP 6 TYPE SAME THEN EVAL END
+      CASE
+         DUP TYPE 10 SAME THEN
+            #4003h SYSEVAL #62B9Ch SYSEVAL
+         END
+         DUP TYPE 0 SAME THEN
+            #18CD7h SYSEVAL
+         END
+         DUP TYPE 8 SAME THEN
+            #3F9Fh SYSEVAL #5AB3h SYSEVAL ->EXT
+         END
+         DUP TYPE 5 SAME THEN 
+            ->EXT
+         END
+         DTAG
+      END
+      PUT
+   NEXT
+   #3FB3h SYSEVAL #5AB3h SYSEVAL
+>> '->EXT' STO
+
+</pre>
+
+<p>
+->ADR : Adresse d'on objet
+   
+<pre>
+
+<< #0h NEWOB DUP
+   #806F8h 
+   #6595Ag SYSEVAL
+   10 +
+   #6595Ah SYSEVAL
+   #FFFFFh AND
+   SWAP DROP
+>> '->ADR' STO
+
+</pre>
+
+->STRI : représentation interne d'un objet
+(113 octets, checksum #A726h)
+
+<pre>
+
+<< #6657h SYSEVAL
+   DUP #5902h SYSEVAL
+   #6258Ah SYSEVAL
+   #6657h SYSEVAL
+   #5089h SYSEVAL
+   SWAP 2 ->LIST
+   #15E83h SYSEVAL
+>> '->STRI' STO
+
+</pre>
+
+<p>
+EXT-> : "décompilateur" RPL système
+(50 octets, checksum #3D12h)
+
+<pre>
+
+{ #18AB2h #18FB2h
+  #400Dh
+  { #63209h #63B05h
+    #62FBBh #EDE1h
+    #4053h  10830
+    #25C41h 
+    #63B19h
+    #60F9Bh
+    #4003h #62B9Ch
+    #6657h }
+} ->EXT 'EXT->' STO
+
+</pre>
+
+<p>
+Adresses pour SYSEVAL et RPL système
+
+<pre>
+
+2A2B4 0
+2A2C9 1
+2A2DE 2
+2A2F3 3
+
+03FEF <0h>
+03FF9 <1h>
+04003 <2h>
+0400D <3h> 
+
+03188 dup
+03223 swap
+03244 drop
+032C2 over
+
+03A81 true
+03AC0 false
+
+07497 Lpop
+
+02A74 {
+02D9D begin
+0312B end, }
+
+18FD2 ChkArg
+073F3 start
+07344 next
+073A5 step
+07221 index
+
+071A2 while
+071EE repeat
+071E5 endwhile
+071A2 do
+071C8 until
+071AB again
+
+61AD8 then
+0714D skip
+517DA drop;q
+06FD1 dq (do quit)
+61993 ?:dq/sk
+06E97 quote (instruction suivante empilée)
+06EEB '1postend
+0701F 'postend
+
+6595A rcl16nib
+
+06F8E eval
+
+06FB7 DropRet
+14EA5 DupRet
+60EBD SwapRet
+
+</pre>
+ 
+
+
+</body>
+</HTML> 

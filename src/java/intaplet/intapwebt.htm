@@ -1,0 +1,30 @@
+
+<body>
+
+<applet code=intaplet.class width=500 height=400>
+
+<param name=init value='
+ &dup ^x { x x }
+{
+ [add applet "" label "host:"]
+ [add applet "" rplac global #1# dup textfield "" #20#]
+ [add applet "" label "port:"]
+ [add applet "" rplac global #2# dup textfield "" #6#]
+ [add applet "" label "path:"]
+ [add applet "" rplac global #3# dup textfield "" #15#]
+ [add applet "" rplac global #4# dup button "Read page"]
+ [add applet "" rplac global #5# dup textarea "" #10# #60#]
+
+}'>
+
+<param name=event value='
+^evt
+{ [subexpr evt #3#] "Read page" (eqthen 
+    [settext subexpr global #5# "Clic"]
+   nop) 
+}
+'>
+ 
+</applet>
+
+</body>

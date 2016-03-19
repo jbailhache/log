@@ -1,0 +1,50 @@
+
+n:=6:
+
+corresp := matrix ([
+[ 1478.60, 2475.41, 992096.60, 166449.40, 0, 0 ],
+[ 1479.67, 2479.41, 992094.93, 166445.49, 0, 0 ],
+[ 1468.98, 2494.58, 992103.42, 166429.24, 0, 0 ],
+[ 1479.01, 2594.23, 992114.62, 166340.56, 992037.87, 166318.87 ],
+[ 1471.50, 2591.19, 992114.62, 166340.56, 992037.87, 166318.87 ],
+[ 1466.29, 2589.12, 992114.62, 166340.56, 992037.87, 166318.87 ]]):
+
+A := (array(1..2*n,1..4)):
+K := (array(1..2*n,1..1)):
+P := (array(1..2*n,1..2*n)):
+
+for i from 1 to 2*n do
+for j from 1 to 2*n do
+ if i=j 
+  then P[i,j]:=1
+  else P[i,j]:=0
+ end_if
+end_for
+end_for:
+
+for i from 1 to n do
+ x := corresp[i,1]:
+ y := corresp[i,2]:
+ XA := corresp[i,3]:
+ YA := corresp[i,4]:
+ XB := corresp[i,5]:
+ YB := corresp[i,6]:
+ 
+ dX := XB - XA:
+ dY := YB - YA:
+ AB2 := (dX*dX + dY*dY):
+ if corresp[i,5]=0 then
+  c:=0:
+  d:=0:
+  e:=0:
+  f:=0:
+ else
+  c := dX^2 / AB2:
+  d := dX * dY / AB2:
+  e := d:
+  f := dY^2 / AB2:
+ end_if:
+ 
+
+
+end_for

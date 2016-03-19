@@ -1,0 +1,42 @@
+// testprint.odl : type library source for testprint.exe
+
+// This file will be processed by the MIDL compiler to produce the
+// type library (testprint.tlb).
+
+[ uuid(3D07D106-980C-425C-961D-9B388A2361FD), version(1.0) ]
+library Testprint
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+
+	//  Primary dispatch interface for CTestprintDoc
+	
+	[ uuid(66686B4B-87FB-4BA8-81CE-601BC3C21C91) ]
+	dispinterface ITestprint
+	{
+		properties:
+			// NOTE - ClassWizard will maintain property information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_PROP(CTestprintDoc)
+			//}}AFX_ODL_PROP
+			
+		methods:
+			// NOTE - ClassWizard will maintain method information here.
+			//    Use extreme caution when editing this section.
+			//{{AFX_ODL_METHOD(CTestprintDoc)
+			//}}AFX_ODL_METHOD
+
+	};
+
+	//  Class information for CTestprintDoc
+	
+	[ uuid(02F6C2B9-2B4A-422D-A0C5-B878E0628D51) ]
+	coclass Document
+	{
+		[default] dispinterface ITestprint;
+	};
+
+	//{{AFX_APPEND_ODL}}
+	//}}AFX_APPEND_ODL}}
+};

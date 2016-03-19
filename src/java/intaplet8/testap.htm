@@ -1,0 +1,79 @@
+
+<applet code=intaplet.class width=600 height=500>
+ 
+<param name=init value='
+ &dup ^x { x x }
+ {
+  [add applet "" rplac global #1# dup label "Test"]
+  [add applet "" rplac global #2# dup textfield "Hello" #10#]
+  [add applet "" rplac global #3# dup checkbox "Check" NIL #0#]
+  [rplac global #4# checkboxgroup]
+  [add applet "" rplac global #5# dup checkbox "FM" [subexpr global #4#] #1#]
+  [add applet "" rplac global #6# dup checkbox "AM" [subexpr global #4#] #0#]
+  [add applet "" rplac global #7# dup choice]
+  [additem subexpr global #7# "rouge"]
+  [additem subexpr global #7# "vert"]
+  [additem subexpr global #7# "bleu"]
+  [add applet "" rplac global #8# dup list #3# #1#]
+  [additem subexpr global #8# "cercle"]
+  [additem subexpr global #8# "carré"]
+  [additem subexpr global #8# "triangle"]
+  [add applet "" rplac global #9# dup textarea "" #6# #45#]
+  [add applet "" rplac global #10# dup button "Test"]
+
+ }'>
+
+<param name=event value=' ^evt {
+ [settext subexpr global #9# 
+  concat "Event " concat rep evt
+  concat "\ncheckbox " concat rep getstate subexpr global #3#
+  concat "\nradio " concat rep getlabel getcurrent subexpr global #4#
+  concat "\ncouleur " concat rep getselecteditem subexpr global #7#
+  concat "\nforme " concat rep getselecteditem subexpr global #8#
+
+  ""]
+ }'>
+
+<param name=init1 value='
+ ;[rplac global #1# getimage "etoiles.gif"]
+ ;[rplac global #2# button "Test"]
+ ;[add applet "" subexpr global #2#]
+ ;[rplac global #7# panel]
+ ;[rplac global #3# textarea "" #6# #20#]
+ ;[settext subexpr global #3# "Bonjour"]
+ ;[add subexpr global #7# "" subexpr global #3#]
+ ;[add applet "" subexpr global #7#]
+ ;[rplac global #4# parsenbr getparameter "width"]
+ ;[rplac global #5# parsenbr getparameter "height"]
+ ;[rplac global #6# checkbox "Cochez ici" #1#]
+ nop'>
+ 
+<param name=mousedown1 value='
+ ^coord
+ ;[settext subexpr global #3# 
+   [concat gettext subexpr global #3#
+    concat "\nMouse down " [rep coord]]]
+ nop'>
+
+<param name=time value=60>
+
+<param name=step value='
+ ^t
+ ;(qt ^x ^y; point; x; adse; y adse) ^mkpoint 
+ ;[setcolor (qt (color #90# #80# #120#))]
+ ;[filloval [eval mkpoint [plus #300# [times #60# [sin [times #0.2# t]]]] #250#] 
+	(vector #80# #60#)]
+ ;[setfont "Courier" NIL #30#]
+ ;[drawstring "Bonjour !" (POINT #30# #200#)]
+ ;[drawline (POINT #40# #120#) (POINT #160# #280#)]
+ ;[fillrect (POINT #60# #140#) (POINT #90# #130#)]
+ (nop)'>
+
+<param name=action1 value='
+ ;[settext subexpr global #3# "Action"]
+ ;[showdocument "animpln.htm"]
+ nop'>
+
+</applet>
+
+ 

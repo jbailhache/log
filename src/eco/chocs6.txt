@@ -1,0 +1,15 @@
+restart;
+f:=x->A*x^alpha;
+f1:=x->diff(f(x),x);
+edk:=diff(k(t),t)=f(k(t))-(mu+bet)*k(t)-c(t);
+edc:=diff(c(t),t)=c(t)*(f1(k(t))-mu-bet-ps)/sigma;
+edck:=diff(c(k),k)=c(k)*(f1(k)-mu-bet-ps)/((f(k)-(mu+bet)*k-c(k))*sigma);
+A:=9;
+alpha:=1/3;
+bet:=0;
+mu:=0.08;
+ps:=0.05;
+sigma:=1.0;
+kstar.A:=numeric::fsolve(f1(x)-mu-bet-ps,x=100..120);
+ks9:=rhs(kstar9[1]);
+cstar.A:=f(ks9)-(mu+bet)*ks9;

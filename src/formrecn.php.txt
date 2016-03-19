@@ -1,0 +1,31 @@
+<HTML>
+<head>
+<title>Recherche de partenaires</title>
+</head>
+<body>
+<h3>Recherche de partenaires</h3>
+<p>
+<form method=post action=recherch.php>
+<input type=submit value=Chercher> les 
+<input type=text name=max value=20> personnes
+<?php
+	include ("util.php");
+	if (connexion() > 0)
+	{
+		echo ("<input type=text name=pseudo value=$afpseudo> (profil <input type=text name=profil>) pour ");
+		
+		echo ("<select name=but>");
+    		$query = "SELECT * FROM afbut";
+	    	$data = mysql_query ($query);
+    		while ($rec = mysql_fetch_object ($data))
+    		{
+     			$butvar = varencode ($rec->but);
+     			/*echo ("<li><input type=checkbox name=$butvar value=yes> $rec->but");*/
+     			echo ("<option>$rec->but");
+    		}
+		echo ("</select>");
+	}
+?>
+</form>
+</body>
+</html>

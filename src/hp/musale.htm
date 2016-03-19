@@ -1,0 +1,105 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0106)http://membres.lycos.fr/teledev/sites/afpage.php?site=log&titre=Musique+al%E9atoire+sur+calculatrice+HP+48 -->
+<!--Connexion établie--><!--Base de données sélectionnée--><HTML><HEAD><TITLE>Musique aléatoire sur calculatrice HP 48</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content=musique,HP,HP48 name=keywords>
+<META content="MSHTML 6.00.2715.400" name=GENERATOR></HEAD>
+<BODY>
+<H3>Musique aléatoire sur calculatrice HP 48</H3><PRE>
+&lt;&lt; OCTAVE 12 * + 57 - 12 / 2 SWAP ^ 440 * &gt;&gt; 'FREQUENCE' STO
+
+&lt;&lt; SWAP FREQUENCE SWAP TEMPO * BEEP &gt;&gt; 'P' STO
+
+&lt;&lt; 
+ .2 'TEMPO' STO 
+ 4 'OCTAVE' STO
+ 14 1 P
+ 16 1 P
+ 12 2 P
+ 11 1 P
+ 12 1 P
+ 14 2 P
+ 9 1 P
+ 11 1 P
+ 5 2 P
+ 4 2 P
+ 7 2 P
+ 14 2 P
+ 12 1 P
+ 11 1 P
+ 12 2 P
+ 16 1 P
+ 17 1 P
+ 14 1 P
+ 12 1 P
+ 14 2 P
+&gt;&gt; 'SPL1' STO
+
+&lt;&lt;
+ 'PLAYIT' PURGE
+ .2 'TEMPO' STO
+ 4 'OCTAVE' STO
+ [ 0 2 5 7 9 12 14 17 19 21 ] 'GAM' STO
+ GAM SIZE 1 GET 'N' STO
+ "&lt;&lt;" 'PROG' STO
+ RAND 20 * IP 18 + 'L' STO
+ 1 L FOR I
+  PROG " " +
+  GAM RAND N * IP 1 + GET +
+  " " +
+  RAND 2 * IP 1 + +
+  " P " +
+  'PROG' STO
+ NEXT
+ PROG "&gt;&gt;" + 'PROG' PURGE STR-&gt; 'PLAYIT' STO
+&gt;&gt; 'MUSAL' STO
+
+&lt;&lt; MUSAL PLAYIT &gt;&gt; 'MUSALE' STO
+
+MUSALE
+
+&lt;&lt; [ 2 1.5 .5 .66667 ] 'FCTR' STO
+   FCTRR SIZE 1 GET 'NF' STO
+   440 'FRQ' STO &gt;&gt;
+'INIMAN' STO
+
+&lt;&lt; 'PLAYIT' PURGE
+   .2 'TEMPO' STO
+   4 'OCTAVE' STO
+   "&lt;&lt;" 'PROG' STO
+   RAND 20 * IP 18 + 'L' STO
+&gt;&gt; 'INIMA' STO
+
+&lt;&lt; DO
+    IF DUP 300 &lt; THEN 2 * END
+    IF DUP 600 &gt; THEN .5 END
+    FCTR RAND NF * IP 1 + GET *
+   UNTIL RAND .25 &lt; END
+&gt;&gt; 'NXTFRQ' STO
+
+&lt;&lt; 1 L FOR I
+    PROG " " +
+    FRQ NXTFRQ 'FRQ' STO
+    FRQ +
+    " " +
+    RAND .5 * IP 1 + +
+    " BP " +
+    'PROG' STO
+   NEXT
+   PROG "&gt;&gt;" + 
+   'PROG' PURGE STR-&gt; 'PLAYIT' STO
+&gt;&gt; 'MUSALN' STO
+
+&lt;&lt; INIMAN INIMA MUSALN PLAYIT &gt;&gt; 'MUSALEN' STO
+
+</PRE><PRE></PRE><XMP></XMP></NOSCRIPT>
+<SCRIPT src="musale_files/test_frame_size.js"></SCRIPT>
+
+<SCRIPT language=javascript>
+if (!AD_clientWindowSize()) {
+        document.write('<NOSC'+'RIPT>');
+	}
+</SCRIPT>
+
+<SCRIPT src="musale_files/ad.htm" type=text/javascript></SCRIPT>
+</BODY></HTML>

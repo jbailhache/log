@@ -1,0 +1,133 @@
+
+Création d'un objet code à partir des codes hexadécimaux des instructions
+
+<< DUP SIZE 19 + R->B
+   ->STRI 11 15 SUB
+   "CCD20" SWAP +
+   SWAP +
+   ->OBJ
+>> '->CODE' STO
+
+Exemple : ajouter 1 à l'entier système au niveau 1
+
+CCD20	CODE
+42000	#24h
+8FB9760 GOSBVL	#0679Bh
+143	A=DAT1	A
+131	D1=A
+174	D1=D1+5
+143	A=DAT1	A
+E4	A=A+1	A
+141	DAT1=A	A
+8D34150	GOVLNG 	#05143h
+
+"8FB9760143131174143E41418D34150" 
+ ->CODE 'PLUS1SYSINT' STO
+
+Exemple : ajouter 1 à <3h>
+"1192030000" ->OBJ PLUS1SYSINT
+<4h>
+
+Les champs :
+
+Nom f	Code a	Quartets
+	b=a+8
+
+P	0	P
+WP	1	0-P
+XS	2	2
+X	3	0-2
+S	4	15
+M	5	3-14
+B	6	0-1
+W	7	0-15
+A	F	0-4
+
+Quelques instructions
+
+f=champ
+
+code	mnémonique	
+
+D0	A=0 	A
+Ab0	A=0	f
+D4	A=B	A
+Ab4	A=B	f
+C0	A=A+B	A
+Aa0	A=A+B	f
+E0	A=A-B	A
+Ba0	A=A-B	f
+0Ea0	A=A&B	f
+0Ea8	A=A!B	f	ou logique
+818a0n	A=A+n+1	f
+130	D0=A
+131	D1=A
+142	A=DAT0	A	A=(D0)
+14A
+152a	A=DAT0	f
+143	A=DAT1	A
+14B
+153a	A=DAT1	f
+15An	A=DAT0(n+1)
+15Bn	A=DAT1(n+1)
+140	DAT0=A
+148
+150a	DAT0=A	f
+141	DAT1=A
+149
+151a	DAT1=A	f
+158n	DAT0=A(n+1)
+159n	DAT1=A(n+1)	
+2n	P=n
+4qp	GOC	label 
+5qp	GONC 	label
+8Dtsrqp GOVLNG	pqrst
+8Ftsrqp GOSBVL  pqrst
+81B2	PC=A
+808C	PC=(A)
+81B4	A=PC
+01	RTN
+8A8pq	?A=0 GOYES label
+9a8
+8B0	?A>B GOYES label
+9b0
+
+Affectation des registres
+A,C : calculs
+B: emplacement libre pour prochaine adresse retour RPL à empiler
+D: mémoire libre
+D0: PC RPL
+D1: niveau 1 pile RPL
+
+Décompilation des instructions RPL
+
+Exemple : DROP
+
+{ DROP } 1 GET ->STRI
+"D9D205AA8144230B2130"
+
+D9D20	préfixe RPL
+5AA81	libneed1
+44230	drop
+B2130	fin RPL
+
+décompilation de drop : 
+#0 #3188h rcl16nib SYSEVAL
+#6412417E47103249h
+"94230174E7142164"
+#0 #3198h rcl16nib SYSEVAL
+#...C808h
+
+94230174E7142164808C
+
+#02344h	94230	adresse suivante #2349h
+#02349h 174	D1=D1+5
+	E7	D=D+1
+	142	A=DAT0	A
+	164	D0=D0+5
+	808C	PC=(A)
+
+Redéfinition de drop :
+
+"174E7142164808C" ->CODE 'ndrop' STO
+

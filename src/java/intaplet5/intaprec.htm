@@ -1,0 +1,42 @@
+
+<body>
+
+<applet code=intaplet.class width=300 height=200>
+
+<param name=init value='
+ &fact ^rfact ^x { x #0# (eqthen #1# 
+  [times x eval rfact rfact plus x #-1#] ) }
+ {
+  [rplac global #1# textfield [rep fact (qt fact) #6#] #10#]
+  [add applet "" subexpr global #1#]
+ }'>
+
+</applet>
+
+</body>
+<!-- -->
+</noscript>
+<SCRIPT LANGUAGE="JavaScript" TYPE="text/javascript">
+<!--
+var rnd = Math.floor(Math.random() * 9) + 1 ; 
+if (rnd <= 4) { 
+window.open('http://pub.chez.com/cgi-bin/perl/popup.pl//default','pub','location=no,toolbar=no,status=no,directories=no,scrollbars=no,width=470,height=120');
+} else if(rnd == 5) {
+window.open('http://pub.chez.com/cgi-bin/perl/popup.pl//autre4','pub2','location=no,toolbar=no,status=no,directories=no,scrollbars=no,width=250,height=250');
+} else if(rnd == 6) {
+window.open('http://pub.chez.com/cgi-bin/perl/popup.pl//autre2','pub2','location=no,toolbar=no,status=no,directories=no,scrollbars=no,width=250,height=250');
+} else if(rnd >= 7) {
+window.open('http://pub.chez.com/cgi-bin/perl/popup.pl//autre','pub2','location=no,toolbar=no,status=no,directories=no,scrollbars=no,width=250,height=250');
+}
+// -->
+</SCRIPT>
+
+<script language="javascript">
+WEBO_ZONE=122;
+WEBO_PAGE=1;
+weboplus_ok=0;
+</script>
+<script language="javascript"
+src="http://js.libertysurf.fr/chez/weborama/weboscopeplus.js"></SCRIPT>
+<SCRIPT>if(weboplus_ok==1){weboplus_zp(WEBO_ZONE,WEBO_PAGE);}
+</script>

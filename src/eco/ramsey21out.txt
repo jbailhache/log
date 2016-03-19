@@ -1,0 +1,249 @@
+read ("..\examples\\vcam\\contourplot.mu")
+Warning: Unexpected escape character '\e' in string [line 1, col 11]
+Error: Could not open "..examples\vcam\contourplot.mu" [read]
+
+
+read ("..\\examples\\vcam\\contourplot.mu")
+
+Error: Could not open "..\examples\vcam\contourplot.mu" [read]
+
+
+read ("f:\\mupad light 2.5\\examples\\vcam\\contourplot.mu")
+Error: Could not open "f:\mupad light 2.5\examples\vcam\contourplot.mu" [r\
+ead]
+
+
+read ("h:\\mupad light 2.5\\examples\\vcam\\contourplot.mu")
+
+
+
+read ("h:\\mupad light 2.5\\examples\\vcam\\fieldplot.mu")
+
+
+read ("h:\\mupad light 2.5\\examples\\vcam\\implicitplot.mu")
+
+
+read("h:\\eco\\ramsey17in.txt")
+
+                                  restart
+
+                              x -> A*x^alpha
+
+                        x -> A*alpha*x^(alpha - 1)
+
+                            x -> fnp(x) - mu*x
+
+                      x -> A*alpha*x^(alpha - 1) - mu
+
+                                x -> ln(x)
+
+                                     1
+                                    --
+                                    id
+
+                   (c, k, p) -> Util(c) + p*(fpn(k) - c)
+
+                                   1
+                                   - - p
+                                   c
+
+                                    alpha - 1
+                        p (A alpha k          - mu)
+
+                                  1
+                                ---- - p(t)
+                                c(t)
+
+                                       alpha - 1
+                     p(t) (A alpha k(t)          - mu)
+
+                                                    alpha - 1
+        diff(p(t), t) - ps p(t) + p(t) (A alpha k(t)          - mu)
+
+                                                 alpha - 1
+                /   1     \    ps    A alpha k(t)          - mu
+            diff| ----, t | - ---- + --------------------------
+                \ c(t)    /   c(t)              c(t)
+
+             /                                      alpha - 1      \
+           2 |     /   1     \    ps    A alpha k(t)          - mu |
+       c(t)  | diff| ----, t | - ---- + -------------------------- |
+             \     \ c(t)    /   c(t)              c(t)            /
+
+                                     alpha
+               diff(k(t), t) = A k(t)      - k(t) mu - c(t)
+
+             /                                      alpha - 1      \
+           2 |     /   1     \    ps    A alpha k(t)          - mu |
+       c(t)  | diff| ----, t | - ---- + -------------------------- |
+             \     \ c(t)    /   c(t)              c(t)            /
+
+               /                              alpha - 1      \
+             2 |     / 1    \   ps   A alpha k          - mu |
+            c  | diff| -, t | - -- + ----------------------- |
+               \     \ c    /    c              c            /
+
+                               alpha
+                            A k      - k mu - c
+
+     / --    /                              alpha - 1      \
+     | |   2 |     / 1    \   ps   A alpha k          - mu |
+solve| |  c  | diff| -, t | - -- + ----------------------- |,
+     \ --    \     \ c    /    c              c            /
+
+                       --         \
+      alpha             |         |
+   A k      - k mu - c  |, [c, k] |
+                       --         /
+
+     / --    /                              alpha - 1      \
+     | |   2 |     / 1    \   ps   A alpha k          - mu |
+solve| |  c  | diff| -, t | - -- + ----------------------- |,
+     \ --    \     \ c    /    c              c            /
+
+                       --         \
+      alpha             |         |
+   A k      - k mu - c  |, [c, k] |
+                       --         /
+
+eqc
+
+                       /          alpha - 1           \
+                     2 | A alpha k          - mu   ps |
+                    c  | ----------------------- - -- |
+                       \            c               c /
+
+simplify(eqc)
+
+                       /          alpha - 1           \
+                     2 | A alpha k          - mu   ps |
+                    c  | ----------------------- - -- |
+                       \            c               c /
+
+normal(eqc)
+
+                               alpha
+                    A c alpha k      - c k ps - c k mu
+                    ----------------------------------
+                                     k
+
+eqcn:=normal(eqc)
+
+                               alpha
+                    A c alpha k      - c k ps - c k mu
+                    ----------------------------------
+                                     k
+
+eqk
+
+                               alpha
+                            A k      - k mu - c
+
+soln:=solve({eqcn,eqk},{c,k})
+
+     / --            alpha                                        --
+     | |  A c alpha k      - c k ps - c k mu     alpha             |
+solve| |  ----------------------------------, A k      - k mu - c  |,
+     \ --                  k                                      --
+
+          \
+          |
+   [c, k] |
+          /
+
+A:=8.0
+
+                                    8.0
+
+alpha:=0.3
+
+                                    0.3
+
+mu:=0.1
+
+                                    0.1
+
+ps:=0.05
+
+                                   0.05
+
+eqcn
+
+                                  0.3
+                           2.4 c k    - 0.15 c k
+                           ---------------------
+                                     k
+
+norman(eqcn)
+
+                            /        0.3            \
+                            | 2.4 c k    - 0.15 c k |
+                      norman| --------------------- |
+                            \           k           /
+
+normal(eqcn)
+
+                                     3/10
+                       0.05 (48.0 c k     - 3.0 c k)
+                       -----------------------------
+                                     k
+
+simplify(eqcn)
+
+                                  0.3
+                           2.4 c k    - 0.15 c k
+                           ---------------------
+                                     k
+
+ratnormal(eqcn)
+
+                             /        0.3            \
+                             | 2.4 c k    - 0.15 c k |
+                    ratnormal| --------------------- |
+                             \           k           /
+
+expand(eqcn)
+
+                              2.4 c
+                              ----- - 0.15 c
+                                0.7
+                               k
+
+eqcne:=expand(eqcn)
+
+                              2.4 c
+                              ----- - 0.15 c
+                                0.7
+                               k
+
+factor(eqcne)
+
+                                   7/10
+                         (-3/20) (k     - 16.0) c
+                         ------------------------
+                                    7/10
+                                   k
+
+expand(factor(eqcne))
+
+                                2.4 c   3 c
+                                ----- - ---
+                                 7/10    20
+                                k
+
+eqcne
+
+                              2.4 c
+                              ----- - 0.15 c
+                                0.7
+                               k
+
+eqk
+
+                                0.3
+                           8.0 k    - 0.1 k - c
+
+solve({eqcne,eqk},{c,k})
+Error: Memory limit of demo version exceeded
+
+
