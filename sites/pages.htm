@@ -1,0 +1,288 @@
+<html>
+
+<head>
+
+	<title> MultiMania - PHP4U/Admin teledev </title>
+
+	<style type="text/css">
+	<!-- //
+	body {  font-family: Arial, Helvetica, sans-serif; font-size: 12pt}
+
+	th.msg { font-family: Arial, Helvetica, sans-serif; font-size: 14pt; font-weight: bold; background-color: #336699}
+	th   {  font-family: Arial, Helvetica, sans-serif; font-size: 14pt; font-weight: bold; background-color: #003366; color: #ff9900}
+
+	form   {  font-family: Arial, Helvetica, sans-serif; font-size: 10pt}
+
+	h1   {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 16pt; font-weight: bold}
+
+	A:link.hdr    {  font-family: Arial, Helvetica, sans-serif; font-size: 12pt; text-decoration: none; color: #ff9900}
+	A:visited.hdr {  font-family: Arial, Helvetica, sans-serif; font-size: 12pt; text-decoration: none; color: #ff9900}
+	A:hover.hdr   {  font-family: Arial, Helvetica, sans-serif; font-size: 12pt; text-decoration: underline; color: red}
+
+	A:link    {  font-family: Arial, Helvetica, sans-serif; font-size: 12pt; text-decoration: none; color: #333333}
+	A:visited {  font-family: Arial, Helvetica, sans-serif; font-size: 12pt; text-decoration: none; color: #333333}
+	A:hover   {  font-family: Arial, Helvetica, sans-serif; font-size: 12pt; text-decoration: underline; color: red}
+
+	A:link.nav {  font-family: Verdana, Arial, Helvetica, sans-serif; color: #333333}
+	A:visited.nav {  font-family: Verdana, Arial, Helvetica, sans-serif; color: #333333}
+	A:hover.nav {  font-family: Verdana, Arial, Helvetica, sans-serif; color: red;}
+	.nav {  font-family: Verdana, Arial, Helvetica, sans-serif; color: #000000}
+
+	A:link.field {  font-family: Verdana, Arial, Helvetica, sans-serif; color: #ffffff}
+	A:visited.field {  font-family: Verdana, Arial, Helvetica, sans-serif; color: #ffffff}
+	A:hover.field {  font-family: Verdana, Arial, Helvetica, sans-serif; color: red;}
+
+	// -->
+	</style>
+
+</head>
+
+<body	bgcolor="#ffffff"
+	text="#000000"
+	link="#333333"
+	vlink="#333333"
+	topmargin="4"
+	leftmargin="0">
+
+<p align="center">
+<a	href="http://www.multimania.fr/">
+<img 	src="./logo_50_50.gif"
+	width="50" height="45"
+	border="0" align="left"
+	alt="MultiMania"></a>
+
+<a href="http://www.multimania.fr/"><font color="#336699">Accueil MultiMania</font></a>
+|
+<a href="/general/membre/"><font color="#336699">Espace Membre</font></a>
+|
+<a href="/general/membre/php4u/"><font color="#336699">PHP4u</font></a>
+|
+<a href="/webmaster/outils/php/"><font color="#336699">Cahiers Webmaster</font></a>
+|
+<a href="/general/aide/"><font color="#336699">Aide</font></a>
+</p>
+
+
+<br clear="left">
+<h1>Propriétés de la table  pages</h1>
+<table border=0	width="100%"
+	cellspacing=1
+	cellpadding=1>
+	<TR>
+		<TH>Nom du champ</TH>
+		<TH>Type</TH>
+		<TH>Attributs</TH>
+		<TH>Null</TH>
+		<TH>Valeur par défaut</TH>
+		<TH>Extra</TH>
+   		<TH COLSPAN=4>Actions</TH>
+   	</TR>
+
+	<tr bgcolor="#3399cc">     
+		<td class='field'>numero&nbsp;</td>
+		<td class='field'>
+int(11)&nbsp;</td>
+		<td class='field'>
+&nbsp;</td>
+		<td class='field'>Non&nbsp;</td>
+        	<td class='field'>&nbsp;</td>
+        	<td class='field'>auto_increment&nbsp;</td>
+        	<td><a href="tbl_alter.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&field=numero"><font color=#ffffff>Modifier</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+DROP+numero&zero_rows=numero+a+%E9t%E9+effac%E9e."><font color=#ffffff>Effacer</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY%28numero%29&zero_rows=Une+cl%E9+primaire+a+%E9t%E9+ajout%E9e+surnumero"><font color="#ffffff">Clé primaire</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+ADD+UNIQUE%28numero%29&zero_rows=Un+index+a+%E9t%E9+ajout%E9+sur+numero"><font color=#ffffff>Clé unique</font></a></td>
+	</tr>
+	<tr bgcolor="#006699">     
+		<td class='field'>site&nbsp;</td>
+		<td class='field'>
+varchar(120)&nbsp;</td>
+		<td class='field'>
+&nbsp;</td>
+		<td class='field'>Non&nbsp;</td>
+        	<td class='field'>&nbsp;</td>
+        	<td class='field'>&nbsp;</td>
+        	<td><a href="tbl_alter.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&field=site"><font color=#ffffff>Modifier</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+DROP+site&zero_rows=site+a+%E9t%E9+effac%E9e."><font color=#ffffff>Effacer</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY%28site%29&zero_rows=Une+cl%E9+primaire+a+%E9t%E9+ajout%E9e+sursite"><font color="#ffffff">Clé primaire</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+ADD+UNIQUE%28site%29&zero_rows=Un+index+a+%E9t%E9+ajout%E9+sur+site"><font color=#ffffff>Clé unique</font></a></td>
+	</tr>
+	<tr bgcolor="#3399cc">     
+		<td class='field'>rubrique&nbsp;</td>
+		<td class='field'>
+varchar(120)&nbsp;</td>
+		<td class='field'>
+&nbsp;</td>
+		<td class='field'>Non&nbsp;</td>
+        	<td class='field'>&nbsp;</td>
+        	<td class='field'>&nbsp;</td>
+        	<td><a href="tbl_alter.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&field=rubrique"><font color=#ffffff>Modifier</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+DROP+rubrique&zero_rows=rubrique+a+%E9t%E9+effac%E9e."><font color=#ffffff>Effacer</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY%28rubrique%29&zero_rows=Une+cl%E9+primaire+a+%E9t%E9+ajout%E9e+surrubrique"><font color="#ffffff">Clé primaire</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+ADD+UNIQUE%28rubrique%29&zero_rows=Un+index+a+%E9t%E9+ajout%E9+sur+rubrique"><font color=#ffffff>Clé unique</font></a></td>
+	</tr>
+	<tr bgcolor="#006699">     
+		<td class='field'>position&nbsp;</td>
+		<td class='field'>
+float&nbsp;</td>
+		<td class='field'>
+&nbsp;</td>
+		<td class='field'>Non&nbsp;</td>
+        	<td class='field'>0&nbsp;</td>
+        	<td class='field'>&nbsp;</td>
+        	<td><a href="tbl_alter.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&field=position"><font color=#ffffff>Modifier</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+DROP+position&zero_rows=position+a+%E9t%E9+effac%E9e."><font color=#ffffff>Effacer</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY%28position%29&zero_rows=Une+cl%E9+primaire+a+%E9t%E9+ajout%E9e+surposition"><font color="#ffffff">Clé primaire</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+ADD+UNIQUE%28position%29&zero_rows=Un+index+a+%E9t%E9+ajout%E9+sur+position"><font color=#ffffff>Clé unique</font></a></td>
+	</tr>
+	<tr bgcolor="#3399cc">     
+		<td class='field'>titre&nbsp;</td>
+		<td class='field'>
+varchar(120)&nbsp;</td>
+		<td class='field'>
+&nbsp;</td>
+		<td class='field'>Non&nbsp;</td>
+        	<td class='field'>&nbsp;</td>
+        	<td class='field'>&nbsp;</td>
+        	<td><a href="tbl_alter.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&field=titre"><font color=#ffffff>Modifier</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+DROP+titre&zero_rows=titre+a+%E9t%E9+effac%E9e."><font color=#ffffff>Effacer</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY%28titre%29&zero_rows=Une+cl%E9+primaire+a+%E9t%E9+ajout%E9e+surtitre"><font color="#ffffff">Clé primaire</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+ADD+UNIQUE%28titre%29&zero_rows=Un+index+a+%E9t%E9+ajout%E9+sur+titre"><font color=#ffffff>Clé unique</font></a></td>
+	</tr>
+	<tr bgcolor="#006699">     
+		<td class='field'>motscles&nbsp;</td>
+		<td class='field'>
+varchar(250)&nbsp;</td>
+		<td class='field'>
+&nbsp;</td>
+		<td class='field'>Non&nbsp;</td>
+        	<td class='field'>&nbsp;</td>
+        	<td class='field'>&nbsp;</td>
+        	<td><a href="tbl_alter.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&field=motscles"><font color=#ffffff>Modifier</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+DROP+motscles&zero_rows=motscles+a+%E9t%E9+effac%E9e."><font color=#ffffff>Effacer</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY%28motscles%29&zero_rows=Une+cl%E9+primaire+a+%E9t%E9+ajout%E9e+surmotscles"><font color="#ffffff">Clé primaire</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+ADD+UNIQUE%28motscles%29&zero_rows=Un+index+a+%E9t%E9+ajout%E9+sur+motscles"><font color=#ffffff>Clé unique</font></a></td>
+	</tr>
+	<tr bgcolor="#3399cc">     
+		<td class='field'>texte&nbsp;</td>
+		<td class='field'>
+text&nbsp;</td>
+		<td class='field'>
+&nbsp;</td>
+		<td class='field'>Non&nbsp;</td>
+        	<td class='field'>&nbsp;</td>
+        	<td class='field'>&nbsp;</td>
+        	<td><a href="tbl_alter.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&field=texte"><font color=#ffffff>Modifier</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+DROP+texte&zero_rows=texte+a+%E9t%E9+effac%E9e."><font color=#ffffff>Effacer</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY%28texte%29&zero_rows=Une+cl%E9+primaire+a+%E9t%E9+ajout%E9e+surtexte"><font color="#ffffff">Clé primaire</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+ADD+UNIQUE%28texte%29&zero_rows=Un+index+a+%E9t%E9+ajout%E9+sur+texte"><font color=#ffffff>Clé unique</font></a></td>
+	</tr>
+	<tr bgcolor="#006699">     
+		<td class='field'>test&nbsp;</td>
+		<td class='field'>
+varchar(120)&nbsp;</td>
+		<td class='field'>
+&nbsp;</td>
+		<td class='field'>Non&nbsp;</td>
+        	<td class='field'>&nbsp;</td>
+        	<td class='field'>&nbsp;</td>
+        	<td><a href="tbl_alter.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&field=test"><font color=#ffffff>Modifier</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+DROP+test&zero_rows=test+a+%E9t%E9+effac%E9e."><font color=#ffffff>Effacer</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+DROP+PRIMARY+KEY%2C+ADD+PRIMARY+KEY%28test%29&zero_rows=Une+cl%E9+primaire+a+%E9t%E9+ajout%E9e+surtest"><font color="#ffffff">Clé primaire</font></a></td>
+        	<td><a href="sql.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body&sql_query=ALTER+TABLE+pages+ADD+UNIQUE%28test%29&zero_rows=Un+index+a+%E9t%E9+ajout%E9+sur+test"><font color=#ffffff>Clé unique</font></a></td>
+	</tr>
+</table>
+<br>
+<table border=0>
+	<tr>
+		<th>Nom de la clé</th>
+      		<th>Clé unique</th>
+      		<th>Nom du champ</th>
+      		<th>Action</th>
+      	</tr>
+<tr><tr><tr><tr><tr><tr><tr></table>
+[<a href="http://www.mysql.com/documentation/mysql/commented/">Documentation</a>]
+<div align="left">
+<ul>
+<li><a href="sql.phtml?sql_query=SELECT+%2A+FROM+pages&pos=0&server=1&db=teledev_db&table=pages&goto=tbl_properties.body">Afficher le contenu</a>
+<li><a href="tbl_select.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body">Sélectionner des données</a>
+<li><a href="tbl_change.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body">Insérer des données</a>
+<li><form method="post" action="tbl_addfield.phtml"> <input type="hidden" name="server" value="1">
+ <input type="hidden" name="db" value="teledev_db">
+ <input type="hidden" name="table" value="pages">
+Ajouter un champ (Nombre de champs): <input name="num_fields" size=2 maxlength=2 value=1><input type="submit" value="Exécuter"></form>
+<!-- <li><a href="ldi_table.phtml?server=1&db=teledev_db&table=pages&goto=tbl_properties.body">Insérer un fichier texte dans la table</a> -->
+<li><form method="post" action="tbl_dump.phtml">Afficher le schéma de la table<br>
+<table>
+    <tr>
+        <td>
+            <input type="radio" name="what" value="structure" checked>Structure seule        </td>
+        <td>
+            <input type="checkbox" name="drop" value="1">Ajouter les requêtes de destruction des tables 
+        </td>
+        <td colspan="3">
+            <input type="submit" value="Exécuter">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="radio" name="what" value="data">Structure et données        </td>
+        <td>
+            <input type="hidden" name="asfile" value="sendit">
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="radio" name="what" value="csv">Données CSV        </td>
+        <td>
+            Séparateur : <input type="text" name="separator" size=1 value=";">
+        </td>
+    </tr>
+</table>
+
+ <input type="hidden" name="server" value="1">
+ <input type="hidden" name="db" value="teledev_db">
+ <input type="hidden" name="table" value="pages">
+</form>
+
+<li><form method="post" action="tbl_rename.phtml">Changer le nom de la table:<br>
+ <input type="hidden" name="server" value="1">
+ <input type="hidden" name="db" value="teledev_db">
+ <input type="hidden" name="table" value="pages">
+ <input type="hidden" name="reload" value="true"> 
+ <input type="text" name="new_name"><input type="submit" value="Exécuter">
+</form>
+<li><form method="post" action="tbl_copy.phtml">Copier la table vers:<br>
+ <input type="hidden" name="server" value="1">
+ <input type="hidden" name="db" value="teledev_db">
+ <input type="hidden" name="table" value="pages">
+ <input type="hidden" name="reload" value="true">
+ <input type="text" name="new_name"><br>
+ <input type="radio" name="what" value="structure" checked>Structure seule <input type="radio" name="what" value="data">Structure et données <input type="submit" value="Exécuter">
+</form>
+
+</ul>
+</div>
+
+		</td>
+
+	</tr>
+
+</table>
+	<a href="index.phtml">Retour à la liste des tables</a>
+
+<hr noshade>
+<p align="center">
+<a href="http://www.multimania.fr/"><font color="#336699">Accueil MultiMania</font></a>
+|
+<a href="/general/membre/"><font color="#336699">Espace Membre</font></a>
+|
+<a href="/general/membre/php4u/admin/"><font color="#336699">PHP4u/admin</font></a>
+|
+<a href="/webmaster/outils/php/"><font color="#336699">Cahiers Webmaster</font></a>
+|
+<a href="/general/aide/"><font color="#336699">Aide</font></a>
+</p>
+
+</body>
+
+</html>

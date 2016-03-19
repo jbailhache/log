@@ -1,0 +1,16 @@
+
+sites
+	site
+	texte
+
+rubriques
+	site
+	rubrique
+
+pages
+	site
+	rubrique
+	position
+	titre
+	motscles
+	texte
