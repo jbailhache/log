@@ -1,0 +1,21 @@
+<HTML>
+<head>
+<title>Télédev - Inscription</title>
+</head>
+<body>
+<h3>Inscription sur Télédev</h3>
+
+<form type="post" action="enrinscr.php">
+Votre nom :
+<input type="text" name="nom" value="">
+<p>
+Votre adresse email :
+<input type="text" name="email" value="">
+<p>
+Vous êtes :
+<input type="checkbox" name="client" value="Client">
+<input type="checkbox" name="consultant" value="Consultant">
+
+</body>
+</HTML>
+

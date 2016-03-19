@@ -1,0 +1,37 @@
+
+database teledev
+
+tables :
+
+	participants
+		nom
+		email
+		client
+		consultant
+
+	projets
+		nom
+		description
+		nom_client
+		nom_consultant
+		plateforme
+		langage
+		domaine
+		cahier_des_charges
+
+	propositions
+		numero
+		nom_projet
+		nom_consultant
+		prix
+		delai		
+		langage
+
+cahier des charges dans la base ou
+pour chaque projet, créer un répertoire qui contient
+le cahier des charges
+
+ajouter email dans proposition
+inscription automatique
+tous les champs chaines ?
+		
