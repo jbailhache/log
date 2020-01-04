@@ -2,7 +2,7 @@
 <head>
 <title>Activités philosophiques et culturelles à Paris</title>
 <!--meta http-equiv="refresh" content="1; url="http://philosophie.olympe-network.com/activites/" /-->
-
+<meta charset="UTF-8">
 
 </head>
 <body>

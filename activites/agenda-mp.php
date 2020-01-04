@@ -1,4 +1,7 @@
 <html>
+<head>
+<meta charset="UTF-8">
+</head>
 <body>
 <br><br><br><br><br><br>
 <h2>Maintenance agenda</h3>
