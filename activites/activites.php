@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>Activités philosophiques et culturelles à Paris</title>
-<meta http-equiv="refresh" content="1; url="http://philosophie.olympe-network.com/activites/" />
+<!--meta http-equiv="refresh" content="1; url="http://philosophie.olympe-network.com/activites/" /-->
 
 
 </head>
