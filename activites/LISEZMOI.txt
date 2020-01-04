@@ -1,0 +1,49 @@
+Fichiers :
+
+- Activités philosophiques et culturelles à Paris :
+
+création tables :
+	creer-activites.php
+	agendap-create.php
+	agendau-create.php
+
+Page principale :
+	activites.php
+	index10.php
+
+Pages ajoutées par les visiteurs :
+	activites-m.php
+
+Fonction d'affichage de l'agenda :
+	afagenda.php
+
+Page d'affichage de l'agenda :
+	agenda.php
+
+Maintenance de l'agenda :
+	agenda-m.php
+	agenda-mp.php
+	agenda-mu.php
+
+- Café philo de la Contrescarpe :
+	cm-commun.php
+	cm-create.php
+	cm-debug.php
+	cm-sqlite.php
+	contrescarpe.php
+	contrescarpe-f.php
+	contrescarpe-imp.php
+	contrescarpe-maintenance.php
+
+strene.php
+strene-create.php
+strene-m.php
+
+- Fonctions spécifiques à la plate-forme (SQLite, MySQL, ...)
+	platform.php = platform-pdo-sqlite.php
+	platform1.php
+	platform-mysql.php
+	platform-new.php
+	platform-phph.php
+	sqlite.php
+
