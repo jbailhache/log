@@ -109,7 +109,7 @@ function num ($s)
 		return $s;
 	else
 	{
-		echo "<h2><font face=darkred>ALERTE !!! TENTATIVE DE PIRATAGE DU SITE !!!</h2><p>C'est pas bien &ccedil;a...</p>";
+		echo "<h2><font color=darkred>ALERTE !!! TENTATIVE DE PIRATAGE DU SITE !!!</font></h2><p>C'est pas bien &ccedil;a...</p>";
 		exit();
 	}
 }
