@@ -28,7 +28,7 @@
 
  init();
 
- $discussion = $_GET['discussion'];
+ $discussion = num($_GET['discussion']);
  /* echo "<br>discussion=$discussion<br>"; */
 
  /* echo "<br>mod&eacute;rateur = [" . $_SESSION['moderateur'] . "]<br>"; */
