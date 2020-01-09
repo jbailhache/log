@@ -44,6 +44,8 @@
 
   $message = "";
 
+  $forum2 = format_query($forum);
+
   if (isset($_POST['auteur']) && $_POST['auteur'] != '' && 
       isset($_POST['titre']) && $_POST['titre'] != '' &&
       isset($_POST['texte']) && $_POST['texte'] != '')
@@ -75,7 +77,7 @@
     $texte1 = $_POST['texte'];
     $texte2 = format($texte1);
     trace("texte1=$texte1 texte2=$texte2");
-    $query = "INSERT INTO forums (forum, titre, reponse, auteur, ip, date, statut, texte) VALUES ('$forum', '" . $titre2 . "', 0, '" . $auteur2 . "', '" . ip() . "', datetime('now'), 0, '" . $texte2 . "')";
+    $query = "INSERT INTO forums (forum, titre, reponse, auteur, ip, date, statut, texte) VALUES ('$forum2', '" . $titre2 . "', 0, '" . $auteur2 . "', '" . ip() . "', datetime('now'), 0, '" . $texte2 . "')";
     trace("query=$query");
     if ($trace) { echo "<br>$query<br>";  } 
     query ($query);
@@ -84,7 +86,7 @@
 
   if (isset($_GET['supprimer']) && is_numeric($_GET['supprimer'])) 
   {
-   $query = "SELECT * FROM forums WHERE forum = '$forum' AND numero = " . $_GET['supprimer'];
+   $query = "SELECT * FROM forums WHERE forum = '$forum2' AND numero = " . $_GET['supprimer'];
    if ($trace) { echo "<br>$query<br>";  }
    $data = query ($query);
    $rec = fetch_object ($data);
@@ -103,7 +105,7 @@
      }
      $supprimepar = format($_POST['supprimepar']) . "@" . ip();
      $motif = format($_POST['motif']);
-     $query = "UPDATE forums SET statut = $statut, supprimepar = '" . $supprimepar . "', motif = '" . $motif . "' WHERE forum = '" . $forum . "' AND numero = " . $_GET['supprimer'];
+     $query = "UPDATE forums SET statut = $statut, supprimepar = '" . $supprimepar . "', motif = '" . $motif . "' WHERE forum = '" . $forum2 . "' AND numero = " . $_GET['supprimer'];
      if ($trace) { echo "<br>$query<br>"; }
      query ($query); 
     }
@@ -166,7 +168,7 @@ Votre nom : </td><td> <input type=text name=auteur size=60 value="<?php echo $au
 </tr>
 <?php
 
- $query = "SELECT * FROM forums WHERE forum = '$forum' AND reponse = 0 ORDER BY numero DESC";
+ $query = "SELECT * FROM forums WHERE forum = '$forum2' AND reponse = 0 ORDER BY numero DESC";
  $data = query ($query);
  while ($rec = fetch_object($data))
  {
