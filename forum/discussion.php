@@ -33,7 +33,7 @@
 
  /* echo "<br>mod&eacute;rateur = [" . $_SESSION['moderateur'] . "]<br>"; */
 
- $query = "SELECT * FROM forums WHERE forum = '" . $forum . "' AND numero = $discussion AND reponse = 0";
+ $query = "SELECT * FROM forums WHERE forum = '" . format_query($forum) . "' AND numero = $discussion AND reponse = 0";
  if ($trace) { echo "<br>$query<br>";  } 
  $data = query ($query);
  $rec = fetch_object ($data);
@@ -50,7 +50,7 @@
    }
    $supprimepar = format($_POST['supprimepar']) . "@" . ip();
    $motif = format($_POST['motif']);
-   $query = "UPDATE forums SET statut = $statut, supprimepar = '" . $supprimepar . "', motif = '" . $motif . "' WHERE forum = '" . $forum . "' AND numero = " . $_GET['supprimer'];
+   $query = "UPDATE forums SET statut = $statut, supprimepar = '" . $supprimepar . "', motif = '" . $motif . "' WHERE forum = '" . format_query($forum) . "' AND numero = " . $_GET['supprimer'];
    if ($trace) { echo "<br>$query<br>";  }
    query ($query);
  }
@@ -58,12 +58,12 @@
  if (isset($_GET['valider']) && is_numeric($_GET['valider']) && $_SESSION['moderateur'] == 'oui')
  {
    $statut = ($rec->statut & 1) | 4; 
-   $query = "UPDATE forums SET statut = $statut WHERE forum = '" . $forum . "' AND numero = " . $_GET['valider'];
+   $query = "UPDATE forums SET statut = $statut WHERE forum = '" . format_query($forum) . "' AND numero = " . $_GET['valider'];
    if ($trace) { echo "<br>$query<br>"; }
    query ($query);
  }
 
- $query = "SELECT * FROM forums WHERE forum = '" . $forum . "' AND numero = $discussion AND reponse = 0";
+ $query = "SELECT * FROM forums WHERE forum = '" . format_query($forum) . "' AND numero = $discussion AND reponse = 0";
  $data = query ($query);
  $rec = fetch_object ($data);
  if (affichable ($rec))
@@ -114,7 +114,7 @@
    {
     $message = "R&eacute;ponse envoy&eacute;e.";
     $couleur = $couleur_fond_message;
-   	$query = "INSERT INTO forums (forum, titre, discussion, reponse, auteur, ip, date, statut, texte) VALUES ('$forum', '" . format_query($rec->titre) . "', " .  $rec->numero . ", 1, '" . format($_POST['auteur']) .  "', '" . ip() ."', datetime('now'), 0, '" . format($_POST['texte']) . "')";
+   	$query = "INSERT INTO forums (forum, titre, discussion, reponse, auteur, ip, date, statut, texte) VALUES ('" . format_query($forum) . "', '" . format_query($rec->titre) . "', " .  $rec->numero . ", 1, '" . format($_POST['auteur']) .  "', '" . ip() ."', datetime('now'), 0, '" . format($_POST['texte']) . "')";
     if ($trace) { echo "<br>$query<br>";  }
     query ($query);
    }
@@ -150,7 +150,7 @@ Votre r&eacute;ponse : <br>
  /* echo "<br>(2) discussion=$discussion<br>"; */
  if (affichable ($rec))
  {
-  $query = "SELECT * FROM forums WHERE forum = '" . $forum . "' AND discussion = $discussion AND reponse = 1 ORDER BY numero DESC";
+  $query = "SELECT * FROM forums WHERE forum = '" . format_query($forum) . "' AND discussion = $discussion AND reponse = 1 ORDER BY numero DESC";
   $data = query ($query);
   while ($rec = fetch_object($data))
   {
